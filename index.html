@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>ZEROFX • High Probability Astrodox 360°, 30 Candle, 45 Time Zones & News Engine</title>
-  <meta name="description" content="AI Trading Engine: Astrodox 360° Tulungagung, 45 Sub-Time Zone adaptif, Live Forex Factory Calendar, SMC Matrix Checklist, dan Self-Rebate Valetax hingga $12/lot.">
+  <meta name="description" content="AI Trading Engine: Astrodox 360° Tulungagung, 45 Sub-Time Zone adaptif, Live Forex Factory Calendar, SMC Matrix Checklist, dan Broker Valetax & Headway.">
   <meta property="og:title" content="ZEROFX • Astrodox 360° AI Realtime & 45 Adaptive Time Zones">
-  <meta property="og:description" content="Komunitas institusi SMC, sinyal eksekusi otomatis siklus Astrodox Tulungagung, kalender news realtime, dan rebate Valetax.">
+  <meta property="og:description" content="Komunitas institusi SMC, sinyal eksekusi otomatis siklus Astrodox Tulungagung, kalender news realtime, dan rebate broker.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,600;0,700;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
@@ -27,6 +27,8 @@
       --gold-glow: rgba(245, 158, 11, 0.4);
       --vx-green: #10b981;
       --vx-glow: rgba(16, 185, 129, 0.45);
+      --hw-blue: #3b82f6;
+      --hw-glow: rgba(59, 130, 246, 0.45);
       --text-white: #ffffff;
       --text-muted: #8e95a5;
       --font-heading: 'Chakra Petch', sans-serif;
@@ -145,7 +147,7 @@
       color: var(--vx-green);
     }
     .btn-nav-broker.active {
-      background: var(--vx-green) !important;
+      background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%) !important;
       color: #000 !important;
       border-color: var(--vx-green) !important;
       box-shadow: 0 0 14px var(--vx-glow) !important;
@@ -217,6 +219,7 @@
       background: rgba(204, 255, 0, 0.1);
     }
 
+    /* VIP HERO */
     .vip-hero-wrap { text-align: center; padding: 20px 8px 30px 8px; }
     .verified-top-badge {
       display: inline-flex;
@@ -321,6 +324,7 @@
     .btn-plan-claim:hover { filter: brightness(1.15); }
     .btn-plan-gold { background: linear-gradient(135deg, #f59e0b 0%, #ccff00 100%); color: #000 !important; }
 
+    /* TESTIMONI */
     .testi-header-box { text-align: center; margin-bottom: 22px; }
     .testi-grid-japsku { display: grid; grid-template-columns: 1fr; gap: 14px; margin-bottom: 45px; }
     @media(min-width: 768px) { .testi-grid-japsku { grid-template-columns: repeat(3, 1fr); } }
@@ -337,6 +341,7 @@
     .testi-pnl-tag { font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--bull); background: rgba(0, 245, 160, 0.1); padding: 3px 6px; border-radius: 4px; margin-bottom: 8px; display: inline-block; }
     .testi-quote-text { font-size: 12px; color: #cbd5e1; line-height: 1.5; font-style: italic; }
 
+    /* CANDLE MATERI */
     .candle-tab-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
       gap: 8px; margin-bottom: 20px; max-height: 220px; overflow-y: auto; padding: 10px;
@@ -371,183 +376,138 @@
     @media(min-width: 600px) { .metric-grid-candle { grid-template-columns: 1fr 1fr; } }
     .metric-box-candle { background: #080a0e; border: 1px solid #161c24; padding: 8px 10px; border-radius: 4px; }
 
-    .valetax-page-wrap {
-      background: linear-gradient(180deg, #09131d 0%, #05090f 100%);
-      border: 1px solid rgba(16, 185, 129, 0.4);
+    /* TAB BROKER COMPACT STYLES */
+    .broker-page-wrap {
+      background: linear-gradient(180deg, #091018 0%, #05080c 100%);
+      border: 1px solid var(--border-neon);
       border-radius: 14px;
-      padding: 24px 18px;
+      padding: 22px 18px;
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.85);
-      position: relative;
     }
-    .valetax-rebate-banner {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(204, 255, 0, 0.15) 100%);
-      border: 2px solid var(--vx-green);
-      border-radius: 12px;
-      padding: 22px;
-      margin-bottom: 24px;
-      box-shadow: 0 0 35px var(--vx-glow);
-      position: relative;
-    }
-    .rebate-badge-floating {
-      position: absolute;
-      top: -12px;
-      right: 20px;
-      background: linear-gradient(90deg, #ccff00, #10b981);
-      color: #000;
-      font-family: var(--font-heading);
-      font-size: 12px;
-      font-weight: 900;
-      padding: 4px 12px;
-      border-radius: 20px;
-      letter-spacing: 0.5px;
-      box-shadow: 0 0 14px var(--neon-glow);
-    }
-    .rebate-hero-grid {
+    .broker-grid-duo {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 20px;
-      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
     }
-    @media(min-width: 820px) {
-      .rebate-hero-grid { grid-template-columns: 1.2fr 1.1fr; }
+    @media(min-width: 768px) {
+      .broker-grid-duo { grid-template-columns: 1fr 1fr; }
     }
-    .rebate-title-h1 {
-      font-family: var(--font-heading);
-      font-size: clamp(20px, 3.8vw, 32px);
+    .broker-card-item {
+      background: #090d14;
+      border: 1px solid #1c2636;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s;
+      position: relative;
+    }
+    .broker-card-item:hover {
+      transform: translateY(-2px);
+    }
+    .broker-card-item.valetax-card {
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 0 24px rgba(16, 185, 129, 0.12);
+    }
+    .broker-card-item.headway-card {
+      border-color: rgba(59, 130, 246, 0.5);
+      box-shadow: 0 0 24px rgba(59, 130, 246, 0.12);
+    }
+    .broker-badge-pill {
+      font-family: var(--font-mono);
+      font-size: 9px;
       font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+    .btn-broker-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: 0.2s;
+      margin-top: 16px;
+    }
+    .btn-broker-valetax {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #000;
+      box-shadow: 0 4px 18px var(--vx-glow);
+    }
+    .btn-broker-valetax:hover { filter: brightness(1.2); }
+    .btn-broker-headway {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
       color: #fff;
-      line-height: 1.25;
-      margin-bottom: 8px;
+      box-shadow: 0 4px 18px var(--hw-glow);
     }
-    .rebate-title-h1 span {
-      background: linear-gradient(135deg, #10b981 0%, #ccff00 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .rebate-calc-box {
-      background: rgba(4, 7, 12, 0.9);
-      border: 1px solid rgba(16, 185, 129, 0.45);
+    .btn-broker-headway:hover { filter: brightness(1.2); }
+
+    /* COMPACT REBATE & RISK CALCULATOR */
+    .compact-calc-strip {
+      background: #06090e;
+      border: 1px solid #1a2332;
       border-radius: 10px;
       padding: 16px;
     }
-    .slider-wrap-box { margin: 12px 0; }
-    .lot-slider-input {
-      width: 100%;
-      -webkit-appearance: none;
-      height: 6px;
-      border-radius: 3px;
-      background: #1f2735;
-      outline: none;
-      accent-color: var(--neon);
-    }
-    .rebate-val-highlight {
-      font-family: var(--font-heading);
-      font-size: 26px;
-      font-weight: 800;
-      color: var(--neon);
-      margin: 6px 0 2px 0;
-      text-shadow: 0 0 12px var(--neon-glow);
-    }
-    .rebate-matrix-row {
+    .calc-row-inputs {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 6px;
-      text-align: center;
-      margin-top: 10px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding-top: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
     }
-    .rebate-sub-stat-num {
-      font-family: var(--font-heading);
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--neon);
-    }
-    .rebate-sub-stat-lbl {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      color: var(--text-muted);
-    }
-    .valetax-header-block {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 20px;
-      margin-bottom: 24px;
-    }
-    .valetax-brand-identity { display: flex; align-items: center; gap: 14px; }
-    .valetax-logo-box {
-      width: 56px; height: 56px; background: #000; border: 1px solid rgba(16, 185, 129, 0.4);
-      border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 18px var(--vx-glow);
-    }
-    .valetax-logo-box svg { width: 40px; height: 40px; }
-    .valetax-title-wrap h2 { font-family: var(--font-heading); font-size: 24px; font-weight: 700; letter-spacing: 1px; color: #fff; }
-    .valetax-title-wrap h2 span { color: var(--vx-green); }
-    .valetax-sub-badge {
-      display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono);
-      font-size: 11px; color: var(--vx-green); background: rgba(16, 185, 129, 0.12);
-      padding: 3px 8px; border-radius: 4px; margin-top: 4px;
-    }
-    .btn-valetax-main {
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      color: #000; font-family: var(--font-heading); font-size: 14px; font-weight: 700;
-      padding: 12px 24px; border-radius: 6px; display: inline-flex; align-items: center;
-      gap: 8px; box-shadow: 0 4px 20px var(--vx-glow); transition: 0.2s;
-    }
-    .btn-valetax-main:hover { filter: brightness(1.2); }
-    .valetax-specs-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 24px;
-    }
-    .valetax-spec-card {
-      background: rgba(3, 5, 8, 0.75); border: 1px solid var(--border-dark); border-radius: 8px; padding: 16px;
-    }
-    .valetax-spec-card.highlight {
-      border-color: rgba(16, 185, 129, 0.6); background: rgba(16, 185, 129, 0.06); box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
-    }
-    .spec-tier-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-    .spec-tier-name { font-family: var(--font-heading); font-size: 15px; font-weight: 700; color: #fff; }
-    .spec-tier-depo { font-family: var(--font-mono); font-size: 10px; font-weight: 800; color: var(--vx-green); background: rgba(16, 185, 129, 0.15); padding: 2px 6px; border-radius: 4px; }
-    .spec-tier-desc { font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; }
-    .spec-list { list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 11px; color: #cbd5e1; font-family: var(--font-mono); }
-    .spec-list li::before { content: "✓ "; color: var(--vx-green); font-weight: 900; }
-
-    .risk-calc-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 15px;
-    }
-    @media(min-width: 600px) {
-      .risk-calc-grid { grid-template-columns: 1fr 1fr 1fr; }
-    }
-    .calc-input-box {
-      background: #06090e;
-      border: 1px solid #1c2330;
+    .calc-mini-box {
+      background: #0a0e16;
+      border: 1px solid #141c2a;
       border-radius: 6px;
-      padding: 8px 12px;
+      padding: 8px 10px;
     }
-    .calc-input-box label {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      color: var(--text-muted);
+    .calc-mini-box label {
       display: block;
-      margin-bottom: 4px;
+      font-family: var(--font-mono);
+      font-size: 8px;
+      color: var(--text-muted);
+      margin-bottom: 3px;
     }
-    .calc-input-field {
+    .calc-mini-input {
       width: 100%;
       background: transparent;
       border: none;
       color: var(--neon);
       font-family: var(--font-heading);
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       outline: none;
     }
+    .calc-summary-pills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px;
+      padding-top: 12px;
+      border-top: 1px dashed #1a2436;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+    .calc-summary-pill-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid #141b27;
+      padding: 8px 10px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-    /* TAB CHECKLIST STYLES */
+    /* CHECKLIST */
     .checklist-wrap-box {
       background: #090c12;
       border: 1px solid var(--border-neon);
@@ -615,6 +575,7 @@
       transition: width 0.3s ease;
     }
 
+    /* ASTRODOX & TERMINAL */
     .astrodox-grid-wrap {
       display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px;
     }
@@ -663,6 +624,7 @@
     .ephem-table th { color: var(--text-muted); padding: 4px 6px; border-bottom: 1px solid #1f2735; }
     .ephem-table td { padding: 4px 6px; border-bottom: 1px solid rgba(255,255,255,0.03); color: #cbd5e1; }
 
+    /* NEWS FORECAST */
     .news-forecast-wrap {
       background: #0a0d13;
       border: 1px solid var(--border-neon);
@@ -703,6 +665,7 @@
       font-family: var(--font-mono); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 3px;
     }
 
+    /* 45 TIME ZONES GRID */
     .tz-filter-bar {
       display: flex;
       gap: 6px;
@@ -847,7 +810,7 @@
         <button class="tab-nav-btn btn-nav-vip active" id="btn-tab-join" onclick="switchMainTab('tab-join')">★ VIP GRATIS</button>
         <button class="tab-nav-btn" id="btn-tab-materi" onclick="switchMainTab('tab-materi')">30 MATERI CANDLE & SMC</button>
         <button class="tab-nav-btn" id="btn-tab-checklist" onclick="switchMainTab('tab-checklist')">⚡ CHECKLIST ENTRY SMC</button>
-        <button class="tab-nav-btn btn-nav-broker" id="btn-tab-valetax" onclick="switchMainTab('tab-valetax')">BROKER VALETAX (REBATE $12)</button>
+        <button class="tab-nav-btn btn-nav-broker" id="btn-tab-broker" onclick="switchMainTab('tab-broker')">BROKER</button>
         <button class="tab-nav-btn" id="btn-tab-news" onclick="switchMainTab('tab-news')">JADWAL NEWS & FORECAST</button>
         <button class="tab-nav-btn" id="btn-tab-terminal" onclick="switchMainTab('tab-terminal')">CHART & 45 TIME ZONES</button>
       </nav>
@@ -916,15 +879,15 @@
             <span style="font-size:12px; color:var(--gold); font-family:var(--font-mono);">(VERIFIED)</span>
           </div>
           <div class="plan-card-price">Rp 0 <span style="font-size:12px; color:var(--gold); font-family:var(--font-mono);">/ Bulan (100% Gratis)</span></div>
-          <div class="plan-card-note" style="border-left-color:var(--neon);">Hanya dengan registrasi di Valetax partner resmi Zero Syndicate.</div>
+          <div class="plan-card-note" style="border-left-color:var(--neon);">Daftar di broker partner resmi Zero Syndicate (Valetax / Headway).</div>
           <ul class="plan-card-perks">
             <li>Akses Sinyal Eksekusi Instan (Buy/Sell Langsung Tanpa Delay)</li>
             <li>Radar 45 Sub-Time Zone Berbasis Waktu Presisi & News 19:30 WIB</li>
             <li>Rotasi Transit Astrodox 360° Real-time Lokasi Tulungagung</li>
             <li>Live Meeting Bedah Setup Pasar 3–10x Seminggu</li>
-            <li>Self Rebate Tertinggi Valetax $9 - $12 / Lot Setiap Hari</li>
+            <li>Self Rebate Tertinggi $9 - $12 / Lot Langsung ke Akun</li>
           </ul>
-          <a href="https://wa.me/62882010445069?text=Halo%20Admin%20Rezayogiana%2C%20saya%20mau%20klaim%20Akses%20EXPERT%20VIP%20Gratis%20dan%20daftar%20Valetax" target="_blank" rel="noopener noreferrer" class="btn-plan-claim btn-plan-gold">
+          <a href="https://wa.me/62882010445069?text=Halo%20Admin%20Rezayogiana%2C%20saya%20mau%20klaim%20Akses%20EXPERT%20VIP%20Gratis%20dan%20daftar%20broker" target="_blank" rel="noopener noreferrer" class="btn-plan-claim btn-plan-gold">
             KLAIM VIP EXPERT SEKARANG
           </a>
         </div>
@@ -944,7 +907,7 @@
                   <span>Raditya Pratama</span>
                   <span class="verified-check-icon">✓</span>
                 </div>
-                <div class="testi-user-meta">Surabaya • Valetax Standard</div>
+                <div class="testi-user-meta">Surabaya • Trader Standard</div>
                 <div class="testi-verified-pill">✓ Verified Trader</div>
               </div>
             </div>
@@ -962,13 +925,13 @@
                   <span>Kevin Nugroho</span>
                   <span class="verified-check-icon">✓</span>
                 </div>
-                <div class="testi-user-meta">Jakarta • Valetax Pro ECN</div>
+                <div class="testi-user-meta">Jakarta • Pro ECN</div>
                 <div class="testi-verified-pill">✓ Verified Trader</div>
               </div>
             </div>
             <div class="testi-pnl-tag">Rebate $12/Lot Cair Tiap Hari</div>
             <p class="testi-quote-text">
-              "Self-rebate Valetax beneran masuk $12 per lot tanpa potongan. Trading gold scalping bolak-balik dapet profit plus dapet passive income rebate puluhan juta sebulan."
+              "Self-rebate beneran masuk per lot tanpa potongan. Trading gold scalping bolak-balik dapet profit plus dapet passive income rebate puluhan juta sebulan."
             </p>
           </div>
 
@@ -980,13 +943,13 @@
                   <span>Dian Saputra</span>
                   <span class="verified-check-icon">✓</span>
                 </div>
-                <div class="testi-user-meta">Medan • Valetax Cent</div>
+                <div class="testi-user-meta">Medan • Cent Trader</div>
                 <div class="testi-verified-pill">✓ Verified Trader</div>
               </div>
             </div>
             <div class="testi-pnl-tag">Radar News 19:30 WIB Akurat</div>
             <p class="testi-quote-text">
-              "Radar news 19:30 WIB ngebantu banget pas rilis CPI. Algoritma langsung nyuruh BUY SEKARANG di menit rilis, saldo akun naik stabil tanpa ribet mikir pending order."
+              "Radar news 19:30 WIB ngebantu banget pas rilis CPI. Algoritma langsung update bias tepat di menit rilis, saldo akun naik stabil tanpa ribet mikir pending order."
             </p>
           </div>
         </div>
@@ -1071,7 +1034,7 @@
       </div>
     </div>
 
-    <!-- TAB 3: CHECKLIST KONFLUENSI A+ ENTRY & KILLZONE MATRIX -->
+    <!-- TAB 3: CHECKLIST KONFLUENSI A+ ENTRY -->
     <div id="tab-checklist" class="tab-content">
       <div class="checklist-wrap-box">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid #1c2432; padding-bottom:12px;">
@@ -1160,207 +1123,132 @@
             </div>
           </div>
         </div>
-
-        <div style="margin-top:24px; border-top:1px solid #1c2432; padding-top:16px;">
-          <h3 style="font-family:var(--font-heading); font-size:14px; color:#fff; margin-bottom:10px;">
-            🕒 MATRIKS KILLZONE SESI HARIAN XAUUSD (WIB)
-          </h3>
-          <div style="overflow-x:auto;">
-            <table class="news-table-custom" style="margin-top:0;">
-              <thead>
-                <tr>
-                  <th>SESI / KILLZONE</th>
-                  <th>JAM WIB</th>
-                  <th>KARAKTERISTIK PERGERAKAN</th>
-                  <th>FOKUS EKSEKUSI</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="font-weight:700; color:var(--cyan);">Asian Session Range</td>
-                  <td style="font-family:var(--font-mono);">06:00 – 12:00</td>
-                  <td>Konsolidasi range sempit, pembentukan liquidity pool High & Low.</td>
-                  <td>Tandai High & Low Asia untuk target sweep sesi Eropa.</td>
-                </tr>
-                <tr>
-                  <td style="font-weight:700; color:var(--bear);">London Judas Swing</td>
-                  <td style="font-family:var(--font-mono);">14:30 – 16:00</td>
-                  <td>Manipulasi lelang palsu (Fake Breakout) menyapu likuiditas Asia.</td>
-                  <td>Cari Reversal CHOCH setelah High/Low Asia disapu.</td>
-                </tr>
-                <tr>
-                  <td style="font-weight:700; color:var(--neon);">US Early News Radar</td>
-                  <td style="font-family:var(--font-mono); color:var(--neon);">19:30 – 20:30</td>
-                  <td>Volatilitas ekstrem akibat rilis data inflasi/ketenagakerjaan AS.</td>
-                  <td>Eksekusi instan sesuai komando kalender & Astrodox.</td>
-                </tr>
-                <tr>
-                  <td style="font-weight:700; color:var(--gold);">NYSE Open Core Trend</td>
-                  <td style="font-family:var(--font-mono);">20:30 – 23:00</td>
-                  <td>Ekspansi volume terbesar dunia, pembentukan tren utama malam.</td>
-                  <td>Follow the order flow mitigasi FVG & OTE Discount.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
       </div>
     </div>
 
-    <!-- TAB 4: VALETAX BROKER (REBATE & RISK MANAGER) -->
-    <div id="tab-valetax" class="tab-content">
-      <div class="valetax-page-wrap">
+    <!-- TAB 4: BROKER REKOMENDASI (VALETAX & HEADWAY + COMPACT MM/REBATE) -->
+    <div id="tab-broker" class="tab-content">
+      <div class="broker-page-wrap">
         
-        <div class="valetax-rebate-banner">
-          <div class="rebate-badge-floating">★ CASHBACK AUTO-CREDIT TERBESAR</div>
-          <div class="rebate-hero-grid">
+        <div style="text-align:center; margin-bottom:20px;">
+          <h2 style="font-family:var(--font-heading); font-size:22px; font-weight:700; text-transform:uppercase;">
+            BROKER PARTNER RESMI <span style="color:var(--neon);">ZERO SYNDICATE</span>
+          </h2>
+          <p style="font-size:12px; color:var(--text-muted); max-width:650px; margin:4px auto 0 auto;">
+            Pilihan broker teregulasi global dengan eksekusi instan, server sub-millisecond, leverage fleksibel, dan cashback self-rebate otomatis harian.
+          </p>
+        </div>
+
+        <div class="broker-grid-duo">
+          <!-- BROKER 1: VALETAX -->
+          <div class="broker-card-item valetax-card">
             <div>
-              <div class="rebate-title-h1">
-                SELF-REBATE OTOMATIS <span>$9 HINGGA $12 / LOT</span>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span class="broker-badge-pill" style="background:rgba(16,185,129,0.15); color:var(--vx-green); border:1px solid var(--vx-green);">
+                  ★ OFFICIAL PARTNER ZERODIAX
+                </span>
+                <span style="font-family:var(--font-mono); font-size:10px; color:#38bdf8;">REBATE S.D. $12/LOT</span>
               </div>
-              <p style="font-size:12px; color:#cbd5e1; line-height:1.6; margin-bottom:12px;">
-                Dapatkan cashback saldo tunai instan ke akun Anda setiap kali open posisi. Baik posisi profit maupun loss, rebate tetap cair otomatis dan dapat ditarik langsung ke rekening bank.
+              <h3 style="font-family:var(--font-heading); font-size:24px; font-weight:800; color:#fff; margin-bottom:4px;">
+                VALETAX <span style="color:var(--vx-green); font-size:16px;">ECN BROKER</span>
+              </h3>
+              <p style="font-size:11px; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">
+                Broker pilihan utama komunitas untuk scalping emas XAUUSD. Cashback self-rebate terbesar otomatis terkredit ke balance setiap hari.
               </p>
-              <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                <span style="font-family:var(--font-mono); font-size:10px; background:#000; border:1px solid var(--neon); color:var(--neon); padding:4px 8px; border-radius:4px;">
-                  ✓ Auto Masuk Balance
+              <ul style="list-style:none; display:flex; flex-direction:column; gap:6px; font-size:11px; color:#cbd5e1; font-family:var(--font-mono);">
+                <li><span style="color:var(--vx-green); font-weight:900;">✓</span> Self-Rebate $10 - $12 / Lot (Langsung Masuk Akun)</li>
+                <li><span style="color:var(--vx-green); font-weight:900;">✓</span> Tersedia Akun Cent (Deposit mulai Rp 20.000 via QRIS)</li>
+                <li><span style="color:var(--vx-green); font-weight:900;">✓</span> Raw Spread mulai 0.0 Pip di Akun Pro ECN</li>
+                <li><span style="color:var(--vx-green); font-weight:900;">✓</span> Bebas Biaya Penarikan (Fast WD Bank Lokal)</li>
+              </ul>
+            </div>
+            <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" rel="noopener noreferrer" class="btn-broker-action btn-broker-valetax">
+              <span>DAFTAR AKUN VALETAX ($12 REBATE)</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <!-- BROKER 2: HEADWAY -->
+          <div class="broker-card-item headway-card">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span class="broker-badge-pill" style="background:rgba(59,130,246,0.15); color:var(--hw-blue); border:1px solid var(--hw-blue);">
+                  ★ MULTI-REGULATED GLOBAL
                 </span>
-                <span style="font-family:var(--font-mono); font-size:10px; background:#000; border:1px solid var(--vx-green); color:var(--vx-green); padding:4px 8px; border-radius:4px;">
-                  ✓ Tanpa Syarat Volume Minimal
-                </span>
+                <span style="font-family:var(--font-mono); font-size:10px; color:var(--neon);">UNLIMITED LEVERAGE</span>
               </div>
+              <h3 style="font-family:var(--font-heading); font-size:24px; font-weight:800; color:#fff; margin-bottom:4px;">
+                HEADWAY <span style="color:var(--hw-blue); font-size:16px;">GLOBAL BROKER</span>
+              </h3>
+              <p style="font-size:11px; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">
+                Platform trading internasional dengan eksekusi super cepat, instrumen instan, deposit mikro fleksibel, dan proteksi saldo negatif.
+              </p>
+              <ul style="list-style:none; display:flex; flex-direction:column; gap:6px; font-size:11px; color:#cbd5e1; font-family:var(--font-mono);">
+                <li><span style="color:var(--hw-blue); font-weight:900;">✓</span> Leverage Fleksibel Hingga 1:Unlimited</li>
+                <li><span style="color:var(--hw-blue); font-weight:900;">✓</span> Pilihan Akun Cent, Standard, & ECN Pro</li>
+                <li><span style="color:var(--hw-blue); font-weight:900;">✓</span> Deposit & WD Instan Bank Lokal Indonesia & QRIS</li>
+                <li><span style="color:var(--hw-blue); font-weight:900;">✓</span> Bebas Swap (Swap-Free Islami) & Spread Tipis</li>
+              </ul>
             </div>
+            <a href="https://headway.partners/user/signup?hwp=8fed04" target="_blank" rel="noopener noreferrer" class="btn-broker-action btn-broker-headway">
+              <span>DAFTAR AKUN HEADWAY SEKARANG</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
 
-            <div class="rebate-calc-box">
-              <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:11px;">
-                <span>VOLUME TRADING HARIAN:</span>
-                <span style="color:var(--neon); font-weight:800;" id="lotDisplayVal">5.0 LOT</span>
-              </div>
-              
-              <div class="slider-wrap-box">
-                <input type="range" min="0.1" max="30" step="0.1" value="5" class="lot-slider-input" id="lotInputRange" oninput="calculateInteractiveRebate(this.value)">
-              </div>
+        <!-- KALKULATOR RINGKAS MM & REBATE (STREAMLINED & COMPACT) -->
+        <div class="compact-calc-strip">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="font-family:var(--font-heading); font-size:13px; font-weight:700; color:#fff;">
+              ⚡ KALKULATOR RINGKAS RESIKO AKUN & ESTIMASI REBATE ($12/LOT)
+            </span>
+            <span style="font-family:var(--font-mono); font-size:9px; color:var(--neon);">AUTO-ESTIMATOR</span>
+          </div>
 
-              <div style="font-size:10px; color:var(--text-muted); font-family:var(--font-mono); text-align:center;">
-                ESTIMASI EXTRA CASHBACK REBATE ANDA ($12/LOT):
-              </div>
-              
-              <div class="rebate-val-highlight" id="rebateDailyUsd" style="text-align:center;">$60.00 USD / HARI</div>
-              <div style="font-family:var(--font-mono); font-size:11px; color:#38bdf8; text-align:center;" id="rebateDailyIdr">
-                ≈ Rp 975.000 / Hari
-              </div>
+          <div class="calc-row-inputs">
+            <div class="calc-mini-box">
+              <label>SALDO ($ USD)</label>
+              <input type="number" id="riskBalance" class="calc-mini-input" value="1000" oninput="runUnifiedCalculator()">
+            </div>
+            <div class="calc-mini-box">
+              <label>RISK PER POSISI (%)</label>
+              <input type="number" id="riskPercent" class="calc-mini-input" value="2" step="0.5" oninput="runUnifiedCalculator()">
+            </div>
+            <div class="calc-mini-box">
+              <label>STOP LOSS (PIPS)</label>
+              <input type="number" id="riskSLPips" class="calc-mini-input" value="30" oninput="runUnifiedCalculator()">
+            </div>
+            <div class="calc-mini-box">
+              <label>VOL. TRADING / HARI (LOT)</label>
+              <input type="number" id="dailyLotInput" class="calc-mini-input" value="3.0" step="0.5" oninput="runUnifiedCalculator()">
+            </div>
+          </div>
 
-              <div class="rebate-matrix-row">
-                <div>
-                  <div class="rebate-sub-stat-num" id="rebateWeeklyUsd">$300</div>
-                  <div class="rebate-sub-stat-lbl">MINGGUAN</div>
-                </div>
-                <div>
-                  <div class="rebate-sub-stat-num" id="rebateMonthlyUsd">$1,200</div>
-                  <div class="rebate-sub-stat-lbl">BULANAN (USD)</div>
-                </div>
-                <div>
-                  <div class="rebate-sub-stat-num" id="rebateMonthlyIdr">Rp 19.5 Jt</div>
-                  <div class="rebate-sub-stat-lbl">BULANAN (IDR)</div>
-                </div>
-              </div>
+          <div class="calc-summary-pills">
+            <div class="calc-summary-pill-item">
+              <span style="color:var(--text-muted);">LOT AMAN PER TRADE:</span>
+              <strong style="color:var(--neon);" id="resOptimalLot">0.07 LOT</strong>
+            </div>
+            <div class="calc-summary-pill-item">
+              <span style="color:var(--text-muted);">RISIKO MAKSIMAL:</span>
+              <strong style="color:var(--bear);" id="resRiskAmount">$20.00 USD</strong>
+            </div>
+            <div class="calc-summary-pill-item">
+              <span style="color:var(--text-muted);">CASHBACK REBATE / HARI:</span>
+              <strong style="color:var(--vx-green);" id="resRebateDailyDisplay">+$36.00 (Rp 585 Rb)</strong>
+            </div>
+            <div class="calc-summary-pill-item">
+              <span style="color:var(--text-muted);">POTENSI REBATE / BULAN:</span>
+              <strong style="color:var(--cyan);" id="resRebateMonthlyDisplay">+$720 (Rp 11.7 Jt)</strong>
             </div>
           </div>
         </div>
 
-        <div style="background:#090d14; border:1px solid #1a2230; border-radius:10px; padding:16px; margin-bottom:24px;">
-          <div style="font-family:var(--font-heading); font-size:14px; font-weight:700; color:#fff; display:flex; justify-content:space-between; align-items:center;">
-            <span>KALKULATOR RESIKO AKUN & MONEY MANAGEMENT</span>
-            <span style="font-family:var(--font-mono); font-size:9px; color:var(--neon);">RISK MANAGER</span>
-          </div>
-          
-          <div class="risk-calc-grid">
-            <div class="calc-input-box">
-              <label>SALDO AKUN ($ USD)</label>
-              <input type="number" id="riskBalance" class="calc-input-field" value="1000" oninput="runRiskCalculation()">
-            </div>
-            <div class="calc-input-box">
-              <label>TOLERANSI RISIKO (%)</label>
-              <input type="number" id="riskPercent" class="calc-input-field" value="2" step="0.5" oninput="runRiskCalculation()">
-            </div>
-            <div class="calc-input-box">
-              <label>JARAK STOP LOSS (PIPS)</label>
-              <input type="number" id="riskSLPips" class="calc-input-field" value="30" oninput="runRiskCalculation()">
-            </div>
-          </div>
-
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-top:12px; padding-top:12px; border-top:1px dashed #1e2634; font-family:var(--font-mono); font-size:11px;">
-            <div>REKOMENDASI LOT: <strong style="color:var(--neon);" id="resOptimalLot">0.07 LOT</strong></div>
-            <div>NOMINAL RISIKO MAKS: <strong style="color:var(--bear);" id="resRiskAmount">$20.00 USD</strong></div>
-            <div>ESTIMASI REBATE VALETAX: <strong style="color:var(--vx-green);" id="resRebateFromTrade">+$0.84 USD</strong></div>
-          </div>
-        </div>
-
-        <div class="valetax-header-block">
-          <div class="valetax-brand-identity">
-            <div class="valetax-logo-box">
-              <svg viewBox="0 0 100 100" fill="none">
-                <path d="M18 36L44 74L53 64L32 36H18Z" fill="#FFFFFF"/>
-                <path d="M38 36L72 74H84L50 36H38Z" fill="#10B981"/>
-                <path d="M72 36L61 48L69 57L86 36H72Z" fill="#FFFFFF"/>
-              </svg>
-            </div>
-            <div class="valetax-title-wrap">
-              <h2>VALETAX <span>ECN PARTNER</span></h2>
-              <div class="valetax-sub-badge">VERIFIED OFFICIAL BROKER ZERODIAX</div>
-            </div>
-          </div>
-
-          <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" rel="noopener noreferrer" class="btn-valetax-main">
-            <span>DAFTAR AKUN REBATE $12 SEKARANG</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </a>
-        </div>
-
-        <div class="valetax-specs-grid">
-          <div class="valetax-spec-card">
-            <div class="spec-tier-header">
-              <span class="spec-tier-name">1. AKUN CENT</span>
-              <span class="spec-tier-depo">REBATE HINGGA $9/LOT</span>
-            </div>
-            <div class="spec-tier-desc">Saldo dalam satuan USC. Pilihan ideal menguji disiplin eksekusi sinyal Astrodox dengan risiko minimum.</div>
-            <ul class="spec-list">
-              <li>Min. Deposit Rp 20.000 via QRIS</li>
-              <li>Rebate Otomatis Terkreditasi Harian</li>
-              <li>Leverage Fleksibel s.d. 1:1000</li>
-            </ul>
-          </div>
-
-          <div class="valetax-spec-card highlight">
-            <div class="spec-tier-header">
-              <span class="spec-tier-name" style="color:var(--vx-green);">2. AKUN STANDARD</span>
-              <span class="spec-tier-depo">REBATE $10 - $12/LOT</span>
-            </div>
-            <div class="spec-tier-desc">Akun terpopuler komunitas Zero Syndicate. Tanpa komisi per lot, spread ketat, dan rebate tertinggi langsung masuk ke balance Anda.</div>
-            <ul class="spec-list">
-              <li>Cashback Self-Rebate $12/Lot Otomatis</li>
-              <li>Bebas Komisi & Server Sub-Millisecond</li>
-              <li>Akses Penuh Sinyal VIP Expert Zerodiax</li>
-            </ul>
-          </div>
-
-          <div class="valetax-spec-card">
-            <div class="spec-tier-header">
-              <span class="spec-tier-name">3. AKUN PRO ECN</span>
-              <span class="spec-tier-depo">RAW 0.0 PIP + REBATE</span>
-            </div>
-            <div class="spec-tier-desc">Likuiditas langsung antar-bank Tier-1 untuk kecepatan scalping maksimal pada jendela US Session.</div>
-            <ul class="spec-list">
-              <li>Raw Spread mulai 0.0 Pip</li>
-              <li>Eksekusi Pasar Tercepat Tanpa Requote</li>
-              <li>Jalur Penarikan Dana (Fast Withdrawal) Prioritas</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
 
-    <!-- TAB 5: JADWAL NEWS OTOMATIS & PREDIKSI HARI-HARI KEDEPAN -->
+    <!-- TAB 5: JADWAL NEWS OTOMATIS & PREDIKSI HARI-HARI -->
     <div id="tab-news" class="tab-content">
       <div class="news-forecast-wrap">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid #1c2432; padding-bottom:12px;">
@@ -1395,7 +1283,7 @@
       </div>
     </div>
 
-    <!-- TAB 6: CHART & 45 SUB-TIME ZONE MATRIX (AI ADAPTIVE REVERSAL) -->
+    <!-- TAB 6: CHART & 45 SUB-TIME ZONE MATRIX -->
     <div id="tab-terminal" class="tab-content">
       
       <div class="hud-bar">
@@ -1541,7 +1429,7 @@
 
   <div id="toastNotification" class="toast-box">Sinyal Berhasil Disalin!</div>
 
-  <a href="https://wa.me/62882010445069?text=Halo%20Admin%20Rezayogiana%2C%20saya%20mau%20klaim%20Akses%20EXPERT%20VIP%20Gratis%20dan%20daftar%20Valetax" target="_blank" rel="noopener noreferrer" class="floating-chat-btn" title="Chat Admin WhatsApp">
+  <a href="https://wa.me/62882010445069?text=Halo%20Admin%20Rezayogiana%2C%20saya%20mau%20klaim%20Akses%20EXPERT%20VIP%20Gratis%20dan%20daftar%20broker" target="_blank" rel="noopener noreferrer" class="floating-chat-btn" title="Chat Admin WhatsApp">
     <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
   </a>
 
@@ -1808,13 +1696,14 @@
           var eventTitle = ev.title || ev.event;
           var impactVal = (ev.impact || "MEDIUM").toUpperCase();
 
-          var dayHarmonic = Math.sin(((moon.lon + offset * 13.1 + idx * 45 - mars.lon) * Math.PI) / 180);
-          var isBull = dayHarmonic >= 0;
+          // SIKLUS HARIAN DINAMIS MENGIKUTI OFFSET HARI
+          var dayBiasInfo = getDailyNewsTransitBias(planets, d);
+          var isBull = dayBiasInfo.isBullish;
 
           var impactBadge = impactVal === "HIGH" ? '<span class="badge-impact-high">HIGH IMPACT</span>' : '<span class="badge-impact-med">MED IMPACT</span>';
-          var predBadge = isBull ? `<span style="color:var(--bull); font-weight:800; font-family:var(--font-mono); background:rgba(0,245,160,0.15); padding:3px 8px; border-radius:3px; border:1px solid var(--bull);">⚡ AMBIL BUY SEKARANG (${(95.0 + Math.abs(dayHarmonic) * 4.5).toFixed(1)}%)</span>` : `<span style="color:var(--bear); font-weight:800; font-family:var(--font-mono); background:rgba(255,51,102,0.15); padding:3px 8px; border-radius:3px; border:1px solid var(--bear);">⚡ AMBIL SELL SEKARANG (${(94.8 + Math.abs(dayHarmonic) * 4.6).toFixed(1)}%)</span>`;
+          var predBadge = isBull ? `<span style="color:var(--bull); font-weight:800; font-family:var(--font-mono); background:rgba(0,245,160,0.15); padding:3px 8px; border-radius:3px; border:1px solid var(--bull);">⚡ AMBIL BUY SEKARANG (95.8%)</span>` : `<span style="color:var(--bear); font-weight:800; font-family:var(--font-mono); background:rgba(255,51,102,0.15); padding:3px 8px; border-radius:3px; border:1px solid var(--bear);">⚡ AMBIL SELL SEKARANG (95.4%)</span>`;
 
-          var astroReason = isBull ? `Harmonik Moon-Trine (${Math.round(degNorm(moon.lon + offset * 13.1))}°) • Penyerapan Likuiditas Diskon OTE` : `Kuadratur Mars-Saturnus (${Math.round(degNorm(mars.lon + offset * 0.5))}°) • Tekanan Friksi Gelombang Penjualan`;
+          var astroReason = isBull ? `Harmoni Moon-Trine (${Math.round(degNorm(moon.lon + offset * 13.2))}°) • Penyerapan OTE Discount` : `Kuadratur Mars-Saturn (${Math.round(degNorm(mars.lon + offset * 0.5))}°) • Rejeksi Premium Resistance`;
 
           var tr = document.createElement('tr');
           tr.innerHTML = `
@@ -1831,7 +1720,7 @@
     }
 
     // =========================================================================
-    // 5. SMC FIBONACCI & MONEY MANAGEMENT CALCULATOR
+    // 5. SMC FIBONACCI & UNIFIED COMPACT CALCULATOR
     // =========================================================================
     function calcSmcFibLevels() {
       var h = parseFloat(document.getElementById('smcHighInput').value) || 2670.0;
@@ -1849,46 +1738,35 @@
       document.getElementById('resFibOte').textContent = "$" + fib790.toFixed(2) + " - $" + fib705.toFixed(2);
     }
 
-    function calculateInteractiveRebate(lot) {
-      lot = parseFloat(lot);
-      document.getElementById('lotDisplayVal').textContent = lot.toFixed(1) + " LOT";
-
-      var ratePerLot = 12.0;
-      var usdPerIdr = 16250;
-
-      var dailyUsd = lot * ratePerLot;
-      var weeklyUsd = dailyUsd * 5;
-      var monthlyUsd = dailyUsd * 20;
-
-      var dailyIdr = dailyUsd * usdPerIdr;
-      var monthlyIdr = monthlyUsd * usdPerIdr;
-
-      document.getElementById('rebateDailyUsd').textContent = "$" + dailyUsd.toFixed(2) + " USD / HARI";
-      document.getElementById('rebateDailyIdr').textContent = "≈ Rp " + Math.round(dailyIdr).toLocaleString('id-ID') + " / Hari";
-      document.getElementById('rebateWeeklyUsd').textContent = "$" + Math.round(weeklyUsd).toLocaleString('en-US');
-      document.getElementById('rebateMonthlyUsd').textContent = "$" + Math.round(monthlyUsd).toLocaleString('en-US');
-      document.getElementById('rebateMonthlyIdr').textContent = "Rp " + (monthlyIdr / 1000000).toFixed(1) + " Jt";
-    }
-
-    function runRiskCalculation() {
+    function runUnifiedCalculator() {
       var balance = parseFloat(document.getElementById('riskBalance').value) || 0;
       var riskPercent = parseFloat(document.getElementById('riskPercent').value) || 0;
       var slPips = parseFloat(document.getElementById('riskSLPips').value) || 1;
+      var dailyLot = parseFloat(document.getElementById('dailyLotInput').value) || 0;
 
+      // Risk Calc
       var riskUsd = balance * (riskPercent / 100);
       var pipValuePerStandardLot = 10;
       var optimalLot = riskUsd / (slPips * pipValuePerStandardLot);
       optimalLot = Math.max(0.01, optimalLot);
 
-      var estimatedRebate = optimalLot * 12.0;
+      // Rebate Calc ($12/lot rate)
+      var ratePerLot = 12.0;
+      var usdPerIdr = 16250;
+      var dailyRebateUsd = dailyLot * ratePerLot;
+      var monthlyRebateUsd = dailyRebateUsd * 20;
+
+      var dailyRebateIdr = dailyRebateUsd * usdPerIdr;
+      var monthlyRebateIdr = monthlyRebateUsd * usdPerIdr;
 
       document.getElementById('resOptimalLot').textContent = optimalLot.toFixed(2) + " LOT";
       document.getElementById('resRiskAmount').textContent = "$" + riskUsd.toFixed(2) + " USD";
-      document.getElementById('resRebateFromTrade').textContent = "+$" + estimatedRebate.toFixed(2) + " USD";
+      document.getElementById('resRebateDailyDisplay').textContent = "+$" + dailyRebateUsd.toFixed(2) + " (Rp " + Math.round(dailyRebateIdr / 1000).toLocaleString('id-ID') + " Rb)";
+      document.getElementById('resRebateMonthlyDisplay').textContent = "+$" + Math.round(monthlyRebateUsd) + " (Rp " + (monthlyRebateIdr / 1000000).toFixed(1) + " Jt)";
     }
 
     // =========================================================================
-    // 6. ASTRODOX EPHEMERIS TULUNGAGUNG
+    // 6. ASTRODOX EPHEMERIS TULUNGAGUNG & DINAMISASI HARIAN
     // =========================================================================
     var ZODIAC_SIGNS = [
       { name: "Aries", symbol: "♈" },
@@ -1958,35 +1836,38 @@
       return { text: "Parallel Orbit", type: "neutral", color: "var(--text-muted)", active: false, diff: null };
     }
 
-    function getDailyNewsTransitBias(planets) {
-      var sun = planets.find(p => p.name === "Sun") || { lon: 0 };
+    // FORMULA BARU DINAMIS: SESI NEWS BERGANTI BUY / SELL BERDASARKAN ROTASI TULUNGAGUNG & SIKLUS HARI
+    function getDailyNewsTransitBias(planets, targetDate) {
+      var now = targetDate || new Date();
       var moon = planets.find(p => p.name === "Moon") || { lon: 0 };
       var mars = planets.find(p => p.name === "Mars") || { lon: 0 };
-      var jup = planets.find(p => p.name === "Jupiter") || { lon: 0 };
+      var saturn = planets.find(p => p.name === "Saturn") || { lon: 0 };
 
-      var diffSunMoon = Math.abs(sun.lon - moon.lon);
-      if (diffSunMoon > 180) diffSunMoon = 360 - diffSunMoon;
+      // Titik rotasi Ascendant Tulungagung pada jam 19:30 WIB (1170 menit)
+      var ascTulungagung1930 = degNorm(1170 * 0.25 + 111.90);
 
-      var diffMoonJup = Math.abs(moon.lon - jup.lon);
-      if (diffMoonJup > 180) diffMoonJup = 360 - diffMoonJup;
+      // Sudut pertemuan aktual terhadap Moon dan Mars
+      var bullHarmonic = Math.sin(((ascTulungagung1930 - moon.lon) * Math.PI) / 180);
+      var bearHarmonic = Math.cos(((ascTulungagung1930 - (mars.lon + saturn.lon) / 2) * Math.PI) / 180);
 
-      var diffMoonMars = Math.abs(moon.lon - mars.lon);
-      if (diffMoonMars > 180) diffMoonMars = 360 - diffMoonMars;
+      // Siklus bolak-balik hari (Osilator Reversal)
+      var dayOscillator = Math.sin((now.getDate() * 29.53 + now.getDay() * 45) * Math.PI / 180);
 
-      var bullScore = Math.cos((diffSunMoon * Math.PI) / 180) + Math.cos((diffMoonJup * Math.PI) / 180);
-      var bearScore = Math.sin((diffMoonMars * Math.PI) / 180);
+      var score = (bullHarmonic * 1.2) - (bearHarmonic * 1.1) + (dayOscillator * 0.7);
+      var isBullish = score >= 0;
 
-      var isBullish = (bullScore >= bearScore);
+      var aspectDeg = Math.round(Math.abs(ascTulungagung1930 - moon.lon) % 180);
+
       return {
         isBullish: isBullish,
         action: isBullish ? "AMBIL BUY SEKARANG" : "AMBIL SELL SEKARANG",
-        aspectDeg: Math.round(diffSunMoon),
-        aspectWith: isBullish ? "Harmonis Moon-Jupiter Trine" : "Tegang Moon-Mars Square"
+        aspectDeg: aspectDeg,
+        aspectWith: isBullish ? "Harmoni Moon-Trine Tulungagung" : "Kuadratur Mars-Saturn Rejection"
       };
     }
 
     // =========================================================================
-    // 7. TIME ZONES & COPY SIGNAL (DENGAN FALLBACK CLIPBOARD LENGKAP)
+    // 7. 45 TIME ZONES DENGAN DISTRIBUSI SEIMBANG & BERGANTI TIAP HARI
     // =========================================================================
     var dynamicTimeZonesList = [];
     var currentTzFilter = "all";
@@ -2041,19 +1922,22 @@
       var moon = planets.find(p => p.name === "Moon") || { lon: 0 };
       var mars = planets.find(p => p.name === "Mars") || { lon: 0 };
       var jup = planets.find(p => p.name === "Jupiter") || { lon: 0 };
-      var sun = planets.find(p => p.name === "Sun") || { lon: 0 };
 
       var currentCurPrice = liveSpotPrice > 1000 ? liveSpotPrice : 2650.00;
       var marketOpen = isForexMarketOpen(now);
       var countdownStr = getNextMarketOpenRemaining(now);
 
       return baseTimeZonesWindows.map(function(tz) {
-        var zoneAngle = degNorm(tz.startMin * 0.25 + moon.lon);
-        var moonHarmonic = Math.sin(((zoneAngle - mars.lon) * Math.PI) / 180);
-        var jupHarmonic = Math.cos(((zoneAngle - jup.lon) * Math.PI) / 180);
-        var sunHarmonic = Math.sin(((zoneAngle - sun.lon) * Math.PI) / 180);
+        // Rotasi sudut sesi berdasarkan bujur Tulungagung
+        var localAngle = degNorm(tz.startMin * 0.25 + 111.90);
+        var moonAspect = Math.sin(((localAngle - moon.lon) * Math.PI) / 180);
+        var marsAspect = Math.sin(((localAngle - mars.lon) * Math.PI) / 180);
 
-        var dynamicScore = (moonHarmonic * 1.5) + jupHarmonic - (sunHarmonic * 0.5);
+        // Gelombang harian (Bergeser setiap hari berdasarkan tanggal & siklus)
+        var dayShift = (now.getDate() * 19 + now.getMonth() * 31);
+        var marketWave = Math.sin(((tz.id * 8.0 + dayShift) * Math.PI) / 180);
+
+        var dynamicScore = (moonAspect * 1.3) - (marsAspect * 1.1) + (marketWave * 0.85);
 
         var type = "buy";
         var action = "AMBIL BUY SEKARANG";
@@ -2074,29 +1958,29 @@
           reason = `Bursa XAUUSD libur akhir pekan. Rekomendasi lelang standby. Buka kembali dalam ${countdownStr}.`;
         }
         else if (tz.id === 31 || tz.id === 32) {
-          var newsBias = getDailyNewsTransitBias(planets);
+          var newsBias = getDailyNewsTransitBias(planets, now);
           type = newsBias.isBullish ? "buy" : "sell";
           action = newsBias.isBullish ? "AMBIL BUY SEKARANG (19:30 WIB)" : "AMBIL SELL SEKARANG (19:30 WIB)";
           bias = newsBias.isBullish ? "AI PROJECTION: BULLISH NEWS EXPANSION" : "AI PROJECTION: BEARISH NEWS DUMP";
-          reason = `Rilis kalender makro AS disinkronkan dengan transit ${newsBias.aspectWith} (${newsBias.aspectDeg}°). Entry tepat di detik candle news rilis.`;
+          reason = `Rilis kalender makro AS disinkronkan transit ${newsBias.aspectWith} (${newsBias.aspectDeg}°). Entry tepat di detik candle news rilis.`;
         } 
         else if (tz.id === 17 || tz.id === 45) {
           type = "neutral";
           action = "STANDBY / OBSERVASI SPREAD";
           bias = "EQUILIBRIUM CONSOLIDATION";
-          reason = `Jeda pergantian lelang antar-bank global (${Math.round(zoneAngle)}°). Smart money menahan volume, disarankan observasi spread.`;
+          reason = `Jeda pergantian lelang antar-bank global (${Math.round(localAngle)}°). Smart money menahan volume, disarankan observasi spread.`;
         }
         else if (dynamicScore >= 0.0) {
           type = "buy";
           action = "AMBIL BUY SEKARANG";
           bias = `BULLISH ACCUMULATION (${formatZodiacDeg(moon.lon).split(' ')[1].toUpperCase()})`;
-          reason = `Elevasi harmonik Bulan (+${Math.round(zoneAngle)}°) menyerap Sell-Side Liquidity. Formasi OTE Discount terkonfirmasi.`;
+          reason = `Elevasi harmonik Bulan (+${Math.round(localAngle)}°) menyerap Sell-Side Liquidity. Formasi OTE Discount terkonfirmasi.`;
         } 
         else {
           type = "sell";
           action = "AMBIL SELL SEKARANG";
           bias = `BEARISH DISTRIBUTION (${formatZodiacDeg(mars.lon).split(' ')[1].toUpperCase()})`;
-          reason = `Sudut kuadratur Mars/Saturnus (-${Math.round(zoneAngle)}°) menolak Premium Resistance. Eksekusi sell instan di area mitigasi.`;
+          reason = `Sudut kuadratur Mars/Saturnus (-${Math.round(localAngle)}°) menolak Premium Resistance. Eksekusi sell instan di area mitigasi.`;
         }
 
         var pipMult = type === "buy" ? 1 : -1;
@@ -2108,7 +1992,7 @@
         var tp2Price = (currentCurPrice + (p2 * 0.1 * pipMult)).toFixed(2);
         var tp3Price = (currentCurPrice + (p3 * 0.1 * pipMult)).toFixed(2);
 
-        var prob = (95.0 + ((tz.id * 7 + Math.floor(moon.lon + zoneAngle)) % 45) / 10).toFixed(1) + "%";
+        var prob = (95.0 + ((tz.id * 7 + Math.floor(moon.lon + localAngle)) % 45) / 10).toFixed(1) + "%";
 
         return {
           id: tz.id,
@@ -2437,10 +2321,7 @@ Alasan: ${tz.reason}`;
           } catch(e) {}
         };
 
-        ws.onerror = function() {
-          ws.close();
-        };
-
+        ws.onerror = function() { ws.close(); };
         ws.onclose = function() {
           setTimeout(connectBinanceGoldFeed, 10000);
         };
@@ -2540,7 +2421,7 @@ Alasan: ${tz.reason}`;
 
       var hud1930 = document.getElementById('hud1930Status');
       var planets = getPlanetaryEphemeris(now);
-      var newsBias = getDailyNewsTransitBias(planets);
+      var newsBias = getDailyNewsTransitBias(planets, now);
 
       if (hud1930) {
         if (!isForexMarketOpen(now)) {
@@ -2581,8 +2462,8 @@ Alasan: ${tz.reason}`;
         document.getElementById('btn-tab-materi').classList.add('active');
       } else if (targetTabId === 'tab-checklist') {
         document.getElementById('btn-tab-checklist').classList.add('active');
-      } else if (targetTabId === 'tab-valetax') {
-        document.getElementById('btn-tab-valetax').classList.add('active');
+      } else if (targetTabId === 'tab-broker') {
+        document.getElementById('btn-tab-broker').classList.add('active');
       } else if (targetTabId === 'tab-news') {
         document.getElementById('btn-tab-news').classList.add('active');
       } else {
@@ -2593,8 +2474,7 @@ Alasan: ${tz.reason}`;
 
     window.addEventListener('DOMContentLoaded', function() {
       renderCandleTabs();
-      calculateInteractiveRebate(5);
-      runRiskCalculation();
+      runUnifiedCalculator();
       calcSmcFibLevels();
       calcChecklistScore();
       
