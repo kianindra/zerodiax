@@ -1071,7 +1071,7 @@
       </div>
     </div>
 
-    <!-- TAB 3: CHECKLIST KONFLUENSI A+ ENTRY & KILLZONE MATRIX (FITUR BARU) -->
+    <!-- TAB 3: CHECKLIST KONFLUENSI A+ ENTRY & KILLZONE MATRIX -->
     <div id="tab-checklist" class="tab-content">
       <div class="checklist-wrap-box">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid #1c2432; padding-bottom:12px;">
@@ -1094,7 +1094,7 @@
               <input type="checkbox" id="chk1" onchange="calcChecklistScore()">
               <div>
                 <div class="chk-item-title">1. Higher Timeframe Liquidity Sweep (BSL / SSL)</div>
-                <div class="chk-item-desc">Harga telah menyapu (sweep) likuiditas eksternal: Asian High/Low, Previous Day High/Low, atau Equal Highs/Lows.</div>
+                <div class="chk-item-desc">Harga telah menyapu likuiditas eksternal: Asian High/Low, Previous Day High/Low, atau Equal Highs/Lows.</div>
               </div>
             </div>
 
@@ -1161,7 +1161,6 @@
           </div>
         </div>
 
-        <!-- Tabel Ringkasan Killzone Global -->
         <div style="margin-top:24px; border-top:1px solid #1c2432; padding-top:16px;">
           <h3 style="font-family:var(--font-heading); font-size:14px; color:#fff; margin-bottom:10px;">
             🕒 MATRIKS KILLZONE SESI HARIAN XAUUSD (WIB)
@@ -1542,7 +1541,6 @@
 
   <div id="toastNotification" class="toast-box">Sinyal Berhasil Disalin!</div>
 
-  <!-- FLOATING CHAT BUTTON WA OTOMATIS -->
   <a href="https://wa.me/62882010445069?text=Halo%20Admin%20Rezayogiana%2C%20saya%20mau%20klaim%20Akses%20EXPERT%20VIP%20Gratis%20dan%20daftar%20Valetax" target="_blank" rel="noopener noreferrer" class="floating-chat-btn" title="Chat Admin WhatsApp">
     <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
   </a>
@@ -1557,7 +1555,6 @@
       { id: 3, name: "Bullish Engulfing", type: "bull", cat: "Bullish Reversal", desc: "Candle hijau tebal yang menelan seluruh rentang body candle merah sebelumnya.", psych: "Pergeseran momentum mendadak dari seller ke buyer", smc: "Konfirmasi Bullish CHOCH", sl: "Di bawah low candle engulfing", prob: "91% Win Rate", render: `<div class="candle bearish" style="margin-right:12px;"><div class="wick" style="height:60px; top:10px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bullish"><div class="wick" style="height:110px; top:-10px;"></div><div class="body" style="height:85px;"></div></div>` },
       { id: 4, name: "Piercing Line", type: "bull", cat: "Bullish Reversal", desc: "Candle kedua dibuka gap down namun ditutup melampaui level 50% dari body candle merah sebelumnya.", psych: "Seller kehilangan momentum setelah gap", smc: "Rejeksi Discount 50% Equilibrium", sl: "Di bawah harga terendah kedua", prob: "84% Win Rate", render: `<div class="candle bearish" style="margin-right:10px;"><div class="wick" style="height:90px; top:0;"></div><div class="body" style="height:70px;"></div></div><div class="candle bullish"><div class="wick" style="height:80px; top:30px;"></div><div class="body" style="height:55px; margin-top:25px;"></div></div>` },
       { id: 5, name: "Morning Star", type: "bull", cat: "Bullish Reversal", desc: "Formasi 3 candle di dasar tren: bearish panjang, candle kecil konsolidasi, disusul bullish impulsif.", psych: "Transisi lelang dari panik ke akumulasi", smc: "Unmitigated Demand Block", sl: "Di bawah titik terendah candle tengah", prob: "93% Win Rate", render: `<div class="candle bearish"><div class="wick" style="height:80px; top:0;"></div><div class="body" style="height:60px;"></div></div><div class="candle doji" style="margin-top:50px;"><div class="wick" style="height:30px;"></div><div class="body"></div></div><div class="candle bullish"><div class="wick" style="height:80px; top:10px;"></div><div class="body" style="height:60px; margin-top:10px;"></div></div>` },
-      // FIX THREE WHITE SOLDIERS (STAIR-STEPPING BULLISH BODIES)
       { id: 6, name: "Three White Soldiers", type: "bull", cat: "Bullish Continuation", desc: "Tiga candle hijau tebal beruntun dengan shadow pendek yang mencetak higher highs bertahap.", psych: "Akumulasi institusional bertahap tanpa jeda", smc: "Bullish Order Flow Expansion", sl: "Di bawah pembukaan candle pertama", prob: "89% Win Rate", render: `<div class="candle bullish" style="margin-top:40px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bullish" style="margin-top:20px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bullish" style="margin-top:0px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div>` },
       { id: 7, name: "Bullish Marubozu", type: "bull", cat: "Momentum", desc: "Candle penuh tanpa bayangan atas maupun bawah. Harga dibuka pada titik terendah dan ditutup di tertinggi.", psych: "Buyer mendominasi 100% tanpa perlawanan", smc: "Imbalance / Liquidity Void", sl: "Di bawah open candle Marubozu", prob: "87% Win Rate", render: `<div class="candle bullish"><div class="wick" style="height:0;"></div><div class="body" style="height:110px;"></div></div>` },
       { id: 8, name: "Dragonfly Doji", type: "bull", cat: "Bullish Reversal", desc: "Open, high, dan close berada di puncak yang sama dengan lower shadow menjulang panjang.", psych: "Penolakan mutlak terhadap level diskon", smc: "Pembersihan Liquidity Pool", sl: "Di bawah ekor terendah Doji", prob: "86% Win Rate", render: `<div class="candle doji"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="margin-top:-70px;"></div></div>` },
@@ -2409,60 +2406,104 @@ Alasan: ${tz.reason}`;
     }
 
     // =========================================================================
-    // 9. BINANCE WEBSOCKET SPOT GOLD FEED (DENGAN EXPONENTIAL BACKOFF)
+    // 9. RESILIENT MULTI-SOURCE SPOT GOLD FEED (ANTI-BLOKIR ISP INDONESIA)
     // =========================================================================
-    var liveSpotPrice = 0;
-    var wsRetryDelay = 2000;
+    var liveSpotPrice = 2650.00;
+    var isPriceConnected = false;
+
+    function updateLivePriceUI(price) {
+      if (!price || isNaN(price) || price < 1000) return;
+      liveSpotPrice = parseFloat(price);
+      isPriceConnected = true;
+
+      var pEl = document.getElementById('priceLive');
+      if (pEl) {
+        pEl.textContent = "$" + liveSpotPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        pEl.style.color = "var(--neon)";
+      }
+    }
 
     function connectBinanceGoldFeed() {
       try {
         var ws = new WebSocket("wss://stream.binance.com:9443/ws/paxgusdt@trade");
-        ws.onopen = function() {
-          wsRetryDelay = 2000;
-        };
+        
         ws.onmessage = function(event) {
           try {
             if (!isForexMarketOpen(new Date()) && liveSpotPrice > 1000) return;
-
             var msg = JSON.parse(event.data);
             if (msg && msg.p) {
-              liveSpotPrice = parseFloat(msg.p);
-              var pEl = document.getElementById('priceLive');
-              if (pEl) {
-                pEl.textContent = "$" + liveSpotPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-              }
+              updateLivePriceUI(msg.p);
             }
           } catch(e) {}
         };
-        ws.onerror = function() { ws.close(); };
+
+        ws.onerror = function() {
+          ws.close();
+        };
+
         ws.onclose = function() {
-          setTimeout(connectBinanceGoldFeed, wsRetryDelay);
-          wsRetryDelay = Math.min(wsRetryDelay * 1.5, 30000);
+          setTimeout(connectBinanceGoldFeed, 10000);
         };
       } catch(err) {
-        setTimeout(connectBinanceGoldFeed, 5000);
+        setTimeout(connectBinanceGoldFeed, 10000);
       }
     }
-    connectBinanceGoldFeed();
 
-    async function syncRealGoldPriceFallback() {
-      if (liveSpotPrice > 1000) return;
+    async function fetchCryptoCompareGold() {
       try {
-        var res = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=PAXGUSDT');
+        var res = await fetch('https://min-api.cryptocompare.com/data/price?fsym=PAXG&tsyms=USD', { cache: 'no-store' });
         if (res.ok) {
           var data = await res.json();
-          if (data && data.price) {
-            liveSpotPrice = parseFloat(data.price);
-            var pEl = document.getElementById('priceLive');
-            if (pEl) {
-              pEl.textContent = "$" + liveSpotPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            }
+          if (data && data.USD) {
+            updateLivePriceUI(data.USD);
+            return true;
           }
         }
       } catch(e) {}
+      return false;
     }
-    setInterval(syncRealGoldPriceFallback, 4000);
-    syncRealGoldPriceFallback();
+
+    async function fetchCoinCapGold() {
+      try {
+        var res = await fetch('https://api.coincap.io/v2/assets/pax-gold', { cache: 'no-store' });
+        if (res.ok) {
+          var data = await res.json();
+          if (data && data.data && data.data.priceUsd) {
+            updateLivePriceUI(data.data.priceUsd);
+            return true;
+          }
+        }
+      } catch(e) {}
+      return false;
+    }
+
+    async function fetchBinanceRestGold() {
+      try {
+        var res = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=PAXGUSDT', { cache: 'no-store' });
+        if (res.ok) {
+          var data = await res.json();
+          if (data && data.price) {
+            updateLivePriceUI(data.price);
+            return true;
+          }
+        }
+      } catch(e) {}
+      return false;
+    }
+
+    async function syncGoldPriceCycle() {
+      var ok = await fetchCryptoCompareGold();
+      if (ok) return;
+
+      ok = await fetchCoinCapGold();
+      if (ok) return;
+
+      await fetchBinanceRestGold();
+    }
+
+    connectBinanceGoldFeed();
+    syncGoldPriceCycle();
+    setInterval(syncGoldPriceCycle, 3000);
 
     // =========================================================================
     // 10. CLOCK TICK & RUNNER
