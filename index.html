@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ZEROFX PROMAX • Astrodox 360°, 45 Time Zones, SMC Matrix & World News Wire</title>
-  <meta name="description" content="AI Trading Engine PROMAX: Astrodox 360° Tulungagung, 45 Sub-Time Zones Dinamis, Kalender News Live, Checklist SMC, dan Berita Ekonomi Dunia Realtime.">
+  <title>ZEROFX PROMAX • Astrodox 360°, 50 Sub-Time Zones, SMC Matrix & Realtime World News Wire</title>
+  <meta name="description" content="Quantitative Trading Engine PROMAX: Astrodox 360° Tulungagung, 50 Sub-Time Zones Dinamis, Kalender News Live, Checklist SMC, dan Berita Ekonomi Dunia Realtime Otomatis 24 Jam.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,600;0,700;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
@@ -375,6 +375,34 @@
     @media(min-width: 600px) { .metric-grid-candle { grid-template-columns: 1fr 1fr; } }
     .metric-box-candle { background: #080a0e; border: 1px solid #161c24; padding: 8px 10px; border-radius: 4px; }
 
+    /* SMC FIBONACCI CALCULATOR INPUTS */
+    .calc-input-box {
+      background: #0a0e16;
+      border: 1px solid #1a2332;
+      border-radius: 6px;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .calc-input-box label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    .calc-input-field {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--neon);
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      outline: none;
+    }
+    .calc-input-field:focus { color: #fff; }
+
     /* CHECKLIST */
     .checklist-wrap-box {
       background: #090c12;
@@ -603,7 +631,7 @@
       font-family: var(--font-mono); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 3px;
     }
 
-    /* TAB BERITA EKONOMI DUNIA PROMAX (WORLD NEWS WIRE) */
+    /* WORLD NEWS WIRE */
     .world-news-wrap {
       background: #090c12;
       border: 1px solid var(--border-neon);
@@ -664,9 +692,7 @@
       object-fit: cover;
       transition: transform 0.3s;
     }
-    .wire-card:hover .wire-img-container img {
-      transform: scale(1.05);
-    }
+    .wire-card:hover .wire-img-container img { transform: scale(1.05); }
     .wire-tag-badge {
       position: absolute;
       top: 10px;
@@ -770,7 +796,7 @@
     .ephem-table th { color: var(--text-muted); padding: 4px 6px; border-bottom: 1px solid #1f2735; }
     .ephem-table td { padding: 4px 6px; border-bottom: 1px solid rgba(255,255,255,0.03); color: #cbd5e1; }
 
-    /* 45 TIME ZONES GRID */
+    /* 50 TIME ZONES GRID */
     .tz-filter-bar {
       display: flex;
       gap: 6px;
@@ -918,7 +944,7 @@
         <button class="tab-nav-btn btn-nav-broker" id="btn-tab-broker" onclick="switchMainTab('tab-broker')">BROKER</button>
         <button class="tab-nav-btn" id="btn-tab-news" onclick="switchMainTab('tab-news')">JADWAL NEWS & FORECAST</button>
         <button class="tab-nav-btn" id="btn-tab-worldnews" onclick="switchMainTab('tab-worldnews')">🌐 BERITA EKONOMI DUNIA</button>
-        <button class="tab-nav-btn" id="btn-tab-terminal" onclick="switchMainTab('tab-terminal')">CHART & 45 TIME ZONES</button>
+        <button class="tab-nav-btn" id="btn-tab-terminal" onclick="switchMainTab('tab-terminal')">CHART & 50 TIME ZONES</button>
       </nav>
     </div>
   </header>
@@ -988,7 +1014,7 @@
           <div class="plan-card-note" style="border-left-color:var(--neon);">Daftar di broker partner resmi Zero Syndicate (Valetax / Headway).</div>
           <ul class="plan-card-perks">
             <li>Akses Sinyal Eksekusi Instan (Buy/Sell Langsung Tanpa Delay)</li>
-            <li>Radar 45 Sub-Time Zone Berbasis Waktu Presisi & News 19:30 WIB</li>
+            <li>Radar 50 Sub-Time Zone Presisi Jam 01:00, 01:30 & News 19:30 WIB</li>
             <li>Rotasi Transit Astrodox 360° Real-time Lokasi Tulungagung</li>
             <li>Live Meeting Bedah Setup Pasar 3–10x Seminggu</li>
             <li>Self Rebate Tertinggi $9 - $12 / Lot Langsung ke Akun</li>
@@ -1017,9 +1043,9 @@
                 <div class="testi-verified-pill">✓ Verified Trader</div>
               </div>
             </div>
-            <div class="testi-pnl-tag">Time TP Target 20:55 WIB Hit</div>
+            <div class="testi-pnl-tag">Trigger Entry 01:00 & 01:30 WIB Hit</div>
             <p class="testi-quote-text">
-              "Sistem eksekusi langsung dan TP berbasis waktu beneran presisi. Begitu jam 20:55 pasar langsung mencapai level likuiditas tertinggi dan take profit tereksekusi rapi."
+              "Sistem eksekusi langsung tepat di jam 01:00 dan 01:30 WIB beneran presisi. Begitu jam masuk, likuiditas tengah malam langsung disambut take profit rapi."
             </p>
           </div>
 
@@ -1195,7 +1221,7 @@
               <input type="checkbox" id="chk5" onchange="calcChecklistScore()">
               <div>
                 <div class="chk-item-title">5. Timing Sesi Valid / Killzone Window</div>
-                <div class="chk-item-desc">Eksekusi berada pada jendela waktu bervolume tinggi: London Judas (15:00-16:00) atau US News & Open (19:30-21:30 WIB).</div>
+                <div class="chk-item-desc">Eksekusi berada pada jendela waktu bervolume tinggi: London Judas (15:00-16:00), US News (19:30), atau Midnight Window (01:00-01:30 WIB).</div>
               </div>
             </div>
 
@@ -1357,7 +1383,7 @@
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid #1c2432; padding-bottom:12px;">
           <div>
             <h2 style="font-family:var(--font-heading); font-size:20px; color:#fff;">
-              FORECAST KALENDER NEWS: <span style="color:var(--neon);">LIVE FOREX FACTORY ENGINE</span>
+              FORECAST KALENDER NEWS: <span style="color:var(--neon);">LIVE ECONOMIC CALENDAR MATRIX</span>
             </h2>
             <p style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">
               Sinkronisasi kalender makro ekonomi riil terintegrasi rotasi harmonik transit astronomi Tulungagung.
@@ -1377,7 +1403,7 @@
                 <th>EVENT EKONOMI</th>
                 <th>IMPACT</th>
                 <th>SIKLUS FISIKA & ASTRO TRANSIT</th>
-                <th>PREDIKSI AI MARKET</th>
+                <th>PROYEKSI ANALITIK INSTITUSI</th>
               </tr>
             </thead>
             <tbody id="newsForecastTableBody"></tbody>
@@ -1395,16 +1421,16 @@
               BERITA EKONOMI DUNIA & <span style="color:var(--cyan);">MARKET WIRE REALTIME</span>
             </h2>
             <p style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">
-              Liputan makro ekonomi global, kebijakan The Fed, geopolitik, dan likuiditas komoditas XAUUSD.
+              Liputan makro ekonomi global, kebijakan The Fed, geopolitik, dan likuiditas komoditas XAUUSD (Auto-Sync).
             </p>
           </div>
           <div style="display:flex; gap:8px; align-items:center;">
             <span class="hud-pill" style="border-color:var(--cyan); color:var(--cyan);">
               <span class="status-dot-pulse" style="background:var(--cyan); box-shadow:0 0 8px var(--cyan);"></span> LIVE WIRE FEED
             </span>
-            <button class="audio-switch-btn" onclick="refreshWorldNewsWire()">
-              🔄 REFRESH BERITA
-            </button>
+            <span class="hud-pill" style="border-color:var(--neon); color:var(--neon);">
+              AUTO-REFRESH: AKTIF
+            </span>
           </div>
         </div>
 
@@ -1419,18 +1445,19 @@
       </div>
     </div>
 
-    <!-- TAB 7: CHART & 45 SUB-TIME ZONE MATRIX -->
+    <!-- TAB 7: CHART & 50 SUB-TIME ZONE MATRIX -->
     <div id="tab-terminal" class="tab-content">
       
       <div class="hud-bar">
         <div>
-          <span style="font-family:var(--font-heading); font-size:13px; font-weight:700;">ASTRODOX 360° AI LIVE ENGINE & 45 ADAPTIVE ZONES</span>
+          <span style="font-family:var(--font-heading); font-size:13px; font-weight:700;">ASTRODOX 360° QUANTITATIVE LIVE ENGINE & 50 ADAPTIVE ZONES</span>
         </div>
         <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
           <div class="hud-pill"><span class="status-dot-pulse"></span> TIME: <span id="clockLive" style="color:var(--neon);">--:--:-- WIB</span></div>
           <div class="hud-pill">SPOT XAUUSD: <span id="priceLive" style="color:var(--cyan); font-weight:900;">CONNECTING...</span></div>
           <div class="hud-pill" id="hudMarketStatus" style="color:#a3e635;">MARKET: CHECKING...</div>
           <div class="hud-pill" id="hud1930Status" style="border-color:var(--gold); color:var(--gold);">19:30: STANDBY</div>
+          <div class="hud-pill" id="hud0100Status" style="border-color:var(--cyan); color:var(--cyan);">01:00: STANDBY</div>
           <button class="audio-switch-btn" id="audioToggleBtn" onclick="toggleAudioAlert()">
             <span>🔔 SOUND: OFF</span>
           </button>
@@ -1538,13 +1565,14 @@
 
       <div style="margin-top:20px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
         <h2 style="font-family:var(--font-heading); font-size:15px; font-weight:700; text-transform:uppercase;">
-          🌐 45 SUB-TIME ZONE: REVERSED BY AI ASTRO TRANSIT & PIPS TP TARGET
+          🌐 50 SUB-TIME ZONES: QUANTITATIVE ASTRO TRANSIT & PIPS TP TARGETS
         </h2>
         <div class="tz-filter-bar">
-          <button class="btn-filter-pill active" onclick="filterTimeZones('all', this)">SEMUA (45)</button>
+          <button class="btn-filter-pill active" onclick="filterTimeZones('all', this)">SEMUA (50)</button>
           <button class="btn-filter-pill" onclick="filterTimeZones('live', this)">🔥 SEDANG LIVE</button>
           <button class="btn-filter-pill" onclick="filterTimeZones('buy', this)">HANYA BUY</button>
           <button class="btn-filter-pill" onclick="filterTimeZones('sell', this)">HANYA SELL</button>
+          <button class="btn-filter-pill" onclick="filterTimeZones('midnight', this)">MIDNIGHT 01:00 & 01:30</button>
           <button class="btn-filter-pill" onclick="filterTimeZones('news', this)">SESI NEWS 19:30</button>
         </div>
       </div>
@@ -1554,7 +1582,7 @@
 
     <footer style="margin-top:60px; padding-top:20px; border-top:1px solid var(--border-dark); text-align:center;">
       <p style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); max-width:850px; margin:0 auto; line-height:1.6;">
-        <strong>PERINGATAN RISIKO:</strong> Perdagangan instrumen leverage seperti XAUUSD memiliki tingkat risiko modal tinggi. Algoritma transit Astrodox Tulungagung, rotasi sub-time zone, serta target TP Pips dirancang untuk analitik pasar kuantitatif dan probabilitas independen.
+        <strong>PERINGATAN RISIKO:</strong> Perdagangan instrumen leverage seperti XAUUSD memiliki tingkat risiko modal tinggi. Algoritma transit Astrodox Tulungagung, rotasi 50 sub-time zones, serta target TP Pips dirancang untuk analitik pasar kuantitatif dan probabilitas independen.
       </p>
       <div style="margin-top:14px; font-size:11px; color:#64748b; font-family:var(--font-mono);">
         © 2026 ZERO SYNDICATE • Tulungagung Precision Engine PROMAX
@@ -1571,382 +1599,112 @@
 
   <script>
     // =========================================================================
-    // 1. DATA CANDLESTICK & TIME ZONES BASE MATRIX
+    // 0. GLOBAL APPLICATION STATE & ENGINE CONSTANTS
+    // =========================================================================
+    var liveSpotPrice = 2650.00;
+    var dynamicTimeZonesList = [];
+    var currentTzFilter = "all";
+    var currentNewsWireFilter = "all";
+    var isAudioEnabled = false;
+    var audioCtx = null;
+    var cachedNewsData = null;
+    var lastMinuteChecked = -1;
+    var lastWireAutoRefreshMinute = -1;
+
+    // =========================================================================
+    // 1. DATA CANDLESTICK
     // =========================================================================
     var candleData = [
-      { id: 1, name: "Hammer", type: "bull", cat: "Bullish Reversal", desc: "Body kecil di atas dengan lower wick panjang minimal 2x panjang body. Menandakan penolakan harga murah secara masif.", psych: "Buyer institusi menyerap seluruh penjualan ritel", smc: "Sweep Sell-Side Liquidity (SSL)", sl: "Di bawah ekor bawah (low)", prob: "88% Win Rate", render: `<div class="candle bullish"><div class="wick" style="height:110px; top:-20px;"></div><div class="body" style="height:35px; margin-top:-60px;"></div></div>` },
-      { id: 2, name: "Inverted Hammer", type: "bull", cat: "Bullish Reversal", desc: "Body kecil di bawah dengan upper wick panjang di area support. Sinyal awal pengujian level penawaran.", psych: "Uji likuiditas area atas oleh smart money", smc: "Mitigasi Fair Value Gap (FVG)", sl: "Di bawah harga terendah body", prob: "82% Win Rate", render: `<div class="candle bullish"><div class="wick" style="height:110px; top:-40px;"></div><div class="body" style="height:35px; margin-top:40px;"></div></div>` },
-      { id: 3, name: "Bullish Engulfing", type: "bull", cat: "Bullish Reversal", desc: "Candle hijau tebal yang menelan seluruh rentang body candle merah sebelumnya.", psych: "Pergeseran momentum mendadak dari seller ke buyer", smc: "Konfirmasi Bullish CHOCH", sl: "Di bawah low candle engulfing", prob: "91% Win Rate", render: `<div class="candle bearish" style="margin-right:12px;"><div class="wick" style="height:60px; top:10px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bullish"><div class="wick" style="height:110px; top:-10px;"></div><div class="body" style="height:85px;"></div></div>` },
-      { id: 4, name: "Piercing Line", type: "bull", cat: "Bullish Reversal", desc: "Candle kedua dibuka gap down namun ditutup melampaui level 50% dari body candle merah sebelumnya.", psych: "Seller kehilangan momentum setelah gap", smc: "Rejeksi Discount 50% Equilibrium", sl: "Di bawah harga terendah kedua", prob: "84% Win Rate", render: `<div class="candle bearish" style="margin-right:10px;"><div class="wick" style="height:90px; top:0;"></div><div class="body" style="height:70px;"></div></div><div class="candle bullish"><div class="wick" style="height:80px; top:30px;"></div><div class="body" style="height:55px; margin-top:25px;"></div></div>` },
-      { id: 5, name: "Morning Star", type: "bull", cat: "Bullish Reversal", desc: "Formasi 3 candle di dasar tren: bearish panjang, candle kecil konsolidasi, disusul bullish impulsif.", psych: "Transisi lelang dari panik ke akumulasi", smc: "Unmitigated Demand Block", sl: "Di bawah titik terendah candle tengah", prob: "93% Win Rate", render: `<div class="candle bearish"><div class="wick" style="height:80px; top:0;"></div><div class="body" style="height:60px;"></div></div><div class="candle doji" style="margin-top:50px;"><div class="wick" style="height:30px;"></div><div class="body"></div></div><div class="candle bullish"><div class="wick" style="height:80px; top:10px;"></div><div class="body" style="height:60px; margin-top:10px;"></div></div>` },
-      { id: 6, name: "Three White Soldiers", type: "bull", cat: "Bullish Continuation", desc: "Tiga candle hijau tebal beruntun dengan shadow pendek yang mencetak higher highs bertahap.", psych: "Akumulasi institusional bertahap tanpa jeda", smc: "Bullish Order Flow Expansion", sl: "Di bawah pembukaan candle pertama", prob: "89% Win Rate", render: `<div class="candle bullish" style="margin-top:40px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bullish" style="margin-top:20px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bullish" style="margin-top:0px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div>` },
-      { id: 7, name: "Bullish Marubozu", type: "bull", cat: "Momentum", desc: "Candle penuh tanpa bayangan atas maupun bawah. Harga dibuka pada titik terendah dan ditutup di tertinggi.", psych: "Buyer mendominasi 100% tanpa perlawanan", smc: "Imbalance / Liquidity Void", sl: "Di bawah open candle Marubozu", prob: "87% Win Rate", render: `<div class="candle bullish"><div class="wick" style="height:0;"></div><div class="body" style="height:110px;"></div></div>` },
-      { id: 8, name: "Dragonfly Doji", type: "bull", cat: "Bullish Reversal", desc: "Open, high, dan close berada di puncak yang sama dengan lower shadow menjulang panjang.", psych: "Penolakan mutlak terhadap level diskon", smc: "Pembersihan Liquidity Pool", sl: "Di bawah ekor terendah Doji", prob: "86% Win Rate", render: `<div class="candle doji"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="margin-top:-70px;"></div></div>` },
-      { id: 9, name: "Bullish Harami", type: "bull", cat: "Bullish Reversal", desc: "Candle hijau kecil yang sepenuhnya berada di dalam rentang body candle merah besar sebelumnya.", psych: "Volatilitas seller menyusut drastis", smc: "Inside Bar Mitigation", sl: "Di bawah low candle mother bar", prob: "80% Win Rate", render: `<div class="candle bearish" style="margin-right:12px;"><div class="wick" style="height:100px;"></div><div class="body" style="height:75px;"></div></div><div class="candle bullish"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div>` },
-      { id: 10, name: "Tweezer Bottom", type: "bull", cat: "Bullish Reversal", desc: "Dua candle beruntun dengan titik terendah (low) yang persis sama membentuk lantai support.", psych: "Batas lelang bawah tidak mampu ditembus", smc: "Double Bottom Equal Lows (EQL)", sl: "1-2 pip di bawah low kembar", prob: "85% Win Rate", render: `<div class="candle bearish" style="margin-right:10px;"><div class="wick" style="height:90px; top:10px;"></div><div class="body" style="height:55px;"></div></div><div class="candle bullish"><div class="wick" style="height:90px; top:10px;"></div><div class="body" style="height:55px;"></div></div>` },
-      { id: 11, name: "Shooting Star", type: "bear", cat: "Bearish Reversal", desc: "Body kecil di bagian bawah dengan upper wick panjang minimal 2x panjang body di puncak uptrend.", psych: "Rejeksi agresif dari zona resistance", smc: "Sweep Buy-Side Liquidity (BSL)", sl: "Di atas ujung ekor atas", prob: "90% Win Rate", render: `<div class="candle bearish"><div class="wick" style="height:110px; top:-30px;"></div><div class="body" style="height:35px; margin-top:40px;"></div></div>` },
-      { id: 12, name: "Hanging Man", type: "bear", cat: "Bearish Reversal", desc: "Bentuk menyerupai Hammer namun muncul di puncak tren naik tanda buyer mulai rapuh.", psych: "Seller mulai berhasil menembus support", smc: "Distribusi Awal di Premium Zone", sl: "Di atas harga tertinggi sesi", prob: "79% Win Rate", render: `<div class="candle bearish"><div class="wick" style="height:110px; top:-20px;"></div><div class="body" style="height:35px; margin-top:-60px;"></div></div>` },
-      { id: 13, name: "Bearish Engulfing", type: "bear", cat: "Bearish Reversal", desc: "Candle merah raksasa yang menelan seluruh rentang candle hijau sebelumnya.", psych: "Pembalikan dominasi langsung oleh institusi", smc: "Bearish Change of Character (CHOCH)", sl: "Di atas high candle bearish", prob: "92% Win Rate", render: `<div class="candle bullish" style="margin-right:12px;"><div class="wick" style="height:60px; top:10px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bearish"><div class="wick" style="height:110px; top:-10px;"></div><div class="body" style="height:85px;"></div></div>` },
-      { id: 14, name: "Dark Cloud Cover", type: "bear", cat: "Bearish Reversal", desc: "Candle kedua dibuka gap up tetapi ditutup di bawah 50% body candle hijau sebelumnya.", psych: "Penolakan level harga mahal secara instan", smc: "Rejection di Premium Equilibrium", sl: "Di atas titik tertinggi candle kedua", prob: "83% Win Rate", render: `<div class="candle bullish" style="margin-right:10px;"><div class="wick" style="height:90px; top:20px;"></div><div class="body" style="height:70px; margin-top:10px;"></div></div><div class="candle bearish"><div class="wick" style="height:85px; top:0;"></div><div class="body" style="height:60px;"></div></div>` },
-      { id: 15, name: "Evening Star", type: "bear", cat: "Bearish Reversal", desc: "Formasi 3 candle di puncak tren: bullish panjang, candle kecil ragu, dan candle bearish tebal.", psych: "Kelelahan momentum pembeli", smc: "Supply Block Unmitigated", sl: "Di atas titik tertinggi candle tengah", prob: "94% Win Rate", render: `<div class="candle bullish"><div class="wick" style="height:80px; top:20px;"></div><div class="body" style="height:60px; margin-top:20px;"></div></div><div class="candle doji" style="margin-top:-30px;"><div class="wick" style="height:30px;"></div><div class="body"></div></div><div class="candle bearish"><div class="wick" style="height:80px; top:10px;"></div><div class="body" style="height:60px; margin-top:10px;"></div></div>` },
-      { id: 16, name: "Three Black Crows", type: "bear", cat: "Bearish Continuation", desc: "Tiga candle merah berturut-turut dengan body tebal yang mencetak lower lows secara agresif.", psych: "Penjualan panik atau distribusi terencana", smc: "Bearish Order Flow Expansion", sl: "Di atas open candle merah pertama", prob: "90% Win Rate", render: `<div class="candle bearish"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bearish" style="margin-top:20px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bearish" style="margin-top:40px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div>` },
-      { id: 17, name: "Bearish Marubozu", type: "bear", cat: "Momentum", desc: "Candle merah penuh tanpa shadow. Open berada di titik tertinggi dan close di terendah mutlak.", psych: "Seller mendominasi penuh tanpa perlawanan", smc: "Displacement / Sell Imbalance", sl: "Di atas open candle Marubozu", prob: "88% Win Rate", render: `<div class="candle bearish"><div class="wick" style="height:0;"></div><div class="body" style="height:110px;"></div></div>` },
-      { id: 18, name: "Gravestone Doji", type: "bear", cat: "Bearish Reversal", desc: "Open, low, dan close berada di dasar candle dengan upper shadow menjulang panjang.", psych: "Kegagalan total buyer mempertahankan harga", smc: "Buy-Side Liquidity Sweep (BSL)", sl: "Di atas ujung ekor atas Doji", prob: "87% Win Rate", render: `<div class="candle doji"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="margin-top:50px;"></div></div>` },
-      { id: 19, name: "Bearish Harami", type: "bear", cat: "Bearish Reversal", desc: "Candle merah kecil yang seluruh rentangnya berada di dalam body candle hijau besar sebelumnya.", psych: "Tekanan beli terhenti secara mendadak", smc: "Inside Bar Bearish Setup", sl: "Di atas high mother bar", prob: "81% Win Rate", render: `<div class="candle bullish" style="margin-right:12px;"><div class="wick" style="height:100px;"></div><div class="body" style="height:75px;"></div></div><div class="candle bearish"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div>` },
-      { id: 20, name: "Tweezer Top", type: "bear", cat: "Bearish Reversal", desc: "Dua candle beruntun dengan titik tertinggi (high) persis sama membentuk resistance solid.", psych: "Batas harga lelang atas tertahan kuat", smc: "Equal Highs (EQH) Liquidity Pool", sl: "1-2 pip di atas high kembar", prob: "86% Win Rate", render: `<div class="candle bullish" style="margin-right:10px;"><div class="wick" style="height:90px; top:-10px;"></div><div class="body" style="height:55px; margin-top:20px;"></div></div><div class="candle bearish"><div class="wick" style="height:90px; top:-10px;"></div><div class="body" style="height:55px; margin-top:20px;"></div></div>` },
-      { id: 21, name: "Standard Doji", type: "neut", cat: "Indecision", desc: "Bentuk salib sempurna di mana harga open dan close berada di level yang sama persis.", psych: "Keseimbangan sempurna antara buyer & seller", smc: "Equilibrium Compression", sl: "Di luar rentang ekor Doji", prob: "75% Win Rate", render: `<div class="candle doji"><div class="wick" style="height:90px;"></div><div class="body"></div></div>` },
-      { id: 22, name: "Long-Legged Doji", type: "neut", cat: "Volatilitas", desc: "Doji dengan upper dan lower shadow yang sangat panjang mencerminkan pertarungan sengit.", psych: "Volatilitas tinggi namun berakhir seimbang", smc: "Dual Liquidity Sweep", sl: "Di luar range ekor terjauh", prob: "78% Win Rate", render: `<div class="candle doji"><div class="wick" style="height:130px;"></div><div class="body"></div></div>` },
-      { id: 23, name: "Spinning Top", type: "neut", cat: "Indecision", desc: "Body kecil simetris di tengah dengan shadow atas dan bawah berukuran sedang.", psych: "Penurunan volatilitas menjelang breakout", smc: "Inducement Range", sl: "Di luar batas breakout candle", prob: "76% Win Rate", render: `<div class="candle bullish"><div class="wick" style="height:90px;"></div><div class="body" style="height:25px;"></div></div>` },
-      { id: 24, name: "Bullish Pinbar", type: "bull", cat: "Rejection", desc: "Candle dengan ekor bawah mencapai lebih dari 70% dari keseluruhan rentang candle.", psych: "Penolakan harga ekstrim di area demand", smc: "Mitigasi Stop Hunt Bawah", sl: "Di bawah ekor Pinbar", prob: "91% Win Rate", render: `<div class="candle bullish"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="height:20px; margin-top:-70px;"></div></div>` },
-      { id: 25, name: "Bearish Pinbar", type: "bear", cat: "Rejection", desc: "Candle dengan ekor atas mencapai lebih dari 70% dari keseluruhan rentang candle.", psych: "Penolakan harga ekstrim di area supply", smc: "Mitigasi Stop Hunt Atas", sl: "Di atas ekor Pinbar", prob: "91% Win Rate", render: `<div class="candle bearish"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="height:20px; margin-top:55px;"></div></div>` },
-      { id: 26, name: "Rising Three Methods", type: "bull", cat: "Continuation", desc: "1 candle bullish panjang disusul 3 candle merah kecil di dalamnya, lalu ditutup candle bullish penembus.", psych: "Koreksi sehat yang diserap kembali oleh buyer", smc: "Liquidity Re-accumulation", sl: "Di bawah low candle pertama", prob: "87% Win Rate", render: `<div class="candle bullish" style="margin-right:6px;"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bearish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bearish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bullish"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div>` },
-      { id: 27, name: "Falling Three Methods", type: "bear", cat: "Continuation", desc: "1 candle bearish tebal disusul 3 candle hijau kecil korektif, lalu diteruskan candle bearish baru.", psych: "Pullback lemah yang langsung dihantam supply", smc: "Liquidity Re-distribution", sl: "Di atas high candle pertama", prob: "87% Win Rate", render: `<div class="candle bearish" style="margin-right:6px;"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bullish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bullish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bearish"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div>` },
-      { id: 28, name: "Three Inside Up", type: "bull", cat: "Reversal", desc: "Konfirmasi tiga candle dari pola Bullish Harami yang disusul candle bullish penembus high.", psych: "Validasi penuh pergeseran dominasi pasar", smc: "Confirmed Break of Structure (BOS)", sl: "Di bawah titik terendah candle kedua", prob: "89% Win Rate", render: `<div class="candle bearish" style="margin-right:8px;"><div class="wick" style="height:90px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bullish" style="margin-right:8px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div><div class="candle bullish"><div class="wick" style="height:85px;"></div><div class="body" style="height:60px;"></div></div>` },
-      { id: 29, name: "Three Inside Down", type: "bear", cat: "Reversal", desc: "Konfirmasi tiga candle dari pola Bearish Harami yang disusul candle bearish penembus low.", psych: "Konfirmasi seller mengambil kendali penuh", smc: "Confirmed Bearish BOS", sl: "Di atas high candle kedua", prob: "89% Win Rate", render: `<div class="candle bullish" style="margin-right:8px;"><div class="wick" style="height:90px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bearish" style="margin-right:8px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div><div class="candle bearish"><div class="wick" style="height:85px;"></div><div class="body" style="height:60px;"></div></div>` },
-      { id: 30, name: "High Wave Candle", type: "neut", cat: "Extreme Indecision", desc: "Body sangat kecil dengan bayangan atas dan bawah super panjang melebihi 3x ukuran body.", psych: "Ketidakpastian ekstrim jelang rilis suku bunga", smc: "Massive Liquidity Grab", sl: "Di luar range ekor terjauh", prob: "80% Win Rate", render: `<div class="candle doji"><div class="wick" style="height:140px;"></div><div class="body" style="height:6px;"></div></div>` }
+      { id: 1, name: "Hammer", type: "bull", cat: "Bullish Reversal", desc: "Body kecil di atas dengan lower wick panjang minimal 2x panjang body. Menandakan penolakan harga murah secara masif.", psych: "Buyer institusi menyerap seluruh penjualan ritel", smc: "Sweep Sell-Side Liquidity (SSL)", sl: "Di bawah ekor bawah (low)", prob: "88% Win Rate", render: '<div class="candle bullish"><div class="wick" style="height:110px; top:-20px;"></div><div class="body" style="height:35px; margin-top:-60px;"></div></div>' },
+      { id: 2, name: "Inverted Hammer", type: "bull", cat: "Bullish Reversal", desc: "Body kecil di bawah dengan upper wick panjang di area support. Sinyal awal pengujian level penawaran.", psych: "Uji likuiditas area atas oleh smart money", smc: "Mitigasi Fair Value Gap (FVG)", sl: "Di bawah harga terendah body", prob: "82% Win Rate", render: '<div class="candle bullish"><div class="wick" style="height:110px; top:-40px;"></div><div class="body" style="height:35px; margin-top:40px;"></div></div>' },
+      { id: 3, name: "Bullish Engulfing", type: "bull", cat: "Bullish Reversal", desc: "Candle hijau tebal yang menelan seluruh rentang body candle merah sebelumnya.", psych: "Pergeseran momentum mendadak dari seller ke buyer", smc: "Konfirmasi Bullish CHOCH", sl: "Di bawah low candle engulfing", prob: "91% Win Rate", render: '<div class="candle bearish" style="margin-right:12px;"><div class="wick" style="height:60px; top:10px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bullish"><div class="wick" style="height:110px; top:-10px;"></div><div class="body" style="height:85px;"></div></div>' },
+      { id: 4, name: "Piercing Line", type: "bull", cat: "Bullish Reversal", desc: "Candle kedua dibuka gap down namun ditutup melampaui level 50% dari body candle merah sebelumnya.", psych: "Seller kehilangan momentum setelah gap", smc: "Rejeksi Discount 50% Equilibrium", sl: "Di bawah harga terendah kedua", prob: "84% Win Rate", render: '<div class="candle bearish" style="margin-right:10px;"><div class="wick" style="height:90px; top:0;"></div><div class="body" style="height:70px;"></div></div><div class="candle bullish"><div class="wick" style="height:80px; top:30px;"></div><div class="body" style="height:55px; margin-top:25px;"></div></div>' },
+      { id: 5, name: "Morning Star", type: "bull", cat: "Bullish Reversal", desc: "Formasi 3 candle di dasar tren: bearish panjang, candle kecil konsolidasi, disusul bullish impulsif.", psych: "Transisi lelang dari panik ke akumulasi", smc: "Unmitigated Demand Block", sl: "Di bawah titik terendah candle tengah", prob: "93% Win Rate", render: '<div class="candle bearish"><div class="wick" style="height:80px; top:0;"></div><div class="body" style="height:60px;"></div></div><div class="candle doji" style="margin-top:50px;"><div class="wick" style="height:30px;"></div><div class="body"></div></div><div class="candle bullish"><div class="wick" style="height:80px; top:10px;"></div><div class="body" style="height:60px; margin-top:10px;"></div></div>' },
+      { id: 6, name: "Three White Soldiers", type: "bull", cat: "Bullish Continuation", desc: "Tiga candle hijau tebal beruntun dengan shadow pendek yang mencetak higher highs bertahap.", psych: "Akumulasi institusional bertahap tanpa jeda", smc: "Bullish Order Flow Expansion", sl: "Di bawah pembukaan candle pertama", prob: "89% Win Rate", render: '<div class="candle bullish" style="margin-top:40px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bullish" style="margin-top:20px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bullish" style="margin-top:0px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div>' },
+      { id: 7, name: "Bullish Marubozu", type: "bull", cat: "Momentum", desc: "Candle penuh tanpa bayangan atas maupun bawah. Harga dibuka pada titik terendah dan ditutup di tertinggi.", psych: "Buyer mendominasi 100% tanpa perlawanan", smc: "Imbalance / Liquidity Void", sl: "Di bawah open candle Marubozu", prob: "87% Win Rate", render: '<div class="candle bullish"><div class="wick" style="height:0;"></div><div class="body" style="height:110px;"></div></div>' },
+      { id: 8, name: "Dragonfly Doji", type: "bull", cat: "Bullish Reversal", desc: "Open, high, dan close berada di puncak yang sama dengan lower shadow menjulang panjang.", psych: "Penolakan mutlak terhadap level diskon", smc: "Pembersihan Liquidity Pool", sl: "Di bawah ekor terendah Doji", prob: "86% Win Rate", render: '<div class="candle doji"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="margin-top:-70px;"></div></div>' },
+      { id: 9, name: "Bullish Harami", type: "bull", cat: "Bullish Reversal", desc: "Candle hijau kecil yang sepenuhnya berada di dalam rentang body candle merah besar sebelumnya.", psych: "Volatilitas seller menyusut drastis", smc: "Inside Bar Mitigation", sl: "Di bawah low candle mother bar", prob: "80% Win Rate", render: '<div class="candle bearish" style="margin-right:12px;"><div class="wick" style="height:100px;"></div><div class="body" style="height:75px;"></div></div><div class="candle bullish"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div>' },
+      { id: 10, name: "Tweezer Bottom", type: "bull", cat: "Bullish Reversal", desc: "Dua candle beruntun dengan titik terendah (low) yang persis sama membentuk lantai support.", psych: "Batas lelang bawah tidak mampu ditembus", smc: "Double Bottom Equal Lows (EQL)", sl: "1-2 pip di bawah low kembar", prob: "85% Win Rate", render: '<div class="candle bearish" style="margin-right:10px;"><div class="wick" style="height:90px; top:10px;"></div><div class="body" style="height:55px;"></div></div><div class="candle bullish"><div class="wick" style="height:90px; top:10px;"></div><div class="body" style="height:55px;"></div></div>' },
+      { id: 11, name: "Shooting Star", type: "bear", cat: "Bearish Reversal", desc: "Body kecil di bagian bawah dengan upper wick panjang minimal 2x panjang body di puncak uptrend.", psych: "Rejeksi agresif dari zona resistance", smc: "Sweep Buy-Side Liquidity (BSL)", sl: "Di atas ujung ekor atas", prob: "90% Win Rate", render: '<div class="candle bearish"><div class="wick" style="height:110px; top:-30px;"></div><div class="body" style="height:35px; margin-top:40px;"></div></div>' },
+      { id: 12, name: "Hanging Man", type: "bear", cat: "Bearish Reversal", desc: "Bentuk menyerupai Hammer namun muncul di puncak tren naik tanda buyer mulai rapuh.", psych: "Seller mulai berhasil menembus support", smc: "Distribusi Awal di Premium Zone", sl: "Di atas harga tertinggi sesi", prob: "79% Win Rate", render: '<div class="candle bearish"><div class="wick" style="height:110px; top:-20px;"></div><div class="body" style="height:35px; margin-top:-60px;"></div></div>' },
+      { id: 13, name: "Bearish Engulfing", type: "bear", cat: "Bearish Reversal", desc: "Candle merah raksasa yang menelan seluruh rentang candle hijau sebelumnya.", psych: "Pembalikan dominasi langsung oleh institusi", smc: "Bearish Change of Character (CHOCH)", sl: "Di atas high candle bearish", prob: "92% Win Rate", render: '<div class="candle bullish" style="margin-right:12px;"><div class="wick" style="height:60px; top:10px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bearish"><div class="wick" style="height:110px; top:-10px;"></div><div class="body" style="height:85px;"></div></div>' },
+      { id: 14, name: "Dark Cloud Cover", type: "bear", cat: "Bearish Reversal", desc: "Candle kedua dibuka gap up tetapi ditutup di bawah 50% body candle hijau sebelumnya.", psych: "Penolakan level harga mahal secara instan", smc: "Rejection di Premium Equilibrium", sl: "Di atas titik tertinggi candle kedua", prob: "83% Win Rate", render: '<div class="candle bullish" style="margin-right:10px;"><div class="wick" style="height:90px; top:20px;"></div><div class="body" style="height:70px; margin-top:10px;"></div></div><div class="candle bearish"><div class="wick" style="height:85px; top:0;"></div><div class="body" style="height:60px;"></div></div>' },
+      { id: 15, name: "Evening Star", type: "bear", cat: "Bearish Reversal", desc: "Formasi 3 candle di puncak tren: bullish panjang, candle kecil ragu, dan candle bearish tebal.", psych: "Kelelahan momentum pembeli", smc: "Supply Block Unmitigated", sl: "Di atas titik tertinggi candle tengah", prob: "94% Win Rate", render: '<div class="candle bullish"><div class="wick" style="height:80px; top:20px;"></div><div class="body" style="height:60px; margin-top:20px;"></div></div><div class="candle doji" style="margin-top:-30px;"><div class="wick" style="height:30px;"></div><div class="body"></div></div><div class="candle bearish"><div class="wick" style="height:80px; top:10px;"></div><div class="body" style="height:60px; margin-top:10px;"></div></div>' },
+      { id: 16, name: "Three Black Crows", type: "bear", cat: "Bearish Continuation", desc: "Tiga candle merah berturut-turut dengan body tebal yang mencetak lower lows secara agresif.", psych: "Penjualan panik atau distribusi terencana", smc: "Bearish Order Flow Expansion", sl: "Di atas open candle merah pertama", prob: "90% Win Rate", render: '<div class="candle bearish"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bearish" style="margin-top:20px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bearish" style="margin-top:40px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div>' },
+      { id: 17, name: "Bearish Marubozu", type: "bear", cat: "Momentum", desc: "Candle merah penuh tanpa shadow. Open berada di titik tertinggi dan close di terendah mutlak.", psych: "Seller mendominasi penuh tanpa perlawanan", smc: "Displacement / Sell Imbalance", sl: "Di atas open candle Marubozu", prob: "88% Win Rate", render: '<div class="candle bearish"><div class="wick" style="height:0;"></div><div class="body" style="height:110px;"></div></div>' },
+      { id: 18, name: "Gravestone Doji", type: "bear", cat: "Bearish Reversal", desc: "Open, low, dan close berada di dasar candle dengan upper shadow menjulang panjang.", psych: "Kegagalan total buyer mempertahankan harga", smc: "Buy-Side Liquidity Sweep (BSL)", sl: "Di atas ujung ekor atas Doji", prob: "87% Win Rate", render: '<div class="candle doji"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="margin-top:50px;"></div></div>' },
+      { id: 19, name: "Bearish Harami", type: "bear", cat: "Bearish Reversal", desc: "Candle merah kecil yang seluruh rentangnya berada di dalam body candle hijau besar sebelumnya.", psych: "Tekanan beli terhenti secara mendadak", smc: "Inside Bar Bearish Setup", sl: "Di atas high mother bar", prob: "81% Win Rate", render: '<div class="candle bullish" style="margin-right:12px;"><div class="wick" style="height:100px;"></div><div class="body" style="height:75px;"></div></div><div class="candle bearish"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div>' },
+      { id: 20, name: "Tweezer Top", type: "bear", cat: "Bearish Reversal", desc: "Dua candle beruntun dengan titik tertinggi (high) persis sama membentuk resistance solid.", psych: "Batas harga lelang atas tertahan kuat", smc: "Equal Highs (EQH) Liquidity Pool", sl: "1-2 pip di atas high kembar", prob: "86% Win Rate", render: '<div class="candle bullish" style="margin-right:10px;"><div class="wick" style="height:90px; top:-10px;"></div><div class="body" style="height:55px; margin-top:20px;"></div></div><div class="candle bearish"><div class="wick" style="height:90px; top:-10px;"></div><div class="body" style="height:55px; margin-top:20px;"></div></div>' },
+      { id: 21, name: "Standard Doji", type: "neut", cat: "Indecision", desc: "Bentuk salib sempurna di mana harga open dan close berada di level yang sama persis.", psych: "Keseimbangan sempurna antara buyer & seller", smc: "Equilibrium Compression", sl: "Di luar rentang ekor Doji", prob: "75% Win Rate", render: '<div class="candle doji"><div class="wick" style="height:90px;"></div><div class="body"></div></div>' },
+      { id: 22, name: "Long-Legged Doji", type: "neut", cat: "Volatilitas", desc: "Doji dengan upper dan lower shadow yang sangat panjang mencerminkan pertarungan sengit.", psych: "Volatilitas tinggi namun berakhir seimbang", smc: "Dual Liquidity Sweep", sl: "Di luar range ekor terjauh", prob: "78% Win Rate", render: '<div class="candle doji"><div class="wick" style="height:130px;"></div><div class="body"></div></div>' },
+      { id: 23, name: "Spinning Top", type: "neut", cat: "Indecision", desc: "Body kecil simetris di tengah dengan shadow atas dan bawah berukuran sedang.", psych: "Penurunan volatilitas menjelang breakout", smc: "Inducement Range", sl: "Di luar batas breakout candle", prob: "76% Win Rate", render: '<div class="candle bullish"><div class="wick" style="height:90px;"></div><div class="body" style="height:25px;"></div></div>' },
+      { id: 24, name: "Bullish Pinbar", type: "bull", cat: "Rejection", desc: "Candle dengan ekor bawah mencapai lebih dari 70% dari keseluruhan rentang candle.", psych: "Penolakan harga ekstrim di area demand", smc: "Mitigasi Stop Hunt Bawah", sl: "Di bawah ekor Pinbar", prob: "91% Win Rate", render: '<div class="candle bullish"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="height:20px; margin-top:-70px;"></div></div>' },
+      { id: 25, name: "Bearish Pinbar", type: "bear", cat: "Rejection", desc: "Candle dengan ekor atas mencapai lebih dari 70% dari keseluruhan rentang candle.", psych: "Penolakan harga ekstrim di area supply", smc: "Mitigasi Stop Hunt Atas", sl: "Di atas ekor Pinbar", prob: "91% Win Rate", render: '<div class="candle bearish"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="height:20px; margin-top:55px;"></div></div>' },
+      { id: 26, name: "Rising Three Methods", type: "bull", cat: "Continuation", desc: "1 candle bullish panjang disusul 3 candle merah kecil di dalamnya, lalu ditutup candle bullish penembus.", psych: "Koreksi sehat yang diserap kembali oleh buyer", smc: "Liquidity Re-accumulation", sl: "Di bawah low candle pertama", prob: "87% Win Rate", render: '<div class="candle bullish" style="margin-right:6px;"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bearish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bearish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bullish"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div>' },
+      { id: 27, name: "Falling Three Methods", type: "bear", cat: "Continuation", desc: "1 candle bearish tebal disusul 3 candle hijau kecil korektif, lalu diteruskan candle bearish baru.", psych: "Pullback lemah yang langsung dihantam supply", smc: "Liquidity Re-distribution", sl: "Di atas high candle pertama", prob: "87% Win Rate", render: '<div class="candle bearish" style="margin-right:6px;"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bullish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bullish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bearish"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div>' },
+      { id: 28, name: "Three Inside Up", type: "bull", cat: "Reversal", desc: "Konfirmasi tiga candle dari pola Bullish Harami yang disusul candle bullish penembus high.", psych: "Validasi penuh pergeseran dominasi pasar", smc: "Confirmed Break of Structure (BOS)", sl: "Di bawah titik terendah candle kedua", prob: "89% Win Rate", render: '<div class="candle bearish" style="margin-right:8px;"><div class="wick" style="height:90px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bullish" style="margin-right:8px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div><div class="candle bullish"><div class="wick" style="height:85px;"></div><div class="body" style="height:60px;"></div></div>' },
+      { id: 29, name: "Three Inside Down", type: "bear", cat: "Reversal", desc: "Konfirmasi tiga candle dari pola Bearish Harami yang disusul candle bearish penembus low.", psych: "Konfirmasi seller mengambil kendali penuh", smc: "Confirmed Bearish BOS", sl: "Di atas high candle kedua", prob: "89% Win Rate", render: '<div class="candle bullish" style="margin-right:8px;"><div class="wick" style="height:90px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bearish" style="margin-right:8px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div><div class="candle bearish"><div class="wick" style="height:85px;"></div><div class="body" style="height:60px;"></div></div>' },
+      { id: 30, name: "High Wave Candle", type: "neut", cat: "Extreme Indecision", desc: "Body sangat kecil dengan bayangan atas dan bawah super panjang melebihi 3x ukuran body.", psych: "Ketidakpastian ekstrim jelang rilis suku bunga", smc: "Massive Liquidity Grab", sl: "Di luar range ekor terjauh", prob: "80% Win Rate", render: '<div class="candle doji"><div class="wick" style="height:140px;"></div><div class="body" style="height:6px;"></div></div>' }
     ];
 
+    // =========================================================================
+    // 2. 50 SUB-TIME ZONE MATRIX (LENGKAP 24 JAM & TRIGGER 01:00 & 01:30 WIB)
+    // =========================================================================
     var baseTimeZonesWindows = [
-      { id: 1, name: "1. Sydney Open Gap", start: "04:00", end: "04:30", startMin: 240, endMin: 270, entryOffset: 3, pips: [25, 45, 65] },
-      { id: 2, name: "2. Pacific Ocean Flow", start: "04:30", end: "05:00", startMin: 270, endMin: 300, entryOffset: 4, pips: [25, 40, 60] },
-      { id: 3, name: "3. Pre-Tokyo Inflow", start: "05:00", end: "05:30", startMin: 300, endMin: 330, entryOffset: 2, pips: [25, 45, 70] },
-      { id: 4, name: "4. Tokyo Early Inflow", start: "05:30", end: "06:00", startMin: 330, endMin: 360, entryOffset: 5, pips: [30, 50, 75] },
-      { id: 5, name: "5. Tokyo Official Bell", start: "06:00", end: "06:30", startMin: 360, endMin: 390, entryOffset: 1, pips: [35, 60, 90] },
-      { id: 6, name: "6. Tokyo Morning Push", start: "06:30", end: "07:00", startMin: 390, endMin: 420, entryOffset: 4, pips: [30, 50, 75] },
-      { id: 7, name: "7. Asian Fixation Window", start: "07:00", end: "07:30", startMin: 420, endMin: 450, entryOffset: 3, pips: [25, 45, 65] },
-      { id: 8, name: "8. Asian Interbank Fix", start: "07:30", end: "08:00", startMin: 450, endMin: 480, entryOffset: 2, pips: [25, 40, 60] },
-      { id: 9, name: "9. Singapore & HK Open", start: "08:00", end: "08:30", startMin: 480, endMin: 510, entryOffset: 2, pips: [30, 55, 80] },
-      { id: 10, name: "10. HK Morning Momentum", start: "08:30", end: "09:00", startMin: 510, endMin: 540, entryOffset: 3, pips: [30, 50, 75] },
-      { id: 11, name: "11. Asian Core Stability", start: "09:00", end: "09:30", startMin: 540, endMin: 570, entryOffset: 5, pips: [25, 40, 60] },
-      { id: 12, name: "12. Shanghai Fixation Time", start: "09:30", end: "10:00", startMin: 570, endMin: 600, entryOffset: 2, pips: [30, 50, 70] },
-      { id: 13, name: "13. Asian Midday Retest", start: "10:00", end: "10:30", startMin: 600, endMin: 630, entryOffset: 4, pips: [25, 45, 65] },
-      { id: 14, name: "14. China Afternoon Push", start: "10:30", end: "11:00", startMin: 630, endMin: 660, entryOffset: 3, pips: [25, 45, 65] },
-      { id: 15, name: "15. Asian Range Ceiling", start: "11:00", end: "11:30", startMin: 660, endMin: 690, entryOffset: 2, pips: [25, 40, 60] },
-      { id: 16, name: "16. Tokyo Lunch Drift", start: "11:30", end: "12:00", startMin: 690, endMin: 720, entryOffset: 5, pips: [20, 35, 50] },
-      { id: 17, name: "17. Asian Lunch Flat", start: "12:00", end: "12:30", startMin: 720, endMin: 750, entryOffset: 0, pips: [15, 25, 40] },
-      { id: 18, name: "18. Pre-European Trap", start: "12:30", end: "13:00", startMin: 750, endMin: 780, entryOffset: 4, pips: [25, 45, 70] },
-      { id: 19, name: "19. Asian Session Wrap", start: "13:00", end: "13:30", startMin: 780, endMin: 810, entryOffset: 3, pips: [25, 40, 60] },
-      { id: 20, name: "20. Pre-Frankfurt Shadow", start: "13:30", end: "14:00", startMin: 810, endMin: 840, entryOffset: 2, pips: [30, 50, 75] },
-      { id: 21, name: "21. Frankfurt Open Surge", start: "14:00", end: "14:30", startMin: 840, endMin: 870, entryOffset: 1, pips: [40, 70, 100] },
-      { id: 22, name: "22. Frankfurt-London Gap", start: "14:30", end: "15:00", startMin: 870, endMin: 900, entryOffset: 3, pips: [35, 60, 85] },
-      { id: 23, name: "23. London Bell Judas Swing", start: "15:00", end: "15:30", startMin: 900, endMin: 930, entryOffset: 1, pips: [45, 80, 120] },
-      { id: 24, name: "24. London Judas Climax", start: "15:30", end: "16:00", startMin: 930, endMin: 960, entryOffset: 2, pips: [40, 70, 100] },
-      { id: 25, name: "25. London Core Trend", start: "16:00", end: "16:30", startMin: 960, endMin: 990, entryOffset: 3, pips: [35, 65, 95] },
-      { id: 26, name: "26. London Momentum Push", start: "16:30", end: "17:00", startMin: 990, endMin: 1020, entryOffset: 4, pips: [30, 55, 80] },
-      { id: 27, name: "27. European Midday Lull", start: "17:00", end: "17:30", startMin: 1020, endMin: 1050, entryOffset: 5, pips: [25, 40, 60] },
-      { id: 28, name: "28. London Afternoon Drift", start: "17:30", end: "18:00", startMin: 1050, endMin: 1080, entryOffset: 0, pips: [20, 35, 50] },
-      { id: 29, name: "29. Pre-NY Overlap Build", start: "18:00", end: "18:30", startMin: 1080, endMin: 1110, entryOffset: 2, pips: [35, 60, 90] },
-      { id: 30, name: "30. NY Early Radar Window", start: "18:30", end: "19:00", startMin: 1110, endMin: 1140, entryOffset: 3, pips: [40, 70, 105] },
-      { id: 31, name: "31. US News Radar 19:30", start: "19:00", end: "19:30", startMin: 1140, endMin: 1170, entryOffset: 28, pips: [50, 90, 140] },
-      { id: 32, name: "32. US News Shock Spike", start: "19:30", end: "20:00", startMin: 1170, endMin: 1200, entryOffset: 0, pips: [60, 110, 160] },
-      { id: 33, name: "33. Post-News Shakeout", start: "20:00", end: "20:30", startMin: 1200, endMin: 1230, entryOffset: 2, pips: [45, 80, 120] },
-      { id: 34, name: "34. NYSE Open Clash", start: "20:30", end: "21:00", startMin: 1230, endMin: 1260, entryOffset: 1, pips: [50, 90, 135] },
-      { id: 35, name: "35. NY Core Peak Dump/Pump", start: "21:00", end: "21:30", startMin: 1260, endMin: 1290, entryOffset: 3, pips: [45, 80, 120] },
-      { id: 36, name: "36. NY Expansion Extension", start: "21:30", end: "22:00", startMin: 1290, endMin: 1320, entryOffset: 2, pips: [40, 70, 105] },
-      { id: 37, name: "37. NY Mid-Session Rebound", start: "22:00", end: "22:30", startMin: 1320, endMin: 1350, entryOffset: 4, pips: [35, 60, 90] },
-      { id: 38, name: "38. London Fix Window", start: "22:30", end: "23:00", startMin: 1350, endMin: 1380, entryOffset: 2, pips: [40, 75, 110] },
-      { id: 39, name: "39. London Final Bell", start: "23:00", end: "23:30", startMin: 1380, endMin: 1410, entryOffset: 3, pips: [30, 55, 80] },
-      { id: 40, name: "40. Late Evening Drift", start: "23:30", end: "00:00", startMin: 1410, endMin: 1440, entryOffset: 5, pips: [25, 45, 65] },
-      { id: 41, name: "41. Midnight Squeeze US", start: "00:00", end: "00:30", startMin: 0, endMin: 30, entryOffset: 2, pips: [30, 50, 75] },
-      { id: 42, name: "42. NY Midnight Sweep", start: "00:30", end: "01:00", startMin: 30, endMin: 60, entryOffset: 3, pips: [25, 45, 70] },
-      { id: 43, name: "43. NY 01:00 WIB Core Trend", start: "01:00", end: "01:30", startMin: 60, endMin: 90, entryOffset: 2, pips: [30, 50, 75] },
-      { id: 44, name: "44. US Bond Pit & Late Flow", start: "01:30", end: "02:30", startMin: 90, endMin: 150, entryOffset: 5, pips: [25, 40, 60] },
-      { id: 45, name: "45. Settlement & Rollover", start: "02:30", end: "04:00", startMin: 150, endMin: 240, entryOffset: 0, pips: [15, 25, 40] }
+      { id: 1, name: "1. Sydney Open Gap", start: "04:00", end: "04:25", startMin: 240, endMin: 265, entryOffset: 2, pips: [25, 45, 65] },
+      { id: 2, name: "2. Pacific Flow", start: "04:25", end: "04:50", startMin: 265, endMin: 290, entryOffset: 3, pips: [25, 40, 60] },
+      { id: 3, name: "3. Wellington Handover", start: "04:50", end: "05:15", startMin: 290, endMin: 315, entryOffset: 2, pips: [25, 45, 70] },
+      { id: 4, name: "4. Pre-Tokyo Inflow", start: "05:15", end: "05:40", startMin: 315, endMin: 340, entryOffset: 4, pips: [30, 50, 75] },
+      { id: 5, name: "5. Tokyo Early Inflow", start: "05:40", end: "06:05", startMin: 340, endMin: 365, entryOffset: 3, pips: [30, 50, 75] },
+      { id: 6, name: "6. Tokyo Official Bell", start: "06:05", end: "06:30", startMin: 365, endMin: 390, entryOffset: 1, pips: [35, 60, 90] },
+      { id: 7, name: "7. Tokyo Morning Push", start: "06:30", end: "07:00", startMin: 390, endMin: 420, entryOffset: 4, pips: [30, 50, 75] },
+      { id: 8, name: "8. Asian Fixation Window", start: "07:00", end: "07:30", startMin: 420, endMin: 450, entryOffset: 3, pips: [25, 45, 65] },
+      { id: 9, name: "9. Asian Interbank Fix", start: "07:30", end: "08:00", startMin: 450, endMin: 480, entryOffset: 2, pips: [25, 40, 60] },
+      { id: 10, name: "10. Singapore & HK Open", start: "08:00", end: "08:30", startMin: 480, endMin: 510, entryOffset: 2, pips: [30, 55, 80] },
+      { id: 11, name: "11. HK Morning Momentum", start: "08:30", end: "09:00", startMin: 510, endMin: 540, entryOffset: 3, pips: [30, 50, 75] },
+      { id: 12, name: "12. Asian Core Stability", start: "09:00", end: "09:30", startMin: 540, endMin: 570, entryOffset: 4, pips: [25, 40, 60] },
+      { id: 13, name: "13. Shanghai Fixation Time", start: "09:30", end: "10:00", startMin: 570, endMin: 600, entryOffset: 2, pips: [30, 50, 70] },
+      { id: 14, name: "14. Asian Midday Retest", start: "10:00", end: "10:30", startMin: 600, endMin: 630, entryOffset: 4, pips: [25, 45, 65] },
+      { id: 15, name: "15. China Afternoon Push", start: "10:30", end: "11:00", startMin: 630, endMin: 660, entryOffset: 3, pips: [25, 45, 65] },
+      { id: 16, name: "16. Asian Range Ceiling", start: "11:00", end: "11:30", startMin: 660, endMin: 690, entryOffset: 2, pips: [25, 40, 60] },
+      { id: 17, name: "17. Tokyo Lunch Drift", start: "11:30", end: "12:00", startMin: 690, endMin: 720, entryOffset: 5, pips: [20, 35, 50] },
+      { id: 18, name: "18. Asian Lunch Flat", start: "12:00", end: "12:30", startMin: 720, endMin: 750, entryOffset: 0, pips: [15, 25, 40] },
+      { id: 19, name: "19. Pre-European Trap", start: "12:30", end: "13:00", startMin: 750, endMin: 780, entryOffset: 4, pips: [25, 45, 70] },
+      { id: 20, name: "20. Asian Session Wrap", start: "13:00", end: "13:30", startMin: 780, endMin: 810, entryOffset: 3, pips: [25, 40, 60] },
+      { id: 21, name: "21. Pre-Frankfurt Shadow", start: "13:30", end: "14:00", startMin: 810, endMin: 840, entryOffset: 2, pips: [30, 50, 75] },
+      { id: 22, name: "22. Frankfurt Open Surge", start: "14:00", end: "14:30", startMin: 840, endMin: 870, entryOffset: 1, pips: [40, 70, 100] },
+      { id: 23, name: "23. Frankfurt-London Gap", start: "14:30", end: "15:00", startMin: 870, endMin: 900, entryOffset: 3, pips: [35, 60, 85] },
+      { id: 24, name: "24. London Bell Judas Swing", start: "15:00", end: "15:30", startMin: 900, endMin: 930, entryOffset: 1, pips: [45, 80, 120] },
+      { id: 25, name: "25. London Judas Climax", start: "15:30", end: "16:00", startMin: 930, endMin: 960, entryOffset: 2, pips: [40, 70, 100] },
+      { id: 26, name: "26. London Core Trend", start: "16:00", end: "16:30", startMin: 960, endMin: 990, entryOffset: 3, pips: [35, 65, 95] },
+      { id: 27, name: "27. London Momentum Push", start: "16:30", end: "17:00", startMin: 990, endMin: 1020, entryOffset: 4, pips: [30, 55, 80] },
+      { id: 28, name: "28. European Midday Lull", start: "17:00", end: "17:30", startMin: 1020, endMin: 1050, entryOffset: 5, pips: [25, 40, 60] },
+      { id: 29, name: "29. London Afternoon Drift", start: "17:30", end: "18:00", startMin: 1050, endMin: 1080, entryOffset: 0, pips: [20, 35, 50] },
+      { id: 30, name: "30. Pre-NY Overlap Build", start: "18:00", end: "18:30", startMin: 1080, endMin: 1110, entryOffset: 2, pips: [35, 60, 90] },
+      { id: 31, name: "31. NY Early Radar Window", start: "18:30", end: "19:00", startMin: 1110, endMin: 1140, entryOffset: 3, pips: [40, 70, 105] },
+      { id: 32, name: "32. US Pre-News Matrix", start: "19:00", end: "19:30", startMin: 1140, endMin: 1170, entryOffset: 28, pips: [50, 90, 140] },
+      { id: 33, name: "33. US News 19:30 Shock Spike", start: "19:30", end: "20:00", startMin: 1170, endMin: 1200, entryOffset: 0, pips: [60, 110, 160] },
+      { id: 34, name: "34. Post-News Shakeout", start: "20:00", end: "20:30", startMin: 1200, endMin: 1230, entryOffset: 2, pips: [45, 80, 120] },
+      { id: 35, name: "35. NYSE Open Clash", start: "20:30", end: "21:00", startMin: 1230, endMin: 1260, entryOffset: 1, pips: [50, 90, 135] },
+      { id: 36, name: "36. NY Core Peak Dump/Pump", start: "21:00", end: "21:30", startMin: 1260, endMin: 1290, entryOffset: 3, pips: [45, 80, 120] },
+      { id: 37, name: "37. NY Expansion Extension", start: "21:30", end: "22:00", startMin: 1290, endMin: 1320, entryOffset: 2, pips: [40, 70, 105] },
+      { id: 38, name: "38. NY Mid-Session Rebound", start: "22:00", end: "22:30", startMin: 1320, endMin: 1350, entryOffset: 4, pips: [35, 60, 90] },
+      { id: 39, name: "39. London Fix Window", start: "22:30", end: "23:00", startMin: 1350, endMin: 1380, entryOffset: 2, pips: [40, 75, 110] },
+      { id: 40, name: "40. London Final Bell", start: "23:00", end: "23:30", startMin: 1380, endMin: 1410, entryOffset: 3, pips: [30, 55, 80] },
+      { id: 41, name: "41. Late Evening Drift", start: "23:30", end: "00:00", startMin: 1410, endMin: 1440, entryOffset: 5, pips: [25, 45, 65] },
+      { id: 42, name: "42. Midnight Squeeze US", start: "00:00", end: "00:30", startMin: 0, endMin: 30, entryOffset: 2, pips: [30, 50, 75] },
+      { id: 43, name: "43. NY Midnight Sweep", start: "00:30", end: "01:00", startMin: 30, endMin: 60, entryOffset: 3, pips: [25, 45, 70] },
+      { id: 44, name: "44. NY Institutional 01:00 Execution", start: "01:00", end: "01:30", startMin: 60, endMin: 90, entryOffset: 0, pips: [35, 65, 95] },
+      { id: 45, name: "45. US Institutional 01:30 Core Trend", start: "01:30", end: "02:00", startMin: 90, endMin: 120, entryOffset: 0, pips: [35, 60, 90] },
+      { id: 46, name: "46. US Bond Pit & Late Flow", start: "02:00", end: "02:30", startMin: 120, endMin: 150, entryOffset: 4, pips: [25, 40, 60] },
+      { id: 47, name: "47. Settlement & Rollover Peak", start: "02:30", end: "03:00", startMin: 150, endMin: 180, entryOffset: 0, pips: [15, 25, 40] },
+      { id: 48, name: "48. Global Bank Swap Rebalance", start: "03:00", end: "03:30", startMin: 180, endMin: 210, entryOffset: 0, pips: [15, 25, 40] },
+      { id: 49, name: "49. Pre-Pacific Twilight Sweep", start: "03:30", end: "03:45", startMin: 210, endMin: 225, entryOffset: 2, pips: [20, 35, 50] },
+      { id: 50, name: "50. New Cycle Daily Reset", start: "03:45", end: "04:00", startMin: 225, endMin: 240, entryOffset: 0, pips: [15, 25, 40] }
     ];
 
     // =========================================================================
-    // 2. CHECKLIST KONFLUENSI ENGINE
-    // =========================================================================
-    function toggleChkBox(id) {
-      var el = document.getElementById(id);
-      if (el) {
-        el.checked = !el.checked;
-        calcChecklistScore();
-      }
-    }
-
-    function resetChecklist() {
-      for (var i = 1; i <= 6; i++) {
-        var el = document.getElementById('chk' + i);
-        if (el) el.checked = false;
-      }
-      calcChecklistScore();
-      showToast("Checklist berhasil direset.");
-    }
-
-    function calcChecklistScore() {
-      var score = 0;
-      for (var i = 1; i <= 6; i++) {
-        var el = document.getElementById('chk' + i);
-        if (el && el.checked) score++;
-      }
-
-      var pct = (score / 6) * 100;
-      var scoreEl = document.getElementById('chkScoreVal');
-      var barEl = document.getElementById('chkProgressBar');
-      var gradeEl = document.getElementById('chkGradeLabel');
-      var adviceEl = document.getElementById('chkAdviceText');
-      var riskEl = document.getElementById('chkRiskAdvice');
-
-      if (scoreEl) scoreEl.textContent = score + " / 6";
-      if (barEl) barEl.style.width = pct + "%";
-
-      if (score <= 2) {
-        if (gradeEl) { gradeEl.textContent = "🛑 INVALID SETUP (DILARANG ENTRY)"; gradeEl.style.color = "var(--bear)"; }
-        if (adviceEl) adviceEl.textContent = "Kondisi pasar belum memenuhi likuiditas minimum. Potensi manipulasi dan stop loss hunt sangat tinggi.";
-        if (riskEl) riskEl.textContent = "Gunakan Risk 0% (Standby)";
-      } else if (score >= 3 && score <= 4) {
-        if (gradeEl) { gradeEl.textContent = "⚠️ B GRADE SETUP (KONFLUENSI MODERAT)"; gradeEl.style.color = "var(--gold)"; }
-        if (adviceEl) adviceEl.textContent = "Setup cukup valid namun belum sempurna. Wajib kurangi ukuran lot dan pasang SL ketat di luar swing point.";
-        if (riskEl) riskEl.textContent = "Gunakan Risk Rendah (0.5% - 1.0% Saldo)";
-      } else {
-        if (gradeEl) { gradeEl.textContent = "🚀 A+ GRADE HIGH PROBABILITY SETUP!"; gradeEl.style.color = "var(--neon)"; }
-        if (adviceEl) adviceEl.textContent = "Semua parameter institusi terpenuhi (HTF Sweep, LTF CHOCH, FVG, OTE, Sesi & Astro). Valid untuk eksekusi prima.";
-        if (riskEl) riskEl.textContent = "Gunakan Risk Penuh Terukur (1.5% - 2.0% Saldo)";
-      }
-    }
-
-    // =========================================================================
-    // 3. MARKET STATUS & WEEKEND FREEZE
-    // =========================================================================
-    function isForexMarketOpen(now) {
-      var day = now.getDay();
-      var hour = now.getHours();
-      if (day === 6 && hour >= 4) return false;
-      if (day === 0) return false;
-      if (day === 1 && hour < 5) return false;
-      return true;
-    }
-
-    function getNextMarketOpenRemaining(now) {
-      var target = new Date(now.getTime());
-      var day = now.getDay();
-      var daysToAdd = 0;
-      if (day === 6) daysToAdd = 2;
-      else if (day === 0) daysToAdd = 1;
-      else if (day === 1 && now.getHours() < 5) daysToAdd = 0;
-
-      target.setDate(now.getDate() + daysToAdd);
-      target.setHours(5, 0, 0, 0);
-
-      var diff = target.getTime() - now.getTime();
-      if (diff <= 0) return "00j 00m";
-      var h = Math.floor(diff / 3600000);
-      var m = Math.floor((diff % 3600000) / 60000);
-      return h + "j " + m + "m";
-    }
-
-    // =========================================================================
-    // 4. DATA KALENDER MAKRO & DINAMISASI ASTRODOX TULUNGAGUNG
-    // =========================================================================
-    var cachedNewsData = null;
-
-    var weekdayMacroSchedule = {
-      1: [
-        { time: "19:30 WIB", event: "US Consumer Credit & Market Liquidity Focus", impact: "MEDIUM" },
-        { time: "22:30 WIB", event: "US Treasury 3M & 6M Bill Auction", impact: "LOW" }
-      ],
-      2: [
-        { time: "19:30 WIB", event: "US NFIB Small Business Optimism & Fed Watch", impact: "MEDIUM" },
-        { time: "21:00 WIB", event: "US IBD/TIPP Economic Optimism", impact: "LOW" }
-      ],
-      3: [
-        { time: "19:30 WIB", event: "US Core CPI MoM & YoY (Inflasi Utama AS)", impact: "HIGH" },
-        { time: "21:30 WIB", event: "EIA Crude Oil Weekly Stocks", impact: "MEDIUM" }
-      ],
-      4: [
-        { time: "19:30 WIB", event: "US PPI Final Demand & Initial Jobless Claims", impact: "HIGH" },
-        { time: "21:00 WIB", event: "US Existing Home Sales & Leading Index", impact: "MEDIUM" }
-      ],
-      5: [
-        { time: "19:30 WIB", event: "US Retail Sales MoM & Core Retail Sales", impact: "HIGH" },
-        { time: "21:00 WIB", event: "Michigan Consumer Sentiment (Prelim UoM)", impact: "HIGH" }
-      ]
-    };
-
-    async function fetchRealEconomicCalendar() {
-      if (cachedNewsData) return cachedNewsData;
-      try {
-        var targetUrl = encodeURIComponent("https://nfs.faireconomy.media/ff_calendar_thisweek.json");
-        var res = await fetch("https://api.allorigins.win/raw?url=" + targetUrl);
-        if (res.ok) {
-          var data = await res.json();
-          cachedNewsData = data.filter(ev => ev.country === "USD" && (ev.impact === "High" || ev.impact === "Medium"));
-          return cachedNewsData;
-        }
-      } catch(e) {}
-      return null;
-    }
-
-    // FORMULA ASTRO-FISIKA PROMAX: ROTASI ASCENDANT TULUNGAGUNG + MOMENTUM GELOMBANG
-    function getDailyNewsTransitBias(planets, targetDate) {
-      var d = targetDate || new Date();
-      var moon = planets.find(p => p.name === "Moon") || { lon: 0 };
-      var mars = planets.find(p => p.name === "Mars") || { lon: 0 };
-      var sun = planets.find(p => p.name === "Sun") || { lon: 0 };
-      var jup = planets.find(p => p.name === "Jupiter") || { lon: 0 };
-
-      // Titik rotasi Ascendant Tulungagung jam rilis news 19:30 WIB (1170 menit)
-      var ascTulungagung = degNorm(1170 * 0.25 + 111.90 + sun.lon);
-
-      // Harmonik sudut aktual
-      var diffMoon = degNorm(ascTulungagung - moon.lon);
-      var diffMars = degNorm(ascTulungagung - mars.lon);
-      var diffJup = degNorm(ascTulungagung - jup.lon);
-
-      var harmonicMoon = Math.sin((diffMoon * Math.PI) / 180);
-      var harmonicMars = Math.cos((diffMars * Math.PI) / 180);
-      var harmonicJup = Math.sin((diffJup * Math.PI) / 180);
-
-      // Gelombang Momentum Fisika Pasar (Oscillator Harian Seimbang)
-      var dayPhysicsWave = Math.sin(((d.getDate() * 59.2 + d.getDay() * 72) * Math.PI) / 180);
-
-      var totalVector = (harmonicMoon * 1.1) - (harmonicMars * 0.9) + (harmonicJup * 0.7) + (dayPhysicsWave * 1.2);
-      var isBullish = totalVector >= 0;
-
-      var probVal = (94.6 + Math.abs(totalVector) * 1.5).toFixed(1);
-      if (parseFloat(probVal) > 98.2) probVal = "97.8";
-
-      var aspectDeg = Math.round(Math.abs(diffMoon) % 180);
-
-      return {
-        isBullish: isBullish,
-        action: isBullish ? "AMBIL BUY SEKARANG" : "AMBIL SELL SEKARANG",
-        prob: probVal + "%",
-        aspectDeg: aspectDeg,
-        aspectWith: isBullish ? `Trine Moon-Tulungagung (${aspectDeg}°)` : `Square Mars-Saturn (${aspectDeg}°)`
-      };
-    }
-
-    async function renderDynamicNewsTable(now, planets) {
-      var tbody = document.getElementById('newsForecastTableBody');
-      if (!tbody) return;
-
-      var daysNames = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-      var monthsNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
-
-      var liveEvents = await fetchRealEconomicCalendar();
-      tbody.innerHTML = "";
-
-      for (var offset = 0; offset < 7; offset++) {
-        var d = new Date(now.getTime() + offset * 86400000);
-        var dayIdx = d.getDay();
-        var dateFormatted = daysNames[dayIdx] + ", " + d.getDate() + " " + monthsNames[d.getMonth()] + " " + d.getFullYear();
-
-        if (dayIdx === 0 || dayIdx === 6) {
-          var tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td style="font-family:var(--font-heading); font-weight:700; color:#fff;">${dateFormatted}</td>
-            <td style="font-family:var(--font-mono); color:var(--text-muted);">ALL DAY</td>
-            <td style="color:#94a3b8; font-style:italic;">Bank Settlement / Market Weekend Closed</td>
-            <td><span class="badge-impact-low">WEEKEND</span></td>
-            <td style="font-size:11px; color:#64748b;">Inersia orbital stationary • Rekomendasi libur transaksi</td>
-            <td><span style="color:var(--text-muted); font-family:var(--font-mono); font-size:11px;">STANDBY AKUN</span></td>
-          `;
-          tbody.appendChild(tr);
-          continue;
-        }
-
-        // HITUNG POSISI PLANET KHUSUS TANGGAL 'd' (Bulan maju ~13.2° per hari)
-        var dayPlanets = getPlanetaryEphemeris(d);
-
-        var dayEvents = [];
-        if (liveEvents && liveEvents.length > 0) {
-          var yyyy = d.getFullYear();
-          var mm = String(d.getMonth() + 1).padStart(2, '0');
-          var dd = String(d.getDate()).padStart(2, '0');
-          var dateKey = `${yyyy}-${mm}-${dd}`;
-          dayEvents = liveEvents.filter(ev => ev.date && ev.date.startsWith(dateKey));
-        }
-
-        if (dayEvents.length === 0) {
-          dayEvents = (weekdayMacroSchedule[dayIdx] || []).map(ev => ({
-            title: ev.event,
-            impact: ev.impact,
-            timeStr: ev.time
-          }));
-        }
-
-        dayEvents.forEach(function(ev, idx) {
-          var timeDisplay = ev.timeStr || (ev.time ? ev.time + " EST" : "19:30 WIB");
-          var eventTitle = ev.title || ev.event;
-          var impactVal = (ev.impact || "MEDIUM").toUpperCase();
-
-          // Variasi jam event untuk dinamika fisika real-time
-          var eventDateSim = new Date(d.getTime() + idx * 7200000);
-          var dayBiasInfo = getDailyNewsTransitBias(dayPlanets, eventDateSim);
-          var isBull = dayBiasInfo.isBullish;
-
-          var impactBadge = impactVal === "HIGH" ? '<span class="badge-impact-high">HIGH IMPACT</span>' : '<span class="badge-impact-med">MED IMPACT</span>';
-          
-          var predBadge = isBull 
-            ? `<span style="color:var(--bull); font-weight:800; font-family:var(--font-mono); background:rgba(0,245,160,0.15); padding:3px 8px; border-radius:3px; border:1px solid var(--bull);">⚡ AMBIL BUY SEKARANG (${dayBiasInfo.prob})</span>` 
-            : `<span style="color:var(--bear); font-weight:800; font-family:var(--font-mono); background:rgba(255,51,102,0.15); padding:3px 8px; border-radius:3px; border:1px solid var(--bear);">⚡ AMBIL SELL SEKARANG (${dayBiasInfo.prob})</span>`;
-
-          var astroReason = isBull 
-            ? `${dayBiasInfo.aspectWith} • Penyerapan OTE Discount & Likuiditas Buy` 
-            : `${dayBiasInfo.aspectWith} • Rejeksi Supply & Premium Resistance Sell`;
-
-          var tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td style="font-family:var(--font-heading); font-weight:700; color:#fff;">${dateFormatted}</td>
-            <td style="font-family:var(--font-mono); color:var(--cyan); font-weight:700;">${timeDisplay}</td>
-            <td style="color:#fff; font-weight:600;">${eventTitle}</td>
-            <td>${impactBadge}</td>
-            <td style="font-size:11px; color:#cbd5e1; line-height:1.4;">${astroReason}</td>
-            <td>${predBadge}</td>
-          `;
-          tbody.appendChild(tr);
-        });
-      }
-    }
-
-    // =========================================================================
-    // 5. SMC FIBONACCI & UNIFIED COMPACT CALCULATOR
-    // =========================================================================
-    function calcSmcFibLevels() {
-      var h = parseFloat(document.getElementById('smcHighInput').value) || 2670.0;
-      var l = parseFloat(document.getElementById('smcLowInput').value) || 2630.0;
-      if (h <= l) return;
-
-      var diff = h - l;
-      var fib618 = h - (diff * 0.382);
-      var fib500 = l + (diff * 0.50);
-      var fib705 = l + (diff * (1 - 0.705));
-      var fib790 = l + (diff * (1 - 0.790));
-
-      document.getElementById('resFib618').textContent = "$" + fib618.toFixed(2);
-      document.getElementById('resFib500').textContent = "$" + fib500.toFixed(2);
-      document.getElementById('resFibOte').textContent = "$" + fib790.toFixed(2) + " - $" + fib705.toFixed(2);
-    }
-
-    function runUnifiedCalculator() {
-      var balance = parseFloat(document.getElementById('riskBalance').value) || 0;
-      var riskPercent = parseFloat(document.getElementById('riskPercent').value) || 0;
-      var slPips = parseFloat(document.getElementById('riskSLPips').value) || 1;
-      var dailyLot = parseFloat(document.getElementById('dailyLotInput').value) || 0;
-
-      var riskUsd = balance * (riskPercent / 100);
-      var pipValuePerStandardLot = 10;
-      var optimalLot = riskUsd / (slPips * pipValuePerStandardLot);
-      optimalLot = Math.max(0.01, optimalLot);
-
-      var ratePerLot = 12.0;
-      var usdPerIdr = 16250;
-      var dailyRebateUsd = dailyLot * ratePerLot;
-      var monthlyRebateUsd = dailyRebateUsd * 20;
-
-      var dailyRebateIdr = dailyRebateUsd * usdPerIdr;
-      var monthlyRebateIdr = monthlyRebateUsd * usdPerIdr;
-
-      document.getElementById('resOptimalLot').textContent = optimalLot.toFixed(2) + " LOT";
-      document.getElementById('resRiskAmount').textContent = "$" + riskUsd.toFixed(2) + " USD";
-      document.getElementById('resRebateDailyDisplay').textContent = "+$" + dailyRebateUsd.toFixed(2) + " (Rp " + Math.round(dailyRebateIdr / 1000).toLocaleString('id-ID') + " Rb)";
-      document.getElementById('resRebateMonthlyDisplay').textContent = "+$" + Math.round(monthlyRebateUsd) + " (Rp " + (monthlyRebateIdr / 1000000).toFixed(1) + " Jt)";
-    }
-
-    // =========================================================================
-    // 6. ASTRODOX EPHEMERIS TULUNGAGUNG
+    // 3. ASTRODOX EPHEMERIS TULUNGAGUNG (LAT -8.07, LON 111.90)
     // =========================================================================
     var ZODIAC_SIGNS = [
       { name: "Aries", symbol: "♈" },
@@ -1975,7 +1733,7 @@
       var d = Math.floor(norm % 30);
       var m = Math.floor(((norm % 30) - d) * 60);
       var s = Math.floor(((((norm % 30) - d) * 60) - m) * 60);
-      return `${sign.symbol} ${sign.name} ${String(d).padStart(2, '0')}°${String(m).padStart(2, '0')}'${String(s).padStart(2, '0')}"`;
+      return sign.symbol + " " + sign.name + " " + String(d).padStart(2, '0') + "°" + String(m).padStart(2, '0') + "'" + String(s).padStart(2, '0') + '"';
     }
 
     function getPlanetaryEphemeris(date) {
@@ -2007,60 +1765,77 @@
       if (diff > 180) diff = 360 - diff;
       var orb = 8.0;
 
-      if (Math.abs(diff - 0) <= orb) return { text: `Conj ${p2.name} (0°)`, type: "neutral", color: "var(--cyan)", active: true, diff: 0 };
-      if (Math.abs(diff - 60) <= orb) return { text: `Sextile ${p2.name} (+60°)`, type: "bull", color: "var(--bull)", active: true, diff: 60 };
-      if (Math.abs(diff - 90) <= orb) return { text: `Square ${p2.name} (-90°)`, type: "bear", color: "var(--bear)", active: true, diff: 90 };
-      if (Math.abs(diff - 120) <= orb) return { text: `Trine ${p2.name} (+120°)`, type: "bull", color: "var(--bull)", active: true, diff: 120 };
-      if (Math.abs(diff - 180) <= orb) return { text: `Opp ${p2.name} (-180°)`, type: "bear", color: "var(--bear)", active: true, diff: 180 };
+      if (Math.abs(diff - 0) <= orb) return { text: "Conj " + p2.name + " (0°)", type: "neutral", color: "var(--cyan)", active: true, diff: 0 };
+      if (Math.abs(diff - 60) <= orb) return { text: "Sextile " + p2.name + " (+60°)", type: "bull", color: "var(--bull)", active: true, diff: 60 };
+      if (Math.abs(diff - 90) <= orb) return { text: "Square " + p2.name + " (-90°)", type: "bear", color: "var(--bear)", active: true, diff: 90 };
+      if (Math.abs(diff - 120) <= orb) return { text: "Trine " + p2.name + " (+120°)", type: "bull", color: "var(--bull)", active: true, diff: 120 };
+      if (Math.abs(diff - 180) <= orb) return { text: "Opp " + p2.name + " (-180°)", type: "bear", color: "var(--bear)", active: true, diff: 180 };
 
       return { text: "Parallel Orbit", type: "neutral", color: "var(--text-muted)", active: false, diff: null };
     }
 
     // =========================================================================
-    // 7. 45 TIME ZONES DINAMIS DAN BALANCED (BUY & SELL BERGANTI TIAP HARI)
+    // 4. OTOMATISASI ANALITIK PASAR & REASON ENGINE
     // =========================================================================
-    var dynamicTimeZonesList = [];
-    var currentTzFilter = "all";
-    var isAudioEnabled = false;
-    var audioCtx = null;
-
-    function toggleAudioAlert() {
-      isAudioEnabled = !isAudioEnabled;
-      var btn = document.getElementById('audioToggleBtn');
-      if (isAudioEnabled) {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        btn.classList.add('active');
-        btn.querySelector('span').textContent = "🔔 SOUND: ON";
-        playBeep(880, 0.1);
-        showToast("Audio alert diaktifkan!");
-      } else {
-        btn.classList.remove('active');
-        btn.querySelector('span').textContent = "🔔 SOUND: OFF";
-        showToast("Audio alert dinonaktifkan.");
-      }
+    function isForexMarketOpen(now) {
+      var day = now.getDay();
+      var hour = now.getHours();
+      if (day === 6 && hour >= 4) return false;
+      if (day === 0) return false;
+      if (day === 1 && hour < 5) return false;
+      return true;
     }
 
-    function playBeep(freq, duration) {
-      if (!isAudioEnabled) return;
-      try {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        var osc = audioCtx.createOscillator();
-        var gain = audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.frequency.value = freq;
-        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-        osc.start();
-        osc.stop(audioCtx.currentTime + duration);
-      } catch (e) {}
+    function getNextMarketOpenRemaining(now) {
+      var target = new Date(now.getTime());
+      var day = now.getDay();
+      var daysToAdd = 0;
+      if (day === 6) daysToAdd = 2;
+      else if (day === 0) daysToAdd = 1;
+      else if (day === 1 && now.getHours() < 5) daysToAdd = 0;
+
+      target.setDate(now.getDate() + daysToAdd);
+      target.setHours(5, 0, 0, 0);
+
+      var diff = target.getTime() - now.getTime();
+      if (diff <= 0) return "00j 00m";
+      var h = Math.floor(diff / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      return h + "j " + m + "m";
     }
 
-    function showToast(msg) {
-      var toast = document.getElementById('toastNotification');
-      if (!toast) return;
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(function() { toast.classList.remove('show'); }, 2600);
+    function getDailyNewsTransitBias(planets, targetDate) {
+      var d = targetDate || new Date();
+      var moon = planets.find(function(p){ return p.name === "Moon"; }) || { lon: 0 };
+      var mars = planets.find(function(p){ return p.name === "Mars"; }) || { lon: 0 };
+      var sun = planets.find(function(p){ return p.name === "Sun"; }) || { lon: 0 };
+      var jup = planets.find(function(p){ return p.name === "Jupiter"; }) || { lon: 0 };
+
+      var ascTulungagung = degNorm(1170 * 0.25 + 111.90 + sun.lon);
+      var diffMoon = degNorm(ascTulungagung - moon.lon);
+      var diffMars = degNorm(ascTulungagung - mars.lon);
+      var diffJup = degNorm(ascTulungagung - jup.lon);
+
+      var harmonicMoon = Math.sin((diffMoon * Math.PI) / 180);
+      var harmonicMars = Math.cos((diffMars * Math.PI) / 180);
+      var harmonicJup = Math.sin((diffJup * Math.PI) / 180);
+      var dayPhysicsWave = Math.sin(((d.getDate() * 59.2 + d.getDay() * 72) * Math.PI) / 180);
+
+      var totalVector = (harmonicMoon * 1.1) - (harmonicMars * 0.9) + (harmonicJup * 0.7) + (dayPhysicsWave * 1.2);
+      var isBullish = totalVector >= 0;
+
+      var probVal = (94.6 + Math.abs(totalVector) * 1.5).toFixed(1);
+      if (parseFloat(probVal) > 98.2) probVal = "97.8";
+
+      var aspectDeg = Math.round(Math.abs(diffMoon) % 180);
+
+      return {
+        isBullish: isBullish,
+        action: isBullish ? "AMBIL BUY SEKARANG" : "AMBIL SELL SEKARANG",
+        prob: probVal + "%",
+        aspectDeg: aspectDeg,
+        aspectWith: isBullish ? "Trine Moon-Tulungagung (" + aspectDeg + "°)" : "Square Mars-Saturn (" + aspectDeg + "°)"
+      };
     }
 
     function fmtMinWib(m) {
@@ -2068,10 +1843,10 @@
       return String(Math.floor(m / 60)).padStart(2, '0') + ":" + String(m % 60).padStart(2, '0') + " WIB";
     }
 
-    function generateAIAdaptiveTimeZones(now, planets) {
-      var moon = planets.find(p => p.name === "Moon") || { lon: 0 };
-      var mars = planets.find(p => p.name === "Mars") || { lon: 0 };
-      var sun = planets.find(p => p.name === "Sun") || { lon: 0 };
+    function generateAdaptiveTimeZones(now, planets) {
+      var moon = planets.find(function(p){ return p.name === "Moon"; }) || { lon: 0 };
+      var mars = planets.find(function(p){ return p.name === "Mars"; }) || { lon: 0 };
+      var sun = planets.find(function(p){ return p.name === "Sun"; }) || { lon: 0 };
 
       var currentCurPrice = liveSpotPrice > 1000 ? liveSpotPrice : 2650.00;
       var marketOpen = isForexMarketOpen(now);
@@ -2082,7 +1857,6 @@
         var moonHarmonic = Math.sin(((localAngle - moon.lon) * Math.PI) / 180);
         var marsHarmonic = Math.sin(((localAngle - mars.lon) * Math.PI) / 180);
 
-        // Vektor gelombang bergeser tiap hari berdasarkan tanggal & siklus bulan
         var dayHarmonicShift = Math.sin(((now.getDate() * 26.3 + tz.id * 8.2) * Math.PI) / 180);
         var dynamicScore = (moonHarmonic * 1.2) - (marsHarmonic * 1.1) + (dayHarmonicShift * 0.95);
 
@@ -2094,40 +1868,54 @@
         var exactOpenMinute = tz.startMin + tz.entryOffset;
         var exactOpenTime = fmtMinWib(exactOpenMinute);
 
-        var tp1Time = fmtMinWib(tz.startMin + 12);
-        var tp2Time = fmtMinWib(tz.startMin + 21);
-        var tp3Time = fmtMinWib(tz.startMin + 28);
+        var tp1Time = fmtMinWib(tz.startMin + 11);
+        var tp2Time = fmtMinWib(tz.startMin + 19);
+        var tp3Time = fmtMinWib(tz.startMin + 26);
 
         if (!marketOpen) {
           type = "weekend";
           action = "STANDBY (MARKET LIBUR)";
           bias = "WEEKEND OUTLOOK • OPEN SENIN 05:00 WIB";
-          reason = `Bursa XAUUSD libur akhir pekan. Rekomendasi lelang standby. Buka kembali dalam ${countdownStr}.`;
+          reason = "Bursa XAUUSD libur akhir pekan. Rekomendasi lelang standby. Buka kembali dalam " + countdownStr + ".";
         }
-        else if (tz.id === 31 || tz.id === 32) {
+        else if (tz.id === 33) {
           var newsBias = getDailyNewsTransitBias(planets, now);
           type = newsBias.isBullish ? "buy" : "sell";
           action = newsBias.isBullish ? "AMBIL BUY SEKARANG (19:30 WIB)" : "AMBIL SELL SEKARANG (19:30 WIB)";
-          bias = newsBias.isBullish ? "AI PROJECTION: BULLISH NEWS EXPANSION" : "AI PROJECTION: BEARISH NEWS DUMP";
-          reason = `Rilis kalender makro AS disinkronkan transit ${newsBias.aspectWith} (${newsBias.aspectDeg}°). Entry tepat di detik candle news rilis.`;
-        } 
-        else if (tz.id === 17 || tz.id === 45) {
+          bias = newsBias.isBullish ? "ALGO PROJECTION: BULLISH EXPANSION" : "ALGO PROJECTION: BEARISH DUMP";
+          reason = "Rilis kalender makro AS disinkronkan transit " + newsBias.aspectWith + " (" + newsBias.aspectDeg + "°). Entry tepat di detik candle news 19:30 WIB.";
+        }
+        else if (tz.id === 44) {
+          var isMidBull44 = (dynamicScore >= -0.2);
+          type = isMidBull44 ? "buy" : "sell";
+          action = isMidBull44 ? "AMBIL BUY SEKARANG (01:00 WIB)" : "AMBIL SELL SEKARANG (01:00 WIB)";
+          bias = isMidBull44 ? "MIDNIGHT 01:00 WIB ACCUMULATION" : "MIDNIGHT 01:00 WIB DISTRIBUTION";
+          reason = "Jendela likuiditas NY Midnight 01:00 WIB tepat. Sweeping Asian High/Low dan mitigasi FVG OTE level diskon/premium.";
+        }
+        else if (tz.id === 45) {
+          var isMidBull45 = (dynamicScore >= 0.1);
+          type = isMidBull45 ? "buy" : "sell";
+          action = isMidBull45 ? "AMBIL BUY SEKARANG (01:30 WIB)" : "AMBIL SELL SEKARANG (01:30 WIB)";
+          bias = isMidBull45 ? "MIDNIGHT 01:30 WIB CORE EXPANSION" : "MIDNIGHT 01:30 WIB DISPLACEMENT DUMP";
+          reason = "Puncak perputaran aliran modal US Institutional 01:30 WIB. Entry otomatis di awal terbentuknya tren lanjutan New York.";
+        }
+        else if (tz.id === 18 || tz.id === 47 || tz.id === 48 || tz.id === 50) {
           type = "neutral";
           action = "STANDBY / OBSERVASI SPREAD";
           bias = "EQUILIBRIUM CONSOLIDATION";
-          reason = `Jeda pergantian lelang antar-bank global (${Math.round(localAngle)}°). Smart money menahan volume, disarankan observasi spread.`;
+          reason = "Jeda pergantian lelang antar-bank global (" + Math.round(localAngle) + "°). Smart money menahan volume, disarankan observasi spread.";
         }
         else if (dynamicScore >= 0.0) {
           type = "buy";
           action = "AMBIL BUY SEKARANG";
-          bias = `BULLISH ACCUMULATION (${formatZodiacDeg(moon.lon).split(' ')[1].toUpperCase()})`;
-          reason = `Elevasi harmonik Bulan (+${Math.round(localAngle)}°) menyerap Sell-Side Liquidity. Formasi OTE Discount terkonfirmasi.`;
+          bias = "BULLISH ACCUMULATION (" + formatZodiacDeg(moon.lon).split(' ')[1].toUpperCase() + ")";
+          reason = "Elevasi harmonik Bulan (+" + Math.round(localAngle) + "°) menyerap Sell-Side Liquidity. Formasi OTE Discount terkonfirmasi.";
         } 
         else {
           type = "sell";
           action = "AMBIL SELL SEKARANG";
-          bias = `BEARISH DISTRIBUTION (${formatZodiacDeg(mars.lon).split(' ')[1].toUpperCase()})`;
-          reason = `Sudut kuadratur Mars/Saturnus (-${Math.round(localAngle)}°) menolak Premium Resistance. Eksekusi sell instan di area mitigasi.`;
+          bias = "BEARISH DISTRIBUTION (" + formatZodiacDeg(mars.lon).split(' ')[1].toUpperCase() + ")";
+          reason = "Sudut kuadratur Mars/Saturnus (-" + Math.round(localAngle) + "°) menolak Premium Resistance. Eksekusi sell instan di area mitigasi.";
         }
 
         var pipMult = type === "buy" ? 1 : -1;
@@ -2161,53 +1949,11 @@
       });
     }
 
-    function fallbackCopyText(text, sessionStart) {
-      var textArea = document.createElement("textarea");
-      textArea.value = text;
-      textArea.style.position = "fixed";
-      textArea.style.opacity = "0";
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-      try {
-        document.execCommand('copy');
-        showToast("✓ Sinyal & Jam Open Sesi " + sessionStart + " Disalin!");
-      } catch (err) {
-        showToast("Gagal menyalin teks.");
-      }
-      document.body.removeChild(textArea);
-    }
-
-    function copySignalText(id) {
-      var tz = dynamicTimeZonesList.find(t => t.id === id);
-      if (!tz) return;
-      var text = `🔥 ZEROFX PROMAX SIGNAL
-Sesi: ${tz.name} (${tz.start} - ${tz.end} WIB)
-Trigger Open Tepat: ${tz.exactOpenTime}
-Komando AI: ${tz.action}
-Bias: ${tz.bias} (Prob: ${tz.prob})
-Target TP Pips & Level:
-- TP1: +${tz.p1} Pips ($${tz.tp1Price}) @ ${tz.tp1Time}
-- TP2: +${tz.p2} Pips ($${tz.tp2Price}) @ ${tz.tp2Time}
-- TP3: +${tz.p3} Pips ($${tz.tp3Price}) @ ${tz.tp3Time}
-Alasan: ${tz.reason}`;
-
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(function() {
-          showToast("✓ Sinyal & Jam Open Sesi " + tz.start + " Disalin!");
-        }).catch(function() {
-          fallbackCopyText(text, tz.start);
-        });
-      } else {
-        fallbackCopyText(text, tz.start);
-      }
-    }
-
     function renderDynamicTimeZones(now, planets) {
       var container = document.getElementById('tzGridContainer');
       if (!container) return;
 
-      dynamicTimeZonesList = generateAIAdaptiveTimeZones(now, planets);
+      dynamicTimeZonesList = generateAdaptiveTimeZones(now, planets);
       container.innerHTML = "";
 
       var curVal = now.getHours() * 60 + now.getMinutes();
@@ -2218,7 +1964,8 @@ Alasan: ${tz.reason}`;
         if (currentTzFilter === 'live' && !isLive) return;
         if (currentTzFilter === 'buy' && tz.type !== 'buy') return;
         if (currentTzFilter === 'sell' && tz.type !== 'sell') return;
-        if (currentTzFilter === 'news' && tz.id !== 31 && tz.id !== 32) return;
+        if (currentTzFilter === 'midnight' && tz.id !== 44 && tz.id !== 45) return;
+        if (currentTzFilter === 'news' && tz.id !== 32 && tz.id !== 33) return;
 
         var boxClass = tz.type === 'buy' ? 'buy-window' : (tz.type === 'sell' ? 'sell-window' : (tz.type === 'news' ? 'news-window' : (tz.type === 'weekend' ? 'weekend-window' : 'neutral-window')));
         var biasColor = tz.type === 'buy' ? 'var(--bull)' : (tz.type === 'sell' ? 'var(--bear)' : (tz.type === 'news' ? 'var(--gold)' : (tz.type === 'weekend' ? '#94a3b8' : 'var(--cyan)')));
@@ -2251,13 +1998,286 @@ Alasan: ${tz.reason}`;
       });
     }
 
+    function updateZoneLiveStatusOnly(now) {
+      var curVal = now.getHours() * 60 + now.getMinutes();
+      dynamicTimeZonesList.forEach(function(tz) {
+        var isLive = (tz.startMin < tz.endMin) ? (curVal >= tz.startMin && curVal < tz.endMin) : (curVal >= tz.startMin || curVal < tz.endMin);
+        var card = document.getElementById("tz_card_" + tz.id);
+        var badge = document.getElementById("tz_badge_" + tz.id);
+        if (card && badge) {
+          if (isLive) {
+            card.classList.add("active-session");
+            badge.textContent = "🔥 LIVE SESSION";
+            badge.style.background = "var(--neon)";
+            badge.style.color = "#000";
+          } else {
+            card.classList.remove("active-session");
+            badge.textContent = "STANDBY";
+            badge.style.background = "#1a2230";
+            badge.style.color = "#8e95a5";
+          }
+        }
+      });
+    }
+
     function filterTimeZones(type, btn) {
       currentTzFilter = type;
-      document.querySelectorAll('.btn-filter-pill').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.btn-filter-pill').forEach(function(b){ b.classList.remove('active'); });
       if (btn) btn.classList.add('active');
       var now = new Date();
       var currentPlanets = getPlanetaryEphemeris(now);
       renderDynamicTimeZones(now, currentPlanets);
+    }
+
+    function copySignalText(id) {
+      var tz = dynamicTimeZonesList.find(function(t){ return t.id === id; });
+      if (!tz) return;
+      var text = "🔥 ZEROFX PROMAX SIGNAL\n" +
+        "Sesi: " + tz.name + " (" + tz.start + " - " + tz.end + " WIB)\n" +
+        "Trigger Open Tepat: " + tz.exactOpenTime + "\n" +
+        "Sinyal Algoritma: " + tz.action + "\n" +
+        "Bias: " + tz.bias + " (Prob: " + tz.prob + ")\n" +
+        "Target TP Pips & Level:\n" +
+        "- TP1: +" + tz.p1 + " Pips ($" + tz.tp1Price + ") @ " + tz.tp1Time + "\n" +
+        "- TP2: +" + tz.p2 + " Pips ($" + tz.tp2Price + ") @ " + tz.tp2Time + "\n" +
+        "- TP3: +" + tz.p3 + " Pips ($" + tz.tp3Price + ") @ " + tz.tp3Time + "\n" +
+        "Alasan: " + tz.reason;
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function() {
+          showToast("✓ Sinyal & Jam Open Sesi " + tz.start + " Disalin!");
+        }).catch(function() {
+          fallbackCopyText(text, tz.start);
+        });
+      } else {
+        fallbackCopyText(text, tz.start);
+      }
+    }
+
+    function fallbackCopyText(text, sessionStart) {
+      var textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast("✓ Sinyal & Jam Open Sesi " + sessionStart + " Disalin!");
+      } catch (err) {
+        showToast("Gagal menyalin teks.");
+      }
+      document.body.removeChild(textArea);
+    }
+
+    // =========================================================================
+    // 5. WORLD NEWS WIRE REALTIME (AUTO-UPDATING 24 JAM)
+    // =========================================================================
+    var baseWorldHeadlines = [
+      {
+        id: 1,
+        cat: "fed",
+        badge: "FED & SUKU BUNGA",
+        title: "Federal Reserve Tegaskan Suku Bunga Kunci di Level Restriktif Menanti Data Tenaga Kerja",
+        snippet: "Pernyataan terbaru pejabat The Fed menunjukkan kehati-hatian atas data inflasi AS. Yield US Treasury 10-Year mengalami pergeseran likuiditas institusi.",
+        img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=700&q=80",
+        source: "Bloomberg Macro Wire",
+        baseMinutes: 8,
+        impact: "HIGH VOLATILITY",
+        bias: "POTENSI BULLISH XAUUSD"
+      },
+      {
+        id: 2,
+        cat: "gold",
+        badge: "XAUUSD & COMMODITIES",
+        title: "Permintaan Emas Bank Sentral Global Terus Menguat Sebagai Cadangan Devisa Strategis",
+        snippet: "Akumulasi fisik bullion oleh konsorsium perbankan global menopang zona support krusial di atas area discount OTE, meredam tekanan penguatan indeks Dolar (DXY).",
+        img: "https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=700&q=80",
+        source: "World Gold Council",
+        baseMinutes: 19,
+        impact: "STRUCTURAL DEMAND",
+        bias: "ORDER FLOW ACCUMULATION"
+      },
+      {
+        id: 3,
+        cat: "macro",
+        badge: "INFLASI & GEOPOLITIK",
+        title: "Dinamika Pasokan Energi Global Memicu Rotasi Portofolio ke Aset Safe-Haven",
+        snippet: "Fluktuasi harga minyak mentah West Texas Intermediate (WTI) mendorong analis memperhitungkan kembali potensi lonjakan indeks harga konsumen (CPI) mendatang.",
+        img: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=700&q=80",
+        source: "Reuters Financial",
+        baseMinutes: 34,
+        impact: "GEOPOLITICAL FLOW",
+        bias: "SAFE-HAVEN EXPANSION"
+      },
+      {
+        id: 4,
+        cat: "fed",
+        badge: "FED & SUKU BUNGA",
+        title: "Data Klaim Pengangguran AS & Non-Farm Payrolls Menguji Ketahanan Sektor Tenaga Kerja",
+        snippet: "Pasar obligasi memperkirakan pelonggaran likuiditas bertahap. Smart money memposisikan open interest pada opsi beli komoditas logam mulia menjelang penutupan New York.",
+        img: "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?auto=format&fit=crop&w=700&q=80",
+        source: "Financial Times",
+        baseMinutes: 52,
+        impact: "MACRO REVERSAL",
+        bias: "LIQUIDITY DISPLACEMENT"
+      },
+      {
+        id: 5,
+        cat: "gold",
+        badge: "XAUUSD & COMMODITIES",
+        title: "Likuiditas Interbank London & New York Catat Volume Rekor pada Window 19:30 & 01:00 WIB",
+        snippet: "Aliran dana lelang institusi SMC memicu sweep likuiditas pada batas harga tertinggi harian sebelum memasuki fase distribusi terarah pada spot emas.",
+        img: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=700&q=80",
+        source: "Zero Syndicate Terminal",
+        baseMinutes: 75,
+        impact: "INSTITUTIONAL SMC",
+        bias: "KILLZONE TRIGGER"
+      },
+      {
+        id: 6,
+        cat: "macro",
+        badge: "INFLASI & GEOPOLITIK",
+        title: "Arus Modal Global Beralih ke Logam Mulia Menghadapi Volatilitas Mata Uang Fiat",
+        snippet: "Manajer investasi hedge fund global meningkatkan alokasi lindung nilai (hedging) terhadap kemungkinan kontraksi likuiditas antar-bank sentral dunia.",
+        img: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=700&q=80",
+        source: "MarketWatch Global",
+        baseMinutes: 110,
+        impact: "HEDGE EXPANSION",
+        bias: "RISK-OFF CATALYST"
+      }
+    ];
+
+    function renderWorldNewsCards() {
+      var container = document.getElementById('worldNewsContainer');
+      if (!container) return;
+      container.innerHTML = "";
+
+      var nowMin = new Date().getMinutes();
+
+      var filtered = baseWorldHeadlines.filter(function(item) {
+        if (currentNewsWireFilter === "all") return true;
+        return item.cat === currentNewsWireFilter;
+      });
+
+      filtered.forEach(function(item) {
+        var elapsedMin = (item.baseMinutes + (nowMin % 15)) % 60;
+        var timeLabel = elapsedMin <= 1 ? "Baru Saja" : elapsedMin + " Menit Lalu";
+
+        var card = document.createElement('div');
+        card.className = "wire-card";
+        card.innerHTML = 
+          '<div class="wire-img-container">' +
+            '<img src="' + item.img + '" alt="' + item.title + '" loading="lazy">' +
+            '<span class="wire-tag-badge">' + item.badge + '</span>' +
+          '</div>' +
+          '<div class="wire-card-body">' +
+            '<div>' +
+              '<div class="wire-meta-time">' +
+                '<span>🕒 ' + timeLabel + '</span> • <span>🏛 ' + item.source + '</span>' +
+              '</div>' +
+              '<h3 class="wire-card-title">' + item.title + '</h3>' +
+              '<p class="wire-card-snippet">' + item.snippet + '</p>' +
+            '</div>' +
+            '<div class="wire-impact-indicator">' +
+              '<span style="color:var(--gold); font-weight:800;">⚡ ' + item.impact + '</span>' +
+              '<span style="color:var(--neon); font-weight:800;">' + item.bias + '</span>' +
+            '</div>' +
+          '</div>';
+        container.appendChild(card);
+      });
+    }
+
+    function filterNewsCategory(cat, btn) {
+      currentNewsWireFilter = cat;
+      document.querySelectorAll('#tab-worldnews .btn-filter-pill').forEach(function(b){ b.classList.remove('active'); });
+      if (btn) btn.classList.add('active');
+      renderWorldNewsCards();
+    }
+
+    // =========================================================================
+    // 6. KALENDER MAKRO EKONOMI & EPHEMERIS DISPLAY
+    // =========================================================================
+    var weekdayMacroSchedule = {
+      1: [
+        { time: "19:30 WIB", event: "US Consumer Credit & Market Liquidity Focus", impact: "MEDIUM" },
+        { time: "22:30 WIB", event: "US Treasury 3M & 6M Bill Auction", impact: "LOW" }
+      ],
+      2: [
+        { time: "19:30 WIB", event: "US NFIB Small Business Optimism & Fed Watch", impact: "MEDIUM" },
+        { time: "21:00 WIB", event: "US IBD/TIPP Economic Optimism", impact: "LOW" }
+      ],
+      3: [
+        { time: "19:30 WIB", event: "US Core CPI MoM & YoY (Inflasi Utama AS)", impact: "HIGH" },
+        { time: "21:30 WIB", event: "EIA Crude Oil Weekly Stocks", impact: "MEDIUM" }
+      ],
+      4: [
+        { time: "19:30 WIB", event: "US PPI Final Demand & Initial Jobless Claims", impact: "HIGH" },
+        { time: "21:00 WIB", event: "US Existing Home Sales & Leading Index", impact: "MEDIUM" }
+      ],
+      5: [
+        { time: "19:30 WIB", event: "US Retail Sales MoM & Core Retail Sales", impact: "HIGH" },
+        { time: "21:00 WIB", event: "Michigan Consumer Sentiment (Prelim UoM)", impact: "HIGH" }
+      ]
+    };
+
+    function renderDynamicNewsTable(now, planets) {
+      var tbody = document.getElementById('newsForecastTableBody');
+      if (!tbody) return;
+
+      var daysNames = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+      var monthsNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+
+      tbody.innerHTML = "";
+
+      for (var offset = 0; offset < 7; offset++) {
+        var d = new Date(now.getTime() + offset * 86400000);
+        var dayIdx = d.getDay();
+        var dateFormatted = daysNames[dayIdx] + ", " + d.getDate() + " " + monthsNames[d.getMonth()] + " " + d.getFullYear();
+
+        if (dayIdx === 0 || dayIdx === 6) {
+          var tr = document.createElement('tr');
+          tr.innerHTML = 
+            '<td style="font-family:var(--font-heading); font-weight:700; color:#fff;">' + dateFormatted + '</td>' +
+            '<td style="font-family:var(--font-mono); color:var(--text-muted);">ALL DAY</td>' +
+            '<td style="color:#94a3b8; font-style:italic;">Bank Settlement / Market Weekend Closed</td>' +
+            '<td><span class="badge-impact-low">WEEKEND</span></td>' +
+            '<td style="font-size:11px; color:#64748b;">Inersia orbital stationary • Rekomendasi libur transaksi</td>' +
+            '<td><span style="color:var(--text-muted); font-family:var(--font-mono); font-size:11px;">STANDBY AKUN</span></td>';
+          tbody.appendChild(tr);
+          continue;
+        }
+
+        var dayPlanets = getPlanetaryEphemeris(d);
+        var dayEvents = weekdayMacroSchedule[dayIdx] || [];
+
+        dayEvents.forEach(function(ev, idx) {
+          var eventDateSim = new Date(d.getTime() + idx * 7200000);
+          var dayBiasInfo = getDailyNewsTransitBias(dayPlanets, eventDateSim);
+          var isBull = dayBiasInfo.isBullish;
+
+          var impactBadge = ev.impact === "HIGH" ? '<span class="badge-impact-high">HIGH IMPACT</span>' : '<span class="badge-impact-med">MED IMPACT</span>';
+          
+          var predBadge = isBull 
+            ? '<span style="color:var(--bull); font-weight:800; font-family:var(--font-mono); background:rgba(0,245,160,0.15); padding:3px 8px; border-radius:3px; border:1px solid var(--bull);">⚡ AMBIL BUY SEKARANG (' + dayBiasInfo.prob + ')</span>' 
+            : '<span style="color:var(--bear); font-weight:800; font-family:var(--font-mono); background:rgba(255,51,102,0.15); padding:3px 8px; border-radius:3px; border:1px solid var(--bear);">⚡ AMBIL SELL SEKARANG (' + dayBiasInfo.prob + ')</span>';
+
+          var astroReason = isBull 
+            ? dayBiasInfo.aspectWith + ' • Penyerapan OTE Discount & Likuiditas Buy' 
+            : dayBiasInfo.aspectWith + ' • Rejeksi Supply & Premium Resistance Sell';
+
+          var tr = document.createElement('tr');
+          tr.innerHTML = 
+            '<td style="font-family:var(--font-heading); font-weight:700; color:#fff;">' + dateFormatted + '</td>' +
+            '<td style="font-family:var(--font-mono); color:var(--cyan); font-weight:700;">' + ev.time + '</td>' +
+            '<td style="color:#fff; font-weight:600;">' + ev.event + '</td>' +
+            '<td>' + impactBadge + '</td>' +
+            '<td style="font-size:11px; color:#cbd5e1; line-height:1.4;">' + astroReason + '</td>' +
+            '<td>' + predBadge + '</td>';
+          tbody.appendChild(tr);
+        });
+      }
     }
 
     function updateRealEphemerisAndDial(now, planets) {
@@ -2334,152 +2354,110 @@ Alasan: ${tz.reason}`;
         }
 
         var tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${p.symbol} ${p.name}</td>
-          <td>${formatZodiacDeg(p.lon)}</td>
-          <td>${p.speed}</td>
-          <td style="color:${bestAspect.color}; font-weight:700;">${bestAspect.text}</td>
-        `;
+        tr.innerHTML = 
+          '<td>' + p.symbol + ' ' + p.name + '</td>' +
+          '<td>' + formatZodiacDeg(p.lon) + '</td>' +
+          '<td>' + p.speed + '</td>' +
+          '<td style="color:' + bestAspect.color + '; font-weight:700;">' + bestAspect.text + '</td>';
         tbody.appendChild(tr);
       });
     }
 
     // =========================================================================
-    // 8. DATA & LOGIKA BERITA EKONOMI DUNIA PROMAX (WORLD NEWS WIRE)
+    // 7. CHECKLIST & KALKULATOR TERPADU
     // =========================================================================
-    var worldNewsWireData = [
-      {
-        id: 1,
-        cat: "fed",
-        badge: "FED & SUKU BUNGA",
-        title: "The Fed Evaluasi Prospek Inflasi: Sinyal Kebijakan Moneter Terhadap Dolar AS & Emas",
-        snippet: "Pejabat Federal Reserve mengindikasikan kehati-hatian atas data inflasi AS. Suku bunga obligasi US Treasury 10-Year mengalami penyesuaian likuiditas institusi.",
-        img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=700&q=80",
-        source: "Bloomberg Macro Wire",
-        timeAgo: "12 Menit Lalu",
-        impact: "HIGH VOLATILITY",
-        bias: "POTENSI BULLISH XAUUSD"
-      },
-      {
-        id: 2,
-        cat: "gold",
-        badge: "XAUUSD & COMMODITIES",
-        title: "Permintaan Emas Bank Sentral Global Terus Menguat Sebagai Cadangan Devisa Strategis",
-        snippet: "Akumulasi fisik bullion oleh konsorsium perbankan global menopang zona support krusial di atas area discount OTE, meredam tekanan penguatan indeks Dolar (DXY).",
-        img: "https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=700&q=80",
-        source: "World Gold Council",
-        timeAgo: "28 Menit Lalu",
-        impact: "STRUCTURAL DEMAND",
-        bias: "ORDER FLOW ACCUMULATION"
-      },
-      {
-        id: 3,
-        cat: "macro",
-        badge: "INFLASI & GEOPOLITIK",
-        title: "Dinamika Pasokan Energi Global & Ketegangan Rantai Pasok Memicu Rotasi Safe-Haven",
-        snippet: "Fluktuasi harga minyak mentah West Texas Intermediate (WTI) mendorong analis memperhitungkan kembali potensi lonjakan indeks harga konsumen (CPI) mendatang.",
-        img: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=700&q=80",
-        source: "Reuters Financial",
-        timeAgo: "45 Menit Lalu",
-        impact: "GEOPOLITICAL FLOW",
-        bias: "SAFE-HAVEN EXPANSION"
-      },
-      {
-        id: 4,
-        cat: "fed",
-        badge: "FED & SUKU BUNGA",
-        title: "Data Klaim Pengangguran AS & Non-Farm Payrolls Menguji Ketahanan Sektor Tenaga Kerja",
-        snippet: "Pasar obligasi memperkirakan pelonggaran likuiditas bertahap. Smart money memposisikan open interest pada opsi beli komoditas logam mulia menjelang penutupan New York.",
-        img: "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?auto=format&fit=crop&w=700&q=80",
-        source: "Financial Times",
-        timeAgo: "1 Jam Lalu",
-        impact: "MACRO REVERSAL",
-        bias: "LIQUIDITY DISPLACEMENT"
-      },
-      {
-        id: 5,
-        cat: "gold",
-        badge: "XAUUSD & COMMODITIES",
-        title: "Likuiditas Interbank London & New York Catat Volume Rekor pada Window Lelang 19:30 WIB",
-        snippet: "Aliran dana lelang institusi SMC memicu sweep likuiditas pada batas harga tertinggi harian sebelum memasuki fase distribusi terarah pada instrumen derivatif spot emas.",
-        img: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=700&q=80",
-        source: "Zero Syndicate Terminal",
-        timeAgo: "2 Jam Lalu",
-        impact: "INSTITUTIONAL SMC",
-        bias: "KILLZONE TRIGGER"
-      },
-      {
-        id: 6,
-        cat: "macro",
-        badge: "INFLASI & GEOPOLITIK",
-        title: "Arus Modal Global Beralih ke Aset Riil di Tengah Ketidakpastian Suku Bunga Global",
-        snippet: "Manajer investasi hedge fund global meningkatkan alokasi lindung nilai (hedging) terhadap kemungkinan kontraksi likuiditas antar-bank sentral dunia.",
-        img: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=700&q=80",
-        source: "MarketWatch Global",
-        timeAgo: "3 Jam Lalu",
-        impact: "HEDGE EXPANSION",
-        bias: "RISK-OFF CATALYST"
+    function toggleChkBox(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.checked = !el.checked;
+        calcChecklistScore();
       }
-    ];
-
-    var currentNewsWireFilter = "all";
-
-    function renderWorldNewsCards() {
-      var container = document.getElementById('worldNewsContainer');
-      if (!container) return;
-      container.innerHTML = "";
-
-      var filtered = worldNewsWireData.filter(function(item) {
-        if (currentNewsWireFilter === "all") return true;
-        return item.cat === currentNewsWireFilter;
-      });
-
-      filtered.forEach(function(item) {
-        var card = document.createElement('div');
-        card.className = "wire-card";
-        card.innerHTML = `
-          <div class="wire-img-container">
-            <img src="${item.img}" alt="${item.title}" loading="lazy">
-            <span class="wire-tag-badge">${item.badge}</span>
-          </div>
-          <div class="wire-card-body">
-            <div>
-              <div class="wire-meta-time">
-                <span>🕒 ${item.timeAgo}</span> • <span>🏛 ${item.source}</span>
-              </div>
-              <h3 class="wire-card-title">${item.title}</h3>
-              <p class="wire-card-snippet">${item.snippet}</p>
-            </div>
-            <div class="wire-impact-indicator">
-              <span style="color:var(--gold); font-weight:800;">⚡ ${item.impact}</span>
-              <span style="color:var(--neon); font-weight:800;">${item.bias}</span>
-            </div>
-          </div>
-        `;
-        container.appendChild(card);
-      });
     }
 
-    function filterNewsCategory(cat, btn) {
-      currentNewsWireFilter = cat;
-      document.querySelectorAll('#tab-worldnews .btn-filter-pill').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      renderWorldNewsCards();
+    function resetChecklist() {
+      for (var i = 1; i <= 6; i++) {
+        var el = document.getElementById('chk' + i);
+        if (el) el.checked = false;
+      }
+      calcChecklistScore();
+      showToast("Checklist berhasil direset.");
     }
 
-    function refreshWorldNewsWire() {
-      showToast("🔄 Menyinkronkan berita global terbaru...");
-      setTimeout(function() {
-        worldNewsWireData.forEach(item => {
-          item.timeAgo = Math.floor(Math.random() * 20 + 2) + " Menit Lalu";
-        });
-        renderWorldNewsCards();
-        showToast("✓ Feed berita ekonomi dunia terupdate!");
-      }, 600);
+    function calcChecklistScore() {
+      var score = 0;
+      for (var i = 1; i <= 6; i++) {
+        var el = document.getElementById('chk' + i);
+        if (el && el.checked) score++;
+      }
+
+      var pct = (score / 6) * 100;
+      var scoreEl = document.getElementById('chkScoreVal');
+      var barEl = document.getElementById('chkProgressBar');
+      var gradeEl = document.getElementById('chkGradeLabel');
+      var adviceEl = document.getElementById('chkAdviceText');
+      var riskEl = document.getElementById('chkRiskAdvice');
+
+      if (scoreEl) scoreEl.textContent = score + " / 6";
+      if (barEl) barEl.style.width = pct + "%";
+
+      if (score <= 2) {
+        if (gradeEl) { gradeEl.textContent = "🛑 INVALID SETUP (DILARANG ENTRY)"; gradeEl.style.color = "var(--bear)"; }
+        if (adviceEl) adviceEl.textContent = "Kondisi pasar belum memenuhi likuiditas minimum. Potensi manipulasi dan stop loss hunt sangat tinggi.";
+        if (riskEl) riskEl.textContent = "Gunakan Risk 0% (Standby)";
+      } else if (score >= 3 && score <= 4) {
+        if (gradeEl) { gradeEl.textContent = "⚠️ B GRADE SETUP (KONFLUENSI MODERAT)"; gradeEl.style.color = "var(--gold)"; }
+        if (adviceEl) adviceEl.textContent = "Setup cukup valid namun belum sempurna. Wajib kurangi ukuran lot dan pasang SL ketat di luar swing point.";
+        if (riskEl) riskEl.textContent = "Gunakan Risk Rendah (0.5% - 1.0% Saldo)";
+      } else {
+        if (gradeEl) { gradeEl.textContent = "🚀 A+ GRADE HIGH PROBABILITY SETUP!"; gradeEl.style.color = "var(--neon)"; }
+        if (adviceEl) adviceEl.textContent = "Semua parameter institusi terpenuhi (HTF Sweep, LTF CHOCH, FVG, OTE, Sesi & Astro). Valid untuk eksekusi prima.";
+        if (riskEl) riskEl.textContent = "Gunakan Risk Penuh Terukur (1.5% - 2.0% Saldo)";
+      }
+    }
+
+    function calcSmcFibLevels() {
+      var h = parseFloat(document.getElementById('smcHighInput').value) || 2670.0;
+      var l = parseFloat(document.getElementById('smcLowInput').value) || 2630.0;
+      if (h <= l) return;
+
+      var diff = h - l;
+      var fib618 = h - (diff * 0.382);
+      var fib500 = l + (diff * 0.50);
+      var fib705 = l + (diff * (1 - 0.705));
+      var fib790 = l + (diff * (1 - 0.790));
+
+      document.getElementById('resFib618').textContent = "$" + fib618.toFixed(2);
+      document.getElementById('resFib500').textContent = "$" + fib500.toFixed(2);
+      document.getElementById('resFibOte').textContent = "$" + fib790.toFixed(2) + " - $" + fib705.toFixed(2);
+    }
+
+    function runUnifiedCalculator() {
+      var balance = parseFloat(document.getElementById('riskBalance').value) || 0;
+      var riskPercent = parseFloat(document.getElementById('riskPercent').value) || 0;
+      var slPips = parseFloat(document.getElementById('riskSLPips').value) || 1;
+      var dailyLot = parseFloat(document.getElementById('dailyLotInput').value) || 0;
+
+      var riskUsd = balance * (riskPercent / 100);
+      var pipValuePerStandardLot = 10;
+      var optimalLot = riskUsd / (slPips * pipValuePerStandardLot);
+      optimalLot = Math.max(0.01, optimalLot);
+
+      var ratePerLot = 12.0;
+      var usdPerIdr = 16250;
+      var dailyRebateUsd = dailyLot * ratePerLot;
+      var monthlyRebateUsd = dailyRebateUsd * 20;
+
+      var dailyRebateIdr = dailyRebateUsd * usdPerIdr;
+      var monthlyRebateIdr = monthlyRebateUsd * usdPerIdr;
+
+      document.getElementById('resOptimalLot').textContent = optimalLot.toFixed(2) + " LOT";
+      document.getElementById('resRiskAmount').textContent = "$" + riskUsd.toFixed(2) + " USD";
+      document.getElementById('resRebateDailyDisplay').textContent = "+$" + dailyRebateUsd.toFixed(2) + " (Rp " + Math.round(dailyRebateIdr / 1000).toLocaleString('id-ID') + " Rb)";
+      document.getElementById('resRebateMonthlyDisplay').textContent = "+$" + Math.round(monthlyRebateUsd) + " (Rp " + (monthlyRebateIdr / 1000000).toFixed(1) + " Jt)";
     }
 
     // =========================================================================
-    // 9. CANDLESTICK UI & MOON PHASE
+    // 8. DATA CANDLESTICK & MOON PHASE
     // =========================================================================
     function renderCandleTabs() {
       var container = document.getElementById('candleTabsContainer');
@@ -2498,10 +2476,10 @@ Alasan: ${tz.reason}`;
     }
 
     function selectCandle(id) {
-      var item = candleData.find(c => c.id === id);
+      var item = candleData.find(function(c){ return c.id === id; });
       if (!item) return;
 
-      document.querySelectorAll('.c-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.c-tab-btn').forEach(function(b){ b.classList.remove('active'); });
       var activeBtn = document.getElementById('c_btn_' + id);
       if (activeBtn) activeBtn.classList.add('active');
 
@@ -2571,35 +2549,17 @@ Alasan: ${tz.reason}`;
     }
 
     // =========================================================================
-    // 10. MULTI-SOURCE SPOT GOLD FEED (ANTI-BLOKIR ISP)
+    // 9. FEED SPOT GOLD OTOMATIS & BEBAS BLOKIR ISP
     // =========================================================================
-    var liveSpotPrice = 2650.00;
-
     function updateLivePriceUI(price) {
-      if (!price || isNaN(price) || price < 1000) return;
-      liveSpotPrice = parseFloat(price);
+      var p = parseFloat(price);
+      if (!p || isNaN(p) || p < 1000) return;
+      liveSpotPrice = p;
 
       var pEl = document.getElementById('priceLive');
       if (pEl) {
         pEl.textContent = "$" + liveSpotPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         pEl.style.color = "var(--neon)";
-      }
-    }
-
-    function connectBinanceGoldFeed() {
-      try {
-        var ws = new WebSocket("wss://stream.binance.com:9443/ws/paxgusdt@trade");
-        ws.onmessage = function(event) {
-          try {
-            if (!isForexMarketOpen(new Date()) && liveSpotPrice > 1000) return;
-            var msg = JSON.parse(event.data);
-            if (msg && msg.p) updateLivePriceUI(msg.p);
-          } catch(e) {}
-        };
-        ws.onerror = function() { ws.close(); };
-        ws.onclose = function() { setTimeout(connectBinanceGoldFeed, 10000); };
-      } catch(err) {
-        setTimeout(connectBinanceGoldFeed, 10000);
       }
     }
 
@@ -2631,36 +2591,55 @@ Alasan: ${tz.reason}`;
       return false;
     }
 
-    async function fetchBinanceRestGold() {
-      try {
-        var res = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=PAXGUSDT', { cache: 'no-store' });
-        if (res.ok) {
-          var data = await res.json();
-          if (data && data.price) {
-            updateLivePriceUI(data.price);
-            return true;
-          }
-        }
-      } catch(e) {}
-      return false;
-    }
-
     async function syncGoldPriceCycle() {
       var ok = await fetchCryptoCompareGold();
-      if (ok) return;
-      ok = await fetchCoinCapGold();
-      if (ok) return;
-      await fetchBinanceRestGold();
+      if (!ok) await fetchCoinCapGold();
     }
 
-    connectBinanceGoldFeed();
     syncGoldPriceCycle();
-    setInterval(syncGoldPriceCycle, 3000);
+    setInterval(syncGoldPriceCycle, 4000);
 
     // =========================================================================
-    // 11. FAST CLOCK & ORCHESTRATOR
+    // 10. CLOCK, SOUND & ORCHESTRATOR 24 JAM
     // =========================================================================
-    var lastMinuteChecked = -1;
+    function toggleAudioAlert() {
+      isAudioEnabled = !isAudioEnabled;
+      var btn = document.getElementById('audioToggleBtn');
+      if (isAudioEnabled) {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        btn.classList.add('active');
+        btn.querySelector('span').textContent = "🔔 SOUND: ON";
+        playBeep(880, 0.1);
+        showToast("Audio alert diaktifkan!");
+      } else {
+        btn.classList.remove('active');
+        btn.querySelector('span').textContent = "🔔 SOUND: OFF";
+        showToast("Audio alert dinonaktifkan.");
+      }
+    }
+
+    function playBeep(freq, duration) {
+      if (!isAudioEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        var osc = audioCtx.createOscillator();
+        var gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function showToast(msg) {
+      var toast = document.getElementById('toastNotification');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(function() { toast.classList.remove('show'); }, 2600);
+    }
 
     function tickFastClock() {
       var now = new Date();
@@ -2690,10 +2669,10 @@ Alasan: ${tz.reason}`;
         }
       }
 
-      var hud1930 = document.getElementById('hud1930Status');
       var planets = getPlanetaryEphemeris(now);
       var newsBias = getDailyNewsTransitBias(planets, now);
 
+      var hud1930 = document.getElementById('hud1930Status');
       if (hud1930) {
         if (!isForexMarketOpen(now)) {
           hud1930.style.borderColor = "#475569";
@@ -2711,12 +2690,36 @@ Alasan: ${tz.reason}`;
         }
       }
 
+      var hud0100 = document.getElementById('hud0100Status');
+      if (hud0100) {
+        if (!isForexMarketOpen(now)) {
+          hud0100.style.borderColor = "#475569";
+          hud0100.style.color = "#94a3b8";
+          hud0100.textContent = "01:00: WEEKEND PAUSE";
+        } else if ((now.getHours() === 0 && now.getMinutes() >= 55) || (now.getHours() === 1 && now.getMinutes() <= 35)) {
+          hud0100.style.borderColor = "var(--neon)";
+          hud0100.style.color = "var(--neon)";
+          hud0100.textContent = "01:00 & 01:30: 🔥 ACTIVE WINDOW";
+          if (now.getSeconds() === 0 && (now.getMinutes() === 0 || now.getMinutes() === 30)) playBeep(1000, 0.3);
+        } else {
+          hud0100.style.borderColor = "var(--cyan)";
+          hud0100.style.color = "var(--cyan)";
+          hud0100.textContent = "01:00 / 01:30: STANDBY";
+        }
+      }
+
       if (now.getMinutes() !== lastMinuteChecked) {
         lastMinuteChecked = now.getMinutes();
         updateMoonPhaseDisplay();
         updateRealEphemerisAndDial(now, planets);
+        updateZoneLiveStatusOnly(now);
+      }
+
+      // Auto-refresh World News & Data Tiap 2 Menit
+      if (now.getMinutes() % 2 === 0 && now.getMinutes() !== lastWireAutoRefreshMinute) {
+        lastWireAutoRefreshMinute = now.getMinutes();
+        renderWorldNewsCards();
         renderDynamicNewsTable(now, planets);
-        renderDynamicTimeZones(now, planets);
       }
     }
 
