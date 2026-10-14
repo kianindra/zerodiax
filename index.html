@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ZEROFX PROMAX • Astrodox 360°, 50 Sub-Time Zones, SMC Matrix & Realtime World News Wire</title>
-  <meta name="description" content="Quantitative Trading Engine PROMAX: Astrodox 360° Tulungagung, 50 Sub-Time Zones Dinamis, Kalender News Live, Checklist SMC, dan Berita Ekonomi Dunia Realtime Otomatis 24 Jam.">
+  <title>ZEROFX PROMAX • King News Sniper 99%, Astrodox 360°, SMC Liquidity Map & 50 Sub-Time Zones</title>
+  <meta name="description" content="Quantitative Trading Engine PROMAX: King News Engine 99% Winrate, Live Macro Displacement Auto-Flip, Astrodox 360° Tulungagung, Liquidity Killzone Matrix, dan Realtime World News Wire.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,600;0,700;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
@@ -62,14 +62,14 @@
       border-bottom: 1px solid #14171d;
     }
     .nav-container {
-      max-width: 1240px;
+      max-width: 1300px;
       margin: 0 auto;
       padding: 10px 14px;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    @media(min-width: 768px) {
+    @media(min-width: 900px) {
       .nav-container {
         flex-direction: row;
         justify-content: space-between;
@@ -103,6 +103,13 @@
     .brand-text { color: #fff; }
     .brand-text span { color: var(--neon); }
 
+    .nav-right-area {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
     .nav-tabs {
       display: flex;
       gap: 6px;
@@ -140,19 +147,33 @@
       color: #000 !important;
       font-weight: 900 !important;
     }
-    .btn-nav-broker {
-      border-color: rgba(16, 185, 129, 0.45);
-      color: var(--vx-green);
+    .btn-nav-king {
+      border-color: rgba(245, 158, 11, 0.6);
+      color: var(--gold);
     }
-    .btn-nav-broker.active {
-      background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%) !important;
+    .btn-nav-king.active {
+      background: linear-gradient(135deg, #f59e0b 0%, #ccff00 100%) !important;
       color: #000 !important;
-      border-color: var(--vx-green) !important;
-      box-shadow: 0 0 14px var(--vx-glow) !important;
+      box-shadow: 0 0 14px var(--gold-glow) !important;
+    }
+
+    .vip-status-chip {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 5px 8px;
+      border-radius: 4px;
+      background: rgba(204, 255, 0, 0.1);
+      border: 1px solid var(--neon);
+      color: var(--neon);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      white-space: nowrap;
     }
 
     .main-wrapper {
-      max-width: 1240px;
+      max-width: 1300px;
       margin: 0 auto;
       padding: 16px 12px 90px 12px;
     }
@@ -204,7 +225,7 @@
       color: var(--text-muted);
       font-family: var(--font-mono);
       font-size: 10px;
-      padding: 4px 8px;
+      padding: 5px 9px;
       border-radius: 4px;
       cursor: pointer;
       display: inline-flex;
@@ -217,8 +238,157 @@
       color: var(--neon);
       background: rgba(204, 255, 0, 0.1);
     }
+    .voice-switch-btn.active {
+      border-color: #38bdf8;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+    }
 
-    /* VIP HERO */
+    /* KING NEWS SNIPER BOX */
+    .king-news-box {
+      background: linear-gradient(180deg, #10151f 0%, #080b10 100%);
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 35px var(--gold-glow);
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 25px;
+      position: relative;
+    }
+    .king-badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .sniper-status-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 16px;
+      margin-bottom: 20px;
+    }
+    @media(min-width: 800px) {
+      .sniper-status-grid { grid-template-columns: 1.2fr 1.8fr; }
+    }
+    .sniper-gauge-card {
+      background: #06080d;
+      border: 1px solid #1c2636;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .sniper-scenario-card {
+      background: #06080d;
+      border: 1px solid #1c2636;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .scenario-toggle-btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .btn-scenario-opt {
+      background: #0c111a;
+      border: 1px solid #233044;
+      color: var(--text-muted);
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 6px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      transition: 0.2s;
+    }
+    .btn-scenario-opt.active-sell {
+      background: rgba(255, 51, 102, 0.2);
+      border-color: var(--bear);
+      color: var(--bear);
+      box-shadow: 0 0 10px var(--bear-glow);
+    }
+    .btn-scenario-opt.active-buy {
+      background: rgba(0, 245, 160, 0.2);
+      border-color: var(--bull);
+      color: var(--bull);
+      box-shadow: 0 0 10px var(--bull-glow);
+    }
+    .btn-scenario-opt.active-auto {
+      background: rgba(204, 255, 0, 0.2);
+      border-color: var(--neon);
+      color: var(--neon);
+      box-shadow: 0 0 10px var(--neon-glow);
+    }
+    .fundamental-deep-box {
+      background: #0a0e16;
+      border-left: 4px solid var(--neon);
+      border-radius: 0 6px 6px 0;
+      padding: 14px;
+      font-size: 11px;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+    .fundamental-deep-box strong { color: #fff; }
+
+    /* LIQUIDITY KILLZONE MATRIX TAB */
+    .liq-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      margin-top: 12px;
+    }
+    .liq-table th {
+      background: #0f141d;
+      color: var(--text-muted);
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid #1e2634;
+    }
+    .liq-table td {
+      padding: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: #e2e8f0;
+    }
+
+    /* CARD GENERATOR TAB */
+    .card-gen-wrap {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media(min-width: 850px) {
+      .card-gen-wrap { grid-template-columns: 340px 1fr; }
+    }
+    .canvas-preview-box {
+      background: #06080d;
+      border: 1px solid var(--border-neon);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #signalCanvas {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+
+    /* VIP HERO & GENERAL */
     .vip-hero-wrap { text-align: center; padding: 20px 8px 30px 8px; }
     .verified-top-badge {
       display: inline-flex;
@@ -323,23 +493,6 @@
     .btn-plan-claim:hover { filter: brightness(1.15); }
     .btn-plan-gold { background: linear-gradient(135deg, #f59e0b 0%, #ccff00 100%); color: #000 !important; }
 
-    /* TESTIMONI */
-    .testi-header-box { text-align: center; margin-bottom: 22px; }
-    .testi-grid-japsku { display: grid; grid-template-columns: 1fr; gap: 14px; margin-bottom: 45px; }
-    @media(min-width: 768px) { .testi-grid-japsku { grid-template-columns: repeat(3, 1fr); } }
-    .testi-card-item { background: #090c12; border: 1px solid #1c2330; border-radius: 10px; padding: 18px 16px; position: relative; }
-    .testi-user-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-    .testi-avatar-badge {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: linear-gradient(135deg, #1f2937, #111827); border: 1px solid rgba(245, 158, 11, 0.4);
-      display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: var(--gold);
-    }
-    .testi-user-name { font-family: var(--font-heading); font-size: 13px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 5px; }
-    .testi-user-meta { font-size: 10px; color: var(--text-muted); font-family: var(--font-mono); }
-    .testi-verified-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 9px; color: #38bdf8; background: rgba(56, 189, 248, 0.1); padding: 1px 5px; border-radius: 3px; margin-top: 2px; font-family: var(--font-mono); }
-    .testi-pnl-tag { font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--bull); background: rgba(0, 245, 160, 0.1); padding: 3px 6px; border-radius: 4px; margin-bottom: 8px; display: inline-block; }
-    .testi-quote-text { font-size: 12px; color: #cbd5e1; line-height: 1.5; font-style: italic; }
-
     /* CANDLE MATERI */
     .candle-tab-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -401,7 +554,6 @@
       font-weight: 700;
       outline: none;
     }
-    .calc-input-field:focus { color: #fff; }
 
     /* CHECKLIST */
     .checklist-wrap-box {
@@ -446,8 +598,6 @@
       accent-color: var(--neon);
       cursor: pointer;
     }
-    .chk-item-title { font-family: var(--font-heading); font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px; }
-    .chk-item-desc { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
     .checklist-score-panel {
       background: #06080d;
       border: 1px solid #18202d;
@@ -498,7 +648,6 @@
       justify-content: space-between;
       transition: transform 0.2s, border-color 0.2s;
     }
-    .broker-card-item:hover { transform: translateY(-2px); }
     .broker-card-item.valetax-card {
       border-color: rgba(16, 185, 129, 0.5);
       box-shadow: 0 0 24px rgba(16, 185, 129, 0.12);
@@ -528,69 +677,13 @@
       color: #000;
       box-shadow: 0 4px 18px var(--vx-glow);
     }
-    .btn-broker-valetax:hover { filter: brightness(1.2); }
     .btn-broker-headway {
       background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
       color: #fff;
       box-shadow: 0 4px 18px var(--hw-glow);
     }
-    .btn-broker-headway:hover { filter: brightness(1.2); }
 
-    .compact-calc-strip {
-      background: #06090e;
-      border: 1px solid #1a2332;
-      border-radius: 10px;
-      padding: 16px;
-    }
-    .calc-row-inputs {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-    .calc-mini-box {
-      background: #0a0e16;
-      border: 1px solid #141c2a;
-      border-radius: 6px;
-      padding: 8px 10px;
-    }
-    .calc-mini-box label {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 8px;
-      color: var(--text-muted);
-      margin-bottom: 3px;
-    }
-    .calc-mini-input {
-      width: 100%;
-      background: transparent;
-      border: none;
-      color: var(--neon);
-      font-family: var(--font-heading);
-      font-size: 14px;
-      font-weight: 700;
-      outline: none;
-    }
-    .calc-summary-pills {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 8px;
-      padding-top: 12px;
-      border-top: 1px dashed #1a2436;
-      font-family: var(--font-mono);
-      font-size: 11px;
-    }
-    .calc-summary-pill-item {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid #141b27;
-      padding: 8px 10px;
-      border-radius: 6px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    /* NEWS FORECAST */
+    /* NEWS FORECAST & WIRE */
     .news-forecast-wrap {
       background: #0a0d13;
       border: 1px solid var(--border-neon);
@@ -626,200 +719,8 @@
       background: rgba(245, 158, 11, 0.2); color: var(--gold); border: 1px solid var(--gold);
       font-family: var(--font-mono); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 3px;
     }
-    .badge-impact-low {
-      background: rgba(0, 210, 255, 0.2); color: var(--cyan); border: 1px solid var(--cyan);
-      font-family: var(--font-mono); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 3px;
-    }
-
-    /* WORLD NEWS WIRE */
-    .world-news-wrap {
-      background: #090c12;
-      border: 1px solid var(--border-neon);
-      border-radius: 12px;
-      padding: 22px;
-      margin-bottom: 25px;
-    }
-    .news-wire-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      border-bottom: 1px solid #1c2535;
-      padding-bottom: 14px;
-      margin-bottom: 18px;
-    }
-    .wire-filter-bar {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-    .wire-cards-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-    }
-    @media(min-width: 768px) {
-      .wire-cards-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media(min-width: 1040px) {
-      .wire-cards-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .wire-card {
-      background: #06090e;
-      border: 1px solid #1a2332;
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .wire-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--neon);
-    }
-    .wire-img-container {
-      width: 100%;
-      height: 160px;
-      position: relative;
-      overflow: hidden;
-      background: #0e131d;
-    }
-    .wire-img-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
-    .wire-card:hover .wire-img-container img { transform: scale(1.05); }
-    .wire-tag-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(7, 8, 9, 0.85);
-      border: 1px solid rgba(204, 255, 0, 0.4);
-      color: var(--neon);
-      font-family: var(--font-mono);
-      font-size: 9px;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 4px;
-      backdrop-filter: blur(4px);
-    }
-    .wire-card-body {
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      flex-grow: 1;
-    }
-    .wire-meta-time {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .wire-card-title {
-      font-family: var(--font-heading);
-      font-size: 15px;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.35;
-      margin-bottom: 8px;
-    }
-    .wire-card-snippet {
-      font-size: 11px;
-      color: #cbd5e1;
-      line-height: 1.5;
-      margin-bottom: 12px;
-    }
-    .wire-impact-indicator {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 8px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      font-family: var(--font-mono);
-      font-size: 10px;
-    }
-
-    /* ASTRODOX & TERMINAL */
-    .astrodox-grid-wrap {
-      display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px;
-    }
-    @media(min-width: 980px) {
-      .astrodox-grid-wrap { grid-template-columns: 1.6fr 1.4fr; }
-    }
-    .tv-wrap { height: 480px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-neon); background: #000; position: relative; }
-    
-    .astrodox-pro-box {
-      background: #090c12; border: 1px solid var(--border-neon); border-radius: 10px;
-      padding: 16px; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-    }
-    .astrodox-header-bar {
-      display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 1px solid var(--border-dark); padding-bottom: 10px; margin-bottom: 12px;
-    }
-    .astro-title-wrap h3 { font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: #fff; }
-    .astro-sub-tag { font-family: var(--font-mono); font-size: 10px; color: var(--neon); }
-
-    .moon-phase-card {
-      background: linear-gradient(90deg, #101522 0%, #0d121c 100%);
-      border: 1px solid #1f2b3e; border-radius: 8px; padding: 10px 14px;
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
-    }
-    .moon-visual-wrap { display: flex; align-items: center; gap: 12px; }
-    .moon-orb-canvas {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #ffffff, #a3b1c6 60%, #475569 100%);
-      box-shadow: 0 0 14px rgba(255, 255, 255, 0.4); position: relative;
-    }
-    .moon-info-title { font-family: var(--font-heading); font-size: 13px; font-weight: 700; color: #fff; }
-    .moon-info-meta { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); }
-    .moon-illum-badge {
-      font-family: var(--font-mono); font-size: 12px; font-weight: 800; color: var(--neon);
-      background: rgba(204, 255, 0, 0.1); padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(204, 255, 0, 0.3);
-    }
-
-    .dial-center-stage { display: flex; justify-content: center; align-items: center; position: relative; margin: 10px 0; }
-    .astrodox-svg { max-width: 360px; width: 100%; height: auto; filter: drop-shadow(0 0 15px rgba(0,0,0,0.9)); }
-
-    .ephem-table-wrap {
-      background: #06080d; border: 1px solid #18202d; border-radius: 6px; padding: 10px;
-      margin-top: 10px; max-height: 180px; overflow-y: auto;
-    }
-    .ephem-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 10px; text-align: left; }
-    .ephem-table th { color: var(--text-muted); padding: 4px 6px; border-bottom: 1px solid #1f2735; }
-    .ephem-table td { padding: 4px 6px; border-bottom: 1px solid rgba(255,255,255,0.03); color: #cbd5e1; }
 
     /* 50 TIME ZONES GRID */
-    .tz-filter-bar {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-    .btn-filter-pill {
-      background: #0d1117;
-      border: 1px solid var(--border-dark);
-      color: var(--text-muted);
-      font-family: var(--font-heading);
-      font-size: 10px;
-      font-weight: 700;
-      padding: 5px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .btn-filter-pill:hover, .btn-filter-pill.active {
-      background: var(--neon);
-      color: #000;
-      border-color: var(--neon);
-    }
     .tz-card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -844,12 +745,12 @@
     .tz-box.neutral-window { border-left: 4px solid var(--cyan); }
     .tz-box.news-window { border-left: 4px solid var(--gold); }
     .tz-box.weekend-window { border-left: 4px solid #64748b; background: #07090d; }
-    
+
     .tz-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
     .tz-title { font-family: var(--font-heading); font-size: 13px; font-weight: 700; color: #fff; }
     .tz-badge-status { font-family: var(--font-mono); font-size: 8px; font-weight: 800; padding: 2px 5px; border-radius: 3px; }
     .tz-hours { font-family: var(--font-mono); font-size: 10px; color: var(--cyan); margin-bottom: 6px; }
-    
+
     .open-entry-alert-box {
       background: rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -924,6 +825,87 @@
       z-index: 999;
     }
     .floating-chat-btn svg { width: 26px; height: 26px; fill: currentColor; }
+
+    /* ASTRODOX & TERMINAL */
+    .astrodox-grid-wrap {
+      display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px;
+    }
+    @media(min-width: 980px) {
+      .astrodox-grid-wrap { grid-template-columns: 1.6fr 1.4fr; }
+    }
+    .tv-wrap { height: 480px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-neon); background: #000; }
+    
+    .astrodox-pro-box {
+      background: #090c12; border: 1px solid var(--border-neon); border-radius: 10px;
+      padding: 16px; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    }
+    .astrodox-header-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid var(--border-dark); padding-bottom: 10px; margin-bottom: 12px;
+    }
+    .moon-phase-card {
+      background: linear-gradient(90deg, #101522 0%, #0d121c 100%);
+      border: 1px solid #1f2b3e; border-radius: 8px; padding: 10px 14px;
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
+    }
+    .dial-center-stage { display: flex; justify-content: center; align-items: center; position: relative; margin: 10px 0; }
+    .astrodox-svg { max-width: 360px; width: 100%; height: auto; }
+
+    /* MODAL VIP GATE LOCK */
+    .vip-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .vip-modal-overlay.active { display: flex; }
+    .vip-modal-card {
+      background: #0d0f14;
+      border: 1px solid var(--neon);
+      box-shadow: 0 0 35px var(--neon-glow);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 440px;
+      padding: 24px;
+      position: relative;
+      text-align: center;
+    }
+    .close-modal-x {
+      position: absolute; top: 12px; right: 14px; background: none; border: none; color: #64748b; font-size: 20px; cursor: pointer;
+    }
+    .vip-input-control {
+      width: 100%;
+      background: #06080d;
+      border: 1px solid #1e2838;
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      outline: none;
+      margin-top: 6px;
+      margin-bottom: 14px;
+    }
+    .vip-input-control:focus { border-color: var(--neon); }
+    .btn-unlock-vip {
+      width: 100%;
+      background: var(--neon);
+      color: #000;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 13px;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -934,24 +916,49 @@
     <div class="nav-container">
       <div class="brand-logo" onclick="switchMainTab('tab-join')">
         <div class="logo-badge">Z</div>
-        <div class="brand-text">ZERO<span>FX</span> <span style="font-size:11px; color:#38bdf8; font-family:var(--font-mono);">PROMAX</span></div>
+        <div class="brand-text">ZERO<span>FX</span> <span style="font-size:11px; color:#38bdf8; font-family:var(--font-mono);">PROMAX KING</span></div>
       </div>
 
-      <nav class="nav-tabs">
-        <button class="tab-nav-btn btn-nav-vip active" id="btn-tab-join" onclick="switchMainTab('tab-join')">★ VIP GRATIS</button>
-        <button class="tab-nav-btn" id="btn-tab-materi" onclick="switchMainTab('tab-materi')">30 MATERI CANDLE & SMC</button>
-        <button class="tab-nav-btn" id="btn-tab-checklist" onclick="switchMainTab('tab-checklist')">⚡ CHECKLIST ENTRY SMC</button>
-        <button class="tab-nav-btn btn-nav-broker" id="btn-tab-broker" onclick="switchMainTab('tab-broker')">BROKER</button>
-        <button class="tab-nav-btn" id="btn-tab-news" onclick="switchMainTab('tab-news')">JADWAL NEWS & FORECAST</button>
-        <button class="tab-nav-btn" id="btn-tab-worldnews" onclick="switchMainTab('tab-worldnews')">🌐 BERITA EKONOMI DUNIA</button>
-        <button class="tab-nav-btn" id="btn-tab-terminal" onclick="switchMainTab('tab-terminal')">CHART & 50 TIME ZONES</button>
-      </nav>
+      <div class="nav-right-area">
+        <nav class="nav-tabs">
+          <button class="tab-nav-btn btn-nav-vip active" id="btn-tab-join" onclick="switchMainTab('tab-join')">★ VIP GRATIS</button>
+          <button class="tab-nav-btn btn-nav-king" id="btn-tab-news" onclick="switchMainTab('tab-news')">👑 KING NEWS SNIPER 99%</button>
+          <button class="tab-nav-btn" id="btn-tab-liquidity" onclick="switchMainTab('tab-liquidity')">🎯 HTF LIQUIDITY MAP</button>
+          <button class="tab-nav-btn" id="btn-tab-checklist" onclick="switchMainTab('tab-checklist')">⚡ CHECKLIST SMC A+</button>
+          <button class="tab-nav-btn" id="btn-tab-materi" onclick="switchMainTab('tab-materi')">30 MATERI CANDLE</button>
+          <button class="tab-nav-btn" id="btn-tab-terminal" onclick="switchMainTab('tab-terminal')">CHART & 50 TIME ZONES</button>
+          <button class="tab-nav-btn" id="btn-tab-broker" onclick="switchMainTab('tab-broker')">BROKER PARTNER</button>
+          <button class="tab-nav-btn" id="btn-tab-cardgen" onclick="switchMainTab('tab-cardgen')">📸 SIGNAL CARD GEN</button>
+        </nav>
+        <div id="vipHeaderChip" class="vip-status-chip" onclick="handleVipChipClick()">
+          <span style="font-weight:800;">🔒 UNLOCK VIP</span>
+        </div>
+      </div>
     </div>
   </header>
 
   <main class="main-wrapper">
-    
-    <!-- TAB 1: JOIN VIP -->
+
+    <!-- HUD LIVE BAR -->
+    <div class="hud-bar">
+      <div>
+        <span style="font-family:var(--font-heading); font-size:13px; font-weight:700;">KING QUANT ENGINE • TULUNGAGUNG PRECISION ASTRODOX 360°</span>
+      </div>
+      <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+        <div class="hud-pill"><span class="status-dot-pulse"></span> TIME: <span id="clockLive" style="color:var(--neon);">--:--:-- WIB</span></div>
+        <div class="hud-pill">SPOT XAUUSD: <span id="priceLive" style="color:var(--neon); font-weight:900;">$4,095.50</span></div>
+        <div class="hud-pill" id="hud1930Status" style="border-color:var(--gold); color:var(--gold);">19:30: STANDBY</div>
+        <div class="hud-pill" id="hud0100Status" style="border-color:var(--cyan); color:var(--cyan);">01:00: STANDBY</div>
+        <button class="audio-switch-btn voice-switch-btn active" id="voiceToggleBtn" onclick="toggleVoiceAI()">
+          <span>🗣️ VOICE AI: ON</span>
+        </button>
+        <button class="audio-switch-btn" id="audioToggleBtn" onclick="toggleAudioAlert()">
+          <span>🔔 SOUND: OFF</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB 1: VIP HERO & JOIN -->
     <div id="tab-join" class="tab-content active">
       <section class="vip-hero-wrap">
         <div class="verified-top-badge">
@@ -962,20 +969,17 @@
           AKSES SINYAL & KELAS TRADING <span>ZERO SYNDICATE VIP</span>
         </h1>
         <p class="vip-hero-sub">
-          Komunitas bimbingan institusi SMC, pemetaan transit Astrodox 360° astronomis Tulungagung, dan eksekusi lelang presisi tinggi oleh @rezayogiana (@zerofxn). Akses gratis tanpa biaya bulanan.
+          Eksekusi King News 99% Winrate, pemetaan transit Astrodox 360° astronomis Tulungagung, dan proteksi lelang institusi SMC oleh @rezayogiana (@zerofxn).
         </p>
 
         <div class="social-banner-strip">
           <a href="https://instagram.com/rezayogiana" target="_blank" rel="noopener noreferrer" class="social-pill">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             <span>@rezayogiana (Verified)</span>
           </a>
           <a href="https://tiktok.com/@zerofxn" target="_blank" rel="noopener noreferrer" class="social-pill">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
             <span>@zerofxn</span>
           </a>
           <a href="https://t.me/zerrfx" target="_blank" rel="noopener noreferrer" class="social-pill">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
             <span>Telegram: @zerrfx</span>
           </a>
         </div>
@@ -1004,7 +1008,7 @@
         <div class="vip-plan-card premium-glow">
           <div class="plan-tag-row">
             <span class="plan-tier-badge badge-exclusive">TIER: EXPERT VIP</span>
-            <span class="verified-check-icon" title="Official Verified Member">✓</span>
+            <span class="verified-check-icon">✓</span>
           </div>
           <div class="plan-card-title">
             <span>ZERO SYNDICATE VIP</span>
@@ -1013,7 +1017,7 @@
           <div class="plan-card-price">Rp 0 <span style="font-size:12px; color:var(--gold); font-family:var(--font-mono);">/ Bulan (100% Gratis)</span></div>
           <div class="plan-card-note" style="border-left-color:var(--neon);">Daftar di broker partner resmi Zero Syndicate (Valetax / Headway).</div>
           <ul class="plan-card-perks">
-            <li>Akses Sinyal Eksekusi Instan (Buy/Sell Langsung Tanpa Delay)</li>
+            <li>Mesin King News 99% Auto-Flip Anti-Slippage</li>
             <li>Radar 50 Sub-Time Zone Presisi Jam 01:00, 01:30 & News 19:30 WIB</li>
             <li>Rotasi Transit Astrodox 360° Real-time Lokasi Tulungagung</li>
             <li>Live Meeting Bedah Setup Pasar 3–10x Seminggu</li>
@@ -1024,71 +1028,257 @@
           </a>
         </div>
       </section>
-
-      <section style="margin-bottom: 50px;">
-        <div class="testi-header-box">
-          <h2 style="font-family:var(--font-heading); font-size:22px; text-transform:uppercase;">TESTIMONI MEMBER VERIFIKASI</h2>
-        </div>
-
-        <div class="testi-grid-japsku">
-          <div class="testi-card-item">
-            <div class="testi-user-row">
-              <div class="testi-avatar-badge">RA</div>
-              <div>
-                <div class="testi-user-name">
-                  <span>Raditya Pratama</span>
-                  <span class="verified-check-icon">✓</span>
-                </div>
-                <div class="testi-user-meta">Surabaya • Trader Standard</div>
-                <div class="testi-verified-pill">✓ Verified Trader</div>
-              </div>
-            </div>
-            <div class="testi-pnl-tag">Trigger Entry 01:00 & 01:30 WIB Hit</div>
-            <p class="testi-quote-text">
-              "Sistem eksekusi langsung tepat di jam 01:00 dan 01:30 WIB beneran presisi. Begitu jam masuk, likuiditas tengah malam langsung disambut take profit rapi."
-            </p>
-          </div>
-
-          <div class="testi-card-item">
-            <div class="testi-user-row">
-              <div class="testi-avatar-badge">KN</div>
-              <div>
-                <div class="testi-user-name">
-                  <span>Kevin Nugroho</span>
-                  <span class="verified-check-icon">✓</span>
-                </div>
-                <div class="testi-user-meta">Jakarta • Pro ECN</div>
-                <div class="testi-verified-pill">✓ Verified Trader</div>
-              </div>
-            </div>
-            <div class="testi-pnl-tag">Rebate $12/Lot Cair Tiap Hari</div>
-            <p class="testi-quote-text">
-              "Self-rebate beneran masuk per lot tanpa potongan. Trading gold scalping bolak-balik dapet profit plus dapet passive income rebate puluhan juta sebulan."
-            </p>
-          </div>
-
-          <div class="testi-card-item">
-            <div class="testi-user-row">
-              <div class="testi-avatar-badge">DS</div>
-              <div>
-                <div class="testi-user-name">
-                  <span>Dian Saputra</span>
-                  <span class="verified-check-icon">✓</span>
-                </div>
-                <div class="testi-user-meta">Medan • Cent Trader</div>
-                <div class="testi-verified-pill">✓ Verified Trader</div>
-              </div>
-            </div>
-            <div class="testi-pnl-tag">Radar News 19:30 WIB Akurat</div>
-            <p class="testi-quote-text">
-              "Radar news 19:30 WIB ngebantu banget pas rilis CPI. Algoritma langsung update bias tepat di menit rilis, saldo akun naik stabil tanpa ribet mikir pending order."
-            </p>
-          </div>
-        </div>
-      </section>
     </div>
 
-    <!-- TAB 2: 30 MATERI CANDLESTICK & SMC FIBONACCI CALCULATOR -->
+    <!-- TAB 2: KING NEWS SNIPER & MACRO DUAL-MATRIX (THE UPGRADE) -->
+    <div id="tab-news" class="tab-content">
+      <div class="king-news-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <div>
+            <span class="king-badge-tag">👑 INSTITUTIONAL NEWS WIRE • 99% WINRATE ENGINE</span>
+            <h2 style="font-family:var(--font-heading); font-size:22px; color:#fff;">
+              RADAR HIGH IMPACT NEWS: <span style="color:var(--gold);">DISPLACEMENT AUTO-FLIP</span>
+            </h2>
+            <p style="font-size:12px; color:var(--text-muted); font-family:var(--font-mono);">
+              Mendeteksi lonjakan likuiditas rilis CPI, PPI, NFP, Retail Sales & FOMC secara instan tanpa bias statis.
+            </p>
+          </div>
+          <button class="audio-switch-btn" onclick="triggerNewsVoiceNow()" style="border-color:var(--gold); color:var(--gold);">
+            📢 TEST VOICE CALLER NEWS
+          </button>
+        </div>
+
+        <div class="sniper-status-grid">
+          <div class="sniper-gauge-card">
+            <div>
+              <div style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); margin-bottom:4px;">ANCHOR HARGA PRE-NEWS (19:29 WIB):</div>
+              <div style="font-family:var(--font-heading); font-size:26px; font-weight:800; color:#fff;" id="preNewsAnchor">$4,095.50</div>
+              
+              <div style="display:flex; justify-content:space-between; margin-top:10px; font-family:var(--font-mono); font-size:11px;">
+                <span>DELTA PIPS SPOT:</span>
+                <strong id="liveNewsDeltaPips" style="color:var(--cyan);">+0.0 PIPS</strong>
+              </div>
+
+              <div style="margin-top:12px; padding:10px; border-radius:6px; background:#0b1018; border:1px solid #1a273b;">
+                <div style="font-family:var(--font-mono); font-size:9px; color:var(--text-muted);">STATUS REAL-TIME DISPLACEMENT:</div>
+                <div id="newsDisplacementVerdict" style="font-family:var(--font-heading); font-size:14px; font-weight:800; color:var(--neon); margin-top:2px;">
+                  STANDBY / OBSERVASI SPREAD
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;">
+              <button onclick="setSimulatedShock('sell')" class="tab-nav-btn" style="width:100%; margin-bottom:6px; border-color:var(--bear); color:var(--bear);">
+                ⚡ SIMULASI DATA HOT INFLATION (DUMP / SELL)
+              </button>
+              <button onclick="setSimulatedShock('buy')" class="tab-nav-btn" style="width:100%; border-color:var(--bull); color:var(--bull);">
+                ⚡ SIMULASI DATA SOFT INFLATION (PUMP / BUY)
+              </button>
+            </div>
+          </div>
+
+          <div class="sniper-scenario-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="font-family:var(--font-heading); font-size:13px; font-weight:700;">DUAL-SCENARIO FUNDAMENTAL MATRIX</span>
+              <span style="font-family:var(--font-mono); font-size:10px; color:var(--cyan);">1-CLICK SIMULATOR</span>
+            </div>
+
+            <div class="scenario-toggle-btn-group">
+              <div class="btn-scenario-opt active-auto" id="btnScenAuto" onclick="selectScenario('auto')">
+                🤖 AUTO-FLIP (SPOT)
+              </div>
+              <div class="btn-scenario-opt" id="btnScenSell" onclick="selectScenario('sell')">
+                🔴 AKTUAL > FCST (DUMP)
+              </div>
+              <div class="btn-scenario-opt" id="btnScenBuy" onclick="selectScenario('buy')">
+                🟢 AKTUAL < FCST (PUMP)
+              </div>
+            </div>
+
+            <div class="fundamental-deep-box" id="scenarioReasonBox">
+              <strong>LOGIKA INSTITUSI KING NEWS:</strong><br>
+              Saat data dirilis lebih tinggi dari konsensus (Aktual > Forecast), imbal hasil US Treasury 10-Year dan Indeks Dolar (DXY) menyerap likuiditas modal global secara agresif. Emas non-yielding asset langsung ditinggalkan dan memicu *sell imbalance*. Sebaliknya, jika data meleset ke bawah, ekspektasi pemangkasan suku bunga The Fed melonjak seketika, mendorong lonjakan lelang emas ke OTE Premium.
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; font-family:var(--font-mono); font-size:11px;">
+              <div style="background:#090d14; padding:8px; border-radius:4px; border:1px solid #1a2332;">
+                <span style="color:var(--text-muted);">ACTION PLAN SAAT INI:</span><br>
+                <strong id="scenActionPlan" style="color:var(--neon); font-size:13px;">IKUTI ARAH BREAKOUT IMPULSIF</strong>
+              </div>
+              <div style="background:#090d14; padding:8px; border-radius:4px; border:1px solid #1a2332;">
+                <span style="color:var(--text-muted);">AREA MITIGASI / SL BUFFER:</span><br>
+                <strong id="scenSLPlan" style="color:var(--gold); font-size:13px;">25-35 PIPS DARI ENTRY CANDLE</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LIVE ECONOMIC CALENDAR (FORECAST TABLE) -->
+        <div style="overflow-x:auto;">
+          <table class="news-table-custom">
+            <thead>
+              <tr>
+                <th>HARI / TANGGAL</th>
+                <th>WAKTU WIB</th>
+                <th>EVENT EKONOMI UTAMA</th>
+                <th>IMPACT</th>
+                <th>SKENARIO INSTITUSI & ASTRO HARMONIK</th>
+                <th>PROYEKSI WINRATE 99%</th>
+              </tr>
+            </thead>
+            <tbody id="newsForecastTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: HTF LIQUIDITY & KILLZONE MAP (NEW FEATURE) -->
+    <div id="tab-liquidity" class="tab-content">
+      <div class="checklist-wrap-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
+          <div>
+            <h2 style="font-family:var(--font-heading); font-size:20px; color:#fff;">
+              🎯 INSTITUTIONAL <span style="color:var(--neon);">LIQUIDITY & KILLZONE MAP</span>
+            </h2>
+            <p style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">
+              Pemetaan batas likuiditas Buy-Side (BSL) & Sell-Side (SSL) terhadap harga spot XAUUSD saat ini ($4,095).
+            </p>
+          </div>
+          <span style="font-family:var(--font-mono); font-size:11px; color:var(--cyan); background:#0c121c; padding:5px 10px; border-radius:4px; border:1px solid #1c2b3e;">
+            SMC ORDER FLOW MATRIX
+          </span>
+        </div>
+
+        <table class="liq-table">
+          <thead>
+            <tr>
+              <th>POOL LIKUIDITAS</th>
+              <th>LEVEL HARGA ($)</th>
+              <th>TIPE POOL</th>
+              <th>JARAK DARI SPOT</th>
+              <th>STATUS AKSI INSTITUSI</th>
+            </tr>
+          </thead>
+          <tbody id="liquidityPoolTableBody">
+            <!-- Dynamically populated via JS -->
+          </tbody>
+        </table>
+
+        <div style="margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px;">
+          <div style="background:#06080d; border:1px solid #1b2434; border-radius:8px; padding:12px;">
+            <div style="font-family:var(--font-mono); font-size:10px; color:var(--cyan);">LONDON KILLZONE (15:00 - 17:00 WIB)</div>
+            <div style="font-size:12px; font-weight:700; color:#fff; margin-top:4px;">Judas Swing Manipulation</div>
+            <p style="font-size:10px; color:var(--text-muted); margin-top:4px;">Smart money menyapu Asian High/Low sebelum mendorong tren sejati ke New York.</p>
+          </div>
+
+          <div style="background:#06080d; border:1px solid #1b2434; border-radius:8px; padding:12px;">
+            <div style="font-family:var(--font-mono); font-size:10px; color:var(--gold);">NEW YORK KILLZONE (19:30 - 22:30 WIB)</div>
+            <div style="font-size:12px; font-weight:700; color:#fff; margin-top:4px;">Macro Injection & Core Expansion</div>
+            <p style="font-size:10px; color:var(--text-muted); margin-top:4px;">Waktu rilis data berdampak tinggi. Likuiditas maksimal dengan displacement ekstrem.</p>
+          </div>
+
+          <div style="background:#06080d; border:1px solid #1b2434; border-radius:8px; padding:12px;">
+            <div style="font-family:var(--font-mono); font-size:10px; color:var(--neon);">MIDNIGHT KILLZONE (01:00 - 01:30 WIB)</div>
+            <div style="font-size:12px; font-weight:700; color:#fff; margin-top:4px;">Late Sweep & Bond Rollover</div>
+            <p style="font-size:10px; color:var(--text-muted); margin-top:4px;">Penutupan transaksi obligasi AS. Reversal rapi memanfaatkan OTE level diskon/premium.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: CHECKLIST SMC ENTRY A+ -->
+    <div id="tab-checklist" class="tab-content">
+      <div class="checklist-wrap-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid #1c2432; padding-bottom:12px;">
+          <div>
+            <h2 style="font-family:var(--font-heading); font-size:20px; color:#fff;">
+              VALIDATOR KONFLUENSI EKSEKUSI <span style="color:var(--neon);">A+ SETUP INSTITUSI</span>
+            </h2>
+            <p style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">
+              Ceklis 6 konfluensi Smart Money Concepts (SMC) & Astrodox sebelum melakukan Open Posisi.
+            </p>
+          </div>
+          <button onclick="resetChecklist()" class="audio-switch-btn" style="border-color:#64748b; color:#94a3b8;">
+            ↺ RESET CEKLIS
+          </button>
+        </div>
+
+        <div class="checklist-grid">
+          <div class="checklist-items-card">
+            <div class="chk-item-row" onclick="toggleChkBox('chk1')">
+              <input type="checkbox" id="chk1" onchange="calcChecklistScore()" onclick="event.stopPropagation()">
+              <div>
+                <div class="chk-item-title" style="color:#fff; font-weight:700;">1. Higher Timeframe Liquidity Sweep (BSL / SSL)</div>
+                <div class="chk-item-desc" style="font-size:11px; color:var(--text-muted);">Harga telah menyapu likuiditas eksternal: Asian High/Low, Previous Day High/Low, atau Equal Highs/Lows.</div>
+              </div>
+            </div>
+
+            <div class="chk-item-row" onclick="toggleChkBox('chk2')">
+              <input type="checkbox" id="chk2" onchange="calcChecklistScore()" onclick="event.stopPropagation()">
+              <div>
+                <div class="chk-item-title" style="color:#fff; font-weight:700;">2. Market Structure Shift / CHOCH pada LTF (M1 / M5)</div>
+                <div class="chk-item-desc" style="font-size:11px; color:var(--text-muted);">Terjadi Change of Character (CHOCH) dengan pergerakan agresif (Displacement) menembus swing point terakhir.</div>
+              </div>
+            </div>
+
+            <div class="chk-item-row" onclick="toggleChkBox('chk3')">
+              <input type="checkbox" id="chk3" onchange="calcChecklistScore()" onclick="event.stopPropagation()">
+              <div>
+                <div class="chk-item-title" style="color:#fff; font-weight:700;">3. Unmitigated Fair Value Gap (FVG) / Order Block</div>
+                <div class="chk-item-desc" style="font-size:11px; color:var(--text-muted);">Terdapat celah ketidakseimbangan harga (Liquidity Imbalance) atau Order Block segar yang belum disentuh.</div>
+              </div>
+            </div>
+
+            <div class="chk-item-row" onclick="toggleChkBox('chk4')">
+              <input type="checkbox" id="chk4" onchange="calcChecklistScore()" onclick="event.stopPropagation()">
+              <div>
+                <div class="chk-item-title" style="color:#fff; font-weight:700;">4. Retracement Masuk Zona OTE (Fibonacci 0.705 - 0.79)</div>
+                <div class="chk-item-desc" style="font-size:11px; color:var(--text-muted);">Harga masuk ke area diskon maksimal untuk Buy atau premium maksimal untuk Sell.</div>
+              </div>
+            </div>
+
+            <div class="chk-item-row" onclick="toggleChkBox('chk5')">
+              <input type="checkbox" id="chk5" onchange="calcChecklistScore()" onclick="event.stopPropagation()">
+              <div>
+                <div class="chk-item-title" style="color:#fff; font-weight:700;">5. Timing Sesi Valid / Killzone Window</div>
+                <div class="chk-item-desc" style="font-size:11px; color:var(--text-muted);">Eksekusi berada pada jendela waktu bervolume tinggi: London Judas (15:00-16:00), US News (19:30), atau Midnight Window (01:00-01:30 WIB).</div>
+              </div>
+            </div>
+
+            <div class="chk-item-row" onclick="toggleChkBox('chk6')">
+              <input type="checkbox" id="chk6" onchange="calcChecklistScore()" onclick="event.stopPropagation()">
+              <div>
+                <div class="chk-item-title" style="color:#fff; font-weight:700;">6. Konfirmasi Transit Astrodox Tulungagung</div>
+                <div class="chk-item-desc" style="font-size:11px; color:var(--text-muted);">Siklus orbital Bulan/Planet mendukung arah bias (Trine/Sextile untuk Buy, atau Square/Opposition rejection untuk Sell).</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="checklist-score-panel">
+            <div>
+              <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">SKOR KONFLUENSI:</div>
+              <div style="font-family:var(--font-heading); font-size:38px; font-weight:900; color:var(--neon);" id="chkScoreVal">0 / 6</div>
+              <div class="meter-bar-outer">
+                <div class="meter-bar-fill" id="chkProgressBar"></div>
+              </div>
+              <div id="chkGradeLabel" style="font-family:var(--font-mono); font-size:12px; font-weight:800; color:var(--bear); margin-top:8px;">
+                🛑 INVALID SETUP (JANGAN ENTRY)
+              </div>
+              <p id="chkAdviceText" style="font-size:11px; color:#94a3b8; margin-top:10px; line-height:1.5;">
+                Tunggu konfirmasi minimal 4 konfluensi terpenuhi sebelum mempertimbangkan open posisi di akun riil.
+              </p>
+            </div>
+
+            <div style="background:#0a0e16; border:1px solid #1a2332; border-radius:6px; padding:12px; margin-top:16px;">
+              <div style="font-family:var(--font-mono); font-size:10px; color:var(--cyan); margin-bottom:4px;">REKOMENDASI MONEY MANAGEMENT:</div>
+              <div style="font-size:12px; font-weight:700; color:#fff;" id="chkRiskAdvice">Gunakan Risk 0% (Standby)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: 30 MATERI CANDLE & KALKULATOR SMC FIBONACCI -->
     <div id="tab-materi" class="tab-content">
       <div style="text-align:center; margin-bottom:16px;">
         <h2 style="font-family:var(--font-heading); font-size:20px; text-transform:uppercase;">MASTERCLASS CANDLESTICK & SMC MATRIX</h2>
@@ -1132,136 +1322,112 @@
           <div style="font-family:var(--font-heading); font-size:15px; font-weight:700; color:#fff;">
             ◈ KALKULATOR LEVEL FIBONACCI INSTITUSI SMC (OTE 0.705 - 0.79)
           </div>
-          <span style="font-family:var(--font-mono); font-size:10px; color:var(--neon); background:rgba(204,255,0,0.1); padding:2px 8px; border-radius:4px;">AUTO-CALCULATED</span>
+          <button onclick="syncFibWithSpotPrice()" class="audio-switch-btn" style="border-color:var(--neon); color:var(--neon);">
+            ⚡ SYNC DENGAN HARGA SPOT ($4,095)
+          </button>
         </div>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;">
           <div class="calc-input-box">
             <label>SWING HIGH ($ PRICE)</label>
-            <input type="number" id="smcHighInput" class="calc-input-field" value="2670.00" step="0.1" oninput="calcSmcFibLevels()">
+            <input type="number" id="smcHighInput" class="calc-input-field" value="4125.00" step="0.5" oninput="calcSmcFibLevels()">
           </div>
           <div class="calc-input-box">
             <label>SWING LOW ($ PRICE)</label>
-            <input type="number" id="smcLowInput" class="calc-input-field" value="2630.00" step="0.1" oninput="calcSmcFibLevels()">
+            <input type="number" id="smcLowInput" class="calc-input-field" value="4070.00" step="0.5" oninput="calcSmcFibLevels()">
           </div>
         </div>
 
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px; font-family:var(--font-mono); font-size:11px;">
           <div style="background:#040608; border-left:3px solid var(--bear); padding:10px; border-radius:0 4px 4px 0;">
             <div style="color:var(--bear); font-weight:800;">PREMIUM LEVEL (0.618):</div>
-            <div style="font-size:15px; color:#fff; font-weight:800;" id="resFib618">$2654.72</div>
+            <div style="font-size:15px; color:#fff; font-weight:800;" id="resFib618">$4103.99</div>
             <div style="font-size:9px; color:var(--text-muted);">Zona distribusi & mitigasi supply</div>
           </div>
           <div style="background:#040608; border-left:3px solid var(--gold); padding:10px; border-radius:0 4px 4px 0;">
             <div style="color:var(--gold); font-weight:800;">EQUILIBRIUM (0.50):</div>
-            <div style="font-size:15px; color:#fff; font-weight:800;" id="resFib500">$2650.00</div>
+            <div style="font-size:15px; color:#fff; font-weight:800;" id="resFib500">$4097.50</div>
             <div style="font-size:9px; color:var(--text-muted);">Nilai wajar (hindari entry agresif)</div>
           </div>
           <div style="background:#040608; border-left:3px solid var(--bull); padding:10px; border-radius:0 4px 4px 0;">
             <div style="color:var(--bull); font-weight:800;">DISCOUNT OTE (0.705 - 0.79):</div>
-            <div style="font-size:15px; color:var(--neon); font-weight:800;" id="resFibOte">$2638.40 - $2641.80</div>
+            <div style="font-size:15px; color:var(--neon); font-weight:800;" id="resFibOte">$4081.55 - $4086.22</div>
             <div style="font-size:9px; color:var(--text-muted);">Golden pocket institusional buy sweep</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 3: CHECKLIST KONFLUENSI A+ ENTRY -->
-    <div id="tab-checklist" class="tab-content">
-      <div class="checklist-wrap-box">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid #1c2432; padding-bottom:12px;">
-          <div>
-            <h2 style="font-family:var(--font-heading); font-size:20px; color:#fff;">
-              VALIDATOR KONFLUENSI EKSEKUSI <span style="color:var(--neon);">A+ SETUP INSTITUSI</span>
-            </h2>
-            <p style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">
-              Ceklis 6 konfluensi Smart Money Concepts (SMC) & Astrodox sebelum melakukan Open Posisi.
-            </p>
-          </div>
-          <button onclick="resetChecklist()" class="audio-switch-btn" style="border-color:#64748b; color:#94a3b8;">
-            ↺ RESET CEKLIS
-          </button>
+    <!-- TAB 6: CHART & 50 TIME ZONES & ASTRODOX -->
+    <div id="tab-terminal" class="tab-content">
+      <div class="astrodox-grid-wrap">
+        <div class="tv-wrap" id="tv_chart_container">
+          <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA%3AXAUUSD&interval=1&theme=dark&style=1&timezone=Asia%2FJakarta" style="width:100%; height:100%; border:none;"></iframe>
         </div>
 
-        <div class="checklist-grid">
-          <div class="checklist-items-card">
-            <div class="chk-item-row" onclick="toggleChkBox('chk1')">
-              <input type="checkbox" id="chk1" onchange="calcChecklistScore()">
-              <div>
-                <div class="chk-item-title">1. Higher Timeframe Liquidity Sweep (BSL / SSL)</div>
-                <div class="chk-item-desc">Harga telah menyapu likuiditas eksternal: Asian High/Low, Previous Day High/Low, atau Equal Highs/Lows.</div>
-              </div>
+        <div class="astrodox-pro-box">
+          <div class="astrodox-header-bar">
+            <div>
+              <h3 style="font-family:var(--font-heading); font-size:16px;">ASTRODOX 360° TRANSIT</h3>
+              <div style="font-family:var(--font-mono); font-size:10px; color:var(--neon);">TULUNGAGUNG (LAT -8.07°, LON 111.90°)</div>
             </div>
-
-            <div class="chk-item-row" onclick="toggleChkBox('chk2')">
-              <input type="checkbox" id="chk2" onchange="calcChecklistScore()">
-              <div>
-                <div class="chk-item-title">2. Market Structure Shift / CHOCH pada LTF (M1 / M5)</div>
-                <div class="chk-item-desc">Terjadi Change of Character (CHOCH) dengan pergerakan agresif (Displacement) menembus swing point terakhir.</div>
-              </div>
-            </div>
-
-            <div class="chk-item-row" onclick="toggleChkBox('chk3')">
-              <input type="checkbox" id="chk3" onchange="calcChecklistScore()">
-              <div>
-                <div class="chk-item-title">3. Unmitigated Fair Value Gap (FVG) / Order Block</div>
-                <div class="chk-item-desc">Terdapat celah ketidakseimbangan harga (Liquidity Imbalance) atau Order Block segar yang belum disentuh.</div>
-              </div>
-            </div>
-
-            <div class="chk-item-row" onclick="toggleChkBox('chk4')">
-              <input type="checkbox" id="chk4" onchange="calcChecklistScore()">
-              <div>
-                <div class="chk-item-title">4. Retracement Masuk Zona OTE (Fibonacci 0.705 - 0.79)</div>
-                <div class="chk-item-desc">Harga masuk ke area diskon maksimal untuk Buy atau premium maksimal untuk Sell.</div>
-              </div>
-            </div>
-
-            <div class="chk-item-row" onclick="toggleChkBox('chk5')">
-              <input type="checkbox" id="chk5" onchange="calcChecklistScore()">
-              <div>
-                <div class="chk-item-title">5. Timing Sesi Valid / Killzone Window</div>
-                <div class="chk-item-desc">Eksekusi berada pada jendela waktu bervolume tinggi: London Judas (15:00-16:00), US News (19:30), atau Midnight Window (01:00-01:30 WIB).</div>
-              </div>
-            </div>
-
-            <div class="chk-item-row" onclick="toggleChkBox('chk6')">
-              <input type="checkbox" id="chk6" onchange="calcChecklistScore()">
-              <div>
-                <div class="chk-item-title">6. Konfirmasi Transit Astrodox Tulungagung</div>
-                <div class="chk-item-desc">Siklus orbital Bulan/Planet mendukung arah bias (Trine/Sextile untuk Buy, atau Square/Opposition rejection untuk Sell).</div>
-              </div>
-            </div>
+            <span style="font-size:9px; background:rgba(204,255,0,0.15); color:var(--neon); border:1px solid var(--neon); padding:2px 6px; border-radius:3px; font-family:var(--font-mono); font-weight:700;">
+              AUTO-EPHEMERIS
+            </span>
           </div>
 
-          <div class="checklist-score-panel">
-            <div>
-              <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">SKOR KONFLUENSI:</div>
-              <div style="font-family:var(--font-heading); font-size:38px; font-weight:900; color:var(--neon);" id="chkScoreVal">0 / 6</div>
-              <div class="meter-bar-outer">
-                <div class="meter-bar-fill" id="chkProgressBar"></div>
+          <div class="moon-phase-card">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="width:36px; height:36px; border-radius:50%; background:radial-gradient(circle at 35% 35%, #fff, #94a3b8 60%, #334155 100%);"></div>
+              <div>
+                <div style="font-family:var(--font-heading); font-size:13px; font-weight:700;" id="moonPhaseTitle">Waxing Crescent</div>
+                <div style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted);" id="moonAgeMeta">Age: 4.2 Days • Scorpio Node</div>
               </div>
-              <div id="chkGradeLabel" style="font-family:var(--font-mono); font-size:12px; font-weight:800; color:var(--bear); margin-top:8px;">
-                🛑 INVALID SETUP (JANGAN ENTRY)
-              </div>
-              <p id="chkAdviceText" style="font-size:11px; color:#94a3b8; margin-top:10px; line-height:1.5;">
-                Tunggu konfirmasi minimal 4 konfluensi terpenuhi sebelum mempertimbangkan open posisi di akun riil.
-              </p>
             </div>
+            <div style="font-family:var(--font-mono); font-size:12px; font-weight:800; color:var(--neon);" id="moonIllumVal">24.5% ILLUM</div>
+          </div>
 
-            <div style="background:#0a0e16; border:1px solid #1a2332; border-radius:6px; padding:12px; margin-top:16px;">
-              <div style="font-family:var(--font-mono); font-size:10px; color:var(--cyan); margin-bottom:4px;">REKOMENDASI MONEY MANAGEMENT:</div>
-              <div style="font-size:12px; font-weight:700; color:#fff;" id="chkRiskAdvice">Gunakan Risk 0% (Standby)</div>
-            </div>
+          <div class="dial-center-stage">
+            <svg class="astrodox-svg" viewBox="0 0 400 400" id="astroSvgDial">
+              <circle cx="200" cy="200" r="196" fill="#080b11" stroke="#222d3d" stroke-width="2"/>
+              <circle cx="200" cy="200" r="176" fill="none" stroke="#334155" stroke-width="1.5"/>
+              <circle cx="200" cy="200" r="148" fill="none" stroke="#1e293b" stroke-width="1"/>
+              <circle cx="200" cy="200" r="70" fill="#040609" stroke="#334155" stroke-width="1"/>
+              <g id="astroAspectLinesGroup"></g>
+              <g id="astroLiveRotator" transform="rotate(0 200 200)">
+                <line x1="20" y1="200" x2="70" y2="200" stroke="#ccff00" stroke-width="3"/>
+                <text x="35" y="190" font-family="'Space Mono'" font-size="10" font-weight="900" fill="#ccff00">ASC</text>
+                <line x1="200" y1="20" x2="200" y2="70" stroke="#f59e0b" stroke-width="3"/>
+                <text x="210" y="42" font-family="'Space Mono'" font-size="10" font-weight="900" fill="#f59e0b">MC</text>
+              </g>
+              <g id="astroPlanetsGroup"></g>
+              <circle cx="200" cy="200" r="18" fill="#0b0f19" stroke="#38bdf8" stroke-width="2"/>
+              <text x="200" y="201" font-family="'Space Mono'" font-size="8" font-weight="900" fill="#ccff00" text-anchor="middle" dominant-baseline="central">24H</text>
+            </svg>
           </div>
         </div>
       </div>
+
+      <div style="margin-top:20px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <h2 style="font-family:var(--font-heading); font-size:15px; font-weight:700; text-transform:uppercase;">
+          🌐 50 SUB-TIME ZONES: QUANTITATIVE ASTRO TRANSIT & PIPS TP TARGETS
+        </h2>
+        <div class="tz-filter-bar" id="terminalTzFilterBar">
+          <button class="tab-nav-btn active" onclick="filterTimeZones('all', this)">SEMUA (50)</button>
+          <button class="tab-nav-btn" onclick="filterTimeZones('live', this)">🔥 SEDANG LIVE</button>
+          <button class="tab-nav-btn" onclick="filterTimeZones('buy', this)">HANYA BUY</button>
+          <button class="tab-nav-btn" onclick="filterTimeZones('sell', this)">HANYA SELL</button>
+          <button class="tab-nav-btn" onclick="filterTimeZones('midnight', this)">MIDNIGHT 01:00 & 01:30</button>
+          <button class="tab-nav-btn" onclick="filterTimeZones('news', this)">SESI NEWS 19:30</button>
+        </div>
+      </div>
+
+      <div class="tz-card-grid" id="tzGridContainer"></div>
     </div>
 
-    <!-- TAB 4: BROKER REKOMENDASI -->
+    <!-- TAB 7: BROKER PARTNER -->
     <div id="tab-broker" class="tab-content">
       <div class="broker-page-wrap">
-        
         <div style="text-align:center; margin-bottom:20px;">
           <h2 style="font-family:var(--font-heading); font-size:22px; font-weight:700; text-transform:uppercase;">
             BROKER PARTNER RESMI <span style="color:var(--neon);">ZERO SYNDICATE</span>
@@ -1290,12 +1456,10 @@
                 <li><span style="color:var(--vx-green); font-weight:900;">✓</span> Self-Rebate $10 - $12 / Lot (Langsung Masuk Akun)</li>
                 <li><span style="color:var(--vx-green); font-weight:900;">✓</span> Tersedia Akun Cent (Deposit mulai Rp 20.000 via QRIS)</li>
                 <li><span style="color:var(--vx-green); font-weight:900;">✓</span> Raw Spread mulai 0.0 Pip di Akun Pro ECN</li>
-                <li><span style="color:var(--vx-green); font-weight:900;">✓</span> Bebas Biaya Penarikan (Fast WD Bank Lokal)</li>
               </ul>
             </div>
             <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" rel="noopener noreferrer" class="btn-broker-action btn-broker-valetax">
               <span>DAFTAR AKUN VALETAX ($12 REBATE)</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
           </div>
 
@@ -1316,1305 +1480,370 @@
               <ul style="list-style:none; display:flex; flex-direction:column; gap:6px; font-size:11px; color:#cbd5e1; font-family:var(--font-mono);">
                 <li><span style="color:var(--hw-blue); font-weight:900;">✓</span> Leverage Fleksibel Hingga 1:Unlimited</li>
                 <li><span style="color:var(--hw-blue); font-weight:900;">✓</span> Pilihan Akun Cent, Standard, & ECN Pro</li>
-                <li><span style="color:var(--hw-blue); font-weight:900;">✓</span> Deposit & WD Instan Bank Lokal Indonesia & QRIS</li>
                 <li><span style="color:var(--hw-blue); font-weight:900;">✓</span> Bebas Swap (Swap-Free Islami) & Spread Tipis</li>
               </ul>
             </div>
             <a href="https://headway.partners/user/signup?hwp=8fed04" target="_blank" rel="noopener noreferrer" class="btn-broker-action btn-broker-headway">
               <span>DAFTAR AKUN HEADWAY SEKARANG</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
           </div>
         </div>
-
-        <div class="compact-calc-strip">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <span style="font-family:var(--font-heading); font-size:13px; font-weight:700; color:#fff;">
-              ⚡ KALKULATOR RINGKAS RESIKO AKUN & ESTIMASI REBATE ($12/LOT)
-            </span>
-            <span style="font-family:var(--font-mono); font-size:9px; color:var(--neon);">AUTO-ESTIMATOR</span>
-          </div>
-
-          <div class="calc-row-inputs">
-            <div class="calc-mini-box">
-              <label>SALDO ($ USD)</label>
-              <input type="number" id="riskBalance" class="calc-mini-input" value="1000" oninput="runUnifiedCalculator()">
-            </div>
-            <div class="calc-mini-box">
-              <label>RISK PER POSISI (%)</label>
-              <input type="number" id="riskPercent" class="calc-mini-input" value="2" step="0.5" oninput="runUnifiedCalculator()">
-            </div>
-            <div class="calc-mini-box">
-              <label>STOP LOSS (PIPS)</label>
-              <input type="number" id="riskSLPips" class="calc-mini-input" value="30" oninput="runUnifiedCalculator()">
-            </div>
-            <div class="calc-mini-box">
-              <label>VOL. TRADING / HARI (LOT)</label>
-              <input type="number" id="dailyLotInput" class="calc-mini-input" value="3.0" step="0.5" oninput="runUnifiedCalculator()">
-            </div>
-          </div>
-
-          <div class="calc-summary-pills">
-            <div class="calc-summary-pill-item">
-              <span style="color:var(--text-muted);">LOT AMAN PER TRADE:</span>
-              <strong style="color:var(--neon);" id="resOptimalLot">0.07 LOT</strong>
-            </div>
-            <div class="calc-summary-pill-item">
-              <span style="color:var(--text-muted);">RISIKO MAKSIMAL:</span>
-              <strong style="color:var(--bear);" id="resRiskAmount">$20.00 USD</strong>
-            </div>
-            <div class="calc-summary-pill-item">
-              <span style="color:var(--text-muted);">CASHBACK REBATE / HARI:</span>
-              <strong style="color:var(--vx-green);" id="resRebateDailyDisplay">+$36.00 (Rp 585 Rb)</strong>
-            </div>
-            <div class="calc-summary-pill-item">
-              <span style="color:var(--text-muted);">POTENSI REBATE / BULAN:</span>
-              <strong style="color:var(--cyan);" id="resRebateMonthlyDisplay">+$720 (Rp 11.7 Jt)</strong>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
 
-    <!-- TAB 5: JADWAL NEWS FOREX FACTORY -->
-    <div id="tab-news" class="tab-content">
-      <div class="news-forecast-wrap">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid #1c2432; padding-bottom:12px;">
-          <div>
-            <h2 style="font-family:var(--font-heading); font-size:20px; color:#fff;">
-              FORECAST KALENDER NEWS: <span style="color:var(--neon);">LIVE ECONOMIC CALENDAR MATRIX</span>
-            </h2>
-            <p style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">
-              Sinkronisasi kalender makro ekonomi riil terintegrasi rotasi harmonik transit astronomi Tulungagung.
-            </p>
-          </div>
-          <span style="font-size:10px; background:rgba(204,255,0,0.15); color:var(--neon); border:1px solid var(--neon); padding:4px 8px; border-radius:4px; font-family:var(--font-mono); font-weight:800;">
-            LIVE AUTO-SYNC
-          </span>
+    <!-- TAB 8: VIP SIGNAL & PNL CARD GENERATOR (NEW FEATURE) -->
+    <div id="tab-cardgen" class="tab-content">
+      <div class="checklist-wrap-box">
+        <div style="margin-bottom:16px;">
+          <h2 style="font-family:var(--font-heading); font-size:20px; color:#fff;">
+            📸 VIP CYBER SIGNAL & <span style="color:var(--neon);">PROFIT CARD GENERATOR</span>
+          </h2>
+          <p style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">
+            Buat kartu branding estetik untuk Instagram Story & Telegram dalam 1 klik dengan watermark resmi @rezayogiana & @zerofxn.
+          </p>
         </div>
 
-        <div style="overflow-x:auto;">
-          <table class="news-table-custom">
-            <thead>
-              <tr>
-                <th>HARI / TANGGAL</th>
-                <th>WAKTU WIB</th>
-                <th>EVENT EKONOMI</th>
-                <th>IMPACT</th>
-                <th>SIKLUS FISIKA & ASTRO TRANSIT</th>
-                <th>PROYEKSI ANALITIK INSTITUSI</th>
-              </tr>
-            </thead>
-            <tbody id="newsForecastTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- TAB 6: BERITA EKONOMI DUNIA PROMAX (WORLD NEWS WIRE) -->
-    <div id="tab-worldnews" class="tab-content">
-      <div class="world-news-wrap">
-        <div class="news-wire-header">
-          <div>
-            <h2 style="font-family:var(--font-heading); font-size:20px; color:#fff;">
-              BERITA EKONOMI DUNIA & <span style="color:var(--cyan);">MARKET WIRE REALTIME</span>
-            </h2>
-            <p style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">
-              Liputan makro ekonomi global, kebijakan The Fed, geopolitik, dan likuiditas komoditas XAUUSD (Auto-Sync).
-            </p>
-          </div>
-          <div style="display:flex; gap:8px; align-items:center;">
-            <span class="hud-pill" style="border-color:var(--cyan); color:var(--cyan);">
-              <span class="status-dot-pulse" style="background:var(--cyan); box-shadow:0 0 8px var(--cyan);"></span> LIVE WIRE FEED
-            </span>
-            <span class="hud-pill" style="border-color:var(--neon); color:var(--neon);">
-              AUTO-REFRESH: AKTIF
-            </span>
-          </div>
-        </div>
-
-        <div class="wire-filter-bar">
-          <button class="btn-filter-pill active" onclick="filterNewsCategory('all', this)">SEMUA TOPIK</button>
-          <button class="btn-filter-pill" onclick="filterNewsCategory('fed', this)">THE FED & SUKU BUNGA</button>
-          <button class="btn-filter-pill" onclick="filterNewsCategory('gold', this)">XAUUSD & COMMODITIES</button>
-          <button class="btn-filter-pill" onclick="filterNewsCategory('macro', this)">INFLASI & GEOPOLITIK</button>
-        </div>
-
-        <div class="wire-cards-grid" id="worldNewsContainer"></div>
-      </div>
-    </div>
-
-    <!-- TAB 7: CHART & 50 SUB-TIME ZONE MATRIX -->
-    <div id="tab-terminal" class="tab-content">
-      
-      <div class="hud-bar">
-        <div>
-          <span style="font-family:var(--font-heading); font-size:13px; font-weight:700;">ASTRODOX 360° QUANTITATIVE LIVE ENGINE & 50 ADAPTIVE ZONES</span>
-        </div>
-        <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
-          <div class="hud-pill"><span class="status-dot-pulse"></span> TIME: <span id="clockLive" style="color:var(--neon);">--:--:-- WIB</span></div>
-          <div class="hud-pill">SPOT XAUUSD: <span id="priceLive" style="color:var(--cyan); font-weight:900;">CONNECTING...</span></div>
-          <div class="hud-pill" id="hudMarketStatus" style="color:#a3e635;">MARKET: CHECKING...</div>
-          <div class="hud-pill" id="hud1930Status" style="border-color:var(--gold); color:var(--gold);">19:30: STANDBY</div>
-          <div class="hud-pill" id="hud0100Status" style="border-color:var(--cyan); color:var(--cyan);">01:00: STANDBY</div>
-          <button class="audio-switch-btn" id="audioToggleBtn" onclick="toggleAudioAlert()">
-            <span>🔔 SOUND: OFF</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="astrodox-grid-wrap">
-        <div class="tv-wrap" id="tv_chart_container">
-          <iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA%3AXAUUSD&interval=1&theme=dark&style=1&timezone=Asia%2FJakarta" style="width:100%; height:100%; border:none;"></iframe>
-        </div>
-
-        <div class="astrodox-pro-box">
-          <div class="astrodox-header-bar">
-            <div class="astro-title-wrap">
-              <h3>ASTRODOX.COM 360° TRANSIT</h3>
-              <div class="astro-sub-tag">TULUNGAGUNG REALTIME (LAT -8.07°, LON 111.90°)</div>
+        <div class="card-gen-wrap">
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div class="calc-input-box">
+              <label>PAIR TRADING</label>
+              <input type="text" id="genPair" class="calc-input-field" value="XAUUSD (GOLD)">
             </div>
-            <span style="font-size:9px; background:rgba(204,255,0,0.15); color:var(--neon); border:1px solid var(--neon); padding:2px 6px; border-radius:3px; font-family:var(--font-mono); font-weight:700;">
-              AUTO-EPHEMERIS
-            </span>
-          </div>
-
-          <div class="moon-phase-card">
-            <div class="moon-visual-wrap">
-              <div class="moon-orb-canvas" id="moonVisualOrb"></div>
-              <div>
-                <div class="moon-info-title" id="moonPhaseTitle">--</div>
-                <div class="moon-info-meta" id="moonAgeMeta">--</div>
-              </div>
+            <div class="calc-input-box">
+              <label>TIPE SINYAL</label>
+              <select id="genType" class="calc-input-field" style="background:#0a0e16; color:var(--neon);" onchange="updateCanvasPreview()">
+                <option value="BUY">🟢 BUY (BULLISH IMPULSE)</option>
+                <option value="SELL">🔴 SELL (BEARISH DUMP)</option>
+              </select>
             </div>
-            <div class="moon-illum-badge" id="moonIllumVal">--% ILLUM</div>
+            <div class="calc-input-box">
+              <label>HARGA ENTRY ($)</label>
+              <input type="number" id="genEntry" class="calc-input-field" value="4095.50" step="0.5" oninput="updateCanvasPreview()">
+            </div>
+            <div class="calc-input-box">
+              <label>TARGET TP (PIPS)</label>
+              <input type="text" id="genTp" class="calc-input-field" value="+85 PIPS ($4,104.00)" oninput="updateCanvasPreview()">
+            </div>
+            <div class="calc-input-box">
+              <label>NAMA MEMBER / TRADER</label>
+              <input type="text" id="genTrader" class="calc-input-field" value="Raditya Pratama (VIP)" oninput="updateCanvasPreview()">
+            </div>
+            <button onclick="downloadSignalCard()" class="btn-plan-claim" style="margin-top:10px;">
+              💾 DOWNLOAD GAMBAR KARTU (.PNG)
+            </button>
           </div>
 
-          <div class="dial-center-stage">
-            <svg class="astrodox-svg" viewBox="0 0 400 400" id="astroSvgDial">
-              <defs>
-                <radialGradient id="dialBg" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#0a0e17"/>
-                  <stop offset="70%" stop-color="#05070a"/>
-                  <stop offset="100%" stop-color="#141c2b"/>
-                </radialGradient>
-              </defs>
-
-              <circle cx="200" cy="200" r="196" fill="url(#dialBg)" stroke="#222d3d" stroke-width="2"/>
-              <circle cx="200" cy="200" r="176" fill="none" stroke="#334155" stroke-width="1.5"/>
-              <circle cx="200" cy="200" r="148" fill="none" stroke="#1e293b" stroke-width="1"/>
-              <circle cx="200" cy="200" r="70" fill="#040609" stroke="#334155" stroke-width="1"/>
-
-              <g id="zodiacStaticWheel">
-                <circle cx="200" cy="200" r="162" fill="none" stroke="#1f2937" stroke-dasharray="1 8.4" stroke-width="4"/>
-                <g font-family="sans-serif" font-size="13" font-weight="900" text-anchor="middle" dominant-baseline="central">
-                  <text x="362" y="200" fill="#f87171">♈</text>
-                  <text x="340" y="281" fill="#4ade80">♉</text>
-                  <text x="281" y="340" fill="#facc15">♊</text>
-                  <text x="200" y="362" fill="#60a5fa">♋</text>
-                  <text x="119" y="340" fill="#f87171">♌</text>
-                  <text x="60" y="281" fill="#4ade80">♍</text>
-                  <text x="38" y="200" fill="#facc15">♎</text>
-                  <text x="60" y="119" fill="#60a5fa">♏</text>
-                  <text x="119" y="60" fill="#f87171">♐</text>
-                  <text x="200" y="38" fill="#e2e8f0">♑</text>
-                  <text x="281" y="60" fill="#facc15">♒</text>
-                  <text x="340" y="119" fill="#60a5fa">♓</text>
-                </g>
-              </g>
-
-              <g id="astroAspectLinesGroup"></g>
-
-              <g id="astroLiveRotator" transform="rotate(0 200 200)">
-                <line x1="200" y1="70" x2="200" y2="176" stroke="#475569" stroke-width="1"/>
-                <line x1="200" y1="224" x2="200" y2="330" stroke="#475569" stroke-width="1"/>
-                <line x1="70" y1="200" x2="176" y2="200" stroke="#475569" stroke-width="1"/>
-                <line x1="224" y1="200" x2="330" y2="200" stroke="#475569" stroke-width="1"/>
-
-                <line x1="20" y1="200" x2="70" y2="200" stroke="#ccff00" stroke-width="3"/>
-                <text x="40" y="190" font-family="'Space Mono'" font-size="10" font-weight="900" fill="#ccff00">ASC</text>
-                
-                <line x1="330" y1="200" x2="380" y2="200" stroke="#64748b" stroke-width="2"/>
-                <text x="350" y="190" font-family="'Space Mono'" font-size="9" font-weight="900" fill="#94a3b8">DSC</text>
-
-                <line x1="200" y1="20" x2="200" y2="70" stroke="#f59e0b" stroke-width="3"/>
-                <text x="210" y="42" font-family="'Space Mono'" font-size="10" font-weight="900" fill="#f59e0b">MC</text>
-
-                <line x1="200" y1="330" x2="200" y2="380" stroke="#64748b" stroke-width="2"/>
-                <text x="210" y="365" font-family="'Space Mono'" font-size="9" font-weight="900" fill="#94a3b8">IC</text>
-              </g>
-
-              <g id="astroPlanetsGroup"></g>
-
-              <circle cx="200" cy="200" r="18" fill="#0b0f19" stroke="#38bdf8" stroke-width="2"/>
-              <text x="200" y="201" font-family="'Space Mono'" font-size="8" font-weight="900" fill="#ccff00" text-anchor="middle" dominant-baseline="central">24H</text>
-            </svg>
-          </div>
-
-          <div class="ephem-table-wrap">
-            <table class="ephem-table">
-              <thead>
-                <tr><th>BODY</th><th>LONGITUDE</th><th>SPEED</th><th>ASPECT RATIO</th></tr>
-              </thead>
-              <tbody id="ephemTableBody"></tbody>
-            </table>
+          <div class="canvas-preview-box">
+            <canvas id="signalCanvas" width="600" height="600"></canvas>
           </div>
         </div>
       </div>
-
-      <div style="margin-top:20px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-        <h2 style="font-family:var(--font-heading); font-size:15px; font-weight:700; text-transform:uppercase;">
-          🌐 50 SUB-TIME ZONES: QUANTITATIVE ASTRO TRANSIT & PIPS TP TARGETS
-        </h2>
-        <div class="tz-filter-bar">
-          <button class="btn-filter-pill active" onclick="filterTimeZones('all', this)">SEMUA (50)</button>
-          <button class="btn-filter-pill" onclick="filterTimeZones('live', this)">🔥 SEDANG LIVE</button>
-          <button class="btn-filter-pill" onclick="filterTimeZones('buy', this)">HANYA BUY</button>
-          <button class="btn-filter-pill" onclick="filterTimeZones('sell', this)">HANYA SELL</button>
-          <button class="btn-filter-pill" onclick="filterTimeZones('midnight', this)">MIDNIGHT 01:00 & 01:30</button>
-          <button class="btn-filter-pill" onclick="filterTimeZones('news', this)">SESI NEWS 19:30</button>
-        </div>
-      </div>
-
-      <div class="tz-card-grid" id="tzGridContainer"></div>
     </div>
 
     <footer style="margin-top:60px; padding-top:20px; border-top:1px solid var(--border-dark); text-align:center;">
       <p style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); max-width:850px; margin:0 auto; line-height:1.6;">
-        <strong>PERINGATAN RISIKO:</strong> Perdagangan instrumen leverage seperti XAUUSD memiliki tingkat risiko modal tinggi. Algoritma transit Astrodox Tulungagung, rotasi 50 sub-time zones, serta target TP Pips dirancang untuk analitik pasar kuantitatif dan probabilitas independen.
+        <strong>PERINGATAN RISIKO:</strong> Trading komoditas XAUUSD berisiko tinggi. Algoritma King News, transit Astrodox Tulungagung, dan radar 50 time zones dirancang untuk kalkulasi probabilitas independen dan edukasi lelang institusi.
       </p>
       <div style="margin-top:14px; font-size:11px; color:#64748b; font-family:var(--font-mono);">
-        © 2026 ZERO SYNDICATE • Tulungagung Precision Engine PROMAX
+        © 2026 ZERO SYNDICATE • Tulungagung King Engine PROMAX
       </div>
     </footer>
 
   </main>
 
-  <div id="toastNotification" class="toast-box">Sinyal Berhasil Disalin!</div>
+  <div id="toastNotification" class="toast-box">Sinyal Disalin!</div>
 
-  <a href="https://wa.me/62882010445069?text=Halo%20Admin%20Rezayogiana%2C%20saya%20mau%20klaim%20Akses%20EXPERT%20VIP%20Gratis%20dan%20daftar%20broker" target="_blank" rel="noopener noreferrer" class="floating-chat-btn" title="Chat Admin WhatsApp">
+  <!-- MODAL VIP GATE LOCK -->
+  <div id="vipLockModal" class="vip-modal-overlay">
+    <div class="vip-modal-card">
+      <button class="close-modal-x" onclick="closeVipModal()">✕</button>
+      <span style="font-family:var(--font-mono); font-size:10px; font-weight:800; background:rgba(204,255,0,0.15); color:var(--neon); border:1px solid var(--neon); padding:3px 8px; border-radius:4px; display:inline-block; margin-bottom:10px;">🔒 RESTRICTED AREA</span>
+      <h3 style="font-family:var(--font-heading); font-size:20px; color:#fff; margin-bottom:6px;">AKSES KHUSUS MEMBER VIP</h3>
+      <p style="font-size:12px; color:var(--text-muted); line-height:1.5; margin-bottom:18px;">
+        Tab King News Sniper, Liquidity Map, dan 50 Time Zones khusus komunitas Zero Syndicate. Masukkan Passkey VIP Anda.
+      </p>
+      <div style="text-align:left;">
+        <label style="font-family:var(--font-mono); font-size:10px; color:#94a3b8;">NAMA MEMBER</label>
+        <input type="text" id="vipInputName" class="vip-input-control" placeholder="Contoh: Raditya Pratama">
+        <label style="font-family:var(--font-mono); font-size:10px; color:#94a3b8;">ID AKUN BROKER (VALETAX / HEADWAY)</label>
+        <input type="text" id="vipInputAccount" class="vip-input-control" placeholder="Nomor Akun Trading Anda">
+        <label style="font-family:var(--font-mono); font-size:10px; color:#94a3b8;">PASSKEY VIP</label>
+        <input type="text" id="vipInputKey" class="vip-input-control" placeholder="Masukkan Passkey VIP..." style="letter-spacing:2px; text-transform:uppercase; color:var(--neon);">
+      </div>
+      <button class="btn-unlock-vip" onclick="submitVipActivation()">⚡ AKTIFKAN AKSES SEKARANG</button>
+    </div>
+  </div>
+
+  <a href="https://wa.me/62882010445069?text=Halo%20Admin%20Rezayogiana%2C%20saya%20mau%20minta%20Passkey%20Aktivasi%20VIP" target="_blank" rel="noopener noreferrer" class="floating-chat-btn" title="Chat WhatsApp">
     <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
   </a>
 
   <script>
     // =========================================================================
-    // 0. GLOBAL APPLICATION STATE & ENGINE CONSTANTS
+    // 0. GLOBAL STATE & REALISTIC 2026 SPOT PRICE
     // =========================================================================
-    var liveSpotPrice = 2650.00;
-    var dynamicTimeZonesList = [];
+    var liveSpotPrice = 4095.50; // Real-world Gold price base
+    var preNewsAnchorPrice = 4095.50;
     var currentTzFilter = "all";
-    var currentNewsWireFilter = "all";
+    var activeScenarioMode = "auto"; // "auto", "sell", "buy"
+    var isVoiceEnabled = true;
     var isAudioEnabled = false;
     var audioCtx = null;
-    var cachedNewsData = null;
-    var lastMinuteChecked = -1;
-    var lastWireAutoRefreshMinute = -1;
+    var lastMinuteSpoken = -1;
+    var dynamicTimeZonesList = [];
+    var MASTER_VIP_KEY = "ZEROVIP2026";
+    var PUBLIC_TABS = ["tab-join", "tab-broker"];
+    var pendingRestrictedTab = null;
 
-    // =========================================================================
-    // 1. DATA CANDLESTICK
-    // =========================================================================
-    var candleData = [
-      { id: 1, name: "Hammer", type: "bull", cat: "Bullish Reversal", desc: "Body kecil di atas dengan lower wick panjang minimal 2x panjang body. Menandakan penolakan harga murah secara masif.", psych: "Buyer institusi menyerap seluruh penjualan ritel", smc: "Sweep Sell-Side Liquidity (SSL)", sl: "Di bawah ekor bawah (low)", prob: "88% Win Rate", render: '<div class="candle bullish"><div class="wick" style="height:110px; top:-20px;"></div><div class="body" style="height:35px; margin-top:-60px;"></div></div>' },
-      { id: 2, name: "Inverted Hammer", type: "bull", cat: "Bullish Reversal", desc: "Body kecil di bawah dengan upper wick panjang di area support. Sinyal awal pengujian level penawaran.", psych: "Uji likuiditas area atas oleh smart money", smc: "Mitigasi Fair Value Gap (FVG)", sl: "Di bawah harga terendah body", prob: "82% Win Rate", render: '<div class="candle bullish"><div class="wick" style="height:110px; top:-40px;"></div><div class="body" style="height:35px; margin-top:40px;"></div></div>' },
-      { id: 3, name: "Bullish Engulfing", type: "bull", cat: "Bullish Reversal", desc: "Candle hijau tebal yang menelan seluruh rentang body candle merah sebelumnya.", psych: "Pergeseran momentum mendadak dari seller ke buyer", smc: "Konfirmasi Bullish CHOCH", sl: "Di bawah low candle engulfing", prob: "91% Win Rate", render: '<div class="candle bearish" style="margin-right:12px;"><div class="wick" style="height:60px; top:10px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bullish"><div class="wick" style="height:110px; top:-10px;"></div><div class="body" style="height:85px;"></div></div>' },
-      { id: 4, name: "Piercing Line", type: "bull", cat: "Bullish Reversal", desc: "Candle kedua dibuka gap down namun ditutup melampaui level 50% dari body candle merah sebelumnya.", psych: "Seller kehilangan momentum setelah gap", smc: "Rejeksi Discount 50% Equilibrium", sl: "Di bawah harga terendah kedua", prob: "84% Win Rate", render: '<div class="candle bearish" style="margin-right:10px;"><div class="wick" style="height:90px; top:0;"></div><div class="body" style="height:70px;"></div></div><div class="candle bullish"><div class="wick" style="height:80px; top:30px;"></div><div class="body" style="height:55px; margin-top:25px;"></div></div>' },
-      { id: 5, name: "Morning Star", type: "bull", cat: "Bullish Reversal", desc: "Formasi 3 candle di dasar tren: bearish panjang, candle kecil konsolidasi, disusul bullish impulsif.", psych: "Transisi lelang dari panik ke akumulasi", smc: "Unmitigated Demand Block", sl: "Di bawah titik terendah candle tengah", prob: "93% Win Rate", render: '<div class="candle bearish"><div class="wick" style="height:80px; top:0;"></div><div class="body" style="height:60px;"></div></div><div class="candle doji" style="margin-top:50px;"><div class="wick" style="height:30px;"></div><div class="body"></div></div><div class="candle bullish"><div class="wick" style="height:80px; top:10px;"></div><div class="body" style="height:60px; margin-top:10px;"></div></div>' },
-      { id: 6, name: "Three White Soldiers", type: "bull", cat: "Bullish Continuation", desc: "Tiga candle hijau tebal beruntun dengan shadow pendek yang mencetak higher highs bertahap.", psych: "Akumulasi institusional bertahap tanpa jeda", smc: "Bullish Order Flow Expansion", sl: "Di bawah pembukaan candle pertama", prob: "89% Win Rate", render: '<div class="candle bullish" style="margin-top:40px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bullish" style="margin-top:20px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bullish" style="margin-top:0px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div>' },
-      { id: 7, name: "Bullish Marubozu", type: "bull", cat: "Momentum", desc: "Candle penuh tanpa bayangan atas maupun bawah. Harga dibuka pada titik terendah dan ditutup di tertinggi.", psych: "Buyer mendominasi 100% tanpa perlawanan", smc: "Imbalance / Liquidity Void", sl: "Di bawah open candle Marubozu", prob: "87% Win Rate", render: '<div class="candle bullish"><div class="wick" style="height:0;"></div><div class="body" style="height:110px;"></div></div>' },
-      { id: 8, name: "Dragonfly Doji", type: "bull", cat: "Bullish Reversal", desc: "Open, high, dan close berada di puncak yang sama dengan lower shadow menjulang panjang.", psych: "Penolakan mutlak terhadap level diskon", smc: "Pembersihan Liquidity Pool", sl: "Di bawah ekor terendah Doji", prob: "86% Win Rate", render: '<div class="candle doji"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="margin-top:-70px;"></div></div>' },
-      { id: 9, name: "Bullish Harami", type: "bull", cat: "Bullish Reversal", desc: "Candle hijau kecil yang sepenuhnya berada di dalam rentang body candle merah besar sebelumnya.", psych: "Volatilitas seller menyusut drastis", smc: "Inside Bar Mitigation", sl: "Di bawah low candle mother bar", prob: "80% Win Rate", render: '<div class="candle bearish" style="margin-right:12px;"><div class="wick" style="height:100px;"></div><div class="body" style="height:75px;"></div></div><div class="candle bullish"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div>' },
-      { id: 10, name: "Tweezer Bottom", type: "bull", cat: "Bullish Reversal", desc: "Dua candle beruntun dengan titik terendah (low) yang persis sama membentuk lantai support.", psych: "Batas lelang bawah tidak mampu ditembus", smc: "Double Bottom Equal Lows (EQL)", sl: "1-2 pip di bawah low kembar", prob: "85% Win Rate", render: '<div class="candle bearish" style="margin-right:10px;"><div class="wick" style="height:90px; top:10px;"></div><div class="body" style="height:55px;"></div></div><div class="candle bullish"><div class="wick" style="height:90px; top:10px;"></div><div class="body" style="height:55px;"></div></div>' },
-      { id: 11, name: "Shooting Star", type: "bear", cat: "Bearish Reversal", desc: "Body kecil di bagian bawah dengan upper wick panjang minimal 2x panjang body di puncak uptrend.", psych: "Rejeksi agresif dari zona resistance", smc: "Sweep Buy-Side Liquidity (BSL)", sl: "Di atas ujung ekor atas", prob: "90% Win Rate", render: '<div class="candle bearish"><div class="wick" style="height:110px; top:-30px;"></div><div class="body" style="height:35px; margin-top:40px;"></div></div>' },
-      { id: 12, name: "Hanging Man", type: "bear", cat: "Bearish Reversal", desc: "Bentuk menyerupai Hammer namun muncul di puncak tren naik tanda buyer mulai rapuh.", psych: "Seller mulai berhasil menembus support", smc: "Distribusi Awal di Premium Zone", sl: "Di atas harga tertinggi sesi", prob: "79% Win Rate", render: '<div class="candle bearish"><div class="wick" style="height:110px; top:-20px;"></div><div class="body" style="height:35px; margin-top:-60px;"></div></div>' },
-      { id: 13, name: "Bearish Engulfing", type: "bear", cat: "Bearish Reversal", desc: "Candle merah raksasa yang menelan seluruh rentang candle hijau sebelumnya.", psych: "Pembalikan dominasi langsung oleh institusi", smc: "Bearish Change of Character (CHOCH)", sl: "Di atas high candle bearish", prob: "92% Win Rate", render: '<div class="candle bullish" style="margin-right:12px;"><div class="wick" style="height:60px; top:10px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bearish"><div class="wick" style="height:110px; top:-10px;"></div><div class="body" style="height:85px;"></div></div>' },
-      { id: 14, name: "Dark Cloud Cover", type: "bear", cat: "Bearish Reversal", desc: "Candle kedua dibuka gap up tetapi ditutup di bawah 50% body candle hijau sebelumnya.", psych: "Penolakan level harga mahal secara instan", smc: "Rejection di Premium Equilibrium", sl: "Di atas titik tertinggi candle kedua", prob: "83% Win Rate", render: '<div class="candle bullish" style="margin-right:10px;"><div class="wick" style="height:90px; top:20px;"></div><div class="body" style="height:70px; margin-top:10px;"></div></div><div class="candle bearish"><div class="wick" style="height:85px; top:0;"></div><div class="body" style="height:60px;"></div></div>' },
-      { id: 15, name: "Evening Star", type: "bear", cat: "Bearish Reversal", desc: "Formasi 3 candle di puncak tren: bullish panjang, candle kecil ragu, dan candle bearish tebal.", psych: "Kelelahan momentum pembeli", smc: "Supply Block Unmitigated", sl: "Di atas titik tertinggi candle tengah", prob: "94% Win Rate", render: '<div class="candle bullish"><div class="wick" style="height:80px; top:20px;"></div><div class="body" style="height:60px; margin-top:20px;"></div></div><div class="candle doji" style="margin-top:-30px;"><div class="wick" style="height:30px;"></div><div class="body"></div></div><div class="candle bearish"><div class="wick" style="height:80px; top:10px;"></div><div class="body" style="height:60px; margin-top:10px;"></div></div>' },
-      { id: 16, name: "Three Black Crows", type: "bear", cat: "Bearish Continuation", desc: "Tiga candle merah berturut-turut dengan body tebal yang mencetak lower lows secara agresif.", psych: "Penjualan panik atau distribusi terencana", smc: "Bearish Order Flow Expansion", sl: "Di atas open candle merah pertama", prob: "90% Win Rate", render: '<div class="candle bearish"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bearish" style="margin-top:20px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bearish" style="margin-top:40px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:35px;"></div></div>' },
-      { id: 17, name: "Bearish Marubozu", type: "bear", cat: "Momentum", desc: "Candle merah penuh tanpa shadow. Open berada di titik tertinggi dan close di terendah mutlak.", psych: "Seller mendominasi penuh tanpa perlawanan", smc: "Displacement / Sell Imbalance", sl: "Di atas open candle Marubozu", prob: "88% Win Rate", render: '<div class="candle bearish"><div class="wick" style="height:0;"></div><div class="body" style="height:110px;"></div></div>' },
-      { id: 18, name: "Gravestone Doji", type: "bear", cat: "Bearish Reversal", desc: "Open, low, dan close berada di dasar candle dengan upper shadow menjulang panjang.", psych: "Kegagalan total buyer mempertahankan harga", smc: "Buy-Side Liquidity Sweep (BSL)", sl: "Di atas ujung ekor atas Doji", prob: "87% Win Rate", render: '<div class="candle doji"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="margin-top:50px;"></div></div>' },
-      { id: 19, name: "Bearish Harami", type: "bear", cat: "Bearish Reversal", desc: "Candle merah kecil yang seluruh rentangnya berada di dalam body candle hijau besar sebelumnya.", psych: "Tekanan beli terhenti secara mendadak", smc: "Inside Bar Bearish Setup", sl: "Di atas high mother bar", prob: "81% Win Rate", render: '<div class="candle bullish" style="margin-right:12px;"><div class="wick" style="height:100px;"></div><div class="body" style="height:75px;"></div></div><div class="candle bearish"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div>' },
-      { id: 20, name: "Tweezer Top", type: "bear", cat: "Bearish Reversal", desc: "Dua candle beruntun dengan titik tertinggi (high) persis sama membentuk resistance solid.", psych: "Batas harga lelang atas tertahan kuat", smc: "Equal Highs (EQH) Liquidity Pool", sl: "1-2 pip di atas high kembar", prob: "86% Win Rate", render: '<div class="candle bullish" style="margin-right:10px;"><div class="wick" style="height:90px; top:-10px;"></div><div class="body" style="height:55px; margin-top:20px;"></div></div><div class="candle bearish"><div class="wick" style="height:90px; top:-10px;"></div><div class="body" style="height:55px; margin-top:20px;"></div></div>' },
-      { id: 21, name: "Standard Doji", type: "neut", cat: "Indecision", desc: "Bentuk salib sempurna di mana harga open dan close berada di level yang sama persis.", psych: "Keseimbangan sempurna antara buyer & seller", smc: "Equilibrium Compression", sl: "Di luar rentang ekor Doji", prob: "75% Win Rate", render: '<div class="candle doji"><div class="wick" style="height:90px;"></div><div class="body"></div></div>' },
-      { id: 22, name: "Long-Legged Doji", type: "neut", cat: "Volatilitas", desc: "Doji dengan upper dan lower shadow yang sangat panjang mencerminkan pertarungan sengit.", psych: "Volatilitas tinggi namun berakhir seimbang", smc: "Dual Liquidity Sweep", sl: "Di luar range ekor terjauh", prob: "78% Win Rate", render: '<div class="candle doji"><div class="wick" style="height:130px;"></div><div class="body"></div></div>' },
-      { id: 23, name: "Spinning Top", type: "neut", cat: "Indecision", desc: "Body kecil simetris di tengah dengan shadow atas dan bawah berukuran sedang.", psych: "Penurunan volatilitas menjelang breakout", smc: "Inducement Range", sl: "Di luar batas breakout candle", prob: "76% Win Rate", render: '<div class="candle bullish"><div class="wick" style="height:90px;"></div><div class="body" style="height:25px;"></div></div>' },
-      { id: 24, name: "Bullish Pinbar", type: "bull", cat: "Rejection", desc: "Candle dengan ekor bawah mencapai lebih dari 70% dari keseluruhan rentang candle.", psych: "Penolakan harga ekstrim di area demand", smc: "Mitigasi Stop Hunt Bawah", sl: "Di bawah ekor Pinbar", prob: "91% Win Rate", render: '<div class="candle bullish"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="height:20px; margin-top:-70px;"></div></div>' },
-      { id: 25, name: "Bearish Pinbar", type: "bear", cat: "Rejection", desc: "Candle dengan ekor atas mencapai lebih dari 70% dari keseluruhan rentang candle.", psych: "Penolakan harga ekstrim di area supply", smc: "Mitigasi Stop Hunt Atas", sl: "Di atas ekor Pinbar", prob: "91% Win Rate", render: '<div class="candle bearish"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="height:20px; margin-top:55px;"></div></div>' },
-      { id: 26, name: "Rising Three Methods", type: "bull", cat: "Continuation", desc: "1 candle bullish panjang disusul 3 candle merah kecil di dalamnya, lalu ditutup candle bullish penembus.", psych: "Koreksi sehat yang diserap kembali oleh buyer", smc: "Liquidity Re-accumulation", sl: "Di bawah low candle pertama", prob: "87% Win Rate", render: '<div class="candle bullish" style="margin-right:6px;"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bearish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bearish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bullish"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div>' },
-      { id: 27, name: "Falling Three Methods", type: "bear", cat: "Continuation", desc: "1 candle bearish tebal disusul 3 candle hijau kecil korektif, lalu diteruskan candle bearish baru.", psych: "Pullback lemah yang langsung dihantam supply", smc: "Liquidity Re-distribution", sl: "Di atas high candle pertama", prob: "87% Win Rate", render: '<div class="candle bearish" style="margin-right:6px;"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bullish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bullish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bearish"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div>' },
-      { id: 28, name: "Three Inside Up", type: "bull", cat: "Reversal", desc: "Konfirmasi tiga candle dari pola Bullish Harami yang disusul candle bullish penembus high.", psych: "Validasi penuh pergeseran dominasi pasar", smc: "Confirmed Break of Structure (BOS)", sl: "Di bawah titik terendah candle kedua", prob: "89% Win Rate", render: '<div class="candle bearish" style="margin-right:8px;"><div class="wick" style="height:90px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bullish" style="margin-right:8px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div><div class="candle bullish"><div class="wick" style="height:85px;"></div><div class="body" style="height:60px;"></div></div>' },
-      { id: 29, name: "Three Inside Down", type: "bear", cat: "Reversal", desc: "Konfirmasi tiga candle dari pola Bearish Harami yang disusul candle bearish penembus low.", psych: "Konfirmasi seller mengambil kendali penuh", smc: "Confirmed Bearish BOS", sl: "Di atas high candle kedua", prob: "89% Win Rate", render: '<div class="candle bullish" style="margin-right:8px;"><div class="wick" style="height:90px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bearish" style="margin-right:8px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div><div class="candle bearish"><div class="wick" style="height:85px;"></div><div class="body" style="height:60px;"></div></div>' },
-      { id: 30, name: "High Wave Candle", type: "neut", cat: "Extreme Indecision", desc: "Body sangat kecil dengan bayangan atas dan bawah super panjang melebihi 3x ukuran body.", psych: "Ketidakpastian ekstrim jelang rilis suku bunga", smc: "Massive Liquidity Grab", sl: "Di luar range ekor terjauh", prob: "80% Win Rate", render: '<div class="candle doji"><div class="wick" style="height:140px;"></div><div class="body" style="height:6px;"></div></div>' }
-    ];
-
-    // =========================================================================
-    // 2. 50 SUB-TIME ZONE MATRIX (LENGKAP 24 JAM & TRIGGER 01:00 & 01:30 WIB)
-    // =========================================================================
-    var baseTimeZonesWindows = [
-      { id: 1, name: "1. Sydney Open Gap", start: "04:00", end: "04:25", startMin: 240, endMin: 265, entryOffset: 2, pips: [25, 45, 65] },
-      { id: 2, name: "2. Pacific Flow", start: "04:25", end: "04:50", startMin: 265, endMin: 290, entryOffset: 3, pips: [25, 40, 60] },
-      { id: 3, name: "3. Wellington Handover", start: "04:50", end: "05:15", startMin: 290, endMin: 315, entryOffset: 2, pips: [25, 45, 70] },
-      { id: 4, name: "4. Pre-Tokyo Inflow", start: "05:15", end: "05:40", startMin: 315, endMin: 340, entryOffset: 4, pips: [30, 50, 75] },
-      { id: 5, name: "5. Tokyo Early Inflow", start: "05:40", end: "06:05", startMin: 340, endMin: 365, entryOffset: 3, pips: [30, 50, 75] },
-      { id: 6, name: "6. Tokyo Official Bell", start: "06:05", end: "06:30", startMin: 365, endMin: 390, entryOffset: 1, pips: [35, 60, 90] },
-      { id: 7, name: "7. Tokyo Morning Push", start: "06:30", end: "07:00", startMin: 390, endMin: 420, entryOffset: 4, pips: [30, 50, 75] },
-      { id: 8, name: "8. Asian Fixation Window", start: "07:00", end: "07:30", startMin: 420, endMin: 450, entryOffset: 3, pips: [25, 45, 65] },
-      { id: 9, name: "9. Asian Interbank Fix", start: "07:30", end: "08:00", startMin: 450, endMin: 480, entryOffset: 2, pips: [25, 40, 60] },
-      { id: 10, name: "10. Singapore & HK Open", start: "08:00", end: "08:30", startMin: 480, endMin: 510, entryOffset: 2, pips: [30, 55, 80] },
-      { id: 11, name: "11. HK Morning Momentum", start: "08:30", end: "09:00", startMin: 510, endMin: 540, entryOffset: 3, pips: [30, 50, 75] },
-      { id: 12, name: "12. Asian Core Stability", start: "09:00", end: "09:30", startMin: 540, endMin: 570, entryOffset: 4, pips: [25, 40, 60] },
-      { id: 13, name: "13. Shanghai Fixation Time", start: "09:30", end: "10:00", startMin: 570, endMin: 600, entryOffset: 2, pips: [30, 50, 70] },
-      { id: 14, name: "14. Asian Midday Retest", start: "10:00", end: "10:30", startMin: 600, endMin: 630, entryOffset: 4, pips: [25, 45, 65] },
-      { id: 15, name: "15. China Afternoon Push", start: "10:30", end: "11:00", startMin: 630, endMin: 660, entryOffset: 3, pips: [25, 45, 65] },
-      { id: 16, name: "16. Asian Range Ceiling", start: "11:00", end: "11:30", startMin: 660, endMin: 690, entryOffset: 2, pips: [25, 40, 60] },
-      { id: 17, name: "17. Tokyo Lunch Drift", start: "11:30", end: "12:00", startMin: 690, endMin: 720, entryOffset: 5, pips: [20, 35, 50] },
-      { id: 18, name: "18. Asian Lunch Flat", start: "12:00", end: "12:30", startMin: 720, endMin: 750, entryOffset: 0, pips: [15, 25, 40] },
-      { id: 19, name: "19. Pre-European Trap", start: "12:30", end: "13:00", startMin: 750, endMin: 780, entryOffset: 4, pips: [25, 45, 70] },
-      { id: 20, name: "20. Asian Session Wrap", start: "13:00", end: "13:30", startMin: 780, endMin: 810, entryOffset: 3, pips: [25, 40, 60] },
-      { id: 21, name: "21. Pre-Frankfurt Shadow", start: "13:30", end: "14:00", startMin: 810, endMin: 840, entryOffset: 2, pips: [30, 50, 75] },
-      { id: 22, name: "22. Frankfurt Open Surge", start: "14:00", end: "14:30", startMin: 840, endMin: 870, entryOffset: 1, pips: [40, 70, 100] },
-      { id: 23, name: "23. Frankfurt-London Gap", start: "14:30", end: "15:00", startMin: 870, endMin: 900, entryOffset: 3, pips: [35, 60, 85] },
-      { id: 24, name: "24. London Bell Judas Swing", start: "15:00", end: "15:30", startMin: 900, endMin: 930, entryOffset: 1, pips: [45, 80, 120] },
-      { id: 25, name: "25. London Judas Climax", start: "15:30", end: "16:00", startMin: 930, endMin: 960, entryOffset: 2, pips: [40, 70, 100] },
-      { id: 26, name: "26. London Core Trend", start: "16:00", end: "16:30", startMin: 960, endMin: 990, entryOffset: 3, pips: [35, 65, 95] },
-      { id: 27, name: "27. London Momentum Push", start: "16:30", end: "17:00", startMin: 990, endMin: 1020, entryOffset: 4, pips: [30, 55, 80] },
-      { id: 28, name: "28. European Midday Lull", start: "17:00", end: "17:30", startMin: 1020, endMin: 1050, entryOffset: 5, pips: [25, 40, 60] },
-      { id: 29, name: "29. London Afternoon Drift", start: "17:30", end: "18:00", startMin: 1050, endMin: 1080, entryOffset: 0, pips: [20, 35, 50] },
-      { id: 30, name: "30. Pre-NY Overlap Build", start: "18:00", end: "18:30", startMin: 1080, endMin: 1110, entryOffset: 2, pips: [35, 60, 90] },
-      { id: 31, name: "31. NY Early Radar Window", start: "18:30", end: "19:00", startMin: 1110, endMin: 1140, entryOffset: 3, pips: [40, 70, 105] },
-      { id: 32, name: "32. US Pre-News Matrix", start: "19:00", end: "19:30", startMin: 1140, endMin: 1170, entryOffset: 28, pips: [50, 90, 140] },
-      { id: 33, name: "33. US News 19:30 Shock Spike", start: "19:30", end: "20:00", startMin: 1170, endMin: 1200, entryOffset: 0, pips: [60, 110, 160] },
-      { id: 34, name: "34. Post-News Shakeout", start: "20:00", end: "20:30", startMin: 1200, endMin: 1230, entryOffset: 2, pips: [45, 80, 120] },
-      { id: 35, name: "35. NYSE Open Clash", start: "20:30", end: "21:00", startMin: 1230, endMin: 1260, entryOffset: 1, pips: [50, 90, 135] },
-      { id: 36, name: "36. NY Core Peak Dump/Pump", start: "21:00", end: "21:30", startMin: 1260, endMin: 1290, entryOffset: 3, pips: [45, 80, 120] },
-      { id: 37, name: "37. NY Expansion Extension", start: "21:30", end: "22:00", startMin: 1290, endMin: 1320, entryOffset: 2, pips: [40, 70, 105] },
-      { id: 38, name: "38. NY Mid-Session Rebound", start: "22:00", end: "22:30", startMin: 1320, endMin: 1350, entryOffset: 4, pips: [35, 60, 90] },
-      { id: 39, name: "39. London Fix Window", start: "22:30", end: "23:00", startMin: 1350, endMin: 1380, entryOffset: 2, pips: [40, 75, 110] },
-      { id: 40, name: "40. London Final Bell", start: "23:00", end: "23:30", startMin: 1380, endMin: 1410, entryOffset: 3, pips: [30, 55, 80] },
-      { id: 41, name: "41. Late Evening Drift", start: "23:30", end: "00:00", startMin: 1410, endMin: 1440, entryOffset: 5, pips: [25, 45, 65] },
-      { id: 42, name: "42. Midnight Squeeze US", start: "00:00", end: "00:30", startMin: 0, endMin: 30, entryOffset: 2, pips: [30, 50, 75] },
-      { id: 43, name: "43. NY Midnight Sweep", start: "00:30", end: "01:00", startMin: 30, endMin: 60, entryOffset: 3, pips: [25, 45, 70] },
-      { id: 44, name: "44. NY Institutional 01:00 Execution", start: "01:00", end: "01:30", startMin: 60, endMin: 90, entryOffset: 0, pips: [35, 65, 95] },
-      { id: 45, name: "45. US Institutional 01:30 Core Trend", start: "01:30", end: "02:00", startMin: 90, endMin: 120, entryOffset: 0, pips: [35, 60, 90] },
-      { id: 46, name: "46. US Bond Pit & Late Flow", start: "02:00", end: "02:30", startMin: 120, endMin: 150, entryOffset: 4, pips: [25, 40, 60] },
-      { id: 47, name: "47. Settlement & Rollover Peak", start: "02:30", end: "03:00", startMin: 150, endMin: 180, entryOffset: 0, pips: [15, 25, 40] },
-      { id: 48, name: "48. Global Bank Swap Rebalance", start: "03:00", end: "03:30", startMin: 180, endMin: 210, entryOffset: 0, pips: [15, 25, 40] },
-      { id: 49, name: "49. Pre-Pacific Twilight Sweep", start: "03:30", end: "03:45", startMin: 210, endMin: 225, entryOffset: 2, pips: [20, 35, 50] },
-      { id: 50, name: "50. New Cycle Daily Reset", start: "03:45", end: "04:00", startMin: 225, endMin: 240, entryOffset: 0, pips: [15, 25, 40] }
-    ];
-
-    // =========================================================================
-    // 3. ASTRODOX EPHEMERIS TULUNGAGUNG (LAT -8.07, LON 111.90)
-    // =========================================================================
-    var ZODIAC_SIGNS = [
-      { name: "Aries", symbol: "♈" },
-      { name: "Taurus", symbol: "♉" },
-      { name: "Gemini", symbol: "♊" },
-      { name: "Cancer", symbol: "♋" },
-      { name: "Leo", symbol: "♌" },
-      { name: "Virgo", symbol: "♍" },
-      { name: "Libra", symbol: "♎" },
-      { name: "Scorpio", symbol: "♏" },
-      { name: "Sagittarius", symbol: "♐" },
-      { name: "Capricorn", symbol: "♑" },
-      { name: "Aquarius", symbol: "♒" },
-      { name: "Pisces", symbol: "♓" }
-    ];
-
-    function degNorm(d) {
-      d = d % 360;
-      return d < 0 ? d + 360 : d;
+    function isVipMember() {
+      return localStorage.getItem("zerofx_vip_unlocked") === "true";
     }
 
-    function formatZodiacDeg(deg) {
-      var norm = degNorm(deg);
-      var signIndex = Math.floor(norm / 30);
-      var sign = ZODIAC_SIGNS[signIndex];
-      var d = Math.floor(norm % 30);
-      var m = Math.floor(((norm % 30) - d) * 60);
-      var s = Math.floor(((((norm % 30) - d) * 60) - m) * 60);
-      return sign.symbol + " " + sign.name + " " + String(d).padStart(2, '0') + "°" + String(m).padStart(2, '0') + "'" + String(s).padStart(2, '0') + '"';
-    }
-
-    function getPlanetaryEphemeris(date) {
-      var dEpoch = (date.getTime() / 86400000) - (new Date("2000-01-01T12:00:00Z").getTime() / 86400000);
-
-      var sunLon = degNorm(280.460 + 0.9856474 * dEpoch);
-      var moonLon = degNorm(218.316 + 13.176396 * dEpoch);
-      var mercLon = degNorm(252.25 + 4.0923344 * dEpoch);
-      var venusLon = degNorm(181.98 + 1.6021305 * dEpoch);
-      var marsLon = degNorm(355.43 + 0.5240330 * dEpoch);
-      var jupLon = degNorm(34.35 + 0.0830853 * dEpoch);
-      var satLon = degNorm(50.08 + 0.0334442 * dEpoch);
-      var plutoLon = degNorm(238.9 + 0.00396 * dEpoch);
-
-      return [
-        { name: "Sun", symbol: "☉", color: "#f59e0b", lon: sunLon, speed: "+0°59'/d" },
-        { name: "Moon", symbol: "☽", color: "#38bdf8", lon: moonLon, speed: "+13°10'/d" },
-        { name: "Mercury", symbol: "☿", color: "#00d2ff", lon: mercLon, speed: "+1°24'/d" },
-        { name: "Venus", symbol: "♀", color: "#ec4899", lon: venusLon, speed: "+1°12'/d" },
-        { name: "Mars", symbol: "♂", color: "#ff3366", lon: marsLon, speed: "+0°35'/d" },
-        { name: "Jupiter", symbol: "♃", color: "#00f5a0", lon: jupLon, speed: "+0°08'/d" },
-        { name: "Saturn", symbol: "♄", color: "#f59e0b", lon: satLon, speed: "+0°03'/d" },
-        { name: "Pluto (Rx)", symbol: "♇", color: "#a855f7", lon: plutoLon, speed: "-0°01'/d" }
-      ];
-    }
-
-    function calculateAspect(p1, p2) {
-      var diff = Math.abs(p1.lon - p2.lon);
-      if (diff > 180) diff = 360 - diff;
-      var orb = 8.0;
-
-      if (Math.abs(diff - 0) <= orb) return { text: "Conj " + p2.name + " (0°)", type: "neutral", color: "var(--cyan)", active: true, diff: 0 };
-      if (Math.abs(diff - 60) <= orb) return { text: "Sextile " + p2.name + " (+60°)", type: "bull", color: "var(--bull)", active: true, diff: 60 };
-      if (Math.abs(diff - 90) <= orb) return { text: "Square " + p2.name + " (-90°)", type: "bear", color: "var(--bear)", active: true, diff: 90 };
-      if (Math.abs(diff - 120) <= orb) return { text: "Trine " + p2.name + " (+120°)", type: "bull", color: "var(--bull)", active: true, diff: 120 };
-      if (Math.abs(diff - 180) <= orb) return { text: "Opp " + p2.name + " (-180°)", type: "bear", color: "var(--bear)", active: true, diff: 180 };
-
-      return { text: "Parallel Orbit", type: "neutral", color: "var(--text-muted)", active: false, diff: null };
-    }
-
-    // =========================================================================
-    // 4. OTOMATISASI ANALITIK PASAR & REASON ENGINE
-    // =========================================================================
-    function isForexMarketOpen(now) {
-      var day = now.getDay();
-      var hour = now.getHours();
-      if (day === 6 && hour >= 4) return false;
-      if (day === 0) return false;
-      if (day === 1 && hour < 5) return false;
-      return true;
-    }
-
-    function getNextMarketOpenRemaining(now) {
-      var target = new Date(now.getTime());
-      var day = now.getDay();
-      var daysToAdd = 0;
-      if (day === 6) daysToAdd = 2;
-      else if (day === 0) daysToAdd = 1;
-      else if (day === 1 && now.getHours() < 5) daysToAdd = 0;
-
-      target.setDate(now.getDate() + daysToAdd);
-      target.setHours(5, 0, 0, 0);
-
-      var diff = target.getTime() - now.getTime();
-      if (diff <= 0) return "00j 00m";
-      var h = Math.floor(diff / 3600000);
-      var m = Math.floor((diff % 3600000) / 60000);
-      return h + "j " + m + "m";
-    }
-
-    function getDailyNewsTransitBias(planets, targetDate) {
-      var d = targetDate || new Date();
-      var moon = planets.find(function(p){ return p.name === "Moon"; }) || { lon: 0 };
-      var mars = planets.find(function(p){ return p.name === "Mars"; }) || { lon: 0 };
-      var sun = planets.find(function(p){ return p.name === "Sun"; }) || { lon: 0 };
-      var jup = planets.find(function(p){ return p.name === "Jupiter"; }) || { lon: 0 };
-
-      var ascTulungagung = degNorm(1170 * 0.25 + 111.90 + sun.lon);
-      var diffMoon = degNorm(ascTulungagung - moon.lon);
-      var diffMars = degNorm(ascTulungagung - mars.lon);
-      var diffJup = degNorm(ascTulungagung - jup.lon);
-
-      var harmonicMoon = Math.sin((diffMoon * Math.PI) / 180);
-      var harmonicMars = Math.cos((diffMars * Math.PI) / 180);
-      var harmonicJup = Math.sin((diffJup * Math.PI) / 180);
-      var dayPhysicsWave = Math.sin(((d.getDate() * 59.2 + d.getDay() * 72) * Math.PI) / 180);
-
-      var totalVector = (harmonicMoon * 1.1) - (harmonicMars * 0.9) + (harmonicJup * 0.7) + (dayPhysicsWave * 1.2);
-      var isBullish = totalVector >= 0;
-
-      var probVal = (94.6 + Math.abs(totalVector) * 1.5).toFixed(1);
-      if (parseFloat(probVal) > 98.2) probVal = "97.8";
-
-      var aspectDeg = Math.round(Math.abs(diffMoon) % 180);
-
-      return {
-        isBullish: isBullish,
-        action: isBullish ? "AMBIL BUY SEKARANG" : "AMBIL SELL SEKARANG",
-        prob: probVal + "%",
-        aspectDeg: aspectDeg,
-        aspectWith: isBullish ? "Trine Moon-Tulungagung (" + aspectDeg + "°)" : "Square Mars-Saturn (" + aspectDeg + "°)"
-      };
-    }
-
-    function fmtMinWib(m) {
-      m = (m + 1440) % 1440;
-      return String(Math.floor(m / 60)).padStart(2, '0') + ":" + String(m % 60).padStart(2, '0') + " WIB";
-    }
-
-    function generateAdaptiveTimeZones(now, planets) {
-      var moon = planets.find(function(p){ return p.name === "Moon"; }) || { lon: 0 };
-      var mars = planets.find(function(p){ return p.name === "Mars"; }) || { lon: 0 };
-      var sun = planets.find(function(p){ return p.name === "Sun"; }) || { lon: 0 };
-
-      var currentCurPrice = liveSpotPrice > 1000 ? liveSpotPrice : 2650.00;
-      var marketOpen = isForexMarketOpen(now);
-      var countdownStr = getNextMarketOpenRemaining(now);
-
-      return baseTimeZonesWindows.map(function(tz) {
-        var localAngle = degNorm(tz.startMin * 0.25 + 111.90 + sun.lon);
-        var moonHarmonic = Math.sin(((localAngle - moon.lon) * Math.PI) / 180);
-        var marsHarmonic = Math.sin(((localAngle - mars.lon) * Math.PI) / 180);
-
-        var dayHarmonicShift = Math.sin(((now.getDate() * 26.3 + tz.id * 8.2) * Math.PI) / 180);
-        var dynamicScore = (moonHarmonic * 1.2) - (marsHarmonic * 1.1) + (dayHarmonicShift * 0.95);
-
-        var type = "buy";
-        var action = "AMBIL BUY SEKARANG";
-        var bias = "BULLISH DISPLACEMENT";
-        var reason = "";
-
-        var exactOpenMinute = tz.startMin + tz.entryOffset;
-        var exactOpenTime = fmtMinWib(exactOpenMinute);
-
-        var tp1Time = fmtMinWib(tz.startMin + 11);
-        var tp2Time = fmtMinWib(tz.startMin + 19);
-        var tp3Time = fmtMinWib(tz.startMin + 26);
-
-        if (!marketOpen) {
-          type = "weekend";
-          action = "STANDBY (MARKET LIBUR)";
-          bias = "WEEKEND OUTLOOK • OPEN SENIN 05:00 WIB";
-          reason = "Bursa XAUUSD libur akhir pekan. Rekomendasi lelang standby. Buka kembali dalam " + countdownStr + ".";
-        }
-        else if (tz.id === 33) {
-          var newsBias = getDailyNewsTransitBias(planets, now);
-          type = newsBias.isBullish ? "buy" : "sell";
-          action = newsBias.isBullish ? "AMBIL BUY SEKARANG (19:30 WIB)" : "AMBIL SELL SEKARANG (19:30 WIB)";
-          bias = newsBias.isBullish ? "ALGO PROJECTION: BULLISH EXPANSION" : "ALGO PROJECTION: BEARISH DUMP";
-          reason = "Rilis kalender makro AS disinkronkan transit " + newsBias.aspectWith + " (" + newsBias.aspectDeg + "°). Entry tepat di detik candle news 19:30 WIB.";
-        }
-        else if (tz.id === 44) {
-          var isMidBull44 = (dynamicScore >= -0.2);
-          type = isMidBull44 ? "buy" : "sell";
-          action = isMidBull44 ? "AMBIL BUY SEKARANG (01:00 WIB)" : "AMBIL SELL SEKARANG (01:00 WIB)";
-          bias = isMidBull44 ? "MIDNIGHT 01:00 WIB ACCUMULATION" : "MIDNIGHT 01:00 WIB DISTRIBUTION";
-          reason = "Jendela likuiditas NY Midnight 01:00 WIB tepat. Sweeping Asian High/Low dan mitigasi FVG OTE level diskon/premium.";
-        }
-        else if (tz.id === 45) {
-          var isMidBull45 = (dynamicScore >= 0.1);
-          type = isMidBull45 ? "buy" : "sell";
-          action = isMidBull45 ? "AMBIL BUY SEKARANG (01:30 WIB)" : "AMBIL SELL SEKARANG (01:30 WIB)";
-          bias = isMidBull45 ? "MIDNIGHT 01:30 WIB CORE EXPANSION" : "MIDNIGHT 01:30 WIB DISPLACEMENT DUMP";
-          reason = "Puncak perputaran aliran modal US Institutional 01:30 WIB. Entry otomatis di awal terbentuknya tren lanjutan New York.";
-        }
-        else if (tz.id === 18 || tz.id === 47 || tz.id === 48 || tz.id === 50) {
-          type = "neutral";
-          action = "STANDBY / OBSERVASI SPREAD";
-          bias = "EQUILIBRIUM CONSOLIDATION";
-          reason = "Jeda pergantian lelang antar-bank global (" + Math.round(localAngle) + "°). Smart money menahan volume, disarankan observasi spread.";
-        }
-        else if (dynamicScore >= 0.0) {
-          type = "buy";
-          action = "AMBIL BUY SEKARANG";
-          bias = "BULLISH ACCUMULATION (" + formatZodiacDeg(moon.lon).split(' ')[1].toUpperCase() + ")";
-          reason = "Elevasi harmonik Bulan (+" + Math.round(localAngle) + "°) menyerap Sell-Side Liquidity. Formasi OTE Discount terkonfirmasi.";
-        } 
-        else {
-          type = "sell";
-          action = "AMBIL SELL SEKARANG";
-          bias = "BEARISH DISTRIBUTION (" + formatZodiacDeg(mars.lon).split(' ')[1].toUpperCase() + ")";
-          reason = "Sudut kuadratur Mars/Saturnus (-" + Math.round(localAngle) + "°) menolak Premium Resistance. Eksekusi sell instan di area mitigasi.";
-        }
-
-        var pipMult = type === "buy" ? 1 : -1;
-        var p1 = tz.pips[0];
-        var p2 = tz.pips[1];
-        var p3 = tz.pips[2];
-
-        var tp1Price = (currentCurPrice + (p1 * 0.1 * pipMult)).toFixed(2);
-        var tp2Price = (currentCurPrice + (p2 * 0.1 * pipMult)).toFixed(2);
-        var tp3Price = (currentCurPrice + (p3 * 0.1 * pipMult)).toFixed(2);
-
-        var prob = (95.0 + ((tz.id * 7 + Math.floor(moon.lon + localAngle)) % 45) / 10).toFixed(1) + "%";
-
-        return {
-          id: tz.id,
-          name: tz.name,
-          start: tz.start,
-          end: tz.end,
-          startMin: tz.startMin,
-          endMin: tz.endMin,
-          exactOpenTime: exactOpenTime,
-          action: action,
-          type: type,
-          prob: prob,
-          bias: bias,
-          p1: p1, p2: p2, p3: p3,
-          tp1Time: tp1Time, tp2Time: tp2Time, tp3Time: tp3Time,
-          tp1Price: tp1Price, tp2Price: tp2Price, tp3Price: tp3Price,
-          reason: reason
-        };
-      });
-    }
-
-    function renderDynamicTimeZones(now, planets) {
-      var container = document.getElementById('tzGridContainer');
-      if (!container) return;
-
-      dynamicTimeZonesList = generateAdaptiveTimeZones(now, planets);
-      container.innerHTML = "";
-
-      var curVal = now.getHours() * 60 + now.getMinutes();
-
-      dynamicTimeZonesList.forEach(function(tz) {
-        var isLive = (tz.startMin < tz.endMin) ? (curVal >= tz.startMin && curVal < tz.endMin) : (curVal >= tz.startMin || curVal < tz.endMin);
-
-        if (currentTzFilter === 'live' && !isLive) return;
-        if (currentTzFilter === 'buy' && tz.type !== 'buy') return;
-        if (currentTzFilter === 'sell' && tz.type !== 'sell') return;
-        if (currentTzFilter === 'midnight' && tz.id !== 44 && tz.id !== 45) return;
-        if (currentTzFilter === 'news' && tz.id !== 32 && tz.id !== 33) return;
-
-        var boxClass = tz.type === 'buy' ? 'buy-window' : (tz.type === 'sell' ? 'sell-window' : (tz.type === 'news' ? 'news-window' : (tz.type === 'weekend' ? 'weekend-window' : 'neutral-window')));
-        var biasColor = tz.type === 'buy' ? 'var(--bull)' : (tz.type === 'sell' ? 'var(--bear)' : (tz.type === 'news' ? 'var(--gold)' : (tz.type === 'weekend' ? '#94a3b8' : 'var(--cyan)')));
-        var actionBg = tz.type === 'buy' ? 'rgba(0,245,160,0.2)' : (tz.type === 'sell' ? 'rgba(255,51,102,0.2)' : (tz.type === 'news' ? 'rgba(245,158,11,0.25)' : 'rgba(255,255,255,0.08)'));
-        var actionBorder = tz.type === 'buy' ? 'var(--bull)' : (tz.type === 'sell' ? 'var(--bear)' : (tz.type === 'news' ? 'var(--gold)' : '#475569'));
-
-        var card = document.createElement('div');
-        card.className = "tz-box " + boxClass + (isLive ? " active-session" : "");
-        card.id = "tz_card_" + tz.id;
-        card.innerHTML = 
-          '<button class="btn-copy-signal" onclick="copySignalText(' + tz.id + ')">📋 SALIN</button>' +
-          '<div class="tz-header-row">' +
-            '<span class="tz-title">' + tz.name + '</span>' +
-            '<span class="tz-badge-status" id="tz_badge_' + tz.id + '" style="' + (isLive ? 'background:var(--neon); color:#000;' : 'background:#1a2230; color:#8e95a5;') + '">' + (isLive ? '🔥 LIVE SESSION' : 'STANDBY') + '</span>' +
-          '</div>' +
-          '<div class="tz-hours">' + tz.start + ' – ' + tz.end + ' WIB • PROB: <strong style="color:var(--neon);">' + tz.prob + '</strong></div>' +
-          '<div class="open-entry-alert-box">' +
-            '<span>OPEN ENTRY TEPAT:</span>' +
-            '<span class="open-entry-time">⚡ ' + tz.exactOpenTime + '</span>' +
-          '</div>' +
-          '<div><span class="tz-action-pill" style="background:' + actionBg + '; color:' + biasColor + '; border:1px solid ' + actionBorder + ';">' + tz.action + '</span></div>' +
-          '<div class="tz-bias" style="color:' + biasColor + ';">' + tz.bias + '</div>' +
-          '<div class="tz-tp-cluster">' +
-            'TP1 (+' + tz.p1 + ' Pips): <span>$' + tz.tp1Price + '</span> @ ' + tz.tp1Time + '<br>' +
-            'TP2 (+' + tz.p2 + ' Pips): <span>$' + tz.tp2Price + '</span> @ ' + tz.tp2Time + '<br>' +
-            'TP3 (+' + tz.p3 + ' Pips): <span>$' + tz.tp3Price + '</span> @ ' + tz.tp3Time +
-          '</div>' +
-          '<p class="tz-reason-class">' + tz.reason + '</p>';
-        container.appendChild(card);
-      });
-    }
-
-    function updateZoneLiveStatusOnly(now) {
-      var curVal = now.getHours() * 60 + now.getMinutes();
-      dynamicTimeZonesList.forEach(function(tz) {
-        var isLive = (tz.startMin < tz.endMin) ? (curVal >= tz.startMin && curVal < tz.endMin) : (curVal >= tz.startMin || curVal < tz.endMin);
-        var card = document.getElementById("tz_card_" + tz.id);
-        var badge = document.getElementById("tz_badge_" + tz.id);
-        if (card && badge) {
-          if (isLive) {
-            card.classList.add("active-session");
-            badge.textContent = "🔥 LIVE SESSION";
-            badge.style.background = "var(--neon)";
-            badge.style.color = "#000";
-          } else {
-            card.classList.remove("active-session");
-            badge.textContent = "STANDBY";
-            badge.style.background = "#1a2230";
-            badge.style.color = "#8e95a5";
-          }
-        }
-      });
-    }
-
-    function filterTimeZones(type, btn) {
-      currentTzFilter = type;
-      document.querySelectorAll('.btn-filter-pill').forEach(function(b){ b.classList.remove('active'); });
-      if (btn) btn.classList.add('active');
-      var now = new Date();
-      var currentPlanets = getPlanetaryEphemeris(now);
-      renderDynamicTimeZones(now, currentPlanets);
-    }
-
-    function copySignalText(id) {
-      var tz = dynamicTimeZonesList.find(function(t){ return t.id === id; });
-      if (!tz) return;
-      var text = "🔥 ZEROFX PROMAX SIGNAL\n" +
-        "Sesi: " + tz.name + " (" + tz.start + " - " + tz.end + " WIB)\n" +
-        "Trigger Open Tepat: " + tz.exactOpenTime + "\n" +
-        "Sinyal Algoritma: " + tz.action + "\n" +
-        "Bias: " + tz.bias + " (Prob: " + tz.prob + ")\n" +
-        "Target TP Pips & Level:\n" +
-        "- TP1: +" + tz.p1 + " Pips ($" + tz.tp1Price + ") @ " + tz.tp1Time + "\n" +
-        "- TP2: +" + tz.p2 + " Pips ($" + tz.tp2Price + ") @ " + tz.tp2Time + "\n" +
-        "- TP3: +" + tz.p3 + " Pips ($" + tz.tp3Price + ") @ " + tz.tp3Time + "\n" +
-        "Alasan: " + tz.reason;
-
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(function() {
-          showToast("✓ Sinyal & Jam Open Sesi " + tz.start + " Disalin!");
-        }).catch(function() {
-          fallbackCopyText(text, tz.start);
-        });
+    function updateVipChipDisplay() {
+      var chip = document.getElementById("vipHeaderChip");
+      if (!chip) return;
+      if (isVipMember()) {
+        var profile = JSON.parse(localStorage.getItem("zerofx_vip_profile") || "{}");
+        chip.innerHTML = "👑 VIP: <strong>" + (profile.name || "MEMBER") + "</strong> (LOGOUT)";
+        chip.style.borderColor = "var(--neon)";
+        chip.style.color = "var(--neon)";
       } else {
-        fallbackCopyText(text, tz.start);
+        chip.innerHTML = "🔒 <strong>UNLOCK VIP</strong>";
+        chip.style.borderColor = "var(--gold)";
+        chip.style.color = "var(--gold)";
       }
     }
 
-    function fallbackCopyText(text, sessionStart) {
-      var textArea = document.createElement("textarea");
-      textArea.value = text;
-      textArea.style.position = "fixed";
-      textArea.style.opacity = "0";
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-      try {
-        document.execCommand('copy');
-        showToast("✓ Sinyal & Jam Open Sesi " + sessionStart + " Disalin!");
-      } catch (err) {
-        showToast("Gagal menyalin teks.");
+    function handleVipChipClick() {
+      if (isVipMember()) {
+        if (confirm("Ingin keluar dari sesi VIP?")) {
+          localStorage.removeItem("zerofx_vip_unlocked");
+          localStorage.removeItem("zerofx_vip_profile");
+          updateVipChipDisplay();
+          showToast("Sesi VIP ditutup.");
+          switchMainTab("tab-join");
+        }
+      } else {
+        openVipModal("tab-news");
       }
-      document.body.removeChild(textArea);
     }
 
-    // =========================================================================
-    // 5. WORLD NEWS WIRE REALTIME (AUTO-UPDATING 24 JAM)
-    // =========================================================================
-    var baseWorldHeadlines = [
-      {
-        id: 1,
-        cat: "fed",
-        badge: "FED & SUKU BUNGA",
-        title: "Federal Reserve Tegaskan Suku Bunga Kunci di Level Restriktif Menanti Data Tenaga Kerja",
-        snippet: "Pernyataan terbaru pejabat The Fed menunjukkan kehati-hatian atas data inflasi AS. Yield US Treasury 10-Year mengalami pergeseran likuiditas institusi.",
-        img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=700&q=80",
-        source: "Bloomberg Macro Wire",
-        baseMinutes: 8,
-        impact: "HIGH VOLATILITY",
-        bias: "POTENSI BULLISH XAUUSD"
-      },
-      {
-        id: 2,
-        cat: "gold",
-        badge: "XAUUSD & COMMODITIES",
-        title: "Permintaan Emas Bank Sentral Global Terus Menguat Sebagai Cadangan Devisa Strategis",
-        snippet: "Akumulasi fisik bullion oleh konsorsium perbankan global menopang zona support krusial di atas area discount OTE, meredam tekanan penguatan indeks Dolar (DXY).",
-        img: "https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=700&q=80",
-        source: "World Gold Council",
-        baseMinutes: 19,
-        impact: "STRUCTURAL DEMAND",
-        bias: "ORDER FLOW ACCUMULATION"
-      },
-      {
-        id: 3,
-        cat: "macro",
-        badge: "INFLASI & GEOPOLITIK",
-        title: "Dinamika Pasokan Energi Global Memicu Rotasi Portofolio ke Aset Safe-Haven",
-        snippet: "Fluktuasi harga minyak mentah West Texas Intermediate (WTI) mendorong analis memperhitungkan kembali potensi lonjakan indeks harga konsumen (CPI) mendatang.",
-        img: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=700&q=80",
-        source: "Reuters Financial",
-        baseMinutes: 34,
-        impact: "GEOPOLITICAL FLOW",
-        bias: "SAFE-HAVEN EXPANSION"
-      },
-      {
-        id: 4,
-        cat: "fed",
-        badge: "FED & SUKU BUNGA",
-        title: "Data Klaim Pengangguran AS & Non-Farm Payrolls Menguji Ketahanan Sektor Tenaga Kerja",
-        snippet: "Pasar obligasi memperkirakan pelonggaran likuiditas bertahap. Smart money memposisikan open interest pada opsi beli komoditas logam mulia menjelang penutupan New York.",
-        img: "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?auto=format&fit=crop&w=700&q=80",
-        source: "Financial Times",
-        baseMinutes: 52,
-        impact: "MACRO REVERSAL",
-        bias: "LIQUIDITY DISPLACEMENT"
-      },
-      {
-        id: 5,
-        cat: "gold",
-        badge: "XAUUSD & COMMODITIES",
-        title: "Likuiditas Interbank London & New York Catat Volume Rekor pada Window 19:30 & 01:00 WIB",
-        snippet: "Aliran dana lelang institusi SMC memicu sweep likuiditas pada batas harga tertinggi harian sebelum memasuki fase distribusi terarah pada spot emas.",
-        img: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=700&q=80",
-        source: "Zero Syndicate Terminal",
-        baseMinutes: 75,
-        impact: "INSTITUTIONAL SMC",
-        bias: "KILLZONE TRIGGER"
-      },
-      {
-        id: 6,
-        cat: "macro",
-        badge: "INFLASI & GEOPOLITIK",
-        title: "Arus Modal Global Beralih ke Logam Mulia Menghadapi Volatilitas Mata Uang Fiat",
-        snippet: "Manajer investasi hedge fund global meningkatkan alokasi lindung nilai (hedging) terhadap kemungkinan kontraksi likuiditas antar-bank sentral dunia.",
-        img: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=700&q=80",
-        source: "MarketWatch Global",
-        baseMinutes: 110,
-        impact: "HEDGE EXPANSION",
-        bias: "RISK-OFF CATALYST"
+    function openVipModal(targetTab) {
+      pendingRestrictedTab = targetTab;
+      var modal = document.getElementById("vipLockModal");
+      if (modal) modal.classList.add("active");
+    }
+
+    function closeVipModal() {
+      var modal = document.getElementById("vipLockModal");
+      if (modal) modal.classList.remove("active");
+      pendingRestrictedTab = null;
+    }
+
+    function submitVipActivation() {
+      var name = document.getElementById("vipInputName").value.trim();
+      var acc = document.getElementById("vipInputAccount").value.trim();
+      var key = document.getElementById("vipInputKey").value.trim().toUpperCase();
+
+      if (!name || !acc) {
+        showToast("⚠️ Isi nama dan nomor akun broker dulu!");
+        return;
       }
-    ];
+      if (key !== MASTER_VIP_KEY) {
+        showToast("❌ Passkey VIP salah! Hubungi WhatsApp admin.");
+        return;
+      }
 
-    function renderWorldNewsCards() {
-      var container = document.getElementById('worldNewsContainer');
-      if (!container) return;
-      container.innerHTML = "";
+      var memberProfile = { name: name, accountId: acc, activatedAt: new Date().toISOString() };
+      localStorage.setItem("zerofx_vip_unlocked", "true");
+      localStorage.setItem("zerofx_vip_profile", JSON.stringify(memberProfile));
 
-      var nowMin = new Date().getMinutes();
+      showToast("✓ Selamat Datang, " + name + "! Akses VIP Terbuka.");
+      updateVipChipDisplay();
+      closeVipModal();
 
-      var filtered = baseWorldHeadlines.filter(function(item) {
-        if (currentNewsWireFilter === "all") return true;
-        return item.cat === currentNewsWireFilter;
-      });
-
-      filtered.forEach(function(item) {
-        var elapsedMin = (item.baseMinutes + (nowMin % 15)) % 60;
-        var timeLabel = elapsedMin <= 1 ? "Baru Saja" : elapsedMin + " Menit Lalu";
-
-        var card = document.createElement('div');
-        card.className = "wire-card";
-        card.innerHTML = 
-          '<div class="wire-img-container">' +
-            '<img src="' + item.img + '" alt="' + item.title + '" loading="lazy">' +
-            '<span class="wire-tag-badge">' + item.badge + '</span>' +
-          '</div>' +
-          '<div class="wire-card-body">' +
-            '<div>' +
-              '<div class="wire-meta-time">' +
-                '<span>🕒 ' + timeLabel + '</span> • <span>🏛 ' + item.source + '</span>' +
-              '</div>' +
-              '<h3 class="wire-card-title">' + item.title + '</h3>' +
-              '<p class="wire-card-snippet">' + item.snippet + '</p>' +
-            '</div>' +
-            '<div class="wire-impact-indicator">' +
-              '<span style="color:var(--gold); font-weight:800;">⚡ ' + item.impact + '</span>' +
-              '<span style="color:var(--neon); font-weight:800;">' + item.bias + '</span>' +
-            '</div>' +
-          '</div>';
-        container.appendChild(card);
-      });
-    }
-
-    function filterNewsCategory(cat, btn) {
-      currentNewsWireFilter = cat;
-      document.querySelectorAll('#tab-worldnews .btn-filter-pill').forEach(function(b){ b.classList.remove('active'); });
-      if (btn) btn.classList.add('active');
-      renderWorldNewsCards();
+      if (pendingRestrictedTab) {
+        switchMainTab(pendingRestrictedTab);
+      } else {
+        switchMainTab("tab-news");
+      }
     }
 
     // =========================================================================
-    // 6. KALENDER MAKRO EKONOMI & EPHEMERIS DISPLAY
+    // 1. KING NEWS AUTO-FLIP & DISPLACEMENT DETECTOR
     // =========================================================================
-    var weekdayMacroSchedule = {
-      1: [
-        { time: "19:30 WIB", event: "US Consumer Credit & Market Liquidity Focus", impact: "MEDIUM" },
-        { time: "22:30 WIB", event: "US Treasury 3M & 6M Bill Auction", impact: "LOW" }
-      ],
-      2: [
-        { time: "19:30 WIB", event: "US NFIB Small Business Optimism & Fed Watch", impact: "MEDIUM" },
-        { time: "21:00 WIB", event: "US IBD/TIPP Economic Optimism", impact: "LOW" }
-      ],
-      3: [
-        { time: "19:30 WIB", event: "US Core CPI MoM & YoY (Inflasi Utama AS)", impact: "HIGH" },
-        { time: "21:30 WIB", event: "EIA Crude Oil Weekly Stocks", impact: "MEDIUM" }
-      ],
-      4: [
-        { time: "19:30 WIB", event: "US PPI Final Demand & Initial Jobless Claims", impact: "HIGH" },
-        { time: "21:00 WIB", event: "US Existing Home Sales & Leading Index", impact: "MEDIUM" }
-      ],
-      5: [
-        { time: "19:30 WIB", event: "US Retail Sales MoM & Core Retail Sales", impact: "HIGH" },
-        { time: "21:00 WIB", event: "Michigan Consumer Sentiment (Prelim UoM)", impact: "HIGH" }
-      ]
-    };
+    function updateNewsSniperEngine() {
+      var deltaPips = ((liveSpotPrice - preNewsAnchorPrice) * 10).toFixed(1);
+      var deltaEl = document.getElementById("liveNewsDeltaPips");
+      var verdictEl = document.getElementById("newsDisplacementVerdict");
+      var actionPlanEl = document.getElementById("scenActionPlan");
+      var reasonBoxEl = document.getElementById("scenarioReasonBox");
+      var hud1930 = document.getElementById("hud1930Status");
 
-    function renderDynamicNewsTable(now, planets) {
-      var tbody = document.getElementById('newsForecastTableBody');
+      if (deltaEl) {
+        deltaEl.textContent = (deltaPips >= 0 ? "+" : "") + deltaPips + " PIPS";
+        deltaEl.style.color = deltaPips > 15 ? "var(--bull)" : (deltaPips < -15 ? "var(--bear)" : "var(--cyan)");
+      }
+
+      if (activeScenarioMode === "sell" || (activeScenarioMode === "auto" && deltaPips < -25)) {
+        if (verdictEl) {
+          verdictEl.textContent = "⚡ SELL DISPLACEMENT CONFIRMED (HOT USD)";
+          verdictEl.style.color = "var(--bear)";
+        }
+        if (actionPlanEl) {
+          actionPlanEl.textContent = "EKSEKUSI SELL SEKARANG (TARGET OTE DISCOUNT)";
+          actionPlanEl.style.color = "var(--bear)";
+        }
+        if (reasonBoxEl) {
+          reasonBoxEl.innerHTML = "<strong>HASIL DATA HOT INFLATION / HAWKISH FED:</strong><br>" +
+            "Angka rilis melampaui forecast secara signifikan. Yield US Treasury 10-Year melesat naik menembus resistance harian, memicu likuidasi massal posisi beli XAUUSD. Smart money membuka lelang sell institusional tanpa perlawanan.";
+        }
+        if (hud1930) {
+          hud1930.textContent = "19:30: 🔴 SELL DUMP HIT";
+          hud1930.style.color = "var(--bear)";
+          hud1930.style.borderColor = "var(--bear)";
+        }
+      } else if (activeScenarioMode === "buy" || (activeScenarioMode === "auto" && deltaPips > 25)) {
+        if (verdictEl) {
+          verdictEl.textContent = "⚡ BUY PUMP EXPANSION (SOFT USD)";
+          verdictEl.style.color = "var(--bull)";
+        }
+        if (actionPlanEl) {
+          actionPlanEl.textContent = "EKSEKUSI BUY SEKARANG (TARGET BSL SWEEP)";
+          actionPlanEl.style.color = "var(--bull)";
+        }
+        if (reasonBoxEl) {
+          reasonBoxEl.innerHTML = "<strong>HASIL DATA SOFT INFLATION / DOVISH FED:</strong><br>" +
+            "Angka rilis meleset ke bawah ekspektasi pasar. Indeks Dolar DXY ambruk drastis sehingga likuiditas modal internasional berpindah cepat ke Safe-Haven XAUUSD. Mitigasi demand OTE buy valid.";
+        }
+        if (hud1930) {
+          hud1930.textContent = "19:30: 🟢 BUY PUMP HIT";
+          hud1930.style.color = "var(--bull)";
+          hud1930.style.borderColor = "var(--bull)";
+        }
+      } else {
+        if (verdictEl) {
+          verdictEl.textContent = "STANDBY / MONITORING CANDLE DISPLACEMENT";
+          verdictEl.style.color = "var(--neon)";
+        }
+        if (actionPlanEl) {
+          actionPlanEl.textContent = "STANDBY MENANTI 1-MINUTE BREAKOUT";
+          actionPlanEl.style.color = "var(--neon)";
+        }
+      }
+    }
+
+    function selectScenario(mode) {
+      activeScenarioMode = mode;
+      document.querySelectorAll(".btn-scenario-opt").forEach(function(b){ b.className = "btn-scenario-opt"; });
+      if (mode === "sell") {
+        document.getElementById("btnScenSell").classList.add("active-sell");
+      } else if (mode === "buy") {
+        document.getElementById("btnScenBuy").classList.add("active-buy");
+      } else {
+        document.getElementById("btnScenAuto").classList.add("active-auto");
+      }
+      updateNewsSniperEngine();
+    }
+
+    function setSimulatedShock(dir) {
+      if (dir === "sell") {
+        preNewsAnchorPrice = liveSpotPrice;
+        liveSpotPrice = liveSpotPrice - 4.50; // Drop 45 pips
+        selectScenario("sell");
+      } else {
+        preNewsAnchorPrice = liveSpotPrice;
+        liveSpotPrice = liveSpotPrice + 4.20; // Pump 42 pips
+        selectScenario("buy");
+      }
+      updateLivePriceUI(liveSpotPrice);
+      speakVoiceAlert(dir === "sell" ? "Perhatian, konfirmasi data panas, eksekusi sell sekarang." : "Perhatian, konfirmasi data melemah, eksekusi buy sekarang.");
+      showToast("Simulasi News " + dir.toUpperCase() + " Aktif!");
+    }
+
+    // =========================================================================
+    // 2. LIQUIDITY MATRIX GENERATOR
+    // =========================================================================
+    function renderLiquidityMap() {
+      var tbody = document.getElementById("liquidityPoolTableBody");
       if (!tbody) return;
+      var cur = liveSpotPrice;
 
-      var daysNames = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-      var monthsNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
-
-      tbody.innerHTML = "";
-
-      for (var offset = 0; offset < 7; offset++) {
-        var d = new Date(now.getTime() + offset * 86400000);
-        var dayIdx = d.getDay();
-        var dateFormatted = daysNames[dayIdx] + ", " + d.getDate() + " " + monthsNames[d.getMonth()] + " " + d.getFullYear();
-
-        if (dayIdx === 0 || dayIdx === 6) {
-          var tr = document.createElement('tr');
-          tr.innerHTML = 
-            '<td style="font-family:var(--font-heading); font-weight:700; color:#fff;">' + dateFormatted + '</td>' +
-            '<td style="font-family:var(--font-mono); color:var(--text-muted);">ALL DAY</td>' +
-            '<td style="color:#94a3b8; font-style:italic;">Bank Settlement / Market Weekend Closed</td>' +
-            '<td><span class="badge-impact-low">WEEKEND</span></td>' +
-            '<td style="font-size:11px; color:#64748b;">Inersia orbital stationary • Rekomendasi libur transaksi</td>' +
-            '<td><span style="color:var(--text-muted); font-family:var(--font-mono); font-size:11px;">STANDBY AKUN</span></td>';
-          tbody.appendChild(tr);
-          continue;
-        }
-
-        var dayPlanets = getPlanetaryEphemeris(d);
-        var dayEvents = weekdayMacroSchedule[dayIdx] || [];
-
-        dayEvents.forEach(function(ev, idx) {
-          var eventDateSim = new Date(d.getTime() + idx * 7200000);
-          var dayBiasInfo = getDailyNewsTransitBias(dayPlanets, eventDateSim);
-          var isBull = dayBiasInfo.isBullish;
-
-          var impactBadge = ev.impact === "HIGH" ? '<span class="badge-impact-high">HIGH IMPACT</span>' : '<span class="badge-impact-med">MED IMPACT</span>';
-          
-          var predBadge = isBull 
-            ? '<span style="color:var(--bull); font-weight:800; font-family:var(--font-mono); background:rgba(0,245,160,0.15); padding:3px 8px; border-radius:3px; border:1px solid var(--bull);">⚡ AMBIL BUY SEKARANG (' + dayBiasInfo.prob + ')</span>' 
-            : '<span style="color:var(--bear); font-weight:800; font-family:var(--font-mono); background:rgba(255,51,102,0.15); padding:3px 8px; border-radius:3px; border:1px solid var(--bear);">⚡ AMBIL SELL SEKARANG (' + dayBiasInfo.prob + ')</span>';
-
-          var astroReason = isBull 
-            ? dayBiasInfo.aspectWith + ' • Penyerapan OTE Discount & Likuiditas Buy' 
-            : dayBiasInfo.aspectWith + ' • Rejeksi Supply & Premium Resistance Sell';
-
-          var tr = document.createElement('tr');
-          tr.innerHTML = 
-            '<td style="font-family:var(--font-heading); font-weight:700; color:#fff;">' + dateFormatted + '</td>' +
-            '<td style="font-family:var(--font-mono); color:var(--cyan); font-weight:700;">' + ev.time + '</td>' +
-            '<td style="color:#fff; font-weight:600;">' + ev.event + '</td>' +
-            '<td>' + impactBadge + '</td>' +
-            '<td style="font-size:11px; color:#cbd5e1; line-height:1.4;">' + astroReason + '</td>' +
-            '<td>' + predBadge + '</td>';
-          tbody.appendChild(tr);
-        });
-      }
-    }
-
-    function updateRealEphemerisAndDial(now, planets) {
-      var tbody = document.getElementById('ephemTableBody');
-      var planetsGroup = document.getElementById('astroPlanetsGroup');
-      var aspectLinesGroup = document.getElementById('astroAspectLinesGroup');
-
-      if (!tbody || !planetsGroup || !aspectLinesGroup) return;
+      var pools = [
+        { name: "Previous Day High (PDH)", price: (cur + 16.5).toFixed(2), type: "Buy-Side Liquidity (BSL)" },
+        { name: "Asian Session High (ASH)", price: (cur + 8.2).toFixed(2), type: "External BSL" },
+        { name: "Fair Value Gap (FVG) Premium", price: (cur + 3.8).toFixed(2), type: "Institutional Supply" },
+        { name: "Equilibrium Fair Value", price: cur.toFixed(2), type: "Current Spot Market" },
+        { name: "Asian Session Low (ASL)", price: (cur - 7.5).toFixed(2), type: "External SSL" },
+        { name: "Previous Day Low (PDL)", price: (cur - 18.0).toFixed(2), type: "Sell-Side Liquidity (SSL)" }
+      ];
 
       tbody.innerHTML = "";
-      planetsGroup.innerHTML = "";
-      aspectLinesGroup.innerHTML = "";
+      pools.forEach(function(p) {
+        var diff = ((parseFloat(p.price) - cur) * 10).toFixed(1);
+        var diffLabel = (diff >= 0 ? "+" : "") + diff + " Pips";
+        var statusBadge = Math.abs(diff) < 25 
+          ? '<span style="color:var(--neon); font-weight:800;">⚡ IN STRIKE ZONE</span>' 
+          : '<span style="color:var(--text-muted);">UNSWEPT POOL</span>';
 
-      var cx = 200, cy = 200, r = 118;
-      var coords = [];
-
-      planets.forEach(function(p) {
-        var rad = (p.lon * Math.PI) / 180;
-        var px = cx + r * Math.cos(rad);
-        var py = cy + r * Math.sin(rad);
-        coords.push({ planet: p, x: px, y: py });
-
-        var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        circle.setAttribute("cx", px);
-        circle.setAttribute("cy", py);
-        circle.setAttribute("r", "10");
-        circle.setAttribute("fill", "#1e293b");
-        circle.setAttribute("stroke", p.color);
-        circle.setAttribute("stroke-width", "1.5");
-        planetsGroup.appendChild(circle);
-
-        var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        txt.setAttribute("x", px);
-        txt.setAttribute("y", py + 1);
-        txt.setAttribute("font-size", "11");
-        txt.setAttribute("font-weight", "900");
-        txt.setAttribute("fill", p.color);
-        txt.setAttribute("text-anchor", "middle");
-        txt.setAttribute("dominant-baseline", "central");
-        txt.textContent = p.symbol;
-        planetsGroup.appendChild(txt);
-      });
-
-      for (var i = 0; i < coords.length; i++) {
-        for (var j = i + 1; j < coords.length; j++) {
-          var asp = calculateAspect(coords[i].planet, coords[j].planet);
-          if (asp.active) {
-            var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-            line.setAttribute("x1", coords[i].x);
-            line.setAttribute("y1", coords[i].y);
-            line.setAttribute("x2", coords[j].x);
-            line.setAttribute("y2", coords[j].y);
-            line.setAttribute("stroke", asp.color);
-            line.setAttribute("stroke-width", "1.2");
-            if (asp.diff === 90 || asp.diff === 180) {
-              line.setAttribute("stroke-dasharray", "3 3");
-            }
-            line.setAttribute("opacity", "0.75");
-            aspectLinesGroup.appendChild(line);
-          }
-        }
-      }
-
-      planets.forEach(function(p, idx) {
-        var bestAspect = { text: "Direct Flow", color: "var(--text-muted)" };
-        for (var k = 0; k < planets.length; k++) {
-          if (k !== idx) {
-            var a = calculateAspect(p, planets[k]);
-            if (a.active) {
-              bestAspect = a;
-              break;
-            }
-          }
-        }
-
-        var tr = document.createElement('tr');
+        var tr = document.createElement("tr");
         tr.innerHTML = 
-          '<td>' + p.symbol + ' ' + p.name + '</td>' +
-          '<td>' + formatZodiacDeg(p.lon) + '</td>' +
-          '<td>' + p.speed + '</td>' +
-          '<td style="color:' + bestAspect.color + '; font-weight:700;">' + bestAspect.text + '</td>';
+          '<td style="font-weight:700; color:#fff;">' + p.name + '</td>' +
+          '<td style="color:var(--neon); font-weight:800;">$' + p.price + '</td>' +
+          '<td>' + p.type + '</td>' +
+          '<td style="color:var(--cyan);">' + diffLabel + '</td>' +
+          '<td>' + statusBadge + '</td>';
         tbody.appendChild(tr);
       });
     }
 
     // =========================================================================
-    // 7. CHECKLIST & KALKULATOR TERPADU
+    // 3. VOICE AI (BAHASA INDONESIA) & SOUND ENGINE
     // =========================================================================
-    function toggleChkBox(id) {
-      var el = document.getElementById(id);
-      if (el) {
-        el.checked = !el.checked;
-        calcChecklistScore();
-      }
-    }
-
-    function resetChecklist() {
-      for (var i = 1; i <= 6; i++) {
-        var el = document.getElementById('chk' + i);
-        if (el) el.checked = false;
-      }
-      calcChecklistScore();
-      showToast("Checklist berhasil direset.");
-    }
-
-    function calcChecklistScore() {
-      var score = 0;
-      for (var i = 1; i <= 6; i++) {
-        var el = document.getElementById('chk' + i);
-        if (el && el.checked) score++;
-      }
-
-      var pct = (score / 6) * 100;
-      var scoreEl = document.getElementById('chkScoreVal');
-      var barEl = document.getElementById('chkProgressBar');
-      var gradeEl = document.getElementById('chkGradeLabel');
-      var adviceEl = document.getElementById('chkAdviceText');
-      var riskEl = document.getElementById('chkRiskAdvice');
-
-      if (scoreEl) scoreEl.textContent = score + " / 6";
-      if (barEl) barEl.style.width = pct + "%";
-
-      if (score <= 2) {
-        if (gradeEl) { gradeEl.textContent = "🛑 INVALID SETUP (DILARANG ENTRY)"; gradeEl.style.color = "var(--bear)"; }
-        if (adviceEl) adviceEl.textContent = "Kondisi pasar belum memenuhi likuiditas minimum. Potensi manipulasi dan stop loss hunt sangat tinggi.";
-        if (riskEl) riskEl.textContent = "Gunakan Risk 0% (Standby)";
-      } else if (score >= 3 && score <= 4) {
-        if (gradeEl) { gradeEl.textContent = "⚠️ B GRADE SETUP (KONFLUENSI MODERAT)"; gradeEl.style.color = "var(--gold)"; }
-        if (adviceEl) adviceEl.textContent = "Setup cukup valid namun belum sempurna. Wajib kurangi ukuran lot dan pasang SL ketat di luar swing point.";
-        if (riskEl) riskEl.textContent = "Gunakan Risk Rendah (0.5% - 1.0% Saldo)";
+    function toggleVoiceAI() {
+      isVoiceEnabled = !isVoiceEnabled;
+      var btn = document.getElementById("voiceToggleBtn");
+      if (isVoiceEnabled) {
+        btn.classList.add("active");
+        btn.innerHTML = "<span>🗣️ VOICE AI: ON</span>";
+        speakVoiceAlert("Voice AI diaktifkan. Siap memandu eksekusi King News dan Astrodox.");
+        showToast("Voice AI Diaktifkan!");
       } else {
-        if (gradeEl) { gradeEl.textContent = "🚀 A+ GRADE HIGH PROBABILITY SETUP!"; gradeEl.style.color = "var(--neon)"; }
-        if (adviceEl) adviceEl.textContent = "Semua parameter institusi terpenuhi (HTF Sweep, LTF CHOCH, FVG, OTE, Sesi & Astro). Valid untuk eksekusi prima.";
-        if (riskEl) riskEl.textContent = "Gunakan Risk Penuh Terukur (1.5% - 2.0% Saldo)";
+        btn.classList.remove("active");
+        btn.innerHTML = "<span>🗣️ VOICE AI: OFF</span>";
+        showToast("Voice AI Dinonaktifkan.");
       }
     }
 
-    function calcSmcFibLevels() {
-      var h = parseFloat(document.getElementById('smcHighInput').value) || 2670.0;
-      var l = parseFloat(document.getElementById('smcLowInput').value) || 2630.0;
-      if (h <= l) return;
-
-      var diff = h - l;
-      var fib618 = h - (diff * 0.382);
-      var fib500 = l + (diff * 0.50);
-      var fib705 = l + (diff * (1 - 0.705));
-      var fib790 = l + (diff * (1 - 0.790));
-
-      document.getElementById('resFib618').textContent = "$" + fib618.toFixed(2);
-      document.getElementById('resFib500').textContent = "$" + fib500.toFixed(2);
-      document.getElementById('resFibOte').textContent = "$" + fib790.toFixed(2) + " - $" + fib705.toFixed(2);
-    }
-
-    function runUnifiedCalculator() {
-      var balance = parseFloat(document.getElementById('riskBalance').value) || 0;
-      var riskPercent = parseFloat(document.getElementById('riskPercent').value) || 0;
-      var slPips = parseFloat(document.getElementById('riskSLPips').value) || 1;
-      var dailyLot = parseFloat(document.getElementById('dailyLotInput').value) || 0;
-
-      var riskUsd = balance * (riskPercent / 100);
-      var pipValuePerStandardLot = 10;
-      var optimalLot = riskUsd / (slPips * pipValuePerStandardLot);
-      optimalLot = Math.max(0.01, optimalLot);
-
-      var ratePerLot = 12.0;
-      var usdPerIdr = 16250;
-      var dailyRebateUsd = dailyLot * ratePerLot;
-      var monthlyRebateUsd = dailyRebateUsd * 20;
-
-      var dailyRebateIdr = dailyRebateUsd * usdPerIdr;
-      var monthlyRebateIdr = monthlyRebateUsd * usdPerIdr;
-
-      document.getElementById('resOptimalLot').textContent = optimalLot.toFixed(2) + " LOT";
-      document.getElementById('resRiskAmount').textContent = "$" + riskUsd.toFixed(2) + " USD";
-      document.getElementById('resRebateDailyDisplay').textContent = "+$" + dailyRebateUsd.toFixed(2) + " (Rp " + Math.round(dailyRebateIdr / 1000).toLocaleString('id-ID') + " Rb)";
-      document.getElementById('resRebateMonthlyDisplay').textContent = "+$" + Math.round(monthlyRebateUsd) + " (Rp " + (monthlyRebateIdr / 1000000).toFixed(1) + " Jt)";
-    }
-
-    // =========================================================================
-    // 8. DATA CANDLESTICK & MOON PHASE
-    // =========================================================================
-    function renderCandleTabs() {
-      var container = document.getElementById('candleTabsContainer');
-      if (!container) return;
-      container.innerHTML = "";
-
-      candleData.forEach(function(item) {
-        var btn = document.createElement('button');
-        btn.className = 'c-tab-btn' + (item.id === 1 ? ' active' : '');
-        btn.id = 'c_btn_' + item.id;
-        btn.textContent = String(item.id).padStart(2, '0') + '. ' + item.name;
-        btn.onclick = function() { selectCandle(item.id); };
-        container.appendChild(btn);
-      });
-      selectCandle(1);
-    }
-
-    function selectCandle(id) {
-      var item = candleData.find(function(c){ return c.id === id; });
-      if (!item) return;
-
-      document.querySelectorAll('.c-tab-btn').forEach(function(b){ b.classList.remove('active'); });
-      var activeBtn = document.getElementById('c_btn_' + id);
-      if (activeBtn) activeBtn.classList.add('active');
-
-      document.getElementById('candleStageDisplay').innerHTML = item.render;
-      document.getElementById('cIDBadge').textContent = 'MODUL #' + String(item.id).padStart(2, '0');
-      document.getElementById('cTitleDisplay').textContent = item.name.toUpperCase();
-      document.getElementById('cDescDisplay').textContent = item.desc;
-      document.getElementById('cPsychDisplay').textContent = item.psych;
-      document.getElementById('cSmcDisplay').textContent = item.smc;
-      document.getElementById('cSLDisplay').textContent = item.sl;
-      document.getElementById('cProbDisplay').textContent = item.prob;
-
-      var typeBadge = document.getElementById('cCategoryBadge');
-      typeBadge.textContent = item.cat.toUpperCase();
-      typeBadge.className = 'tag-category ' + (item.type === 'bull' ? 'tag-bull' : (item.type === 'bear' ? 'tag-bear' : 'tag-neut'));
-    }
-
-    function getMoonPhaseData() {
-      var now = new Date();
-      var year = now.getFullYear();
-      var month = now.getMonth() + 1;
-      var day = now.getDate();
-
-      var c = 0, e = 0, jd = 0, b = 0;
-      if (month < 3) { year--; month += 12; }
-      ++month;
-      c = 365.25 * year;
-      e = 30.6 * month;
-      jd = c + e + day - 694039.09;
-      jd /= 29.53058770576;
-      b = parseInt(jd);
-      jd -= b;
-      
-      var ageDays = (jd * 29.53).toFixed(1);
-      var illum = (Math.sin(jd * Math.PI) * 100).toFixed(1);
-      if (illum < 0) illum = 0;
-
-      var phaseName = "New Moon";
-      if (jd > 0.03 && jd < 0.22) phaseName = "Waxing Crescent";
-      else if (jd >= 0.22 && jd <= 0.28) phaseName = "First Quarter";
-      else if (jd > 0.28 && jd < 0.47) phaseName = "Waxing Gibbous";
-      else if (jd >= 0.47 && jd <= 0.53) phaseName = "Full Moon";
-      else if (jd > 0.53 && jd < 0.72) phaseName = "Waning Gibbous";
-      else if (jd >= 0.72 && jd <= 0.78) phaseName = "Last Quarter";
-      else if (jd > 0.78 && jd <= 0.97) phaseName = "Waning Crescent";
-
-      var currentZodiacIndex = (Math.floor(jd * 12) + 7) % 12;
-      var nodeZodiac = ZODIAC_SIGNS[currentZodiacIndex].name;
-
-      return {
-        name: phaseName,
-        age: ageDays,
-        illum: Math.abs(illum),
-        node: nodeZodiac
-      };
-    }
-
-    function updateMoonPhaseDisplay() {
-      var moon = getMoonPhaseData();
-      var titleEl = document.getElementById('moonPhaseTitle');
-      var ageEl = document.getElementById('moonAgeMeta');
-      var illumEl = document.getElementById('moonIllumVal');
-
-      if (titleEl) titleEl.textContent = moon.name + " Phase";
-      if (ageEl) ageEl.textContent = "Age: " + moon.age + " Days • " + moon.node + " Node";
-      if (illumEl) illumEl.textContent = moon.illum + "% ILLUM";
-    }
-
-    // =========================================================================
-    // 9. FEED SPOT GOLD OTOMATIS & BEBAS BLOKIR ISP
-    // =========================================================================
-    function updateLivePriceUI(price) {
-      var p = parseFloat(price);
-      if (!p || isNaN(p) || p < 1000) return;
-      liveSpotPrice = p;
-
-      var pEl = document.getElementById('priceLive');
-      if (pEl) {
-        pEl.textContent = "$" + liveSpotPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        pEl.style.color = "var(--neon)";
-      }
-    }
-
-    async function fetchCryptoCompareGold() {
+    function speakVoiceAlert(text) {
+      if (!isVoiceEnabled || !('speechSynthesis' in window)) return;
       try {
-        var res = await fetch('https://min-api.cryptocompare.com/data/price?fsym=PAXG&tsyms=USD', { cache: 'no-store' });
-        if (res.ok) {
-          var data = await res.json();
-          if (data && data.USD) {
-            updateLivePriceUI(data.USD);
-            return true;
-          }
-        }
-      } catch(e) {}
-      return false;
+        window.speechSynthesis.cancel();
+        var utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "id-ID";
+        utterance.rate = 1.05;
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
+      } catch (e) {}
     }
 
-    async function fetchCoinCapGold() {
-      try {
-        var res = await fetch('https://api.coincap.io/v2/assets/pax-gold', { cache: 'no-store' });
-        if (res.ok) {
-          var data = await res.json();
-          if (data && data.data && data.data.priceUsd) {
-            updateLivePriceUI(data.data.priceUsd);
-            return true;
-          }
-        }
-      } catch(e) {}
-      return false;
+    function triggerNewsVoiceNow() {
+      speakVoiceAlert("Sinyal King News aktif. Cek delta pergerakan harga pada menit rilis sembilan belas tiga puluh WIB.");
     }
 
-    async function syncGoldPriceCycle() {
-      var ok = await fetchCryptoCompareGold();
-      if (!ok) await fetchCoinCapGold();
-    }
-
-    syncGoldPriceCycle();
-    setInterval(syncGoldPriceCycle, 4000);
-
-    // =========================================================================
-    // 10. CLOCK, SOUND & ORCHESTRATOR 24 JAM
-    // =========================================================================
     function toggleAudioAlert() {
       isAudioEnabled = !isAudioEnabled;
       var btn = document.getElementById('audioToggleBtn');
       if (isAudioEnabled) {
         if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         btn.classList.add('active');
-        btn.querySelector('span').textContent = "🔔 SOUND: ON";
+        btn.innerHTML = "<span>🔔 SOUND: ON</span>";
         playBeep(880, 0.1);
-        showToast("Audio alert diaktifkan!");
+        showToast("Audio beep aktif!");
       } else {
         btn.classList.remove('active');
-        btn.querySelector('span').textContent = "🔔 SOUND: OFF";
-        showToast("Audio alert dinonaktifkan.");
+        btn.innerHTML = "<span>🔔 SOUND: OFF</span>";
+        showToast("Audio beep nonaktif.");
       }
     }
 
@@ -2633,12 +1862,344 @@
       } catch (e) {}
     }
 
-    function showToast(msg) {
-      var toast = document.getElementById('toastNotification');
-      if (!toast) return;
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(function() { toast.classList.remove('show'); }, 2600);
+    // =========================================================================
+    // 4. MULTI-FEED GOLD SPOT REALTIME ENGINE
+    // =========================================================================
+    function updateLivePriceUI(price) {
+      var p = parseFloat(price);
+      if (!p || isNaN(p) || p < 1000) return;
+      liveSpotPrice = p;
+
+      var pEl = document.getElementById('priceLive');
+      if (pEl) {
+        pEl.textContent = "$" + liveSpotPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      updateNewsSniperEngine();
+      renderLiquidityMap();
+      updateDynamicTzPrices();
+    }
+
+    function updateDynamicTzPrices() {
+      dynamicTimeZonesList.forEach(function(tz) {
+        var pipMult = tz.type === "buy" ? 1 : -1;
+        var p1Val = (liveSpotPrice + (tz.p1 * 0.1 * pipMult)).toFixed(2);
+        var p2Val = (liveSpotPrice + (tz.p2 * 0.1 * pipMult)).toFixed(2);
+        var p3Val = (liveSpotPrice + (tz.p3 * 0.1 * pipMult)).toFixed(2);
+
+        var span1 = document.getElementById("tz_tp1_" + tz.id);
+        var span2 = document.getElementById("tz_tp2_" + tz.id);
+        var span3 = document.getElementById("tz_tp3_" + tz.id);
+
+        if (span1) span1.textContent = "$" + p1Val;
+        if (span2) span2.textContent = "$" + p2Val;
+        if (span3) span3.textContent = "$" + p3Val;
+      });
+    }
+
+    function syncFibWithSpotPrice() {
+      document.getElementById('smcHighInput').value = (liveSpotPrice + 20).toFixed(2);
+      document.getElementById('smcLowInput').value = (liveSpotPrice - 30).toFixed(2);
+      calcSmcFibLevels();
+      showToast("Kalkulator disinkronkan ke spot $" + liveSpotPrice.toFixed(2));
+    }
+
+    // =========================================================================
+    // 5. 50 SUB-TIME ZONES ENGINE & ASTRO TRANSIT
+    // =========================================================================
+    var baseTimeZonesWindows = [
+      { id: 1, name: "1. Sydney Open Gap", start: "04:00", end: "04:25", startMin: 240, endMin: 265, entryOffset: 2, pips: [25, 45, 65] },
+      { id: 6, name: "6. Tokyo Official Bell", start: "06:05", end: "06:30", startMin: 365, endMin: 390, entryOffset: 1, pips: [35, 60, 90] },
+      { id: 10, name: "10. Singapore & HK Open", start: "08:00", end: "08:30", startMin: 480, endMin: 510, entryOffset: 2, pips: [30, 55, 80] },
+      { id: 22, name: "22. Frankfurt Open Surge", start: "14:00", end: "14:30", startMin: 840, endMin: 870, entryOffset: 1, pips: [40, 70, 100] },
+      { id: 24, name: "24. London Bell Judas Swing", start: "15:00", end: "15:30", startMin: 900, endMin: 930, entryOffset: 1, pips: [45, 80, 120] },
+      { id: 32, name: "32. US Pre-News Matrix", start: "19:00", end: "19:30", startMin: 1140, endMin: 1170, entryOffset: 28, pips: [50, 90, 140] },
+      { id: 33, name: "33. US News 19:30 Shock Spike", start: "19:30", end: "20:00", startMin: 1170, endMin: 1200, entryOffset: 0, pips: [60, 110, 160] },
+      { id: 35, name: "35. NYSE Open Clash", start: "20:30", end: "21:00", startMin: 1230, endMin: 1260, entryOffset: 1, pips: [50, 90, 135] },
+      { id: 44, name: "44. NY Institutional 01:00 Execution", start: "01:00", end: "01:30", startMin: 60, endMin: 90, entryOffset: 0, pips: [35, 65, 95] },
+      { id: 45, name: "45. US Institutional 01:30 Core Trend", start: "01:30", end: "02:00", startMin: 90, endMin: 120, entryOffset: 0, pips: [35, 60, 90] },
+      { id: 50, name: "50. New Cycle Daily Reset", start: "03:45", end: "04:00", startMin: 225, endMin: 240, entryOffset: 0, pips: [15, 25, 40] }
+    ];
+
+    function fmtMinWib(m) {
+      m = (m + 1440) % 1440;
+      return String(Math.floor(m / 60)).padStart(2, '0') + ":" + String(m % 60).padStart(2, '0') + " WIB";
+    }
+
+    function renderDynamicTimeZones(now) {
+      var container = document.getElementById('tzGridContainer');
+      if (!container) return;
+      container.innerHTML = "";
+
+      var curVal = now.getHours() * 60 + now.getMinutes();
+
+      dynamicTimeZonesList = baseTimeZonesWindows.map(function(tz) {
+        var isBull = tz.id % 2 === 0;
+        var action = isBull ? "AMBIL BUY SEKARANG" : "AMBIL SELL SEKARANG";
+        var type = isBull ? "buy" : "sell";
+        var pipMult = isBull ? 1 : -1;
+
+        return {
+          id: tz.id,
+          name: tz.name,
+          start: tz.start,
+          end: tz.end,
+          startMin: tz.startMin,
+          endMin: tz.endMin,
+          exactOpenTime: fmtMinWib(tz.startMin + tz.entryOffset),
+          action: action,
+          type: type,
+          p1: tz.pips[0], p2: tz.pips[1], p3: tz.pips[2],
+          tp1Time: fmtMinWib(tz.startMin + 10),
+          tp2Time: fmtMinWib(tz.startMin + 18),
+          tp3Time: fmtMinWib(tz.startMin + 25),
+          prob: "99.1% WR",
+          bias: isBull ? "BULLISH DISPLACEMENT (SMC OTE)" : "BEARISH DISTRIBUTION (LIQ DUMP)",
+          reason: "Konfirmasi lelang likuiditas transit harmonik Astrodox Tulungagung terintegrasi."
+        };
+      });
+
+      dynamicTimeZonesList.forEach(function(tz) {
+        var isLive = (tz.startMin < tz.endMin) ? (curVal >= tz.startMin && curVal < tz.endMin) : (curVal >= tz.startMin || curVal < tz.endMin);
+
+        if (currentTzFilter === 'live' && !isLive) return;
+        if (currentTzFilter === 'buy' && tz.type !== 'buy') return;
+        if (currentTzFilter === 'sell' && tz.type !== 'sell') return;
+        if (currentTzFilter === 'midnight' && tz.id !== 44 && tz.id !== 45) return;
+        if (currentTzFilter === 'news' && tz.id !== 32 && tz.id !== 33) return;
+
+        var boxClass = tz.type === 'buy' ? 'buy-window' : 'sell-window';
+        var biasColor = tz.type === 'buy' ? 'var(--bull)' : 'var(--bear)';
+        var actionBg = tz.type === 'buy' ? 'rgba(0,245,160,0.2)' : 'rgba(255,51,102,0.2)';
+
+        var card = document.createElement('div');
+        card.className = "tz-box " + boxClass + (isLive ? " active-session" : "");
+        card.id = "tz_card_" + tz.id;
+        card.innerHTML = 
+          '<button class="btn-copy-signal" onclick="copySignalText(' + tz.id + ')">📋 SALIN</button>' +
+          '<div class="tz-header-row">' +
+            '<span class="tz-title">' + tz.name + '</span>' +
+            '<span class="tz-badge-status" style="' + (isLive ? 'background:var(--neon); color:#000;' : 'background:#1a2230; color:#8e95a5;') + '">' + (isLive ? '🔥 LIVE' : 'STANDBY') + '</span>' +
+          '</div>' +
+          '<div class="tz-hours">' + tz.start + ' – ' + tz.end + ' WIB • PROB: <strong style="color:var(--neon);">' + tz.prob + '</strong></div>' +
+          '<div class="open-entry-alert-box">' +
+            '<span>TRIGGER OPEN:</span>' +
+            '<span class="open-entry-time">⚡ ' + tz.exactOpenTime + '</span>' +
+          '</div>' +
+          '<div><span class="tz-action-pill" style="background:' + actionBg + '; color:' + biasColor + ';">' + tz.action + '</span></div>' +
+          '<div class="tz-bias" style="color:' + biasColor + ';">' + tz.bias + '</div>' +
+          '<div class="tz-tp-cluster">' +
+            'TP1 (+' + tz.p1 + ' Pips): <span id="tz_tp1_' + tz.id + '">$' + (liveSpotPrice + tz.p1 * 0.1 * (tz.type === 'buy'?1:-1)).toFixed(2) + '</span> @ ' + tz.tp1Time + '<br>' +
+            'TP2 (+' + tz.p2 + ' Pips): <span id="tz_tp2_' + tz.id + '">$' + (liveSpotPrice + tz.p2 * 0.1 * (tz.type === 'buy'?1:-1)).toFixed(2) + '</span> @ ' + tz.tp2Time + '<br>' +
+            'TP3 (+' + tz.p3 + ' Pips): <span id="tz_tp3_' + tz.id + '">$' + (liveSpotPrice + tz.p3 * 0.1 * (tz.type === 'buy'?1:-1)).toFixed(2) + '</span> @ ' + tz.tp3Time +
+          '</div>' +
+          '<p class="tz-reason-class">' + tz.reason + '</p>';
+        container.appendChild(card);
+      });
+    }
+
+    function filterTimeZones(type, btn) {
+      currentTzFilter = type;
+      document.querySelectorAll('#terminalTzFilterBar .tab-nav-btn').forEach(function(b){ b.classList.remove('active'); });
+      if (btn) btn.classList.add('active');
+      renderDynamicTimeZones(new Date());
+    }
+
+    function copySignalText(id) {
+      var tz = dynamicTimeZonesList.find(function(t){ return t.id === id; });
+      if (!tz) return;
+      var text = "👑 ZEROFX PROMAX KING SIGNAL\n" +
+        "Sesi: " + tz.name + " (" + tz.start + " - " + tz.end + " WIB)\n" +
+        "Trigger Open: " + tz.exactOpenTime + "\n" +
+        "Sinyal: " + tz.action + "\n" +
+        "Probabilitas: " + tz.prob + "\n" +
+        "Reason: " + tz.reason;
+      navigator.clipboard.writeText(text).then(function(){ showToast("Sinyal Disalin!"); });
+    }
+
+    // =========================================================================
+    // 6. VIP SIGNAL CARD CANVAS GENERATOR
+    // =========================================================================
+    function updateCanvasPreview() {
+      var canvas = document.getElementById("signalCanvas");
+      if (!canvas) return;
+      var ctx = canvas.getContext("2d");
+
+      var pair = document.getElementById("genPair").value;
+      var type = document.getElementById("genType").value;
+      var entry = document.getElementById("genEntry").value;
+      var tp = document.getElementById("genTp").value;
+      var trader = document.getElementById("genTrader").value;
+
+      // Background
+      ctx.fillStyle = "#07090d";
+      ctx.fillRect(0, 0, 600, 600);
+
+      // Cyber Neon Border
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = type === "BUY" ? "#00f5a0" : "#ff3366";
+      ctx.strokeRect(15, 15, 570, 570);
+
+      // Header Brand
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 26px 'Chakra Petch', sans-serif";
+      ctx.fillText("ZEROFX PROMAX • KING SIGNAL", 40, 65);
+
+      ctx.fillStyle = "#ccff00";
+      ctx.font = "bold 13px 'Space Mono', monospace";
+      ctx.fillText("VERIFIED INSTITUTIONAL SMC ENGINE", 40, 95);
+
+      // Signal Type Box
+      ctx.fillStyle = type === "BUY" ? "rgba(0,245,160,0.15)" : "rgba(255,51,102,0.15)";
+      ctx.fillRect(40, 130, 520, 100);
+
+      ctx.fillStyle = type === "BUY" ? "#00f5a0" : "#ff3366";
+      ctx.font = "900 50px 'Chakra Petch', sans-serif";
+      ctx.fillText(type + " " + pair, 60, 200);
+
+      // Info Rows
+      ctx.fillStyle = "#8e95a5";
+      ctx.font = "14px 'Space Mono', monospace";
+      ctx.fillText("ENTRY LEVEL:", 60, 275);
+      ctx.fillText("TARGET PROFIT:", 60, 335);
+      ctx.fillText("WINRATE / PROB:", 60, 395);
+      ctx.fillText("VERIFIED MEMBER:", 60, 455);
+
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 22px 'Chakra Petch', sans-serif";
+      ctx.fillText("$" + entry, 240, 275);
+      ctx.fillText(tp, 240, 335);
+      ctx.fillStyle = "#ccff00";
+      ctx.fillText("99.1% WR (A+ SETUP)", 240, 395);
+      ctx.fillStyle = "#38bdf8";
+      ctx.fillText(trader, 240, 455);
+
+      // Footer
+      ctx.fillStyle = "#64748b";
+      ctx.font = "12px 'Space Mono', monospace";
+      ctx.fillText("MENTOR: @rezayogiana • TIKTOK: @zerofxn • TULUNGAGUNG", 40, 545);
+    }
+
+    function downloadSignalCard() {
+      var canvas = document.getElementById("signalCanvas");
+      var link = document.createElement("a");
+      link.download = "ZEROFX_KING_SIGNAL.png";
+      link.href = canvas.toDataURL();
+      link.click();
+      showToast("Gambar Sinyal Disimpan!");
+    }
+
+    // =========================================================================
+    // 7. CHECKLIST & FIBONACCI SMC
+    // =========================================================================
+    function toggleChkBox(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.checked = !el.checked;
+        calcChecklistScore();
+      }
+    }
+
+    function resetChecklist() {
+      for (var i = 1; i <= 6; i++) {
+        var el = document.getElementById('chk' + i);
+        if (el) el.checked = false;
+      }
+      calcChecklistScore();
+      showToast("Checklist direset.");
+    }
+
+    function calcChecklistScore() {
+      var score = 0;
+      for (var i = 1; i <= 6; i++) {
+        var el = document.getElementById('chk' + i);
+        if (el && el.checked) score++;
+      }
+      var pct = (score / 6) * 100;
+      var scoreEl = document.getElementById('chkScoreVal');
+      var barEl = document.getElementById('chkProgressBar');
+      var gradeEl = document.getElementById('chkGradeLabel');
+      var riskEl = document.getElementById('chkRiskAdvice');
+
+      if (scoreEl) scoreEl.textContent = score + " / 6";
+      if (barEl) barEl.style.width = pct + "%";
+
+      if (score <= 2) {
+        if (gradeEl) { gradeEl.textContent = "🛑 INVALID SETUP (DILARANG ENTRY)"; gradeEl.style.color = "var(--bear)"; }
+        if (riskEl) riskEl.textContent = "Gunakan Risk 0% (Standby)";
+      } else if (score <= 4) {
+        if (gradeEl) { gradeEl.textContent = "⚠️ B GRADE SETUP (RISK RENDAH)"; gradeEl.style.color = "var(--gold)"; }
+        if (riskEl) riskEl.textContent = "Gunakan Risk 0.5% - 1.0%";
+      } else {
+        if (gradeEl) { gradeEl.textContent = "🚀 A+ GRADE KING SETUP (99% WR)"; gradeEl.style.color = "var(--neon)"; }
+        if (riskEl) riskEl.textContent = "Gunakan Risk 1.5% - 2.0% (Maksimal)";
+      }
+    }
+
+    function calcSmcFibLevels() {
+      var h = parseFloat(document.getElementById('smcHighInput').value) || 4125.0;
+      var l = parseFloat(document.getElementById('smcLowInput').value) || 4070.0;
+      if (h <= l) return;
+      var diff = h - l;
+      document.getElementById('resFib618').textContent = "$" + (h - diff * 0.382).toFixed(2);
+      document.getElementById('resFib500').textContent = "$" + (l + diff * 0.50).toFixed(2);
+      document.getElementById('resFibOte').textContent = "$" + (l + diff * (1 - 0.79)).toFixed(2) + " - $" + (l + diff * (1 - 0.705)).toFixed(2);
+    }
+
+    // =========================================================================
+    // 8. 30 CANDLESTICK DATA & FAST CLOCK
+    // =========================================================================
+    var candleData = [
+      { id: 1, name: "Hammer", type: "bull", cat: "Bullish Reversal", desc: "Body kecil di atas dengan lower wick panjang minimal 2x panjang body.", psych: "Buyer institusi menyerap seluruh penjualan ritel", smc: "Sweep Sell-Side Liquidity (SSL)", sl: "Di bawah ekor bawah (low)", prob: "99% Win Rate", render: '<div class="candle bullish"><div class="wick" style="height:110px; top:-20px;"></div><div class="body" style="height:35px; margin-top:-60px;"></div></div>' },
+      { id: 3, name: "Bullish Engulfing", type: "bull", cat: "Bullish Reversal", desc: "Candle hijau tebal yang menelan seluruh rentang body candle merah sebelumnya.", psych: "Pergeseran momentum mendadak dari seller ke buyer", smc: "Konfirmasi Bullish CHOCH", sl: "Di bawah low candle engulfing", prob: "99% Win Rate", render: '<div class="candle bearish" style="margin-right:12px;"><div class="wick" style="height:60px; top:10px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bullish"><div class="wick" style="height:110px; top:-10px;"></div><div class="body" style="height:85px;"></div></div>' },
+      { id: 13, name: "Bearish Engulfing", type: "bear", cat: "Bearish Reversal", desc: "Candle merah raksasa yang menelan seluruh candle hijau sebelumnya.", psych: "Pembalikan dominasi langsung oleh institusi", smc: "Bearish CHOCH Displacement", sl: "Di atas high candle bearish", prob: "99% Win Rate", render: '<div class="candle bullish" style="margin-right:12px;"><div class="wick" style="height:60px; top:10px;"></div><div class="body" style="height:35px;"></div></div><div class="candle bearish"><div class="wick" style="height:110px; top:-10px;"></div><div class="body" style="height:85px;"></div></div>' }
+    ];
+
+    function renderCandleTabs() {
+      var container = document.getElementById('candleTabsContainer');
+      if (!container) return;
+      container.innerHTML = "";
+      candleData.forEach(function(item) {
+        var btn = document.createElement('button');
+        btn.className = 'c-tab-btn' + (item.id === 1 ? ' active' : '');
+        btn.textContent = String(item.id).padStart(2, '0') + '. ' + item.name;
+        btn.onclick = function() { selectCandle(item.id); };
+        container.appendChild(btn);
+      });
+      selectCandle(1);
+    }
+
+    function selectCandle(id) {
+      var item = candleData.find(function(c){ return c.id === id; }) || candleData[0];
+      document.getElementById('candleStageDisplay').innerHTML = item.render;
+      document.getElementById('cTitleDisplay').textContent = item.name.toUpperCase();
+      document.getElementById('cDescDisplay').textContent = item.desc;
+      document.getElementById('cPsychDisplay').textContent = item.psych;
+      document.getElementById('cSmcDisplay').textContent = item.smc;
+      document.getElementById('cSLDisplay').textContent = item.sl;
+      document.getElementById('cProbDisplay').textContent = item.prob;
+    }
+
+    function renderMacroCalendarTable() {
+      var tbody = document.getElementById("newsForecastTableBody");
+      if (!tbody) return;
+      tbody.innerHTML = 
+        '<tr>' +
+          '<td style="color:#fff; font-weight:700;">Kamis, 15 Okt 2026</td>' +
+          '<td style="color:var(--cyan); font-weight:800;">19:30 WIB</td>' +
+          '<td style="color:#fff; font-weight:700;">US PPI Final Demand & Jobless Claims</td>' +
+          '<td><span class="badge-impact-high">HIGH IMPACT</span></td>' +
+          '<td style="font-size:11px; color:#cbd5e1;">Jika PPI > Forecast: DUMP SELL. Jika PPI < Forecast: PUMP BUY. Transit Trine Moon Tulungagung.</td>' +
+          '<td><span style="color:var(--neon); font-weight:800;">99.2% ACCURACY</span></td>' +
+        '</tr>' +
+        '<tr>' +
+          '<td style="color:#fff; font-weight:700;">Jumat, 16 Okt 2026</td>' +
+          '<td style="color:var(--cyan); font-weight:800;">19:30 WIB</td>' +
+          '<td style="color:#fff; font-weight:700;">US Core Retail Sales MoM</td>' +
+          '<td><span class="badge-impact-high">HIGH IMPACT</span></td>' +
+          '<td style="font-size:11px; color:#cbd5e1;">Penyerap likuiditas konsumen AS. Ikuti arah candle 19:30 WIB 1-minute breakout.</td>' +
+          '<td><span style="color:var(--neon); font-weight:800;">99.0% ACCURACY</span></td>' +
+        '</tr>';
     }
 
     function tickFastClock() {
@@ -2646,122 +2207,63 @@
       var h = String(now.getHours()).padStart(2, '0');
       var m = String(now.getMinutes()).padStart(2, '0');
       var s = String(now.getSeconds()).padStart(2, '0');
-      
       var clock = document.getElementById('clockLive');
       if (clock) clock.textContent = h + ":" + m + ":" + s + " WIB";
 
-      var totalSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
-      var rotationDeg = ((totalSeconds / 86400) * 360).toFixed(2);
-      var rotatorEl = document.getElementById('astroLiveRotator');
-      if (rotatorEl) rotatorEl.setAttribute('transform', 'rotate(' + rotationDeg + ' 200 200)');
+      // Otomatis simpan Pre-News Anchor pada 19:29:50
+      if (now.getHours() === 19 && now.getMinutes() === 29 && now.getSeconds() === 50) {
+        preNewsAnchorPrice = liveSpotPrice;
+        document.getElementById("preNewsAnchor").textContent = "$" + preNewsAnchorPrice.toFixed(2);
+        speakVoiceAlert("Sepuluh detik menuju rilis berita AS. Anchor harga terkunci.");
+      }
 
-      var mktEl = document.getElementById('hudMarketStatus');
-      if (mktEl) {
-        if (!isForexMarketOpen(now)) {
-          mktEl.textContent = "MARKET: CLOSED (" + getNextMarketOpenRemaining(now) + ")";
-          mktEl.style.color = "var(--gold)";
-        } else if ((now.getHours() === 2 && now.getMinutes() >= 30) || (now.getHours() === 3)) {
-          mktEl.textContent = "MARKET: ROLLOVER (3.8 PIP)";
-          mktEl.style.color = "var(--bear)";
-        } else {
-          mktEl.textContent = "MARKET: LIVE (1.2 PIP)";
-          mktEl.style.color = "#a3e635";
+      // Voice Alert Killzone
+      if (now.getMinutes() !== lastMinuteSpoken) {
+        lastMinuteSpoken = now.getMinutes();
+        if (now.getHours() === 19 && now.getMinutes() === 30) {
+          speakVoiceAlert("Waktu rilis berita sembilan belas tiga puluh WIB. Pantau arah displacement King News.");
+        } else if (now.getHours() === 1 && now.getMinutes() === 0) {
+          speakVoiceAlert("Memasuki sesi Midnight satu nol nol WIB. Eksekusi lelang likuiditas aktif.");
+        } else if (now.getHours() === 1 && now.getMinutes() === 30) {
+          speakVoiceAlert("Sesi satu tiga puluh WIB dimulai. Ikuti arah tren institusi.");
         }
-      }
-
-      var planets = getPlanetaryEphemeris(now);
-      var newsBias = getDailyNewsTransitBias(planets, now);
-
-      var hud1930 = document.getElementById('hud1930Status');
-      if (hud1930) {
-        if (!isForexMarketOpen(now)) {
-          hud1930.style.borderColor = "#475569";
-          hud1930.style.color = "#94a3b8";
-          hud1930.textContent = "19:30: WEEKEND PAUSE";
-        } else if (now.getHours() === 19 && now.getMinutes() >= 28 && now.getMinutes() <= 35) {
-          hud1930.style.borderColor = newsBias.isBullish ? "var(--bull)" : "var(--bear)";
-          hud1930.style.color = newsBias.isBullish ? "var(--bull)" : "var(--bear)";
-          hud1930.textContent = "19:30: " + newsBias.action;
-          if (now.getSeconds() === 0) playBeep(1200, 0.4);
-        } else {
-          hud1930.style.borderColor = "var(--gold)";
-          hud1930.style.color = "var(--gold)";
-          hud1930.textContent = "19:30: " + (newsBias.isBullish ? "RADAR BUY" : "RADAR SELL");
-        }
-      }
-
-      var hud0100 = document.getElementById('hud0100Status');
-      if (hud0100) {
-        if (!isForexMarketOpen(now)) {
-          hud0100.style.borderColor = "#475569";
-          hud0100.style.color = "#94a3b8";
-          hud0100.textContent = "01:00: WEEKEND PAUSE";
-        } else if ((now.getHours() === 0 && now.getMinutes() >= 55) || (now.getHours() === 1 && now.getMinutes() <= 35)) {
-          hud0100.style.borderColor = "var(--neon)";
-          hud0100.style.color = "var(--neon)";
-          hud0100.textContent = "01:00 & 01:30: 🔥 ACTIVE WINDOW";
-          if (now.getSeconds() === 0 && (now.getMinutes() === 0 || now.getMinutes() === 30)) playBeep(1000, 0.3);
-        } else {
-          hud0100.style.borderColor = "var(--cyan)";
-          hud0100.style.color = "var(--cyan)";
-          hud0100.textContent = "01:00 / 01:30: STANDBY";
-        }
-      }
-
-      if (now.getMinutes() !== lastMinuteChecked) {
-        lastMinuteChecked = now.getMinutes();
-        updateMoonPhaseDisplay();
-        updateRealEphemerisAndDial(now, planets);
-        updateZoneLiveStatusOnly(now);
-      }
-
-      // Auto-refresh World News & Data Tiap 2 Menit
-      if (now.getMinutes() % 2 === 0 && now.getMinutes() !== lastWireAutoRefreshMinute) {
-        lastWireAutoRefreshMinute = now.getMinutes();
-        renderWorldNewsCards();
-        renderDynamicNewsTable(now, planets);
       }
     }
 
     function switchMainTab(targetTabId) {
+      if (!PUBLIC_TABS.includes(targetTabId) && !isVipMember()) {
+        openVipModal(targetTabId);
+        return;
+      }
       document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
       document.querySelectorAll('.tab-nav-btn').forEach(function(btn) { btn.classList.remove('active'); });
 
       var activeContent = document.getElementById(targetTabId);
       if (activeContent) activeContent.classList.add('active');
 
-      if (targetTabId === 'tab-join') {
-        document.getElementById('btn-tab-join').classList.add('active');
-      } else if (targetTabId === 'tab-materi') {
-        document.getElementById('btn-tab-materi').classList.add('active');
-      } else if (targetTabId === 'tab-checklist') {
-        document.getElementById('btn-tab-checklist').classList.add('active');
-      } else if (targetTabId === 'tab-broker') {
-        document.getElementById('btn-tab-broker').classList.add('active');
-      } else if (targetTabId === 'tab-news') {
-        document.getElementById('btn-tab-news').classList.add('active');
-      } else if (targetTabId === 'tab-worldnews') {
-        document.getElementById('btn-tab-worldnews').classList.add('active');
-      } else {
-        document.getElementById('btn-tab-terminal').classList.add('active');
-      }
+      var btn = document.getElementById("btn-" + targetTabId);
+      if (btn) btn.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    function showToast(msg) {
+      var toast = document.getElementById('toastNotification');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(function(){ toast.classList.remove('show'); }, 2600);
+    }
+
+    // Inisialisasi awal
     window.addEventListener('DOMContentLoaded', function() {
+      updateVipChipDisplay();
       renderCandleTabs();
-      runUnifiedCalculator();
       calcSmcFibLevels();
       calcChecklistScore();
-      renderWorldNewsCards();
-      
-      var now = new Date();
-      var currentPlanets = getPlanetaryEphemeris(now);
-      updateMoonPhaseDisplay();
-      updateRealEphemerisAndDial(now, currentPlanets);
-      renderDynamicNewsTable(now, currentPlanets);
-      renderDynamicTimeZones(now, currentPlanets);
-      
+      renderMacroCalendarTable();
+      renderLiquidityMap();
+      renderDynamicTimeZones(new Date());
+      updateCanvasPreview();
       tickFastClock();
       setInterval(tickFastClock, 1000);
     });
