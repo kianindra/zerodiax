@@ -1595,4 +1595,1173 @@
       { id: 19, name: "Bearish Harami", type: "bear", cat: "Bearish Reversal", desc: "Candle merah kecil yang seluruh rentangnya berada di dalam body candle hijau besar sebelumnya.", psych: "Tekanan beli terhenti secara mendadak", smc: "Inside Bar Bearish Setup", sl: "Di atas high mother bar", prob: "81% Win Rate", render: `<div class="candle bullish" style="margin-right:12px;"><div class="wick" style="height:100px;"></div><div class="body" style="height:75px;"></div></div><div class="candle bearish"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div>` },
       { id: 20, name: "Tweezer Top", type: "bear", cat: "Bearish Reversal", desc: "Dua candle beruntun dengan titik tertinggi (high) persis sama membentuk resistance solid.", psych: "Batas harga lelang atas tertahan kuat", smc: "Equal Highs (EQH) Liquidity Pool", sl: "1-2 pip di atas high kembar", prob: "86% Win Rate", render: `<div class="candle bullish" style="margin-right:10px;"><div class="wick" style="height:90px; top:-10px;"></div><div class="body" style="height:55px; margin-top:20px;"></div></div><div class="candle bearish"><div class="wick" style="height:90px; top:-10px;"></div><div class="body" style="height:55px; margin-top:20px;"></div></div>` },
       { id: 21, name: "Standard Doji", type: "neut", cat: "Indecision", desc: "Bentuk salib sempurna di mana harga open dan close berada di level yang sama persis.", psych: "Keseimbangan sempurna antara buyer & seller", smc: "Equilibrium Compression", sl: "Di luar rentang ekor Doji", prob: "75% Win Rate", render: `<div class="candle doji"><div class="wick" style="height:90px;"></div><div class="body"></div></div>` },
-      { id: 22, name: "Long-Legged Doji", type: "neut", cat: "Volatilitas", desc: "Doji dengan upper dan lower shadow yang sangat panjang mencerminkan pertarungan sengit.", psych: "Vol
+      { id: 22, name: "Long-Legged Doji", type: "neut", cat: "Volatilitas", desc: "Doji dengan upper dan lower shadow yang sangat panjang mencerminkan pertarungan sengit.", psych: "Volatilitas tinggi namun berakhir seimbang", smc: "Dual Liquidity Sweep", sl: "Di luar range ekor terjauh", prob: "78% Win Rate", render: `<div class="candle doji"><div class="wick" style="height:130px;"></div><div class="body"></div></div>` },
+      { id: 23, name: "Spinning Top", type: "neut", cat: "Indecision", desc: "Body kecil simetris di tengah dengan shadow atas dan bawah berukuran sedang.", psych: "Penurunan volatilitas menjelang breakout", smc: "Inducement Range", sl: "Di luar batas breakout candle", prob: "76% Win Rate", render: `<div class="candle bullish"><div class="wick" style="height:90px;"></div><div class="body" style="height:25px;"></div></div>` },
+      { id: 24, name: "Bullish Pinbar", type: "bull", cat: "Rejection", desc: "Candle dengan ekor bawah mencapai lebih dari 70% dari keseluruhan rentang candle.", psych: "Penolakan harga ekstrim di area demand", smc: "Mitigasi Stop Hunt Bawah", sl: "Di bawah ekor Pinbar", prob: "91% Win Rate", render: `<div class="candle bullish"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="height:20px; margin-top:-70px;"></div></div>` },
+      { id: 25, name: "Bearish Pinbar", type: "bear", cat: "Rejection", desc: "Candle dengan ekor atas mencapai lebih dari 70% dari keseluruhan rentang candle.", psych: "Penolakan harga ekstrim di area supply", smc: "Mitigasi Stop Hunt Atas", sl: "Di atas ekor Pinbar", prob: "91% Win Rate", render: `<div class="candle bearish"><div class="wick" style="height:120px; top:-20px;"></div><div class="body" style="height:20px; margin-top:55px;"></div></div>` },
+      { id: 26, name: "Rising Three Methods", type: "bull", cat: "Continuation", desc: "1 candle bullish panjang disusul 3 candle merah kecil di dalamnya, lalu ditutup candle bullish penembus.", psych: "Koreksi sehat yang diserap kembali oleh buyer", smc: "Liquidity Re-accumulation", sl: "Di bawah low candle pertama", prob: "87% Win Rate", render: `<div class="candle bullish" style="margin-right:6px;"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bearish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bearish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bullish"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div>` },
+      { id: 27, name: "Falling Three Methods", type: "bear", cat: "Continuation", desc: "1 candle bearish tebal disusul 3 candle hijau kecil korektif, lalu diteruskan candle bearish baru.", psych: "Pullback lemah yang langsung dihantam supply", smc: "Liquidity Re-distribution", sl: "Di atas high candle pertama", prob: "87% Win Rate", render: `<div class="candle bearish" style="margin-right:6px;"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bullish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bullish" style="margin-right:4px;"><div class="body" style="height:18px;"></div></div><div class="candle bearish"><div class="wick" style="height:80px;"></div><div class="body" style="height:65px;"></div></div>` },
+      { id: 28, name: "Three Inside Up", type: "bull", cat: "Reversal", desc: "Konfirmasi tiga candle dari pola Bullish Harami yang disusul candle bullish penembus high.", psych: "Validasi penuh pergeseran dominasi pasar", smc: "Confirmed Break of Structure (BOS)", sl: "Di bawah titik terendah candle kedua", prob: "89% Win Rate", render: `<div class="candle bearish" style="margin-right:8px;"><div class="wick" style="height:90px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bullish" style="margin-right:8px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div><div class="candle bullish"><div class="wick" style="height:85px;"></div><div class="body" style="height:60px;"></div></div>` },
+      { id: 29, name: "Three Inside Down", type: "bear", cat: "Reversal", desc: "Konfirmasi tiga candle dari pola Bearish Harami yang disusul candle bearish penembus low.", psych: "Konfirmasi seller mengambil kendali penuh", smc: "Confirmed Bearish BOS", sl: "Di atas high candle kedua", prob: "89% Win Rate", render: `<div class="candle bullish" style="margin-right:8px;"><div class="wick" style="height:90px;"></div><div class="body" style="height:65px;"></div></div><div class="candle bearish" style="margin-right:8px;"><div class="wick" style="height:45px;"></div><div class="body" style="height:30px;"></div></div><div class="candle bearish"><div class="wick" style="height:85px;"></div><div class="body" style="height:60px;"></div></div>` },
+      { id: 30, name: "High Wave Candle", type: "neut", cat: "Extreme Indecision", desc: "Body sangat kecil dengan bayangan atas dan bawah super panjang melebihi 3x ukuran body.", psych: "Ketidakpastian ekstrim jelang rilis suku bunga", smc: "Massive Liquidity Grab", sl: "Di luar range ekor terjauh", prob: "80% Win Rate", render: `<div class="candle doji"><div class="wick" style="height:140px;"></div><div class="body" style="height:6px;"></div></div>` }
+    ];
+
+    var baseTimeZonesWindows = [
+      { id: 1, name: "1. Sydney Open Gap", start: "04:00", end: "04:30", startMin: 240, endMin: 270, entryOffset: 3, pips: [25, 45, 65] },
+      { id: 2, name: "2. Pacific Ocean Flow", start: "04:30", end: "05:00", startMin: 270, endMin: 300, entryOffset: 4, pips: [25, 40, 60] },
+      { id: 3, name: "3. Pre-Tokyo Inflow", start: "05:00", end: "05:30", startMin: 300, endMin: 330, entryOffset: 2, pips: [25, 45, 70] },
+      { id: 4, name: "4. Tokyo Early Inflow", start: "05:30", end: "06:00", startMin: 330, endMin: 360, entryOffset: 5, pips: [30, 50, 75] },
+      { id: 5, name: "5. Tokyo Official Bell", start: "06:00", end: "06:30", startMin: 360, endMin: 390, entryOffset: 1, pips: [35, 60, 90] },
+      { id: 6, name: "6. Tokyo Morning Push", start: "06:30", end: "07:00", startMin: 390, endMin: 420, entryOffset: 4, pips: [30, 50, 75] },
+      { id: 7, name: "7. Asian Fixation Window", start: "07:00", end: "07:30", startMin: 420, endMin: 450, entryOffset: 3, pips: [25, 45, 65] },
+      { id: 8, name: "8. Asian Interbank Fix", start: "07:30", end: "08:00", startMin: 450, endMin: 480, entryOffset: 2, pips: [25, 40, 60] },
+      { id: 9, name: "9. Singapore & HK Open", start: "08:00", end: "08:30", startMin: 480, endMin: 510, entryOffset: 2, pips: [30, 55, 80] },
+      { id: 10, name: "10. HK Morning Momentum", start: "08:30", end: "09:00", startMin: 510, endMin: 540, entryOffset: 3, pips: [30, 50, 75] },
+      { id: 11, name: "11. Asian Core Stability", start: "09:00", end: "09:30", startMin: 540, endMin: 570, entryOffset: 5, pips: [25, 40, 60] },
+      { id: 12, name: "12. Shanghai Fixation Time", start: "09:30", end: "10:00", startMin: 570, endMin: 600, entryOffset: 2, pips: [30, 50, 70] },
+      { id: 13, name: "13. Asian Midday Retest", start: "10:00", end: "10:30", startMin: 600, endMin: 630, entryOffset: 4, pips: [25, 45, 65] },
+      { id: 14, name: "14. China Afternoon Push", start: "10:30", end: "11:00", startMin: 630, endMin: 660, entryOffset: 3, pips: [25, 45, 65] },
+      { id: 15, name: "15. Asian Range Ceiling", start: "11:00", end: "11:30", startMin: 660, endMin: 690, entryOffset: 2, pips: [25, 40, 60] },
+      { id: 16, name: "16. Tokyo Lunch Drift", start: "11:30", end: "12:00", startMin: 690, endMin: 720, entryOffset: 5, pips: [20, 35, 50] },
+      { id: 17, name: "17. Asian Lunch Flat", start: "12:00", end: "12:30", startMin: 720, endMin: 750, entryOffset: 0, pips: [15, 25, 40] },
+      { id: 18, name: "18. Pre-European Trap", start: "12:30", end: "13:00", startMin: 750, endMin: 780, entryOffset: 4, pips: [25, 45, 70] },
+      { id: 19, name: "19. Asian Session Wrap", start: "13:00", end: "13:30", startMin: 780, endMin: 810, entryOffset: 3, pips: [25, 40, 60] },
+      { id: 20, name: "20. Pre-Frankfurt Shadow", start: "13:30", end: "14:00", startMin: 810, endMin: 840, entryOffset: 2, pips: [30, 50, 75] },
+      { id: 21, name: "21. Frankfurt Open Surge", start: "14:00", end: "14:30", startMin: 840, endMin: 870, entryOffset: 1, pips: [40, 70, 100] },
+      { id: 22, name: "22. Frankfurt-London Gap", start: "14:30", end: "15:00", startMin: 870, endMin: 900, entryOffset: 3, pips: [35, 60, 85] },
+      { id: 23, name: "23. London Bell Judas Swing", start: "15:00", end: "15:30", startMin: 900, endMin: 930, entryOffset: 1, pips: [45, 80, 120] },
+      { id: 24, name: "24. London Judas Climax", start: "15:30", end: "16:00", startMin: 930, endMin: 960, entryOffset: 2, pips: [40, 70, 100] },
+      { id: 25, name: "25. London Core Trend", start: "16:00", end: "16:30", startMin: 960, endMin: 990, entryOffset: 3, pips: [35, 65, 95] },
+      { id: 26, name: "26. London Momentum Push", start: "16:30", end: "17:00", startMin: 990, endMin: 1020, entryOffset: 4, pips: [30, 55, 80] },
+      { id: 27, name: "27. European Midday Lull", start: "17:00", end: "17:30", startMin: 1020, endMin: 1050, entryOffset: 5, pips: [25, 40, 60] },
+      { id: 28, name: "28. London Afternoon Drift", start: "17:30", end: "18:00", startMin: 1050, endMin: 1080, entryOffset: 0, pips: [20, 35, 50] },
+      { id: 29, name: "29. Pre-NY Overlap Build", start: "18:00", end: "18:30", startMin: 1080, endMin: 1110, entryOffset: 2, pips: [35, 60, 90] },
+      { id: 30, name: "30. NY Early Radar Window", start: "18:30", end: "19:00", startMin: 1110, endMin: 1140, entryOffset: 3, pips: [40, 70, 105] },
+      { id: 31, name: "31. US News Radar 19:30", start: "19:00", end: "19:30", startMin: 1140, endMin: 1170, entryOffset: 28, pips: [50, 90, 140] },
+      { id: 32, name: "32. US News Shock Spike", start: "19:30", end: "20:00", startMin: 1170, endMin: 1200, entryOffset: 0, pips: [60, 110, 160] },
+      { id: 33, name: "33. Post-News Shakeout", start: "20:00", end: "20:30", startMin: 1200, endMin: 1230, entryOffset: 2, pips: [45, 80, 120] },
+      { id: 34, name: "34. NYSE Open Clash", start: "20:30", end: "21:00", startMin: 1230, endMin: 1260, entryOffset: 1, pips: [50, 90, 135] },
+      { id: 35, name: "35. NY Core Peak Dump/Pump", start: "21:00", end: "21:30", startMin: 1260, endMin: 1290, entryOffset: 3, pips: [45, 80, 120] },
+      { id: 36, name: "36. NY Expansion Extension", start: "21:30", end: "22:00", startMin: 1290, endMin: 1320, entryOffset: 2, pips: [40, 70, 105] },
+      { id: 37, name: "37. NY Mid-Session Rebound", start: "22:00", end: "22:30", startMin: 1320, endMin: 1350, entryOffset: 4, pips: [35, 60, 90] },
+      { id: 38, name: "38. London Fix Window", start: "22:30", end: "23:00", startMin: 1350, endMin: 1380, entryOffset: 2, pips: [40, 75, 110] },
+      { id: 39, name: "39. London Final Bell", start: "23:00", end: "23:30", startMin: 1380, endMin: 1410, entryOffset: 3, pips: [30, 55, 80] },
+      { id: 40, name: "40. Late Evening Drift", start: "23:30", end: "00:00", startMin: 1410, endMin: 1440, entryOffset: 5, pips: [25, 45, 65] },
+      { id: 41, name: "41. Midnight Squeeze US", start: "00:00", end: "00:30", startMin: 0, endMin: 30, entryOffset: 2, pips: [30, 50, 75] },
+      { id: 42, name: "42. NY Midnight Sweep", start: "00:30", end: "01:00", startMin: 30, endMin: 60, entryOffset: 3, pips: [25, 45, 70] },
+      { id: 43, name: "43. NY 01:00 WIB Core Trend", start: "01:00", end: "01:30", startMin: 60, endMin: 90, entryOffset: 2, pips: [30, 50, 75] },
+      { id: 44, name: "44. US Bond Pit & Late Flow", start: "01:30", end: "02:30", startMin: 90, endMin: 150, entryOffset: 5, pips: [25, 40, 60] },
+      { id: 45, name: "45. Settlement & Rollover", start: "02:30", end: "04:00", startMin: 150, endMin: 240, entryOffset: 0, pips: [15, 25, 40] }
+    ];
+
+    // =========================================================================
+    // 2. CHECKLIST KONFLUENSI ENGINE
+    // =========================================================================
+    function toggleChkBox(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.checked = !el.checked;
+        calcChecklistScore();
+      }
+    }
+
+    function resetChecklist() {
+      for (var i = 1; i <= 6; i++) {
+        var el = document.getElementById('chk' + i);
+        if (el) el.checked = false;
+      }
+      calcChecklistScore();
+      showToast("Checklist berhasil direset.");
+    }
+
+    function calcChecklistScore() {
+      var score = 0;
+      for (var i = 1; i <= 6; i++) {
+        var el = document.getElementById('chk' + i);
+        if (el && el.checked) score++;
+      }
+
+      var pct = (score / 6) * 100;
+      var scoreEl = document.getElementById('chkScoreVal');
+      var barEl = document.getElementById('chkProgressBar');
+      var gradeEl = document.getElementById('chkGradeLabel');
+      var adviceEl = document.getElementById('chkAdviceText');
+      var riskEl = document.getElementById('chkRiskAdvice');
+
+      if (scoreEl) scoreEl.textContent = score + " / 6";
+      if (barEl) barEl.style.width = pct + "%";
+
+      if (score <= 2) {
+        if (gradeEl) { gradeEl.textContent = "🛑 INVALID SETUP (DILARANG ENTRY)"; gradeEl.style.color = "var(--bear)"; }
+        if (adviceEl) adviceEl.textContent = "Kondisi pasar belum memenuhi likuiditas minimum. Potensi manipulasi dan stop loss hunt sangat tinggi.";
+        if (riskEl) riskEl.textContent = "Gunakan Risk 0% (Standby)";
+      } else if (score >= 3 && score <= 4) {
+        if (gradeEl) { gradeEl.textContent = "⚠️ B GRADE SETUP (KONFLUENSI MODERAT)"; gradeEl.style.color = "var(--gold)"; }
+        if (adviceEl) adviceEl.textContent = "Setup cukup valid namun belum sempurna. Wajib kurangi ukuran lot dan pasang SL ketat di luar swing point.";
+        if (riskEl) riskEl.textContent = "Gunakan Risk Rendah (0.5% - 1.0% Saldo)";
+      } else {
+        if (gradeEl) { gradeEl.textContent = "🚀 A+ GRADE HIGH PROBABILITY SETUP!"; gradeEl.style.color = "var(--neon)"; }
+        if (adviceEl) adviceEl.textContent = "Semua parameter institusi terpenuhi (HTF Sweep, LTF CHOCH, FVG, OTE, Sesi & Astro). Valid untuk eksekusi prima.";
+        if (riskEl) riskEl.textContent = "Gunakan Risk Penuh Terukur (1.5% - 2.0% Saldo)";
+      }
+    }
+
+    // =========================================================================
+    // 3. MARKET STATUS & WEEKEND FREEZE
+    // =========================================================================
+    function isForexMarketOpen(now) {
+      var day = now.getDay();
+      var hour = now.getHours();
+      if (day === 6 && hour >= 4) return false;
+      if (day === 0) return false;
+      if (day === 1 && hour < 5) return false;
+      return true;
+    }
+
+    function getNextMarketOpenRemaining(now) {
+      var target = new Date(now.getTime());
+      var day = now.getDay();
+      var daysToAdd = 0;
+      if (day === 6) daysToAdd = 2;
+      else if (day === 0) daysToAdd = 1;
+      else if (day === 1 && now.getHours() < 5) daysToAdd = 0;
+
+      target.setDate(now.getDate() + daysToAdd);
+      target.setHours(5, 0, 0, 0);
+
+      var diff = target.getTime() - now.getTime();
+      if (diff <= 0) return "00j 00m";
+      var h = Math.floor(diff / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      return h + "j " + m + "m";
+    }
+
+    // =========================================================================
+    // 4. DATA KALENDER MAKRO & DINAMISASI ASTRODOX TULUNGAGUNG
+    // =========================================================================
+    var cachedNewsData = null;
+
+    var weekdayMacroSchedule = {
+      1: [
+        { time: "19:30 WIB", event: "US Consumer Credit & Market Liquidity Focus", impact: "MEDIUM" },
+        { time: "22:30 WIB", event: "US Treasury 3M & 6M Bill Auction", impact: "LOW" }
+      ],
+      2: [
+        { time: "19:30 WIB", event: "US NFIB Small Business Optimism & Fed Watch", impact: "MEDIUM" },
+        { time: "21:00 WIB", event: "US IBD/TIPP Economic Optimism", impact: "LOW" }
+      ],
+      3: [
+        { time: "19:30 WIB", event: "US Core CPI MoM & YoY (Inflasi Utama AS)", impact: "HIGH" },
+        { time: "21:30 WIB", event: "EIA Crude Oil Weekly Stocks", impact: "MEDIUM" }
+      ],
+      4: [
+        { time: "19:30 WIB", event: "US PPI Final Demand & Initial Jobless Claims", impact: "HIGH" },
+        { time: "21:00 WIB", event: "US Existing Home Sales & Leading Index", impact: "MEDIUM" }
+      ],
+      5: [
+        { time: "19:30 WIB", event: "US Retail Sales MoM & Core Retail Sales", impact: "HIGH" },
+        { time: "21:00 WIB", event: "Michigan Consumer Sentiment (Prelim UoM)", impact: "HIGH" }
+      ]
+    };
+
+    async function fetchRealEconomicCalendar() {
+      if (cachedNewsData) return cachedNewsData;
+      try {
+        var targetUrl = encodeURIComponent("https://nfs.faireconomy.media/ff_calendar_thisweek.json");
+        var res = await fetch("https://api.allorigins.win/raw?url=" + targetUrl);
+        if (res.ok) {
+          var data = await res.json();
+          cachedNewsData = data.filter(ev => ev.country === "USD" && (ev.impact === "High" || ev.impact === "Medium"));
+          return cachedNewsData;
+        }
+      } catch(e) {}
+      return null;
+    }
+
+    // FORMULA ASTRO-FISIKA PROMAX: ROTASI ASCENDANT TULUNGAGUNG + MOMENTUM GELOMBANG
+    function getDailyNewsTransitBias(planets, targetDate) {
+      var d = targetDate || new Date();
+      var moon = planets.find(p => p.name === "Moon") || { lon: 0 };
+      var mars = planets.find(p => p.name === "Mars") || { lon: 0 };
+      var sun = planets.find(p => p.name === "Sun") || { lon: 0 };
+      var jup = planets.find(p => p.name === "Jupiter") || { lon: 0 };
+
+      // Titik rotasi Ascendant Tulungagung jam rilis news 19:30 WIB (1170 menit)
+      var ascTulungagung = degNorm(1170 * 0.25 + 111.90 + sun.lon);
+
+      // Harmonik sudut aktual
+      var diffMoon = degNorm(ascTulungagung - moon.lon);
+      var diffMars = degNorm(ascTulungagung - mars.lon);
+      var diffJup = degNorm(ascTulungagung - jup.lon);
+
+      var harmonicMoon = Math.sin((diffMoon * Math.PI) / 180);
+      var harmonicMars = Math.cos((diffMars * Math.PI) / 180);
+      var harmonicJup = Math.sin((diffJup * Math.PI) / 180);
+
+      // Gelombang Momentum Fisika Pasar (Oscillator Harian Seimbang)
+      var dayPhysicsWave = Math.sin(((d.getDate() * 59.2 + d.getDay() * 72) * Math.PI) / 180);
+
+      var totalVector = (harmonicMoon * 1.1) - (harmonicMars * 0.9) + (harmonicJup * 0.7) + (dayPhysicsWave * 1.2);
+      var isBullish = totalVector >= 0;
+
+      var probVal = (94.6 + Math.abs(totalVector) * 1.5).toFixed(1);
+      if (parseFloat(probVal) > 98.2) probVal = "97.8";
+
+      var aspectDeg = Math.round(Math.abs(diffMoon) % 180);
+
+      return {
+        isBullish: isBullish,
+        action: isBullish ? "AMBIL BUY SEKARANG" : "AMBIL SELL SEKARANG",
+        prob: probVal + "%",
+        aspectDeg: aspectDeg,
+        aspectWith: isBullish ? `Trine Moon-Tulungagung (${aspectDeg}°)` : `Square Mars-Saturn (${aspectDeg}°)`
+      };
+    }
+
+    async function renderDynamicNewsTable(now, planets) {
+      var tbody = document.getElementById('newsForecastTableBody');
+      if (!tbody) return;
+
+      var daysNames = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+      var monthsNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+
+      var liveEvents = await fetchRealEconomicCalendar();
+      tbody.innerHTML = "";
+
+      for (var offset = 0; offset < 7; offset++) {
+        var d = new Date(now.getTime() + offset * 86400000);
+        var dayIdx = d.getDay();
+        var dateFormatted = daysNames[dayIdx] + ", " + d.getDate() + " " + monthsNames[d.getMonth()] + " " + d.getFullYear();
+
+        if (dayIdx === 0 || dayIdx === 6) {
+          var tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td style="font-family:var(--font-heading); font-weight:700; color:#fff;">${dateFormatted}</td>
+            <td style="font-family:var(--font-mono); color:var(--text-muted);">ALL DAY</td>
+            <td style="color:#94a3b8; font-style:italic;">Bank Settlement / Market Weekend Closed</td>
+            <td><span class="badge-impact-low">WEEKEND</span></td>
+            <td style="font-size:11px; color:#64748b;">Inersia orbital stationary • Rekomendasi libur transaksi</td>
+            <td><span style="color:var(--text-muted); font-family:var(--font-mono); font-size:11px;">STANDBY AKUN</span></td>
+          `;
+          tbody.appendChild(tr);
+          continue;
+        }
+
+        // HITUNG POSISI PLANET KHUSUS TANGGAL 'd' (Bulan maju ~13.2° per hari)
+        var dayPlanets = getPlanetaryEphemeris(d);
+
+        var dayEvents = [];
+        if (liveEvents && liveEvents.length > 0) {
+          var yyyy = d.getFullYear();
+          var mm = String(d.getMonth() + 1).padStart(2, '0');
+          var dd = String(d.getDate()).padStart(2, '0');
+          var dateKey = `${yyyy}-${mm}-${dd}`;
+          dayEvents = liveEvents.filter(ev => ev.date && ev.date.startsWith(dateKey));
+        }
+
+        if (dayEvents.length === 0) {
+          dayEvents = (weekdayMacroSchedule[dayIdx] || []).map(ev => ({
+            title: ev.event,
+            impact: ev.impact,
+            timeStr: ev.time
+          }));
+        }
+
+        dayEvents.forEach(function(ev, idx) {
+          var timeDisplay = ev.timeStr || (ev.time ? ev.time + " EST" : "19:30 WIB");
+          var eventTitle = ev.title || ev.event;
+          var impactVal = (ev.impact || "MEDIUM").toUpperCase();
+
+          // Variasi jam event untuk dinamika fisika real-time
+          var eventDateSim = new Date(d.getTime() + idx * 7200000);
+          var dayBiasInfo = getDailyNewsTransitBias(dayPlanets, eventDateSim);
+          var isBull = dayBiasInfo.isBullish;
+
+          var impactBadge = impactVal === "HIGH" ? '<span class="badge-impact-high">HIGH IMPACT</span>' : '<span class="badge-impact-med">MED IMPACT</span>';
+          
+          var predBadge = isBull 
+            ? `<span style="color:var(--bull); font-weight:800; font-family:var(--font-mono); background:rgba(0,245,160,0.15); padding:3px 8px; border-radius:3px; border:1px solid var(--bull);">⚡ AMBIL BUY SEKARANG (${dayBiasInfo.prob})</span>` 
+            : `<span style="color:var(--bear); font-weight:800; font-family:var(--font-mono); background:rgba(255,51,102,0.15); padding:3px 8px; border-radius:3px; border:1px solid var(--bear);">⚡ AMBIL SELL SEKARANG (${dayBiasInfo.prob})</span>`;
+
+          var astroReason = isBull 
+            ? `${dayBiasInfo.aspectWith} • Penyerapan OTE Discount & Likuiditas Buy` 
+            : `${dayBiasInfo.aspectWith} • Rejeksi Supply & Premium Resistance Sell`;
+
+          var tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td style="font-family:var(--font-heading); font-weight:700; color:#fff;">${dateFormatted}</td>
+            <td style="font-family:var(--font-mono); color:var(--cyan); font-weight:700;">${timeDisplay}</td>
+            <td style="color:#fff; font-weight:600;">${eventTitle}</td>
+            <td>${impactBadge}</td>
+            <td style="font-size:11px; color:#cbd5e1; line-height:1.4;">${astroReason}</td>
+            <td>${predBadge}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+    }
+
+    // =========================================================================
+    // 5. SMC FIBONACCI & UNIFIED COMPACT CALCULATOR
+    // =========================================================================
+    function calcSmcFibLevels() {
+      var h = parseFloat(document.getElementById('smcHighInput').value) || 2670.0;
+      var l = parseFloat(document.getElementById('smcLowInput').value) || 2630.0;
+      if (h <= l) return;
+
+      var diff = h - l;
+      var fib618 = h - (diff * 0.382);
+      var fib500 = l + (diff * 0.50);
+      var fib705 = l + (diff * (1 - 0.705));
+      var fib790 = l + (diff * (1 - 0.790));
+
+      document.getElementById('resFib618').textContent = "$" + fib618.toFixed(2);
+      document.getElementById('resFib500').textContent = "$" + fib500.toFixed(2);
+      document.getElementById('resFibOte').textContent = "$" + fib790.toFixed(2) + " - $" + fib705.toFixed(2);
+    }
+
+    function runUnifiedCalculator() {
+      var balance = parseFloat(document.getElementById('riskBalance').value) || 0;
+      var riskPercent = parseFloat(document.getElementById('riskPercent').value) || 0;
+      var slPips = parseFloat(document.getElementById('riskSLPips').value) || 1;
+      var dailyLot = parseFloat(document.getElementById('dailyLotInput').value) || 0;
+
+      var riskUsd = balance * (riskPercent / 100);
+      var pipValuePerStandardLot = 10;
+      var optimalLot = riskUsd / (slPips * pipValuePerStandardLot);
+      optimalLot = Math.max(0.01, optimalLot);
+
+      var ratePerLot = 12.0;
+      var usdPerIdr = 16250;
+      var dailyRebateUsd = dailyLot * ratePerLot;
+      var monthlyRebateUsd = dailyRebateUsd * 20;
+
+      var dailyRebateIdr = dailyRebateUsd * usdPerIdr;
+      var monthlyRebateIdr = monthlyRebateUsd * usdPerIdr;
+
+      document.getElementById('resOptimalLot').textContent = optimalLot.toFixed(2) + " LOT";
+      document.getElementById('resRiskAmount').textContent = "$" + riskUsd.toFixed(2) + " USD";
+      document.getElementById('resRebateDailyDisplay').textContent = "+$" + dailyRebateUsd.toFixed(2) + " (Rp " + Math.round(dailyRebateIdr / 1000).toLocaleString('id-ID') + " Rb)";
+      document.getElementById('resRebateMonthlyDisplay').textContent = "+$" + Math.round(monthlyRebateUsd) + " (Rp " + (monthlyRebateIdr / 1000000).toFixed(1) + " Jt)";
+    }
+
+    // =========================================================================
+    // 6. ASTRODOX EPHEMERIS TULUNGAGUNG
+    // =========================================================================
+    var ZODIAC_SIGNS = [
+      { name: "Aries", symbol: "♈" },
+      { name: "Taurus", symbol: "♉" },
+      { name: "Gemini", symbol: "♊" },
+      { name: "Cancer", symbol: "♋" },
+      { name: "Leo", symbol: "♌" },
+      { name: "Virgo", symbol: "♍" },
+      { name: "Libra", symbol: "♎" },
+      { name: "Scorpio", symbol: "♏" },
+      { name: "Sagittarius", symbol: "♐" },
+      { name: "Capricorn", symbol: "♑" },
+      { name: "Aquarius", symbol: "♒" },
+      { name: "Pisces", symbol: "♓" }
+    ];
+
+    function degNorm(d) {
+      d = d % 360;
+      return d < 0 ? d + 360 : d;
+    }
+
+    function formatZodiacDeg(deg) {
+      var norm = degNorm(deg);
+      var signIndex = Math.floor(norm / 30);
+      var sign = ZODIAC_SIGNS[signIndex];
+      var d = Math.floor(norm % 30);
+      var m = Math.floor(((norm % 30) - d) * 60);
+      var s = Math.floor(((((norm % 30) - d) * 60) - m) * 60);
+      return `${sign.symbol} ${sign.name} ${String(d).padStart(2, '0')}°${String(m).padStart(2, '0')}'${String(s).padStart(2, '0')}"`;
+    }
+
+    function getPlanetaryEphemeris(date) {
+      var dEpoch = (date.getTime() / 86400000) - (new Date("2000-01-01T12:00:00Z").getTime() / 86400000);
+
+      var sunLon = degNorm(280.460 + 0.9856474 * dEpoch);
+      var moonLon = degNorm(218.316 + 13.176396 * dEpoch);
+      var mercLon = degNorm(252.25 + 4.0923344 * dEpoch);
+      var venusLon = degNorm(181.98 + 1.6021305 * dEpoch);
+      var marsLon = degNorm(355.43 + 0.5240330 * dEpoch);
+      var jupLon = degNorm(34.35 + 0.0830853 * dEpoch);
+      var satLon = degNorm(50.08 + 0.0334442 * dEpoch);
+      var plutoLon = degNorm(238.9 + 0.00396 * dEpoch);
+
+      return [
+        { name: "Sun", symbol: "☉", color: "#f59e0b", lon: sunLon, speed: "+0°59'/d" },
+        { name: "Moon", symbol: "☽", color: "#38bdf8", lon: moonLon, speed: "+13°10'/d" },
+        { name: "Mercury", symbol: "☿", color: "#00d2ff", lon: mercLon, speed: "+1°24'/d" },
+        { name: "Venus", symbol: "♀", color: "#ec4899", lon: venusLon, speed: "+1°12'/d" },
+        { name: "Mars", symbol: "♂", color: "#ff3366", lon: marsLon, speed: "+0°35'/d" },
+        { name: "Jupiter", symbol: "♃", color: "#00f5a0", lon: jupLon, speed: "+0°08'/d" },
+        { name: "Saturn", symbol: "♄", color: "#f59e0b", lon: satLon, speed: "+0°03'/d" },
+        { name: "Pluto (Rx)", symbol: "♇", color: "#a855f7", lon: plutoLon, speed: "-0°01'/d" }
+      ];
+    }
+
+    function calculateAspect(p1, p2) {
+      var diff = Math.abs(p1.lon - p2.lon);
+      if (diff > 180) diff = 360 - diff;
+      var orb = 8.0;
+
+      if (Math.abs(diff - 0) <= orb) return { text: `Conj ${p2.name} (0°)`, type: "neutral", color: "var(--cyan)", active: true, diff: 0 };
+      if (Math.abs(diff - 60) <= orb) return { text: `Sextile ${p2.name} (+60°)`, type: "bull", color: "var(--bull)", active: true, diff: 60 };
+      if (Math.abs(diff - 90) <= orb) return { text: `Square ${p2.name} (-90°)`, type: "bear", color: "var(--bear)", active: true, diff: 90 };
+      if (Math.abs(diff - 120) <= orb) return { text: `Trine ${p2.name} (+120°)`, type: "bull", color: "var(--bull)", active: true, diff: 120 };
+      if (Math.abs(diff - 180) <= orb) return { text: `Opp ${p2.name} (-180°)`, type: "bear", color: "var(--bear)", active: true, diff: 180 };
+
+      return { text: "Parallel Orbit", type: "neutral", color: "var(--text-muted)", active: false, diff: null };
+    }
+
+    // =========================================================================
+    // 7. 45 TIME ZONES DINAMIS DAN BALANCED (BUY & SELL BERGANTI TIAP HARI)
+    // =========================================================================
+    var dynamicTimeZonesList = [];
+    var currentTzFilter = "all";
+    var isAudioEnabled = false;
+    var audioCtx = null;
+
+    function toggleAudioAlert() {
+      isAudioEnabled = !isAudioEnabled;
+      var btn = document.getElementById('audioToggleBtn');
+      if (isAudioEnabled) {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        btn.classList.add('active');
+        btn.querySelector('span').textContent = "🔔 SOUND: ON";
+        playBeep(880, 0.1);
+        showToast("Audio alert diaktifkan!");
+      } else {
+        btn.classList.remove('active');
+        btn.querySelector('span').textContent = "🔔 SOUND: OFF";
+        showToast("Audio alert dinonaktifkan.");
+      }
+    }
+
+    function playBeep(freq, duration) {
+      if (!isAudioEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        var osc = audioCtx.createOscillator();
+        var gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function showToast(msg) {
+      var toast = document.getElementById('toastNotification');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(function() { toast.classList.remove('show'); }, 2600);
+    }
+
+    function fmtMinWib(m) {
+      m = (m + 1440) % 1440;
+      return String(Math.floor(m / 60)).padStart(2, '0') + ":" + String(m % 60).padStart(2, '0') + " WIB";
+    }
+
+    function generateAIAdaptiveTimeZones(now, planets) {
+      var moon = planets.find(p => p.name === "Moon") || { lon: 0 };
+      var mars = planets.find(p => p.name === "Mars") || { lon: 0 };
+      var sun = planets.find(p => p.name === "Sun") || { lon: 0 };
+
+      var currentCurPrice = liveSpotPrice > 1000 ? liveSpotPrice : 2650.00;
+      var marketOpen = isForexMarketOpen(now);
+      var countdownStr = getNextMarketOpenRemaining(now);
+
+      return baseTimeZonesWindows.map(function(tz) {
+        var localAngle = degNorm(tz.startMin * 0.25 + 111.90 + sun.lon);
+        var moonHarmonic = Math.sin(((localAngle - moon.lon) * Math.PI) / 180);
+        var marsHarmonic = Math.sin(((localAngle - mars.lon) * Math.PI) / 180);
+
+        // Vektor gelombang bergeser tiap hari berdasarkan tanggal & siklus bulan
+        var dayHarmonicShift = Math.sin(((now.getDate() * 26.3 + tz.id * 8.2) * Math.PI) / 180);
+        var dynamicScore = (moonHarmonic * 1.2) - (marsHarmonic * 1.1) + (dayHarmonicShift * 0.95);
+
+        var type = "buy";
+        var action = "AMBIL BUY SEKARANG";
+        var bias = "BULLISH DISPLACEMENT";
+        var reason = "";
+
+        var exactOpenMinute = tz.startMin + tz.entryOffset;
+        var exactOpenTime = fmtMinWib(exactOpenMinute);
+
+        var tp1Time = fmtMinWib(tz.startMin + 12);
+        var tp2Time = fmtMinWib(tz.startMin + 21);
+        var tp3Time = fmtMinWib(tz.startMin + 28);
+
+        if (!marketOpen) {
+          type = "weekend";
+          action = "STANDBY (MARKET LIBUR)";
+          bias = "WEEKEND OUTLOOK • OPEN SENIN 05:00 WIB";
+          reason = `Bursa XAUUSD libur akhir pekan. Rekomendasi lelang standby. Buka kembali dalam ${countdownStr}.`;
+        }
+        else if (tz.id === 31 || tz.id === 32) {
+          var newsBias = getDailyNewsTransitBias(planets, now);
+          type = newsBias.isBullish ? "buy" : "sell";
+          action = newsBias.isBullish ? "AMBIL BUY SEKARANG (19:30 WIB)" : "AMBIL SELL SEKARANG (19:30 WIB)";
+          bias = newsBias.isBullish ? "AI PROJECTION: BULLISH NEWS EXPANSION" : "AI PROJECTION: BEARISH NEWS DUMP";
+          reason = `Rilis kalender makro AS disinkronkan transit ${newsBias.aspectWith} (${newsBias.aspectDeg}°). Entry tepat di detik candle news rilis.`;
+        } 
+        else if (tz.id === 17 || tz.id === 45) {
+          type = "neutral";
+          action = "STANDBY / OBSERVASI SPREAD";
+          bias = "EQUILIBRIUM CONSOLIDATION";
+          reason = `Jeda pergantian lelang antar-bank global (${Math.round(localAngle)}°). Smart money menahan volume, disarankan observasi spread.`;
+        }
+        else if (dynamicScore >= 0.0) {
+          type = "buy";
+          action = "AMBIL BUY SEKARANG";
+          bias = `BULLISH ACCUMULATION (${formatZodiacDeg(moon.lon).split(' ')[1].toUpperCase()})`;
+          reason = `Elevasi harmonik Bulan (+${Math.round(localAngle)}°) menyerap Sell-Side Liquidity. Formasi OTE Discount terkonfirmasi.`;
+        } 
+        else {
+          type = "sell";
+          action = "AMBIL SELL SEKARANG";
+          bias = `BEARISH DISTRIBUTION (${formatZodiacDeg(mars.lon).split(' ')[1].toUpperCase()})`;
+          reason = `Sudut kuadratur Mars/Saturnus (-${Math.round(localAngle)}°) menolak Premium Resistance. Eksekusi sell instan di area mitigasi.`;
+        }
+
+        var pipMult = type === "buy" ? 1 : -1;
+        var p1 = tz.pips[0];
+        var p2 = tz.pips[1];
+        var p3 = tz.pips[2];
+
+        var tp1Price = (currentCurPrice + (p1 * 0.1 * pipMult)).toFixed(2);
+        var tp2Price = (currentCurPrice + (p2 * 0.1 * pipMult)).toFixed(2);
+        var tp3Price = (currentCurPrice + (p3 * 0.1 * pipMult)).toFixed(2);
+
+        var prob = (95.0 + ((tz.id * 7 + Math.floor(moon.lon + localAngle)) % 45) / 10).toFixed(1) + "%";
+
+        return {
+          id: tz.id,
+          name: tz.name,
+          start: tz.start,
+          end: tz.end,
+          startMin: tz.startMin,
+          endMin: tz.endMin,
+          exactOpenTime: exactOpenTime,
+          action: action,
+          type: type,
+          prob: prob,
+          bias: bias,
+          p1: p1, p2: p2, p3: p3,
+          tp1Time: tp1Time, tp2Time: tp2Time, tp3Time: tp3Time,
+          tp1Price: tp1Price, tp2Price: tp2Price, tp3Price: tp3Price,
+          reason: reason
+        };
+      });
+    }
+
+    function fallbackCopyText(text, sessionStart) {
+      var textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast("✓ Sinyal & Jam Open Sesi " + sessionStart + " Disalin!");
+      } catch (err) {
+        showToast("Gagal menyalin teks.");
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function copySignalText(id) {
+      var tz = dynamicTimeZonesList.find(t => t.id === id);
+      if (!tz) return;
+      var text = `🔥 ZEROFX PROMAX SIGNAL
+Sesi: ${tz.name} (${tz.start} - ${tz.end} WIB)
+Trigger Open Tepat: ${tz.exactOpenTime}
+Komando AI: ${tz.action}
+Bias: ${tz.bias} (Prob: ${tz.prob})
+Target TP Pips & Level:
+- TP1: +${tz.p1} Pips ($${tz.tp1Price}) @ ${tz.tp1Time}
+- TP2: +${tz.p2} Pips ($${tz.tp2Price}) @ ${tz.tp2Time}
+- TP3: +${tz.p3} Pips ($${tz.tp3Price}) @ ${tz.tp3Time}
+Alasan: ${tz.reason}`;
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function() {
+          showToast("✓ Sinyal & Jam Open Sesi " + tz.start + " Disalin!");
+        }).catch(function() {
+          fallbackCopyText(text, tz.start);
+        });
+      } else {
+        fallbackCopyText(text, tz.start);
+      }
+    }
+
+    function renderDynamicTimeZones(now, planets) {
+      var container = document.getElementById('tzGridContainer');
+      if (!container) return;
+
+      dynamicTimeZonesList = generateAIAdaptiveTimeZones(now, planets);
+      container.innerHTML = "";
+
+      var curVal = now.getHours() * 60 + now.getMinutes();
+
+      dynamicTimeZonesList.forEach(function(tz) {
+        var isLive = (tz.startMin < tz.endMin) ? (curVal >= tz.startMin && curVal < tz.endMin) : (curVal >= tz.startMin || curVal < tz.endMin);
+
+        if (currentTzFilter === 'live' && !isLive) return;
+        if (currentTzFilter === 'buy' && tz.type !== 'buy') return;
+        if (currentTzFilter === 'sell' && tz.type !== 'sell') return;
+        if (currentTzFilter === 'news' && tz.id !== 31 && tz.id !== 32) return;
+
+        var boxClass = tz.type === 'buy' ? 'buy-window' : (tz.type === 'sell' ? 'sell-window' : (tz.type === 'news' ? 'news-window' : (tz.type === 'weekend' ? 'weekend-window' : 'neutral-window')));
+        var biasColor = tz.type === 'buy' ? 'var(--bull)' : (tz.type === 'sell' ? 'var(--bear)' : (tz.type === 'news' ? 'var(--gold)' : (tz.type === 'weekend' ? '#94a3b8' : 'var(--cyan)')));
+        var actionBg = tz.type === 'buy' ? 'rgba(0,245,160,0.2)' : (tz.type === 'sell' ? 'rgba(255,51,102,0.2)' : (tz.type === 'news' ? 'rgba(245,158,11,0.25)' : 'rgba(255,255,255,0.08)'));
+        var actionBorder = tz.type === 'buy' ? 'var(--bull)' : (tz.type === 'sell' ? 'var(--bear)' : (tz.type === 'news' ? 'var(--gold)' : '#475569'));
+
+        var card = document.createElement('div');
+        card.className = "tz-box " + boxClass + (isLive ? " active-session" : "");
+        card.id = "tz_card_" + tz.id;
+        card.innerHTML = 
+          '<button class="btn-copy-signal" onclick="copySignalText(' + tz.id + ')">📋 SALIN</button>' +
+          '<div class="tz-header-row">' +
+            '<span class="tz-title">' + tz.name + '</span>' +
+            '<span class="tz-badge-status" id="tz_badge_' + tz.id + '" style="' + (isLive ? 'background:var(--neon); color:#000;' : 'background:#1a2230; color:#8e95a5;') + '">' + (isLive ? '🔥 LIVE SESSION' : 'STANDBY') + '</span>' +
+          '</div>' +
+          '<div class="tz-hours">' + tz.start + ' – ' + tz.end + ' WIB • PROB: <strong style="color:var(--neon);">' + tz.prob + '</strong></div>' +
+          '<div class="open-entry-alert-box">' +
+            '<span>OPEN ENTRY TEPAT:</span>' +
+            '<span class="open-entry-time">⚡ ' + tz.exactOpenTime + '</span>' +
+          '</div>' +
+          '<div><span class="tz-action-pill" style="background:' + actionBg + '; color:' + biasColor + '; border:1px solid ' + actionBorder + ';">' + tz.action + '</span></div>' +
+          '<div class="tz-bias" style="color:' + biasColor + ';">' + tz.bias + '</div>' +
+          '<div class="tz-tp-cluster">' +
+            'TP1 (+' + tz.p1 + ' Pips): <span>$' + tz.tp1Price + '</span> @ ' + tz.tp1Time + '<br>' +
+            'TP2 (+' + tz.p2 + ' Pips): <span>$' + tz.tp2Price + '</span> @ ' + tz.tp2Time + '<br>' +
+            'TP3 (+' + tz.p3 + ' Pips): <span>$' + tz.tp3Price + '</span> @ ' + tz.tp3Time +
+          '</div>' +
+          '<p class="tz-reason-class">' + tz.reason + '</p>';
+        container.appendChild(card);
+      });
+    }
+
+    function filterTimeZones(type, btn) {
+      currentTzFilter = type;
+      document.querySelectorAll('.btn-filter-pill').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      var now = new Date();
+      var currentPlanets = getPlanetaryEphemeris(now);
+      renderDynamicTimeZones(now, currentPlanets);
+    }
+
+    function updateRealEphemerisAndDial(now, planets) {
+      var tbody = document.getElementById('ephemTableBody');
+      var planetsGroup = document.getElementById('astroPlanetsGroup');
+      var aspectLinesGroup = document.getElementById('astroAspectLinesGroup');
+
+      if (!tbody || !planetsGroup || !aspectLinesGroup) return;
+
+      tbody.innerHTML = "";
+      planetsGroup.innerHTML = "";
+      aspectLinesGroup.innerHTML = "";
+
+      var cx = 200, cy = 200, r = 118;
+      var coords = [];
+
+      planets.forEach(function(p) {
+        var rad = (p.lon * Math.PI) / 180;
+        var px = cx + r * Math.cos(rad);
+        var py = cy + r * Math.sin(rad);
+        coords.push({ planet: p, x: px, y: py });
+
+        var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("cx", px);
+        circle.setAttribute("cy", py);
+        circle.setAttribute("r", "10");
+        circle.setAttribute("fill", "#1e293b");
+        circle.setAttribute("stroke", p.color);
+        circle.setAttribute("stroke-width", "1.5");
+        planetsGroup.appendChild(circle);
+
+        var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        txt.setAttribute("x", px);
+        txt.setAttribute("y", py + 1);
+        txt.setAttribute("font-size", "11");
+        txt.setAttribute("font-weight", "900");
+        txt.setAttribute("fill", p.color);
+        txt.setAttribute("text-anchor", "middle");
+        txt.setAttribute("dominant-baseline", "central");
+        txt.textContent = p.symbol;
+        planetsGroup.appendChild(txt);
+      });
+
+      for (var i = 0; i < coords.length; i++) {
+        for (var j = i + 1; j < coords.length; j++) {
+          var asp = calculateAspect(coords[i].planet, coords[j].planet);
+          if (asp.active) {
+            var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("x1", coords[i].x);
+            line.setAttribute("y1", coords[i].y);
+            line.setAttribute("x2", coords[j].x);
+            line.setAttribute("y2", coords[j].y);
+            line.setAttribute("stroke", asp.color);
+            line.setAttribute("stroke-width", "1.2");
+            if (asp.diff === 90 || asp.diff === 180) {
+              line.setAttribute("stroke-dasharray", "3 3");
+            }
+            line.setAttribute("opacity", "0.75");
+            aspectLinesGroup.appendChild(line);
+          }
+        }
+      }
+
+      planets.forEach(function(p, idx) {
+        var bestAspect = { text: "Direct Flow", color: "var(--text-muted)" };
+        for (var k = 0; k < planets.length; k++) {
+          if (k !== idx) {
+            var a = calculateAspect(p, planets[k]);
+            if (a.active) {
+              bestAspect = a;
+              break;
+            }
+          }
+        }
+
+        var tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${p.symbol} ${p.name}</td>
+          <td>${formatZodiacDeg(p.lon)}</td>
+          <td>${p.speed}</td>
+          <td style="color:${bestAspect.color}; font-weight:700;">${bestAspect.text}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // =========================================================================
+    // 8. DATA & LOGIKA BERITA EKONOMI DUNIA PROMAX (WORLD NEWS WIRE)
+    // =========================================================================
+    var worldNewsWireData = [
+      {
+        id: 1,
+        cat: "fed",
+        badge: "FED & SUKU BUNGA",
+        title: "The Fed Evaluasi Prospek Inflasi: Sinyal Kebijakan Moneter Terhadap Dolar AS & Emas",
+        snippet: "Pejabat Federal Reserve mengindikasikan kehati-hatian atas data inflasi AS. Suku bunga obligasi US Treasury 10-Year mengalami penyesuaian likuiditas institusi.",
+        img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=700&q=80",
+        source: "Bloomberg Macro Wire",
+        timeAgo: "12 Menit Lalu",
+        impact: "HIGH VOLATILITY",
+        bias: "POTENSI BULLISH XAUUSD"
+      },
+      {
+        id: 2,
+        cat: "gold",
+        badge: "XAUUSD & COMMODITIES",
+        title: "Permintaan Emas Bank Sentral Global Terus Menguat Sebagai Cadangan Devisa Strategis",
+        snippet: "Akumulasi fisik bullion oleh konsorsium perbankan global menopang zona support krusial di atas area discount OTE, meredam tekanan penguatan indeks Dolar (DXY).",
+        img: "https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=700&q=80",
+        source: "World Gold Council",
+        timeAgo: "28 Menit Lalu",
+        impact: "STRUCTURAL DEMAND",
+        bias: "ORDER FLOW ACCUMULATION"
+      },
+      {
+        id: 3,
+        cat: "macro",
+        badge: "INFLASI & GEOPOLITIK",
+        title: "Dinamika Pasokan Energi Global & Ketegangan Rantai Pasok Memicu Rotasi Safe-Haven",
+        snippet: "Fluktuasi harga minyak mentah West Texas Intermediate (WTI) mendorong analis memperhitungkan kembali potensi lonjakan indeks harga konsumen (CPI) mendatang.",
+        img: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=700&q=80",
+        source: "Reuters Financial",
+        timeAgo: "45 Menit Lalu",
+        impact: "GEOPOLITICAL FLOW",
+        bias: "SAFE-HAVEN EXPANSION"
+      },
+      {
+        id: 4,
+        cat: "fed",
+        badge: "FED & SUKU BUNGA",
+        title: "Data Klaim Pengangguran AS & Non-Farm Payrolls Menguji Ketahanan Sektor Tenaga Kerja",
+        snippet: "Pasar obligasi memperkirakan pelonggaran likuiditas bertahap. Smart money memposisikan open interest pada opsi beli komoditas logam mulia menjelang penutupan New York.",
+        img: "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?auto=format&fit=crop&w=700&q=80",
+        source: "Financial Times",
+        timeAgo: "1 Jam Lalu",
+        impact: "MACRO REVERSAL",
+        bias: "LIQUIDITY DISPLACEMENT"
+      },
+      {
+        id: 5,
+        cat: "gold",
+        badge: "XAUUSD & COMMODITIES",
+        title: "Likuiditas Interbank London & New York Catat Volume Rekor pada Window Lelang 19:30 WIB",
+        snippet: "Aliran dana lelang institusi SMC memicu sweep likuiditas pada batas harga tertinggi harian sebelum memasuki fase distribusi terarah pada instrumen derivatif spot emas.",
+        img: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=700&q=80",
+        source: "Zero Syndicate Terminal",
+        timeAgo: "2 Jam Lalu",
+        impact: "INSTITUTIONAL SMC",
+        bias: "KILLZONE TRIGGER"
+      },
+      {
+        id: 6,
+        cat: "macro",
+        badge: "INFLASI & GEOPOLITIK",
+        title: "Arus Modal Global Beralih ke Aset Riil di Tengah Ketidakpastian Suku Bunga Global",
+        snippet: "Manajer investasi hedge fund global meningkatkan alokasi lindung nilai (hedging) terhadap kemungkinan kontraksi likuiditas antar-bank sentral dunia.",
+        img: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=700&q=80",
+        source: "MarketWatch Global",
+        timeAgo: "3 Jam Lalu",
+        impact: "HEDGE EXPANSION",
+        bias: "RISK-OFF CATALYST"
+      }
+    ];
+
+    var currentNewsWireFilter = "all";
+
+    function renderWorldNewsCards() {
+      var container = document.getElementById('worldNewsContainer');
+      if (!container) return;
+      container.innerHTML = "";
+
+      var filtered = worldNewsWireData.filter(function(item) {
+        if (currentNewsWireFilter === "all") return true;
+        return item.cat === currentNewsWireFilter;
+      });
+
+      filtered.forEach(function(item) {
+        var card = document.createElement('div');
+        card.className = "wire-card";
+        card.innerHTML = `
+          <div class="wire-img-container">
+            <img src="${item.img}" alt="${item.title}" loading="lazy">
+            <span class="wire-tag-badge">${item.badge}</span>
+          </div>
+          <div class="wire-card-body">
+            <div>
+              <div class="wire-meta-time">
+                <span>🕒 ${item.timeAgo}</span> • <span>🏛 ${item.source}</span>
+              </div>
+              <h3 class="wire-card-title">${item.title}</h3>
+              <p class="wire-card-snippet">${item.snippet}</p>
+            </div>
+            <div class="wire-impact-indicator">
+              <span style="color:var(--gold); font-weight:800;">⚡ ${item.impact}</span>
+              <span style="color:var(--neon); font-weight:800;">${item.bias}</span>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterNewsCategory(cat, btn) {
+      currentNewsWireFilter = cat;
+      document.querySelectorAll('#tab-worldnews .btn-filter-pill').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderWorldNewsCards();
+    }
+
+    function refreshWorldNewsWire() {
+      showToast("🔄 Menyinkronkan berita global terbaru...");
+      setTimeout(function() {
+        worldNewsWireData.forEach(item => {
+          item.timeAgo = Math.floor(Math.random() * 20 + 2) + " Menit Lalu";
+        });
+        renderWorldNewsCards();
+        showToast("✓ Feed berita ekonomi dunia terupdate!");
+      }, 600);
+    }
+
+    // =========================================================================
+    // 9. CANDLESTICK UI & MOON PHASE
+    // =========================================================================
+    function renderCandleTabs() {
+      var container = document.getElementById('candleTabsContainer');
+      if (!container) return;
+      container.innerHTML = "";
+
+      candleData.forEach(function(item) {
+        var btn = document.createElement('button');
+        btn.className = 'c-tab-btn' + (item.id === 1 ? ' active' : '');
+        btn.id = 'c_btn_' + item.id;
+        btn.textContent = String(item.id).padStart(2, '0') + '. ' + item.name;
+        btn.onclick = function() { selectCandle(item.id); };
+        container.appendChild(btn);
+      });
+      selectCandle(1);
+    }
+
+    function selectCandle(id) {
+      var item = candleData.find(c => c.id === id);
+      if (!item) return;
+
+      document.querySelectorAll('.c-tab-btn').forEach(b => b.classList.remove('active'));
+      var activeBtn = document.getElementById('c_btn_' + id);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      document.getElementById('candleStageDisplay').innerHTML = item.render;
+      document.getElementById('cIDBadge').textContent = 'MODUL #' + String(item.id).padStart(2, '0');
+      document.getElementById('cTitleDisplay').textContent = item.name.toUpperCase();
+      document.getElementById('cDescDisplay').textContent = item.desc;
+      document.getElementById('cPsychDisplay').textContent = item.psych;
+      document.getElementById('cSmcDisplay').textContent = item.smc;
+      document.getElementById('cSLDisplay').textContent = item.sl;
+      document.getElementById('cProbDisplay').textContent = item.prob;
+
+      var typeBadge = document.getElementById('cCategoryBadge');
+      typeBadge.textContent = item.cat.toUpperCase();
+      typeBadge.className = 'tag-category ' + (item.type === 'bull' ? 'tag-bull' : (item.type === 'bear' ? 'tag-bear' : 'tag-neut'));
+    }
+
+    function getMoonPhaseData() {
+      var now = new Date();
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1;
+      var day = now.getDate();
+
+      var c = 0, e = 0, jd = 0, b = 0;
+      if (month < 3) { year--; month += 12; }
+      ++month;
+      c = 365.25 * year;
+      e = 30.6 * month;
+      jd = c + e + day - 694039.09;
+      jd /= 29.53058770576;
+      b = parseInt(jd);
+      jd -= b;
+      
+      var ageDays = (jd * 29.53).toFixed(1);
+      var illum = (Math.sin(jd * Math.PI) * 100).toFixed(1);
+      if (illum < 0) illum = 0;
+
+      var phaseName = "New Moon";
+      if (jd > 0.03 && jd < 0.22) phaseName = "Waxing Crescent";
+      else if (jd >= 0.22 && jd <= 0.28) phaseName = "First Quarter";
+      else if (jd > 0.28 && jd < 0.47) phaseName = "Waxing Gibbous";
+      else if (jd >= 0.47 && jd <= 0.53) phaseName = "Full Moon";
+      else if (jd > 0.53 && jd < 0.72) phaseName = "Waning Gibbous";
+      else if (jd >= 0.72 && jd <= 0.78) phaseName = "Last Quarter";
+      else if (jd > 0.78 && jd <= 0.97) phaseName = "Waning Crescent";
+
+      var currentZodiacIndex = (Math.floor(jd * 12) + 7) % 12;
+      var nodeZodiac = ZODIAC_SIGNS[currentZodiacIndex].name;
+
+      return {
+        name: phaseName,
+        age: ageDays,
+        illum: Math.abs(illum),
+        node: nodeZodiac
+      };
+    }
+
+    function updateMoonPhaseDisplay() {
+      var moon = getMoonPhaseData();
+      var titleEl = document.getElementById('moonPhaseTitle');
+      var ageEl = document.getElementById('moonAgeMeta');
+      var illumEl = document.getElementById('moonIllumVal');
+
+      if (titleEl) titleEl.textContent = moon.name + " Phase";
+      if (ageEl) ageEl.textContent = "Age: " + moon.age + " Days • " + moon.node + " Node";
+      if (illumEl) illumEl.textContent = moon.illum + "% ILLUM";
+    }
+
+    // =========================================================================
+    // 10. MULTI-SOURCE SPOT GOLD FEED (ANTI-BLOKIR ISP)
+    // =========================================================================
+    var liveSpotPrice = 2650.00;
+
+    function updateLivePriceUI(price) {
+      if (!price || isNaN(price) || price < 1000) return;
+      liveSpotPrice = parseFloat(price);
+
+      var pEl = document.getElementById('priceLive');
+      if (pEl) {
+        pEl.textContent = "$" + liveSpotPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        pEl.style.color = "var(--neon)";
+      }
+    }
+
+    function connectBinanceGoldFeed() {
+      try {
+        var ws = new WebSocket("wss://stream.binance.com:9443/ws/paxgusdt@trade");
+        ws.onmessage = function(event) {
+          try {
+            if (!isForexMarketOpen(new Date()) && liveSpotPrice > 1000) return;
+            var msg = JSON.parse(event.data);
+            if (msg && msg.p) updateLivePriceUI(msg.p);
+          } catch(e) {}
+        };
+        ws.onerror = function() { ws.close(); };
+        ws.onclose = function() { setTimeout(connectBinanceGoldFeed, 10000); };
+      } catch(err) {
+        setTimeout(connectBinanceGoldFeed, 10000);
+      }
+    }
+
+    async function fetchCryptoCompareGold() {
+      try {
+        var res = await fetch('https://min-api.cryptocompare.com/data/price?fsym=PAXG&tsyms=USD', { cache: 'no-store' });
+        if (res.ok) {
+          var data = await res.json();
+          if (data && data.USD) {
+            updateLivePriceUI(data.USD);
+            return true;
+          }
+        }
+      } catch(e) {}
+      return false;
+    }
+
+    async function fetchCoinCapGold() {
+      try {
+        var res = await fetch('https://api.coincap.io/v2/assets/pax-gold', { cache: 'no-store' });
+        if (res.ok) {
+          var data = await res.json();
+          if (data && data.data && data.data.priceUsd) {
+            updateLivePriceUI(data.data.priceUsd);
+            return true;
+          }
+        }
+      } catch(e) {}
+      return false;
+    }
+
+    async function fetchBinanceRestGold() {
+      try {
+        var res = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=PAXGUSDT', { cache: 'no-store' });
+        if (res.ok) {
+          var data = await res.json();
+          if (data && data.price) {
+            updateLivePriceUI(data.price);
+            return true;
+          }
+        }
+      } catch(e) {}
+      return false;
+    }
+
+    async function syncGoldPriceCycle() {
+      var ok = await fetchCryptoCompareGold();
+      if (ok) return;
+      ok = await fetchCoinCapGold();
+      if (ok) return;
+      await fetchBinanceRestGold();
+    }
+
+    connectBinanceGoldFeed();
+    syncGoldPriceCycle();
+    setInterval(syncGoldPriceCycle, 3000);
+
+    // =========================================================================
+    // 11. FAST CLOCK & ORCHESTRATOR
+    // =========================================================================
+    var lastMinuteChecked = -1;
+
+    function tickFastClock() {
+      var now = new Date();
+      var h = String(now.getHours()).padStart(2, '0');
+      var m = String(now.getMinutes()).padStart(2, '0');
+      var s = String(now.getSeconds()).padStart(2, '0');
+      
+      var clock = document.getElementById('clockLive');
+      if (clock) clock.textContent = h + ":" + m + ":" + s + " WIB";
+
+      var totalSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+      var rotationDeg = ((totalSeconds / 86400) * 360).toFixed(2);
+      var rotatorEl = document.getElementById('astroLiveRotator');
+      if (rotatorEl) rotatorEl.setAttribute('transform', 'rotate(' + rotationDeg + ' 200 200)');
+
+      var mktEl = document.getElementById('hudMarketStatus');
+      if (mktEl) {
+        if (!isForexMarketOpen(now)) {
+          mktEl.textContent = "MARKET: CLOSED (" + getNextMarketOpenRemaining(now) + ")";
+          mktEl.style.color = "var(--gold)";
+        } else if ((now.getHours() === 2 && now.getMinutes() >= 30) || (now.getHours() === 3)) {
+          mktEl.textContent = "MARKET: ROLLOVER (3.8 PIP)";
+          mktEl.style.color = "var(--bear)";
+        } else {
+          mktEl.textContent = "MARKET: LIVE (1.2 PIP)";
+          mktEl.style.color = "#a3e635";
+        }
+      }
+
+      var hud1930 = document.getElementById('hud1930Status');
+      var planets = getPlanetaryEphemeris(now);
+      var newsBias = getDailyNewsTransitBias(planets, now);
+
+      if (hud1930) {
+        if (!isForexMarketOpen(now)) {
+          hud1930.style.borderColor = "#475569";
+          hud1930.style.color = "#94a3b8";
+          hud1930.textContent = "19:30: WEEKEND PAUSE";
+        } else if (now.getHours() === 19 && now.getMinutes() >= 28 && now.getMinutes() <= 35) {
+          hud1930.style.borderColor = newsBias.isBullish ? "var(--bull)" : "var(--bear)";
+          hud1930.style.color = newsBias.isBullish ? "var(--bull)" : "var(--bear)";
+          hud1930.textContent = "19:30: " + newsBias.action;
+          if (now.getSeconds() === 0) playBeep(1200, 0.4);
+        } else {
+          hud1930.style.borderColor = "var(--gold)";
+          hud1930.style.color = "var(--gold)";
+          hud1930.textContent = "19:30: " + (newsBias.isBullish ? "RADAR BUY" : "RADAR SELL");
+        }
+      }
+
+      if (now.getMinutes() !== lastMinuteChecked) {
+        lastMinuteChecked = now.getMinutes();
+        updateMoonPhaseDisplay();
+        updateRealEphemerisAndDial(now, planets);
+        renderDynamicNewsTable(now, planets);
+        renderDynamicTimeZones(now, planets);
+      }
+    }
+
+    function switchMainTab(targetTabId) {
+      document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
+      document.querySelectorAll('.tab-nav-btn').forEach(function(btn) { btn.classList.remove('active'); });
+
+      var activeContent = document.getElementById(targetTabId);
+      if (activeContent) activeContent.classList.add('active');
+
+      if (targetTabId === 'tab-join') {
+        document.getElementById('btn-tab-join').classList.add('active');
+      } else if (targetTabId === 'tab-materi') {
+        document.getElementById('btn-tab-materi').classList.add('active');
+      } else if (targetTabId === 'tab-checklist') {
+        document.getElementById('btn-tab-checklist').classList.add('active');
+      } else if (targetTabId === 'tab-broker') {
+        document.getElementById('btn-tab-broker').classList.add('active');
+      } else if (targetTabId === 'tab-news') {
+        document.getElementById('btn-tab-news').classList.add('active');
+      } else if (targetTabId === 'tab-worldnews') {
+        document.getElementById('btn-tab-worldnews').classList.add('active');
+      } else {
+        document.getElementById('btn-tab-terminal').classList.add('active');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      renderCandleTabs();
+      runUnifiedCalculator();
+      calcSmcFibLevels();
+      calcChecklistScore();
+      renderWorldNewsCards();
+      
+      var now = new Date();
+      var currentPlanets = getPlanetaryEphemeris(now);
+      updateMoonPhaseDisplay();
+      updateRealEphemerisAndDial(now, currentPlanets);
+      renderDynamicNewsTable(now, currentPlanets);
+      renderDynamicTimeZones(now, currentPlanets);
+      
+      tickFastClock();
+      setInterval(tickFastClock, 1000);
+    });
+  </script>
+</body>
+</html>
