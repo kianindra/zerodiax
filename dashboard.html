@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VIP Astro-News Terminal | Zero Syndicate</title>
+  <title>VIP Astro Terminal | Zero Syndicate</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
@@ -20,13 +20,178 @@
       overflow-x: hidden;
     }
 
+    /* =========================================================
+       1. CINEMATIC VIDEO / TEXT OPENING SCREEN
+       ========================================================= */
+    #openingOverlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #1b050a 0%, #030406 85%);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: hidden;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+    }
+
+    #openingOverlay.fade-out {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .opening-matrix-bg {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255, 42, 84, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 42, 84, 0.08) 1px, transparent 1px);
+      background-size: 35px 35px;
+      transform: perspective(500px) rotateX(60deg) translateY(0);
+      animation: matrixMove 8s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes matrixMove {
+      0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+      100% { transform: perspective(500px) rotateX(60deg) translateY(35px); }
+    }
+
+    .opening-scanner-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #ff2a54, #fff, #ff2a54, transparent);
+      box-shadow: 0 0 20px #ff2a54;
+      animation: scanDown 3s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes scanDown {
+      0% { top: 0%; opacity: 0.3; }
+      100% { top: 100%; opacity: 1; }
+    }
+
+    .opening-core-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 680px;
+    }
+
+    .opening-logo-badge {
+      width: 65px;
+      height: 65px;
+      background: #ff2a54;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      box-shadow: 0 0 35px rgba(255, 42, 84, 0.9);
+      margin-bottom: 18px;
+      animation: pulseLogo 1.6s infinite alternate;
+    }
+
+    @keyframes pulseLogo {
+      0% { transform: scale(0.92); box-shadow: 0 0 20px rgba(255, 42, 84, 0.5); }
+      100% { transform: scale(1.08); box-shadow: 0 0 50px rgba(255, 42, 84, 1); }
+    }
+
+    .opening-subtext {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #ff5c7c;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .opening-title {
+      font-size: 2.3rem;
+      font-weight: 900;
+      line-height: 1.15;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+    }
+
+    .opening-title .highlight-red {
+      color: #ff2a54;
+      text-shadow: 0 0 20px rgba(255, 42, 84, 0.9), 0 0 45px rgba(255, 42, 84, 0.6);
+      display: inline-block;
+      animation: glitchSkew 2s infinite ease-in-out alternate;
+    }
+
+    @keyframes glitchSkew {
+      0% { transform: skewX(0deg); }
+      80% { transform: skewX(0deg); }
+      85% { transform: skewX(-5deg); filter: hue-rotate(20deg); }
+      90% { transform: skewX(4deg); }
+      100% { transform: skewX(0deg); }
+    }
+
+    .opening-loader-bar-wrap {
+      width: 220px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      margin: 20px auto 14px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .opening-loader-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: #ff2a54;
+      box-shadow: 0 0 12px #ff2a54;
+      animation: fillProgress 3.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fillProgress {
+      0% { width: 0%; }
+      50% { width: 65%; }
+      100% { width: 100%; }
+    }
+
+    .opening-btn-skip {
+      background: rgba(255, 42, 84, 0.18);
+      border: 1px solid rgba(255, 42, 84, 0.5);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.2s;
+    }
+
+    .opening-btn-skip:hover {
+      background: #ff2a54;
+      box-shadow: 0 0 15px rgba(255, 42, 84, 0.8);
+    }
+
+    /* =========================================================
+       2. TAMPILAN DASHBOARD UTAMA
+       ========================================================= */
     .terminal-container {
       max-width: 1100px;
       margin: 0 auto;
       padding: 16px 14px 60px;
     }
 
-    /* HEADER BANNER */
     .vip-banner-box {
       background: linear-gradient(135deg, rgba(255, 42, 84, 0.22) 0%, rgba(15, 17, 23, 0.95) 100%);
       border: 1px solid var(--accent-red);
@@ -60,11 +225,9 @@
       transform: translateY(-2px);
     }
 
-    /* =========================================================
-       ASTRODOX RADAR MATRIX LENGKAP
-       ========================================================= */
+    /* ASTRODOX BOARD EXACT REPLICA */
     .astrodox-master-board {
-      background: #0a0c12;
+      background: #090b11;
       border: 1px solid rgba(255, 42, 84, 0.45);
       border-radius: 14px;
       padding: 20px;
@@ -78,12 +241,12 @@
     .astrodox-disk-wrapper {
       position: relative;
       width: 100%;
-      max-width: 390px;
+      max-width: 410px;
       aspect-ratio: 1 / 1;
       margin: 0 auto;
       background: #ffffff;
       border-radius: 50%;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 42, 84, 0.4);
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 42, 84, 0.4);
       overflow: hidden;
     }
 
@@ -101,7 +264,7 @@
     }
 
     .transit-table-full {
-      background: #06070a;
+      background: #050609;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 10px;
       padding: 12px;
@@ -149,7 +312,7 @@
       font-family: monospace;
     }
 
-    /* FILTER BAR */
+    /* CONTROLS & FILTER */
     .filter-pills {
       display: flex;
       gap: 8px;
@@ -221,15 +384,9 @@
       box-shadow: 0 0 12px rgba(239, 68, 68, 0.35);
     }
 
-    .signal-wait {
-      background: rgba(251, 191, 36, 0.15);
-      border: 1px solid #fbbf24;
-      color: #fde047;
-    }
-
     @media (min-width: 768px) {
       .astrodox-master-board {
-        grid-template-columns: 390px 1fr;
+        grid-template-columns: 410px 1fr;
       }
       .news-card {
         grid-template-columns: 1.2fr 0.8fr 1.3fr;
@@ -239,6 +396,36 @@
   </style>
 </head>
 <body>
+
+  <!-- ==========================================
+       1. CINEMATIC VIDEO / TEXT OPENING SCREEN
+       ========================================== -->
+  <div id="openingOverlay">
+    <div class="opening-matrix-bg"></div>
+    <div class="opening-scanner-bar"></div>
+
+    <div class="opening-core-content">
+      <div class="opening-logo-badge">Z</div>
+      <div class="opening-subtext">TERMINAL INITIALIZATION &bull; VIP PROTOCOL</div>
+      
+      <h1 class="opening-title">
+        SELAMAT DATANG DI VIP <br/>
+        <span class="highlight-red">ZERODIAX</span>
+      </h1>
+
+      <p style="color:#94a3b8; font-size:0.85rem; max-width:480px; margin:0 auto; line-height:1.5;">
+        Sinkronisasi chart transit Astrodox online 24 jam dan kalender ekonomi real-time...
+      </p>
+
+      <div class="opening-loader-bar-wrap">
+        <div class="opening-loader-progress"></div>
+      </div>
+
+      <button class="opening-btn-skip" onclick="dismissOpeningScreen()">
+        LEWATI INTRO &rarr;
+      </button>
+    </div>
+  </div>
 
   <!-- NAVBAR -->
   <header class="navbar">
@@ -269,168 +456,235 @@
       </a>
     </div>
 
-    <!-- ASTRODOX CHART LENGKAP PERSIS WEB ASLI (12 ZODIAK + GARIS ASPEK BANYAK) -->
+    <!-- ASTRODOX EXACT REPLICA 100% -->
     <div class="astrodox-master-board">
       <div class="astrodox-disk-wrapper">
-        <svg class="astrodox-svg" viewBox="0 0 400 400" id="astrodoxSvgWheel">
-          <circle cx="200" cy="200" r="196" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/>
+        <svg class="astrodox-svg" viewBox="0 0 500 500" id="astrodoxExactSvg">
+          <!-- Outer Ring Background -->
+          <circle cx="250" cy="250" r="246" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/>
           
-          <!-- 12 ZODIAK SEKTOR -->
-          <g id="zodiacSlices">
-            <path d="M 200 200 L 390 200 A 190 190 0 0 1 364.6 295 Z" fill="#ffe4e6"/>
-            <path d="M 200 200 L 364.6 295 A 190 190 0 0 1 295 364.6 Z" fill="#dcfce7"/>
-            <path d="M 200 200 L 295 364.6 A 190 190 0 0 1 200 390 Z" fill="#fef9c3"/>
-            <path d="M 200 200 L 200 390 A 190 190 0 0 1 105 364.6 Z" fill="#e0e7ff"/>
-            <path d="M 200 200 L 105 364.6 A 190 190 0 0 1 35.4 295 Z" fill="#ffedd5"/>
-            <path d="M 200 200 L 35.4 295 A 190 190 0 0 1 10 200 Z" fill="#dcfce7"/>
-            <path d="M 200 200 L 10 200 A 190 190 0 0 1 35.4 105 Z" fill="#e0f2fe"/>
-            <path d="M 200 200 L 35.4 105 A 190 190 0 0 1 105 35.4 Z" fill="#f3e8ff"/>
-            <path d="M 200 200 L 105 35.4 A 190 190 0 0 1 200 10 Z" fill="#fef3c7"/>
-            <path d="M 200 200 L 200 10 A 190 190 0 0 1 295 35.4 Z" fill="#dcfce7"/>
-            <path d="M 200 200 L 295 35.4 A 190 190 0 0 1 364.6 105 Z" fill="#e0f2fe"/>
-            <path d="M 200 200 L 364.6 105 A 190 190 0 0 1 390 200 Z" fill="#ede9fe"/>
+          <!-- 12 ZODIAC SECTORS COLOR IDENTIK DENGAN ASTRODOX -->
+          <g id="zodiacSegments">
+            <!-- Scorpio (Ungu Muda - Horison Kiri Ascendant) -->
+            <path d="M 250 250 L 10 250 A 240 240 0 0 1 42.2 130 Z" fill="#e0e7ff"/>
+            <!-- Libra (Biru Muda) -->
+            <path d="M 250 250 L 42.2 130 A 240 240 0 0 1 130 42.2 Z" fill="#e0f2fe"/>
+            <!-- Virgo (Hijau Muda) -->
+            <path d="M 250 250 L 130 42.2 A 240 240 0 0 1 250 10 Z" fill="#dcfce7"/>
+            <!-- Leo (Oranye Muda - Puncak Atas MC) -->
+            <path d="M 250 250 L 250 10 A 240 240 0 0 1 370 42.2 Z" fill="#ffedd5"/>
+            <!-- Cancer (Ungu Biru) -->
+            <path d="M 250 250 L 370 42.2 A 240 240 0 0 1 457.8 130 Z" fill="#e0e7ff"/>
+            <!-- Gemini (Kuning) -->
+            <path d="M 250 250 L 457.8 130 A 240 240 0 0 1 490 250 Z" fill="#fef9c3"/>
+            <!-- Taurus (Hijau) -->
+            <path d="M 250 250 L 490 250 A 240 240 0 0 1 457.8 370 Z" fill="#dcfce7"/>
+            <!-- Aries (Merah Muda) -->
+            <path d="M 250 250 L 457.8 370 A 240 240 0 0 1 370 457.8 Z" fill="#ffe4e6"/>
+            <!-- Pisces (Lavender) -->
+            <path d="M 250 250 L 370 457.8 A 240 240 0 0 1 250 490 Z" fill="#ede9fe"/>
+            <!-- Aquarius (Biru Langit) -->
+            <path d="M 250 250 L 250 490 A 240 240 0 0 1 130 457.8 Z" fill="#e0f2fe"/>
+            <!-- Capricorn (Hijau Sage) -->
+            <path d="M 250 250 L 130 457.8 A 240 240 0 0 1 42.2 370 Z" fill="#dcfce7"/>
+            <!-- Sagitarius (Krem) -->
+            <path d="M 250 250 L 42.2 370 A 240 240 0 0 1 10 250 Z" fill="#fef3c7"/>
           </g>
 
-          <!-- Lingkaran Pemisah Dalam & Cincin Derajat -->
-          <circle cx="200" cy="200" r="162" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
-          <circle cx="200" cy="200" r="126" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
-          <circle cx="200" cy="200" r="86" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+          <!-- Cincin Pemisah Dalam Putih -->
+          <circle cx="250" cy="250" r="205" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+          <circle cx="250" cy="250" r="160" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+          <circle cx="250" cy="250" r="110" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
 
-          <!-- 12 Garis Placidus Houses Lengkap -->
-          <line x1="200" y1="10" x2="200" y2="390" stroke="#0f172a" stroke-width="1.5"/>
-          <line x1="10" y1="200" x2="390" y2="200" stroke="#0f172a" stroke-width="1.5"/>
-          <line x1="65" y1="65" x2="335" y2="335" stroke="rgba(15,23,42,0.3)" stroke-width="1"/>
-          <line x1="335" y1="65" x2="65" y2="335" stroke="rgba(15,23,42,0.3)" stroke-width="1"/>
-          <line x1="100" y1="27" x2="300" y2="373" stroke="rgba(15,23,42,0.2)" stroke-width="1"/>
-          <line x1="300" y1="27" x2="100" y2="373" stroke="rgba(15,23,42,0.2)" stroke-width="1"/>
+          <!-- 12 GARIS PLACIDUS HOUSE AXIS PERSIS ASTRODOX -->
+          <!-- Horison Ascendant (Panah Kiri) & Descendant (Kanan) -->
+          <line x1="2" y1="250" x2="498" y2="250" stroke="#0f172a" stroke-width="2"/>
+          <!-- Panah Ascendant di Garis Kiri -->
+          <polygon points="12,244 0,250 12,256" fill="#0f172a"/>
+          <text x="18" y="244" font-size="11" font-weight="900" fill="#0f172a">8&deg;</text>
 
-          <!-- Simbol 12 Zodiak -->
-          <text x="350" y="245" font-size="14" font-weight="bold" fill="#334155">&#9800;</text>
-          <text x="310" y="325" font-size="14" font-weight="bold" fill="#334155">&#9801;</text>
-          <text x="235" y="365" font-size="14" font-weight="bold" fill="#334155">&#9802;</text>
-          <text x="145" y="365" font-size="14" font-weight="bold" fill="#334155">&#9803;</text>
-          <text x="75" y="325" font-size="14" font-weight="bold" fill="#334155">&#9804;</text>
-          <text x="35" y="245" font-size="14" font-weight="bold" fill="#334155">&#9805;</text>
-          <text x="35" y="160" font-size="14" font-weight="bold" fill="#334155">&#9806;</text>
-          <text x="75" y="75" font-size="14" font-weight="bold" fill="#334155">&#9807;</text>
-          <text x="145" y="35" font-size="14" font-weight="bold" fill="#334155">&#9808;</text>
-          <text x="235" y="35" font-size="14" font-weight="bold" fill="#334155">&#9809;</text>
-          <text x="310" y="75" font-size="14" font-weight="bold" fill="#334155">&#9810;</text>
-          <text x="350" y="160" font-size="14" font-weight="bold" fill="#334155">&#9811;</text>
+          <!-- Sumbu Vertikal MC (Puncak Atas) & IC (Bawah) -->
+          <line x1="250" y1="2" x2="250" y2="498" stroke="#0f172a" stroke-width="2"/>
+          <text x="254" y="24" font-size="11" font-weight="900" fill="#0f172a">&#9793; 16&deg;</text>
 
-          <!-- GARIS-GARIS ASPEK LENGKAP ASTRODOX (MERAH & HIJAU BANYAK) -->
-          <g id="astroAspectGeo">
-            <!-- Aspek Hijau (Trine 120° & Sextile 60°) -->
-            <line x1="88" y1="172" x2="138" y2="72" stroke="#16a34a" stroke-width="1.8"/>
-            <line x1="138" y1="72" x2="310" y2="290" stroke="#16a34a" stroke-width="1.8"/>
-            <line x1="310" y1="290" x2="88" y2="172" stroke="#16a34a" stroke-width="1.8"/>
-            <line x1="88" y1="172" x2="200" y2="40" stroke="#16a34a" stroke-width="1.2" stroke-dasharray="3,3"/>
-            <line x1="215" y1="90" x2="340" y2="170" stroke="#16a34a" stroke-width="1.5"/>
+          <!-- Rumah Sela Placidus Lainnya (XI, XII, II, III, dst) -->
+          <line x1="125" y1="35" x2="375" y2="465" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
+          <line x1="35" y1="125" x2="465" y2="375" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
+          <line x1="35" y1="375" x2="465" y2="125" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
+          <line x1="125" y1="465" x2="375" y2="35" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
 
-            <!-- Aspek Merah (Square 90° & Opposition 180°) -->
-            <line x1="88" y1="172" x2="312" y2="172" stroke="#dc2626" stroke-width="1.8"/>
-            <line x1="138" y1="72" x2="138" y2="328" stroke="#dc2626" stroke-width="1.8"/>
-            <line x1="88" y1="172" x2="185" y2="85" stroke="#dc2626" stroke-width="1.8"/>
-            <line x1="185" y1="85" x2="340" y2="170" stroke="#dc2626" stroke-width="1.5"/>
-            <line x1="138" y1="72" x2="340" y2="170" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="2,2"/>
+          <!-- SIMBOL 12 ZODIAK LENGKAP -->
+          <text x="45" y="200" font-size="16" font-weight="bold" fill="#334155">&#9807;</text> <!-- Scorpio -->
+          <text x="90" y="100" font-size="16" font-weight="bold" fill="#334155">&#9806;</text> <!-- Libra -->
+          <text x="180" y="50" font-size="16" font-weight="bold" fill="#334155">&#9805;</text> <!-- Virgo -->
+          <text x="265" y="50" font-size="16" font-weight="bold" fill="#334155">&#9804;</text> <!-- Leo -->
+          <text x="355" y="100" font-size="16" font-weight="bold" fill="#334155">&#9803;</text> <!-- Cancer -->
+          <text x="400" y="200" font-size="16" font-weight="bold" fill="#334155">&#9802;</text> <!-- Gemini -->
+          <text x="400" y="300" font-size="16" font-weight="bold" fill="#334155">&#9801;</text> <!-- Taurus -->
+          <text x="355" y="400" font-size="16" font-weight="bold" fill="#334155">&#9800;</text> <!-- Aries -->
+          <text x="265" y="450" font-size="16" font-weight="bold" fill="#334155">&#9811;</text> <!-- Pisces -->
+          <text x="180" y="450" font-size="16" font-weight="bold" fill="#334155">&#9810;</text> <!-- Aquarius -->
+          <text x="90" y="400" font-size="16" font-weight="bold" fill="#334155">&#9809;</text> <!-- Capricorn -->
+          <text x="45" y="300" font-size="16" font-weight="bold" fill="#334155">&#9808;</text> <!-- Sagitarius -->
+
+          <!-- =======================================================
+               JARING ASPEK LENGKAP ASTRODOX (MERAH & HIJAU BERSILANGAN)
+               ======================================================= -->
+          <g id="astroExactAspects">
+            <!-- GARIS MERAH (SQUARE & OPPOSITION - KETEGANGAN PASAR) -->
+            <!-- Mars/Jupiter Leo ke Pluto Aquarius (Garis Merah Tengah Panjang) -->
+            <line x1="240" y1="65" x2="242" y2="435" stroke="#dc2626" stroke-width="1.8"/>
+            <!-- Mars Leo ke Sun/Mercury Libra -->
+            <line x1="230" y1="70" x2="80" y2="150" stroke="#dc2626" stroke-width="1.8"/>
+            <line x1="240" y1="65" x2="85" y2="200" stroke="#dc2626" stroke-width="1.8"/>
+            <!-- Moon Sagitarius ke Saturn/Neptune Aries -->
+            <line x1="90" y1="365" x2="385" y2="350" stroke="#dc2626" stroke-width="1.8"/>
+            <line x1="80" y1="150" x2="385" y2="350" stroke="#dc2626" stroke-width="1.8"/>
+            <line x1="230" y1="70" x2="395" y2="175" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3,3"/>
+
+            <!-- GARIS HIJAU (TRINE 120° & SEXTILE 60° - HARMONIK RESONATOR) -->
+            <!-- Mars/Jupiter Leo ke Moon Sagitarius (Trine Api Sempurna) -->
+            <line x1="230" y1="70" x2="90" y2="365" stroke="#16a34a" stroke-width="2"/>
+            <!-- Mars/Jupiter Leo ke Saturnus Aries (Grand Trine Api) -->
+            <line x1="230" y1="70" x2="385" y2="350" stroke="#16a34a" stroke-width="2"/>
+            <!-- Moon Sagitarius ke Uranus Gemini -->
+            <line x1="90" y1="365" x2="395" y2="175" stroke="#16a34a" stroke-width="1.5"/>
+            <!-- Sun Libra ke Pluto Aquarius (Trine Udara) -->
+            <line x1="80" y1="150" x2="242" y2="435" stroke="#16a34a" stroke-width="1.8"/>
+            <!-- Uranus Gemini ke Sun Libra -->
+            <line x1="395" y1="175" x2="80" y2="150" stroke="#16a34a" stroke-width="1.8"/>
           </g>
 
-          <!-- PLANET DENGAN DERAJAT TRANSIT REALTIME 24 JAM -->
-          <g id="astroPlanetNodes">
-            <!-- Sun (Matahari) di Libra 22° -->
-            <circle cx="88" cy="172" r="10" fill="#f59e0b" stroke="#78350f" stroke-width="1.5"/>
-            <text x="88" y="176" text-anchor="middle" font-size="11" font-weight="900" fill="#000">&#9737;</text>
-            <text x="60" y="175" font-size="9" font-weight="bold" fill="#0f172a">22&deg;</text>
+          <!-- =======================================================
+               POSISI PLANET DAN DERAJAT TRANSIT PERSIS GAMBAR
+               ======================================================= -->
+          <g id="astroPlanetNodesExact">
+            <!-- 1. SUN (Matahari) di Libra 22° -->
+            <circle cx="80" cy="150" r="11" fill="#f59e0b" stroke="#78350f" stroke-width="1.5"/>
+            <text x="80" y="154" text-anchor="middle" font-size="12" font-weight="900" fill="#000">&#9737;</text>
+            <text x="100" y="145" font-size="10" font-weight="900" fill="#0f172a">23&deg;</text>
 
-            <!-- Moon (Bulan) di Sagitarius 17° -->
-            <circle cx="138" cy="72" r="9" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.5"/>
-            <text x="138" y="76" text-anchor="middle" font-size="11" font-weight="900" fill="#fff">&#9789;</text>
-            <text x="150" y="66" font-size="9" font-weight="bold" fill="#0f172a">17&deg;</text>
+            <!-- 2. VENUS & MERCURY di Scorpio 17° & 5° -->
+            <circle cx="85" cy="200" r="8" fill="#ec4899" stroke="#831843" stroke-width="1.5"/>
+            <text x="85" y="204" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9792;</text>
+            <circle cx="95" cy="225" r="8" fill="#a855f7" stroke="#581c87" stroke-width="1.5"/>
+            <text x="95" y="229" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9791;</text>
 
-            <!-- Mars di Leo 10° -->
-            <circle cx="185" cy="85" r="9" fill="#dc2626" stroke="#450a0a" stroke-width="1.5"/>
-            <text x="185" y="89" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9794;</text>
-            <text x="185" y="72" font-size="9" font-weight="bold" fill="#0f172a">10&deg;</text>
+            <!-- 3. MARS & JUPITER & KETU di Leo (Puncak Atas) -->
+            <circle cx="230" cy="70" r="10" fill="#dc2626" stroke="#450a0a" stroke-width="1.5"/>
+            <text x="230" y="74" text-anchor="middle" font-size="11" font-weight="900" fill="#fff">&#9794;</text>
+            <text x="228" y="55" font-size="10" font-weight="900" fill="#0f172a">10&deg;</text>
 
-            <!-- Jupiter di Leo 22° -->
-            <circle cx="215" cy="90" r="9" fill="#7c3aed" stroke="#2e1065" stroke-width="1.5"/>
-            <text x="215" y="94" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9795;</text>
-            <text x="215" y="75" font-size="9" font-weight="bold" fill="#0f172a">22&deg;</text>
+            <circle cx="210" cy="75" r="9" fill="#7c3aed" stroke="#2e1065" stroke-width="1.5"/>
+            <text x="210" y="79" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9795;</text>
+            <text x="206" y="58" font-size="9" font-weight="900" fill="#0f172a">23&deg;</text>
 
-            <!-- Saturnus di Pisces 10° -->
-            <circle cx="340" cy="170" r="8" fill="#475569" stroke="#0f172a" stroke-width="1.5"/>
-            <text x="340" y="174" text-anchor="middle" font-size="9" font-weight="900" fill="#fff">&#9796;</text>
+            <!-- 4. MOON (Bulan) di Sagitarius 18° -->
+            <circle cx="90" cy="365" r="10" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.5"/>
+            <text x="90" y="369" text-anchor="middle" font-size="12" font-weight="900" fill="#fff">&#9789;</text>
+            <text x="110" y="375" font-size="10" font-weight="900" fill="#0f172a">18&deg;</text>
+
+            <!-- 5. PLUTO di Aquarius 4° -->
+            <circle cx="242" cy="435" r="8" fill="#475569" stroke="#0f172a" stroke-width="1.5"/>
+            <text x="242" y="439" text-anchor="middle" font-size="9" font-weight="900" fill="#fff">&#9799;</text>
+            <text x="242" y="455" font-size="10" font-weight="900" fill="#0f172a">4&deg;</text>
+
+            <!-- 6. SATURNUS & NEPTUNUS di Aries 11° & 3° -->
+            <circle cx="385" cy="350" r="9" fill="#64748b" stroke="#1e293b" stroke-width="1.5"/>
+            <text x="385" y="354" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9796;</text>
+            <text x="405" y="355" font-size="10" font-weight="900" fill="#0f172a">11&deg;</text>
+
+            <!-- 7. URANUS di Gemini 6° -->
+            <circle cx="395" cy="175" r="9" fill="#06b6d4" stroke="#164e63" stroke-width="1.5"/>
+            <text x="395" y="179" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9797;</text>
+            <text x="415" y="175" font-size="10" font-weight="900" fill="#0f172a">6&deg;</text>
           </g>
 
-          <circle cx="200" cy="200" r="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-          <text x="200" y="196" text-anchor="middle" font-size="8" font-weight="900" fill="#dc2626">ASTRODOX</text>
-          <text x="200" y="208" text-anchor="middle" font-size="7" font-weight="bold" fill="#64748b">24H TRANSIT</text>
+          <!-- Label Pusat Astrodox -->
+          <circle cx="250" cy="250" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+          <text x="250" y="246" text-anchor="middle" font-size="8" font-weight="900" fill="#dc2626">ASTRODOX</text>
+          <text x="250" y="258" text-anchor="middle" font-size="7" font-weight="bold" fill="#64748b">24H LIVE</text>
         </svg>
       </div>
 
-      <!-- PANEL KOSMIK: FASE BULAN, TANGGAL & DERAJAT TRANSIT LENGKAP -->
+      <!-- TABEL DERAJAT TRANSIT PERSIS GAMBAR RUJUKAN -->
       <div class="astrodox-data-panel">
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span style="background:rgba(255,42,84,0.15); border:1px solid #ff2a54; color:#ff5c7c; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:800;">
-            ASTRODOX.COM 2026 TRANSIT
+            FREE ASTRODOX.COM ONLINE 2026 TRANSIT
           </span>
           <span style="color:#22c55e; font-size:0.75rem; font-weight:700;">&bull; SINKRON LIVE 24H</span>
         </div>
 
-        <!-- KOTAK FASE BULAN KHUSUS -->
-        <div style="background:#0e111a; border:1px solid rgba(255,42,84,0.3); border-radius:10px; padding:12px; display:flex; justify-content:space-between; align-items:center;">
+        <!-- FASE BULAN HARI INI -->
+        <div style="background:#0c0e16; border:1px solid rgba(255,42,84,0.3); border-radius:10px; padding:12px; display:flex; justify-content:space-between; align-items:center;">
           <div>
-            <span style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase;">Fase Bulan Hari Ini</span>
-            <strong style="color:#fff; font-size:1rem; display:block;" id="liveMoonPhaseName">Waxing Crescent (Sabit Awal)</strong>
-            <small style="color:#38bdf8; font-size:0.75rem;" id="liveMoonIllumination">Iluminasi: 18.4% &bull; Siklus Akumulasi</small>
+            <span style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase;">Fase Bulan &bull; New York City Orbs</span>
+            <strong style="color:#fff; font-size:0.95rem; display:block;" id="liveMoonPhaseName">Waxing Crescent (Sabit Awal)</strong>
+            <small style="color:#38bdf8; font-size:0.75rem;" id="liveMoonIllum">Moon di Sagitarius 17°52' &bull; Iluminasi 18.4%</small>
           </div>
-          <div style="font-size:2rem; text-shadow:0 0 15px rgba(56,189,248,0.8);" id="liveMoonPhaseIcon">
-            &#9789;
-          </div>
+          <div style="font-size:1.8rem; text-shadow:0 0 15px rgba(56,189,248,0.8);" id="liveMoonIcon">&#9789;</div>
         </div>
 
+        <!-- TABEL TRANSIT DUA KOLOM PERSIS ASTRODOX -->
         <div class="transit-table-full">
           <div class="transit-item">
-            <span>&#9737; Sun (Gold Core)</span>
-            <strong style="color:#f59e0b;" id="degSun">Libra 22&deg;10'23"</strong>
+            <span>&#9737; Sun</span>
+            <strong style="color:#f59e0b;" id="degSun">&#9806; 22&deg;10'23"</strong>
           </div>
           <div class="transit-item">
-            <span>&#9789; Moon (Liquidity)</span>
-            <strong style="color:#38bdf8;" id="degMoon">Sagitarius 17&deg;52'26"</strong>
+            <span>Asc (Scorpio)</span>
+            <strong style="color:#cbd5e1;">&#9807; 07&deg;30'08"</strong>
           </div>
           <div class="transit-item">
-            <span>&#9794; Mars (Volatility)</span>
-            <strong style="color:#f87171;" id="degMars">Leo 09&deg;55'26"</strong>
+            <span>&#9789; Moon</span>
+            <strong style="color:#38bdf8;" id="degMoon">&#9808; 17&deg;52'26"</strong>
           </div>
           <div class="transit-item">
-            <span>&#9795; Jupiter (Expansion)</span>
-            <strong style="color:#c084fc;">Leo 22&deg;01'44"</strong>
+            <span>II (Sagitarius)</span>
+            <strong style="color:#cbd5e1;">&#9808; 06&deg;18'26"</strong>
           </div>
           <div class="transit-item">
-            <span>&#9796; Saturn (Structure)</span>
-            <strong style="color:#94a3b8;">Aries 10&deg;26'44"</strong>
+            <span>&#9791; Mercury</span>
+            <strong style="color:#a855f7;">&#9807; 16&deg;54'36"</strong>
           </div>
           <div class="transit-item">
-            <span>&#9797; Uranus (Surge)</span>
-            <strong style="color:#67e8f9;">Taurus 05&deg;12'17"</strong>
+            <span>III (Capricorn)</span>
+            <strong style="color:#cbd5e1;">&#9809; 09&deg;32'05"</strong>
           </div>
           <div class="transit-item">
-            <span>Aspek Dominan</span>
-            <strong style="color:#4ade80;">Trine 120&deg; Harmonic</strong>
+            <span>&#9792; Venus</span>
+            <strong style="color:#ec4899;">&#9807; 05&deg;34'49"</strong>
           </div>
           <div class="transit-item">
-            <span>Bias XAUUSD</span>
-            <strong style="color:#ff2a54;">BULLISH EXPANSION</strong>
+            <span>IC (Aquarius)</span>
+            <strong style="color:#cbd5e1;">&#9810; 15&deg;05'15"</strong>
+          </div>
+          <div class="transit-item">
+            <span>&#9794; Mars</span>
+            <strong style="color:#f87171;" id="degMars">&#9804; 09&deg;55'26"</strong>
+          </div>
+          <div class="transit-item">
+            <span>MC (Leo)</span>
+            <strong style="color:#cbd5e1;">&#9804; 15&deg;05'15"</strong>
+          </div>
+          <div class="transit-item">
+            <span>&#9795; Jupiter</span>
+            <strong style="color:#c084fc;">&#9804; 22&deg;01'44"</strong>
+          </div>
+          <div class="transit-item">
+            <span>Dsc (Taurus)</span>
+            <strong style="color:#cbd5e1;">&#9801; 07&deg;30'08"</strong>
           </div>
         </div>
 
         <div style="background:rgba(255,42,84,0.1); border-left:4px solid #ff2a54; padding:10px 12px; border-radius:0 8px 8px 0; font-size:0.78rem; line-height:1.4; color:#cbd5e1;">
-          <strong>Konfluensi Kosmik:</strong> Fase Waxing Crescent mendukung ekspansi likuiditas emas. Sun di Libra 22° beresonansi Trine dengan Jupiter Leo 22°, memperbesar peluang rebound naik saat rilis news AS melemah.
+          <strong>Konfluensi Transit:</strong> Sun di Libra 22° beresonansi Trine dengan Jupiter di Leo 22° (Garis Hijau). Menghasilkan akumulasi likuiditas naik pada XAUUSD menjelang rilis berita ekonomi.
         </div>
       </div>
     </div>
 
-    <!-- CLOCK DOCK REALTIME -->
+    <!-- CLOCK DOCK 3 ZONA WAKTU -->
     <div class="clock-dock">
       <div class="clock-item primary-clock">
         <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">
@@ -457,14 +711,14 @@
       </div>
     </div>
 
-    <!-- SECTION TITLE JADWAL NEWS HARI INI -->
+    <!-- TITLE JADWAL NEWS HARI INI -->
     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
       <div>
-        <h3 style="font-size:1.15rem; font-weight:900; letter-spacing:0.5px;" id="newsHeaderTitle">
-          JADWAL NEWS HARI INI &bull; REALTIME
+        <h3 style="font-size:1.15rem; font-weight:900; letter-spacing:0.5px;">
+          JADWAL NEWS HARI INI &bull; FOREX FACTORY AUTO-FEED
         </h3>
         <p style="font-size:0.75rem; color:#94a3b8; margin-top:2px;" id="currentDaySubtitle">
-          Menampilkan rilis berita ekonomi khusus hari ini &bull; Medium &amp; High Impact
+          Sinkronisasi kalender ekonomi aktif per hari ini &bull; Medium &amp; High Impact
         </p>
       </div>
       <span style="font-size:0.75rem; color:#22c55e; font-weight:700;">&bull; ENGINE AUTO-UPDATE 100% WR</span>
@@ -482,14 +736,28 @@
     <!-- CONTAINER DAFTAR JADWAL NEWS (REALTIME) -->
     <div class="news-list-box" id="newsFeedContainer">
       <div style="text-align:center; padding:30px; color:#94a3b8;">
-        Menyinkronkan data jadwal ekonomi hari ini...
+        Menyinkronkan data jadwal ekonomi hari ini dari server...
       </div>
     </div>
 
   </div>
 
   <script>
-    // 1. SUPABASE AUTH PROTECTION
+    // ==========================================
+    // 1. OPENING SCREEN LOGIC
+    // ==========================================
+    function dismissOpeningScreen() {
+      const overlay = document.getElementById('openingOverlay');
+      if (overlay) {
+        overlay.classList.add('fade-out');
+        setTimeout(() => { overlay.remove(); }, 800);
+      }
+    }
+    setTimeout(dismissOpeningScreen, 3400);
+
+    // ==========================================
+    // 2. SUPABASE AUTH PROTECTION
+    // ==========================================
     const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjaXZ0eW9sZWJibHJxcWdwdW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMjk0MzAsImV4cCI6MjEwNzYwNTQzMH0.o87Hwhz-I6jv98jW0VfT70UfbfgtEoo63rI3tm9rQbw';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -515,7 +783,9 @@
     }
     checkMemberAccess();
 
-    // 2. JAM DIGITAL REALTIME 3 ZONA WAKTU
+    // ==========================================
+    // 3. JAM DIGITAL REALTIME 3 ZONA WAKTU
+    // ==========================================
     function updateLiveClocks() {
       const now = new Date();
       const dateOpts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
@@ -528,7 +798,6 @@
       }).format(now);
       document.getElementById('dateWIB').innerText = strWibDate;
 
-      // Update subtitle tanggal hari ini
       const subTitle = document.getElementById('currentDaySubtitle');
       if (subTitle) {
         subTitle.innerText = `Rilis berita ekonomi aktif per hari ini (${strWibDate}) • Medium & High Impact`;
@@ -551,51 +820,33 @@
     setInterval(updateLiveClocks, 1000);
     updateLiveClocks();
 
-    // 3. ENGINE ROTASI ASTRODOX REALTIME 24 JAM & FASE BULAN
+    // ==========================================
+    // 4. ENGINE ROTASI ASTRODOX 24 JAM
+    // ==========================================
     function updateAstrodox24H() {
       const now = new Date();
       const secs = (now.getUTCHours() * 3600) + (now.getUTCMinutes() * 60) + now.getUTCSeconds();
       const rot = (secs / 86400) * 360;
 
-      const aspectGroup = document.getElementById('astroAspectGeo');
-      const planetGroup = document.getElementById('astroPlanetNodes');
-      if (aspectGroup) aspectGroup.setAttribute('transform', `rotate(${rot % 360} 200 200)`);
-      if (planetGroup) planetGroup.setAttribute('transform', `rotate(${rot % 360} 200 200)`);
+      const aspectGroup = document.getElementById('astroExactAspects');
+      const planetGroup = document.getElementById('astroPlanetNodesExact');
+      if (aspectGroup) aspectGroup.setAttribute('transform', `rotate(${rot % 360} 250 250)`);
+      if (planetGroup) planetGroup.setAttribute('transform', `rotate(${rot % 360} 250 250)`);
 
       const sunSec = (22 + (secs / 3600) % 2).toFixed(0);
       const moonSec = (17 + (secs / 1800) % 5).toFixed(0);
       const marsSec = (9 + (secs / 7200) % 1).toFixed(0);
 
-      document.getElementById('degSun').innerText = `Libra ${sunSec}°10'23"`;
-      document.getElementById('degMoon').innerText = `Sagitarius ${moonSec}°52'26"`;
-      document.getElementById('degMars').innerText = `Leo ${marsSec}°55'26"`;
-
-      // Kalkulasi Fase Bulan Sesuai Hari Ini
-      const dayOfMonth = now.getDate();
-      const moonPhaseName = document.getElementById('liveMoonPhaseName');
-      const moonIllum = document.getElementById('liveMoonIllumination');
-      const moonIcon = document.getElementById('liveMoonPhaseIcon');
-
-      if (dayOfMonth >= 10 && dayOfMonth <= 17) {
-        moonPhaseName.innerText = "Waxing Crescent (Sabit Awal)";
-        moonIllum.innerText = "Iluminasi: 18.4% • Siklus Akumulasi & Reversal";
-        moonIcon.innerHTML = "&#9789;";
-      } else if (dayOfMonth >= 18 && dayOfMonth <= 22) {
-        moonPhaseName.innerText = "First Quarter (Kuartil Pertama)";
-        moonIllum.innerText = "Iluminasi: 50.0% • Volatilitas Tinggi";
-        moonIcon.innerHTML = "&#9680;";
-      } else {
-        moonPhaseName.innerText = "Waxing Gibbous (Menjelang Purnama)";
-        moonIllum.innerText = "Iluminasi: 78.5% • Sinyal Likuiditas Institusi";
-        moonIcon.innerHTML = "&#9789;";
-      }
+      document.getElementById('degSun').innerHTML = `&#9806; ${sunSec}&deg;10'23"`;
+      document.getElementById('degMoon').innerHTML = `&#9808; ${moonSec}&deg;52'26"`;
+      document.getElementById('degMars').innerHTML = `&#9804; 0${marsSec}&deg;55'26"`;
     }
     setInterval(updateAstrodox24H, 1000);
     updateAstrodox24H();
 
-    // ========================================================
-    // 4. ENGINE ANALISA NEWS PER HARI INI: PRE-NEWS & POST-NEWS
-    // ========================================================
+    // ==========================================
+    // 5. ENGINE ANALISA NEWS: PRE-NEWS & POST-NEWS CONFIRMED
+    // ==========================================
     let liveNewsFeed = [];
     let currentFilter = 'ALL';
 
@@ -617,7 +868,7 @@
       const rot = (secs / 86400) * 360;
       const aspectDeg = Math.abs(Math.sin(rot * Math.PI / 180)) * 180;
 
-      // KONDISI 1: SEBELUM RILIS (PRE-NEWS ASTRODOX CYCLE)
+      // PRE-NEWS (SEBELUM RILIS)
       if (actual === null) {
         if (curr === "USD") {
           const isAstroBullish = (aspectDeg >= 95 && aspectDeg <= 145) || (aspectDeg >= 40 && aspectDeg <= 75);
@@ -627,7 +878,7 @@
               signal: "▲ PRE-NEWS: BUY XAUUSD",
               badgeClass: "signal-buy",
               wr: "WR 100% ASTRODOX CYCLE",
-              desc: `PREDIKSI SEBELUM RILIS (ASTRODOX): Transit Sun Libra 22° beresonansi Trine harmonik dengan Jupiter Leo 22°. Siklus likuiditas menunjukkan akumulasi institusi; potensi besar XAUUSD bergerak NAIK (BUY) sebelum data resmi diumumkan.`
+              desc: `PREDIKSI SEBELUM RILIS (ASTRODOX): Transit Sun Libra 22° beresonansi Trine harmonik dengan Jupiter Leo 22°. Siklus likuiditas menunjukkan akumulasi institusi; potensi besar XAUUSD bergerak NAIK (BUY) mendahului rilis data.`
             };
           } else {
             return {
@@ -647,7 +898,7 @@
         };
       }
 
-      // KONDISI 2: DATA AKTUAL SUDAH RILIS (POST-NEWS CONFIRMATION)
+      // POST-NEWS CONFIRMED (PAS DATA RILIS)
       if (curr === "USD") {
         const isHigherBadForUSD = title.includes("unemployment") || title.includes("jobless");
         let usdBullish = false;
@@ -693,7 +944,7 @@
     }
 
     // ========================================================
-    // 5. FETCH & FILTER DATA JADWAL HARI INI (TODAY FILTER)
+    // 6. FETCH & FILTER DATA JADWAL HARI INI
     // ========================================================
     async function updateNewsCalendarRealtime() {
       const targetUrl = 'https://nfs.faireconomy.media/ff_calendar_thisweek.json';
@@ -710,7 +961,6 @@
         const todayMonth = now.getMonth();
         const todayDate = now.getDate();
 
-        // Filter event khusus hari ini (Today)
         const todaysEvents = data.filter(e => {
           if (!e.date) return false;
           const evDate = new Date(e.date);
@@ -724,13 +974,11 @@
         if (todaysEvents.length > 0) {
           liveNewsFeed = todaysEvents;
         } else {
-          // Jika hari ini libur, sediakan jadwal terdekat hari ini
           liveNewsFeed = data.filter(e => e.impact === "High" || e.impact === "Medium").slice(0, 8);
         }
 
         renderLiveNews();
       } catch (err) {
-        // Fallback dinamis jadwal hari ini jika jaringan API sedang sibuk
         const now = new Date();
         const strToday = new Intl.DateTimeFormat('id-ID', { weekday: 'short', day: '2-digit', month: 'short' }).format(now);
         
@@ -745,7 +993,7 @@
       }
     }
 
-    // 6. RENDER KARTU NEWS KE LAYAR
+    // 7. RENDER KARTU NEWS KE LAYAR
     function renderLiveNews() {
       const container = document.getElementById('newsFeedContainer');
       if (!container || liveNewsFeed.length === 0) return;
@@ -815,13 +1063,10 @@
       renderLiveNews();
     }
 
-    // Jalankan sinkronisasi pertama kali
     updateNewsCalendarRealtime();
-
-    // AUTO-UPDATE DARI SERVER SETIAP 30 DETIK REALTIME
     setInterval(updateNewsCalendarRealtime, 30000);
 
-    // 7. LOGOUT
+    // 8. LOGOUT
     document.getElementById('btnLogout').addEventListener('click', async () => {
       await supabaseClient.auth.signOut();
       window.location.href = 'login.html';
