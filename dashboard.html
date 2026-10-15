@@ -28,6 +28,74 @@
       padding: 20px 16px 60px;
     }
 
+    /* ===================================================
+       EFEK VISUAL TEKS BERGERAK SUPER BAGUS (CYBER GLOW & SHIMMER)
+       =================================================== */
+    .hero-welcome-box {
+      margin: 8px 0 12px;
+    }
+
+    .cyber-animated-text {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: inline-block;
+      line-height: 1.3;
+      background: linear-gradient(
+        105deg,
+        #ffffff 0%,
+        #ff2a54 25%,
+        #ffffff 50%,
+        #ff5c7c 75%,
+        #ffffff 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: cyberShine 3.5s linear infinite;
+      filter: drop-shadow(0 0 12px rgba(255, 42, 84, 0.7));
+      position: relative;
+    }
+
+    /* Kilau Laser Berjalan */
+    @keyframes cyberShine {
+      0% {
+        background-position: 200% center;
+      }
+      100% {
+        background-position: -200% center;
+      }
+    }
+
+    /* Efek Berdenyut Neon Halus */
+    .brand-glow-tag {
+      display: inline-block;
+      color: #ff2a54;
+      animation: neonPulse 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes neonPulse {
+      0% {
+        filter: drop-shadow(0 0 5px rgba(255, 42, 84, 0.5));
+        transform: scale(1);
+      }
+      100% {
+        filter: drop-shadow(0 0 20px rgba(255, 42, 84, 1));
+        transform: scale(1.02);
+      }
+    }
+
+    .user-greeting {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #ff5c7c;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
     /* HEADER BANNER VIP TELEGRAM */
     .vip-banner {
       background: linear-gradient(135deg, rgba(255, 42, 84, 0.22) 0%, rgba(17, 19, 25, 0.95) 100%);
@@ -83,14 +151,6 @@
     @keyframes pulseDot {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.8); }
-    }
-
-    .vip-content h2 {
-      font-size: 1.4rem;
-      font-weight: 900;
-      color: #fff;
-      margin: 8px 0 6px;
-      letter-spacing: 0.5px;
     }
 
     .vip-content p {
@@ -272,7 +332,6 @@
     .curr-usd { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
     .curr-eur { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
     .curr-gbp { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
-    .curr-jpy { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
 
     .impact-badge {
       font-size: 0.7rem;
@@ -389,13 +448,11 @@
       line-height: 1.5;
     }
 
-    .target-pair {
-      color: #ff5c7c;
-      font-weight: 700;
-    }
-
     /* RESPONSIVE TABLET & DESKTOP */
     @media (min-width: 768px) {
+      .cyber-animated-text {
+        font-size: 2rem;
+      }
       .vip-banner {
         flex-direction: row;
         justify-content: space-between;
@@ -435,15 +492,24 @@
 
   <div class="terminal-container">
 
-    <!-- 1. BANNER TELEGRAM VIP (AKSES MATERI LENGKAP & SINYAL) -->
+    <!-- 1. BANNER TELEGRAM VIP DENGAN TEKS BERGERAK SUPER BAGUS -->
     <div class="vip-banner">
       <div class="vip-content">
-        <span class="vip-badge-glow">Terminal VIP Aktif</span>
-        <h2 id="userName">Selamat Datang di VIP Dashboard</h2>
+        <span class="vip-badge-glow">Terminal Akses Terverifikasi</span>
+        
+        <!-- TEKS EFEK BERGERAK SPESIAL -->
+        <div class="hero-welcome-box">
+          <h2 class="cyber-animated-text">
+            Selamat Datang di VIP <span class="brand-glow-tag">ZERODIAX</span>
+          </h2>
+          <span class="user-greeting" id="userName">MEMUAT SESI TRADER...</span>
+        </div>
+
         <p>
-          Akses seluruh materi lengkap (SMC, ICT, Modul PDF, Video Private) dan live signal harian tersedia langsung di dalam <strong>Channel Telegram VIP Resmi</strong>.
+          Akses seluruh modul materi intensif (SMC, ICT, Key Level) dan live signal harian dengan akurasi tinggi dapat kamu ikuti langsung di <strong>Channel Telegram VIP Resmi</strong>.
         </p>
       </div>
+
       <a href="https://t.me/+5jgBRvH4bjo1MDg9" target="_blank" rel="noopener" class="btn-vip-tele">
         <span>MASUK GRUP VIP</span> &rarr;
       </a>
@@ -495,7 +561,7 @@
 
     <!-- 4. DAFTAR KALENDER EKONOMI & PREDIKSI ARAH NEWS -->
     <div class="news-grid" id="newsFeedList">
-      <!-- Generated via JavaScript Real-time Data -->
+      <!-- Di-render oleh JavaScript -->
     </div>
 
   </div>
@@ -526,7 +592,9 @@
       }
 
       if (profile.full_name) {
-        document.getElementById('userName').innerText = `Halo, ${profile.full_name} (VIP)`;
+        document.getElementById('userName').innerText = `AKUN TERVERIFIKASI: ${profile.full_name}`;
+      } else {
+        document.getElementById('userName').innerText = `AKUN TERVERIFIKASI: TRADER VIP`;
       }
     }
     checkMemberAccess();
@@ -534,8 +602,6 @@
     // 2. JAM DIGITAL & KALENDER REALTIME (WIB, LONDON, NEW YORK)
     function updateLiveClocks() {
       const now = new Date();
-
-      // Opsi format tanggal
       const dateOptions = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
 
       // WIB (Asia/Jakarta)
@@ -575,7 +641,7 @@
     setInterval(updateLiveClocks, 1000);
     updateLiveClocks();
 
-    // 3. DATABASE JADWAL NEWS & ANALISA ARAH REALTIME (WINRATE 100% FORMULA)
+    // 3. KALENDER NEWS & ANALISA ARAH REALTIME
     const newsData = [
       {
         id: 1,
@@ -589,7 +655,7 @@
         signal: 'BUY XAUUSD',
         direction: 'BUY',
         winrate: '100% HIGH PROBABILITY',
-        reason: 'Jika CPI actual ≤ forecast (inflasi melemah), index DXY akan terkoreksi tajam dan memicu lonjakan likuiditas Bullish instan pada XAUUSD (Gold).'
+        reason: 'Jika CPI actual ≤ forecast (inflasi melandai), DXY terkoreksi tajam dan memicu lonjakan likuiditas Bullish instan pada XAUUSD (Gold).'
       },
       {
         id: 2,
@@ -603,7 +669,7 @@
         signal: 'SELL XAUUSD',
         direction: 'SELL',
         winrate: '100% VERIFIED WR',
-        reason: 'Penjualan ritel meningkat di atas ekspektasi (aktual > forecast), menopang kekuatan DXY. Konfirmasi reaksi sweep order block untuk SELL XAUUSD menuju support liquidity.'
+        reason: 'Penjualan ritel meningkat di atas ekspektasi (aktual > forecast), menopang kekuatan DXY. Konfirmasi reaksi sweep order block untuk SELL XAUUSD.'
       },
       {
         id: 3,
@@ -631,7 +697,7 @@
         signal: 'BUY EURUSD',
         direction: 'BUY',
         winrate: '100% VERIFIED WR',
-        reason: 'Suku bunga dipertahankan stabil dengan nada kebijakan hawkish. Sesi London dan New York memvalidasi pantulan demand key level pada EURUSD.'
+        reason: 'Suku bunga dipertahankan stabil dengan sentimen hawkish. Sesi London dan New York memvalidasi pantulan demand key level pada EURUSD.'
       },
       {
         id: 5,
@@ -645,7 +711,7 @@
         signal: 'BUY GBPUSD',
         direction: 'BUY',
         winrate: '100% VERIFIED WR',
-        reason: 'Pertumbuhan ekonomi Inggris melampaui estimasi pasar. Momentum likuiditas menembus resistance terdekat sesi Asia-London.'
+        reason: 'Pertumbuhan ekonomi Inggris melampaui estimasi pasar. Momentum likuiditas menembus resistance terdekat sesi London.'
       },
       {
         id: 6,
@@ -682,7 +748,6 @@
 
         card.className = `news-card ${impactClass}`;
         card.innerHTML = `
-          <!-- Kolom 1: Informasi Event & Waktu -->
           <div>
             <div class="news-header-meta">
               <span class="currency-badge ${currClass}">${item.currency}</span>
@@ -692,7 +757,6 @@
             <h3 class="news-title">${item.event}</h3>
           </div>
 
-          <!-- Kolom 2: Angka Statistik (Previous vs Forecast vs Actual) -->
           <div class="news-stats-row">
             <div class="news-stat-col">
               <span>Forecast</span>
@@ -708,7 +772,6 @@
             </div>
           </div>
 
-          <!-- Kolom 3: Prediksi Arah News & Winrate 100% -->
           <div class="signal-prediction-box">
             <div class="signal-status-row">
               <span class="signal-action ${signalClass}">
