@@ -27,7 +27,7 @@
   <script>
     // 1. KONFIGURASI SUPABASE
     const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
-    const SUPABASE_ANON_KEY = 'Sb_publishable_VMXDKPEBhmfcaTo2P5-xoA_7HMoBKEv';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjaXZ0eW9sZWJibHJxcWdwdW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMjk0MzAsImV4cCI6MjEwNzYwNTQzMH0.o87Hwhz-I6jv98jW0VfT70UfbfgtEoo63rI3tm9rQbw';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     // 2. KONFIGURASI EMAILJS
@@ -48,7 +48,7 @@
       const actionArea = document.getElementById('actionArea');
       const btnWaMember = document.getElementById('btnWaMember');
 
-      // Validasi PIN
+      // Validasi PIN Rahasia
       if (pin !== ADMIN_SECRET_PIN) {
         titleEl.innerText = "Akses Ditolak!";
         titleEl.style.color = "var(--accent-red)";
@@ -65,7 +65,7 @@
       }
 
       try {
-        // Update status user jadi 'active' di tabel profiles Supabase
+        // Update status user jadi 'active' di Supabase
         const { data, error } = await supabaseClient
           .from('profiles')
           .update({ status: 'active' })
@@ -81,7 +81,7 @@
         const memberName = member.full_name || "Trader";
         const memberPhone = member.contact || "";
 
-        // Kirim email notifikasi ke calon member secara otomatis
+        // Kirim email notifikasi ke calon member via EmailJS
         emailjs.init(EMAILJS_PUBLIC_KEY);
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
           to_email: memberEmail,
@@ -93,11 +93,11 @@
         titleEl.style.color = "#4ade80";
         descEl.innerHTML = `Akun <strong>${memberName}</strong> telah aktif. Email konfirmasi otomatis berhasil dikirimkan ke <em>${memberEmail}</em>.`;
 
-        // Siapkan tautan cepat kirim pesan via WhatsApp jika ada nomor kontak
+        // Tampilkan tombol WhatsApp jika nomor kontak terdaftar
         if (memberPhone) {
           const cleanPhone = memberPhone.replace(/[^0-9]/g, '');
           const formattedPhone = cleanPhone.startsWith('0') ? '62' + cleanPhone.slice(1) : cleanPhone;
-          const pesanWA = encodeURIComponent(`Halo ${memberName}, pendaftaran kamu di Zero Syndicate sudah di-ACC! Silakan login di https://rezayogiana.github.io/zerodiax/login.html`);
+          const pesanWA = encodeURIComponent(`Halo ${memberName}, akun kamu di Zero Syndicate sudah di-ACC! Silakan login di https://rezayogiana.github.io/zerodiax/login.html`);
           btnWaMember.href = `https://wa.me/${formattedPhone}?text=${pesanWA}`;
           btnWaMember.style.display = "block";
         }
