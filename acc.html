@@ -5,26 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ACC Member | Zero Syndicate</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Library Supabase & EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
-<body style="display:flex; justify-content:center; align-items:center; min-height:100vh; background:#08090c;">
+<body style="display:flex; justify-content:center; align-items:center; min-height:100vh; background:#08090c; padding: 20px;">
 
-  <div class="auth-card" style="text-align:center;">
+  <div class="auth-card" style="text-align:center; max-width: 440px;">
     <div class="logo-badge" style="margin: 0 auto 16px;">Z</div>
     <h2 id="statusTitle" style="font-size: 1.4rem; margin-bottom: 10px;">Memproses ACC...</h2>
-    <p id="statusDesc" style="color: var(--text-muted); font-size: 0.9rem;">Menghubungkan ke database Supabase...</p>
+    <p id="statusDesc" style="color: var(--text-muted); font-size: 0.9rem;">Menghubungkan ke database dan mengirim email notifikasi ke member...</p>
     
-    <div style="margin-top: 24px;">
+    <div id="actionArea" style="margin-top: 24px; display: none; flex-direction: column; gap: 12px;">
+      <a id="btnWaMember" href="#" target="_blank" rel="noopener" class="btn-primary" style="display:none; padding: 10px; font-size: 0.85rem;">
+        Hubungi Member via WhatsApp &rarr;
+      </a>
       <a href="index.html" class="btn-outline" style="padding: 8px 16px;">Kembali ke Beranda</a>
     </div>
   </div>
 
   <script>
+    // 1. KONFIGURASI SUPABASE
     const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
     const SUPABASE_ANON_KEY = 'Sb_publishable_VMXDKPEBhmfcaTo2P5-xoA_7HMoBKEv';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // KUNCI RAHASIA ADMIN (Bisa kamu ganti sesukamu)
+    // 2. KONFIGURASI EMAILJS
+    const EMAILJS_SERVICE_ID = "service_3xgg9od";
+    const EMAILJS_TEMPLATE_ID = "template_4rheijt";
+    const EMAILJS_PUBLIC_KEY = "1lpagN8CivmqREyGK";
+
+    // PIN Otorisasi Admin
     const ADMIN_SECRET_PIN = "zero2026acc";
 
     async function processACC() {
@@ -34,36 +45,69 @@
 
       const titleEl = document.getElementById('statusTitle');
       const descEl = document.getElementById('statusDesc');
+      const actionArea = document.getElementById('actionArea');
+      const btnWaMember = document.getElementById('btnWaMember');
 
-      // Validasi PIN Rahasia
+      // Validasi PIN
       if (pin !== ADMIN_SECRET_PIN) {
         titleEl.innerText = "Akses Ditolak!";
         titleEl.style.color = "var(--accent-red)";
-        descEl.innerText = "PIN otorisasi admin tidak valid atau salah.";
+        descEl.innerText = "PIN otorisasi admin tidak valid.";
+        actionArea.style.display = "flex";
         return;
       }
 
       if (!userId) {
         titleEl.innerText = "Data Tidak Lengkap";
-        descEl.innerText = "User ID tidak ditemukan dalam tautan.";
+        descEl.innerText = "Parameter User ID tidak ditemukan.";
+        actionArea.style.display = "flex";
         return;
       }
 
-      // Update status user jadi 'active' di Supabase
-      const { data, error } = await supabaseClient
-        .from('profiles')
-        .update({ status: 'active' })
-        .eq('id', userId)
-        .select();
+      try {
+        // Update status user jadi 'active' di tabel profiles Supabase
+        const { data, error } = await supabaseClient
+          .from('profiles')
+          .update({ status: 'active' })
+          .eq('id', userId)
+          .select();
 
-      if (error || !data || data.length === 0) {
-        titleEl.innerText = "Gagal Meng-ACC";
-        titleEl.style.color = "var(--accent-red)";
-        descEl.innerText = "Gagal memperbarui status. Periksa izin database atau ID member.";
-      } else {
+        if (error || !data || data.length === 0) {
+          throw new Error("Gagal memperbarui status akun di database.");
+        }
+
+        const member = data[0];
+        const memberEmail = member.email;
+        const memberName = member.full_name || "Trader";
+        const memberPhone = member.contact || "";
+
+        // Kirim email notifikasi ke calon member secara otomatis
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          to_email: memberEmail,
+          to_name: memberName,
+          login_url: "https://rezayogiana.github.io/zerodiax/login.html"
+        });
+
         titleEl.innerText = "Member Berhasil di-ACC! 🎉";
         titleEl.style.color = "#4ade80";
-        descEl.innerHTML = `Akun <strong>${data[0].full_name || data[0].email}</strong> telah berstatus <strong>ACTIVE</strong>. Member sekarang sudah bisa login ke terminal.`;
+        descEl.innerHTML = `Akun <strong>${memberName}</strong> telah aktif. Email konfirmasi otomatis berhasil dikirimkan ke <em>${memberEmail}</em>.`;
+
+        // Siapkan tautan cepat kirim pesan via WhatsApp jika ada nomor kontak
+        if (memberPhone) {
+          const cleanPhone = memberPhone.replace(/[^0-9]/g, '');
+          const formattedPhone = cleanPhone.startsWith('0') ? '62' + cleanPhone.slice(1) : cleanPhone;
+          const pesanWA = encodeURIComponent(`Halo ${memberName}, pendaftaran kamu di Zero Syndicate sudah di-ACC! Silakan login di https://rezayogiana.github.io/zerodiax/login.html`);
+          btnWaMember.href = `https://wa.me/${formattedPhone}?text=${pesanWA}`;
+          btnWaMember.style.display = "block";
+        }
+
+      } catch (err) {
+        titleEl.innerText = "Sistem Gagal Memproses";
+        titleEl.style.color = "var(--accent-red)";
+        descEl.innerText = err.message || "Terjadi kesalahan saat memproses data.";
+      } finally {
+        actionArea.style.display = "flex";
       }
     }
 
