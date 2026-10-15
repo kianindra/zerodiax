@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACC Member | Zero Syndicate</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body style="display:flex; justify-content:center; align-items:center; min-height:100vh; background:#08090c;">
+
+  <div class="auth-card" style="text-align:center;">
+    <div class="logo-badge" style="margin: 0 auto 16px;">Z</div>
+    <h2 id="statusTitle" style="font-size: 1.4rem; margin-bottom: 10px;">Memproses ACC...</h2>
+    <p id="statusDesc" style="color: var(--text-muted); font-size: 0.9rem;">Menghubungkan ke database Supabase...</p>
+    
+    <div style="margin-top: 24px;">
+      <a href="index.html" class="btn-outline" style="padding: 8px 16px;">Kembali ke Beranda</a>
+    </div>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
+    const SUPABASE_ANON_KEY = 'Sb_publishable_VMXDKPEBhmfcaTo2P5-xoA_7HMoBKEv';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // KUNCI RAHASIA ADMIN (Bisa kamu ganti sesukamu)
+    const ADMIN_SECRET_PIN = "zero2026acc";
+
+    async function processACC() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const userId = urlParams.get('uid');
+      const pin = urlParams.get('pin');
+
+      const titleEl = document.getElementById('statusTitle');
+      const descEl = document.getElementById('statusDesc');
+
+      // Validasi PIN Rahasia
+      if (pin !== ADMIN_SECRET_PIN) {
+        titleEl.innerText = "Akses Ditolak!";
+        titleEl.style.color = "var(--accent-red)";
+        descEl.innerText = "PIN otorisasi admin tidak valid atau salah.";
+        return;
+      }
+
+      if (!userId) {
+        titleEl.innerText = "Data Tidak Lengkap";
+        descEl.innerText = "User ID tidak ditemukan dalam tautan.";
+        return;
+      }
+
+      // Update status user jadi 'active' di Supabase
+      const { data, error } = await supabaseClient
+        .from('profiles')
+        .update({ status: 'active' })
+        .eq('id', userId)
+        .select();
+
+      if (error || !data || data.length === 0) {
+        titleEl.innerText = "Gagal Meng-ACC";
+        titleEl.style.color = "var(--accent-red)";
+        descEl.innerText = "Gagal memperbarui status. Periksa izin database atau ID member.";
+      } else {
+        titleEl.innerText = "Member Berhasil di-ACC! 🎉";
+        titleEl.style.color = "#4ade80";
+        descEl.innerHTML = `Akun <strong>${data[0].full_name || data[0].email}</strong> telah berstatus <strong>ACTIVE</strong>. Member sekarang sudah bisa login ke terminal.`;
+      }
+    }
+
+    processACC();
+  </script>
+</body>
+</html>
