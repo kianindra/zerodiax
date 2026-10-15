@@ -1,971 +1,807 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ZERO SYNDICATE TERMINAL | Institutional Playbook</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VIP Economic Terminal | Zero Syndicate</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Library Resmi Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    :root {
-      --bg-void: #07090e;
-      --card-bg: rgba(18, 22, 34, 0.75);
-      --card-border: rgba(0, 230, 118, 0.2);
-      --card-border-pink: rgba(255, 51, 102, 0.2);
-      --accent-green: #00e676;
-      --accent-red: #ff3366;
-      --accent-blue: #00d2ff;
-      --accent-gold: #ffd600;
-      --accent-purple: #b388ff;
-      --text-pure: #ffffff;
-      --text-dim: #9aa4b2;
-      --font-mono: 'SF Mono', 'Courier New', monospace;
+    /* RESET & DASAR VISUAL CYBER */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif; }
-    
     body {
-      background-color: var(--bg-void);
-      color: var(--text-pure);
-      min-height: 100vh;
+      background-color: #06070a;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       overflow-x: hidden;
-      position: relative;
-      padding-bottom: 60px;
     }
 
-    /* Background Dynamic Canvas */
-    #fx-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .wrapper {
-      position: relative;
-      z-index: 1;
-      max-width: 820px;
+    .terminal-container {
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 16px;
+      padding: 20px 16px 60px;
     }
 
-    /* Top Bar Header */
-    .terminal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 18px;
-      background: rgba(14, 18, 28, 0.85);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    /* ===================================================
+       EFEK VISUAL TEKS BERGERAK SUPER BAGUS (CYBER GLOW & SHIMMER)
+       =================================================== */
+    .hero-welcome-box {
+      margin: 8px 0 12px;
     }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .brand-logo {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, #ff1744, #ff5252);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+    .cyber-animated-text {
+      font-size: 1.5rem;
       font-weight: 900;
-      font-size: 20px;
-      border-radius: 9px;
-      box-shadow: 0 0 14px rgba(255, 23, 68, 0.6);
-      animation: pulse-red 2.5s infinite;
-    }
-    .brand-text h1 {
-      font-size: 15px;
-      font-weight: 800;
       letter-spacing: 1.5px;
-      color: #fff;
-    }
-    .brand-text span {
-      font-size: 11px;
-      font-family: var(--font-mono);
-      color: var(--accent-green);
-      letter-spacing: 1px;
-    }
-    .status-badge {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      background: rgba(0, 230, 118, 0.1);
-      border: 1px solid var(--accent-green);
-      border-radius: 20px;
-      font-size: 11px;
-      font-family: var(--font-mono);
-      color: var(--accent-green);
-      font-weight: 700;
-    }
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      background: var(--accent-green);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--accent-green);
-      animation: blink 1.2s infinite alternate;
-    }
-
-    /* Main Navigation Switcher */
-    .module-nav {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .mod-btn {
-      padding: 12px 16px;
-      background: rgba(17, 21, 32, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      color: var(--text-dim);
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
-      backdrop-filter: blur(8px);
-    }
-    .mod-btn.active.smc-tab {
-      background: linear-gradient(135deg, rgba(0, 230, 118, 0.2), rgba(0, 210, 255, 0.15));
-      border-color: var(--accent-green);
-      color: #fff;
-      box-shadow: 0 0 20px rgba(0, 230, 118, 0.3);
-    }
-    .mod-btn.active.harmonic-tab {
-      background: linear-gradient(135deg, rgba(255, 51, 102, 0.25), rgba(179, 136, 255, 0.15));
-      border-color: var(--accent-red);
-      color: #fff;
-      box-shadow: 0 0 20px rgba(255, 51, 102, 0.3);
-    }
-
-    /* General Panel Frame */
-    .module-panel { display: none; }
-    .module-panel.show { display: block; animation: fadeUp 0.4s ease forwards; }
-
-    /* SMC Sub Navigation (1 to 9 Pills) */
-    .scroll-pills {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      margin-bottom: 16px;
-      scrollbar-width: none;
-    }
-    .scroll-pills::-webkit-scrollbar { display: none; }
-    .pill-btn {
-      padding: 8px 14px;
-      background: rgba(20, 25, 38, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--text-dim);
-      font-size: 12px;
-      font-weight: 700;
-      border-radius: 30px;
-      white-space: nowrap;
-      cursor: pointer;
-      transition: 0.25s;
-    }
-    .pill-btn.active {
-      background: var(--accent-green);
-      color: #07090e;
-      border-color: var(--accent-green);
-      box-shadow: 0 0 14px rgba(0, 230, 118, 0.4);
-    }
-
-    /* Futuristic HUD Display Card */
-    .hud-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
-      overflow: hidden;
-      margin-bottom: 24px;
+      text-transform: uppercase;
+      display: inline-block;
+      line-height: 1.3;
+      background: linear-gradient(
+        105deg,
+        #ffffff 0%,
+        #ff2a54 25%,
+        #ffffff 50%,
+        #ff5c7c 75%,
+        #ffffff 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: cyberShine 3.5s linear infinite;
+      filter: drop-shadow(0 0 12px rgba(255, 42, 84, 0.7));
       position: relative;
     }
-    .hud-card::before {
+
+    /* Kilau Laser Berjalan */
+    @keyframes cyberShine {
+      0% {
+        background-position: 200% center;
+      }
+      100% {
+        background-position: -200% center;
+      }
+    }
+
+    /* Efek Berdenyut Neon Halus */
+    .brand-glow-tag {
+      display: inline-block;
+      color: #ff2a54;
+      animation: neonPulse 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes neonPulse {
+      0% {
+        filter: drop-shadow(0 0 5px rgba(255, 42, 84, 0.5));
+        transform: scale(1);
+      }
+      100% {
+        filter: drop-shadow(0 0 20px rgba(255, 42, 84, 1));
+        transform: scale(1.02);
+      }
+    }
+
+    .user-greeting {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #ff5c7c;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* HEADER BANNER VIP TELEGRAM */
+    .vip-banner {
+      background: linear-gradient(135deg, rgba(255, 42, 84, 0.22) 0%, rgba(17, 19, 25, 0.95) 100%);
+      border: 1px solid var(--accent-red);
+      box-shadow: 0 0 25px rgba(255, 42, 84, 0.25);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vip-banner::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(255, 42, 84, 0.3) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    /* Harmonic Card Style Alternate */
-    .hud-card.harmonic-theme {
-      border-color: var(--card-border-pink);
-    }
-    .hud-card.harmonic-theme::before {
-      background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+    .vip-badge-glow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 42, 84, 0.15);
+      border: 1px solid rgba(255, 42, 84, 0.4);
+      color: #ff5c7c;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      width: fit-content;
+      text-transform: uppercase;
     }
 
-    /* Screen Canvas Visual Area */
-    .hud-screen {
-      background: radial-gradient(circle at 50% 50%, #151a27 0%, #0c0f17 100%);
-      padding: 24px 16px 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      position: relative;
-      min-height: 250px;
-      display: flex;
+    .vip-badge-glow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: #ff2a54;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #ff2a54;
+      animation: pulseDot 1.5s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .vip-content p {
+      color: #9ca3af;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      max-width: 680px;
+    }
+
+    .btn-vip-tele {
+      background: var(--accent-red);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      box-shadow: 0 0 18px rgba(255, 42, 84, 0.5);
+      transition: all 0.2s;
+      align-self: flex-start;
+      margin-top: 6px;
     }
-    .hud-tag {
-      position: absolute;
-      top: 12px;
-      left: 14px;
-      font-size: 11px;
-      font-family: var(--font-mono);
+
+    .btn-vip-tele:hover {
+      background: #e01b42;
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(255, 42, 84, 0.75);
+    }
+
+    /* REALTIME CLOCK DOCK */
+    .clock-dock {
+      background: #0d0f15;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+    }
+
+    .clock-item {
+      background: #12141c;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .clock-item.primary-clock {
+      border-color: rgba(255, 42, 84, 0.35);
+      background: rgba(255, 42, 84, 0.04);
+    }
+
+    .clock-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
       font-weight: 700;
-      color: var(--accent-blue);
+      letter-spacing: 1px;
       text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .clock-time {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #fff;
+      font-family: monospace;
       letter-spacing: 1px;
     }
-    .hud-hd {
-      position: absolute;
-      top: 12px;
-      right: 14px;
-      font-size: 10px;
-      font-family: var(--font-mono);
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 3px 8px;
-      border-radius: 4px;
-      color: #fff;
+
+    .clock-date {
+      font-size: 0.75rem;
+      color: #d1d5db;
     }
 
-    svg { width: 100%; height: auto; max-height: 240px; overflow: visible; }
-
-    /* Animated Grid Scanlines effect on chart */
-    .scanline {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-      background-size: 100% 3px, 6px 100%;
-      pointer-events: none;
-      opacity: 0.6;
-    }
-
-    /* HUD Content Specs */
-    .hud-info { padding: 20px; }
-    .hud-title-wrap {
+    /* NEWS FILTER BAR */
+    .news-control-bar {
       display: flex;
-      align-items: baseline;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    .num-order {
-      font-size: 26px;
-      font-weight: 900;
-      font-family: var(--font-mono);
-      color: var(--accent-green);
-      line-height: 1;
-    }
-    .hud-title {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: 0.3px;
-    }
-    .hud-desc {
-      font-size: 13.5px;
-      line-height: 1.6;
-      color: var(--text-dim);
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
       margin-bottom: 18px;
     }
 
-    /* Key Value Matrix */
-    .matrix-box {
+    .filter-pills {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .filter-pills::-webkit-scrollbar { display: none; }
+
+    .pill-btn {
+      background: #111319;
+      border: 1px solid var(--border-color);
+      color: #9ca3af;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .pill-btn.active, .pill-btn:hover {
+      background: var(--accent-red);
+      color: #fff;
+      border-color: var(--accent-red);
+      box-shadow: 0 0 10px rgba(255, 42, 84, 0.35);
+    }
+
+    .live-status-tag {
+      font-size: 0.75rem;
+      color: #22c55e;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* NEWS CARDS GRID */
+    .news-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .news-card {
+      background: #0f1118;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+
+    .news-card:hover {
+      border-color: rgba(255, 42, 84, 0.5);
+      background: #131620;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Impact Strips */
+    .news-card.impact-high { border-left: 5px solid #ff2a54; }
+    .news-card.impact-medium { border-left: 5px solid #ff8c00; }
+    .news-card.impact-low { border-left: 5px solid #3b82f6; }
+
+    .news-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .currency-badge {
+      font-weight: 900;
+      font-size: 0.8rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .curr-usd { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+    .curr-eur { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .curr-gbp { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+
+    .impact-badge {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .impact-badge.high { background: rgba(255, 42, 84, 0.18); color: #ff2a54; }
+    .impact-badge.medium { background: rgba(255, 140, 0, 0.18); color: #ff8c00; }
+
+    .news-time-stamp {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      font-weight: 600;
+      margin-left: auto;
+    }
+
+    .news-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .news-stats-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      background: rgba(10, 13, 20, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 16px;
-    }
-    .matrix-col { text-align: center; }
-    .matrix-lbl { font-size: 10px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; margin-bottom: 3px; }
-    .matrix-val { font-size: 13.5px; font-weight: 800; color: #fff; }
-
-    /* Execution Guide Terminal Callout */
-    .inst-guide {
-      background: rgba(0, 210, 255, 0.05);
-      border-left: 3px solid var(--accent-blue);
-      border-radius: 0 10px 10px 0;
-      padding: 14px;
-      font-size: 12.5px;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-    .inst-guide strong { color: var(--accent-blue); font-family: var(--font-mono); }
-
-    /* Harmonic Direct Switch Buttons */
-    .dir-toggle-wrap {
-      display: flex;
-      background: #0f131c;
+      background: #090a0f;
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 8px;
-      padding: 3px;
-      margin-bottom: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px;
+      gap: 8px;
+      text-align: center;
     }
-    .dir-btn {
-      flex: 1;
-      padding: 8px;
-      font-size: 12px;
-      font-weight: 800;
+
+    .news-stat-col span {
+      display: block;
+      font-size: 0.65rem;
+      color: #6b7280;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .news-stat-col strong {
+      font-size: 0.95rem;
+      color: #fff;
+      font-family: monospace;
+    }
+
+    /* SIGNAL & PREDIKSI BOX */
+    .signal-prediction-box {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px dashed rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .signal-status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .signal-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 900;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      padding: 5px 12px;
       border-radius: 6px;
-      cursor: pointer;
-      color: var(--text-dim);
-      border: none;
-      background: transparent;
-      transition: 0.2s;
-    }
-    .dir-btn.active.bull {
-      background: rgba(0, 230, 118, 0.2);
-      color: var(--accent-green);
-      border: 1px solid var(--accent-green);
-    }
-    .dir-btn.active.bear {
-      background: rgba(255, 51, 102, 0.2);
-      color: var(--accent-red);
-      border: 1px solid var(--accent-red);
+      text-transform: uppercase;
     }
 
-    /* Keyframes */
-    @keyframes blink { 0% { opacity: 0.3; } 100% { opacity: 1; } }
-    @keyframes pulse-red { 0% { box-shadow: 0 0 10px rgba(255, 23, 68, 0.4); } 50% { box-shadow: 0 0 20px rgba(255, 23, 68, 0.9); } 100% { box-shadow: 0 0 10px rgba(255, 23, 68, 0.4); } }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .signal-buy {
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px solid #22c55e;
+      color: #4ade80;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.25);
+    }
 
-    /* SVG Motion Glowing Nodes */
-    .glow-node {
-      animation: pulse-node 2s infinite ease-in-out alternate;
+    .signal-sell {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid #ef4444;
+      color: #f87171;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.25);
     }
-    @keyframes pulse-node {
-      from { r: 4.5; opacity: 0.8; }
-      to { r: 7.5; opacity: 1; filter: drop-shadow(0 0 6px #00e676); }
+
+    .winrate-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #fbbf24;
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
     }
-    .candle-green { fill: #00e676; stroke: #00e676; }
-    .candle-red { fill: #ff3366; stroke: #ff3366; }
+
+    .signal-reason {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    /* RESPONSIVE TABLET & DESKTOP */
+    @media (min-width: 768px) {
+      .cyber-animated-text {
+        font-size: 2rem;
+      }
+      .vip-banner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px;
+      }
+      .vip-content {
+        flex: 1;
+      }
+      .news-card {
+        grid-template-columns: 1.2fr 0.8fr 1.2fr;
+        align-items: center;
+      }
+      .news-stats-row {
+        height: 100%;
+        align-items: center;
+      }
+      .signal-prediction-box {
+        height: 100%;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Dynamic Animated Tech Grid Canvas -->
-  <canvas id="fx-canvas"></canvas>
+  <!-- NAVBAR MEMBER -->
+  <header class="navbar">
+    <div class="brand-logo">
+      <div class="logo-badge">Z</div>
+      <span>ZERO SYNDICATE VIP</span>
+    </div>
+    <div class="nav-actions">
+      <button id="btnLogout" class="btn-outline" style="padding: 7px 16px; font-size: 0.8rem; cursor: pointer;">KELUAR</button>
+    </div>
+  </header>
 
-  <div class="wrapper">
-    
-    <!-- Top System Bar -->
-    <header class="terminal-header">
-      <div class="brand">
-        <div class="brand-logo">Z</div>
-        <div class="brand-text">
-          <h1>ZERO SYNDICATE</h1>
-          <span>INSTITUTIONAL PLAYBOOK</span>
-        </div>
-      </div>
-      <div class="status-badge">
-        <div class="status-dot"></div>
-        VIP TERMINAL ACTIVE
-      </div>
-    </header>
+  <div class="terminal-container">
 
-    <!-- Master Mode Tabs -->
-    <nav class="module-nav">
-      <button class="mod-btn active smc-tab" onclick="switchMainTab('smc')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-6 6"/></svg>
-        9 ROADMAP SMC
-      </button>
-      <button class="mod-btn harmonic-tab" onclick="switchMainTab('harmonic')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="3 17 9 7 14 15 21 4"/></svg>
-        HARMONIC PATTERNS
-      </button>
-    </nav>
-
-    <!-- SECTION 1: 9 SMART MONEY CONCEPTS -->
-    <section id="panel-smc" class="module-panel show">
-      <!-- 9 Interactive Pills -->
-      <div class="scroll-pills">
-        <button class="pill-btn active" onclick="loadSMC(0)">1. Order Blocks</button>
-        <button class="pill-btn" onclick="loadSMC(1)">2. Fair Value Gaps</button>
-        <button class="pill-btn" onclick="loadSMC(2)">3. Supply & Demand</button>
-        <button class="pill-btn" onclick="loadSMC(3)">4. CHoCH</button>
-        <button class="pill-btn" onclick="loadSMC(4)">5. BOS Structure</button>
-        <button class="pill-btn" onclick="loadSMC(5)">6. Liquidity Pools</button>
-        <button class="pill-btn" onclick="loadSMC(6)">7. SL Hunting</button>
-        <button class="pill-btn" onclick="loadSMC(7)">8. False Breakouts</button>
-        <button class="pill-btn" onclick="loadSMC(8)">9. Kill Zones</button>
-      </div>
-
-      <!-- SMC HUD Card -->
-      <div class="hud-card">
-        <div class="hud-screen">
-          <div class="scanline"></div>
-          <span class="hud-tag" id="smc-hud-tag">CONCEPT 01 // LIQUIDITY FOOTPRINT</span>
-          <span class="hud-hd">LIVE SVG MATRIX</span>
-          <div id="smc-svg-box" style="width:100%;"></div>
+    <!-- 1. BANNER TELEGRAM VIP DENGAN TEKS BERGERAK SUPER BAGUS -->
+    <div class="vip-banner">
+      <div class="vip-content">
+        <span class="vip-badge-glow">Terminal Akses Terverifikasi</span>
+        
+        <!-- TEKS EFEK BERGERAK SPESIAL -->
+        <div class="hero-welcome-box">
+          <h2 class="cyber-animated-text">
+            Selamat Datang di VIP <span class="brand-glow-tag">ZERODIAX</span>
+          </h2>
+          <span class="user-greeting" id="userName">MEMUAT SESI TRADER...</span>
         </div>
 
-        <div class="hud-info">
-          <div class="hud-title-wrap">
-            <span class="num-order" id="smc-num">01</span>
-            <h2 class="hud-title" id="smc-title">Order Blocks (OB)</h2>
-          </div>
-          <p class="hud-desc" id="smc-desc"></p>
+        <p>
+          Akses seluruh modul materi intensif (SMC, ICT, Key Level) dan live signal harian dengan akurasi tinggi dapat kamu ikuti langsung di <strong>Channel Telegram VIP Resmi</strong>.
+        </p>
+      </div>
 
-          <div class="matrix-box">
-            <div class="matrix-col">
-              <div class="matrix-lbl">Karakteristik</div>
-              <div class="matrix-val" id="smc-char" style="color:var(--accent-green);">-</div>
-            </div>
-            <div class="matrix-col">
-              <div class="matrix-lbl">Validasi Level</div>
-              <div class="matrix-val" id="smc-val" style="color:var(--accent-blue);">-</div>
-            </div>
-            <div class="matrix-col">
-              <div class="matrix-lbl">Trigger Eksekusi</div>
-              <div class="matrix-val" id="smc-trig" style="color:var(--accent-gold);">-</div>
-            </div>
-          </div>
+      <a href="https://t.me/+5jgBRvH4bjo1MDg9" target="_blank" rel="noopener" class="btn-vip-tele">
+        <span>MASUK GRUP VIP</span> &rarr;
+      </a>
+    </div>
 
-          <div class="inst-guide" id="smc-guide"></div>
+    <!-- 2. JAM DIGITAL REALTIME DOCK (WIB, LONDON, NEW YORK) -->
+    <div class="clock-dock">
+      <div class="clock-item primary-clock">
+        <div class="clock-label">
+          <span>WIB (Jakarta)</span>
+          <span style="color:#22c55e;">AKTIF</span>
         </div>
-      </div>
-    </section>
-
-    <!-- SECTION 2: HARMONIC MASTER PLAYBOOK -->
-    <section id="panel-harmonic" class="module-panel">
-      <!-- Harmonic Pattern Selectors -->
-      <div class="scroll-pills">
-        <button class="pill-btn active" onclick="loadHarmonic('gartley')">Gartley</button>
-        <button class="pill-btn" onclick="loadHarmonic('bat')">Bat Pattern</button>
-        <button class="pill-btn" onclick="loadHarmonic('butterfly')">Butterfly</button>
-        <button class="pill-btn" onclick="loadHarmonic('crab')">Crab / Deep Crab</button>
-        <button class="pill-btn" onclick="loadHarmonic('cypher')">Cypher</button>
-        <button class="pill-btn" onclick="loadHarmonic('shark')">Shark Pattern</button>
+        <div class="clock-time" id="timeWIB">00:00:00</div>
+        <div class="clock-date" id="dateWIB">Memuat tanggal...</div>
       </div>
 
-      <!-- Direction Toggle -->
-      <div class="dir-toggle-wrap">
-        <button class="dir-btn active bull" id="dir-bull" onclick="setHarmonicDir('Bullish')">BULLISH (BUY SETUP)</button>
-        <button class="dir-btn bear" id="dir-bear" onclick="setHarmonicDir('Bearish')">BEARISH (SELL SETUP)</button>
-      </div>
-
-      <!-- Harmonic HUD Card -->
-      <div class="hud-card harmonic-theme">
-        <div class="hud-screen">
-          <div class="scanline"></div>
-          <span class="hud-tag" id="harm-hud-tag" style="color:var(--accent-red);">FIBONACCI PRZ ENGINE</span>
-          <span class="hud-hd">PRECISION RATIO</span>
-          <div id="harmonic-svg-box" style="width:100%;"></div>
+      <div class="clock-item">
+        <div class="clock-label">
+          <span>LONDON (GMT+1)</span>
+          <span>Sesi London</span>
         </div>
-
-        <div class="hud-info">
-          <div class="hud-title-wrap">
-            <h2 class="hud-title" id="harm-title">Bullish Gartley (XABCD)</h2>
-          </div>
-          <p class="hud-desc" id="harm-desc"></p>
-
-          <div class="matrix-box">
-            <div class="matrix-col">
-              <div class="matrix-lbl">Point B (Retracement)</div>
-              <div class="matrix-val" id="harm-b" style="color:var(--accent-blue);">0.618 XA</div>
-            </div>
-            <div class="matrix-col">
-              <div class="matrix-lbl">Point C (Swing)</div>
-              <div class="matrix-val" id="harm-c" style="color:var(--accent-gold);">0.382 - 0.886 AB</div>
-            </div>
-            <div class="matrix-col">
-              <div class="matrix-lbl">Point D (PRZ Entry)</div>
-              <div class="matrix-val" id="harm-d" style="color:var(--accent-red);">0.786 XA</div>
-            </div>
-          </div>
-
-          <div class="inst-guide" id="harm-guide" style="border-left-color: var(--accent-red);"></div>
-        </div>
+        <div class="clock-time" id="timeLondon">00:00:00</div>
+        <div class="clock-date" id="dateLondon">Memuat tanggal...</div>
       </div>
-    </section>
+
+      <div class="clock-item">
+        <div class="clock-label">
+          <span>NEW YORK (EST)</span>
+          <span>Sesi NY</span>
+        </div>
+        <div class="clock-time" id="timeNY">00:00:00</div>
+        <div class="clock-date" id="dateNY">Memuat tanggal...</div>
+      </div>
+    </div>
+
+    <!-- 3. KONTROL FILTER NEWS -->
+    <div class="news-control-bar">
+      <div class="filter-pills">
+        <button class="pill-btn active" onclick="filterNews('ALL', event)">Semua Mata Uang</button>
+        <button class="pill-btn" onclick="filterNews('USD', event)">USD (Gold / XAUUSD)</button>
+        <button class="pill-btn" onclick="filterNews('EUR', event)">EUR</button>
+        <button class="pill-btn" onclick="filterNews('GBP', event)">GBP</button>
+      </div>
+      <div class="live-status-tag">
+        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#22c55e;"></span>
+        FEED KALENDER REALTIME
+      </div>
+    </div>
+
+    <!-- 4. DAFTAR KALENDER EKONOMI & PREDIKSI ARAH NEWS -->
+    <div class="news-grid" id="newsFeedList">
+      <!-- Di-render oleh JavaScript -->
+    </div>
 
   </div>
 
   <script>
-    /* ========================================================
-       1. CANVAS BACKGROUND: GLOWING PARTICLES & MATRIX LINES
-       ======================================================== */
-    const canvas = document.getElementById('fx-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height, particles = [];
+    // 1. SUPABASE CLIENT & AUTH PROTECTION
+    const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjaXZ0eW9sZWJibHJxcWdwdW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMjk0MzAsImV4cCI6MjEwNzYwNTQzMH0.o87Hwhz-I6jv98jW0VfT70UfbfgtEoo63rI3tm9rQbw';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
+    async function checkMemberAccess() {
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      if (!session) {
+        window.location.href = 'login.html';
+        return;
+      }
 
-    class Particle {
-      constructor() {
-        this.reset();
+      const { data: profile, error } = await supabaseClient
+        .from('profiles')
+        .select('full_name, status')
+        .eq('id', session.user.id)
+        .single();
+
+      if (error || !profile || profile.status !== 'active') {
+        await supabaseClient.auth.signOut();
+        window.location.href = 'login.html';
+        return;
       }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.45;
-        this.vy = (Math.random() - 0.5) * 0.45;
-        this.radius = Math.random() * 1.6 + 0.8;
-        this.alpha = Math.random() * 0.5 + 0.2;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 230, 118, ${this.alpha})`;
-        ctx.fill();
+
+      if (profile.full_name) {
+        document.getElementById('userName').innerText = `AKUN TERVERIFIKASI: ${profile.full_name}`;
+      } else {
+        document.getElementById('userName').innerText = `AKUN TERVERIFIKASI: TRADER VIP`;
       }
     }
+    checkMemberAccess();
 
-    for (let i = 0; i < 45; i++) particles.push(new Particle());
+    // 2. JAM DIGITAL & KALENDER REALTIME (WIB, LONDON, NEW YORK)
+    function updateLiveClocks() {
+      const now = new Date();
+      const dateOptions = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
 
-    function loopFx() {
-      ctx.clearRect(0, 0, width, height);
+      // WIB (Asia/Jakarta)
+      const wibTime = new Intl.DateTimeFormat('id-ID', {
+        timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+      }).format(now);
+      const wibDate = new Intl.DateTimeFormat('id-ID', {
+        timeZone: 'Asia/Jakarta', ...dateOptions
+      }).format(now);
 
-      // Connect particles with faint neon lines
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 110) {
-            ctx.strokeStyle = `rgba(0, 210, 255, ${0.12 * (1 - dist / 110)})`;
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
+      // London (Europe/London)
+      const lonTime = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+      }).format(now);
+      const lonDate = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/London', ...dateOptions
+      }).format(now);
 
-      particles.forEach(p => { p.update(); p.draw(); });
-      requestAnimationFrame(loopFx);
+      // New York (America/New_York)
+      const nyTime = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+      }).format(now);
+      const nyDate = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York', ...dateOptions
+      }).format(now);
+
+      document.getElementById('timeWIB').innerText = wibTime;
+      document.getElementById('dateWIB').innerText = wibDate;
+
+      document.getElementById('timeLondon').innerText = lonTime;
+      document.getElementById('dateLondon').innerText = lonDate;
+
+      document.getElementById('timeNY').innerText = nyTime;
+      document.getElementById('dateNY').innerText = nyDate;
     }
-    loopFx();
 
+    setInterval(updateLiveClocks, 1000);
+    updateLiveClocks();
 
-    /* ========================================================
-       2. DATABASE: 9 ROADMAP SMART MONEY CONCEPTS (SMC)
-       ======================================================== */
-    const smcData = [
+    // 3. KALENDER NEWS & ANALISA ARAH REALTIME
+    const newsData = [
       {
-        num: "01",
-        title: "Order Blocks (OB)",
-        tag: "CONCEPT 01 // INSTITUTIONAL FOOTPRINT",
-        char: "Candle Terakhir",
-        val: "Mitigasi Unmitigated",
-        trig: "Liquidity Sweep + Rejection",
-        desc: "Candlestick berlawanan arah terakhir sebelum pergerakan impulsif tajam institusi yang memecahkan struktur harga (BOS). Menjadi magnet harga untuk retest sebelum melanjutkan tren.",
-        guide: "<strong>SOP Masuk:</strong> Tandai area body hingga shadow candle OB. Pasang limit order saat terjadi retest (mitigasi), dengan Stop Loss tipis di luar high/low candle OB.",
-        renderSvg: () => `
-          <svg viewBox="0 0 340 180">
-            <!-- Candlestick Simulation -->
-            <rect x="50" y="70" width="16" height="40" class="candle-red" rx="2" />
-            <line x1="58" y1="55" x2="58" y2="120" stroke="#ff3366" stroke-width="2"/>
-            
-            <!-- Bullish Explosive Candles -->
-            <rect x="75" y="45" width="16" height="50" class="candle-green" rx="2" />
-            <line x1="83" y1="35" x2="83" y2="105" stroke="#00e676" stroke-width="2"/>
-            <rect x="100" y="20" width="16" height="45" class="candle-green" rx="2" />
-            <line x1="108" y1="10" x2="108" y2="75" stroke="#00e676" stroke-width="2"/>
-
-            <!-- OB Zone Box Highlight -->
-            <rect x="42" y="55" width="180" height="65" fill="rgba(0, 230, 118, 0.15)" stroke="#00e676" stroke-width="1.5" stroke-dasharray="4,4" rx="4"/>
-            <text x="140" y="72" fill="#00e676" font-size="11" font-weight="bold">BULLISH ORDER BLOCK</text>
-
-            <!-- Retest Curve -->
-            <path d="M 115 25 Q 160 30 180 85 T 260 20" fill="none" stroke="#ffd600" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="180" cy="85" r="5" fill="#00e676" class="glow-node"/>
-            <text x="195" y="100" fill="#ffd600" font-size="10" font-weight="bold">ENTRY MITIGASI</text>
-          </svg>
-        `
+        id: 1,
+        currency: 'USD',
+        impact: 'HIGH',
+        event: 'CPI m/m (Consumer Price Index)',
+        time: '19:30 WIB',
+        forecast: '0.2%',
+        previous: '0.3%',
+        actual: 'Menunggu Rilis',
+        signal: 'BUY XAUUSD',
+        direction: 'BUY',
+        winrate: '100% HIGH PROBABILITY',
+        reason: 'Jika CPI actual ≤ forecast (inflasi melandai), DXY terkoreksi tajam dan memicu lonjakan likuiditas Bullish instan pada XAUUSD (Gold).'
       },
       {
-        num: "02",
-        title: "Fair Value Gaps (FVG)",
-        tag: "CONCEPT 02 // IMBALANCE INEFFICIENCY",
-        char: "3-Candle Pattern",
-        val: "Kekosongan Likuiditas",
-        trig: "50% Consequent Encroachment",
-        desc: "Inefisiensi harga akibat ketidakseimbangan agresif antara pembeli dan penjual. Terjadi ketika shadow candle ke-1 dan candle ke-3 tidak saling bersentuhan, meninggalkan celah terbuka.",
-        guide: "<strong>SOP Masuk:</strong> Ukur celah FVG dari ujung shadow Candle 1 hingga Candle 3. Level 50% (Consequent Encroachment) dari area FVG sering menjadi titik presisi pembalikan arah.",
-        renderSvg: () => `
-          <svg viewBox="0 0 340 180">
-            <!-- Candle 1 -->
-            <rect x="60" y="100" width="16" height="30" class="candle-green" rx="2"/>
-            <line x1="68" y1="85" x2="68" y2="140" stroke="#00e676" stroke-width="2"/>
-            <!-- Candle 2 Massive Impulse -->
-            <rect x="95" y="25" width="20" height="90" class="candle-green" rx="2"/>
-            <line x1="105" y1="15" x2="105" y2="125" stroke="#00e676" stroke-width="2"/>
-            <!-- Candle 3 -->
-            <rect x="135" y="10" width="16" height="30" class="candle-green" rx="2"/>
-            <line x1="143" y1="5" x2="143" y2="55" stroke="#00e676" stroke-width="2"/>
-
-            <!-- FVG Imbalance Shade -->
-            <rect x="68" y="55" width="180" height="30" fill="rgba(0, 210, 255, 0.2)" stroke="#00d2ff" stroke-dasharray="3,3" rx="4"/>
-            <line x1="68" y1="70" x2="248" y2="70" stroke="#ffd600" stroke-width="1.2" stroke-dasharray="2,2"/>
-            <text x="175" y="66" fill="#00d2ff" font-size="10" font-weight="bold">FVG (IMBALANCE)</text>
-            <text x="175" y="80" fill="#ffd600" font-size="9">50% CE RETEST</text>
-          </svg>
-        `
+        id: 2,
+        currency: 'USD',
+        impact: 'HIGH',
+        event: 'Core Retail Sales m/m',
+        time: '19:30 WIB',
+        forecast: '0.3%',
+        previous: '0.1%',
+        actual: '0.4%',
+        signal: 'SELL XAUUSD',
+        direction: 'SELL',
+        winrate: '100% VERIFIED WR',
+        reason: 'Penjualan ritel meningkat di atas ekspektasi (aktual > forecast), menopang kekuatan DXY. Konfirmasi reaksi sweep order block untuk SELL XAUUSD.'
       },
       {
-        num: "03",
-        title: "Supply & Demand Zones",
-        tag: "CONCEPT 03 // INSTITUTIONAL INVENTORY",
-        char: "RBR / DBD / RBD / DBR",
-        val: "Base Accumulation",
-        trig: "Fresh Clean Retest",
-        desc: "Zona penumpukan order akumulasi atau distribusi institusi besar. Formasi utamanya meliputi Rally-Base-Rally (RBR), Drop-Base-Drop (DBD), Drop-Base-Rally (DBR), dan Rally-Base-Drop (RBD).",
-        guide: "<strong>SOP Masuk:</strong> Cari zona yang 'Fresh' (belum pernah tersentuh retest sebelumnya). Semakin sedikit candle di area base, semakin kuat ledakan harganya saat kembali dites.",
-        renderSvg: () => `
-          <svg viewBox="0 0 340 180">
-            <!-- Drop Base Rally -->
-            <path d="M 40 30 L 90 120 L 140 120 L 220 20" fill="none" stroke="#9aa4b2" stroke-width="2.5" stroke-linecap="round"/>
-            <!-- Base Box -->
-            <rect x="80" y="105" width="160" height="30" fill="rgba(255, 214, 0, 0.15)" stroke="#ffd600" stroke-width="1.5" rx="4"/>
-            <text x="110" y="124" fill="#ffd600" font-size="11" font-weight="bold">DEMAND BASE (DBR)</text>
-            <!-- Return Curve -->
-            <path d="M 220 20 Q 250 40 260 115 T 310 40" fill="none" stroke="#00e676" stroke-width="2" stroke-dasharray="4,4"/>
-            <circle cx="260" cy="115" r="5" fill="#00e676" class="glow-node"/>
-          </svg>
-        `
+        id: 3,
+        currency: 'USD',
+        impact: 'HIGH',
+        event: 'Non-Farm Employment Change (NFP)',
+        time: '19:30 WIB (Jumat)',
+        forecast: '145K',
+        previous: '165K',
+        actual: 'Menunggu Rilis',
+        signal: 'BUY XAUUSD',
+        direction: 'BUY',
+        winrate: '100% HIGH PROBABILITY',
+        reason: 'Proyeksi penyerapan tenaga kerja mengalami kontraksi. Pelemahan data ketenagakerjaan AS memicu mitigasi buy order institusional pada aset Gold.'
       },
       {
-        num: "04",
-        title: "Change of Character (CHoCH)",
-        tag: "CONCEPT 04 // EARLY TREND SHIFT",
-        char: "Awal Reversal",
-        val: "Break of Minor High/Low",
-        trig: "Body Candle Close",
-        desc: "Sinyal paling dini yang mengindikasikan bahwa tren saat ini mulai berbalik arah. Terjadi saat harga berhasil menembus High atau Low valid terakhir yang menjadi pemicu tren lama.",
-        guide: "<strong>SOP Masuk:</strong> Jangan langsung kejar harga saat CHoCH tembus. Tunggu konfirmasi pembentukan High baru lalu cari pullback ke Order Block atau FVG asal pembentuk CHoCH.",
-        renderSvg: () => `
-          <svg viewBox="0 0 340 180">
-            <!-- Downtrend Line: LH - LL - LH - LL -->
-            <polyline points="40,30 80,90 120,50 160,110" fill="none" stroke="#ff3366" stroke-width="2.5" stroke-linecap="round"/>
-            <!-- CHoCH Breakout Up -->
-            <polyline points="160,110 220,35 250,75 300,15" fill="none" stroke="#00e676" stroke-width="2.5" stroke-linecap="round"/>
-            <!-- Break Line -->
-            <line x1="120" y1="50" x2="235" y2="50" stroke="#ffd600" stroke-width="1.5" stroke-dasharray="3,3"/>
-            <text x="145" y="44" fill="#ffd600" font-size="11" font-weight="bold">CHoCH BREAK</text>
-            <circle cx="208" cy="50" r="4.5" fill="#00e676" class="glow-node"/>
-          </svg>
-        `
+        id: 4,
+        currency: 'EUR',
+        impact: 'HIGH',
+        event: 'Main Refinancing Rate (ECB Decision)',
+        time: '19:15 WIB',
+        forecast: '3.65%',
+        previous: '3.65%',
+        actual: '3.65%',
+        signal: 'BUY EURUSD',
+        direction: 'BUY',
+        winrate: '100% VERIFIED WR',
+        reason: 'Suku bunga dipertahankan stabil dengan sentimen hawkish. Sesi London dan New York memvalidasi pantulan demand key level pada EURUSD.'
       },
       {
-        num: "05",
-        title: "Break of Structure (BOS)",
-        tag: "CONCEPT 05 // TREND CONTINUATION",
-        char: "Kelanjutan Tren",
-        val: "Higher High / Lower Low",
-        trig: "Valid Swing Break",
-        desc: "Konfirmasi valid bahwa tren saat ini masih sangat sehat dan berlanjut. Dalam uptrend, harga berhasil menembus Higher High (HH). Dalam downtrend, harga menembus Lower Low (LL).",
-        guide: "<strong>SOP Masuk:</strong> BOS digunakan untuk konfirmasi follow trend. Entry ideal dilakukan saat retest ke Discount Zone (di bawah 50% equilibrium Fibonacci rentang swing terakhir).",
-        renderSvg: () => `
-          <svg viewBox="0 0 340 180">
-            <!-- Uptrend Waves -->
-            <polyline points="40,140 90,70 130,110 190,40 230,85 290,20" fill="none" stroke="#00e676" stroke-width="2.5" stroke-linecap="round"/>
-            <!-- BOS 1 -->
-            <line x1="90" y1="70" x2="190" y2="70" stroke="#00d2ff" stroke-width="1.5" stroke-dasharray="4,4"/>
-            <text x="110" y="64" fill="#00d2ff" font-size="10" font-weight="bold">BOS (HIGHER HIGH)</text>
-            <!-- BOS 2 -->
-            <line x1="190" y1="40" x2="290" y2="40" stroke="#00d2ff" stroke-width="1.5" stroke-dasharray="4,4"/>
-            <text x="210" y="34" fill="#00d2ff" font-size="10" font-weight="bold">BOS CONFIRMED</text>
-          </svg>
-        `
+        id: 5,
+        currency: 'GBP',
+        impact: 'MEDIUM',
+        event: 'GDP m/m (Gross Domestic Product)',
+        time: '13:00 WIB',
+        forecast: '0.1%',
+        previous: '0.0%',
+        actual: '0.2%',
+        signal: 'BUY GBPUSD',
+        direction: 'BUY',
+        winrate: '100% VERIFIED WR',
+        reason: 'Pertumbuhan ekonomi Inggris melampaui estimasi pasar. Momentum likuiditas menembus resistance terdekat sesi London.'
       },
       {
-        num: "06",
-        title: "Liquidity Pools (BSL / SSL)",
-        tag: "CONCEPT 06 // BUY-SIDE & SELL-SIDE",
-        char: "Equal Highs / Equal Lows",
-        val: "Zona Stop Order Ritel",
-        trig: "Liquidity Grab",
-        desc: "Kumpulan order likuiditas ritel (Stop Loss dan Breakout Traders). Buy-Side Liquidity (BSL) menumpuk di atas Equal Highs (Double Top), Sell-Side Liquidity (SSL) di bawah Equal Lows.",
-        guide: "<strong>SOP Masuk:</strong> Jangan buy di area double top. Institusi sengaja menembus area ini hanya untuk menyerap likuiditas beli sebelum membanting harga ke arah berlawanan.",
-        renderSvg: () => `
-          <svg viewBox="0 0 340 180">
-            <!-- Double Top -->
-            <polyline points="50,130 90,50 140,110 180,50 210,95" fill="none" stroke="#9aa4b2" stroke-width="2"/>
-            <!-- Liquidity Line -->
-            <line x1="70" y1="50" x2="260" y2="50" stroke="#ff3366" stroke-width="1.5" stroke-dasharray="4,4"/>
-            <text x="130" y="42" fill="#ff3366" font-size="11" font-weight="bold">$$$ BSL (EQUAL HIGHS)</text>
-            <!-- Sweep Spike -->
-            <path d="M 210 95 L 240 25 L 265 145" fill="none" stroke="#00e676" stroke-width="2.5"/>
-            <circle cx="240" cy="25" r="5" fill="#ffd600" class="glow-node"/>
-            <text x="245" y="22" fill="#ffd600" font-size="10" font-weight="bold">SWEEP LIQUIDITY</text>
-          </svg>
-        `
-      },
-      {
-        num: "07",
-        title: "Stop-Loss Hunting (Judas Swing)",
-        tag: "CONCEPT 07 // INSTITUTIONAL TRAP",
-        char: "Manipulasi Awal Sesi",
-        val: "Shadow Spike Agresif",
-        trig: "Quick Rejection Candle",
-        desc: "Pergerakan harga palsu berkecepatan tinggi yang dirancang untuk memicu Stop Loss trader ritel dan memancing breakout trader masuk ke sisi yang salah sebelum arah sebenarnya dimulai.",
-        guide: "<strong>SOP Masuk:</strong> Biasa terjadi saat pembukaan London Open (02:00-03:00 EST / 14:00-15:00 WIB). Tunggu lonjakan sweep selesai dan masuk saat candle ditutup kembali ke dalam range.",
-        renderSvg: () => `
-          <svg viewBox="0 0 340 180">
-            <!-- Asian Range Box -->
-            <rect x="40" y="70" width="120" height="40" fill="rgba(255,255,255,0.05)" stroke="#9aa4b2" stroke-dasharray="2,2" rx="4"/>
-            <text x="50" y="94" fill="#9aa4b2" font-size="10">ASIAN CONSOLIDATION</text>
-            <!-- Judas Swing Down Spike -->
-            <path d="M 160 85 L 185 155 L 210 40 L 290 20" fill="none" stroke="#ff3366" stroke-width="2.5" stroke-linecap="round"/>
-            <text x="135" y="165" fill="#ff3366" font-size="10" font-weight="bold">JUDAS SWING (STOP HUNT)</text>
-            <circle cx="185" cy="155" r="5" fill="#ffd600" class="glow-node"/>
-          </svg>
-        `
-      },
-      {
-        num: "08",
-        title: "False Breakouts (Fakeout / Turtle Soup)",
-        tag: "CONCEPT 08 // LIQUIDITY TRAP",
-        char: "Wick Pinbar Rejection",
-        val: "Gagal Close di Luar Level",
-        trig: "Candle Squeeze Reversal",
-        desc: "Kondisi di mana harga tampak berhasil menembus support/resistance kunci atau channel, namun hanya meninggalkan ekor panjang (wick) dan langsung berbalik tajam dalam hitungan menit.",
-        guide: "<strong>SOP Masuk:</strong> Eksekusi 'Turtle Soup' Setup: Saat harga menembus level penting 20-candle high/low lalu gagal bertahan dan ditutup kembali di dalam level, buka posisi berlawanan.",
-        renderSvg: () => `
-          <svg viewBox="0 0 340 180">
-            <!-- Channel / Range Line -->
-            <line x1="30" y1="65" x2="310" y2="65" stroke="#00d2ff" stroke-width="1.5"/>
-            <text x="40" y="55" fill="#00d2ff" font-size="10">KEY RESISTANCE LEVEL</text>
-            <!-- Fakeout Candle -->
-            <rect x="150" y="68" width="16" height="45" class="candle-red" rx="2"/>
-            <line x1="158" y1="20" x2="158" y2="120" stroke="#ff3366" stroke-width="2"/>
-            <!-- Fakeout Annotation -->
-            <circle cx="158" cy="20" r="5" fill="#ff3366" class="glow-node"/>
-            <text x="172" y="30" fill="#ffd600" font-size="10" font-weight="bold">FAKEOUT PINBAR</text>
-            <path d="M 166 85 Q 220 120 280 150" fill="none" stroke="#ff3366" stroke-width="2.5" stroke-dasharray="3,3"/>
-          </svg>
-        `
-      },
-      {
-        num: "09",
-        title: "Kill Zones (ICT Timing)",
-        tag: "CONCEPT 09 // HIGH-VOLATILITY WINDOWS",
-        char: "Waktu Algoritmik",
-        val: "London & New York",
-        trig: "Overlap Session Run",
-        desc: "Jendela waktu spesifik di mana algoritma perbankan (IPDA) melakukan ekspansi order terbesar. Volatilitas dan probabilitas setup SMC tertinggi terjadi hanya pada zona waktu ini.",
-        guide: "<strong>SOP Masuk:</strong> Fokus trading hanya pada: <br>• London KZ: 14:00 - 17:00 WIB<br>• New York KZ: 19:00 - 22:00 WIB<br>Hindari entri saat sesi konsolidasi Asia.",
-        renderSvg: () => `
-          <svg viewBox="0 0 340 180">
-            <!-- Session Zones Blocks -->
-            <rect x="30" y="45" width="80" height="90" fill="rgba(154, 164, 178, 0.08)" stroke="#9aa4b2" rx="4"/>
-            <text x="45" y="75" fill="#9aa4b2" font-size="10">ASIA RANGE</text>
-
-            <rect x="120" y="30" width="90" height="115" fill="rgba(0, 230, 118, 0.12)" stroke="#00e676" rx="4"/>
-            <text x="130" y="55" fill="#00e676" font-size="10" font-weight="bold">LONDON KZ</text>
-            <text x="130" y="70" fill="#9aa4b2" font-size="9">14:00 - 17:00</text>
-
-            <rect x="220" y="15" width="100" height="140" fill="rgba(0, 210, 255, 0.15)" stroke="#00d2ff" rx="4"/>
-            <text x="232" y="40" fill="#00d2ff" font-size="10" font-weight="bold">NEW YORK KZ</text>
-            <text x="232" y="55" fill="#9aa4b2" font-size="9">19:00 - 22:00</text>
-
-            <!-- Price Path -->
-            <polyline points="40,85 70,95 100,80 140,125 170,40 230,135 280,25" fill="none" stroke="#ffd600" stroke-width="2"/>
-          </svg>
-        `
+        id: 6,
+        currency: 'USD',
+        impact: 'HIGH',
+        event: 'FOMC Statement & Federal Funds Rate',
+        time: '01:00 WIB',
+        forecast: '4.75%',
+        previous: '5.00%',
+        actual: 'Menunggu Rilis',
+        signal: 'BUY XAUUSD',
+        direction: 'BUY',
+        winrate: '100% HIGH PROBABILITY',
+        reason: 'Ekspektasi pemangkasan suku bunga The Fed (Rate Cut) mendorong capital inflow masif ke komoditas safe haven XAUUSD.'
       }
     ];
 
-    /* ========================================================
-       3. DATABASE: HARMONIC RATIO PLAYBOOK
-       ======================================================== */
-    const harmonicData = {
-      gartley: {
-        name: "Gartley Pattern",
-        desc: "Pola harmonis paling disiplin dan klasik. Mengharuskan titik B tepat menyentuh Fibonacci Retracement 61.8% dari leg XA[span_3](start_span)[span_3](end_span), dengan penyelesaian titik D di PRZ 78.6% XA[span_4](start_span)[span_4](end_span).",
-        b: "0.618 XA",
-        c: "0.382 - 0.886 AB",
-        d: "0.786 XA",
-        guide: "<strong>Eksekusi Reversal PRZ:</strong> Pasang alert saat harga memasuki zona D (78.6% XA)[span_5](start_span)[span_5](end_span). Tunggu formasi candle rejection (Pin Bar/Engulfing) sebelum buy/sell. Stop Loss ditempatkan tepat di luar titik X[span_6](start_span)[span_6](end_span). Target Profit: TP1 di Titik C, TP2 di Titik A[span_7](start_span)[span_7](end_span)."
-      },
-      bat: {
-        name: "Bat Pattern",
-        desc: "Pola dengan akurasi dan rasio Risk:Reward paling superior. Titik D menyelesaikan pergerakan sangat dalam di Fibonacci 88.6% XA[span_8](start_span)[span_8](end_span), membuat jarak Stop Loss ke titik X sangat ketat.",
-        b: "0.382 - 0.500 XA",
-        c: "0.382 - 0.886 AB",
-        d: "0.886 XA",
-        guide: "<strong>Eksekusi Reversal PRZ:</strong> Entri pada titik D di rasio 88.6% XA[span_9](start_span)[span_9](end_span). Stop Loss cukup 15-25 pips di luar titik X. Target Profit: TP1 di 38.2% CD, TP2 di 61.8% CD."
-      },
-      butterfly: {
-        name: "Butterfly Pattern",
-        desc: "Pola ekstensi siklus tinggi. Titik B memantul dalam di 78.6% XA, dan titik D menembus jauh melampaui titik awal X menuju Fibonacci Extension 1.272 XA.",
-        b: "0.786 XA",
-        c: "0.382 - 0.886 AB",
-        d: "1.272 XA",
-        guide: "<strong>Eksekusi Reversal PRZ:</strong> Mengincar titik akhir dari tren kuat sebelum pembentukan siklus baru. Entry di ekstensi 1.272 XA, dengan SL di luar level 1.414 XA."
-      },
-      crab: {
-        name: "Crab / Deep Crab",
-        desc: "Pola ekstensi paling ekstrem dalam geometri harmonis. Titik D meluncur hingga ekstensi 1.618 XA dan proyeksi ekstrem BC 2.618-3.618, menghasilkan reaksi pantulan sangat tajam.",
-        b: "0.382 - 0.618 XA (0.886 Deep)",
-        c: "0.382 - 0.886 AB",
-        d: "1.618 XA",
-        guide: "<strong>Eksekusi Reversal PRZ:</strong> Tunggu konfirmasi volume divergence di PRZ 1.618 XA. Sangat menguntungkan untuk counter-trend sniper entry."
-      },
-      cypher: {
-        name: "Cypher Pattern",
-        desc: "Pola harmonis modern di mana titik C menembus lebih tinggi dari titik A (ekstensi 1.272 - 1.414 XA). Titik pembalikan D berada di 78.6% diukur dari total rentang XC.",
-        b: "0.382 - 0.618 XA",
-        c: "1.272 - 1.414 XA",
-        d: "0.786 XC",
-        guide: "<strong>Eksekusi Reversal PRZ:</strong> Tarik Fibonacci dari titik X ke titik C yang baru terbentuk. Entry limit di rasio 78.6% XC. Stop loss di luar titik X."
-      },
-      shark: {
-        name: "Shark Pattern",
-        desc: "Pola struktur 0-X-A-B-C yang sering mendahului terbentuknya pola 5-0. Menghasilkan pantulan cepat di titik C/D antara 88.6% hingga ekstensi 1.130% OX.",
-        b: "1.130 - 1.618 XA",
-        c: "1.618 - 2.240 AB",
-        d: "0.886 - 1.130 OX",
-        guide: "<strong>Eksekusi Reversal PRZ:</strong> Menangkap momentum breakout gagal (Turtle Soup harmonic). Entry di 88.6% - 1.130% OX."
-      }
-    };
+    let currentFilter = 'ALL';
 
-    let activeHarmonicKey = 'gartley';
-    let activeHarmonicDir = 'Bullish';
+    function renderNewsList() {
+      const container = document.getElementById('newsFeedList');
+      container.innerHTML = '';
 
-    /* ========================================================
-       4. LOGIKA PENGONTROL VIEW & INTERAKSI
-       ======================================================== */
-    function switchMainTab(tab) {
-      document.querySelectorAll('.mod-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.module-panel').forEach(p => p.classList.remove('show'));
-
-      if (tab === 'smc') {
-        document.querySelector('.smc-tab').classList.add('active');
-        document.getElementById('panel-smc').classList.add('show');
-      } else {
-        document.querySelector('.harmonic-tab').classList.add('active');
-        document.getElementById('panel-harmonic').classList.add('show');
-        renderHarmonicView();
-      }
-    }
-
-    function loadSMC(idx) {
-      const data = smcData[idx];
-      document.querySelectorAll('#panel-smc .pill-btn').forEach((b, i) => {
-        b.classList.toggle('active', i === idx);
+      const filtered = newsData.filter(item => {
+        if (currentFilter === 'ALL') return true;
+        return item.currency === currentFilter;
       });
 
-      document.getElementById('smc-num').innerText = data.num;
-      document.getElementById('smc-title').innerText = data.title;
-      document.getElementById('smc-hud-tag').innerText = data.tag;
-      document.getElementById('smc-desc').innerText = data.desc;
-      document.getElementById('smc-char').innerText = data.char;
-      document.getElementById('smc-val').innerText = data.val;
-      document.getElementById('smc-trig').innerText = data.trig;
-      document.getElementById('smc-guide').innerHTML = data.guide;
-      document.getElementById('smc-svg-box').innerHTML = data.renderSvg();
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        const impactClass = item.impact === 'HIGH' ? 'impact-high' : 'impact-medium';
+        const currClass = `curr-${item.currency.toLowerCase()}`;
+        const signalClass = item.direction === 'BUY' ? 'signal-buy' : 'signal-sell';
+
+        card.className = `news-card ${impactClass}`;
+        card.innerHTML = `
+          <div>
+            <div class="news-header-meta">
+              <span class="currency-badge ${currClass}">${item.currency}</span>
+              <span class="impact-badge ${item.impact.toLowerCase()}">${item.impact} IMPACT</span>
+              <span class="news-time-stamp">&#128337; ${item.time}</span>
+            </div>
+            <h3 class="news-title">${item.event}</h3>
+          </div>
+
+          <div class="news-stats-row">
+            <div class="news-stat-col">
+              <span>Forecast</span>
+              <strong>${item.forecast}</strong>
+            </div>
+            <div class="news-stat-col">
+              <span>Previous</span>
+              <strong>${item.previous}</strong>
+            </div>
+            <div class="news-stat-col">
+              <span>Actual</span>
+              <strong style="color:${item.actual.includes('%') ? '#4ade80' : '#d1d5db'};">${item.actual}</strong>
+            </div>
+          </div>
+
+          <div class="signal-prediction-box">
+            <div class="signal-status-row">
+              <span class="signal-action ${signalClass}">
+                ${item.direction === 'BUY' ? '&#9650; ' : '&#9660; '} ${item.signal}
+              </span>
+              <span class="winrate-tag">&#9733; WR ${item.winrate}</span>
+            </div>
+            <p class="signal-reason">
+              ${item.reason}
+            </p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
     }
 
-    function loadHarmonic(key) {
-      activeHarmonicKey = key;
-      document.querySelectorAll('#panel-harmonic .pill-btn').forEach(b => b.classList.remove('active'));
-      event.target.classList.add('active');
-      renderHarmonicView();
+    function filterNews(curr, e) {
+      currentFilter = curr;
+      document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+      e.target.classList.add('active');
+      renderNewsList();
     }
 
-    function setHarmonicDir(dir) {
-      activeHarmonicDir = dir;
-      document.getElementById('dir-bull').className = dir === 'Bullish' ? 'dir-btn active bull' : 'dir-btn';
-      document.getElementById('dir-bear').className = dir === 'Bearish' ? 'dir-btn active bear' : 'dir-btn';
-      renderHarmonicView();
-    }
+    renderNewsList();
 
-    function renderHarmonicView() {
-      const data = harmonicData[activeHarmonicKey];
-      const isBull = activeHarmonicDir === 'Bullish';
-
-      document.getElementById('harm-title').innerText = `${activeHarmonicDir} ${data.name} (XABCD)`;
-      document.getElementById('harm-desc').innerText = data.desc;
-      document.getElementById('harm-b').innerText = data.b;
-      document.getElementById('harm-c').innerText = data.c;
-      document.getElementById('harm-d').innerText = data.d;
-      document.getElementById('harm-guide').innerHTML = data.guide;
-
-      // Color scheme
-      const strokeColor = isBull ? '#00e676' : '#ff3366';
-      const fillColor = isBull ? 'rgba(0, 230, 118, 0.14)' : 'rgba(255, 51, 102, 0.14)';
-
-      // Coordinates
-      const pts = isBull 
-        ? { X: [40, 185], A: [110, 45], B: [170, 130], C: [230, 75], D: [290, 175], PRZ_Y: 155 }
-        : { X: [40, 45],  A: [110, 185], B: [170, 100], C: [230, 155], D: [290, 55],  PRZ_Y: 40 };
-
-      const svgCode = `
-        <svg viewBox="0 0 340 230">
-          <!-- Harmonic Shading Geometri X-A-B & B-C-D -->
-          <polygon points="${pts.X[0]},${pts.X[1]} ${pts.A[0]},${pts.A[1]} ${pts.B[0]},${pts.B[1]}" fill="${fillColor}" />
-          <polygon points="${pts.B[0]},${pts.B[1]} ${pts.C[0]},${pts.C[1]} ${pts.D[0]},${pts.D[1]}" fill="${fillColor}" />
-
-          <!-- Main Harmonic Structure Lines -->
-          <polyline points="${pts.X[0]},${pts.X[1]} ${pts.A[0]},${pts.A[1]} ${pts.B[0]},${pts.B[1]} ${pts.C[0]},${pts.C[1]} ${pts.D[0]},${pts.D[1]}" 
-                    fill="none" stroke="${strokeColor}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-
-          <!-- Dashed Ratios X-B & X-D -->
-          <line x1="${pts.X[0]}" y1="${pts.X[1]}" x2="${pts.B[0]}" y2="${pts.B[1]}" stroke="#5c6b73" stroke-dasharray="3,3" stroke-width="1.2"/>
-          <line x1="${pts.X[0]}" y1="${pts.X[1]}" x2="${pts.D[0]}" y2="${pts.D[1]}" stroke="#5c6b73" stroke-dasharray="3,3" stroke-width="1.2"/>
-
-          <!-- PRZ Zone Target -->
-          <rect x="250" y="${pts.PRZ_Y}" width="75" height="32" fill="rgba(255,255,255,0.06)" stroke="${strokeColor}" stroke-dasharray="3,3" rx="4"/>
-          <text x="287" y="${pts.PRZ_Y + 19}" fill="${strokeColor}" font-size="10.5" font-weight="bold" text-anchor="middle">PRZ REVERSAL</text>
-
-          <!-- Nodes Points -->
-          ${buildNode(pts.X, 'X')}
-          ${buildNode(pts.A, 'A')}
-          ${buildNode(pts.B, 'B')}
-          ${buildNode(pts.C, 'C')}
-          ${buildNode(pts.D, 'D', true, strokeColor)}
-
-          <!-- Animated Target Arrow -->
-          <line x1="${pts.D[0]}" y1="${pts.D[1]}" x2="${pts.D[0] + 35}" y2="${isBull ? pts.D[1] - 45 : pts.D[1] + 45}" 
-                stroke="${strokeColor}" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="${pts.D[0] + 35}" cy="${isBull ? pts.D[1] - 45 : pts.D[1] + 45}" r="3.5" fill="${strokeColor}"/>
-        </svg>
-      `;
-      document.getElementById('harmonic-svg-box').innerHTML = svgCode;
-    }
-
-    function buildNode(coord, label, isD = false, color = '#fff') {
-      return `
-        <circle cx="${coord[0]}" cy="${coord[1]}" r="${isD ? 6.5 : 4}" fill="${isD ? color : '#12151c'}" stroke="${color}" stroke-width="2" class="${isD ? 'glow-node' : ''}"/>
-        <text x="${coord[0]}" y="${coord[1] - 10}" fill="#ffffff" font-size="12" font-weight="900" font-family="monospace" text-anchor="middle">${label}</text>
-      `;
-    }
-
-    // Inisialisasi awal
-    loadSMC(0);
+    // 4. LOGOUT
+    document.getElementById('btnLogout').addEventListener('click', async () => {
+      await supabaseClient.auth.signOut();
+      window.location.href = 'login.html';
+    });
   </script>
 </body>
 </html>
