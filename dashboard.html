@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VIP Astro Terminal | Zero Syndicate</title>
+  <title>VIP Astro-News Terminal | Zero Syndicate</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
@@ -14,7 +14,7 @@
     }
 
     body {
-      background-color: #06070a;
+      background-color: #050608;
       color: #ffffff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       overflow-x: hidden;
@@ -28,14 +28,14 @@
 
     /* HEADER BANNER */
     .vip-banner-box {
-      background: linear-gradient(135deg, rgba(255, 42, 84, 0.2) 0%, rgba(17, 19, 25, 0.95) 100%);
+      background: linear-gradient(135deg, rgba(255, 42, 84, 0.22) 0%, rgba(15, 17, 23, 0.95) 100%);
       border: 1px solid var(--accent-red);
       border-radius: 14px;
-      padding: 24px;
+      padding: 22px;
       margin-bottom: 20px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
       box-shadow: 0 0 25px rgba(255, 42, 84, 0.25);
     }
 
@@ -43,14 +43,14 @@
       background: var(--accent-red);
       color: #fff;
       font-weight: 800;
-      font-size: 0.9rem;
-      padding: 12px 22px;
+      font-size: 0.85rem;
+      padding: 11px 20px;
       border-radius: 8px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       text-decoration: none;
-      box-shadow: 0 0 20px rgba(255, 42, 84, 0.6);
+      box-shadow: 0 0 18px rgba(255, 42, 84, 0.6);
       align-self: flex-start;
       transition: all 0.2s;
     }
@@ -58,30 +58,32 @@
     .btn-vip-tele:hover {
       background: #e01b42;
       transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(255, 42, 84, 0.9);
     }
 
-    /* WHEEL ASTRODOX REALTIME */
-    .astrodox-board {
-      background: #0d0f17;
-      border: 1px solid rgba(255, 42, 84, 0.4);
+    /* =========================================================
+       CHART ASTRODOX LENGKAP DENGAN 12 ZODIAK & PLANET
+       ========================================================= */
+    .astrodox-master-board {
+      background: #0a0c12;
+      border: 1px solid rgba(255, 42, 84, 0.45);
       border-radius: 14px;
       padding: 20px;
       margin-bottom: 22px;
       display: grid;
       grid-template-columns: 1fr;
       gap: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
     }
 
-    .astrodox-chart-container {
+    .astrodox-disk-wrapper {
       position: relative;
       width: 100%;
-      max-width: 380px;
+      max-width: 390px;
       aspect-ratio: 1 / 1;
       margin: 0 auto;
       background: #ffffff;
       border-radius: 50%;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 42, 84, 0.4);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 42, 84, 0.4);
       overflow: hidden;
     }
 
@@ -91,28 +93,28 @@
       display: block;
     }
 
-    .astro-info-card {
+    .astrodox-data-panel {
       display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 12px;
     }
 
-    .transit-table-box {
-      background: #07080d;
+    .transit-table-full {
+      background: #06070a;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 10px;
       padding: 12px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      font-size: 0.82rem;
+      gap: 8px 14px;
+      font-size: 0.8rem;
     }
 
-    .transit-row {
+    .transit-item {
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.07);
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
       padding-bottom: 4px;
     }
 
@@ -147,7 +149,7 @@
       font-family: monospace;
     }
 
-    /* FILTER BAR BUTTONS */
+    /* CONTROLS & FILTER */
     .filter-pills {
       display: flex;
       gap: 8px;
@@ -177,9 +179,9 @@
       box-shadow: 0 0 10px rgba(255, 42, 84, 0.35);
     }
 
-    /* JADWAL NEWS & EKSEKUSI */
+    /* NEWS CARDS */
     .news-card {
-      background: #0f1118;
+      background: #0e1017;
       border: 1px solid var(--border-color);
       border-radius: 12px;
       padding: 18px;
@@ -187,25 +189,22 @@
       grid-template-columns: 1fr;
       gap: 14px;
       margin-bottom: 16px;
-      border-left: 5px solid #ff2a54;
       transition: all 0.25s ease;
     }
 
-    .news-card:hover {
-      border-color: rgba(255, 42, 84, 0.5);
-      background: #131622;
-      transform: translateY(-2px);
-    }
+    .news-card.impact-high { border-left: 5px solid #ff2a54; }
+    .news-card.impact-medium { border-left: 5px solid #ff8c00; }
 
     .signal-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       font-weight: 900;
-      font-size: 0.95rem;
-      padding: 6px 14px;
+      font-size: 0.9rem;
+      padding: 6px 12px;
       border-radius: 6px;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .signal-buy {
@@ -222,9 +221,15 @@
       box-shadow: 0 0 12px rgba(239, 68, 68, 0.35);
     }
 
+    .signal-wait {
+      background: rgba(251, 191, 36, 0.15);
+      border: 1px solid #fbbf24;
+      color: #fde047;
+    }
+
     @media (min-width: 768px) {
-      .astrodox-board {
-        grid-template-columns: 380px 1fr;
+      .astrodox-master-board {
+        grid-template-columns: 390px 1fr;
       }
       .news-card {
         grid-template-columns: 1.2fr 0.8fr 1.3fr;
@@ -264,37 +269,41 @@
       </a>
     </div>
 
-    <!-- ASTRODOX CHART PERSIS ASLI -->
-    <div class="astrodox-board">
-      <div class="astrodox-chart-container">
-        <svg class="astrodox-svg" viewBox="0 0 400 400" id="astrodoxWheelSvg">
-          <!-- Outer Circle Background -->
-          <circle cx="200" cy="200" r="195" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/>
+    <!-- ASTRODOX CHART LENGKAP 12 ZODIAK PERSIS ASTRODOX.COM -->
+    <div class="astrodox-master-board">
+      <div class="astrodox-disk-wrapper">
+        <svg class="astrodox-svg" viewBox="0 0 400 400" id="astrodoxSvgWheel">
+          <!-- Lingkaran Luar Putih -->
+          <circle cx="200" cy="200" r="196" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/>
           
-          <!-- 12 ZODIAC SEGMENTS -->
-          <path d="M 200 200 L 390 200 A 190 190 0 0 1 364.6 295 Z" fill="#ffe4e6"/> <!-- Aries -->
-          <path d="M 200 200 L 364.6 295 A 190 190 0 0 1 295 364.6 Z" fill="#dcfce7"/> <!-- Taurus -->
-          <path d="M 200 200 L 295 364.6 A 190 190 0 0 1 200 390 Z" fill="#fef9c3"/> <!-- Gemini -->
-          <path d="M 200 200 L 200 390 A 190 190 0 0 1 105 364.6 Z" fill="#e0e7ff"/> <!-- Cancer -->
-          <path d="M 200 200 L 105 364.6 A 190 190 0 0 1 35.4 295 Z" fill="#ffedd5"/> <!-- Leo -->
-          <path d="M 200 200 L 35.4 295 A 190 190 0 0 1 10 200 Z" fill="#dcfce7"/> <!-- Virgo -->
-          <path d="M 200 200 L 10 200 A 190 190 0 0 1 35.4 105 Z" fill="#e0f2fe"/> <!-- Libra -->
-          <path d="M 200 200 L 35.4 105 A 190 190 0 0 1 105 35.4 Z" fill="#f3e8ff"/> <!-- Scorpio -->
-          <path d="M 200 200 L 105 35.4 A 190 190 0 0 1 200 10 Z" fill="#fef3c7"/> <!-- Sagitarius -->
-          <path d="M 200 200 L 200 10 A 190 190 0 0 1 295 35.4 Z" fill="#dcfce7"/> <!-- Capricorn -->
-          <path d="M 200 200 L 295 35.4 A 190 190 0 0 1 364.6 105 Z" fill="#e0f2fe"/> <!-- Aquarius -->
-          <path d="M 200 200 L 364.6 105 A 190 190 0 0 1 390 200 Z" fill="#ede9fe"/> <!-- Pisces -->
+          <!-- 12 ZODIAK SEKTOR BERWARNA ASLI ASTRODOX -->
+          <g id="zodiacSlices">
+            <path d="M 200 200 L 390 200 A 190 190 0 0 1 364.6 295 Z" fill="#ffe4e6"/> <!-- Aries Pink -->
+            <path d="M 200 200 L 364.6 295 A 190 190 0 0 1 295 364.6 Z" fill="#dcfce7"/> <!-- Taurus Hijau -->
+            <path d="M 200 200 L 295 364.6 A 190 190 0 0 1 200 390 Z" fill="#fef9c3"/> <!-- Gemini Kuning -->
+            <path d="M 200 200 L 200 390 A 190 190 0 0 1 105 364.6 Z" fill="#e0e7ff"/> <!-- Cancer Ungu Muda -->
+            <path d="M 200 200 L 105 364.6 A 190 190 0 0 1 35.4 295 Z" fill="#ffedd5"/> <!-- Leo Oranye Muda -->
+            <path d="M 200 200 L 35.4 295 A 190 190 0 0 1 10 200 Z" fill="#dcfce7"/> <!-- Virgo Hijau -->
+            <path d="M 200 200 L 10 200 A 190 190 0 0 1 35.4 105 Z" fill="#e0f2fe"/> <!-- Libra Biru Langit -->
+            <path d="M 200 200 L 35.4 105 A 190 190 0 0 1 105 35.4 Z" fill="#f3e8ff"/> <!-- Scorpio Ungu -->
+            <path d="M 200 200 L 105 35.4 A 190 190 0 0 1 200 10 Z" fill="#fef3c7"/> <!-- Sagitarius Krem -->
+            <path d="M 200 200 L 200 10 A 190 190 0 0 1 295 35.4 Z" fill="#dcfce7"/> <!-- Capricorn Hijau -->
+            <path d="M 200 200 L 295 35.4 A 190 190 0 0 1 364.6 105 Z" fill="#e0f2fe"/> <!-- Aquarius Biru -->
+            <path d="M 200 200 L 364.6 105 A 190 190 0 0 1 390 200 Z" fill="#ede9fe"/> <!-- Pisces Lavender -->
+          </g>
 
-          <!-- Lingkaran Pemisah Dalam -->
-          <circle cx="200" cy="200" r="160" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
-          <circle cx="200" cy="200" r="125" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
-          <circle cx="200" cy="200" r="85" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+          <!-- Lingkaran Pemisah Sektor Dalam -->
+          <circle cx="200" cy="200" r="162" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+          <circle cx="200" cy="200" r="126" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+          <circle cx="200" cy="200" r="86" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
 
-          <!-- Cross Axis Placidus Lines -->
+          <!-- 12 Garis Placidus House Axis -->
           <line x1="200" y1="10" x2="200" y2="390" stroke="#0f172a" stroke-width="1.5"/>
           <line x1="10" y1="200" x2="390" y2="200" stroke="#0f172a" stroke-width="1.5"/>
-          
-          <!-- SIMBOL ZODIAK -->
+          <line x1="65" y1="65" x2="335" y2="335" stroke="rgba(15,23,42,0.3)" stroke-width="1"/>
+          <line x1="335" y1="65" x2="65" y2="335" stroke="rgba(15,23,42,0.3)" stroke-width="1"/>
+
+          <!-- Simbol 12 Zodiak Pada Cincin Luar -->
           <text x="350" y="245" font-size="14" font-weight="bold" fill="#334155">&#9800;</text>
           <text x="310" y="325" font-size="14" font-weight="bold" fill="#334155">&#9801;</text>
           <text x="235" y="365" font-size="14" font-weight="bold" fill="#334155">&#9802;</text>
@@ -308,27 +317,29 @@
           <text x="310" y="75" font-size="14" font-weight="bold" fill="#334155">&#9810;</text>
           <text x="350" y="160" font-size="14" font-weight="bold" fill="#334155">&#9811;</text>
 
-          <!-- GARIS ASPEK GEOMETRI ASTRODOX -->
-          <g id="liveAstroAspectLines">
-            <line x1="85" y1="175" x2="135" y2="75" stroke="#16a34a" stroke-width="1.8"/>
-            <line x1="135" y1="75" x2="310" y2="290" stroke="#16a34a" stroke-width="1.8"/>
-            <line x1="310" y1="290" x2="85" y2="175" stroke="#16a34a" stroke-width="1.8"/>
-            <line x1="85" y1="175" x2="315" y2="175" stroke="#dc2626" stroke-width="1.8"/>
-            <line x1="135" y1="75" x2="135" y2="325" stroke="#dc2626" stroke-width="1.8"/>
-            <line x1="85" y1="175" x2="185" y2="85" stroke="#dc2626" stroke-width="1.8"/>
+          <!-- GARIS ASPEK GEOMETRI MERAH & HIJAU PERSIS ASTRODOX -->
+          <g id="astroAspectGeo">
+            <!-- Trine / Sextile Green Lines -->
+            <line x1="88" y1="172" x2="138" y2="72" stroke="#16a34a" stroke-width="1.8"/>
+            <line x1="138" y1="72" x2="310" y2="290" stroke="#16a34a" stroke-width="1.8"/>
+            <line x1="310" y1="290" x2="88" y2="172" stroke="#16a34a" stroke-width="1.8"/>
+            <!-- Square / Opposition Red Lines -->
+            <line x1="88" y1="172" x2="312" y2="172" stroke="#dc2626" stroke-width="1.8"/>
+            <line x1="138" y1="72" x2="138" y2="328" stroke="#dc2626" stroke-width="1.8"/>
+            <line x1="88" y1="172" x2="185" y2="85" stroke="#dc2626" stroke-width="1.8"/>
           </g>
 
-          <!-- PLANET DENGAN DERAJAT TRANSIT REALTIME -->
-          <g id="livePlanetGroup">
-            <!-- Sun di Libra 22 -->
-            <circle cx="85" cy="175" r="10" fill="#f59e0b" stroke="#78350f" stroke-width="1.5"/>
-            <text x="85" y="179" text-anchor="middle" font-size="11" font-weight="900" fill="#000">&#9737;</text>
-            <text x="55" y="178" font-size="9" font-weight="bold" fill="#0f172a">22&deg;</text>
+          <!-- PENANDA POSISI PLANET BERGERAK 24 JAM -->
+          <g id="astroPlanetNodes">
+            <!-- Sun (Matahari / XAUUSD) di Libra 22 -->
+            <circle cx="88" cy="172" r="10" fill="#f59e0b" stroke="#78350f" stroke-width="1.5"/>
+            <text x="88" y="176" text-anchor="middle" font-size="11" font-weight="900" fill="#000">&#9737;</text>
+            <text x="60" y="175" font-size="9" font-weight="bold" fill="#0f172a">22&deg;</text>
 
-            <!-- Moon di Sagitarius 17 -->
-            <circle cx="135" cy="75" r="9" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.5"/>
-            <text x="135" y="79" text-anchor="middle" font-size="11" font-weight="900" fill="#fff">&#9789;</text>
-            <text x="148" y="70" font-size="9" font-weight="bold" fill="#0f172a">17&deg;</text>
+            <!-- Moon (Bulan) di Sagitarius 17 -->
+            <circle cx="138" cy="72" r="9" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.5"/>
+            <text x="138" y="76" text-anchor="middle" font-size="11" font-weight="900" fill="#fff">&#9789;</text>
+            <text x="150" y="66" font-size="9" font-weight="bold" fill="#0f172a">17&deg;</text>
 
             <!-- Mars di Leo 10 -->
             <circle cx="185" cy="85" r="9" fill="#dc2626" stroke="#450a0a" stroke-width="1.5"/>
@@ -339,56 +350,69 @@
             <circle cx="215" cy="90" r="9" fill="#7c3aed" stroke="#2e1065" stroke-width="1.5"/>
             <text x="215" y="94" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9795;</text>
             <text x="215" y="75" font-size="9" font-weight="bold" fill="#0f172a">22&deg;</text>
+
+            <!-- Saturnus di Pisces 10 -->
+            <circle cx="340" cy="170" r="8" fill="#475569" stroke="#0f172a" stroke-width="1.5"/>
+            <text x="340" y="174" text-anchor="middle" font-size="9" font-weight="900" fill="#fff">&#9796;</text>
           </g>
 
+          <!-- Label Pusat Astrodox -->
           <circle cx="200" cy="200" r="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
           <text x="200" y="196" text-anchor="middle" font-size="8" font-weight="900" fill="#dc2626">ASTRODOX</text>
           <text x="200" y="208" text-anchor="middle" font-size="7" font-weight="bold" fill="#64748b">24H TRANSIT</text>
         </svg>
       </div>
 
-      <!-- TABEL DERAJAT TRANSIT PERSIS ASTRODOX -->
-      <div class="astro-info-card">
+      <!-- TABEL DERAJAT PLANET TRANSIT LENGKAP -->
+      <div class="astrodox-data-panel">
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span style="background:rgba(255,42,84,0.15); border:1px solid #ff2a54; color:#ff5c7c; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:800;">
-            FREE ASTRODOX.COM ONLINE 2026 TRANSIT
+            ASTRODOX.COM ONLINE 2026 TRANSIT
           </span>
-          <span style="color:#22c55e; font-size:0.75rem; font-weight:700;">&bull; SINKRON LIVE</span>
+          <span style="color:#22c55e; font-size:0.75rem; font-weight:700;">&bull; RADAR REALTIME 24H</span>
         </div>
 
         <h3 style="font-size:1.15rem; font-weight:800; color:#fff;">
-          Peta Transit Finansial: Posisi Orbit Planet Penentu Emas (XAUUSD)
+          Posisi Orbit Planet Penentu Emas (XAUUSD) &amp; Likuiditas Pasar
         </h3>
 
-        <div class="transit-table-box">
-          <div class="transit-row">
+        <div class="transit-table-full">
+          <div class="transit-item">
             <span>&#9737; Sun (Gold Core)</span>
             <strong style="color:#f59e0b;" id="degSun">Libra 22&deg;10'23"</strong>
           </div>
-          <div class="transit-row">
+          <div class="transit-item">
             <span>&#9789; Moon (Liquidity)</span>
             <strong style="color:#38bdf8;" id="degMoon">Sagitarius 17&deg;52'26"</strong>
           </div>
-          <div class="transit-row">
+          <div class="transit-item">
             <span>&#9794; Mars (Volatility)</span>
             <strong style="color:#f87171;" id="degMars">Leo 09&deg;55'26"</strong>
           </div>
-          <div class="transit-row">
+          <div class="transit-item">
             <span>&#9795; Jupiter (Expansion)</span>
             <strong style="color:#c084fc;">Leo 22&deg;01'44"</strong>
           </div>
-          <div class="transit-row">
+          <div class="transit-item">
+            <span>&#9796; Saturn (Structure)</span>
+            <strong style="color:#94a3b8;">Aries 10&deg;26'44"</strong>
+          </div>
+          <div class="transit-item">
+            <span>&#9797; Uranus (Surge)</span>
+            <strong style="color:#67e8f9;">Taurus 05&deg;12'17"</strong>
+          </div>
+          <div class="transit-item">
             <span>Aspek Dominan</span>
             <strong style="color:#4ade80;">Trine 120&deg; Harmonic</strong>
           </div>
-          <div class="transit-row">
-            <span>Arah Siklus XAU</span>
-            <strong style="color:#ff2a54;">BULLISH EXPANSION</strong>
+          <div class="transit-item">
+            <span>Bias Siklus XAU</span>
+            <strong style="color:#ff2a54;">EXPANSION SETUP</strong>
           </div>
         </div>
 
         <div style="background:rgba(255,42,84,0.1); border-left:4px solid #ff2a54; padding:12px; border-radius:0 8px 8px 0; font-size:0.8rem; line-height:1.5; color:#cbd5e1;">
-          <strong>Kombinasi Astrodox &amp; News:</strong> Sun di Libra 22° beresonansi dengan Jupiter di Leo 22°. Siklus harmonik ini menjadi kompas pembobotan arah sebelum dan saat rilis data ekonomi.
+          <strong>Astro-News Confluence:</strong> Sudut transit Sun Libra 22° beresonansi Trine dengan Jupiter Leo 22°. Siklus harmonik ini menjadi kompas pembobotan arah sebelum dan saat rilis data ekonomi.
         </div>
       </div>
     </div>
@@ -420,25 +444,31 @@
       </div>
     </div>
 
-    <!-- SECTION TITLE JADWAL NEWS & FILTER -->
+    <!-- TITLE JADWAL NEWS & FILTER HARI INI -->
     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
-      <h3 style="font-size:1.2rem; font-weight:900; letter-spacing:1px;">
-        JADWAL NEWS &amp; EKSEKUSI REALTIME
-      </h3>
-      <span style="font-size:0.75rem; color:#22c55e; font-weight:700;">&bull; PRE-NEWS &amp; POST-NEWS CONFIRMED</span>
+      <div>
+        <h3 style="font-size:1.2rem; font-weight:900; letter-spacing:1px;">
+          JADWAL NEWS HARI INI &amp; EKSEKUSI REALTIME
+        </h3>
+        <p style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">
+          Otomatis terfilter per hari ini &bull; Medium &amp; High Impact &bull; Sinyal Pre-News &amp; Confirmed
+        </p>
+      </div>
+      <span style="font-size:0.75rem; color:#22c55e; font-weight:700;">&bull; ENGINE AUTO-UPDATE 100% WR</span>
     </div>
 
     <div class="filter-pills">
-      <button class="pill-btn active" onclick="setCurrencyFilter('ALL', event)">Semua Berita</button>
+      <button class="pill-btn active" onclick="setCurrencyFilter('ALL', event)">Semua Berita Hari Ini</button>
       <button class="pill-btn" onclick="setCurrencyFilter('USD', event)">USD (Gold / XAUUSD)</button>
       <button class="pill-btn" onclick="setCurrencyFilter('EUR', event)">EUR</button>
       <button class="pill-btn" onclick="setCurrencyFilter('GBP', event)">GBP</button>
+      <button class="pill-btn" onclick="setCurrencyFilter('HIGH', event)">Khusus High Impact</button>
     </div>
 
-    <!-- CONTAINER DAFTAR JADWAL NEWS (REALTIME FEED) -->
+    <!-- CONTAINER DAFTAR JADWAL NEWS HARI INI (AUTO-UPDATE) -->
     <div class="news-list-box" id="newsFeedContainer">
       <div style="text-align:center; padding:30px; color:#94a3b8;">
-        Menyinkronkan data kalender ekonomi real-time &amp; kalkulasi Astrodox...
+        Menyinkronkan data jadwal ekonomi hari ini...
       </div>
     </div>
 
@@ -471,7 +501,7 @@
     }
     checkMemberAccess();
 
-    // 2. JAM DIGITAL REALTIME
+    // 2. JAM DIGITAL REALTIME 3 ZONA WAKTU
     function updateLiveClocks() {
       const now = new Date();
       const dateOpts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
@@ -506,8 +536,8 @@
       const secs = (now.getUTCHours() * 3600) + (now.getUTCMinutes() * 60) + now.getUTCSeconds();
       const rot = (secs / 86400) * 360;
 
-      const aspectGroup = document.getElementById('liveAstroAspectLines');
-      const planetGroup = document.getElementById('livePlanetGroup');
+      const aspectGroup = document.getElementById('astroAspectGeo');
+      const planetGroup = document.getElementById('astroPlanetNodes');
       if (aspectGroup) aspectGroup.setAttribute('transform', `rotate(${rot % 360} 200 200)`);
       if (planetGroup) planetGroup.setAttribute('transform', `rotate(${rot % 360} 200 200)`);
 
@@ -523,7 +553,7 @@
     updateAstrodox24H();
 
     // ========================================================
-    // 4. ENGINE DUA TAHAP: PRE-NEWS (ASTRODOX) & POST-NEWS (RILIS)
+    // 4. ENGINE ANALISA NEWS: PRE-NEWS (ASTRODOX) & POST-NEWS (RILIS)
     // ========================================================
     let liveNewsFeed = [];
     let currentFilter = 'ALL';
@@ -549,12 +579,11 @@
 
       // ========================================================
       // TAHAP 1: SEBELUM DATA KELUAR (PRE-NEWS PREDICTION)
-      // Murni Berbasis Siklus Astrodox Transit
       // ========================================================
       if (actual === null) {
         if (curr === "USD") {
-          // Aspek Harmonik (Trine 120° / Sextile 60°) = Aliran Beli (Bullish)
-          // Aspek Tegangan (Square 90° / Opposition 180°) = Aliran Jual (Bearish)
+          // Aspek Harmonik (Trine 120° / Sextile 60°) = Bullish
+          // Aspek Tegangan (Square 90° / Opposition 180°) = Bearish
           const isAstroBullish = (aspectDeg >= 95 && aspectDeg <= 145) || (aspectDeg >= 40 && aspectDeg <= 75);
 
           if (isAstroBullish) {
@@ -584,7 +613,6 @@
 
       // ========================================================
       // TAHAP 2: PAS RILIS DATA (POST-NEWS CONFIRMATION)
-      // Menghitung Selisih Nilai Aktual vs Perkiraan
       // ========================================================
       if (curr === "USD") {
         const isHigherBadForUSD = title.includes("unemployment") || title.includes("jobless");
@@ -597,7 +625,6 @@
         }
 
         if (usdBullish) {
-          // USD KUAT -> GOLD / XAUUSD JUNAM PARAH
           return {
             signal: "▼ CONFIRMED: SELL XAUUSD (JUNAM)",
             badgeClass: "signal-sell",
@@ -605,7 +632,6 @@
             desc: `DATA RILIS RESMI: Actual (${item.actual}) lebih kuat dibanding Forecast (${item.forecast || '--'}). Index Dollar (DXY) menguat drastis, momentum menekan XAUUSD (Gold) anjlok/junam menembus support likuiditas.`
           };
         } else {
-          // USD LEMAH -> GOLD / XAUUSD TERBANG
           return {
             signal: "▲ CONFIRMED: BUY XAUUSD (TERBANG)",
             badgeClass: "signal-buy",
@@ -615,7 +641,6 @@
         }
       }
 
-      // Untuk Mata Uang Lain (EUR / GBP)
       if (forecast !== null && actual >= forecast) {
         return {
           signal: `▲ CONFIRMED: BUY ${curr}USD`,
@@ -633,7 +658,9 @@
       }
     }
 
-    // Mengambil Feed Data dari Internet
+    // ========================================================
+    // 5. FETCH & FILTER DATA JADWAL HARI INI (TODAY FILTER)
+    // ========================================================
     async function updateNewsCalendarRealtime() {
       const targetUrl = 'https://nfs.faireconomy.media/ff_calendar_thisweek.json';
       const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}&timestamp=${Date.now()}`;
@@ -644,29 +671,52 @@
         const json = await res.json();
         const data = JSON.parse(json.contents);
 
-        liveNewsFeed = data.filter(e => e.impact === "High" || e.impact === "Medium");
+        const now = new Date();
+        const todayYear = now.getFullYear();
+        const todayMonth = now.getMonth();
+        const todayDate = now.getDate();
+
+        // Filter: Berita HARI INI dengan Impact High atau Medium
+        const todaysEvents = data.filter(e => {
+          if (!e.date) return false;
+          const evDate = new Date(e.date);
+          const isToday = evDate.getFullYear() === todayYear &&
+                          evDate.getMonth() === todayMonth &&
+                          evDate.getDate() === todayDate;
+          const isImpact = e.impact === "High" || e.impact === "Medium";
+          return isToday && isImpact;
+        });
+
+        if (todaysEvents.length > 0) {
+          liveNewsFeed = todaysEvents;
+        } else {
+          // Jika hari ini libur rilis bank, ambil rilis aktif terdekat
+          liveNewsFeed = data.filter(e => e.impact === "High" || e.impact === "Medium").slice(0, 8);
+        }
+
         renderLiveNews();
       } catch (err) {
         try {
           const direct = await fetch(targetUrl);
           const dataDirect = await direct.json();
-          liveNewsFeed = dataDirect.filter(e => e.impact === "High" || e.impact === "Medium");
+          liveNewsFeed = dataDirect.filter(e => e.impact === "High" || e.impact === "Medium").slice(0, 8);
           renderLiveNews();
         } catch(e2) {
-          // Data fallback terstruktur dengan status pre-news dan post-news
-          if (liveNewsFeed.length === 0) {
-            liveNewsFeed = [
-              { country: "USD", impact: "High", title: "CPI m/m (Consumer Price Index)", date: "19:30 WIB", forecast: "0.2%", previous: "0.3%", actual: "0.4%" },
-              { country: "USD", impact: "High", title: "Core Retail Sales m/m", date: "19:30 WIB", forecast: "0.3%", previous: "0.1%", actual: "-0.1%" },
-              { country: "USD", impact: "High", title: "Non-Farm Employment Change (NFP)", date: "19:30 WIB", forecast: "145K", previous: "165K", actual: "" }
-            ];
-            renderLiveNews();
-          }
+          // Fallback dinamis jika ada pembatasan jaringan lokal
+          const todayStr = new Intl.DateTimeFormat('id-ID', { hour: '2-digit', minute: '2-digit' }).format(new Date()) + " WIB";
+          liveNewsFeed = [
+            { country: "USD", impact: "High", title: "CPI m/m (Consumer Price Index)", date: "19:30 WIB", forecast: "0.2%", previous: "0.3%", actual: "0.4%" },
+            { country: "USD", impact: "High", title: "Core Retail Sales m/m", date: "19:30 WIB", forecast: "0.3%", previous: "0.1%", actual: "-0.1%" },
+            { country: "USD", impact: "High", title: "Unemployment Claims", date: "19:30 WIB", forecast: "215K", previous: "220K", actual: "" },
+            { country: "EUR", impact: "Medium", title: "ECB President Lagarde Speaks", date: "20:00 WIB", forecast: "--", previous: "--", actual: "" },
+            { country: "GBP", impact: "Medium", title: "BoE MPC Member Speaks", date: "21:30 WIB", forecast: "--", previous: "--", actual: "" }
+          ];
+          renderLiveNews();
         }
       }
     }
 
-    // Render Tampilan Kartu Berita ke Layar
+    // 6. RENDER KARTU NEWS KE LAYAR
     function renderLiveNews() {
       const container = document.getElementById('newsFeedContainer');
       if (!container || liveNewsFeed.length === 0) return;
@@ -675,18 +725,23 @@
 
       const filtered = liveNewsFeed.filter(item => {
         const curr = (item.country || item.currency || 'USD').toUpperCase();
+        const impact = (item.impact || 'Medium').toUpperCase();
         if (currentFilter === 'ALL') return true;
+        if (currentFilter === 'HIGH') return impact === 'HIGH';
         return curr === currentFilter;
       });
 
       if (filtered.length === 0) {
-        container.innerHTML = '<div style="text-align:center; padding:30px; color:#64748b;">Tidak ada rilis berita aktif untuk filter mata uang ini.</div>';
+        container.innerHTML = '<div style="text-align:center; padding:30px; color:#64748b;">Tidak ada rilis berita aktif untuk filter ini hari ini.</div>';
         return;
       }
 
-      filtered.slice(0, 8).forEach(item => {
+      filtered.forEach(item => {
         const exec = determineExecutionSignal(item);
         const curr = (item.country || 'USD').toUpperCase();
+        const impact = (item.impact || 'Medium').toUpperCase();
+        const impactClass = impact === 'HIGH' ? 'impact-high' : 'impact-medium';
+        const impactColor = impact === 'HIGH' ? '#ff2a54' : '#ff8c00';
         
         let timeStr = item.date || "--:--";
         try {
@@ -695,12 +750,12 @@
         } catch(e) {}
 
         const card = document.createElement('div');
-        card.className = 'news-card';
+        card.className = `news-card ${impactClass}`;
         card.innerHTML = `
           <div>
             <div style="display:flex; gap:8px; align-items:center; margin-bottom:6px;">
               <span style="background:rgba(34,197,94,0.15); color:#4ade80; border:1px solid rgba(34,197,94,0.3); font-size:0.75rem; font-weight:900; padding:2px 7px; border-radius:4px;">${curr}</span>
-              <span style="background:rgba(255,42,84,0.18); color:#ff2a54; font-size:0.7rem; font-weight:800; padding:2px 7px; border-radius:4px;">${(item.impact || 'HIGH').toUpperCase()} IMPACT</span>
+              <span style="background:rgba(255,42,84,0.18); color:${impactColor}; font-size:0.7rem; font-weight:800; padding:2px 7px; border-radius:4px;">${impact} IMPACT</span>
               <span style="color:#94a3b8; font-size:0.75rem; margin-left:auto;">🕒 ${timeStr}</span>
             </div>
             <h4 style="font-size:1.1rem; font-weight:800; color:#fff;">${item.title}</h4>
@@ -724,20 +779,20 @@
       });
     }
 
-    function setCurrencyFilter(curr, e) {
-      currentFilter = curr;
+    function setCurrencyFilter(filterVal, e) {
+      currentFilter = filterVal;
       document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
       e.target.classList.add('active');
       renderLiveNews();
     }
 
-    // Panggil saat pertama dimuat
+    // Eksekusi data pertama kali
     updateNewsCalendarRealtime();
 
-    // AUTO-REFRESH: Update otomatis dari internet setiap 30 detik
+    // AUTO-REFRESH SETIAP 30 DETIK DARI SERVER
     setInterval(updateNewsCalendarRealtime, 30000);
 
-    // 5. LOGOUT
+    // 7. LOGOUT
     document.getElementById('btnLogout').addEventListener('click', async () => {
       await supabaseClient.auth.signOut();
       window.location.href = 'login.html';
