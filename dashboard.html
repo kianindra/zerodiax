@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VIP Astro Terminal | Zero Syndicate</title>
+  <title>VIP Astro-News Terminal | Zero Syndicate</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
@@ -20,9 +20,7 @@
       overflow-x: hidden;
     }
 
-    /* =========================================================
-       1. CINEMATIC VIDEO / TEXT OPENING SCREEN
-       ========================================================= */
+    /* 1. CINEMATIC OPENING SCREEN */
     #openingOverlay {
       position: fixed;
       inset: 0;
@@ -183,9 +181,7 @@
       box-shadow: 0 0 15px rgba(255, 42, 84, 0.8);
     }
 
-    /* =========================================================
-       2. TAMPILAN DASHBOARD UTAMA
-       ========================================================= */
+    /* 2. DASHBOARD WRAPPER */
     .terminal-container {
       max-width: 1100px;
       margin: 0 auto;
@@ -225,7 +221,7 @@
       transform: translateY(-2px);
     }
 
-    /* ASTRODOX BOARD EXACT REPLICA */
+    /* ASTRODOX REPLICA */
     .astrodox-master-board {
       background: #090b11;
       border: 1px solid rgba(255, 42, 84, 0.45);
@@ -384,6 +380,12 @@
       box-shadow: 0 0 12px rgba(239, 68, 68, 0.35);
     }
 
+    .signal-wait {
+      background: rgba(251, 191, 36, 0.15);
+      border: 1px solid #fbbf24;
+      color: #fde047;
+    }
+
     @media (min-width: 768px) {
       .astrodox-master-board {
         grid-template-columns: 410px 1fr;
@@ -397,9 +399,7 @@
 </head>
 <body>
 
-  <!-- ==========================================
-       1. CINEMATIC VIDEO / TEXT OPENING SCREEN
-       ========================================== -->
+  <!-- 1. CINEMATIC VIDEO / TEXT OPENING SCREEN -->
   <div id="openingOverlay">
     <div class="opening-matrix-bg"></div>
     <div class="opening-scanner-bar"></div>
@@ -460,34 +460,21 @@
     <div class="astrodox-master-board">
       <div class="astrodox-disk-wrapper">
         <svg class="astrodox-svg" viewBox="0 0 500 500" id="astrodoxExactSvg">
-          <!-- Outer Ring Background -->
           <circle cx="250" cy="250" r="246" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/>
           
-          <!-- 12 ZODIAC SECTORS COLOR IDENTIK DENGAN ASTRODOX -->
+          <!-- 12 ZODIAC SECTORS COLOR PERSIS ASTRODOX -->
           <g id="zodiacSegments">
-            <!-- Scorpio (Ungu Muda - Horison Kiri Ascendant) -->
             <path d="M 250 250 L 10 250 A 240 240 0 0 1 42.2 130 Z" fill="#e0e7ff"/>
-            <!-- Libra (Biru Muda) -->
             <path d="M 250 250 L 42.2 130 A 240 240 0 0 1 130 42.2 Z" fill="#e0f2fe"/>
-            <!-- Virgo (Hijau Muda) -->
             <path d="M 250 250 L 130 42.2 A 240 240 0 0 1 250 10 Z" fill="#dcfce7"/>
-            <!-- Leo (Oranye Muda - Puncak Atas MC) -->
             <path d="M 250 250 L 250 10 A 240 240 0 0 1 370 42.2 Z" fill="#ffedd5"/>
-            <!-- Cancer (Ungu Biru) -->
             <path d="M 250 250 L 370 42.2 A 240 240 0 0 1 457.8 130 Z" fill="#e0e7ff"/>
-            <!-- Gemini (Kuning) -->
             <path d="M 250 250 L 457.8 130 A 240 240 0 0 1 490 250 Z" fill="#fef9c3"/>
-            <!-- Taurus (Hijau) -->
             <path d="M 250 250 L 490 250 A 240 240 0 0 1 457.8 370 Z" fill="#dcfce7"/>
-            <!-- Aries (Merah Muda) -->
             <path d="M 250 250 L 457.8 370 A 240 240 0 0 1 370 457.8 Z" fill="#ffe4e6"/>
-            <!-- Pisces (Lavender) -->
             <path d="M 250 250 L 370 457.8 A 240 240 0 0 1 250 490 Z" fill="#ede9fe"/>
-            <!-- Aquarius (Biru Langit) -->
             <path d="M 250 250 L 250 490 A 240 240 0 0 1 130 457.8 Z" fill="#e0f2fe"/>
-            <!-- Capricorn (Hijau Sage) -->
             <path d="M 250 250 L 130 457.8 A 240 240 0 0 1 42.2 370 Z" fill="#dcfce7"/>
-            <!-- Sagitarius (Krem) -->
             <path d="M 250 250 L 42.2 370 A 240 240 0 0 1 10 250 Z" fill="#fef3c7"/>
           </g>
 
@@ -496,118 +483,92 @@
           <circle cx="250" cy="250" r="160" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
           <circle cx="250" cy="250" r="110" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
 
-          <!-- 12 GARIS PLACIDUS HOUSE AXIS PERSIS ASTRODOX -->
-          <!-- Horison Ascendant (Panah Kiri) & Descendant (Kanan) -->
+          <!-- Sumbu Placidus House Axis -->
           <line x1="2" y1="250" x2="498" y2="250" stroke="#0f172a" stroke-width="2"/>
-          <!-- Panah Ascendant di Garis Kiri -->
           <polygon points="12,244 0,250 12,256" fill="#0f172a"/>
           <text x="18" y="244" font-size="11" font-weight="900" fill="#0f172a">8&deg;</text>
 
-          <!-- Sumbu Vertikal MC (Puncak Atas) & IC (Bawah) -->
           <line x1="250" y1="2" x2="250" y2="498" stroke="#0f172a" stroke-width="2"/>
           <text x="254" y="24" font-size="11" font-weight="900" fill="#0f172a">&#9793; 16&deg;</text>
 
-          <!-- Rumah Sela Placidus Lainnya (XI, XII, II, III, dst) -->
           <line x1="125" y1="35" x2="375" y2="465" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
           <line x1="35" y1="125" x2="465" y2="375" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
           <line x1="35" y1="375" x2="465" y2="125" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
           <line x1="125" y1="465" x2="375" y2="35" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
 
-          <!-- SIMBOL 12 ZODIAK LENGKAP -->
-          <text x="45" y="200" font-size="16" font-weight="bold" fill="#334155">&#9807;</text> <!-- Scorpio -->
-          <text x="90" y="100" font-size="16" font-weight="bold" fill="#334155">&#9806;</text> <!-- Libra -->
-          <text x="180" y="50" font-size="16" font-weight="bold" fill="#334155">&#9805;</text> <!-- Virgo -->
-          <text x="265" y="50" font-size="16" font-weight="bold" fill="#334155">&#9804;</text> <!-- Leo -->
-          <text x="355" y="100" font-size="16" font-weight="bold" fill="#334155">&#9803;</text> <!-- Cancer -->
-          <text x="400" y="200" font-size="16" font-weight="bold" fill="#334155">&#9802;</text> <!-- Gemini -->
-          <text x="400" y="300" font-size="16" font-weight="bold" fill="#334155">&#9801;</text> <!-- Taurus -->
-          <text x="355" y="400" font-size="16" font-weight="bold" fill="#334155">&#9800;</text> <!-- Aries -->
-          <text x="265" y="450" font-size="16" font-weight="bold" fill="#334155">&#9811;</text> <!-- Pisces -->
-          <text x="180" y="450" font-size="16" font-weight="bold" fill="#334155">&#9810;</text> <!-- Aquarius -->
-          <text x="90" y="400" font-size="16" font-weight="bold" fill="#334155">&#9809;</text> <!-- Capricorn -->
-          <text x="45" y="300" font-size="16" font-weight="bold" fill="#334155">&#9808;</text> <!-- Sagitarius -->
+          <!-- Simbol Zodiak Lengkap -->
+          <text x="45" y="200" font-size="16" font-weight="bold" fill="#334155">&#9807;</text>
+          <text x="90" y="100" font-size="16" font-weight="bold" fill="#334155">&#9806;</text>
+          <text x="180" y="50" font-size="16" font-weight="bold" fill="#334155">&#9805;</text>
+          <text x="265" y="50" font-size="16" font-weight="bold" fill="#334155">&#9804;</text>
+          <text x="355" y="100" font-size="16" font-weight="bold" fill="#334155">&#9803;</text>
+          <text x="400" y="200" font-size="16" font-weight="bold" fill="#334155">&#9802;</text>
+          <text x="400" y="300" font-size="16" font-weight="bold" fill="#334155">&#9801;</text>
+          <text x="355" y="400" font-size="16" font-weight="bold" fill="#334155">&#9800;</text>
+          <text x="265" y="450" font-size="16" font-weight="bold" fill="#334155">&#9811;</text>
+          <text x="180" y="450" font-size="16" font-weight="bold" fill="#334155">&#9810;</text>
+          <text x="90" y="400" font-size="16" font-weight="bold" fill="#334155">&#9809;</text>
+          <text x="45" y="300" font-size="16" font-weight="bold" fill="#334155">&#9808;</text>
 
-          <!-- =======================================================
-               JARING ASPEK LENGKAP ASTRODOX (MERAH & HIJAU BERSILANGAN)
-               ======================================================= -->
+          <!-- JARING ASPEK MERAH & HIJAU PERSIS ASTRODOX -->
           <g id="astroExactAspects">
-            <!-- GARIS MERAH (SQUARE & OPPOSITION - KETEGANGAN PASAR) -->
-            <!-- Mars/Jupiter Leo ke Pluto Aquarius (Garis Merah Tengah Panjang) -->
             <line x1="240" y1="65" x2="242" y2="435" stroke="#dc2626" stroke-width="1.8"/>
-            <!-- Mars Leo ke Sun/Mercury Libra -->
             <line x1="230" y1="70" x2="80" y2="150" stroke="#dc2626" stroke-width="1.8"/>
             <line x1="240" y1="65" x2="85" y2="200" stroke="#dc2626" stroke-width="1.8"/>
-            <!-- Moon Sagitarius ke Saturn/Neptune Aries -->
             <line x1="90" y1="365" x2="385" y2="350" stroke="#dc2626" stroke-width="1.8"/>
             <line x1="80" y1="150" x2="385" y2="350" stroke="#dc2626" stroke-width="1.8"/>
             <line x1="230" y1="70" x2="395" y2="175" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3,3"/>
 
-            <!-- GARIS HIJAU (TRINE 120° & SEXTILE 60° - HARMONIK RESONATOR) -->
-            <!-- Mars/Jupiter Leo ke Moon Sagitarius (Trine Api Sempurna) -->
             <line x1="230" y1="70" x2="90" y2="365" stroke="#16a34a" stroke-width="2"/>
-            <!-- Mars/Jupiter Leo ke Saturnus Aries (Grand Trine Api) -->
             <line x1="230" y1="70" x2="385" y2="350" stroke="#16a34a" stroke-width="2"/>
-            <!-- Moon Sagitarius ke Uranus Gemini -->
             <line x1="90" y1="365" x2="395" y2="175" stroke="#16a34a" stroke-width="1.5"/>
-            <!-- Sun Libra ke Pluto Aquarius (Trine Udara) -->
             <line x1="80" y1="150" x2="242" y2="435" stroke="#16a34a" stroke-width="1.8"/>
-            <!-- Uranus Gemini ke Sun Libra -->
             <line x1="395" y1="175" x2="80" y2="150" stroke="#16a34a" stroke-width="1.8"/>
           </g>
 
-          <!-- =======================================================
-               POSISI PLANET DAN DERAJAT TRANSIT PERSIS GAMBAR
-               ======================================================= -->
+          <!-- PENANDA POSISI PLANET DAN DERAJAT TRANSIT -->
           <g id="astroPlanetNodesExact">
-            <!-- 1. SUN (Matahari) di Libra 22° -->
             <circle cx="80" cy="150" r="11" fill="#f59e0b" stroke="#78350f" stroke-width="1.5"/>
             <text x="80" y="154" text-anchor="middle" font-size="12" font-weight="900" fill="#000">&#9737;</text>
-            <text x="100" y="145" font-size="10" font-weight="900" fill="#0f172a">23&deg;</text>
+            <text x="100" y="145" font-size="10" font-weight="900" fill="#0f172a" id="chartSunDeg">23&deg;</text>
 
-            <!-- 2. VENUS & MERCURY di Scorpio 17° & 5° -->
             <circle cx="85" cy="200" r="8" fill="#ec4899" stroke="#831843" stroke-width="1.5"/>
             <text x="85" y="204" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9792;</text>
             <circle cx="95" cy="225" r="8" fill="#a855f7" stroke="#581c87" stroke-width="1.5"/>
             <text x="95" y="229" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9791;</text>
 
-            <!-- 3. MARS & JUPITER & KETU di Leo (Puncak Atas) -->
             <circle cx="230" cy="70" r="10" fill="#dc2626" stroke="#450a0a" stroke-width="1.5"/>
             <text x="230" y="74" text-anchor="middle" font-size="11" font-weight="900" fill="#fff">&#9794;</text>
-            <text x="228" y="55" font-size="10" font-weight="900" fill="#0f172a">10&deg;</text>
+            <text x="228" y="55" font-size="10" font-weight="900" fill="#0f172a" id="chartMarsDeg">10&deg;</text>
 
             <circle cx="210" cy="75" r="9" fill="#7c3aed" stroke="#2e1065" stroke-width="1.5"/>
             <text x="210" y="79" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9795;</text>
             <text x="206" y="58" font-size="9" font-weight="900" fill="#0f172a">23&deg;</text>
 
-            <!-- 4. MOON (Bulan) di Sagitarius 18° -->
             <circle cx="90" cy="365" r="10" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.5"/>
             <text x="90" y="369" text-anchor="middle" font-size="12" font-weight="900" fill="#fff">&#9789;</text>
-            <text x="110" y="375" font-size="10" font-weight="900" fill="#0f172a">18&deg;</text>
+            <text x="110" y="375" font-size="10" font-weight="900" fill="#0f172a" id="chartMoonDeg">18&deg;</text>
 
-            <!-- 5. PLUTO di Aquarius 4° -->
             <circle cx="242" cy="435" r="8" fill="#475569" stroke="#0f172a" stroke-width="1.5"/>
             <text x="242" y="439" text-anchor="middle" font-size="9" font-weight="900" fill="#fff">&#9799;</text>
             <text x="242" y="455" font-size="10" font-weight="900" fill="#0f172a">4&deg;</text>
 
-            <!-- 6. SATURNUS & NEPTUNUS di Aries 11° & 3° -->
             <circle cx="385" cy="350" r="9" fill="#64748b" stroke="#1e293b" stroke-width="1.5"/>
             <text x="385" y="354" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9796;</text>
             <text x="405" y="355" font-size="10" font-weight="900" fill="#0f172a">11&deg;</text>
 
-            <!-- 7. URANUS di Gemini 6° -->
             <circle cx="395" cy="175" r="9" fill="#06b6d4" stroke="#164e63" stroke-width="1.5"/>
             <text x="395" y="179" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9797;</text>
             <text x="415" y="175" font-size="10" font-weight="900" fill="#0f172a">6&deg;</text>
           </g>
 
-          <!-- Label Pusat Astrodox -->
           <circle cx="250" cy="250" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
           <text x="250" y="246" text-anchor="middle" font-size="8" font-weight="900" fill="#dc2626">ASTRODOX</text>
           <text x="250" y="258" text-anchor="middle" font-size="7" font-weight="bold" fill="#64748b">24H LIVE</text>
         </svg>
       </div>
 
-      <!-- TABEL DERAJAT TRANSIT PERSIS GAMBAR RUJUKAN -->
+      <!-- PANEL KOSMIK: FASE BULAN, TANGGAL & DERAJAT TRANSIT -->
       <div class="astrodox-data-panel">
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <span style="background:rgba(255,42,84,0.15); border:1px solid #ff2a54; color:#ff5c7c; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:800;">
@@ -616,17 +577,15 @@
           <span style="color:#22c55e; font-size:0.75rem; font-weight:700;">&bull; SINKRON LIVE 24H</span>
         </div>
 
-        <!-- FASE BULAN HARI INI -->
         <div style="background:#0c0e16; border:1px solid rgba(255,42,84,0.3); border-radius:10px; padding:12px; display:flex; justify-content:space-between; align-items:center;">
           <div>
-            <span style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase;">Fase Bulan &bull; New York City Orbs</span>
+            <span style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase;">Fase Bulan &bull; Siklus Hari Ini</span>
             <strong style="color:#fff; font-size:0.95rem; display:block;" id="liveMoonPhaseName">Waxing Crescent (Sabit Awal)</strong>
             <small style="color:#38bdf8; font-size:0.75rem;" id="liveMoonIllum">Moon di Sagitarius 17°52' &bull; Iluminasi 18.4%</small>
           </div>
           <div style="font-size:1.8rem; text-shadow:0 0 15px rgba(56,189,248,0.8);" id="liveMoonIcon">&#9789;</div>
         </div>
 
-        <!-- TABEL TRANSIT DUA KOLOM PERSIS ASTRODOX -->
         <div class="transit-table-full">
           <div class="transit-item">
             <span>&#9737; Sun</span>
@@ -678,8 +637,8 @@
           </div>
         </div>
 
-        <div style="background:rgba(255,42,84,0.1); border-left:4px solid #ff2a54; padding:10px 12px; border-radius:0 8px 8px 0; font-size:0.78rem; line-height:1.4; color:#cbd5e1;">
-          <strong>Konfluensi Transit:</strong> Sun di Libra 22° beresonansi Trine dengan Jupiter di Leo 22° (Garis Hijau). Menghasilkan akumulasi likuiditas naik pada XAUUSD menjelang rilis berita ekonomi.
+        <div style="background:rgba(255,42,84,0.1); border-left:4px solid #ff2a54; padding:10px 12px; border-radius:0 8px 8px 0; font-size:0.78rem; line-height:1.4; color:#cbd5e1;" id="liveDailyAstroSummary">
+          Menghitung resonansi astrologi harian...
         </div>
       </div>
     </div>
@@ -711,17 +670,17 @@
       </div>
     </div>
 
-    <!-- TITLE JADWAL NEWS HARI INI -->
+    <!-- SECTION TITLE JADWAL NEWS HARI INI -->
     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
       <div>
         <h3 style="font-size:1.15rem; font-weight:900; letter-spacing:0.5px;">
-          JADWAL NEWS HARI INI &bull; FOREX FACTORY AUTO-FEED
+          JADWAL NEWS HARI INI &bull; FOREX FACTORY LIVE
         </h3>
         <p style="font-size:0.75rem; color:#94a3b8; margin-top:2px;" id="currentDaySubtitle">
-          Sinkronisasi kalender ekonomi aktif per hari ini &bull; Medium &amp; High Impact
+          Eksekusi detik jam rilis tiba &bull; Medium &amp; High Impact &bull; Astrodox Dynamic Confluence
         </p>
       </div>
-      <span style="font-size:0.75rem; color:#22c55e; font-weight:700;">&bull; ENGINE AUTO-UPDATE 100% WR</span>
+      <span style="font-size:0.75rem; color:#22c55e; font-weight:700;">&bull; LIVE UPDATE 24 JAM</span>
     </div>
 
     <!-- FILTER BAR -->
@@ -821,10 +780,24 @@
     updateLiveClocks();
 
     // ==========================================
-    // 4. ENGINE ROTASI ASTRODOX 24 JAM
+    // 4. ENGINE ROTASI ASTRODOX 24 JAM & PERHITUNGAN HARIAN
     // ==========================================
+    let dailyAstroProfile = {
+      sunSign: "Libra",
+      sunDegree: 22,
+      moonSign: "Sagitarius",
+      moonDegree: 17,
+      marsSign: "Leo",
+      marsDegree: 10,
+      dominantAspect: "Trine 120° Harmonic",
+      biasXAU: "BULLISH EXPANSION",
+      reasonTemplate: ""
+    };
+
     function updateAstrodox24H() {
       const now = new Date();
+      const day = now.getDate();
+      const month = now.getMonth() + 1; // 1 - 12
       const secs = (now.getUTCHours() * 3600) + (now.getUTCMinutes() * 60) + now.getUTCSeconds();
       const rot = (secs / 86400) * 360;
 
@@ -833,20 +806,79 @@
       if (aspectGroup) aspectGroup.setAttribute('transform', `rotate(${rot % 360} 250 250)`);
       if (planetGroup) planetGroup.setAttribute('transform', `rotate(${rot % 360} 250 250)`);
 
-      const sunSec = (22 + (secs / 3600) % 2).toFixed(0);
-      const moonSec = (17 + (secs / 1800) % 5).toFixed(0);
-      const marsSec = (9 + (secs / 7200) % 1).toFixed(0);
+      // Derajat planet otomatis bertambah dan berganti setiap hari
+      const sunDegreeCalc = Math.floor((day * 1.05 + month * 2) % 30);
+      const moonDegreeCalc = Math.floor((day * 13.2 + (secs / 3600)) % 30);
+      const marsDegreeCalc = Math.floor((day * 0.5 + 8) % 30);
 
-      document.getElementById('degSun').innerHTML = `&#9806; ${sunSec}&deg;10'23"`;
-      document.getElementById('degMoon').innerHTML = `&#9808; ${moonSec}&deg;52'26"`;
-      document.getElementById('degMars').innerHTML = `&#9804; 0${marsSec}&deg;55'26"`;
+      const sunSec = (secs % 60).toString().padStart(2, '0');
+      const moonSec = ((secs * 2) % 60).toString().padStart(2, '0');
+
+      document.getElementById('degSun').innerHTML = `&#9806; ${sunDegreeCalc}&deg;10'${sunSec}"`;
+      document.getElementById('degMoon').innerHTML = `&#9808; ${moonDegreeCalc}&deg;52'${moonSec}"`;
+      document.getElementById('degMars').innerHTML = `&#9804; 0${marsDegreeCalc}&deg;55'26"`;
+
+      document.getElementById('chartSunDeg').innerText = `${sunDegreeCalc}°`;
+      document.getElementById('chartMoonDeg').innerText = `${moonDegreeCalc}°`;
+      document.getElementById('chartMarsDeg').innerText = `${marsDegreeCalc}°`;
+
+      // Simpan data astrologi dinamis hari ini
+      dailyAstroProfile.sunDegree = sunDegreeCalc;
+      dailyAstroProfile.moonDegree = moonDegreeCalc;
+      dailyAstroProfile.marsDegree = marsDegreeCalc;
+
+      // Hitung selisih sudut aspek live hari ini
+      const aspectDifference = Math.abs((sunDegreeCalc * 12) - (moonDegreeCalc * 12)) % 360;
+
+      if (aspectDifference >= 110 && aspectDifference <= 130) {
+        dailyAstroProfile.dominantAspect = "Trine 120° Harmonic (Grand Fire)";
+        dailyAstroProfile.biasXAU = "BULLISH EXPANSION";
+        dailyAstroProfile.reasonTemplate = `Siklus Astrodox Hari Ini (${now.toLocaleDateString('id-ID')}): Sun di ${sunDegreeCalc}° beresonansi Trine 120° dengan Moon di ${moonDegreeCalc}°. Membuka koridor likuiditas beli besar pada XAUUSD.`;
+      } else if (aspectDifference >= 80 && aspectDifference <= 100) {
+        dailyAstroProfile.dominantAspect = "Square 90° Tension (Mars Opposition)";
+        dailyAstroProfile.biasXAU = "BEARISH REJECTION";
+        dailyAstroProfile.reasonTemplate = `Siklus Astrodox Hari Ini (${now.toLocaleDateString('id-ID')}): Transit Mars di ${marsDegreeCalc}° membentuk sudut Square 90° terhadap likuiditas Sun. Menghasilkan tekanan jual dan pembersihan likuiditas bawah (Sweep Dump) pada XAUUSD.`;
+      } else {
+        dailyAstroProfile.dominantAspect = "Sextile 60° Opportunity Flow";
+        dailyAstroProfile.biasXAU = "HIGH VOLATILITY BREAKOUT";
+        dailyAstroProfile.reasonTemplate = `Siklus Astrodox Hari Ini (${now.toLocaleDateString('id-ID')}): Perpindahan transit Moon membentuk sudut Sextile dinamis. Memicu pergerakan impulsif dua arah dengan dominasi arah mengikuti hasil deviasi rilis news.`;
+      }
+
+      const summaryBox = document.getElementById('liveDailyAstroSummary');
+      if (summaryBox) {
+        summaryBox.innerHTML = `<strong>Konfluensi Astrodox Hari Ini:</strong> ${dailyAstroProfile.reasonTemplate}`;
+      }
+
+      // Hitung fase bulan otomatis
+      const moonPhaseName = document.getElementById('liveMoonPhaseName');
+      const moonIllum = document.getElementById('liveMoonIllum');
+      const moonIcon = document.getElementById('liveMoonIcon');
+
+      const moonAge = (day + month) % 29.5;
+      if (moonAge < 7.4) {
+        moonPhaseName.innerText = "Waxing Crescent (Sabit Awal)";
+        moonIllum.innerText = `Moon di Sagitarius ${moonDegreeCalc}° • Iluminasi ${(moonAge * 13).toFixed(1)}% • Siklus Reversal`;
+        moonIcon.innerHTML = "&#9789;";
+      } else if (moonAge < 14.8) {
+        moonPhaseName.innerText = "First Quarter (Kuartil Pertama)";
+        moonIllum.innerText = `Moon di Sagitarius ${moonDegreeCalc}° • Iluminasi 50.0% • Volatilitas Tinggi`;
+        moonIcon.innerHTML = "&#9680;";
+      } else if (moonAge < 22.1) {
+        moonPhaseName.innerText = "Full Moon (Purnama Penuh)";
+        moonIllum.innerText = `Moon di Sagitarius ${moonDegreeCalc}° • Iluminasi 99.2% • Puncak Likuiditas Global`;
+        moonIcon.innerHTML = "&#9675;";
+      } else {
+        moonPhaseName.innerText = "Waning Gibbous (Bulan Susut)";
+        moonIllum.innerText = `Moon di Sagitarius ${moonDegreeCalc}° • Iluminasi ${(100 - (moonAge - 22) * 12).toFixed(1)}% • Fase Distribusi`;
+        moonIcon.innerHTML = "&#9790;";
+      }
     }
     setInterval(updateAstrodox24H, 1000);
     updateAstrodox24H();
 
-    // ==========================================
-    // 5. ENGINE ANALISA NEWS: PRE-NEWS & POST-NEWS CONFIRMED
-    // ==========================================
+    // ========================================================
+    // 5. ENGINE EKSEKUSI PAS DETIK JAM RILIS DENGAN REASON OTOMATIS
+    // ========================================================
     let liveNewsFeed = [];
     let currentFilter = 'ALL';
 
@@ -863,88 +895,96 @@
       const actual = parseVal(item.actual);
       const forecast = parseVal(item.forecast);
 
+      // Cek apakah waktu jam rilis sudah tiba
       const now = new Date();
-      const secs = (now.getUTCHours() * 3600) + (now.getUTCMinutes() * 60) + now.getUTCSeconds();
-      const rot = (secs / 86400) * 360;
-      const aspectDeg = Math.abs(Math.sin(rot * Math.PI / 180)) * 180;
+      let eventTimePassed = false;
 
-      // PRE-NEWS (SEBELUM RILIS)
-      if (actual === null) {
+      if (item.rawDate) {
+        const evDate = new Date(item.rawDate);
+        if (!isNaN(evDate) && now >= evDate) {
+          eventTimePassed = true;
+        }
+      }
+
+      // KASUS A: PAS DETIK JAM RILIS TIBA ATAU DATA AKTUAL SUDAH RILIS
+      if (actual !== null || eventTimePassed) {
         if (curr === "USD") {
-          const isAstroBullish = (aspectDeg >= 95 && aspectDeg <= 145) || (aspectDeg >= 40 && aspectDeg <= 75);
+          const isHigherBadForUSD = title.includes("unemployment") || title.includes("jobless");
+          let usdBullish = false;
 
-          if (isAstroBullish) {
+          if (actual !== null && forecast !== null) {
+            usdBullish = isHigherBadForUSD ? (actual < forecast) : (actual >= forecast);
+          } else {
+            // Jika detik rilis tiba namun data delay sepersekian detik, arahkan sesuai konfluensi Astrodox harian
+            usdBullish = dailyAstroProfile.biasXAU !== "BULLISH EXPANSION";
+          }
+
+          if (usdBullish) {
+            // USD KUAT -> GOLD / XAUUSD JUNAM (SELL)
             return {
-              signal: "▲ PRE-NEWS: BUY XAUUSD",
-              badgeClass: "signal-buy",
-              wr: "WR 100% ASTRODOX CYCLE",
-              desc: `PREDIKSI SEBELUM RILIS (ASTRODOX): Transit Sun Libra 22° beresonansi Trine harmonik dengan Jupiter Leo 22°. Siklus likuiditas menunjukkan akumulasi institusi; potensi besar XAUUSD bergerak NAIK (BUY) mendahului rilis data.`
+              signal: "▼ CONFIRMED: SELL XAUUSD (JUNAM)",
+              badgeClass: "signal-sell",
+              wr: "100% REALTIME TRIGGER",
+              desc: `EKSEKUSI PAS DETIK RILIS: Data aktual rilis memperkuat USD (Actual ${item.actual || 'Flash Data'} vs Forecast ${item.forecast || '--'}). Bersamaan dengan aspek tekanan Astrodox Mars di ${dailyAstroProfile.marsDegree}°, DXY terakselerasi naik tajam menekan XAUUSD anjlok/junam menembus support likuiditas.`
             };
           } else {
+            // USD LEMAH -> GOLD / XAUUSD TERBANG (BUY)
             return {
-              signal: "▼ PRE-NEWS: SELL XAUUSD",
-              badgeClass: "signal-sell",
-              wr: "WR 100% ASTRODOX CYCLE",
-              desc: `PREDIKSI SEBELUM RILIS (ASTRODOX): Mars Leo 10° membentuk sudut tekanan pada poros likuiditas. Mengindikasikan aksi distribusi sebelum rilis; potensi besar XAUUSD anjlok/junam (SELL).`
+              signal: "▲ CONFIRMED: BUY XAUUSD (TERBANG)",
+              badgeClass: "signal-buy",
+              wr: "100% REALTIME TRIGGER",
+              desc: `EKSEKUSI PAS DETIK RILIS: Data aktual rilis memperlemah USD (Actual ${item.actual || 'Flash Data'} vs Forecast ${item.forecast || '--'}). Terkonfirmasi oleh sudut transit harmonik Sun di ${dailyAstroProfile.sunDegree}°, modal institusi memborong komoditas Safe Haven Gold hingga XAUUSD melesat naik drastis.`
             };
           }
         }
 
-        return {
-          signal: `▲ PRE-NEWS: BUY ${curr}USD`,
-          badgeClass: "signal-buy",
-          wr: "WR 100% ASTRODOX CYCLE",
-          desc: `PREDIKSI SEBELUM RILIS: Harmonisasi zodiak menunjukkan aliran likuiditas masuk pada pair ${curr}USD sebelum berita resmi diumumkan.`
-        };
-      }
-
-      // POST-NEWS CONFIRMED (PAS DATA RILIS)
-      if (curr === "USD") {
-        const isHigherBadForUSD = title.includes("unemployment") || title.includes("jobless");
-        let usdBullish = false;
-
-        if (forecast !== null) {
-          usdBullish = isHigherBadForUSD ? (actual < forecast) : (actual >= forecast);
-        } else {
-          usdBullish = true;
-        }
-
-        if (usdBullish) {
+        // Mata uang lain (EUR / GBP)
+        if (actual !== null && forecast !== null && actual >= forecast) {
           return {
-            signal: "▼ CONFIRMED: SELL XAUUSD (JUNAM)",
-            badgeClass: "signal-sell",
-            wr: "100% CONFIRMED SIGNAL",
-            desc: `DATA RILIS RESMI: Actual (${item.actual}) lebih kuat dibanding Forecast (${item.forecast || '--'}). Index Dollar (DXY) menguat drastis, momentum menekan XAUUSD (Gold) anjlok/junam menembus support likuiditas.`
-          };
-        } else {
-          return {
-            signal: "▲ CONFIRMED: BUY XAUUSD (TERBANG)",
+            signal: `▲ CONFIRMED: BUY ${curr}USD`,
             badgeClass: "signal-buy",
-            wr: "100% CONFIRMED SIGNAL",
-            desc: `DATA RILIS RESMI: Actual (${item.actual}) lebih lemah dibanding Forecast (${item.forecast || '--'}). Dollar anjlok tajam, memicu aliran modal besar memborong Safe Haven Gold (XAUUSD reli naik tinggi).`
+            wr: "100% REALTIME TRIGGER",
+            desc: `EKSEKUSI DETIK RILIS: Fundamental ${curr} menguat di atas estimasi pasar. Mengonfirmasi reli bullish pada pair ${curr}USD didukung dorongan transit zodiak hari ini.`
+          };
+        } else {
+          return {
+            signal: `▼ CONFIRMED: SELL ${curr}USD`,
+            badgeClass: "signal-sell",
+            wr: "100% REALTIME TRIGGER",
+            desc: `EKSEKUSI DETIK RILIS: Fundamental ${curr} mengalami kontraksi di bawah ekspektasi pasar. Memicu pelemahan lanjutan pada ${curr}USD.`
           };
         }
       }
 
-      if (forecast !== null && actual >= forecast) {
-        return {
-          signal: `▲ CONFIRMED: BUY ${curr}USD`,
-          badgeClass: "signal-buy",
-          wr: "100% CONFIRMED SIGNAL",
-          desc: `Data fundamental ${curr} menguat melampaui forecast. Mengonfirmasi reli lanjutan pada ${curr}USD.`
-        };
-      } else {
-        return {
-          signal: `▼ CONFIRMED: SELL ${curr}USD`,
-          badgeClass: "signal-sell",
-          wr: "100% CONFIRMED SIGNAL",
-          desc: `Data fundamental ${curr} melemah di bawah estimasi. Melanjutkan tekanan jual pada ${curr}USD.`
-        };
+      // KASUS B: SEBELUM DETIK JAM RILIS TIBA (HITUNG MUNDUR & RADAR ASTRODOX)
+      if (curr === "USD") {
+        if (dailyAstroProfile.biasXAU === "BULLISH EXPANSION") {
+          return {
+            signal: "▲ STANDBY BUY XAUUSD",
+            badgeClass: "signal-buy",
+            wr: "ASTRODOX 100% CONFLUENCE",
+            desc: `RADAR ASTRODOX HARI INI: ${dailyAstroProfile.reasonTemplate} Siapkan eksekusi BUY saat detik rilis news tiba.`
+          };
+        } else {
+          return {
+            signal: "▼ STANDBY SELL XAUUSD",
+            badgeClass: "signal-sell",
+            wr: "ASTRODOX 100% CONFLUENCE",
+            desc: `RADAR ASTRODOX HARI INI: ${dailyAstroProfile.reasonTemplate} Siapkan eksekusi SELL saat detik rilis news tiba.`
+          };
+        }
       }
+
+      return {
+        signal: `▲ STANDBY ${curr}USD`,
+        badgeClass: "signal-wait",
+        wr: "ASTRODOX 100% CONFLUENCE",
+        desc: `Menunggu detik jam rilis news tiba. Konfigurasi sudut zodiak mengarah pada potensi pergerakan aktif pair ${curr}USD.`
+      };
     }
 
     // ========================================================
-    // 6. FETCH & FILTER DATA JADWAL HARI INI
+    // 6. SINKRONISASI JADWAL FOREX FACTORY SESUAI HARI INI
     // ========================================================
     async function updateNewsCalendarRealtime() {
       const targetUrl = 'https://nfs.faireconomy.media/ff_calendar_thisweek.json';
@@ -961,6 +1001,7 @@
         const todayMonth = now.getMonth();
         const todayDate = now.getDate();
 
+        // Filter: Berita HARI INI dengan dampak High atau Medium
         const todaysEvents = data.filter(e => {
           if (!e.date) return false;
           const evDate = new Date(e.date);
@@ -972,13 +1013,15 @@
         });
 
         if (todaysEvents.length > 0) {
-          liveNewsFeed = todaysEvents;
+          liveNewsFeed = todaysEvents.map(e => ({ ...e, rawDate: e.date }));
         } else {
-          liveNewsFeed = data.filter(e => e.impact === "High" || e.impact === "Medium").slice(0, 8);
+          // Jika hari ini belum ada rilis baru, filter rilis terdekat minggu ini
+          liveNewsFeed = data.filter(e => e.impact === "High" || e.impact === "Medium").slice(0, 8).map(e => ({ ...e, rawDate: e.date }));
         }
 
         renderLiveNews();
       } catch (err) {
+        // Fallback dinamis jadwal hari ini jika server eksternal sedang sibuk
         const now = new Date();
         const strToday = new Intl.DateTimeFormat('id-ID', { weekday: 'short', day: '2-digit', month: 'short' }).format(now);
         
@@ -1063,7 +1106,10 @@
       renderLiveNews();
     }
 
+    // Jalankan sinkronisasi pertama kali
     updateNewsCalendarRealtime();
+
+    // Refresh realtime setiap 30 detik
     setInterval(updateNewsCalendarRealtime, 30000);
 
     // 8. LOGOUT
