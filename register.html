@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daftar Member | Zero Syndicate</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Library Resmi Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -17,96 +19,105 @@
       <div class="auth-header">
         <span class="auth-badge">&#9733; Pendaftaran Member</span>
         <h2>Gabung Zero Syndicate</h2>
-        <p>Isi formulir berikut. Data pendaftaran Anda akan langsung kami verifikasi.</p>
+        <p>Daftarkan akun Anda. Setelah mendaftar, akun akan diverifikasi (di-ACC) oleh Admin sebelum akses materi dibuka.</p>
       </div>
 
-      <!-- Kotak Notifikasi Hasil Kirim -->
-      <div id="formAlert" class="alert-box" style="display: none;"></div>
+      <!-- Kotak Notifikasi -->
+      <div id="alertBox" class="alert-box" style="display: none;"></div>
 
-      <!-- FORM PENDAFTARAN DENGAN ACCESS KEY -->
-      <form id="registerForm" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="eafd5ff1-026b-482d-a5de-4ed80d9f24d5" />
-        <input type="hidden" name="subject" value="Member Baru Mendaftar di Zero Syndicate" />
-        <input type="hidden" name="from_name" value="Zero Syndicate System" />
-
+      <form id="registerForm">
         <div class="form-group">
           <label for="nama_lengkap">Nama Lengkap</label>
-          <input type="text" id="nama_lengkap" name="nama_lengkap" class="form-input" placeholder="Masukkan nama Anda" required />
+          <input type="text" id="nama_lengkap" class="form-input" placeholder="Masukkan nama Anda" required />
         </div>
 
         <div class="form-group">
           <label for="email_member">Alamat Email Aktif</label>
-          <input type="email" id="email_member" name="email_member" class="form-input" placeholder="nama@email.com" required />
+          <input type="email" id="email_member" class="form-input" placeholder="nama@email.com" required />
         </div>
 
         <div class="form-group">
-          <label for="kontak_wa">Nomor WhatsApp / Username Telegram</label>
-          <input type="text" id="kontak_wa" name="kontak_wa" class="form-input" placeholder="Contoh: 0882010445069 atau @username" required />
+          <label for="password_member">Password Akun</label>
+          <input type="password" id="password_member" class="form-input" placeholder="Minimal 6 karakter" required minlength="6" />
         </div>
 
         <div class="form-group">
-          <label for="pengalaman">Tingkat Pengalaman Trading</label>
-          <select id="pengalaman" name="pengalaman" class="form-input" style="background:#090a0e; color:#fff;" required>
-            <option value="Pemula / Baru Belajar">Pemula (Baru Mengenal Trading)</option>
-            <option value="Menengah (1-2 Tahun)">Menengah (Pernah Trading)</option>
-            <option value="Lanjutan / Ingin Kuasai SMC">Lanjutan (Fokus SMC & Gold)</option>
+          <label for="kontak_wa">Nomor WhatsApp / Telegram</label>
+          <input type="text" id="kontak_wa" class="form-input" placeholder="Contoh: 0882010445069" required />
+        </div>
+
+        <div class="form-group">
+          <label for="trading_exp">Tingkat Pengalaman Trading</label>
+          <select id="trading_exp" class="form-input" style="background:#090a0e; color:#fff;" required>
+            <option value="Pemula">Pemula (Baru Mengenal Trading)</option>
+            <option value="Menengah">Menengah (1-2 Tahun)</option>
+            <option value="Advanced">Advanced (Fokus SMC & Gold)</option>
           </select>
         </div>
 
-        <button type="submit" id="submitBtn" class="auth-btn-submit">Kirim Pendaftaran &rarr;</button>
+        <button type="submit" id="submitBtn" class="auth-btn-submit">Daftar Sekarang &rarr;</button>
       </form>
 
-      <!-- Rekomendasi Akun Broker Resmi -->
       <div class="broker-box">
-        <p>Sudah punya akun broker partner resmi kami?</p>
-        <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" rel="noopener" class="btn-outline" style="display:block; padding: 10px; font-size: 0.85rem;">Buka Akun Valetax Sekarang &nearr;</a>
+        <p>Sudah punya akun broker partner resmi?</p>
+        <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" rel="noopener" class="btn-outline" style="display:block; padding: 10px; font-size: 0.85rem;">Buka Akun Valetax &nearr;</a>
       </div>
 
       <div class="auth-footer">
-        Sudah memiliki akun? <a href="login.html">Masuk di sini</a>
+        Sudah punya akun? <a href="login.html">Masuk di sini</a>
       </div>
     </div>
   </div>
 
   <script>
-    const registerForm = document.getElementById('registerForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const formAlert = document.getElementById('formAlert');
+    const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
+    const SUPABASE_ANON_KEY = 'Sb_publishable_VMXDKPEBhmfcaTo2P5-xoA_7HMoBKEv';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    registerForm.addEventListener('submit', function(e) {
+    const form = document.getElementById('registerForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const alertBox = document.getElementById('alertBox');
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       submitBtn.disabled = true;
-      submitBtn.innerText = 'Mengirim data...';
-      formAlert.style.display = 'none';
+      submitBtn.innerText = 'Mendaftarkan akun...';
+      alertBox.style.display = 'none';
 
-      const formData = new FormData(registerForm);
+      const email = document.getElementById('email_member').value.trim();
+      const password = document.getElementById('password_member').value;
+      const fullName = document.getElementById('nama_lengkap').value.trim();
+      const contact = document.getElementById('kontak_wa').value.trim();
+      const exp = document.getElementById('trading_exp').value;
 
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      })
-      .then(async (response) => {
-        let res = await response.json();
-        if (response.status === 200) {
-          formAlert.className = 'alert-box alert-success';
-          formAlert.innerHTML = '<strong>Sukses!</strong> Formulir pendaftaran berhasil terkirim ke email admin. Kami akan segera menghubungi Anda.';
-          formAlert.style.display = 'block';
-          registerForm.reset();
-        } else {
-          formAlert.className = 'alert-box alert-error';
-          formAlert.innerHTML = '<strong>Gagal:</strong> ' + (res.message || 'Terjadi gangguan koneksi.');
-          formAlert.style.display = 'block';
-        }
-      })
-      .catch((error) => {
-        formAlert.className = 'alert-box alert-error';
-        formAlert.innerHTML = '<strong>Gagal:</strong> Tidak dapat mengirim formulir saat ini.';
-        formAlert.style.display = 'block';
-      })
-      .finally(() => {
+      try {
+        const { data, error } = await supabaseClient.auth.signUp({
+          email: email,
+          password: password,
+          options: {
+            data: {
+              full_name: fullName,
+              contact: contact,
+              trading_exp: exp
+            }
+          }
+        });
+
+        if (error) throw error;
+
+        alertBox.className = 'alert-box alert-success';
+        alertBox.innerHTML = `<strong>Registrasi Berhasil!</strong> Akun Anda berstatus <em>PENDING</em>. Silakan hubungi Admin di WhatsApp untuk aktivasi (ACC) akun Anda.`;
+        alertBox.style.display = 'block';
+        form.reset();
+
+      } catch (err) {
+        alertBox.className = 'alert-box alert-error';
+        alertBox.innerHTML = `<strong>Gagal:</strong> ${err.message || 'Terjadi gangguan koneksi.'}`;
+        alertBox.style.display = 'block';
+      } finally {
         submitBtn.disabled = false;
-        submitBtn.innerText = 'Kirim Pendaftaran →';
-      });
+        submitBtn.innerText = 'Daftar Sekarang →';
+      }
     });
   </script>
 </body>
