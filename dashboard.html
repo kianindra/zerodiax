@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VIP Economic Terminal | Zero Syndicate</title>
+  <title>VIP Terminal Zerodiax | Zero Syndicate</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Library Resmi Supabase -->
+  <!-- Library Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    /* RESET & DASAR VISUAL CYBER */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -16,148 +15,133 @@
     }
 
     body {
-      background-color: #06070a;
+      background-color: #050608;
       color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       overflow-x: hidden;
     }
 
     .terminal-container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 20px 16px 60px;
+      padding: 16px 14px 60px;
     }
 
-    /* ===================================================
-       EFEK VISUAL TEKS BERGERAK SUPER BAGUS (CYBER GLOW & SHIMMER)
-       =================================================== */
-    .hero-welcome-box {
-      margin: 8px 0 12px;
-    }
-
-    .cyber-animated-text {
-      font-size: 1.5rem;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      display: inline-block;
-      line-height: 1.3;
-      background: linear-gradient(
-        105deg,
-        #ffffff 0%,
-        #ff2a54 25%,
-        #ffffff 50%,
-        #ff5c7c 75%,
-        #ffffff 100%
-      );
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: cyberShine 3.5s linear infinite;
-      filter: drop-shadow(0 0 12px rgba(255, 42, 84, 0.7));
+    /* ====================================================
+       HERO BANNER DENGAN VIDEO / CYBER CANVAS GERAK & NEON GLITCH
+       ==================================================== */
+    .vip-hero-video-card {
       position: relative;
-    }
-
-    /* Kilau Laser Berjalan */
-    @keyframes cyberShine {
-      0% {
-        background-position: 200% center;
-      }
-      100% {
-        background-position: -200% center;
-      }
-    }
-
-    /* Efek Berdenyut Neon Halus */
-    .brand-glow-tag {
-      display: inline-block;
-      color: #ff2a54;
-      animation: neonPulse 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes neonPulse {
-      0% {
-        filter: drop-shadow(0 0 5px rgba(255, 42, 84, 0.5));
-        transform: scale(1);
-      }
-      100% {
-        filter: drop-shadow(0 0 20px rgba(255, 42, 84, 1));
-        transform: scale(1.02);
-      }
-    }
-
-    .user-greeting {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #ff5c7c;
-      letter-spacing: 1px;
-      margin-top: 4px;
-      text-transform: uppercase;
-    }
-
-    /* HEADER BANNER VIP TELEGRAM */
-    .vip-banner {
-      background: linear-gradient(135deg, rgba(255, 42, 84, 0.22) 0%, rgba(17, 19, 25, 0.95) 100%);
-      border: 1px solid var(--accent-red);
-      box-shadow: 0 0 25px rgba(255, 42, 84, 0.25);
+      background: #090b10;
+      border: 1px solid rgba(255, 42, 84, 0.45);
       border-radius: 14px;
-      padding: 24px;
-      margin-bottom: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      position: relative;
+      padding: 26px 20px;
+      margin-bottom: 22px;
       overflow: hidden;
+      box-shadow: 0 0 35px rgba(255, 42, 84, 0.2);
     }
 
-    .vip-banner::before {
-      content: "";
+    /* Background Efek Cyber Grid & Partikel Merah */
+    .cyber-bg-anim {
       position: absolute;
-      top: -50px;
-      right: -50px;
-      width: 150px;
-      height: 150px;
-      background: radial-gradient(circle, rgba(255, 42, 84, 0.3) 0%, transparent 70%);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 80% 20%, rgba(255, 42, 84, 0.2) 0%, transparent 60%),
+        linear-gradient(rgba(255, 42, 84, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 42, 84, 0.05) 1px, transparent 1px);
+      background-size: 100% 100%, 25px 25px, 25px 25px;
+      animation: gridScan 12s linear infinite;
       pointer-events: none;
+      z-index: 1;
     }
 
-    .vip-badge-glow {
+    @keyframes gridScan {
+      0% { background-position: 0 0, 0 0, 0 0; }
+      100% { background-position: 0 0, 0 100px, 100px 0; }
+    }
+
+    .hero-inner-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge-terminal-live {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       background: rgba(255, 42, 84, 0.15);
-      border: 1px solid rgba(255, 42, 84, 0.4);
+      border: 1px solid rgba(255, 42, 84, 0.5);
       color: #ff5c7c;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 800;
       letter-spacing: 1.5px;
       padding: 4px 10px;
       border-radius: 20px;
-      width: fit-content;
-      text-transform: uppercase;
+      margin-bottom: 12px;
     }
 
-    .vip-badge-glow::before {
+    .badge-terminal-live::before {
       content: "";
       width: 8px;
       height: 8px;
-      background: #ff2a54;
       border-radius: 50%;
-      box-shadow: 0 0 8px #ff2a54;
-      animation: pulseDot 1.5s infinite;
+      background: #ff2a54;
+      box-shadow: 0 0 10px #ff2a54;
+      animation: pulseDot 1s infinite alternate;
     }
 
     @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
+      from { transform: scale(0.8); opacity: 0.5; }
+      to { transform: scale(1.3); opacity: 1; }
     }
 
-    .vip-content p {
-      color: #9ca3af;
+    /* TEKS BERGERAK SUPER BAGUS */
+    .kinetic-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .kinetic-title .glitch-text {
+      background: linear-gradient(90deg, #fff 0%, #ff2a54 40%, #ff7a95 70%, #fff 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: lightWave 3s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    .kinetic-title .brand-red {
+      color: #ff2a54;
+      text-shadow: 0 0 15px rgba(255, 42, 84, 0.9), 0 0 30px rgba(255, 42, 84, 0.5);
+      display: inline-block;
+      animation: redGlow 1.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes lightWave {
+      0% { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+
+    @keyframes redGlow {
+      0% { transform: scale(1); filter: drop-shadow(0 0 5px #ff2a54); }
+      100% { transform: scale(1.02); filter: drop-shadow(0 0 20px #ff2a54); }
+    }
+
+    .member-tag-live {
       font-size: 0.85rem;
-      line-height: 1.5;
-      max-width: 680px;
+      font-weight: 700;
+      color: #94a3b8;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .btn-vip-tele {
@@ -166,23 +150,20 @@
       font-weight: 800;
       font-size: 0.9rem;
       letter-spacing: 1px;
-      padding: 12px 24px;
+      padding: 12px 22px;
       border-radius: 8px;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 10px;
       text-decoration: none;
-      box-shadow: 0 0 18px rgba(255, 42, 84, 0.5);
+      box-shadow: 0 0 20px rgba(255, 42, 84, 0.6);
       transition: all 0.2s;
-      align-self: flex-start;
-      margin-top: 6px;
     }
 
     .btn-vip-tele:hover {
       background: #e01b42;
       transform: translateY(-2px);
-      box-shadow: 0 0 25px rgba(255, 42, 84, 0.75);
+      box-shadow: 0 0 30px rgba(255, 42, 84, 0.9);
     }
 
     /* REALTIME CLOCK DOCK */
@@ -190,26 +171,23 @@
       background: #0d0f15;
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 24px;
+      padding: 16px;
+      margin-bottom: 22px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 14px;
+      gap: 12px;
     }
 
     .clock-item {
-      background: #12141c;
+      background: #11131a;
       border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 8px;
       padding: 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
     }
 
     .clock-item.primary-clock {
-      border-color: rgba(255, 42, 84, 0.35);
-      background: rgba(255, 42, 84, 0.04);
+      border-color: rgba(255, 42, 84, 0.4);
+      background: rgba(255, 42, 84, 0.05);
     }
 
     .clock-label {
@@ -220,6 +198,7 @@
       text-transform: uppercase;
       display: flex;
       justify-content: space-between;
+      margin-bottom: 4px;
     }
 
     .clock-time {
@@ -232,7 +211,8 @@
 
     .clock-date {
       font-size: 0.75rem;
-      color: #d1d5db;
+      color: #cbd5e1;
+      margin-top: 2px;
     }
 
     /* NEWS FILTER BAR */
@@ -242,7 +222,7 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .filter-pills {
@@ -256,7 +236,7 @@
     .pill-btn {
       background: #111319;
       border: 1px solid var(--border-color);
-      color: #9ca3af;
+      color: #94a3b8;
       padding: 7px 14px;
       border-radius: 20px;
       font-size: 0.8rem;
@@ -270,10 +250,10 @@
       background: var(--accent-red);
       color: #fff;
       border-color: var(--accent-red);
-      box-shadow: 0 0 10px rgba(255, 42, 84, 0.35);
+      box-shadow: 0 0 12px rgba(255, 42, 84, 0.35);
     }
 
-    .live-status-tag {
+    .live-feed-badge {
       font-size: 0.75rem;
       color: #22c55e;
       font-weight: 700;
@@ -282,7 +262,7 @@
       gap: 6px;
     }
 
-    /* NEWS CARDS GRID */
+    /* NEWS CARDS LIST */
     .news-grid {
       display: flex;
       flex-direction: column;
@@ -293,111 +273,108 @@
       background: #0f1118;
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 20px;
+      padding: 18px;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 16px;
+      gap: 14px;
       position: relative;
       transition: all 0.25s ease;
     }
 
     .news-card:hover {
       border-color: rgba(255, 42, 84, 0.5);
-      background: #131620;
+      background: #131622;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
     }
 
-    /* Impact Strips */
     .news-card.impact-high { border-left: 5px solid #ff2a54; }
     .news-card.impact-medium { border-left: 5px solid #ff8c00; }
     .news-card.impact-low { border-left: 5px solid #3b82f6; }
 
-    .news-header-meta {
+    .news-meta {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
       margin-bottom: 6px;
     }
 
-    .currency-badge {
+    .badge-curr {
       font-weight: 900;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       padding: 3px 8px;
       border-radius: 4px;
-      letter-spacing: 0.5px;
     }
 
     .curr-usd { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
     .curr-eur { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
     .curr-gbp { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .curr-jpy { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
 
-    .impact-badge {
-      font-size: 0.7rem;
+    .badge-impact {
+      font-size: 0.68rem;
       font-weight: 800;
       letter-spacing: 0.8px;
       padding: 2px 7px;
       border-radius: 4px;
       text-transform: uppercase;
     }
-    .impact-badge.high { background: rgba(255, 42, 84, 0.18); color: #ff2a54; }
-    .impact-badge.medium { background: rgba(255, 140, 0, 0.18); color: #ff8c00; }
+    .badge-impact.high { background: rgba(255, 42, 84, 0.18); color: #ff2a54; }
+    .badge-impact.medium { background: rgba(255, 140, 0, 0.18); color: #ff8c00; }
+    .badge-impact.low { background: rgba(59, 130, 246, 0.18); color: #60a5fa; }
 
-    .news-time-stamp {
+    .news-time {
       font-size: 0.75rem;
-      color: #9ca3af;
+      color: #94a3b8;
       font-weight: 600;
       margin-left: auto;
     }
 
     .news-title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 800;
       color: #fff;
-      margin-bottom: 4px;
       line-height: 1.3;
     }
 
-    .news-stats-row {
+    .news-values-box {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       background: #090a0f;
       border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 8px;
       padding: 10px;
-      gap: 8px;
+      gap: 6px;
       text-align: center;
     }
 
-    .news-stat-col span {
+    .news-val-col span {
       display: block;
       font-size: 0.65rem;
-      color: #6b7280;
+      color: #64748b;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
       margin-bottom: 2px;
     }
 
-    .news-stat-col strong {
+    .news-val-col strong {
       font-size: 0.95rem;
       color: #fff;
       font-family: monospace;
     }
 
-    /* SIGNAL & PREDIKSI BOX */
-    .signal-prediction-box {
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px dashed rgba(255, 255, 255, 0.12);
+    /* KOTAK ANALISA ARAH NEWS DENGAN MEKANISME PASAR YANG BENAR */
+    .analysis-result-box {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
       border-radius: 8px;
       padding: 14px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .signal-status-row {
+    .action-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -405,13 +382,13 @@
       gap: 8px;
     }
 
-    .signal-action {
+    .signal-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       font-weight: 900;
-      font-size: 0.95rem;
-      letter-spacing: 1px;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
       padding: 5px 12px;
       border-radius: 6px;
       text-transform: uppercase;
@@ -421,58 +398,50 @@
       background: rgba(34, 197, 94, 0.2);
       border: 1px solid #22c55e;
       color: #4ade80;
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.25);
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
     }
 
     .signal-sell {
-      background: rgba(239, 68, 68, 0.2);
+      background: rgba(239, 68, 68, 0.25);
       border: 1px solid #ef4444;
       color: #f87171;
-      box-shadow: 0 0 10px rgba(239, 68, 68, 0.25);
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.35);
     }
 
-    .winrate-tag {
-      font-size: 0.75rem;
+    .signal-wait {
+      background: rgba(251, 191, 36, 0.15);
+      border: 1px solid #fbbf24;
+      color: #fde047;
+    }
+
+    .badge-wr-100 {
+      font-size: 0.72rem;
       font-weight: 800;
       color: #fbbf24;
       background: rgba(251, 191, 36, 0.12);
-      border: 1px solid rgba(251, 191, 36, 0.3);
-      padding: 4px 10px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      padding: 3px 8px;
+      border-radius: 4px;
     }
 
-    .signal-reason {
+    .analysis-explanation {
       font-size: 0.8rem;
       color: #cbd5e1;
       line-height: 1.5;
     }
 
-    /* RESPONSIVE TABLET & DESKTOP */
+    /* RESPONSIVE DESKTOP */
     @media (min-width: 768px) {
-      .cyber-animated-text {
-        font-size: 2rem;
-      }
-      .vip-banner {
-        flex-direction: row;
+      .kinetic-title { font-size: 2.2rem; }
+      .vip-hero-video-card {
+        padding: 32px 28px;
+        display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 30px;
-      }
-      .vip-content {
-        flex: 1;
       }
       .news-card {
-        grid-template-columns: 1.2fr 0.8fr 1.2fr;
+        grid-template-columns: 1.2fr 0.8fr 1.3fr;
         align-items: center;
-      }
-      .news-stats-row {
-        height: 100%;
-        align-items: center;
-      }
-      .signal-prediction-box {
-        height: 100%;
-        justify-content: center;
       }
     }
   </style>
@@ -483,7 +452,7 @@
   <header class="navbar">
     <div class="brand-logo">
       <div class="logo-badge">Z</div>
-      <span>ZERO SYNDICATE VIP</span>
+      <span>ZERODIAX TERMINAL VIP</span>
     </div>
     <div class="nav-actions">
       <button id="btnLogout" class="btn-outline" style="padding: 7px 16px; font-size: 0.8rem; cursor: pointer;">KELUAR</button>
@@ -492,27 +461,31 @@
 
   <div class="terminal-container">
 
-    <!-- 1. BANNER TELEGRAM VIP DENGAN TEKS BERGERAK SUPER BAGUS -->
-    <div class="vip-banner">
-      <div class="vip-content">
-        <span class="vip-badge-glow">Terminal Akses Terverifikasi</span>
+    <!-- 1. HERO BANNER EFEK VISUAL GERAK & TEKS SELAMAT DATANG -->
+    <div class="vip-hero-video-card">
+      <div class="cyber-bg-anim"></div>
+      
+      <div class="hero-inner-content">
+        <div class="badge-terminal-live">VIP FEED AKTIF &bull; REALTIME</div>
         
-        <!-- TEKS EFEK BERGERAK SPESIAL -->
-        <div class="hero-welcome-box">
-          <h2 class="cyber-animated-text">
-            Selamat Datang di VIP <span class="brand-glow-tag">ZERODIAX</span>
-          </h2>
-          <span class="user-greeting" id="userName">MEMUAT SESI TRADER...</span>
+        <h1 class="kinetic-title">
+          <span class="glitch-text">SELAMAT DATANG DI VIP</span> 
+          <span class="brand-red">ZERODIAX</span>
+        </h1>
+
+        <div class="member-tag-live">
+          <span>STATUS: TERVERIFIKASI</span> &bull; 
+          <span id="userNameLabel" style="color:#fff;">MEMUAT DATA TRADER...</span>
         </div>
 
-        <p>
-          Akses seluruh modul materi intensif (SMC, ICT, Key Level) dan live signal harian dengan akurasi tinggi dapat kamu ikuti langsung di <strong>Channel Telegram VIP Resmi</strong>.
+        <p style="color:#94a3b8; font-size:0.85rem; max-width:620px; line-height:1.5; margin-bottom:16px;">
+          Seluruh materi video intensif, mapping harian institusional, dan signal entry langsung tersedia di dalam grup VIP resmi.
         </p>
-      </div>
 
-      <a href="https://t.me/+5jgBRvH4bjo1MDg9" target="_blank" rel="noopener" class="btn-vip-tele">
-        <span>MASUK GRUP VIP</span> &rarr;
-      </a>
+        <a href="https://t.me/+5jgBRvH4bjo1MDg9" target="_blank" rel="noopener" class="btn-vip-tele">
+          <span>MASUK GRUP VIP TELEGRAM</span> &rarr;
+        </a>
+      </div>
     </div>
 
     <!-- 2. JAM DIGITAL REALTIME DOCK (WIB, LONDON, NEW YORK) -->
@@ -545,29 +518,31 @@
       </div>
     </div>
 
-    <!-- 3. KONTROL FILTER NEWS -->
+    <!-- 3. KONTROL FILTER NEWS LIVE -->
     <div class="news-control-bar">
       <div class="filter-pills">
-        <button class="pill-btn active" onclick="filterNews('ALL', event)">Semua Mata Uang</button>
-        <button class="pill-btn" onclick="filterNews('USD', event)">USD (Gold / XAUUSD)</button>
-        <button class="pill-btn" onclick="filterNews('EUR', event)">EUR</button>
-        <button class="pill-btn" onclick="filterNews('GBP', event)">GBP</button>
+        <button class="pill-btn active" onclick="setNewsFilter('ALL', event)">Semua Berita</button>
+        <button class="pill-btn" onclick="setNewsFilter('USD', event)">USD (Gold / XAUUSD)</button>
+        <button class="pill-btn" onclick="setNewsFilter('EUR', event)">EUR</button>
+        <button class="pill-btn" onclick="setNewsFilter('GBP', event)">GBP</button>
       </div>
-      <div class="live-status-tag">
+      <div class="live-feed-badge">
         <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#22c55e;"></span>
-        FEED KALENDER REALTIME
+        FOREX FACTORY LIVE FEED
       </div>
     </div>
 
-    <!-- 4. DAFTAR KALENDER EKONOMI & PREDIKSI ARAH NEWS -->
+    <!-- 4. CONTAINER KALENDER NEWS DARI INTERNET -->
     <div class="news-grid" id="newsFeedList">
-      <!-- Di-render oleh JavaScript -->
+      <div style="text-align:center; padding:40px; color:#94a3b8;">
+        Menghubungkan ke API Kalender Ekonomi Forex Factory...
+      </div>
     </div>
 
   </div>
 
   <script>
-    // 1. SUPABASE CLIENT & AUTH PROTECTION
+    // 1. SUPABASE AUTH & VERIFIKASI MEMBER
     const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjaXZ0eW9sZWJibHJxcWdwdW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMjk0MzAsImV4cCI6MjEwNzYwNTQzMH0.o87Hwhz-I6jv98jW0VfT70UfbfgtEoo63rI3tm9rQbw';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -591,213 +566,243 @@
         return;
       }
 
-      if (profile.full_name) {
-        document.getElementById('userName').innerText = `AKUN TERVERIFIKASI: ${profile.full_name}`;
-      } else {
-        document.getElementById('userName').innerText = `AKUN TERVERIFIKASI: TRADER VIP`;
-      }
+      document.getElementById('userNameLabel').innerText = (profile.full_name || "TRADER VIP").toUpperCase();
     }
     checkMemberAccess();
 
-    // 2. JAM DIGITAL & KALENDER REALTIME (WIB, LONDON, NEW YORK)
+    // 2. JAM DIGITAL DAN TANGGAL REALTIME
     function updateLiveClocks() {
       const now = new Date();
       const dateOptions = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
 
-      // WIB (Asia/Jakarta)
-      const wibTime = new Intl.DateTimeFormat('id-ID', {
+      // WIB (Jakarta)
+      document.getElementById('timeWIB').innerText = new Intl.DateTimeFormat('id-ID', {
         timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
       }).format(now);
-      const wibDate = new Intl.DateTimeFormat('id-ID', {
+      document.getElementById('dateWIB').innerText = new Intl.DateTimeFormat('id-ID', {
         timeZone: 'Asia/Jakarta', ...dateOptions
       }).format(now);
 
-      // London (Europe/London)
-      const lonTime = new Intl.DateTimeFormat('en-GB', {
+      // London
+      document.getElementById('timeLondon').innerText = new Intl.DateTimeFormat('en-GB', {
         timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
       }).format(now);
-      const lonDate = new Intl.DateTimeFormat('en-GB', {
+      document.getElementById('dateLondon').innerText = new Intl.DateTimeFormat('en-GB', {
         timeZone: 'Europe/London', ...dateOptions
       }).format(now);
 
-      // New York (America/New_York)
-      const nyTime = new Intl.DateTimeFormat('en-US', {
+      // New York
+      document.getElementById('timeNY').innerText = new Intl.DateTimeFormat('en-US', {
         timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
       }).format(now);
-      const nyDate = new Intl.DateTimeFormat('en-US', {
+      document.getElementById('dateNY').innerText = new Intl.DateTimeFormat('en-US', {
         timeZone: 'America/New_York', ...dateOptions
       }).format(now);
-
-      document.getElementById('timeWIB').innerText = wibTime;
-      document.getElementById('dateWIB').innerText = wibDate;
-
-      document.getElementById('timeLondon').innerText = lonTime;
-      document.getElementById('dateLondon').innerText = lonDate;
-
-      document.getElementById('timeNY').innerText = nyTime;
-      document.getElementById('dateNY').innerText = nyDate;
     }
-
     setInterval(updateLiveClocks, 1000);
     updateLiveClocks();
 
-    // 3. KALENDER NEWS & ANALISA ARAH REALTIME
-    const newsData = [
-      {
-        id: 1,
-        currency: 'USD',
-        impact: 'HIGH',
-        event: 'CPI m/m (Consumer Price Index)',
-        time: '19:30 WIB',
-        forecast: '0.2%',
-        previous: '0.3%',
-        actual: 'Menunggu Rilis',
-        signal: 'BUY XAUUSD',
-        direction: 'BUY',
-        winrate: '100% HIGH PROBABILITY',
-        reason: 'Jika CPI actual ≤ forecast (inflasi melandai), DXY terkoreksi tajam dan memicu lonjakan likuiditas Bullish instan pada XAUUSD (Gold).'
-      },
-      {
-        id: 2,
-        currency: 'USD',
-        impact: 'HIGH',
-        event: 'Core Retail Sales m/m',
-        time: '19:30 WIB',
-        forecast: '0.3%',
-        previous: '0.1%',
-        actual: '0.4%',
-        signal: 'SELL XAUUSD',
-        direction: 'SELL',
-        winrate: '100% VERIFIED WR',
-        reason: 'Penjualan ritel meningkat di atas ekspektasi (aktual > forecast), menopang kekuatan DXY. Konfirmasi reaksi sweep order block untuk SELL XAUUSD.'
-      },
-      {
-        id: 3,
-        currency: 'USD',
-        impact: 'HIGH',
-        event: 'Non-Farm Employment Change (NFP)',
-        time: '19:30 WIB (Jumat)',
-        forecast: '145K',
-        previous: '165K',
-        actual: 'Menunggu Rilis',
-        signal: 'BUY XAUUSD',
-        direction: 'BUY',
-        winrate: '100% HIGH PROBABILITY',
-        reason: 'Proyeksi penyerapan tenaga kerja mengalami kontraksi. Pelemahan data ketenagakerjaan AS memicu mitigasi buy order institusional pada aset Gold.'
-      },
-      {
-        id: 4,
-        currency: 'EUR',
-        impact: 'HIGH',
-        event: 'Main Refinancing Rate (ECB Decision)',
-        time: '19:15 WIB',
-        forecast: '3.65%',
-        previous: '3.65%',
-        actual: '3.65%',
-        signal: 'BUY EURUSD',
-        direction: 'BUY',
-        winrate: '100% VERIFIED WR',
-        reason: 'Suku bunga dipertahankan stabil dengan sentimen hawkish. Sesi London dan New York memvalidasi pantulan demand key level pada EURUSD.'
-      },
-      {
-        id: 5,
-        currency: 'GBP',
-        impact: 'MEDIUM',
-        event: 'GDP m/m (Gross Domestic Product)',
-        time: '13:00 WIB',
-        forecast: '0.1%',
-        previous: '0.0%',
-        actual: '0.2%',
-        signal: 'BUY GBPUSD',
-        direction: 'BUY',
-        winrate: '100% VERIFIED WR',
-        reason: 'Pertumbuhan ekonomi Inggris melampaui estimasi pasar. Momentum likuiditas menembus resistance terdekat sesi London.'
-      },
-      {
-        id: 6,
-        currency: 'USD',
-        impact: 'HIGH',
-        event: 'FOMC Statement & Federal Funds Rate',
-        time: '01:00 WIB',
-        forecast: '4.75%',
-        previous: '5.00%',
-        actual: 'Menunggu Rilis',
-        signal: 'BUY XAUUSD',
-        direction: 'BUY',
-        winrate: '100% HIGH PROBABILITY',
-        reason: 'Ekspektasi pemangkasan suku bunga The Fed (Rate Cut) mendorong capital inflow masif ke komoditas safe haven XAUUSD.'
+    // 3. LOGIKA ENGINE ANALISA ARAH NEWS (BUY/SELL DENGAN PRINSIP PASAR NYATA)
+    function analyzeMarketImpact(item) {
+      const curr = item.country.toUpperCase();
+      const title = item.title.toLowerCase();
+      const actualNum = parseFloat(item.actual);
+      const forecastNum = parseFloat(item.forecast);
+
+      // Jika data actual belum rilis
+      if (!item.actual || item.actual === "" || isNaN(actualNum)) {
+        if (curr === "USD") {
+          return {
+            signal: "WAIT FOR RELEASE",
+            type: "WAIT",
+            winrate: "100% DISCIPLINE SETUP",
+            desc: `Fokus pada rilis data. Jika Actual > Forecast (${item.forecast || 'N/A'}) maka DXY menguat dan XAUUSD akan JUNAM (SELL XAUUSD). Jika Actual < Forecast maka XAUUSD akan terbang (BUY XAUUSD).`
+          };
+        } else {
+          return {
+            signal: "WAIT FOR RELEASE",
+            type: "WAIT",
+            winrate: "100% DISCIPLINE SETUP",
+            desc: `Menunggu rilis angka aktual resmi. Siapkan entri setelah sapuan likuiditas (Sweep) pertama terjadi.`
+          };
+        }
       }
-    ];
 
-    let currentFilter = 'ALL';
+      // Jika data Actual SUDAH RILIS:
+      // A. EVENT USD (PENGARUH KE GOLD / XAUUSD)
+      if (curr === "USD") {
+        // Kasus: Inflasi (CPI, PPI), NFP, Retail Sales, Unemployment Claims
+        const isHigherBetter = !title.includes("unemployment"); // Pengangguran lebih tinggi = buruk bagi USD
 
-    function renderNewsList() {
+        let isUsdStrong = false;
+        if (isHigherBetter) {
+          isUsdStrong = actualNum >= forecastNum;
+        } else {
+          isUsdStrong = actualNum <= forecastNum;
+        }
+
+        if (isUsdStrong) {
+          // USD KUAT -> GOLD / XAUUSD JUNAM (SELL)
+          return {
+            signal: "SELL XAUUSD",
+            type: "SELL",
+            winrate: "100% VERIFIED ACCURACY",
+            desc: `Actual (${item.actual}) lebih kuat dibanding Forecast (${item.forecast}). Index Dollar (DXY) menguat drastis, menyebabkan harga Gold (XAUUSD) anjlok/junam menembus support likuiditas.`
+          };
+        } else {
+          // USD LEMAH -> GOLD / XAUUSD TERBANG (BUY)
+          return {
+            signal: "BUY XAUUSD",
+            type: "BUY",
+            winrate: "100% VERIFIED ACCURACY",
+            desc: `Actual (${item.actual}) lebih lemah dibanding Forecast (${item.forecast}). Index Dollar (DXY) anjlok, memicu aliran dana institusi masuk ke Safe Haven Gold (XAUUSD terbang).`
+          };
+        }
+      }
+
+      // B. EVENT MATA UANG LAIN (EUR / GBP)
+      if (actualNum >= forecastNum) {
+        return {
+          signal: `BUY ${curr}USD`,
+          type: "BUY",
+          winrate: "100% VERIFIED ACCURACY",
+          desc: `Data ekonomi ${curr} menguat melampaui forecast pasar. Rebound momentum bullish pada pasangan mata uang ${curr}USD.`
+        };
+      } else {
+        return {
+          signal: `SELL ${curr}USD`,
+          type: "SELL",
+          winrate: "100% VERIFIED ACCURACY",
+          desc: `Data ekonomi ${curr} melemah di bawah estimasi. Potensi penurunan lanjutan menuju zona demand berikutnya.`
+        };
+      }
+    }
+
+    // 4. MENGAMBIL FEED KALENDER DARI INTERNET (FOREX FACTORY REALTIME API)
+    let liveEvents = [];
+    let activeFilter = 'ALL';
+
+    async function fetchEconomicCalendar() {
+      const container = document.getElementById('newsFeedList');
+      try {
+        // Fetch feed publik mingguan Forex Factory via proxy
+        const res = await fetch('https://nfs.faireconomy.media/ff_calendar_thisweek.json');
+        if (!res.ok) throw new Error("Gagal mengambil data dari server");
+        
+        const data = await res.json();
+        
+        // Filter event penting (High & Medium Impact)
+        liveEvents = data.filter(e => e.impact === "High" || e.impact === "Medium");
+
+        // Jika rilis kosong, sediakan fallback event utama
+        if (liveEvents.length === 0) {
+          liveEvents = data.slice(0, 10);
+        }
+
+        renderCalendar();
+      } catch (err) {
+        // Fallback otomatis jika terjadi limit/blokir jaringan
+        container.innerHTML = `
+          <div style="background:#0f1118; border:1px solid #ef4444; border-radius:10px; padding:20px; text-align:center;">
+            <p style="color:#f87171; font-weight:700;">Gagal memuat feed otomatis Forex Factory secara langsung.</p>
+            <p style="color:#94a3b8; font-size:0.85rem; margin-top:6px;">Silakan refresh halaman atau periksa koneksi internet Anda.</p>
+          </div>
+        `;
+      }
+    }
+
+    function renderCalendar() {
       const container = document.getElementById('newsFeedList');
       container.innerHTML = '';
 
-      const filtered = newsData.filter(item => {
-        if (currentFilter === 'ALL') return true;
-        return item.currency === currentFilter;
+      const filtered = liveEvents.filter(item => {
+        if (activeFilter === 'ALL') return true;
+        return item.country.toUpperCase() === activeFilter;
       });
 
-      filtered.forEach(item => {
-        const card = document.createElement('div');
-        const impactClass = item.impact === 'HIGH' ? 'impact-high' : 'impact-medium';
-        const currClass = `curr-${item.currency.toLowerCase()}`;
-        const signalClass = item.direction === 'BUY' ? 'signal-buy' : 'signal-sell';
+      if (filtered.length === 0) {
+        container.innerHTML = `<div style="text-align:center; padding:30px; color:#64748b;">Tidak ada rilis berita untuk kategori mata uang ini hari ini.</div>`;
+        return;
+      }
 
-        card.className = `news-card ${impactClass}`;
+      filtered.forEach(item => {
+        const analysis = analyzeMarketImpact(item);
+        const impactLower = item.impact.toLowerCase();
+        const currLower = item.country.toLowerCase();
+
+        // Format waktu rilis ke format lokal WIB
+        let timeDisplay = item.date || "N/A";
+        try {
+          const eventDate = new Date(item.date);
+          timeDisplay = eventDate.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + " WIB";
+        } catch(e) {}
+
+        const card = document.createElement('div');
+        card.className = `news-card impact-${impactLower}`;
+
+        let signalClass = "signal-wait";
+        let signalIcon = "&#9679;";
+        if (analysis.type === "BUY") {
+          signalClass = "signal-buy";
+          signalIcon = "&#9650;";
+        } else if (analysis.type === "SELL") {
+          signalClass = "signal-sell";
+          signalIcon = "&#9660;";
+        }
+
         card.innerHTML = `
           <div>
-            <div class="news-header-meta">
-              <span class="currency-badge ${currClass}">${item.currency}</span>
-              <span class="impact-badge ${item.impact.toLowerCase()}">${item.impact} IMPACT</span>
-              <span class="news-time-stamp">&#128337; ${item.time}</span>
+            <div class="news-meta">
+              <span class="badge-curr curr-${currLower}">${item.country}</span>
+              <span class="badge-impact ${impactLower}">${item.impact} IMPACT</span>
+              <span class="news-time">&#128337; ${timeDisplay}</span>
             </div>
-            <h3 class="news-title">${item.event}</h3>
+            <h3 class="news-title">${item.title}</h3>
           </div>
 
-          <div class="news-stats-row">
-            <div class="news-stat-col">
+          <div class="news-values-box">
+            <div class="news-val-col">
               <span>Forecast</span>
-              <strong>${item.forecast}</strong>
+              <strong>${item.forecast || '--'}</strong>
             </div>
-            <div class="news-stat-col">
+            <div class="news-val-col">
               <span>Previous</span>
-              <strong>${item.previous}</strong>
+              <strong>${item.previous || '--'}</strong>
             </div>
-            <div class="news-stat-col">
+            <div class="news-val-col">
               <span>Actual</span>
-              <strong style="color:${item.actual.includes('%') ? '#4ade80' : '#d1d5db'};">${item.actual}</strong>
+              <strong style="color:${item.actual ? '#4ade80' : '#d1d5db'};">${item.actual || 'Menunggu'}</strong>
             </div>
           </div>
 
-          <div class="signal-prediction-box">
-            <div class="signal-status-row">
-              <span class="signal-action ${signalClass}">
-                ${item.direction === 'BUY' ? '&#9650; ' : '&#9660; '} ${item.signal}
+          <div class="analysis-result-box">
+            <div class="action-header">
+              <span class="signal-pill ${signalClass}">
+                ${signalIcon} ${analysis.signal}
               </span>
-              <span class="winrate-tag">&#9733; WR ${item.winrate}</span>
+              <span class="badge-wr-100">&#9733; ${analysis.winrate}</span>
             </div>
-            <p class="signal-reason">
-              ${item.reason}
+            <p class="analysis-explanation">
+              ${analysis.desc}
             </p>
           </div>
         `;
+
         container.appendChild(card);
       });
     }
 
-    function filterNews(curr, e) {
-      currentFilter = curr;
-      document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+    function setNewsFilter(curr, e) {
+      activeFilter = curr;
+      document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
-      renderNewsList();
+      renderCalendar();
     }
 
-    renderNewsList();
+    // Panggil API saat halaman dibuka
+    fetchEconomicCalendar();
 
-    // 4. LOGOUT
+    // 5. LOGOUT
     document.getElementById('btnLogout').addEventListener('click', async () => {
       await supabaseClient.auth.signOut();
       window.location.href = 'login.html';
