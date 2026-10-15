@@ -19,7 +19,7 @@
       <div class="auth-header">
         <span class="auth-badge">&#9733; Pendaftaran Member</span>
         <h2>Gabung Zero Syndicate</h2>
-        <p>Daftarkan akun kamu. Setelah mendaftar, akun akan diverifikasi oleh Admin sebelum akses materi dibuka.</p>
+        <p>Daftarkan akun Anda. Setelah mendaftar, akun akan diverifikasi (di-ACC) oleh Admin sebelum akses materi dibuka.</p>
       </div>
 
       <!-- Kotak Notifikasi -->
@@ -28,7 +28,7 @@
       <form id="registerForm">
         <div class="form-group">
           <label for="nama_lengkap">Nama Lengkap</label>
-          <input type="text" id="nama_lengkap" class="form-input" placeholder="Masukkan nama kamu" required />
+          <input type="text" id="nama_lengkap" class="form-input" placeholder="Masukkan nama Anda" required />
         </div>
 
         <div class="form-group">
@@ -71,7 +71,7 @@
 
   <script>
     const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
-    const SUPABASE_ANON_KEY = 'sb_publishable_VMXDKPEBhmfcaTo2P5-xoA_7HMoBKEv';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjaXZ0eW9sZWJibHJxcWdwdW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMjk0MzAsImV4cCI6MjEwNzYwNTQzMH0.o87Hwhz-I6jv98jW0VfT70UfbfgtEoo63rI3tm9rQbw';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     const form = document.getElementById('registerForm');
@@ -91,7 +91,7 @@
       const exp = document.getElementById('trading_exp').value;
 
       try {
-        // 1. Daftarkan akun ke database Supabase
+        // 1. Daftarkan akun ke auth Supabase
         const { data, error } = await supabaseClient.auth.signUp({
           email: email,
           password: password,
@@ -106,10 +106,10 @@
 
         if (error) throw error;
 
-        // 2. Buat Link ACC Rahasia
+        // 2. Buat Link ACC Rahasia untuk Admin
         const accLink = `https://rezayogiana.github.io/zerodiax/acc.html?uid=${data.user.id}&pin=zero2026acc`;
 
-        // 3. Kirim notifikasi instan ke Gmail kamu lewat Web3Forms
+        // 3. Kirim notifikasi instan ke Gmail lewat Web3Forms
         const formData = new FormData();
         formData.append('access_key', 'eafd5ff1-026b-482d-a5de-4ed80d9f24d5');
         formData.append('subject', `🚨 PERMINTAAN ACC: Member Baru Zero Syndicate (${fullName})`);
@@ -125,9 +125,9 @@
           body: formData
         });
 
-        // 4. Tampilkan pesan berhasil ke pendaftar
+        // 4. Tampilkan pesan berhasil
         alertBox.className = 'alert-box alert-success';
-        alertBox.innerHTML = `<strong>Registrasi Berhasil!</strong> Akun kamu berstatus <em>PENDING</em>. Permintaan aktivasi sudah dikirimkan ke admin. Silakan konfirmasi via WhatsApp untuk aktivasi lebih cepat.`;
+        alertBox.innerHTML = `<strong>Registrasi Berhasil!</strong> Akun Anda berstatus <em>PENDING</em>. Permintaan aktivasi sudah dikirimkan ke Admin. Akses terminal materi akan terbuka setelah di-ACC.`;
         alertBox.style.display = 'block';
         form.reset();
 
