@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login Member | Zero Syndicate</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Library Resmi Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -17,30 +19,92 @@
       <div class="auth-header">
         <span class="auth-badge">&#10140; Area Member</span>
         <h2>Selamat Datang Kembali</h2>
-        <p>Gunakan email dan kata sandi akun Anda untuk mengakses materi pembelajaran.</p>
+        <p>Gunakan email dan password terdaftar Anda untuk masuk ke Member Area.</p>
       </div>
 
-      <form id="loginForm" onsubmit="event.preventDefault(); alert('Status: Form login siap disambungkan ke backend database Anda.');">
+      <div id="loginAlert" class="alert-box" style="display: none;"></div>
+
+      <form id="loginForm">
         <div class="form-group">
-          <label for="login-email">Email Terdaftar</label>
-          <input type="email" id="login-email" class="form-input" placeholder="nama@email.com" required />
+          <label for="login_email">Alamat Email</label>
+          <input type="email" id="login_email" class="form-input" placeholder="nama@email.com" required />
         </div>
 
         <div class="form-group">
-          <label for="login-password">Password</label>
-          <input type="password" id="login-password" class="form-input" placeholder="Kata sandi akun" required />
+          <label for="login_password">Password</label>
+          <input type="password" id="login_password" class="form-input" placeholder="••••••••" required />
         </div>
 
-        <button type="submit" class="auth-btn-submit">Masuk ke Dashboard &rarr;</button>
+        <button type="submit" id="btnLogin" class="auth-btn-submit">Masuk ke Terminal &rarr;</button>
       </form>
 
       <div class="auth-footer">
         Belum punya akun? <a href="register.html">Daftar sekarang</a>
         <br/><br/>
-        <small><a href="https://wa.me/62882010445069" target="_blank" rel="noopener" style="color: var(--text-muted);">Lupa password? Hubungi Admin</a></small>
+        <a href="https://wa.me/62882010445069" target="_blank" rel="noopener" style="color: var(--text-muted); font-size: 0.8rem;">
+          Akun belum di-ACC atau butuh bantuan? Chat Admin
+        </a>
       </div>
     </div>
   </div>
 
+  <script>
+    const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjaXZ0eW9sZWJibHJxcWdwdW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMjk0MzAsImV4cCI6MjEwNzYwNTQzMH0.o87Hwhz-I6jv98jW0VfT70UfbfgtEoo63rI3tm9rQbw';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const loginForm = document.getElementById('loginForm');
+    const btnLogin = document.getElementById('btnLogin');
+    const loginAlert = document.getElementById('loginAlert');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btnLogin.disabled = true;
+      btnLogin.innerText = 'Memverifikasi...';
+      loginAlert.style.display = 'none';
+
+      const email = document.getElementById('login_email').value.trim();
+      const password = document.getElementById('login_password').value;
+
+      try {
+        // 1. Login Autentikasi Supabase
+        const { data: authData, error: authError } = await supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+        if (authError) throw authError;
+
+        // 2. Ambil Status Akun di Database Profiles
+        const { data: profile, error: profileError } = await supabaseClient
+          .from('profiles')
+          .select('status, full_name')
+          .eq('id', authData.user.id)
+          .single();
+
+        if (profileError) throw profileError;
+
+        // 3. Verifikasi Status ACC
+        if (profile.status !== 'active') {
+          await supabaseClient.auth.signOut();
+          loginAlert.className = 'alert-box alert-error';
+          loginAlert.innerHTML = `<strong>Akses Ditolak:</strong> Akun Anda masih berstatus <em>PENDING</em> (belum di-ACC oleh Admin). Silakan hubungi admin via WhatsApp untuk aktivasi.`;
+          loginAlert.style.display = 'block';
+          return;
+        }
+
+        // 4. Jika sudah 'active', alihkan ke Dashboard
+        window.location.href = 'dashboard.html';
+
+      } catch (err) {
+        loginAlert.className = 'alert-box alert-error';
+        loginAlert.innerHTML = `<strong>Gagal:</strong> ${err.message || 'Email atau password salah.'}`;
+        loginAlert.style.display = 'block';
+      } finally {
+        btnLogin.disabled = false;
+        btnLogin.innerText = 'Masuk ke Terminal →';
+      }
+    });
+  </script>
 </body>
 </html>
