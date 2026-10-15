@@ -27,7 +27,7 @@
       <span class="auth-badge" style="color: #4ade80;">&#10003; STATUS: MEMBER AKTIF (VERIFIED)</span>
       <h2 style="font-size: 1.8rem; margin: 10px 0;" id="userName">Memuat data member...</h2>
       <p style="color: var(--text-muted); font-size: 0.9rem;">
-        Selamat datang di ruang edukasi eksklusif Zero Syndicate. Akses seluruh kurikulum, jurnal analisa, dan channel diskusi di bawah ini.
+        Selamat datang di ruang edukasi eksklusif Zero Syndicate. Akses seluruh kurikulum, roadmap likuiditas pasar, dan tautan channel VIP di bawah ini.
       </p>
     </div>
 
@@ -57,10 +57,10 @@
         <div class="class-icon">&#128172;</div>
         <h4>PRIVATE VIP TELEGRAM</h4>
         <p style="color: var(--text-muted); font-size: 0.8rem; margin: 10px 0;">
-          Setup live market harian, bedah chart berkala, dan interaksi komunitas Zero Syndicate.
+          Setup live market harian, sinyal mapping eksklusif, dan interaksi komunitas Zero Syndicate VIP.
         </p>
-        <a href="https://t.me/zerodiax" target="_blank" rel="noopener" class="class-badge" style="color: var(--accent-red); background: rgba(255, 42, 84, 0.15); display: inline-block;">
-          Buka Channel VIP &rarr;
+        <a href="https://t.me/+5jgBRvH4bjo1MDg9" target="_blank" rel="noopener" class="class-badge" style="color: var(--accent-red); background: rgba(255, 42, 84, 0.15); display: inline-block;">
+          Masuk Grup VIP &rarr;
         </a>
       </div>
 
@@ -76,20 +76,20 @@
     async function checkMemberAccess() {
       const { data: { session } } = await supabaseClient.auth.getSession();
       
-      // Jika belum login sama sekali, pental ke login.html
+      // Jika belum login, tendang ke login.html
       if (!session) {
         window.location.href = 'login.html';
         return;
       }
 
-      // Ambil data status member dari tabel profiles
+      // Periksa status akun di tabel profiles
       const { data: profile, error } = await supabaseClient
         .from('profiles')
         .select('full_name, status')
         .eq('id', session.user.id)
         .single();
 
-      // Jika belum di-ACC oleh admin (status bukan 'active'), keluarkan sesi
+      // Jika belum di-ACC (status bukan 'active'), keluarkan sesi login
       if (error || !profile || profile.status !== 'active') {
         await supabaseClient.auth.signOut();
         window.location.href = 'login.html';
