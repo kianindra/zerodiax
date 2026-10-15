@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar Member | Zero Syndicate</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="auth-wrapper">
+    <div class="auth-nav">
+      <a href="index.html" class="btn-back">&larr; Kembali ke Beranda</a>
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-header">
+        <span class="auth-badge">&#9733; Pendaftaran Member</span>
+        <h2>Gabung Zero Syndicate</h2>
+        <p>Isi formulir berikut. Data pendaftaran Anda akan langsung kami verifikasi.</p>
+      </div>
+
+      <!-- Kotak Notifikasi Hasil Kirim -->
+      <div id="formAlert" class="alert-box" style="display: none;"></div>
+
+      <!-- FORM PENDAFTARAN DENGAN ACCESS KEY -->
+      <form id="registerForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="eafd5ff1-026b-482d-a5de-4ed80d9f24d5" />
+        <input type="hidden" name="subject" value="Member Baru Mendaftar di Zero Syndicate" />
+        <input type="hidden" name="from_name" value="Zero Syndicate System" />
+
+        <div class="form-group">
+          <label for="nama_lengkap">Nama Lengkap</label>
+          <input type="text" id="nama_lengkap" name="nama_lengkap" class="form-input" placeholder="Masukkan nama Anda" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email_member">Alamat Email Aktif</label>
+          <input type="email" id="email_member" name="email_member" class="form-input" placeholder="nama@email.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="kontak_wa">Nomor WhatsApp / Username Telegram</label>
+          <input type="text" id="kontak_wa" name="kontak_wa" class="form-input" placeholder="Contoh: 0882010445069 atau @username" required />
+        </div>
+
+        <div class="form-group">
+          <label for="pengalaman">Tingkat Pengalaman Trading</label>
+          <select id="pengalaman" name="pengalaman" class="form-input" style="background:#090a0e; color:#fff;" required>
+            <option value="Pemula / Baru Belajar">Pemula (Baru Mengenal Trading)</option>
+            <option value="Menengah (1-2 Tahun)">Menengah (Pernah Trading)</option>
+            <option value="Lanjutan / Ingin Kuasai SMC">Lanjutan (Fokus SMC & Gold)</option>
+          </select>
+        </div>
+
+        <button type="submit" id="submitBtn" class="auth-btn-submit">Kirim Pendaftaran &rarr;</button>
+      </form>
+
+      <!-- Rekomendasi Akun Broker Resmi -->
+      <div class="broker-box">
+        <p>Sudah punya akun broker partner resmi kami?</p>
+        <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" rel="noopener" class="btn-outline" style="display:block; padding: 10px; font-size: 0.85rem;">Buka Akun Valetax Sekarang &nearr;</a>
+      </div>
+
+      <div class="auth-footer">
+        Sudah memiliki akun? <a href="login.html">Masuk di sini</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const registerForm = document.getElementById('registerForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formAlert = document.getElementById('formAlert');
+
+    registerForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Mengirim data...';
+      formAlert.style.display = 'none';
+
+      const formData = new FormData(registerForm);
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(async (response) => {
+        let res = await response.json();
+        if (response.status === 200) {
+          formAlert.className = 'alert-box alert-success';
+          formAlert.innerHTML = '<strong>Sukses!</strong> Formulir pendaftaran berhasil terkirim ke email admin. Kami akan segera menghubungi Anda.';
+          formAlert.style.display = 'block';
+          registerForm.reset();
+        } else {
+          formAlert.className = 'alert-box alert-error';
+          formAlert.innerHTML = '<strong>Gagal:</strong> ' + (res.message || 'Terjadi gangguan koneksi.');
+          formAlert.style.display = 'block';
+        }
+      })
+      .catch((error) => {
+        formAlert.className = 'alert-box alert-error';
+        formAlert.innerHTML = '<strong>Gagal:</strong> Tidak dapat mengirim formulir saat ini.';
+        formAlert.style.display = 'block';
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'Kirim Pendaftaran →';
+      });
+    });
+  </script>
+</body>
+</html>
