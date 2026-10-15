@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Member | Zero Syndicate</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="auth-wrapper">
+    <div class="auth-nav">
+      <a href="index.html" class="btn-back">&larr; Kembali ke Beranda</a>
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-header">
+        <span class="auth-badge">&#10140; Area Member</span>
+        <h2>Selamat Datang Kembali</h2>
+        <p>Gunakan email dan kata sandi akun Anda untuk mengakses materi pembelajaran.</p>
+      </div>
+
+      <form id="loginForm" onsubmit="event.preventDefault(); alert('Status: Form login siap disambungkan ke backend database Anda.');">
+        <div class="form-group">
+          <label for="login-email">Email Terdaftar</label>
+          <input type="email" id="login-email" class="form-input" placeholder="nama@email.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" class="form-input" placeholder="Kata sandi akun" required />
+        </div>
+
+        <button type="submit" class="auth-btn-submit">Masuk ke Dashboard &rarr;</button>
+      </form>
+
+      <div class="auth-footer">
+        Belum punya akun? <a href="register.html">Daftar sekarang</a>
+        <br/><br/>
+        <small><a href="https://wa.me/62882010445069" target="_blank" rel="noopener" style="color: var(--text-muted);">Lupa password? Hubungi Admin</a></small>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
