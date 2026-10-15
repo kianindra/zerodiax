@@ -19,7 +19,7 @@
       <div class="auth-header">
         <span class="auth-badge">&#9733; Pendaftaran Member</span>
         <h2>Gabung Zero Syndicate</h2>
-        <p>Daftarkan akun Anda. Setelah mendaftar, akun akan diverifikasi (di-ACC) oleh Admin sebelum akses materi dibuka.</p>
+        <p>Daftarkan akun kamu. Setelah mendaftar, akun akan diverifikasi oleh Admin sebelum akses materi dibuka.</p>
       </div>
 
       <!-- Kotak Notifikasi -->
@@ -28,7 +28,7 @@
       <form id="registerForm">
         <div class="form-group">
           <label for="nama_lengkap">Nama Lengkap</label>
-          <input type="text" id="nama_lengkap" class="form-input" placeholder="Masukkan nama Anda" required />
+          <input type="text" id="nama_lengkap" class="form-input" placeholder="Masukkan nama kamu" required />
         </div>
 
         <div class="form-group">
@@ -91,6 +91,7 @@
       const exp = document.getElementById('trading_exp').value;
 
       try {
+        // 1. Daftarkan akun ke database Supabase
         const { data, error } = await supabaseClient.auth.signUp({
           email: email,
           password: password,
@@ -105,14 +106,34 @@
 
         if (error) throw error;
 
+        // 2. Buat Link ACC Rahasia
+        const accLink = `https://rezayogiana.github.io/zerodiax/acc.html?uid=${data.user.id}&pin=zero2026acc`;
+
+        // 3. Kirim notifikasi instan ke Gmail kamu lewat Web3Forms
+        const formData = new FormData();
+        formData.append('access_key', 'eafd5ff1-026b-482d-a5de-4ed80d9f24d5');
+        formData.append('subject', `🚨 PERMINTAAN ACC: Member Baru Zero Syndicate (${fullName})`);
+        formData.append('from_name', 'Zero Syndicate System');
+        formData.append('Nama Lengkap', fullName);
+        formData.append('Email Pendaftar', email);
+        formData.append('Kontak WA/Telegram', contact);
+        formData.append('Pengalaman', exp);
+        formData.append('LINK ACC CEPAT (KLIK UNTUK AKTIFKAN)', accLink);
+
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+
+        // 4. Tampilkan pesan berhasil ke pendaftar
         alertBox.className = 'alert-box alert-success';
-        alertBox.innerHTML = `<strong>Registrasi Berhasil!</strong> Akun Anda berstatus <em>PENDING</em>. Silakan hubungi Admin di WhatsApp untuk aktivasi (ACC) akun Anda.`;
+        alertBox.innerHTML = `<strong>Registrasi Berhasil!</strong> Akun kamu berstatus <em>PENDING</em>. Permintaan aktivasi sudah dikirimkan ke admin. Silakan konfirmasi via WhatsApp untuk aktivasi lebih cepat.`;
         alertBox.style.display = 'block';
         form.reset();
 
       } catch (err) {
         alertBox.className = 'alert-box alert-error';
-        alertBox.innerHTML = `<strong>Gagal:</strong> ${err.message || 'Terjadi gangguan koneksi.'}`;
+        alertBox.innerHTML = `<strong>Gagal:</strong> ${err.message || 'Terjadi kesalahan sistem.'}`;
         alertBox.style.display = 'block';
       } finally {
         submitBtn.disabled = false;
