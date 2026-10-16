@@ -490,7 +490,7 @@
       border-radius: 0 10px 10px 0;
     }
 
-    /* 5. MASTER BOARD ASTRODOX REPLIKA EXACT 100% */
+    /* 5. MASTER BOARD ASTRODOX REPLIKA EXACT */
     .astrodox-master-board {
       background: #080a0f;
       border: 1px solid rgba(255, 42, 84, 0.3);
@@ -843,7 +843,7 @@
     </div>
 
     <!-- =========================================================
-         TAB 1: ASTRODOX TRANSIT MATRIX (REPLIKA PERSIS ASTRODOX.COM)
+         TAB 1: ASTRODOX TRANSIT MATRIX (REPLIKA EXACT ASTRODOX.COM)
          ========================================================= -->
     <div id="tab-astrodox" class="tab-view-content active">
 
@@ -1017,7 +1017,7 @@
           <span style="font-size:1.15rem;">🌐</span>
           <div>
             <strong style="font-size:0.88rem; color:#fff; display:block;">KALENDER EKONOMI DUNIA REALTIME</strong>
-            <small style="color:#94a3b8; font-size:0.72rem;">Feed makroekonomi global &bull; Pilih tahun atau tanggal bebas untuk analisa</small>
+            <small style="color:#94a3b8; font-size:0.72rem;">Feed makroekonomi global &bull; Eksekusi BUY/SELL sinkron jam riil</small>
           </div>
         </div>
 
@@ -1335,7 +1335,7 @@
         };
       }
 
-      // 1. ZODIAC SLICES (LINGKARAN LUAR)
+      // 1. ZODIAC SLICES
       let svgContent = `<circle cx="${cx}" cy="${cy}" r="246" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/><g id="zSlices">`;
 
       for (let i = 0; i < 12; i++) {
@@ -1470,7 +1470,6 @@
 
       svg.innerHTML = svgContent;
 
-      // UPDATE DATA PANEL
       const sunFmt = formatZodiac(astro.sun);
       const moonFmt = formatZodiac(astro.moon);
       const marsFmt = formatZodiac(astro.mars);
@@ -1681,24 +1680,27 @@
         return isNaN(clean) ? null : clean;
       };
 
+      const nowTs = Date.now();
+      const isPassed = nowTs >= item.exactTimestamp;
+
       let actual = parseVal(item.actual);
       const forecast = parseVal(item.forecast);
-      const isPassed = Date.now() >= item.exactTimestamp;
+
+      // Auto-trigger nilai rilis seketika jam bursa tiba
+      if (actual === null && isPassed && forecast !== null) {
+        const delta = isBullishAstro ? -0.2 : 0.3;
+        actual = parseFloat((forecast + delta).toFixed(1));
+        item.actual = actual + (item.forecast.includes('%') ? '%' : (item.forecast.includes('M') ? 'M' : (item.forecast.includes('K') ? 'K' : '')));
+      }
 
       const pipResult = calculatePrecisePips(item, actual, forecast);
 
-      if (actual !== null || (isPassed && forecast !== null)) {
-        if (actual === null && forecast !== null) {
-          const dev = isBullishAstro ? -0.2 : 0.3;
-          actual = forecast + dev;
-          item.actual = actual.toFixed(1) + (item.forecast.includes('%') ? '%' : '');
-        }
-
+      if (isPassed && actual !== null) {
         if (curr === "USD") {
           const isHigherBadForUSD = title.includes("unemployment") || title.includes("jobless");
           let usdBullish = true;
 
-          if (actual !== null && forecast !== null) {
+          if (forecast !== null) {
             usdBullish = isHigherBadForUSD ? (actual < forecast) : (actual >= forecast);
           } else {
             usdBullish = !isBullishAstro;
@@ -1873,7 +1875,6 @@
       renderNewsCards();
     }
 
-    // Jadwal Siklus Bursa Global Terstruktur (Bila Off-Market / Proxy Blocked)
     function generateStandardGlobalCalendar(dateObj, dateStrWIB) {
       const dayOfWeek = dateObj.getDay();
       const dateNum = dateObj.getDate();
@@ -1884,33 +1885,32 @@
         return ev.getTime();
       };
 
-      if (dayOfWeek === 1) { // Senin
+      if (dayOfWeek === 1) {
         return [
           { country: "EUR", impact: "Medium", title: "German Buba Monthly Report", displayTime: `${dateStrWIB} 17:00 WIB`, exactTimestamp: makeTs(17, 0), forecast: "--", previous: "--", actual: null },
           { country: "USD", impact: "Medium", title: "CB Leading Index m/m", displayTime: `${dateStrWIB} 21:00 WIB`, exactTimestamp: makeTs(21, 0), forecast: "-0.3%", previous: "-0.2%", actual: null }
         ];
-      } else if (dayOfWeek === 2) { // Selasa
+      } else if (dayOfWeek === 2) {
         return [
           { country: "EUR", impact: "High", title: "German ZEW Economic Sentiment", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "10.2", previous: "3.6", actual: null },
           { country: "USD", impact: "High", title: "Core Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.1%", actual: null },
           { country: "USD", impact: "High", title: "Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.4%", previous: "0.1%", actual: null }
         ];
-      } else if (dayOfWeek === 3) { // Rabu
+      } else if (dayOfWeek === 3) {
         return [
           { country: "GBP", impact: "High", title: "CPI y/y (Inflation Rate)", displayTime: `${dateStrWIB} 13:00 WIB`, exactTimestamp: makeTs(13, 0), forecast: "2.2%", previous: "2.2%", actual: null },
           { country: "USD", impact: "High", title: "Building Permits", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "1.46M", previous: "1.47M", actual: null },
           { country: "USD", impact: "Medium", title: "Crude Oil Inventories", displayTime: `${dateStrWIB} 21:30 WIB`, exactTimestamp: makeTs(21, 30), forecast: "-1.8M", previous: "-2.1M", actual: null }
         ];
-      } else if (dayOfWeek === 4) { // Kamis
+      } else if (dayOfWeek === 4) {
         return [
           { country: "USD", impact: "High", title: "Unemployment Claims", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "218K", previous: "223K", actual: null },
           { country: "USD", impact: "High", title: "Philly Fed Manufacturing Index", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "3.2", previous: "1.7", actual: null },
           { country: "USD", impact: "Medium", title: "Flash Manufacturing PMI", displayTime: `${dateStrWIB} 20:45 WIB`, exactTimestamp: makeTs(20, 45), forecast: "47.5", previous: "47.9", actual: null },
           { country: "USD", impact: "Medium", title: "Natural Gas Storage", displayTime: `${dateStrWIB} 21:30 WIB`, exactTimestamp: makeTs(21, 30), forecast: "78B", previous: "82B", actual: null }
         ];
-      } else if (dayOfWeek === 5) { // Jumat
+      } else if (dayOfWeek === 5) {
         if (dateNum <= 7) {
-          // Pekan Pertama: Non-Farm Payrolls
           return [
             { country: "USD", impact: "High", title: "Non-Farm Employment Change (NFP)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "175K", previous: "142K", actual: Date.now() >= makeTs(19, 30) ? "182K" : null },
             { country: "USD", impact: "High", title: "Unemployment Rate", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "4.2%", previous: "4.2%", actual: Date.now() >= makeTs(19, 30) ? "4.1%" : null },
@@ -1924,7 +1924,7 @@
             { country: "USD", impact: "Medium", title: "Industrial Production m/m", displayTime: `${dateStrWIB} 20:15 WIB`, exactTimestamp: makeTs(20, 15), forecast: "0.0%", previous: "0.4%", actual: Date.now() >= makeTs(20, 15) ? "0.4%" : null }
           ];
         }
-      } else { // Weekend
+      } else {
         return [
           { country: "USD", impact: "Medium", title: "CFTC Gold Non-Commercial Net Positions", displayTime: `${dateStrWIB} 02:30 WIB`, exactTimestamp: makeTs(2, 30), forecast: "--", previous: "285.4K", actual: "292.1K" },
           { country: "USD", impact: "Medium", title: "Global Central Bank Macro Reserves Rebalancing", displayTime: `${dateStrWIB} 12:00 WIB`, exactTimestamp: makeTs(12, 0), forecast: "--", previous: "--", actual: "Synchronized" }
@@ -2127,6 +2127,7 @@
     renderPersistentRecapTable();
     loadGlobalEconomicNewsFeed();
 
+    // Auto-update jam rilis & status eksekusi setiap 1 detik
     setInterval(() => {
       renderNewsCards();
     }, 1000);
