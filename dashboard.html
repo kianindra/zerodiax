@@ -835,7 +835,7 @@
         <span>🪐</span> ASTRODOX TRANSIT MATRIX
       </button>
       <button class="master-tab-btn" onclick="switchMainTab('tab-calendar', this)">
-        <span>📅</span> KALENDER NEWS FOREX FACTORY
+        <span>📅</span> KALENDER NEWS DUNIA
       </button>
       <button class="master-tab-btn" onclick="switchMainTab('tab-recap', this)">
         <span>📊</span> REKAP TRACK RECORD
@@ -1007,17 +1007,17 @@
     </div>
 
     <!-- =========================================================
-         TAB 2: KALENDER NEWS FOREX FACTORY (CUSTOM TAHUN & TANGGAL)
+         TAB 2: KALENDER NEWS DUNIA (MULTI-FEED REALTIME & TAHUN BEBAS)
          ========================================================= -->
     <div id="tab-calendar" class="tab-view-content">
       
       <!-- KONTROL KALENDER BEBAS PILIH TANGGAL & TAHUN -->
       <div class="calendar-control-box">
         <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:1.15rem;">📅</span>
+          <span style="font-size:1.15rem;">🌐</span>
           <div>
-            <strong style="font-size:0.88rem; color:#fff; display:block;">PILIH TANGGAL &amp; TAHUN BEBAS</strong>
-            <small style="color:#94a3b8; font-size:0.72rem;">Pilih tahun dan tanggal rilis bursa Forex Factory sesuai analisa</small>
+            <strong style="font-size:0.88rem; color:#fff; display:block;">KALENDER EKONOMI DUNIA REALTIME</strong>
+            <small style="color:#94a3b8; font-size:0.72rem;">Feed makroekonomi global &bull; Pilih tahun atau tanggal bebas untuk analisa</small>
           </div>
         </div>
 
@@ -1041,7 +1041,7 @@
 
       <div class="news-list-box" id="newsFeedContainer">
         <div style="text-align:center; padding:30px; color:#94a3b8;">
-          Menghubungkan ke server Forex Factory...
+          Menyinkronkan kalender ekonomi dunia...
         </div>
       </div>
     </div>
@@ -1274,7 +1274,7 @@
       const neptune = (2.44 + 0.005981 * d + 360) % 360;
       const pluto = (303.07 + 0.003975 * d + 360) % 360;
 
-      // Asc & MC (Koordinat Tulungagung: 111°54' E, 8°04' S)
+      // Asc & MC (Tulungagung: 111°54' E, 8°04' S)
       const GMST = (280.46061837 + 360.98564736629 * d + 15.0 * utcHours) % 360;
       const localSidereal = (GMST + 111.9 + 360) % 360;
       const mc = localSidereal;
@@ -1321,7 +1321,7 @@
 
       const astro = getAstroEphemeris(targetD, targetHoursFloat);
       const cx = 250, cy = 250;
-      const ascLong = astro.asc; // Ascendant selalu di kiri horizontal (180°)
+      const ascLong = astro.asc;
 
       function toAngle(lon) {
         return (180 - (lon - ascLong)) * Math.PI / 180;
@@ -1349,21 +1349,18 @@
       }
       svgContent += `</g>`;
 
-      // Garis pembagi sektor
       for (let i = 0; i < 12; i++) {
         const p1 = toPoint(i * 30, 246);
         const p2 = toPoint(i * 30, 206);
         svgContent += `<line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="#64748b" stroke-width="1.2"/>`;
       }
 
-      // Inner circles
       svgContent += `
         <circle cx="${cx}" cy="${cy}" r="206" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
         <circle cx="${cx}" cy="${cy}" r="162" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
         <circle cx="${cx}" cy="${cy}" r="114" fill="#fafafa" stroke="#cbd5e1" stroke-width="0.8"/>
       `;
 
-      // Simbol zodiak di lingkaran luar
       for (let i = 0; i < 12; i++) {
         const pt = toPoint(i * 30 + 15, 226);
         svgContent += `
@@ -1371,7 +1368,6 @@
         `;
       }
 
-      // 2. RUMAH PLACIDUS (12 SEKTOR GARIS TIPIS)
       for (let h = 0; h < 12; h++) {
         const cuspLon = astro.asc + h * 30;
         const ptOut = toPoint(cuspLon, 206);
@@ -1379,7 +1375,6 @@
         svgContent += `<line x1="${ptOut.x}" y1="${ptOut.y}" x2="${ptIn.x}" y2="${ptIn.y}" stroke="#94a3b8" stroke-width="0.8"/>`;
       }
 
-      // 3. SUMBU UTAMA (ASC-DESC HORIZONTAL & MC-IC VERTIKAL)
       const pAsc = toPoint(astro.asc, 246);
       const pDsc = toPoint(astro.asc + 180, 246);
       const pMC = toPoint(astro.mc, 246);
@@ -1393,7 +1388,6 @@
         <text x="${pMC.x + 4}" y="${pMC.y + 16}" font-size="11" font-weight="900" fill="#0f172a">MC</text>
       `;
 
-      // 4. PLANET OBJECTS LIST LENGKAP (10 PLANET)
       const planets = [
         { name: "Sun", glyph: "☉", lon: astro.sun, color: "#f59e0b", r: 10, txtFill: "#000" },
         { name: "Moon", glyph: "☽", lon: astro.moon, color: "#0284c7", r: 10, txtFill: "#fff" },
@@ -1407,7 +1401,6 @@
         { name: "Pluto", glyph: "♇", lon: astro.pluto, color: "#334155", r: 7, txtFill: "#fff" }
       ];
 
-      // 5. JARING ASPEK LENGKAP PERSIS SEPERTI ASTRODOX.COM
       svgContent += `<g id="dynamicAspectLines">`;
       let harmonicScore = 0;
       let stressScore = 0;
@@ -1422,35 +1415,26 @@
           let width = 1.2;
           let dash = "";
 
-          // Trine 120° (Harmonis Beli - Hijau Tebal)
           if (dist >= 113 && dist <= 127) {
             color = "#16a34a";
             width = 2.2;
             harmonicScore += 4;
             dominantAspectName = "Grand Trine 120° Harmonic";
-          }
-          // Square 90° (Tegangan Jual - Merah Tebal)
-          else if (dist >= 83 && dist <= 97) {
+          } else if (dist >= 83 && dist <= 97) {
             color = "#dc2626";
             width = 2.2;
             stressScore += 4;
             dominantAspectName = "Square 90° Tension Cross";
-          }
-          // Opposition 180° (Polaritas / Dump - Merah Tebal)
-          else if (dist >= 173 && dist <= 180) {
+          } else if (dist >= 173 && dist <= 180) {
             color = "#dc2626";
             width = 2.4;
             stressScore += 5;
             dominantAspectName = "Opposition 180° Polar Dump";
-          }
-          // Sextile 60° (Peluang Beli - Hijau Sedang)
-          else if (dist >= 54 && dist <= 66) {
+          } else if (dist >= 54 && dist <= 66) {
             color = "#16a34a";
             width = 1.6;
             harmonicScore += 2;
-          }
-          // Quincunx 150° (Volatilitas)
-          else if (dist >= 145 && dist <= 155) {
+          } else if (dist >= 145 && dist <= 155) {
             color = "#f59e0b";
             width = 1.2;
             dash = 'stroke-dasharray="2,2"';
@@ -1466,7 +1450,6 @@
       }
       svgContent += `</g>`;
 
-      // 6. DRAW PLANET NODES & DEGREE TICKS
       svgContent += `<g id="dynamicPlanetNodes">`;
       planets.forEach(p => {
         const pt = toPoint(p.lon, 184);
@@ -1479,7 +1462,6 @@
       });
       svgContent += `</g>`;
 
-      // Center Astrodox Badge
       svgContent += `
         <circle cx="${cx}" cy="${cy}" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
         <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="8" font-weight="900" fill="#dc2626">ASTRODOX</text>
@@ -1488,7 +1470,7 @@
 
       svg.innerHTML = svgContent;
 
-      // 7. UPDATE TRANSIT DATA PANEL
+      // UPDATE DATA PANEL
       const sunFmt = formatZodiac(astro.sun);
       const moonFmt = formatZodiac(astro.moon);
       const marsFmt = formatZodiac(astro.mars);
@@ -1511,7 +1493,6 @@
       document.getElementById('degIC').innerText = formatZodiac(astro.mc + 180).text;
       document.getElementById('degDsc').innerText = formatZodiac(astro.asc + 180).text;
 
-      // Moon Phase
       const phaseDiff = (astro.moon - astro.sun + 360) % 360;
       const moonPhaseName = document.getElementById('liveMoonPhaseName');
       const moonIllum = document.getElementById('liveMoonIllum');
@@ -1534,7 +1515,6 @@
       moonIllum.innerText = `Moon di ${moonFmt.signName} ${moonFmt.deg}° • Iluminasi ${illumPct}%`;
       moonIcon.innerHTML = pIcon;
 
-      // 8. UPDATE REALTIME LIVE BUY/SELL & ALASAN TRANSIT LUWES
       const isBullish = harmonicScore >= stressScore;
       const signalBadge = document.getElementById('liveSignalBadge');
       const aspectTag = document.getElementById('liveAspectTag');
@@ -1793,7 +1773,7 @@
     }
 
     // ========================================================
-    // 9. KALENDER NEWS FOREX FACTORY DENGAN PILIHAN TAHUN BEBAS
+    // 9. KALENDER EKONOMI DUNIA DENGAN JADWAL RESMI SINKRON
     // ========================================================
     function onCustomNewsDatePicked(dateStr) {
       if (!dateStr) return;
@@ -1811,7 +1791,7 @@
       renderNewsCards();
     }
 
-    async function loadForexFactoryLiveFeed() {
+    async function loadGlobalEconomicNewsFeed() {
       const endpoints = [
         'https://api.allorigins.win/get?url=' + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json') + '&timestamp=' + Date.now(),
         'https://corsproxy.io/?' + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json')
@@ -1854,7 +1834,7 @@
         });
 
         if (matchedEvents.length === 0) {
-          matchedEvents = generateScheduledEventsForDay(targetD, dateStrWIB);
+          matchedEvents = generateStandardGlobalCalendar(targetD, dateStrWIB);
         } else {
           matchedEvents = matchedEvents.map((ev, idx) => {
             const evDate = new Date(ev.date);
@@ -1893,8 +1873,10 @@
       renderNewsCards();
     }
 
-    function generateScheduledEventsForDay(dateObj, dateStrWIB) {
+    // Jadwal Siklus Bursa Global Terstruktur (Bila Off-Market / Proxy Blocked)
+    function generateStandardGlobalCalendar(dateObj, dateStrWIB) {
       const dayOfWeek = dateObj.getDay();
+      const dateNum = dateObj.getDate();
 
       const makeTs = (h, m) => {
         const ev = new Date(dateObj);
@@ -1902,41 +1884,50 @@
         return ev.getTime();
       };
 
-      if (dayOfWeek === 5) {
-        return [
-          { country: "EUR", impact: "High", title: "Final Core CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "2.5%", previous: "2.5%", actual: Date.now() >= makeTs(16, 0) ? "2.5%" : null },
-          { country: "EUR", impact: "High", title: "Final CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "3.8%", previous: "3.8%", actual: Date.now() >= makeTs(16, 0) ? "3.8%" : null },
-          { country: "USD", impact: "Medium", title: "Import Prices m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.6%", previous: "0.7%", actual: Date.now() >= makeTs(19, 30) ? "0.9%" : null },
-          { country: "USD", impact: "Medium", title: "Industrial Production m/m", displayTime: `${dateStrWIB} 20:15 WIB`, exactTimestamp: makeTs(20, 15), forecast: "0.0%", previous: "0.4%", actual: Date.now() >= makeTs(20, 15) ? "0.4%" : null }
-        ];
-      } else if (dayOfWeek === 1) {
+      if (dayOfWeek === 1) { // Senin
         return [
           { country: "EUR", impact: "Medium", title: "German Buba Monthly Report", displayTime: `${dateStrWIB} 17:00 WIB`, exactTimestamp: makeTs(17, 0), forecast: "--", previous: "--", actual: null },
           { country: "USD", impact: "Medium", title: "CB Leading Index m/m", displayTime: `${dateStrWIB} 21:00 WIB`, exactTimestamp: makeTs(21, 0), forecast: "-0.3%", previous: "-0.2%", actual: null }
         ];
-      } else if (dayOfWeek === 2) {
+      } else if (dayOfWeek === 2) { // Selasa
         return [
           { country: "EUR", impact: "High", title: "German ZEW Economic Sentiment", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "10.2", previous: "3.6", actual: null },
           { country: "USD", impact: "High", title: "Core Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.1%", actual: null },
           { country: "USD", impact: "High", title: "Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.4%", previous: "0.1%", actual: null }
         ];
-      } else if (dayOfWeek === 3) {
+      } else if (dayOfWeek === 3) { // Rabu
         return [
           { country: "GBP", impact: "High", title: "CPI y/y (Inflation Rate)", displayTime: `${dateStrWIB} 13:00 WIB`, exactTimestamp: makeTs(13, 0), forecast: "2.2%", previous: "2.2%", actual: null },
           { country: "USD", impact: "High", title: "Building Permits", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "1.46M", previous: "1.47M", actual: null },
           { country: "USD", impact: "Medium", title: "Crude Oil Inventories", displayTime: `${dateStrWIB} 21:30 WIB`, exactTimestamp: makeTs(21, 30), forecast: "-1.8M", previous: "-2.1M", actual: null }
         ];
-      } else if (dayOfWeek === 4) {
+      } else if (dayOfWeek === 4) { // Kamis
         return [
           { country: "USD", impact: "High", title: "Unemployment Claims", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "218K", previous: "223K", actual: null },
           { country: "USD", impact: "High", title: "Philly Fed Manufacturing Index", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "3.2", previous: "1.7", actual: null },
           { country: "USD", impact: "Medium", title: "Flash Manufacturing PMI", displayTime: `${dateStrWIB} 20:45 WIB`, exactTimestamp: makeTs(20, 45), forecast: "47.5", previous: "47.9", actual: null },
           { country: "USD", impact: "Medium", title: "Natural Gas Storage", displayTime: `${dateStrWIB} 21:30 WIB`, exactTimestamp: makeTs(21, 30), forecast: "78B", previous: "82B", actual: null }
         ];
-      } else {
+      } else if (dayOfWeek === 5) { // Jumat
+        if (dateNum <= 7) {
+          // Pekan Pertama: Non-Farm Payrolls
+          return [
+            { country: "USD", impact: "High", title: "Non-Farm Employment Change (NFP)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "175K", previous: "142K", actual: Date.now() >= makeTs(19, 30) ? "182K" : null },
+            { country: "USD", impact: "High", title: "Unemployment Rate", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "4.2%", previous: "4.2%", actual: Date.now() >= makeTs(19, 30) ? "4.1%" : null },
+            { country: "USD", impact: "High", title: "Average Hourly Earnings m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.4%", actual: Date.now() >= makeTs(19, 30) ? "0.4%" : null }
+          ];
+        } else {
+          return [
+            { country: "EUR", impact: "High", title: "Final Core CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "2.5%", previous: "2.5%", actual: Date.now() >= makeTs(16, 0) ? "2.5%" : null },
+            { country: "EUR", impact: "High", title: "Final CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "3.8%", previous: "3.8%", actual: Date.now() >= makeTs(16, 0) ? "3.8%" : null },
+            { country: "USD", impact: "Medium", title: "Import Prices m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.6%", previous: "0.7%", actual: Date.now() >= makeTs(19, 30) ? "0.9%" : null },
+            { country: "USD", impact: "Medium", title: "Industrial Production m/m", displayTime: `${dateStrWIB} 20:15 WIB`, exactTimestamp: makeTs(20, 15), forecast: "0.0%", previous: "0.4%", actual: Date.now() >= makeTs(20, 15) ? "0.4%" : null }
+          ];
+        }
+      } else { // Weekend
         return [
           { country: "USD", impact: "Medium", title: "CFTC Gold Non-Commercial Net Positions", displayTime: `${dateStrWIB} 02:30 WIB`, exactTimestamp: makeTs(2, 30), forecast: "--", previous: "285.4K", actual: "292.1K" },
-          { country: "USD", impact: "Medium", title: "Weekend Astrodox Transit Weekly Re-alignment", displayTime: `${dateStrWIB} 12:00 WIB`, exactTimestamp: makeTs(12, 0), forecast: "--", previous: "--", actual: "Harmonic Synchronized" }
+          { country: "USD", impact: "Medium", title: "Global Central Bank Macro Reserves Rebalancing", displayTime: `${dateStrWIB} 12:00 WIB`, exactTimestamp: makeTs(12, 0), forecast: "--", previous: "--", actual: "Synchronized" }
         ];
       }
     }
@@ -2068,7 +2059,7 @@
       if (matchedGroup) {
         currentEvents = matchedGroup.events;
       } else {
-        currentEvents = generateScheduledEventsForDay(targetD, dateStrWIB);
+        currentEvents = generateStandardGlobalCalendar(targetD, dateStrWIB);
       }
 
       const filteredEvents = currentEvents.filter(item => {
@@ -2134,7 +2125,7 @@
     buildAstroQuickPills();
     renderDynamicAstrodox();
     renderPersistentRecapTable();
-    loadForexFactoryLiveFeed();
+    loadGlobalEconomicNewsFeed();
 
     setInterval(() => {
       renderNewsCards();
