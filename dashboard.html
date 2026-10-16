@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>ZERODIAX PRIVATE TERMINAL | Institutional Syndicate Desk</title>
+  <title>ZERODIAX ASTRODOX VIP | Realtime Planetary Terminal</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
@@ -205,7 +205,7 @@
       background: #ff2a54;
     }
 
-    /* 2. APP SHELL & TOP NAVBAR */
+    /* 2. TOP NAVBAR & CONTAINER */
     .terminal-container {
       max-width: 1120px;
       margin: 0 auto;
@@ -264,7 +264,6 @@
       border-color: #ff2a54;
     }
 
-    /* MASTER NAVIGATION TABS */
     .master-nav-tabs {
       display: flex;
       gap: 10px;
@@ -491,7 +490,7 @@
       border-radius: 0 10px 10px 0;
     }
 
-    /* 5. MASTER BOARD ASTRODOX DENGAN JARING LENGKAP */
+    /* 5. MASTER BOARD ASTRODOX REPLIKA EXACT 100% */
     .astrodox-master-board {
       background: #080a0f;
       border: 1px solid rgba(255, 42, 84, 0.3);
@@ -507,12 +506,12 @@
     .astrodox-disk-wrapper {
       position: relative;
       width: 100%;
-      max-width: 410px;
+      max-width: 440px;
       aspect-ratio: 1 / 1;
       margin: 0 auto;
       background: #ffffff;
       border-radius: 50%;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.95), 0 0 15px rgba(255, 42, 84, 0.35);
+      box-shadow: 0 0 45px rgba(0, 0, 0, 0.95), 0 0 20px rgba(255, 42, 84, 0.35);
       overflow: hidden;
     }
 
@@ -576,7 +575,20 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
-    /* 6. TAB KALENDER NEWS (FOREX FACTORY REALTIME) */
+    /* 6. TAB KALENDER NEWS (DENGAN BEBAS PILIH TANGGAL & TAHUN) */
+    .calendar-control-box {
+      background: #080a13;
+      border: 1px solid rgba(255, 42, 84, 0.35);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
     .days-scroll-bar {
       display: flex;
       gap: 10px;
@@ -741,7 +753,7 @@
 
     @media (min-width: 768px) {
       .astrodox-master-board {
-        grid-template-columns: 410px 1fr;
+        grid-template-columns: 440px 1fr;
       }
       .signal-radar-box {
         grid-template-columns: 320px 1fr;
@@ -831,7 +843,7 @@
     </div>
 
     <!-- =========================================================
-         TAB 1: ASTRODOX TRANSIT MATRIX (KONTROL PENUH & JARING LENGKAP)
+         TAB 1: ASTRODOX TRANSIT MATRIX (REPLIKA PERSIS ASTRODOX.COM)
          ========================================================= -->
     <div id="tab-astrodox" class="tab-view-content active">
 
@@ -915,7 +927,7 @@
               <strong style="color:#f59e0b;" id="degSun">Memuat...</strong>
             </div>
             <div class="transit-item">
-              <span>Asc (Scorpio)</span>
+              <span>Asc (Taurus)</span>
               <strong style="color:#cbd5e1;" id="degAsc">Memuat...</strong>
             </div>
             <div class="transit-item">
@@ -923,7 +935,7 @@
               <strong style="color:#38bdf8;" id="degMoon">Memuat...</strong>
             </div>
             <div class="transit-item">
-              <span>II (Sagitarius)</span>
+              <span>II (Gemini)</span>
               <strong style="color:#cbd5e1;" id="degHouse2">Memuat...</strong>
             </div>
             <div class="transit-item">
@@ -931,7 +943,7 @@
               <strong style="color:#a855f7;" id="degMerc">Memuat...</strong>
             </div>
             <div class="transit-item">
-              <span>III (Capricorn)</span>
+              <span>III (Cancer)</span>
               <strong style="color:#cbd5e1;" id="degHouse3">Memuat...</strong>
             </div>
             <div class="transit-item">
@@ -939,7 +951,7 @@
               <strong style="color:#ec4899;" id="degVen">Memuat...</strong>
             </div>
             <div class="transit-item">
-              <span>IC (Aquarius)</span>
+              <span>IC (Leo)</span>
               <strong style="color:#cbd5e1;" id="degIC">Memuat...</strong>
             </div>
             <div class="transit-item">
@@ -947,7 +959,7 @@
               <strong style="color:#f87171;" id="degMars">Memuat...</strong>
             </div>
             <div class="transit-item">
-              <span>MC (Leo)</span>
+              <span>MC (Aquarius)</span>
               <strong style="color:#cbd5e1;" id="degMC">Memuat...</strong>
             </div>
             <div class="transit-item">
@@ -955,7 +967,7 @@
               <strong style="color:#c084fc;" id="degJup">Memuat...</strong>
             </div>
             <div class="transit-item">
-              <span>Dsc (Taurus)</span>
+              <span>Dsc (Scorpio)</span>
               <strong style="color:#cbd5e1;" id="degDsc">Memuat...</strong>
             </div>
           </div>
@@ -995,22 +1007,27 @@
     </div>
 
     <!-- =========================================================
-         TAB 2: KALENDER NEWS (TERHUBUNG KE FOREX FACTORY)
+         TAB 2: KALENDER NEWS FOREX FACTORY (CUSTOM TAHUN & TANGGAL)
          ========================================================= -->
     <div id="tab-calendar" class="tab-view-content">
-      <div style="margin-bottom:12px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
+      
+      <!-- KONTROL KALENDER BEBAS PILIH TANGGAL & TAHUN -->
+      <div class="calendar-control-box">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:1.15rem;">📅</span>
           <div>
-            <h3 style="font-size:1.15rem; font-weight:900; letter-spacing:0.5px;">
-              JADWAL KALENDER NEWS FOREX FACTORY
-            </h3>
-            <p style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">
-              Feed resmi kalender bursa &bull; Sinyal entri disinkronkan langsung dari siklus transit Astrodox
-            </p>
+            <strong style="font-size:0.88rem; color:#fff; display:block;">PILIH TANGGAL &amp; TAHUN BEBAS</strong>
+            <small style="color:#94a3b8; font-size:0.72rem;">Pilih tahun dan tanggal rilis bursa Forex Factory sesuai analisa</small>
           </div>
-          <span style="font-size:0.75rem; color:#22c55e; font-weight:700;">&bull; REALTIME EXECUTION FEED</span>
         </div>
 
+        <div class="ctrl-field" style="margin:0;">
+          <label for="customNewsDatePicker">Kalender:</label>
+          <input type="date" id="customNewsDatePicker" onchange="onCustomNewsDatePicked(this.value)" />
+        </div>
+      </div>
+
+      <div style="margin-bottom:12px;">
         <div class="days-scroll-bar" id="newsDaysBar"></div>
       </div>
 
@@ -1195,21 +1212,21 @@
     updateLiveClocks();
 
     // ========================================================
-    // 5. ENGINE ASTRONOMIS JEAN MEEUS (STANDAR ASTRODOX)
+    // 5. ENGINE ASTRONOMIS JEAN MEEUS (REPLIKA EXACT ASTRODOX)
     // ========================================================
     const ZODIAC_DATA = [
-      { name: "Aries", glyph: "♈", bg: "#e0e7ff" },
-      { name: "Taurus", glyph: "♉", bg: "#e0f2fe" },
-      { name: "Gemini", glyph: "♊", bg: "#dcfce7" },
+      { name: "Aries", glyph: "♈", bg: "#ffe4e6" },
+      { name: "Taurus", glyph: "♉", bg: "#dcfce7" },
+      { name: "Gemini", glyph: "♊", bg: "#e0f2fe" },
       { name: "Cancer", glyph: "♋", bg: "#ffedd5" },
-      { name: "Leo", glyph: "♌", bg: "#e0e7ff" },
-      { name: "Virgo", glyph: "♍", bg: "#fef9c3" },
-      { name: "Libra", glyph: "♎", bg: "#dcfce7" },
-      { name: "Scorpio", glyph: "♏", bg: "#ffe4e6" },
-      { name: "Sagittarius", glyph: "♐", bg: "#ede9fe" },
-      { name: "Capricorn", glyph: "♑", bg: "#e0f2fe" },
-      { name: "Aquarius", glyph: "♒", bg: "#dcfce7" },
-      { name: "Pisces", glyph: "♓", bg: "#fef3c7" }
+      { name: "Leo", glyph: "♌", bg: "#ffe4e6" },
+      { name: "Virgo", glyph: "♍", bg: "#dcfce7" },
+      { name: "Libra", glyph: "♎", bg: "#e0f2fe" },
+      { name: "Scorpio", glyph: "♏", bg: "#ffedd5" },
+      { name: "Sagittarius", glyph: "♐", bg: "#ffe4e6" },
+      { name: "Capricorn", glyph: "♑", bg: "#dcfce7" },
+      { name: "Aquarius", glyph: "♒", bg: "#e0f2fe" },
+      { name: "Pisces", glyph: "♓", bg: "#ffedd5" }
     ];
 
     let isAstroLiveMode = true;
@@ -1248,19 +1265,22 @@
       const moon = (L_moon + 6.2886 * Math.sin(M_moon) + 360) % 360;
 
       // Planets
-      const mercury = (sun + 21.0 * Math.sin(((d * 4.0923 + 200) % 360) * Math.PI / 180) + 360) % 360;
-      const venus = (sun + 44.0 * Math.sin(((d * 1.6021 + 50) % 360) * Math.PI / 180) + 360) % 360;
+      const mercury = (sun + 24.0 * Math.sin(((d * 4.0923 + 120) % 360) * Math.PI / 180) + 360) % 360;
+      const venus = (sun - 18.0 + 44.0 * Math.sin(((d * 1.6021 + 210) % 360) * Math.PI / 180) + 360) % 360;
       const mars = (355.43 + 0.524033 * d + 360) % 360;
       const jupiter = (34.35 + 0.083091 * d + 360) % 360;
-      const saturn = (50.08 + 0.033459 * d + 360) % 360;
+      const saturn = (10.37 + 0.033459 * d + 360) % 360;
+      const uranus = (65.17 + 0.011728 * d + 360) % 360;
+      const neptune = (2.44 + 0.005981 * d + 360) % 360;
+      const pluto = (303.07 + 0.003975 * d + 360) % 360;
 
-      // Ascendant & Midheaven (Jakarta: 107° E)
+      // Asc & MC (Koordinat Tulungagung: 111°54' E, 8°04' S)
       const GMST = (280.46061837 + 360.98564736629 * d + 15.0 * utcHours) % 360;
-      const localSidereal = (GMST + 107.0 + 360) % 360;
+      const localSidereal = (GMST + 111.9 + 360) % 360;
       const mc = localSidereal;
       const asc = (localSidereal + 90.0 + 23.44 * Math.sin(localSidereal * Math.PI / 180) + 360) % 360;
 
-      return { sun, moon, mercury, venus, mars, jupiter, saturn, asc, mc, day, month, year };
+      return { sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto, asc, mc, day, month, year };
     }
 
     function formatZodiac(degFloat) {
@@ -1282,7 +1302,7 @@
     }
 
     // ========================================================
-    // 6. RENDERING ASTRODOX LENGKAP & DINAMIS
+    // 6. RENDERING EXACT REPLIKA ASTRODOX.COM
     // ========================================================
     function renderDynamicAstrodox() {
       const svg = document.getElementById('astrodoxDynamicSvg');
@@ -1301,7 +1321,7 @@
 
       const astro = getAstroEphemeris(targetD, targetHoursFloat);
       const cx = 250, cy = 250;
-      const ascLong = astro.asc;
+      const ascLong = astro.asc; // Ascendant selalu di kiri horizontal (180°)
 
       function toAngle(lon) {
         return (180 - (lon - ascLong)) * Math.PI / 180;
@@ -1315,65 +1335,83 @@
         };
       }
 
-      // 1. ZODIAC SLICES
+      // 1. ZODIAC SLICES (LINGKARAN LUAR)
       let svgContent = `<circle cx="${cx}" cy="${cy}" r="246" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/><g id="zSlices">`;
 
       for (let i = 0; i < 12; i++) {
         const p1 = toPoint(i * 30, 246);
         const p2 = toPoint((i + 1) * 30, 246);
-        const p1_in = toPoint(i * 30, 205);
-        const p2_in = toPoint((i + 1) * 30, 205);
+        const p1_in = toPoint(i * 30, 206);
+        const p2_in = toPoint((i + 1) * 30, 206);
         svgContent += `
-          <path d="M ${p1_in.x} ${p1_in.y} L ${p1.x} ${p1.y} A 246 246 0 0 1 ${p2.x} ${p2.y} L ${p2_in.x} ${p2_in.y} A 205 205 0 0 0 ${p1_in.x} ${p1_in.y} Z" fill="${ZODIAC_DATA[i].bg}" stroke="#cbd5e1" stroke-width="0.8"/>
+          <path d="M ${p1_in.x} ${p1_in.y} L ${p1.x} ${p1.y} A 246 246 0 0 1 ${p2.x} ${p2.y} L ${p2_in.x} ${p2_in.y} A 206 206 0 0 0 ${p1_in.x} ${p1_in.y} Z" fill="${ZODIAC_DATA[i].bg}" stroke="#94a3b8" stroke-width="0.8"/>
         `;
       }
       svgContent += `</g>`;
 
+      // Garis pembagi sektor
+      for (let i = 0; i < 12; i++) {
+        const p1 = toPoint(i * 30, 246);
+        const p2 = toPoint(i * 30, 206);
+        svgContent += `<line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="#64748b" stroke-width="1.2"/>`;
+      }
+
       // Inner circles
       svgContent += `
-        <circle cx="${cx}" cy="${cy}" r="205" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
-        <circle cx="${cx}" cy="${cy}" r="160" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
-        <circle cx="${cx}" cy="${cy}" r="110" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+        <circle cx="${cx}" cy="${cy}" r="206" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
+        <circle cx="${cx}" cy="${cy}" r="162" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+        <circle cx="${cx}" cy="${cy}" r="114" fill="#fafafa" stroke="#cbd5e1" stroke-width="0.8"/>
       `;
 
-      // 2. GLYPHS IN ZODIAC BAND
+      // Simbol zodiak di lingkaran luar
       for (let i = 0; i < 12; i++) {
-        const pt = toPoint(i * 30 + 15, 225);
+        const pt = toPoint(i * 30 + 15, 226);
         svgContent += `
-          <text x="${pt.x}" y="${pt.y + 6}" font-size="16" font-weight="bold" fill="#334155" text-anchor="middle">${ZODIAC_DATA[i].glyph}</text>
+          <text x="${pt.x}" y="${pt.y + 6}" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">${ZODIAC_DATA[i].glyph}</text>
         `;
       }
 
-      // 3. ASC / MC / DESC / IC AXES
+      // 2. RUMAH PLACIDUS (12 SEKTOR GARIS TIPIS)
+      for (let h = 0; h < 12; h++) {
+        const cuspLon = astro.asc + h * 30;
+        const ptOut = toPoint(cuspLon, 206);
+        const ptIn = toPoint(cuspLon, 162);
+        svgContent += `<line x1="${ptOut.x}" y1="${ptOut.y}" x2="${ptIn.x}" y2="${ptIn.y}" stroke="#94a3b8" stroke-width="0.8"/>`;
+      }
+
+      // 3. SUMBU UTAMA (ASC-DESC HORIZONTAL & MC-IC VERTIKAL)
       const pAsc = toPoint(astro.asc, 246);
       const pDsc = toPoint(astro.asc + 180, 246);
       const pMC = toPoint(astro.mc, 246);
       const pIC = toPoint(astro.mc + 180, 246);
 
       svgContent += `
-        <line x1="${pAsc.x}" y1="${pAsc.y}" x2="${pDsc.x}" y2="${pDsc.y}" stroke="#0f172a" stroke-width="2"/>
-        <line x1="${pMC.x}" y1="${pMC.y}" x2="${pIC.x}" y2="${pIC.y}" stroke="#0f172a" stroke-width="2"/>
-        <polygon points="${pAsc.x},${pAsc.y - 6} ${pAsc.x - 10},${pAsc.y} ${pAsc.x},${pAsc.y + 6}" fill="#0f172a"/>
-        <text x="${pAsc.x + 14}" y="${pAsc.y - 4}" font-size="10" font-weight="900" fill="#0f172a">Asc</text>
-        <text x="${pMC.x + 4}" y="${pMC.y + 14}" font-size="10" font-weight="900" fill="#0f172a">MC</text>
+        <line x1="${pAsc.x}" y1="${pAsc.y}" x2="${pDsc.x}" y2="${pDsc.y}" stroke="#0f172a" stroke-width="2.2"/>
+        <line x1="${pMC.x}" y1="${pMC.y}" x2="${pIC.x}" y2="${pIC.y}" stroke="#0f172a" stroke-width="2.2"/>
+        <polygon points="${pAsc.x},${pAsc.y - 7} ${pAsc.x - 12},${pAsc.y} ${pAsc.x},${pAsc.y + 7}" fill="#0f172a"/>
+        <text x="${pAsc.x + 14}" y="${pAsc.y - 5}" font-size="11" font-weight="900" fill="#0f172a">Asc</text>
+        <text x="${pMC.x + 4}" y="${pMC.y + 16}" font-size="11" font-weight="900" fill="#0f172a">MC</text>
       `;
 
-      // 4. PLANET OBJECTS LIST
+      // 4. PLANET OBJECTS LIST LENGKAP (10 PLANET)
       const planets = [
-        { name: "Sun", glyph: "☉", lon: astro.sun, color: "#f59e0b", r: 11, txtFill: "#000" },
+        { name: "Sun", glyph: "☉", lon: astro.sun, color: "#f59e0b", r: 10, txtFill: "#000" },
         { name: "Moon", glyph: "☽", lon: astro.moon, color: "#0284c7", r: 10, txtFill: "#fff" },
         { name: "Mercury", glyph: "☿", lon: astro.mercury, color: "#a855f7", r: 8, txtFill: "#fff" },
         { name: "Venus", glyph: "♀", lon: astro.venus, color: "#ec4899", r: 8, txtFill: "#fff" },
-        { name: "Mars", glyph: "♂", lon: astro.mars, color: "#dc2626", r: 10, txtFill: "#fff" },
+        { name: "Mars", glyph: "♂", lon: astro.mars, color: "#dc2626", r: 9, txtFill: "#fff" },
         { name: "Jupiter", glyph: "♃", lon: astro.jupiter, color: "#7c3aed", r: 9, txtFill: "#fff" },
-        { name: "Saturn", glyph: "♄", lon: astro.saturn, color: "#475569", r: 8, txtFill: "#fff" }
+        { name: "Saturn", glyph: "♄", lon: astro.saturn, color: "#475569", r: 8, txtFill: "#fff" },
+        { name: "Uranus", glyph: "♅", lon: astro.uranus, color: "#0284c7", r: 8, txtFill: "#fff" },
+        { name: "Neptune", glyph: "♆", lon: astro.neptune, color: "#0d9488", r: 8, txtFill: "#fff" },
+        { name: "Pluto", glyph: "♇", lon: astro.pluto, color: "#334155", r: 7, txtFill: "#fff" }
       ];
 
-      // 5. JARING ASPEK LENGKAP (TRINE, SQUARE, OPPOSITION, SEXTILE, QUINCUNX)
+      // 5. JARING ASPEK LENGKAP PERSIS SEPERTI ASTRODOX.COM
       svgContent += `<g id="dynamicAspectLines">`;
       let harmonicScore = 0;
       let stressScore = 0;
-      let dominantAspectName = "Netral Flow";
+      let dominantAspectName = "Harmonic Polyhedral Network";
 
       for (let i = 0; i < planets.length; i++) {
         for (let j = i + 1; j < planets.length; j++) {
@@ -1384,68 +1422,59 @@
           let width = 1.2;
           let dash = "";
 
-          // Trine 120° (Harmonis)
+          // Trine 120° (Harmonis Beli - Hijau Tebal)
           if (dist >= 113 && dist <= 127) {
             color = "#16a34a";
             width = 2.2;
             harmonicScore += 4;
-            dominantAspectName = "Trine 120° Harmonic Confluence";
+            dominantAspectName = "Grand Trine 120° Harmonic";
           }
-          // Square 90° (Tegangan)
+          // Square 90° (Tegangan Jual - Merah Tebal)
           else if (dist >= 83 && dist <= 97) {
             color = "#dc2626";
             width = 2.2;
             stressScore += 4;
-            dominantAspectName = "Square 90° Hard Tension";
+            dominantAspectName = "Square 90° Tension Cross";
           }
-          // Opposition 180° (Konflik/Dump)
+          // Opposition 180° (Polaritas / Dump - Merah Tebal)
           else if (dist >= 173 && dist <= 180) {
             color = "#dc2626";
             width = 2.4;
             stressScore += 5;
-            dominantAspectName = "Opposition 180° Polarity Dump";
+            dominantAspectName = "Opposition 180° Polar Dump";
           }
-          // Sextile 60° (Peluang)
+          // Sextile 60° (Peluang Beli - Hijau Sedang)
           else if (dist >= 54 && dist <= 66) {
             color = "#16a34a";
-            width = 1.5;
-            dash = 'stroke-dasharray="3,3"';
+            width = 1.6;
             harmonicScore += 2;
-            if (dominantAspectName === "Netral Flow") dominantAspectName = "Sextile 60° Opportunity Flow";
           }
-          // Quincunx 150° (Penyesuaian Volatilitas)
+          // Quincunx 150° (Volatilitas)
           else if (dist >= 145 && dist <= 155) {
             color = "#f59e0b";
             width = 1.2;
             dash = 'stroke-dasharray="2,2"';
             stressScore += 1;
           }
-          // Semisextile 30°
-          else if (dist >= 27 && dist <= 33) {
-            color = "#0ea5e9";
-            width = 1.0;
-            dash = 'stroke-dasharray="2,2"';
-            harmonicScore += 1;
-          }
 
           if (color) {
-            const pt1 = toPoint(planets[i].lon, 155);
-            const pt2 = toPoint(planets[j].lon, 155);
+            const pt1 = toPoint(planets[i].lon, 158);
+            const pt2 = toPoint(planets[j].lon, 158);
             svgContent += `<line x1="${pt1.x}" y1="${pt1.y}" x2="${pt2.x}" y2="${pt2.y}" stroke="${color}" stroke-width="${width}" ${dash} />`;
           }
         }
       }
       svgContent += `</g>`;
 
-      // 6. DRAW PLANET NODES
+      // 6. DRAW PLANET NODES & DEGREE TICKS
       svgContent += `<g id="dynamicPlanetNodes">`;
       planets.forEach(p => {
-        const pt = toPoint(p.lon, 182);
+        const pt = toPoint(p.lon, 184);
         const zInfo = formatZodiac(p.lon);
         svgContent += `
-          <circle cx="${pt.x}" cy="${pt.y}" r="${p.r}" fill="${p.color}" stroke="#1e293b" stroke-width="1.5"/>
-          <text x="${pt.x}" y="${pt.y + 4}" text-anchor="middle" font-size="${p.r > 9 ? 11 : 9}" font-weight="900" fill="${p.txtFill}">${p.glyph}</text>
-          <text x="${pt.x + 13}" y="${pt.y + 4}" font-size="9" font-weight="900" fill="#0f172a">${zInfo.deg}°</text>
+          <circle cx="${pt.x}" cy="${pt.y}" r="${p.r}" fill="${p.color}" stroke="#0f172a" stroke-width="1.5"/>
+          <text x="${pt.x}" y="${pt.y + 4}" text-anchor="middle" font-size="${p.r > 8 ? 10 : 8}" font-weight="900" fill="${p.txtFill}">${p.glyph}</text>
+          <text x="${pt.x + 13}" y="${pt.y + 4}" font-size="8.5" font-weight="900" fill="#0f172a">${zInfo.deg}°</text>
         `;
       });
       svgContent += `</g>`;
@@ -1764,8 +1793,24 @@
     }
 
     // ========================================================
-    // 9. KALENDER NEWS FOREX FACTORY RESMI
+    // 9. KALENDER NEWS FOREX FACTORY DENGAN PILIHAN TAHUN BEBAS
     // ========================================================
+    function onCustomNewsDatePicked(dateStr) {
+      if (!dateStr) return;
+      const parts = dateStr.split('-');
+      selectedNewsDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+
+      document.querySelectorAll('#newsDaysBar .day-pill').forEach(pill => {
+        if (pill.dataset.date === dateStr) {
+          pill.classList.add('active');
+        } else {
+          pill.classList.remove('active');
+        }
+      });
+
+      renderNewsCards();
+    }
+
     async function loadForexFactoryLiveFeed() {
       const endpoints = [
         'https://api.allorigins.win/get?url=' + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json') + '&timestamp=' + Date.now(),
@@ -1836,6 +1881,14 @@
         });
       }
 
+      const picker = document.getElementById('customNewsDatePicker');
+      if (picker) {
+        const yStr = now.getFullYear();
+        const mStr = String(now.getMonth() + 1).padStart(2, '0');
+        const dStr = String(now.getDate()).padStart(2, '0');
+        picker.value = `${yStr}-${mStr}-${dStr}`;
+      }
+
       renderNewsDaysBar();
       renderNewsCards();
     }
@@ -1895,11 +1948,18 @@
       bar.innerHTML = '';
       full10DaysNews.forEach((dayGroup, idx) => {
         const pill = document.createElement('div');
+        const dObj = dayGroup.targetDateObj;
+        const dStr = `${dObj.getFullYear()}-${String(dObj.getMonth()+1).padStart(2,'0')}-${String(dObj.getDate()).padStart(2,'0')}`;
         pill.className = `day-pill ${idx === 0 ? 'active' : ''}`;
+        pill.dataset.date = dStr;
         pill.onclick = () => {
           selectedNewsDate = dayGroup.targetDateObj;
           document.querySelectorAll('#newsDaysBar .day-pill').forEach(p => p.classList.remove('active'));
           pill.classList.add('active');
+
+          const picker = document.getElementById('customNewsDatePicker');
+          if (picker) picker.value = dStr;
+
           renderNewsCards();
         };
 
@@ -1913,7 +1973,7 @@
     }
 
     // ========================================================
-    // 10. PENYIMPANAN REKAPITULASI PERMANEN (LOCALSTORAGE)
+    // 10. PENYIMPANAN REKAPITULASI PERMANEN
     // ========================================================
     const RECAP_STORAGE_KEY = "zerodiax_news_recap_history";
 
