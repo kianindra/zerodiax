@@ -33,9 +33,7 @@
       padding-bottom: env(safe-area-inset-bottom, 25px);
     }
 
-    /* =========================================================
-       1. CINEMATIC LUXURY SUPERCAR OPENING SCREEN
-       ========================================================= */
+    /* 1. OPENING LUXURY SCREEN */
     #openingOverlay {
       position: fixed;
       inset: 0;
@@ -207,9 +205,7 @@
       background: #ff2a54;
     }
 
-    /* =========================================================
-       2. APP SHELL & NAVIGATION
-       ========================================================= */
+    /* 2. APP SHELL & NAVIGATION */
     .terminal-container {
       max-width: 1120px;
       margin: 0 auto;
@@ -349,9 +345,7 @@
       transition: all 0.2s ease;
     }
 
-    /* =========================================================
-       3. KONTROL EKSKLUSIF CUSTOM TANGGAL & WAKTU DI TAB ASTRODOX
-       ========================================================= */
+    /* 3. KONTROL EKSKLUSIF TANGGAL & WAKTU DI TAB ASTRODOX */
     .astro-custom-control-card {
       background: #080a13;
       border: 1px solid rgba(255, 42, 84, 0.35);
@@ -948,7 +942,6 @@
           <span style="font-size:0.75rem; color:#22c55e; font-weight:700;">&bull; REALTIME EXECUTION FEED</span>
         </div>
 
-        <!-- TAB 10 HARI KHUSUS KALENDER BERITA -->
         <div class="days-scroll-bar" id="newsDaysBar"></div>
       </div>
 
@@ -1002,9 +995,7 @@
   </div>
 
   <script>
-    // ========================================================
     // 1. OPENING LUXURY CANVAS PARTICLES & VIDEO
-    // ========================================================
     function initOpeningParticles() {
       const canvas = document.getElementById('openingCanvas');
       if (!canvas) return;
@@ -1069,9 +1060,7 @@
 
     setTimeout(dismissOpeningScreen, 4800);
 
-    // ========================================================
     // 2. SWITCH TAB UTAMA
-    // ========================================================
     function switchMainTab(tabId, btnElem) {
       document.querySelectorAll('.tab-view-content').forEach(view => view.classList.remove('active'));
       document.querySelectorAll('.master-tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -1081,9 +1070,7 @@
       if (btnElem) btnElem.classList.add('active');
     }
 
-    // ========================================================
     // 3. SUPABASE AUTH
-    // ========================================================
     const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjaXZ0eW9sZWJibHJxcWdwdW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMjk0MzAsImV4cCI6MjEwNzYwNTQzMH0.o87Hwhz-I6jv98jW0VfT70UfbfgtEoo63rI3tm9rQbw';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -1109,9 +1096,7 @@
     }
     checkMemberAccess();
 
-    // ========================================================
     // 4. CLOCKS MULTI-ZONA REALTIME
-    // ========================================================
     function updateLiveClocks() {
       const now = new Date();
       const dateOpts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
@@ -1158,10 +1143,10 @@
       { name: "Pisces", glyph: "♓", bg: "#fef3c7" }
     ];
 
-    let isAstroLiveMode = true; // Mode live realtime atau mode kustom
-    let customAstroDate = new Date(); // Objek tanggal khusus Astrodox
+    let isAstroLiveMode = true;
+    let customAstroDate = new Date();
     let full10DaysNews = [];
-    let selectedNewsDate = new Date(); // Tanggal aktif di kalender berita
+    let selectedNewsDate = new Date();
     let currentCurrencyFilter = 'ALL';
 
     function getAstroEphemeris(targetDate, targetHoursFloat) {
@@ -1169,7 +1154,6 @@
       const month = targetDate.getMonth() + 1;
       const day = targetDate.getDate();
 
-      // Konversi WIB (UTC+7) ke UTC
       let utcHours = targetHoursFloat - 7.0;
       let y = year, m = month, dVal = day;
       if (utcHours < 0) {
@@ -1189,7 +1173,7 @@
       const C_sun = 1.914602 * Math.sin(M_sun) + 0.019993 * Math.sin(2 * M_sun);
       const sun = (L0 + C_sun + 360) % 360;
 
-      // Moon (~13.176° per hari, ~0.55° per jam)
+      // Moon (~13.176° per hari)
       const L_moon = (218.3165 + 13.176396 * d) % 360;
       const M_moon = ((134.9634 + 13.064993 * d) % 360) * Math.PI / 180;
       const moon = (L_moon + 6.2886 * Math.sin(M_moon) + 360) % 360;
@@ -1201,9 +1185,9 @@
       const jupiter = (34.35 + 0.083091 * d + 360) % 360;
       const saturn = (50.08 + 0.033459 * d + 360) % 360;
 
-      // Asc & MC (bergerak 360° per 24 jam)
+      // Asc & MC
       const GMST = (280.46061837 + 360.98564736629 * d + 15.0 * utcHours) % 360;
-      const localSidereal = (GMST + 107.0 + 360) % 360; // Longitude Jakarta 107°E
+      const localSidereal = (GMST + 107.0 + 360) % 360;
       const mc = localSidereal;
       const asc = (localSidereal + 90.0 + 23.44 * Math.sin(localSidereal * Math.PI / 180) + 360) % 360;
 
@@ -1324,23 +1308,23 @@
           let width = 1.5;
           let dash = "";
 
-          // Trine 120° (Harmonis)
+          // Trine 120°
           if (dist >= 114 && dist <= 126) {
             color = "#16a34a";
             width = 2.2;
           }
-          // Square 90° (Tegangan)
+          // Square 90°
           else if (dist >= 84 && dist <= 96) {
             color = "#dc2626";
             width = 2.2;
           }
-          // Sextile 60° (Peluang)
+          // Sextile 60°
           else if (dist >= 55 && dist <= 65) {
             color = "#16a34a";
             width = 1.4;
             dash = 'stroke-dasharray="3,3"';
           }
-          // Opposition 180° (Konflik/Dump)
+          // Opposition 180°
           else if (dist >= 174 && dist <= 180) {
             color = "#dc2626";
             width = 2.4;
@@ -1446,7 +1430,6 @@
       summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${String(targetD.getHours()).padStart(2,'0')}:${String(targetD.getMinutes()).padStart(2,'0')} WIB):</strong> ${narrative}`;
     }
 
-    // Sinkronisasi input form saat live
     function syncControlsUI(d) {
       const dateInp = document.getElementById('astroDate');
       const timeInp = document.getElementById('astroTime');
@@ -1480,11 +1463,10 @@
       customAstroDate = new Date(yr, mo, dy, hr, mn, sc);
       isAstroLiveMode = false;
 
-      // Update pills
       document.querySelectorAll('.quick-date-btn').forEach(btn => btn.classList.remove('active'));
 
       renderDynamicAstrodox();
-      renderNewsCards(); // Update alasan news sesuai tanggal yang dipilih
+      renderNewsCards();
     }
 
     function resetToLiveTime() {
@@ -1529,7 +1511,6 @@
       });
     }
 
-    // Auto-update roda Astrodox jika mode live aktif
     setInterval(() => {
       if (isAstroLiveMode) {
         renderDynamicAstrodox();
@@ -1682,7 +1663,7 @@
     }
 
     // ========================================================
-    // 8. KALENDER NEWS 10 HARI KE DEPAN
+    // 8. KALENDER NEWS EKONOMI RESMI
     // ========================================================
     async function loadOfficial10DaysCalendar() {
       const endpoints = [
@@ -1758,6 +1739,7 @@
       renderNewsCards();
     }
 
+    // Engine Jadwal Rilis Bursa Resmi Makroekonomi
     function generateScheduledEventsForDay(dateObj, dateStrWIB) {
       const dayOfWeek = dateObj.getDay();
 
