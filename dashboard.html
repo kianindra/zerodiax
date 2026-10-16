@@ -20,13 +20,11 @@
       overflow-x: hidden;
     }
 
-    /* =========================================================
-       1. CINEMATIC 3D HOLOGRAM OPENING SCREEN DENGAN KARAKTER BERGERAK
-       ========================================================= */
+    /* 1. CINEMATIC VIDEO / TEXT OPENING SCREEN */
     #openingOverlay {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, #180308 0%, #020305 90%);
+      background: radial-gradient(circle at center, #1b050a 0%, #030406 85%);
       z-index: 99999;
       display: flex;
       flex-direction: column;
@@ -34,7 +32,6 @@
       justify-content: center;
       padding: 24px;
       overflow: hidden;
-      perspective: 1000px;
       transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
     }
 
@@ -44,7 +41,6 @@
       pointer-events: none;
     }
 
-    /* Lantai Grid 3D Meluncur */
     .floor-grid-3d {
       position: absolute;
       bottom: -150px;
@@ -73,10 +69,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      transform-style: preserve-3d;
     }
 
-    /* Panggung Karakter Hologram 3D */
     .hologram-stage {
       position: relative;
       width: 140px;
@@ -103,7 +97,6 @@
       100% { transform: scale(1.15); opacity: 1; }
     }
 
-    /* Karakter Cyber Trader Vektor Bergerak */
     .cyber-avatar-svg {
       width: 110px;
       height: 150px;
@@ -117,7 +110,6 @@
       100% { transform: translateY(-12px) rotateY(5deg); }
     }
 
-    /* Laser Scanner Vertikal Karakter */
     .avatar-scanline {
       position: absolute;
       top: 10px;
@@ -136,7 +128,6 @@
       100% { top: 145px; opacity: 1; }
     }
 
-    /* Teks 3D Bergerak */
     .opening-subtext {
       font-size: 0.75rem;
       font-weight: 800;
@@ -216,9 +207,7 @@
       box-shadow: 0 0 15px rgba(255, 42, 84, 0.8);
     }
 
-    /* =========================================================
-       2. TAMPILAN DASHBOARD UTAMA
-       ========================================================= */
+    /* 2. DASHBOARD CONTAINER */
     .terminal-container {
       max-width: 1100px;
       margin: 0 auto;
@@ -518,41 +507,31 @@
 </head>
 <body>
 
-  <!-- =========================================================
-       1. CINEMATIC 3D HOLOGRAM OPENING SCREEN DENGAN KARAKTER BERGERAK
-       ========================================================= -->
+  <!-- 1. CINEMATIC VIDEO / TEXT OPENING SCREEN -->
   <div id="openingOverlay">
     <div class="floor-grid-3d"></div>
     <div class="opening-scanner-bar"></div>
 
     <div class="opening-core-3d">
-      <!-- Panggung Karakter Hologram -->
       <div class="hologram-stage">
         <div class="hologram-pedestal"></div>
         <div class="avatar-scanline"></div>
 
-        <!-- Karakter Cyber Trader 3D Vektor -->
         <svg class="cyber-avatar-svg" viewBox="0 0 100 140">
-          <!-- Kepala / Visor Cyber Helm -->
           <circle cx="50" cy="28" r="16" fill="#11131c" stroke="#ff2a54" stroke-width="2"/>
           <path d="M 38 28 Q 50 34 62 28" fill="none" stroke="#00f0ff" stroke-width="3" filter="drop-shadow(0 0 5px #00f0ff)"/>
           
-          <!-- Leher & Bahu Berarmor -->
           <path d="M 46 44 L 54 44 L 58 52 L 42 52 Z" fill="#202430"/>
           <path d="M 30 54 L 70 54 L 78 78 L 22 78 Z" fill="#141724" stroke="#ff2a54" stroke-width="1.5"/>
           
-          <!-- Reaktor Dada Bersinar -->
           <circle cx="50" cy="65" r="6" fill="#ff2a54" filter="drop-shadow(0 0 8px #ff2a54)"/>
           <circle cx="50" cy="65" r="2.5" fill="#fff"/>
 
-          <!-- Tubuh & Pinggang Cybernetic -->
           <path d="M 32 78 L 68 78 L 62 108 L 38 108 Z" fill="#0d0f17" stroke="#2a3040" stroke-width="1.5"/>
           
-          <!-- Kaki & Armor Hologram -->
           <path d="M 38 108 L 34 135 L 45 135 L 48 108 Z" fill="#161926" stroke="#ff2a54" stroke-width="1"/>
           <path d="M 62 108 L 66 135 L 55 135 L 52 108 Z" fill="#161926" stroke="#ff2a54" stroke-width="1"/>
           
-          <!-- Partikel Sinyal Chart Melayang di Tangan -->
           <circle cx="20" cy="68" r="3" fill="#00f0ff" filter="drop-shadow(0 0 6px #00f0ff)"/>
           <circle cx="80" cy="68" r="3" fill="#ff2a54" filter="drop-shadow(0 0 6px #ff2a54)"/>
         </svg>
@@ -948,20 +927,54 @@
     setInterval(updateLiveClocks, 1000);
     updateLiveClocks();
 
-    // 4. ENGINE ASTRODOX 24 JAM
-    let currentAstroData = {
-      sunDegree: 23,
-      moonDegree: 18,
-      marsDegree: 10,
-      dominantAspect: "Trine 120° Harmonic",
-      biasXAU: "BULLISH EXPANSION",
-      reasonText: ""
-    };
+    // ========================================================
+    // 4. ENGINE ASTRODOX DINAMIS (BERDASARKAN TANGGAL YANG DIPILIH)
+    // ========================================================
+    let full10DaysNews = [];
+    let selectedDayIndex = 0;
+    let currentCurrencyFilter = 'ALL';
+
+    function getAstroMetricsForDate(targetDate) {
+      const day = targetDate.getDate();
+      const month = targetDate.getMonth() + 1;
+      const now = new Date();
+      const secs = (now.getUTCHours() * 3600) + (now.getUTCMinutes() * 60) + now.getUTCSeconds();
+
+      const sunDeg = Math.floor((day * 1.05 + month * 2) % 30);
+      const moonDeg = Math.floor((day * 13.2 + (secs / 3600)) % 30);
+      const marsDeg = Math.floor((day * 0.5 + 8) % 30);
+
+      // Selisih aspek zodiak transit pada tanggal tersebut
+      const aspectDiff = Math.abs((sunDeg * 12) - (moonDeg * 12)) % 360;
+      let bias = "BULLISH EXPANSION";
+      let dominant = "Trine 120° Harmonic";
+      let isBullish = true;
+
+      // Logika variasi aspek: menghasilkan Buy dan Sell seimbang
+      if ((aspectDiff >= 90 && aspectDiff <= 150) || (aspectDiff >= 200 && aspectDiff <= 250)) {
+        bias = "BULLISH EXPANSION";
+        dominant = "Trine 120° Harmonic (Sun-Jupiter)";
+        isBullish = true;
+      } else if ((aspectDiff >= 60 && aspectDiff <= 89) || (aspectDiff >= 260 && aspectDiff <= 310)) {
+        bias = "BEARISH REJECTION";
+        dominant = "Square 90° Tension (Mars Cross)";
+        isBullish = false;
+      } else {
+        // Hari-hari tertentu menjadi Sextile dinamis
+        bias = (day % 2 === 0) ? "BULLISH EXPANSION" : "BEARISH REJECTION";
+        dominant = "Sextile 60° Angle Flow";
+        isBullish = (day % 2 === 0);
+      }
+
+      return { sunDeg, moonDeg, marsDeg, bias, dominant, isBullish, day, month };
+    }
 
     function updateAstrodox24H() {
       const now = new Date();
-      const day = now.getDate();
-      const month = now.getMonth() + 1;
+      const targetDate = new Date(now);
+      targetDate.setDate(now.getDate() + selectedDayIndex);
+
+      const astro = getAstroMetricsForDate(targetDate);
       const secs = (now.getUTCHours() * 3600) + (now.getUTCMinutes() * 60) + now.getUTCSeconds();
       const rot = (secs / 86400) * 360;
 
@@ -970,44 +983,44 @@
       if (aspectGroup) aspectGroup.setAttribute('transform', `rotate(${rot % 360} 250 250)`);
       if (planetGroup) planetGroup.setAttribute('transform', `rotate(${rot % 360} 250 250)`);
 
-      const sunDegreeCalc = Math.floor((day * 1.05 + month * 2) % 30);
-      const moonDegreeCalc = Math.floor((day * 13.2 + (secs / 3600)) % 30);
-      const marsDegreeCalc = Math.floor((day * 0.5 + 8) % 30);
-
       const sunSec = (secs % 60).toString().padStart(2, '0');
       const moonSec = ((secs * 2) % 60).toString().padStart(2, '0');
 
-      document.getElementById('degSun').innerHTML = `&#9806; ${sunDegreeCalc}&deg;10'${sunSec}"`;
-      document.getElementById('degMoon').innerHTML = `&#9808; ${moonDegreeCalc}&deg;52'${moonSec}"`;
-      document.getElementById('degMars').innerHTML = `&#9804; 0${marsDegreeCalc}&deg;55'26"`;
+      document.getElementById('degSun').innerHTML = `&#9806; ${astro.sunDeg}&deg;10'${sunSec}"`;
+      document.getElementById('degMoon').innerHTML = `&#9808; ${astro.moonDeg}&deg;52'${moonSec}"`;
+      document.getElementById('degMars').innerHTML = `&#9804; 0${astro.marsDeg}&deg;55'26"`;
 
-      document.getElementById('chartSunDeg').innerText = `${sunDegreeCalc}°`;
-      document.getElementById('chartMoonDeg').innerText = `${moonDegreeCalc}°`;
-      document.getElementById('chartMarsDeg').innerText = `${marsDegreeCalc}°`;
-
-      currentAstroData.sunDegree = sunDegreeCalc;
-      currentAstroData.moonDegree = moonDegreeCalc;
-      currentAstroData.marsDegree = marsDegreeCalc;
-
-      const aspectDifference = Math.abs((sunDegreeCalc * 12) - (moonDegreeCalc * 12)) % 360;
-
-      if (aspectDifference >= 110 && aspectDifference <= 130) {
-        currentAstroData.dominantAspect = "Trine 120° Harmonic";
-        currentAstroData.biasXAU = "BULLISH EXPANSION";
-        currentAstroData.reasonText = `Siklus Astrodox: Sun ${sunDegreeCalc}° beresonansi Trine 120° dengan Moon ${moonDegreeCalc}°. Membuka likuiditas akumulasi beli masif pada XAUUSD.`;
-      } else if (aspectDifference >= 80 && aspectDifference <= 100) {
-        currentAstroData.dominantAspect = "Square 90° Tension";
-        currentAstroData.biasXAU = "BEARISH REJECTION";
-        currentAstroData.reasonText = `Siklus Astrodox: Transit Mars ${marsDegreeCalc}° membentuk sudut Square 90° menekan poros likuiditas Sun. Menghasilkan tekanan jual dan pembersihan likuiditas bawah pada XAUUSD.`;
-      } else {
-        currentAstroData.dominantAspect = "Sextile 60° Opportunity";
-        currentAstroData.biasXAU = "HIGH VOLATILITY BREAKOUT";
-        currentAstroData.reasonText = `Siklus Astrodox: Perpindahan Moon membentuk sudut Sextile dinamis. Memicu pergerakan impulsif dua arah mengikuti hasil rilis news.`;
-      }
+      document.getElementById('chartSunDeg').innerText = `${astro.sunDeg}°`;
+      document.getElementById('chartMoonDeg').innerText = `${astro.moonDeg}°`;
+      document.getElementById('chartMarsDeg').innerText = `${astro.marsDeg}°`;
 
       const summaryBox = document.getElementById('liveDailyAstroSummary');
       if (summaryBox) {
-        summaryBox.innerHTML = `<strong>Konfluensi Astrodox:</strong> ${currentAstroData.reasonText}`;
+        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetDate.toLocaleDateString('id-ID')}):</strong> Posisi Sun di ${astro.sunDeg}° dan Moon di ${astro.moonDeg}° membentuk ${astro.dominant}. Menetapkan bias ${astro.bias} pada pergerakan pasar.`;
+      }
+
+      // Update Fase Bulan Sesuai Tanggal
+      const moonPhaseName = document.getElementById('liveMoonPhaseName');
+      const moonIllum = document.getElementById('liveMoonIllum');
+      const moonIcon = document.getElementById('liveMoonIcon');
+
+      const moonAge = (astro.day + astro.month) % 29.5;
+      if (moonAge < 7.4) {
+        moonPhaseName.innerText = "Waxing Crescent (Sabit Awal)";
+        moonIllum.innerText = `Moon di Sagitarius ${astro.moonDeg}° • Iluminasi ${(moonAge * 13).toFixed(1)}% • Siklus Akumulasi`;
+        moonIcon.innerHTML = "&#9789;";
+      } else if (moonAge < 14.8) {
+        moonPhaseName.innerText = "First Quarter (Kuartil Pertama)";
+        moonIllum.innerText = `Moon di Sagitarius ${astro.moonDeg}° • Iluminasi 50.0% • Volatilitas Tinggi`;
+        moonIcon.innerHTML = "&#9680;";
+      } else if (moonAge < 22.1) {
+        moonPhaseName.innerText = "Full Moon (Purnama Penuh)";
+        moonIllum.innerText = `Moon di Sagitarius ${astro.moonDeg}° • Iluminasi 99.2% • Puncak Likuiditas Global`;
+        moonIcon.innerHTML = "&#9675;";
+      } else {
+        moonPhaseName.innerText = "Waning Gibbous (Bulan Susut)";
+        moonIllum.innerText = `Moon di Sagitarius ${astro.moonDeg}° • Iluminasi ${(100 - (moonAge - 22) * 12).toFixed(1)}% • Distribusi`;
+        moonIcon.innerHTML = "&#9790;";
       }
     }
     setInterval(updateAstrodox24H, 1000);
@@ -1052,9 +1065,10 @@
     // ========================================================
     // 6. ENGINE ANALISA & EKSEKUSI NEWS
     // ========================================================
-    function determineExecutionSignal(item) {
+    function determineExecutionSignal(item, dayDateObj) {
       const curr = (item.country || item.currency || "USD").toUpperCase();
       const title = item.title.toLowerCase();
+      const astro = getAstroMetricsForDate(dayDateObj);
 
       const parseVal = (str) => {
         if (!str || str === "" || str === "--" || str === "Menunggu") return null;
@@ -1068,10 +1082,10 @@
 
       const pipResult = calculatePrecisePips(item, actual, forecast);
 
-      // KASUS 1: JAM RILIS TIBA / DATA SUDAH KELUAR
+      // KASUS 1: DETIK JAM RILIS SUDAH TIBA / DATA AKTUAL KELUAR
       if (actual !== null || (isPassed && forecast !== null)) {
         if (actual === null && forecast !== null) {
-          const dev = (currentAstroData.biasXAU === "BULLISH EXPANSION") ? -0.2 : 0.3;
+          const dev = astro.isBullish ? -0.2 : 0.3;
           actual = forecast + dev;
           item.actual = actual.toFixed(1) + (item.forecast.includes('%') ? '%' : '');
         }
@@ -1083,7 +1097,7 @@
           if (actual !== null && forecast !== null) {
             usdBullish = isHigherBadForUSD ? (actual < forecast) : (actual >= forecast);
           } else {
-            usdBullish = currentAstroData.biasXAU !== "BULLISH EXPANSION";
+            usdBullish = !astro.isBullish;
           }
 
           if (usdBullish) {
@@ -1092,7 +1106,7 @@
               badgeClass: "signal-sell",
               wr: "100% REALTIME TRIGGER",
               targetStatus: pipResult.label,
-              desc: `EKSEKUSI PAS DETIK RILIS: Data actual rilis (${item.actual}) lebih kuat dibanding Forecast (${item.forecast || '--'}). Index Dollar (DXY) melonjak drastis, terkonfirmasi oleh sudut tekanan Mars di ${currentAstroData.marsDegree}°, menekan harga XAUUSD (Gold) anjlok/junam menembus support likuiditas.`
+              desc: `EKSEKUSI PAS DETIK RILIS: Data actual ${item.title} (${item.actual}) lebih kuat dibanding Forecast (${item.forecast || '--'}). Penguatan DXY didukung sudut tekanan Mars di ${astro.marsDeg}°, menekan likuiditas Gold hingga anjlok/junam menembus batas support.`
             };
           } else {
             return {
@@ -1100,7 +1114,7 @@
               badgeClass: "signal-buy",
               wr: "100% REALTIME TRIGGER",
               targetStatus: pipResult.label,
-              desc: `EKSEKUSI PAS DETIK RILIS: Data actual rilis (${item.actual}) lebih lemah dibanding Forecast (${item.forecast || '--'}). Index Dollar anjlok tajam, selaras dengan aspek Trine harmonik Sun di ${currentAstroData.sunDegree}°, memicu aliran modal memborong Gold (XAUUSD terbang tinggi).`
+              desc: `EKSEKUSI PAS DETIK RILIS: Data actual ${item.title} (${item.actual}) lebih lemah dibanding Forecast (${item.forecast || '--'}). Pelemahan DXY selaras dengan aspek Trine harmonik Sun di ${astro.sunDeg}°, memicu lonjakan likuiditas institusi memborong Gold (XAUUSD terbang).`
             };
           }
         }
@@ -1112,7 +1126,7 @@
             badgeClass: "signal-buy",
             wr: "100% REALTIME TRIGGER",
             targetStatus: pipResult.label,
-            desc: `EKSEKUSI DETIK RILIS: Fundamental ${curr} menguat di atas estimasi pasar (${item.actual} vs ${item.forecast}). Mengonfirmasi momentum reli bullish lanjutan.`
+            desc: `EKSEKUSI DETIK RILIS: Data ekonomi ${curr} (${item.title}) menguat melampaui forecast pasar (${item.actual} vs ${item.forecast}). Mengonfirmasi kelanjutan momentum bullish pada pair ${curr}USD.`
           };
         } else {
           return {
@@ -1120,7 +1134,7 @@
             badgeClass: "signal-sell",
             wr: "100% REALTIME TRIGGER",
             targetStatus: pipResult.label,
-            desc: `EKSEKUSI DETIK RILIS: Fundamental ${curr} melemah di bawah ekspektasi pasar. Melanjutkan tekanan jual pada ${curr}USD.`
+            desc: `EKSEKUSI DETIK RILIS: Data ekonomi ${curr} (${item.title}) di bawah ekspektasi pasar. Melanjutkan dorongan tren pelemahan harga pada pair ${curr}USD.`
           };
         }
       }
@@ -1128,13 +1142,13 @@
       // KASUS 2: SEBELUM DETIK JAM RILIS TIBA (STANDBY)
       item.actual = "Menunggu";
       if (curr === "USD") {
-        if (currentAstroData.biasXAU === "BULLISH EXPANSION") {
+        if (astro.isBullish) {
           return {
             signal: "▲ STANDBY BUY XAUUSD",
             badgeClass: "signal-buy",
             wr: "ASTRODOX 100% CONFLUENCE",
             targetStatus: "PENDING ENTRY",
-            desc: `RADAR TRANSIT HARI INI: ${currentAstroData.reasonText} Pasang buy limit di area demand sebelum detik rilis news tiba.`
+            desc: `ANALISA ASTRODOX (${item.title}): Siklus transit menunjukkan Sun di ${astro.sunDeg}° membentuk resonansi harmonik ${astro.dominant}. Bersiap eksekusi BUY pada zona demand XAUUSD saat detik jam rilis tiba.`
           };
         } else {
           return {
@@ -1142,7 +1156,7 @@
             badgeClass: "signal-sell",
             wr: "ASTRODOX 100% CONFLUENCE",
             targetStatus: "PENDING ENTRY",
-            desc: `RADAR TRANSIT HARI INI: ${currentAstroData.reasonText} Pasang sell limit di area supply sebelum detik rilis news tiba.`
+            desc: `ANALISA ASTRODOX (${item.title}): Transit Mars di ${astro.marsDeg}° membentuk sudut tekanan ${astro.dominant}. Menunjukkan distribusi likuiditas atas; pasang sell limit di zona supply menjelang detik rilis tiba.`
           };
         }
       }
@@ -1152,17 +1166,13 @@
         badgeClass: "signal-wait",
         wr: "ASTRODOX 100% CONFLUENCE",
         targetStatus: "PENDING ENTRY",
-        desc: `Menunggu jam rilis tiba. Konfigurasi sudut zodiak mengarah pada volatilitas aktif pair ${curr}USD.`
+        desc: `ANALISA ASTRODOX (${item.title}): Menunggu jam rilis tiba. Konfigurasi sudut zodiak ${astro.dominant} mengindikasikan lonjakan volatilitas aktif pada pair ${curr}USD.`
       };
     }
 
     // ========================================================
-    // 7. SISTEM KALENDER 10 HARI RESMI OTOMATIS BERGANTI TIAP HARI
+    // 7. SISTEM 10 HARI KE DEPAN BERJALAN OTOMATIS TIAP HARI
     // ========================================================
-    let full10DaysNews = [];
-    let selectedDayIndex = 0;
-    let currentCurrencyFilter = 'ALL';
-
     async function loadOfficial10DaysCalendar() {
       const endpoints = [
         'https://api.allorigins.win/get?url=' + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json') + '&timestamp=' + Date.now(),
@@ -1226,6 +1236,7 @@
 
         full10DaysNews.push({
           dayOffset: i,
+          targetDateObj: targetD,
           dateLabel: dateStrWIB,
           dayTitle: i === 0 ? "HARI INI" : (i === 1 ? "BESOK" : dateStrWIB.split(',')[0].toUpperCase()),
           events: matchedEvents
@@ -1236,7 +1247,6 @@
       renderNewsCards();
     }
 
-    // Generator Terstruktur Siklus Bursa 10 Hari Resmi
     function generateScheduledEventsForDay(dateObj, dateStrWIB) {
       const dayOfWeek = dateObj.getDay();
 
@@ -1297,6 +1307,7 @@
           selectedDayIndex = idx;
           document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
           pill.classList.add('active');
+          updateAstrodox24H(); // Update radar & transit sesuai tanggal yang dipilih
           renderNewsCards();
         };
 
@@ -1334,7 +1345,7 @@
       }
 
       filteredEvents.forEach(item => {
-        const exec = determineExecutionSignal(item);
+        const exec = determineExecutionSignal(item, currentDayData.targetDateObj);
         const curr = item.country.toUpperCase();
         const impact = item.impact.toUpperCase();
         const impactClass = impact === 'HIGH' ? 'impact-high' : 'impact-medium';
@@ -1369,12 +1380,12 @@
         container.appendChild(card);
       });
 
-      // Render Rekapitulasi Otomatis (Rilis yang jamnya sudah lewat)
+      // Render Rekapitulasi Otomatis (Hanya event yang sudah terlewati)
       if (recapBody) {
         full10DaysNews.forEach(dayG => {
           dayG.events.forEach(ev => {
             if (Date.now() >= ev.exactTimestamp && ev.actual && ev.actual !== "Menunggu") {
-              const exec = determineExecutionSignal(ev);
+              const exec = determineExecutionSignal(ev, dayG.targetDateObj);
               const row = document.createElement('tr');
               row.innerHTML = `
                 <td style="color:#94a3b8; font-family:monospace;">${ev.displayTime}</td>
@@ -1397,7 +1408,7 @@
       renderNewsCards();
     }
 
-    // Inisialisasi kalender 10 hari otomatis
+    // Jalankan sistem kalender otomatis
     loadOfficial10DaysCalendar();
 
     // Auto-update jam rilis & status eksekusi setiap 1 detik
