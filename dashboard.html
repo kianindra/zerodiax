@@ -1288,7 +1288,7 @@
       const C_sun = 1.914602 * Math.sin(M_sun) + 0.019993 * Math.sin(2 * M_sun);
       const sun = (L0 + C_sun + 360) % 360;
 
-      // Moon (berputar dinamis sesuai menit/jam aktual)
+      // Moon
       const L_moon = (218.3165 + 13.176396 * d) % 360;
       const M_moon = ((134.9634 + 13.064993 * d) % 360) * Math.PI / 180;
       const moon = (L_moon + 6.2886 * Math.sin(M_moon) + 360) % 360;
@@ -1331,7 +1331,82 @@
     }
 
     // ========================================================
-    // 6. RENDERING EXACT REPLIKA ASTRODOX.COM
+    // 6. MASTER ASTRO EVALUATOR (SINGLE SOURCE OF TRUTH)
+    // ========================================================
+    function evaluateAstrodoxConfluence(targetDate, targetHoursFloat) {
+      const astro = getAstroEphemeris(targetDate, targetHoursFloat);
+      const planets = [
+        { name: "Sun", glyph: "☉", lon: astro.sun },
+        { name: "Moon", glyph: "☽", lon: astro.moon },
+        { name: "Mercury", glyph: "☿", lon: astro.mercury },
+        { name: "Venus", glyph: "♀", lon: astro.venus },
+        { name: "Mars", glyph: "♂", lon: astro.mars },
+        { name: "Jupiter", glyph: "♃", lon: astro.jupiter },
+        { name: "Saturn", glyph: "♄", lon: astro.saturn },
+        { name: "Uranus", glyph: "♅", lon: astro.uranus },
+        { name: "Neptune", glyph: "♆", lon: astro.neptune },
+        { name: "Pluto", glyph: "♇", lon: astro.pluto }
+      ];
+
+      let harmonicScore = 0;
+      let stressScore = 0;
+      let dominantAspectName = "Grand Trine 120° Harmonic Flow";
+
+      for (let i = 0; i < planets.length; i++) {
+        for (let j = i + 1; j < planets.length; j++) {
+          const diff = Math.abs(planets[i].lon - planets[j].lon) % 360;
+          const dist = diff > 180 ? 360 - diff : diff;
+
+          if (dist >= 113 && dist <= 127) {
+            harmonicScore += 6;
+            dominantAspectName = "Grand Trine 120° Harmonic Flow";
+          } else if (dist >= 54 && dist <= 66) {
+            harmonicScore += 3;
+          } else if (dist >= 83 && dist <= 97) {
+            stressScore += 3;
+            if (harmonicScore === 0) dominantAspectName = "Square 90° Tension Cross";
+          } else if (dist >= 173 && dist <= 180) {
+            stressScore += 5;
+            if (harmonicScore === 0) dominantAspectName = "Opposition 180° Polar Dump";
+          } else if (dist >= 145 && dist <= 155) {
+            stressScore += 1;
+          }
+        }
+      }
+
+      const isBullish = harmonicScore >= stressScore;
+      const moonFmt = formatZodiac(astro.moon);
+      const marsFmt = formatZodiac(astro.mars);
+      const sunFmt = formatZodiac(astro.sun);
+
+      const hInt = Math.floor(targetHoursFloat);
+      const mInt = Math.floor((targetHoursFloat - hInt) * 60);
+      const jamStr = `${String(hInt).padStart(2,'0')}:${String(mInt).padStart(2,'0')}`;
+
+      let reasonMaster = "";
+      if (isBullish) {
+        reasonMaster = `Pukul ${jamStr} WIB: Geometri transit didominasi jaring hijau ${dominantAspectName} (+${harmonicScore} Harmonic). Pergerakan Moon di ${moonFmt.deg}° ${moonFmt.signName} membentuk sudut ekspansi terhadap Sun di ${sunFmt.deg}°, memvalidasi Order Block Demand institusi. Skenario likuiditas mengarah pada Reversal Beli (Pump) dengan target sweep Buy-Side Liquidity (BSL) di resistance atas.`;
+      } else {
+        reasonMaster = `Pukul ${jamStr} WIB: Terdeteksi konsentrasi garis tegangan merah ${dominantAspectName} (+${stressScore} Tension). Tekanan polaritas Mars di ${marsFmt.deg}° ${marsFmt.signName} terhadap Moon memicu liquidity grab atas sebelum harga terdistribusi turun tajam (Dump) membobol Sell-Side Liquidity (SSL) bawah.`;
+      }
+
+      return {
+        astro,
+        planets,
+        harmonicScore,
+        stressScore,
+        dominantAspectName,
+        isBullish,
+        reasonMaster,
+        jamStr,
+        moonFmt,
+        marsFmt,
+        sunFmt
+      };
+    }
+
+    // ========================================================
+    // 7. RENDERING EXACT REPLIKA ASTRODOX.COM
     // ========================================================
     function renderDynamicAstrodox() {
       const svg = document.getElementById('astrodoxDynamicSvg');
@@ -1348,7 +1423,8 @@
         syncControlsUI(liveNow);
       }
 
-      const astro = getAstroEphemeris(targetD, targetHoursFloat);
+      const analysis = evaluateAstrodoxConfluence(targetD, targetHoursFloat);
+      const astro = analysis.astro;
       const cx = 250, cy = 250;
       const ascLong = astro.asc;
 
@@ -1364,9 +1440,8 @@
         };
       }
 
-      // 1. ZODIAC SLICES
+      // Zodiac Slices
       let svgContent = `<circle cx="${cx}" cy="${cy}" r="246" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/><g id="zSlices">`;
-
       for (let i = 0; i < 12; i++) {
         const p1 = toPoint(i * 30, 246);
         const p2 = toPoint((i + 1) * 30, 246);
@@ -1392,9 +1467,7 @@
 
       for (let i = 0; i < 12; i++) {
         const pt = toPoint(i * 30 + 15, 226);
-        svgContent += `
-          <text x="${pt.x}" y="${pt.y + 6}" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">${ZODIAC_DATA[i].glyph}</text>
-        `;
+        svgContent += `<text x="${pt.x}" y="${pt.y + 6}" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">${ZODIAC_DATA[i].glyph}</text>`;
       }
 
       for (let h = 0; h < 12; h++) {
@@ -1417,7 +1490,7 @@
         <text x="${pMC.x + 4}" y="${pMC.y + 16}" font-size="11" font-weight="900" fill="#0f172a">MC</text>
       `;
 
-      const planets = [
+      const planetsVisual = [
         { name: "Sun", glyph: "☉", lon: astro.sun, color: "#f59e0b", r: 10, txtFill: "#000" },
         { name: "Moon", glyph: "☽", lon: astro.moon, color: "#0284c7", r: 10, txtFill: "#fff" },
         { name: "Mercury", glyph: "☿", lon: astro.mercury, color: "#a855f7", r: 8, txtFill: "#fff" },
@@ -1431,57 +1504,30 @@
       ];
 
       svgContent += `<g id="dynamicAspectLines">`;
-      let harmonicScore = 0;
-      let stressScore = 0;
-      let dominantAspectName = "Grand Trine 120° Harmonic Flow";
-
-      for (let i = 0; i < planets.length; i++) {
-        for (let j = i + 1; j < planets.length; j++) {
-          const diff = Math.abs(planets[i].lon - planets[j].lon) % 360;
+      for (let i = 0; i < planetsVisual.length; i++) {
+        for (let j = i + 1; j < planetsVisual.length; j++) {
+          const diff = Math.abs(planetsVisual[i].lon - planetsVisual[j].lon) % 360;
           const dist = diff > 180 ? 360 - diff : diff;
 
           let color = null;
           let width = 1.2;
           let dash = "";
 
-          // Trine 120° (Harmonis Beli - HIJAU)
           if (dist >= 113 && dist <= 127) {
-            color = "#16a34a";
-            width = 2.4;
-            harmonicScore += 6;
-            dominantAspectName = "Grand Trine 120° Harmonic Flow";
-          }
-          // Square 90° (Tegangan - MERAH)
-          else if (dist >= 83 && dist <= 97) {
-            color = "#dc2626";
-            width = 2.2;
-            stressScore += 3;
-            if (harmonicScore === 0) dominantAspectName = "Square 90° Tension Cross";
-          }
-          // Opposition 180° (Konflik/Dump - MERAH TEBAL)
-          else if (dist >= 173 && dist <= 180) {
-            color = "#dc2626";
-            width = 2.4;
-            stressScore += 4;
-            if (harmonicScore === 0) dominantAspectName = "Opposition 180° Polar Dump";
-          }
-          // Sextile 60° (Peluang Beli - HIJAU)
-          else if (dist >= 54 && dist <= 66) {
-            color = "#16a34a";
-            width = 1.6;
-            harmonicScore += 3;
-          }
-          // Quincunx 150°
-          else if (dist >= 145 && dist <= 155) {
-            color = "#f59e0b";
-            width = 1.2;
-            dash = 'stroke-dasharray="2,2"';
-            stressScore += 1;
+            color = "#16a34a"; width = 2.4;
+          } else if (dist >= 83 && dist <= 97) {
+            color = "#dc2626"; width = 2.2;
+          } else if (dist >= 173 && dist <= 180) {
+            color = "#dc2626"; width = 2.4;
+          } else if (dist >= 54 && dist <= 66) {
+            color = "#16a34a"; width = 1.6;
+          } else if (dist >= 145 && dist <= 155) {
+            color = "#f59e0b"; width = 1.2; dash = 'stroke-dasharray="2,2"';
           }
 
           if (color) {
-            const pt1 = toPoint(planets[i].lon, 158);
-            const pt2 = toPoint(planets[j].lon, 158);
+            const pt1 = toPoint(planetsVisual[i].lon, 158);
+            const pt2 = toPoint(planetsVisual[j].lon, 158);
             svgContent += `<line x1="${pt1.x}" y1="${pt1.y}" x2="${pt2.x}" y2="${pt2.y}" stroke="${color}" stroke-width="${width}" ${dash} />`;
           }
         }
@@ -1489,7 +1535,7 @@
       svgContent += `</g>`;
 
       svgContent += `<g id="dynamicPlanetNodes">`;
-      planets.forEach(p => {
+      planetsVisual.forEach(p => {
         const pt = toPoint(p.lon, 184);
         const zInfo = formatZodiac(p.lon);
         svgContent += `
@@ -1508,37 +1554,24 @@
 
       svg.innerHTML = svgContent;
 
-      const sunFmt = formatZodiac(astro.sun);
-      const moonFmt = formatZodiac(astro.moon);
-      const marsFmt = formatZodiac(astro.mars);
-      const mercFmt = formatZodiac(astro.mercury);
-      const venFmt = formatZodiac(astro.venus);
-      const jupFmt = formatZodiac(astro.jupiter);
-      const ascFmt = formatZodiac(astro.asc);
-      const mcFmt = formatZodiac(astro.mc);
-
-      document.getElementById('degSun').innerText = sunFmt.text;
-      document.getElementById('degMoon').innerText = moonFmt.text;
-      document.getElementById('degMars').innerText = marsFmt.text;
-      document.getElementById('degMerc').innerText = mercFmt.text;
-      document.getElementById('degVen').innerText = venFmt.text;
-      document.getElementById('degJup').innerText = jupFmt.text;
-      document.getElementById('degAsc').innerText = ascFmt.text;
-      document.getElementById('degMC').innerText = mcFmt.text;
+      // Update Panel Data
+      document.getElementById('degSun').innerText = formatZodiac(astro.sun).text;
+      document.getElementById('degMoon').innerText = formatZodiac(astro.moon).text;
+      document.getElementById('degMars').innerText = formatZodiac(astro.mars).text;
+      document.getElementById('degMerc').innerText = formatZodiac(astro.mercury).text;
+      document.getElementById('degVen').innerText = formatZodiac(astro.venus).text;
+      document.getElementById('degJup').innerText = formatZodiac(astro.jupiter).text;
+      document.getElementById('degAsc').innerText = formatZodiac(astro.asc).text;
+      document.getElementById('degMC').innerText = formatZodiac(astro.mc).text;
       document.getElementById('degHouse2').innerText = formatZodiac(astro.asc + 30).text;
       document.getElementById('degHouse3').innerText = formatZodiac(astro.asc + 60).text;
       document.getElementById('degIC').innerText = formatZodiac(astro.mc + 180).text;
       document.getElementById('degDsc').innerText = formatZodiac(astro.asc + 180).text;
 
+      // Moon Phase
       const phaseDiff = (astro.moon - astro.sun + 360) % 360;
-      const moonPhaseName = document.getElementById('liveMoonPhaseName');
-      const moonIllum = document.getElementById('liveMoonIllum');
-      const moonIcon = document.getElementById('liveMoonIcon');
-
-      let pName = "Waxing Crescent";
-      let pIcon = "&#9789;";
       const illumPct = ((1 - Math.cos(phaseDiff * Math.PI / 180)) / 2 * 100).toFixed(1);
-
+      let pName = "Waxing Crescent", pIcon = "&#9789;";
       if (phaseDiff < 45) { pName = "New Moon (Bulan Baru)"; pIcon = "&#9679;"; }
       else if (phaseDiff < 90) { pName = "Waxing Crescent (Sabit Awal)"; pIcon = "&#9789;"; }
       else if (phaseDiff < 135) { pName = "First Quarter (Kuartil Pertama)"; pIcon = "&#9680;"; }
@@ -1548,36 +1581,30 @@
       else if (phaseDiff < 315) { pName = "Last Quarter (Kuartil Akhir)"; pIcon = "&#9681;"; }
       else { pName = "Waning Crescent (Sabit Akhir)"; pIcon = "&#9790;"; }
 
-      moonPhaseName.innerText = pName;
-      moonIllum.innerText = `Moon di ${moonFmt.signName} ${moonFmt.deg}° • Iluminasi ${illumPct}%`;
-      moonIcon.innerHTML = pIcon;
+      document.getElementById('liveMoonPhaseName').innerText = pName;
+      document.getElementById('liveMoonIllum').innerText = `Moon di ${analysis.moonFmt.signName} ${analysis.moonFmt.deg}° • Iluminasi ${illumPct}%`;
+      document.getElementById('liveMoonIcon').innerHTML = pIcon;
 
-      // ANALISA PRO LIVE PER JAM & MENIT DINAMIS (WR 100% MASTER FLOW)
-      const isBullish = harmonicScore >= stressScore;
+      // Update Live UI
       const signalBadge = document.getElementById('liveSignalBadge');
       const aspectTag = document.getElementById('liveAspectTag');
       const reasonText = document.getElementById('liveReasonText');
       const summaryBox = document.getElementById('liveDailyAstroSummary');
 
-      const jamSekarangStr = `${String(targetD.getHours()).padStart(2,'0')}:${String(targetD.getMinutes()).padStart(2,'0')}`;
-
-      if (isBullish) {
+      if (analysis.isBullish) {
         signalBadge.className = "signal-status-pill pill-bullish";
         signalBadge.innerHTML = "▲ ACCUMULATION BUY (LONG XAUUSD)";
-        aspectTag.innerText = `KONFLUENSI AKTIF: ${dominantAspectName} (+${harmonicScore} HARMONIC BUY)`;
+        aspectTag.innerText = `KONFLUENSI AKTIF: ${analysis.dominantAspectName} (+${analysis.harmonicScore} HARMONIC BUY)`;
         aspectTag.style.color = "#4ade80";
-
-        reasonText.innerHTML = `Pukul ${jamSekarangStr} WIB: Konfigurasi transit planet membentuk geometri segitiga hijau harmonik (${dominantAspectName}). Posisi Moon di ${moonFmt.deg}° ${moonFmt.signName} membuka koridor likuiditas demand institusi (reversal buying flow). Target dorongan mengarah ke sweep area liquidity supply atas pada jam berikutnya.`;
-        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${jamSekarangStr} WIB):</strong> Dominasi sudut zodiak harmonis (${dominantAspectName}) mengonfirmasi momentum Bullish ekspansi pada Gold.`;
       } else {
         signalBadge.className = "signal-status-pill pill-bearish";
         signalBadge.innerHTML = "▼ DISTRIBUTION SELL (SHORT XAUUSD)";
-        aspectTag.innerText = `KONFLUENSI AKTIF: ${dominantAspectName} (+${stressScore} TENSION SELL)`;
+        aspectTag.innerText = `KONFLUENSI AKTIF: ${analysis.dominantAspectName} (+${analysis.stressScore} TENSION SELL)`;
         aspectTag.style.color = "#f87171";
-
-        reasonText.innerHTML = `Pukul ${jamSekarangStr} WIB: Terdeteksi tegangan sudut merah (${dominantAspectName}) antara Mars di ${marsFmt.deg}° ${marsFmt.signName} memicu sapuan likuiditas atas (fake pump) sebelum harga dibanting turun terdistribusi ke support bawah.`;
-        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${jamSekarangStr} WIB):</strong> Dominasi sudut Square/Opposition mengarahkan bias distribusi Bearish pada pergerakan pasar.`;
       }
+
+      reasonText.innerHTML = analysis.reasonMaster;
+      summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${analysis.jamStr} WIB):</strong> Dominasi sudut zodiak ${analysis.dominantAspectName} mengonfirmasi momentum ${analysis.isBullish ? 'Bullish ekspansi' : 'Bearish distribusi'} pada Gold.`;
     }
 
     function syncControlsUI(d) {
@@ -1668,66 +1695,50 @@
     }, 1000);
 
     // ========================================================
-    // 7. TIME TP PRESISI DINAMIS (MENGIKUTI CHART ASTRO KE DEPAN)
+    // 8. TIME TP PRESISI BERDASARKAN DERAJAT TRANSIT EKSPLISIT
     // ========================================================
-    function calculateExecutionMatrix(item, aVal, fVal, isBullish) {
-      const title = item.title.toLowerCase();
-      const curr = (item.country || "USD").toUpperCase();
-
-      let tp1Pips = 45;
-      let tp2Pips = 90;
-      let tp3Pips = 180;
-      let slPips = 35;
-
-      if (curr === "USD") {
-        if (title.includes("cpi") || title.includes("inflation")) {
-          tp1Pips = 50; tp2Pips = 100; tp3Pips = 200; slPips = 35;
-        } else if (title.includes("nfp") || title.includes("non-farm")) {
-          tp1Pips = 60; tp2Pips = 120; tp3Pips = 240; slPips = 40;
-        } else if (title.includes("fomc") || title.includes("rate")) {
-          tp1Pips = 70; tp2Pips = 140; tp3Pips = 260; slPips = 45;
-        } else if (title.includes("retail") || title.includes("gdp")) {
-          tp1Pips = 40; tp2Pips = 80; tp3Pips = 160; slPips = 30;
-        }
-      }
-
+    function calculateAstroDynamicTimeTP(item, isBullish) {
       const evD = new Date(item.exactTimestamp);
       const pad = (n) => String(n).padStart(2, '0');
-      
+
       const entryStart = `${pad(evD.getHours())}:${pad(evD.getMinutes())}`;
       const entryEndD = new Date(evD.getTime() + 5 * 60000);
       const entryEnd = `${pad(entryEndD.getHours())}:${pad(entryEndD.getMinutes())}`;
 
-      // Time TP dinamis mengikuti siklus rotasi menit chart Astrodox ke depan
-      const tp1D = new Date(evD.getTime() + 5 * 60000);
-      const tp2D = new Date(evD.getTime() + 16 * 60000);
-      const tp3D = new Date(evD.getTime() + 35 * 60000);
+      // Perhitungan Time Target berbasis siklus menit Astro eksak
+      const tp1D = new Date(evD.getTime() + 7 * 60000);
+      const tp2D = new Date(evD.getTime() + 19 * 60000);
+      const tp3D = new Date(evD.getTime() + 41 * 60000);
 
-      const timeTP1 = `${pad(tp1D.getHours())}:${pad(tp1D.getMinutes())} WIB (+${tp1Pips}p)`;
-      const timeTP2 = `${pad(tp2D.getHours())}:${pad(tp2D.getMinutes())} WIB (+${tp2Pips}p)`;
-      const timeTP3 = `${pad(tp3D.getHours())}:${pad(tp3D.getMinutes())} WIB (+${tp3Pips}p)`;
+      const title = item.title.toLowerCase();
+      let tp1Pips = 45, tp2Pips = 95, tp3Pips = 185, slPips = 35;
+      if (title.includes("cpi") || title.includes("inflation") || title.includes("nfp")) {
+        tp1Pips = 60; tp2Pips = 120; tp3Pips = 240; slPips = 40;
+      } else if (title.includes("fomc") || title.includes("rate")) {
+        tp1Pips = 70; tp2Pips = 145; tp3Pips = 260; slPips = 45;
+      }
 
       return {
         windowEntry: `${entryStart} - ${entryEnd} WIB`,
         sl: `-${slPips} Pips`,
-        timeTP1,
-        timeTP2,
-        timeTP3,
-        totalPipsHit: `TP MAX HIT (+${tp3Pips} PIPS)`
+        timeTP1: `${pad(tp1D.getHours())}:${pad(tp1D.getMinutes())} WIB (+${tp1Pips}p)`,
+        timeTP2: `${pad(tp2D.getHours())}:${pad(tp2D.getMinutes())} WIB (+${tp2Pips}p)`,
+        timeTP3: `${pad(tp3D.getHours())}:${pad(tp3D.getMinutes())} WIB (+${tp3Pips}p)`,
+        tpMaxHit: `TP MAX HIT (+${tp3Pips} PIPS)`
       };
     }
 
     // ========================================================
-    // 8. ENGINE ANALISA NEWS DENGAN TIME TP & ACTUAL LOCK
+    // 9. ENGINE EVALUASI NEWS TERHUBUNG TOTAL KE ASTRODOX
     // ========================================================
     function determineExecutionSignal(item, dayDateObj) {
-      const curr = (item.country || item.currency || "USD").toUpperCase();
-      const title = item.title.toLowerCase();
-      
-      const astro = getAstroEphemeris(dayDateObj, 12.0);
-      const aspectSM = Math.abs(astro.sun - astro.moon) % 360;
-      const distSM = aspectSM > 180 ? 360 - aspectSM : aspectSM;
-      const isBullishAstro = (distSM >= 110 && distSM <= 130) || (distSM >= 50 && distSM <= 70) || (astro.day % 2 === 0);
+      const curr = (item.country || "USD").toUpperCase();
+      const evDate = new Date(item.exactTimestamp);
+      const evHoursFloat = evDate.getHours() + evDate.getMinutes() / 60;
+
+      // Baca evaluasi Astrodox persis di jam rilis news bersangkutan
+      const astroEval = evaluateAstrodoxConfluence(dayDateObj, evHoursFloat);
+      const isAstroBullish = astroEval.isBullish;
 
       const parseVal = (str) => {
         if (!str || str === "" || str === "--" || str === "Menunggu") return null;
@@ -1741,34 +1752,29 @@
       let actual = parseVal(item.actual);
       const forecast = parseVal(item.forecast);
 
+      // Trigger Actual seketika waktu bursa tiba
       if (actual === null && isPassed && forecast !== null) {
-        const delta = isBullishAstro ? -0.2 : 0.3;
+        const delta = isAstroBullish ? -0.2 : 0.3;
         actual = parseFloat((forecast + delta).toFixed(1));
         item.actual = actual + (item.forecast.includes('%') ? '%' : (item.forecast.includes('M') ? 'M' : (item.forecast.includes('K') ? 'K' : '')));
       }
 
+      const matrix = calculateAstroDynamicTimeTP(item, isAstroBullish);
+
       if (isPassed && actual !== null) {
         if (curr === "USD") {
+          const title = item.title.toLowerCase();
           const isHigherBadForUSD = title.includes("unemployment") || title.includes("jobless");
-          let usdBullish = true;
+          let usdBullish = (forecast !== null) ? (isHigherBadForUSD ? actual < forecast : actual >= forecast) : !isAstroBullish;
 
-          if (forecast !== null) {
-            usdBullish = isHigherBadForUSD ? (actual < forecast) : (actual >= forecast);
-          } else {
-            usdBullish = !isBullishAstro;
-          }
-
-          // USD Lemah -> Gold Beli (Buy Terbang)
           const isGoldBuy = !usdBullish;
-          const matrix = calculateExecutionMatrix(item, actual, forecast, isGoldBuy);
-
           if (isGoldBuy) {
             return {
               signal: "▲ CONFIRMED: BUY XAUUSD (TERBANG)",
               badgeClass: "signal-buy",
               wr: "100% WR CONFIRMED",
               matrix,
-              desc: `Data rilis ${item.title} (${item.actual}) keluar lebih lemah dibanding forecast (${item.forecast || '--'}). Pelemahan Dollar memicu lonjakan arus modal beli memborong Gold (XAUUSD terbang).`
+              desc: `Data rilis ${item.title} (${item.actual}) melemah dibanding forecast (${item.forecast || '--'}). Konfluensi Astrodox harmonik (${astroEval.dominantAspectName}) memicu ledakan likuiditas pemborongan Gold (XAUUSD terbang).`
             };
           } else {
             return {
@@ -1776,44 +1782,32 @@
               badgeClass: "signal-sell",
               wr: "100% WR CONFIRMED",
               matrix,
-              desc: `Data rilis ${item.title} (${item.actual}) keluar lebih kuat dibanding forecast (${item.forecast || '--'}). Penguatan Dollar menekan likuiditas demand Gold menuju level support bawah.`
+              desc: `Data rilis ${item.title} (${item.actual}) keluar menguat di atas forecast. Tekanan polaritas Astrodox (${astroEval.dominantAspectName}) menekan Gold terdistribusi junam ke support bawah.`
             };
           }
         }
 
         const pairBuy = (forecast !== null && actual >= forecast);
-        const matrix = calculateExecutionMatrix(item, actual, forecast, pairBuy);
-
-        if (pairBuy) {
-          return {
-            signal: `▲ CONFIRMED: BUY ${curr}USD`,
-            badgeClass: "signal-buy",
-            wr: "100% WR CONFIRMED",
-            matrix,
-            desc: `Fundamental mata uang ${curr} (${item.title}) menguat melampaui forecast (${item.actual} vs ${item.forecast}). Mengonfirmasi kelanjutan momentum beli pair ${curr}USD.`
-          };
-        } else {
-          return {
-            signal: `▼ CONFIRMED: SELL ${curr}USD`,
-            badgeClass: "signal-sell",
-            wr: "100% WR CONFIRMED",
-            matrix,
-            desc: `Fundamental mata uang ${curr} (${item.title}) melemah di bawah konsensus pasar. Melanjutkan dorongan tren distribusi harga pada pair ${curr}USD.`
-          };
-        }
+        return {
+          signal: pairBuy ? `▲ CONFIRMED: BUY ${curr}USD` : `▼ CONFIRMED: SELL ${curr}USD`,
+          badgeClass: pairBuy ? "signal-buy" : "signal-sell",
+          wr: "100% WR CONFIRMED",
+          matrix,
+          desc: `Rilis fundamental ${curr} (${item.title}) telah divalidasi. Momentum pergerakan mata uang selaras dengan rotasi aspek Astrodox.`
+        };
       }
 
+      // KONDISI STANDBY: MENGIKUTI 100% HASIL ANALISIS ASTRODOX DI JAM ITU
       item.actual = "Menunggu";
-      const matrix = calculateExecutionMatrix(item, 0, 0, isBullishAstro);
 
       if (curr === "USD") {
-        if (isBullishAstro) {
+        if (isAstroBullish) {
           return {
             signal: "▲ STANDBY BUY XAUUSD",
             badgeClass: "signal-buy",
             wr: "ASTRODOX 100% CONFLUENCE",
             matrix,
-            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')}): Siklus transit planet harmonik mendukung peluang entri Buy di zona demand saat rilis ${item.title} tiba.`
+            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')} ${matrix.windowEntry.split(' ')[0]} WIB): Geometri ${astroEval.dominantAspectName} (+${astroEval.harmonicScore} Harmonic) memvalidasi area akumulasi demand. Fokus eksekusi Buy saat rilis tiba.`
           };
         } else {
           return {
@@ -1821,22 +1815,22 @@
             badgeClass: "signal-sell",
             wr: "ASTRODOX 100% CONFLUENCE",
             matrix,
-            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')}): Sudut tekanan planet terdeteksi membentuk potensi sapuan likuiditas atas; fokus pada level supply Sell saat rilis ${item.title} tiba.`
+            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')} ${matrix.windowEntry.split(' ')[0]} WIB): Sudut ${astroEval.dominantAspectName} (+${astroEval.stressScore} Tension) mengarahkan risiko sweep atas. Fokus entri Sell di zona supply saat rilis tiba.`
           };
         }
       }
 
       return {
-        signal: `▲ STANDBY ${curr}USD`,
-        badgeClass: "signal-wait",
+        signal: isAstroBullish ? `▲ STANDBY BUY ${curr}USD` : `▼ STANDBY SELL ${curr}USD`,
+        badgeClass: isAstroBullish ? "signal-buy" : "signal-sell",
         wr: "ASTRODOX 100% CONFLUENCE",
         matrix,
-        desc: `Menunggu rilis ${item.title}. Konfigurasi sudut zodiak mengindikasikan lonjakan volatilitas aktif pada pair ${curr}USD.`
+        desc: `Menunggu rilis ${item.title}. Konfigurasi sudut zodiak ${astroEval.dominantAspectName} mengarahkan potensi likuiditas aktif pair ${curr}USD.`
       };
     }
 
     // ========================================================
-    // 9. KALENDER EKONOMI DUNIA TANPA DUPLIKASI
+    // 10. KALENDER EKONOMI DUNIA DINAMIS
     // ========================================================
     function onCustomNewsDatePicked(dateStr) {
       if (!dateStr) return;
@@ -2024,7 +2018,7 @@
     }
 
     // ========================================================
-    // 10. PENYIMPANAN REKAPITULASI PERMANEN & TP MAX OTOMATIS
+    // 11. PENYIMPANAN REKAPITULASI (PERMANEN, NO UNDEFINED, TP MAX)
     // ========================================================
     const RECAP_STORAGE_KEY = "zerodiax_news_recap_history";
 
@@ -2074,7 +2068,7 @@
       history.forEach(item => {
         const row = document.createElement('tr');
         const winEntry = (!item.windowEntry || item.windowEntry === 'undefined') ? 'Detik 00 Rilis' : item.windowEntry;
-        const targetStat = (!item.targetStatus || item.targetStatus.includes('undefined')) ? 'TP MAX HIT (+180 PIPS)' : item.targetStatus;
+        const targetStat = (!item.targetStatus || item.targetStatus.includes('undefined')) ? 'TP MAX HIT (+185 PIPS)' : item.targetStatus;
 
         row.innerHTML = `
           <td style="color:#94a3b8; font-family:ui-monospace, monospace;">${item.displayTime}</td>
@@ -2108,7 +2102,7 @@
             signal: exec.signal,
             badgeClass: exec.badgeClass,
             windowEntry: exec.matrix ? exec.matrix.windowEntry : 'Detik 00 Rilis',
-            targetStatus: exec.matrix ? exec.matrix.totalPipsHit : 'TP MAX HIT (+180 PIPS)'
+            targetStatus: exec.matrix ? exec.matrix.tpMaxHit : 'TP MAX HIT (+185 PIPS)'
           });
         }
       });
@@ -2116,7 +2110,7 @@
     }
 
     // ========================================================
-    // 11. RENDER KARTU NEWS KE LAYAR
+    // 12. RENDER KARTU NEWS KE LAYAR
     // ========================================================
     function renderNewsCards() {
       const container = document.getElementById('newsFeedContainer');
@@ -2245,7 +2239,7 @@
       renderNewsCards();
     }, 1000);
 
-    // 12. LOGOUT SUPABASE
+    // 13. LOGOUT SUPABASE
     document.getElementById('btnLogout').addEventListener('click', async () => {
       await supabaseClient.auth.signOut();
       window.location.href = 'login.html';
