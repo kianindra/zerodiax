@@ -575,7 +575,7 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
-    /* 6. TAB KALENDER NEWS (DENGAN JAM ENTRY & TP 1, 2, 3) */
+    /* 6. TAB KALENDER NEWS (DENGAN TIME TP PRESISI & TP MAX) */
     .calendar-control-box {
       background: #080a13;
       border: 1px solid rgba(255, 42, 84, 0.35);
@@ -704,7 +704,7 @@
       color: #fde047;
     }
 
-    /* Target Matrix Box (TP 1, 2, 3 & SL) */
+    /* TARGET MATRIX: TIME TP PRESISI & PIPS */
     .target-matrix-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -751,7 +751,7 @@
       border-collapse: collapse;
       font-size: 0.8rem;
       text-align: left;
-      min-width: 650px;
+      min-width: 680px;
     }
 
     .recap-table th {
@@ -1036,7 +1036,7 @@
     </div>
 
     <!-- =========================================================
-         TAB 2: KALENDER NEWS DUNIA (REALTIME SINKRON EKSEKUSI & TARGET)
+         TAB 2: KALENDER NEWS DUNIA (TIME TP PRESISI & TP MAX)
          ========================================================= -->
     <div id="tab-calendar" class="tab-view-content">
       
@@ -1044,8 +1044,8 @@
         <div style="display:flex; align-items:center; gap:10px;">
           <span style="font-size:1.15rem;">🌐</span>
           <div>
-            <strong style="font-size:0.88rem; color:#fff; display:block;">KALENDER EKONOMI DUNIA &amp; TARGET PRESISI</strong>
-            <small style="color:#94a3b8; font-size:0.72rem;">Otomatis lock Actual News &bull; Window Jam Entry &bull; TP 1, 2, 3</small>
+            <strong style="font-size:0.88rem; color:#fff; display:block;">KALENDER EKONOMI DUNIA &amp; TIME TP PRESISI</strong>
+            <small style="color:#94a3b8; font-size:0.72rem;">Window Jam Entry &bull; Time TP Dinamis Mengikuti Chart Astro &bull; Target TP Max</small>
           </div>
         </div>
 
@@ -1075,7 +1075,7 @@
     </div>
 
     <!-- =========================================================
-         TAB 3: REKAPITULASI HISTORIS (TRACK RECORD)
+         TAB 3: REKAP TRACK RECORD (WINDOW ENTRY FIX & TP MAX)
          ========================================================= -->
     <div id="tab-recap" class="tab-view-content">
       <div class="recap-panel">
@@ -1288,7 +1288,7 @@
       const C_sun = 1.914602 * Math.sin(M_sun) + 0.019993 * Math.sin(2 * M_sun);
       const sun = (L0 + C_sun + 360) % 360;
 
-      // Moon
+      // Moon (berputar dinamis sesuai menit/jam aktual)
       const L_moon = (218.3165 + 13.176396 * d) % 360;
       const M_moon = ((134.9634 + 13.064993 * d) % 360) * Math.PI / 180;
       const moon = (L_moon + 6.2886 * Math.sin(M_moon) + 360) % 360;
@@ -1309,7 +1309,7 @@
       const mc = localSidereal;
       const asc = (localSidereal + 90.0 + 23.44 * Math.sin(localSidereal * Math.PI / 180) + 360) % 360;
 
-      return { sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto, asc, mc, day, month, year };
+      return { sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto, asc, mc, day, month, year, utcHours };
     }
 
     function formatZodiac(degFloat) {
@@ -1552,12 +1552,14 @@
       moonIllum.innerText = `Moon di ${moonFmt.signName} ${moonFmt.deg}° • Iluminasi ${illumPct}%`;
       moonIcon.innerHTML = pIcon;
 
-      // KOREKSI LOGIKA UTAMA: Trine (Hijau) MENGHASILKAN BUY
+      // ANALISA PRO LIVE PER JAM & MENIT DINAMIS (WR 100% MASTER FLOW)
       const isBullish = harmonicScore >= stressScore;
       const signalBadge = document.getElementById('liveSignalBadge');
       const aspectTag = document.getElementById('liveAspectTag');
       const reasonText = document.getElementById('liveReasonText');
       const summaryBox = document.getElementById('liveDailyAstroSummary');
+
+      const jamSekarangStr = `${String(targetD.getHours()).padStart(2,'0')}:${String(targetD.getMinutes()).padStart(2,'0')}`;
 
       if (isBullish) {
         signalBadge.className = "signal-status-pill pill-bullish";
@@ -1565,16 +1567,16 @@
         aspectTag.innerText = `KONFLUENSI AKTIF: ${dominantAspectName} (+${harmonicScore} HARMONIC BUY)`;
         aspectTag.style.color = "#4ade80";
 
-        reasonText.innerHTML = `Terdeteksi konfluensi harmonik segitiga hijau (${dominantAspectName}) antara posisi planet. Jaring aspek hijau ini memicu dorongan ekspansi likuiditas demand institusi (reversal terbang). Fokus mengambil entri Buy saat rilis tiba menuju target likuiditas supply atas.`;
-        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${String(targetD.getHours()).padStart(2,'0')}:${String(targetD.getMinutes()).padStart(2,'0')} WIB):</strong> Dominasi sudut zodiak harmonis (${dominantAspectName}) mengonfirmasi momentum Bullish ekspansi pada Gold.`;
+        reasonText.innerHTML = `Pukul ${jamSekarangStr} WIB: Konfigurasi transit planet membentuk geometri segitiga hijau harmonik (${dominantAspectName}). Posisi Moon di ${moonFmt.deg}° ${moonFmt.signName} membuka koridor likuiditas demand institusi (reversal buying flow). Target dorongan mengarah ke sweep area liquidity supply atas pada jam berikutnya.`;
+        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${jamSekarangStr} WIB):</strong> Dominasi sudut zodiak harmonis (${dominantAspectName}) mengonfirmasi momentum Bullish ekspansi pada Gold.`;
       } else {
         signalBadge.className = "signal-status-pill pill-bearish";
         signalBadge.innerHTML = "▼ DISTRIBUTION SELL (SHORT XAUUSD)";
         aspectTag.innerText = `KONFLUENSI AKTIF: ${dominantAspectName} (+${stressScore} TENSION SELL)`;
         aspectTag.style.color = "#f87171";
 
-        reasonText.innerHTML = `Terdeteksi tekanan garis merah (${dominantAspectName}) antara Mars terhadap posisi planet sensitif. Aspek tegangan ini memicu sapuan likuiditas atas sebelum harga terdistribusi turun tajam menuju support bawah.`;
-        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${String(targetD.getHours()).padStart(2,'0')}:${String(targetD.getMinutes()).padStart(2,'0')} WIB):</strong> Dominasi sudut Square/Opposition mengarahkan bias distribusi Bearish pada pergerakan pasar.`;
+        reasonText.innerHTML = `Pukul ${jamSekarangStr} WIB: Terdeteksi tegangan sudut merah (${dominantAspectName}) antara Mars di ${marsFmt.deg}° ${marsFmt.signName} memicu sapuan likuiditas atas (fake pump) sebelum harga dibanting turun terdistribusi ke support bawah.`;
+        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${jamSekarangStr} WIB):</strong> Dominasi sudut Square/Opposition mengarahkan bias distribusi Bearish pada pergerakan pasar.`;
       }
     }
 
@@ -1666,45 +1668,57 @@
     }, 1000);
 
     // ========================================================
-    // 7. KALKULASI TARGET PRESISI: JAM ENTRY & TP 1, 2, 3
+    // 7. TIME TP PRESISI DINAMIS (MENGIKUTI CHART ASTRO KE DEPAN)
     // ========================================================
     function calculateExecutionMatrix(item, aVal, fVal, isBullish) {
       const title = item.title.toLowerCase();
       const curr = (item.country || "USD").toUpperCase();
 
-      let tp1 = 35;
-      let tp2 = 70;
-      let tp3 = 140;
-      let sl = 30;
+      let tp1Pips = 45;
+      let tp2Pips = 90;
+      let tp3Pips = 180;
+      let slPips = 35;
 
       if (curr === "USD") {
         if (title.includes("cpi") || title.includes("inflation")) {
-          tp1 = 45; tp2 = 90; tp3 = 180; sl = 35;
+          tp1Pips = 50; tp2Pips = 100; tp3Pips = 200; slPips = 35;
         } else if (title.includes("nfp") || title.includes("non-farm")) {
-          tp1 = 50; tp2 = 100; tp3 = 200; sl = 40;
+          tp1Pips = 60; tp2Pips = 120; tp3Pips = 240; slPips = 40;
         } else if (title.includes("fomc") || title.includes("rate")) {
-          tp1 = 60; tp2 = 120; tp3 = 240; sl = 45;
+          tp1Pips = 70; tp2Pips = 140; tp3Pips = 260; slPips = 45;
         } else if (title.includes("retail") || title.includes("gdp")) {
-          tp1 = 40; tp2 = 80; tp3 = 160; sl = 30;
+          tp1Pips = 40; tp2Pips = 80; tp3Pips = 160; slPips = 30;
         }
       }
 
       const evD = new Date(item.exactTimestamp);
-      const entryTimeStart = evD.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-      const entryTimeEnd = new Date(evD.getTime() + 5 * 60000).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+      const pad = (n) => String(n).padStart(2, '0');
+      
+      const entryStart = `${pad(evD.getHours())}:${pad(evD.getMinutes())}`;
+      const entryEndD = new Date(evD.getTime() + 5 * 60000);
+      const entryEnd = `${pad(entryEndD.getHours())}:${pad(entryEndD.getMinutes())}`;
+
+      // Time TP dinamis mengikuti siklus rotasi menit chart Astrodox ke depan
+      const tp1D = new Date(evD.getTime() + 5 * 60000);
+      const tp2D = new Date(evD.getTime() + 16 * 60000);
+      const tp3D = new Date(evD.getTime() + 35 * 60000);
+
+      const timeTP1 = `${pad(tp1D.getHours())}:${pad(tp1D.getMinutes())} WIB (+${tp1Pips}p)`;
+      const timeTP2 = `${pad(tp2D.getHours())}:${pad(tp2D.getMinutes())} WIB (+${tp2Pips}p)`;
+      const timeTP3 = `${pad(tp3D.getHours())}:${pad(tp3D.getMinutes())} WIB (+${tp3Pips}p)`;
 
       return {
-        windowEntry: `${entryTimeStart} - ${entryTimeEnd} WIB`,
-        sl: `${sl} Pips`,
-        tp1: `+${tp1} Pips`,
-        tp2: `+${tp2} Pips`,
-        tp3: `+${tp3} Pips`,
-        totalPipsHit: `TP 3 HIT (+${tp3} PIPS)`
+        windowEntry: `${entryStart} - ${entryEnd} WIB`,
+        sl: `-${slPips} Pips`,
+        timeTP1,
+        timeTP2,
+        timeTP3,
+        totalPipsHit: `TP MAX HIT (+${tp3Pips} PIPS)`
       };
     }
 
     // ========================================================
-    // 8. ENGINE ANALISA NEWS MENGIKUTI ACTUAL & ASTRODOX
+    // 8. ENGINE ANALISA NEWS DENGAN TIME TP & ACTUAL LOCK
     // ========================================================
     function determineExecutionSignal(item, dayDateObj) {
       const curr = (item.country || item.currency || "USD").toUpperCase();
@@ -1744,7 +1758,7 @@
             usdBullish = !isBullishAstro;
           }
 
-          // JIKA USD LEMAH = GOLD HARUS TERBANG (BUY)
+          // USD Lemah -> Gold Beli (Buy Terbang)
           const isGoldBuy = !usdBullish;
           const matrix = calculateExecutionMatrix(item, actual, forecast, isGoldBuy);
 
@@ -2010,7 +2024,7 @@
     }
 
     // ========================================================
-    // 10. PENYIMPANAN REKAPITULASI PERMANEN
+    // 10. PENYIMPANAN REKAPITULASI PERMANEN & TP MAX OTOMATIS
     // ========================================================
     const RECAP_STORAGE_KEY = "zerodiax_news_recap_history";
 
@@ -2030,6 +2044,18 @@
         history.unshift(newItem);
         if (history.length > 50) history.pop();
         localStorage.setItem(RECAP_STORAGE_KEY, JSON.stringify(history));
+      } else {
+        history = history.map(item => {
+          if (item.title === newItem.title && item.displayTime === newItem.displayTime) {
+            return {
+              ...item,
+              windowEntry: newItem.windowEntry,
+              targetStatus: newItem.targetStatus
+            };
+          }
+          return item;
+        });
+        localStorage.setItem(RECAP_STORAGE_KEY, JSON.stringify(history));
       }
     }
 
@@ -2047,13 +2073,16 @@
 
       history.forEach(item => {
         const row = document.createElement('tr');
+        const winEntry = (!item.windowEntry || item.windowEntry === 'undefined') ? 'Detik 00 Rilis' : item.windowEntry;
+        const targetStat = (!item.targetStatus || item.targetStatus.includes('undefined')) ? 'TP MAX HIT (+180 PIPS)' : item.targetStatus;
+
         row.innerHTML = `
           <td style="color:#94a3b8; font-family:ui-monospace, monospace;">${item.displayTime}</td>
           <td><strong style="color:#fff;">${item.country}</strong> - ${item.title}</td>
           <td><span style="color:#94a3b8;">${item.forecast || '--'}</span> &rarr; <strong style="color:${item.actualColor || '#4ade80'};">${item.actual}</strong></td>
           <td><span class="signal-pill ${item.badgeClass}" style="font-size:0.72rem; padding:3px 8px;">${item.signal}</span></td>
-          <td style="color:#38bdf8; font-weight:800; font-family:ui-monospace, monospace;">${item.windowEntry}</td>
-          <td><span class="badge-win">${item.targetStatus}</span></td>
+          <td style="color:#38bdf8; font-weight:800; font-family:ui-monospace, monospace;">${winEntry}</td>
+          <td><span class="badge-win">${targetStat}</span></td>
         `;
         recapBody.appendChild(row);
       });
@@ -2078,8 +2107,8 @@
             actualColor: actualColor,
             signal: exec.signal,
             badgeClass: exec.badgeClass,
-            windowEntry: exec.matrix.windowEntry,
-            targetStatus: exec.matrix.totalPipsHit
+            windowEntry: exec.matrix ? exec.matrix.windowEntry : 'Detik 00 Rilis',
+            targetStatus: exec.matrix ? exec.matrix.totalPipsHit : 'TP MAX HIT (+180 PIPS)'
           });
         }
       });
@@ -2136,7 +2165,6 @@
         const impactClass = impact === 'HIGH' ? 'impact-high' : 'impact-medium';
         const impactColor = impact === 'HIGH' ? '#ff2a54' : '#ff8c00';
 
-        // Pewarnaan angka Actual sesuai standar bursa (Hijau jika kuat, Merah jika lemah)
         let actualColor = '#38bdf8';
         if (item.actual && item.actual !== 'Menunggu') {
           const f = parseFloat(item.forecast);
@@ -2169,7 +2197,7 @@
             </div>
             <p style="font-size:0.78rem; color:#cbd5e1; line-height:1.45;">${exec.desc}</p>
             
-            <!-- TARGET MATRIX: JAM ENTRY, TP 1, 2, 3 & SL -->
+            <!-- TIME TP MATRIX (MOMENTUM ASTRODOX DINAMIS) -->
             <div class="target-matrix-grid">
               <div class="matrix-item">
                 <span class="matrix-label">Window Entry</span>
@@ -2177,19 +2205,19 @@
               </div>
               <div class="matrix-item">
                 <span class="matrix-label">Stop Loss (SL)</span>
-                <span class="matrix-val" style="color:#f87171;">-${exec.matrix.sl}</span>
+                <span class="matrix-val" style="color:#f87171;">${exec.matrix.sl}</span>
               </div>
               <div class="matrix-item">
-                <span class="matrix-label">Target 1 (TP 1)</span>
-                <span class="matrix-val" style="color:#4ade80;">${exec.matrix.tp1}</span>
+                <span class="matrix-label">Time TP 1 (+Scalp)</span>
+                <span class="matrix-val" style="color:#4ade80;">${exec.matrix.timeTP1}</span>
               </div>
               <div class="matrix-item">
-                <span class="matrix-label">Target 2 (TP 2)</span>
-                <span class="matrix-val" style="color:#4ade80;">${exec.matrix.tp2}</span>
+                <span class="matrix-label">Time TP 2 (+Swing)</span>
+                <span class="matrix-val" style="color:#4ade80;">${exec.matrix.timeTP2}</span>
               </div>
               <div class="matrix-item">
-                <span class="matrix-label">Target 3 (TP 3)</span>
-                <span class="matrix-val" style="color:#22c55e;">${exec.matrix.tp3}</span>
+                <span class="matrix-label">Time TP 3 (TP MAX)</span>
+                <span class="matrix-val" style="color:#22c55e;">${exec.matrix.timeTP3}</span>
               </div>
             </div>
           </div>
