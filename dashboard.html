@@ -2,10 +2,11 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>ZERODIAX PRIVATE TERMINAL | Institutional Syndicate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>ZERODIAX PRIVATE TERMINAL | Institutional Syndicate Desk</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -14,16 +15,31 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    :root {
+      --bg-base: #040508;
+      --bg-card: #090c14;
+      --bg-card-hover: #0e121d;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-crimson: rgba(255, 42, 84, 0.35);
+      --crimson-core: #ff2a54;
+      --crimson-glow: rgba(255, 42, 84, 0.65);
+      --gold-accent: #f59e0b;
+      --green-bull: #22c55e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
     body {
-      background-color: #030407;
-      color: #f8fafc;
+      background-color: var(--bg-base);
+      color: var(--text-main);
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
       overflow-x: hidden;
       letter-spacing: -0.2px;
+      padding-bottom: env(safe-area-inset-bottom, 20px);
     }
 
     /* =========================================================
-       1. CINEMATIC LUXURY 3D OPENING (CLEAN MOTION BLUR)
+       1. CINEMATIC LUXURY SUPERCAR OPENING (ZERO-LASER CLEAN ENGINE)
        ========================================================= */
     #openingOverlay {
       position: fixed;
@@ -35,7 +51,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.1s;
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1s;
     }
 
     #openingOverlay.fade-out {
@@ -50,6 +66,7 @@
       width: 100%;
       height: 100%;
       z-index: 1;
+      overflow: hidden;
     }
 
     .bg-cinematic-video {
@@ -57,58 +74,73 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      filter: brightness(0.48) contrast(1.22) saturate(1.15);
-      transform: scale(1.03);
-      animation: smoothCinemaZoom 14s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+      filter: brightness(0.42) contrast(1.25) saturate(1.1);
+      transform: scale(1.04);
+      animation: ambientSlowZoom 16s ease-in-out infinite alternate;
     }
 
-    @keyframes smoothCinemaZoom {
+    @keyframes ambientSlowZoom {
       0% { transform: scale(1.02); }
-      100% { transform: scale(1.11); }
+      100% { transform: scale(1.12); }
     }
 
     .cinema-vignette {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(3,4,7,0.15) 0%, rgba(2,3,5,0.85) 75%, #030407 100%);
+      background: radial-gradient(circle at center, rgba(4,5,8,0.1) 0%, rgba(3,4,6,0.85) 75%, #040508 100%);
       z-index: 2;
+    }
+
+    #openingCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+      pointer-events: none;
     }
 
     .opening-content-box {
       position: relative;
       z-index: 4;
       text-align: center;
-      max-width: 650px;
-      padding: 30px;
+      max-width: 620px;
+      padding: 32px 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      animation: cleanReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: cleanHeroEntrance 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    @keyframes cleanReveal {
-      0% { opacity: 0; transform: translateY(30px) scale(0.96); filter: blur(8px); }
+    @keyframes cleanHeroEntrance {
+      0% { opacity: 0; transform: translateY(28px) scale(0.97); filter: blur(6px); }
       100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
     }
 
     .vip-brand-badge {
       width: 72px;
       height: 72px;
-      border-radius: 20px;
+      border-radius: 22px;
       background: linear-gradient(135deg, #ff2a54 0%, #150205 100%);
-      border: 1px solid rgba(255, 42, 84, 0.6);
+      border: 1.5px solid rgba(255, 42, 84, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       font-weight: 900;
       color: #fff;
       margin-bottom: 20px;
-      box-shadow: 0 10px 40px rgba(255, 42, 84, 0.7);
+      box-shadow: 0 12px 35px rgba(255, 42, 84, 0.75), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+      animation: emblemBreathe 3s infinite alternate ease-in-out;
+    }
+
+    @keyframes emblemBreathe {
+      0% { transform: scale(0.96); box-shadow: 0 8px 25px rgba(255, 42, 84, 0.5); }
+      100% { transform: scale(1.04); box-shadow: 0 15px 45px rgba(255, 42, 84, 0.9); }
     }
 
     .opening-pre-title {
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       font-weight: 800;
       color: #ff5c7c;
       letter-spacing: 5px;
@@ -117,14 +149,13 @@
     }
 
     .opening-hero-title {
-      font-size: 2.4rem;
+      font-size: 2.25rem;
       font-weight: 900;
       line-height: 1.15;
       text-transform: uppercase;
       margin-bottom: 14px;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
       color: #fff;
-      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
     }
 
     .opening-hero-title .brand-red {
@@ -133,19 +164,19 @@
     }
 
     .opening-sub-desc {
-      color: #cbd5e1;
-      font-size: 0.88rem;
+      color: #94a3b8;
+      font-size: 0.85rem;
       max-width: 480px;
       margin: 0 auto;
       line-height: 1.6;
     }
 
     .video-load-track {
-      width: 200px;
-      height: 3px;
+      width: 210px;
+      height: 3.5px;
       background: rgba(255, 255, 255, 0.12);
       border-radius: 4px;
-      margin: 24px auto 20px;
+      margin: 24px auto 18px;
       overflow: hidden;
       position: relative;
     }
@@ -168,8 +199,8 @@
     }
 
     .btn-enter-terminal {
-      background: rgba(255, 42, 84, 0.2);
-      border: 1px solid #ff2a54;
+      background: rgba(255, 42, 84, 0.22);
+      border: 1.5px solid #ff2a54;
       color: #fff;
       font-size: 0.82rem;
       font-weight: 800;
@@ -178,7 +209,7 @@
       border-radius: 30px;
       cursor: pointer;
       backdrop-filter: blur(14px);
-      box-shadow: 0 0 25px rgba(255, 42, 84, 0.35);
+      box-shadow: 0 4px 25px rgba(255, 42, 84, 0.4);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -188,16 +219,22 @@
     }
 
     /* =========================================================
-       2. TOP NAVBAR & MAIN APP TABS
+       2. APP SHELL & NAVIGATION
        ========================================================= */
+    .terminal-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 14px 60px;
+    }
+
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 14px 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(6, 8, 12, 0.75);
-      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(6, 8, 12, 0.85);
+      backdrop-filter: blur(18px);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -237,32 +274,31 @@
       transition: all 0.2s;
     }
 
-    .terminal-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 18px 14px 70px;
+    .btn-outline-signout:hover {
+      color: #fff;
+      border-color: #ff2a54;
     }
 
-    /* TABS MENU UTAMA (EXCLUSIVE MODULAR DESK) */
+    /* MASTER NAVIGATION TABS */
     .master-nav-tabs {
       display: flex;
       gap: 8px;
       overflow-x: auto;
       scrollbar-width: none;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.07);
       padding-bottom: 10px;
     }
     .master-nav-tabs::-webkit-scrollbar { display: none; }
 
     .master-tab-btn {
-      background: #090c14;
+      background: #080a11;
       border: 1px solid rgba(255, 255, 255, 0.07);
       color: #94a3b8;
       font-size: 0.8rem;
       font-weight: 800;
       letter-spacing: 0.5px;
-      padding: 10px 20px;
+      padding: 10px 18px;
       border-radius: 10px;
       cursor: pointer;
       white-space: nowrap;
@@ -277,10 +313,10 @@
     }
 
     .master-tab-btn.active {
-      background: linear-gradient(135deg, rgba(255, 42, 84, 0.2) 0%, rgba(255, 42, 84, 0.05) 100%);
+      background: linear-gradient(135deg, rgba(255, 42, 84, 0.2) 0%, rgba(255, 42, 84, 0.04) 100%);
       border-color: #ff2a54;
       color: #ffffff;
-      box-shadow: 0 4px 20px rgba(255, 42, 84, 0.3);
+      box-shadow: 0 4px 20px rgba(255, 42, 84, 0.35);
     }
 
     .tab-view-content {
@@ -296,7 +332,7 @@
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* VIP TELEGRAM BANNER */
+    /* VIP BANNER */
     .vip-banner-box {
       background: linear-gradient(135deg, rgba(255, 42, 84, 0.16) 0%, rgba(13, 15, 22, 0.95) 100%);
       border: 1px solid rgba(255, 42, 84, 0.35);
@@ -326,7 +362,13 @@
       transition: all 0.2s ease;
     }
 
-    /* ASTRODOX REPLICA */
+    .btn-vip-tele:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    /* =========================================================
+       3. ASTRODOX REPLICA & METRIC CARDS
+       ========================================================= */
     .astrodox-master-board {
       background: #080a0f;
       border: 1px solid rgba(255, 42, 84, 0.3);
@@ -368,10 +410,10 @@
       background: #050609;
       border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 10px;
-      padding: 12px;
+      padding: 14px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 8px 14px;
+      gap: 10px 14px;
       font-size: 0.8rem;
     }
 
@@ -379,7 +421,7 @@
       display: flex;
       justify-content: space-between;
       border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
-      padding-bottom: 4px;
+      padding-bottom: 5px;
     }
 
     /* CLOCK DOCK */
@@ -410,10 +452,12 @@
       font-size: 1.35rem;
       font-weight: 900;
       color: #fff;
-      font-family: ui-monospace, monospace;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
-    /* 10 DAYS SELECTOR */
+    /* =========================================================
+       4. 10-DAYS SELECTOR & MICRO-ANIMATIONS
+       ========================================================= */
     .days-scroll-bar {
       display: flex;
       gap: 10px;
@@ -531,13 +575,29 @@
       color: #fde047;
     }
 
+    /* ORDER FLOW MATRIX */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .matrix-card {
+      background: #090c14;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
     /* REKAPITULASI NEWS */
     .recap-panel {
       background: #07090e;
       border: 1px solid rgba(255, 42, 84, 0.3);
       border-radius: 14px;
       padding: 20px;
-      margin-top: 32px;
+      margin-top: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     }
 
@@ -580,21 +640,6 @@
       font-size: 0.72rem;
     }
 
-    /* ORDERFLOW MATRIX CARD */
-    .matrix-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
-      margin-bottom: 22px;
-    }
-
-    .matrix-card {
-      background: #090b12;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 12px;
-      padding: 16px;
-    }
-
     @media (min-width: 768px) {
       .astrodox-master-board {
         grid-template-columns: 410px 1fr;
@@ -609,17 +654,21 @@
 <body>
 
   <!-- =========================================================
-       1. CINEMATIC LUXURY 3D OPENING (CLEAN MOTION BLUR)
+       1. CINEMATIC LUXURY SUPERCAR OPENING SCREEN
        ========================================================= -->
   <div id="openingOverlay">
     <div class="bg-video-wrapper">
       <video id="heroPorscheVideo" class="bg-cinematic-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-sports-car-driving-through-the-city-at-night-42775-large.mp4" type="video/mp4" />
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-rear-view-of-a-sports-car-speeding-on-a-highway-42776-large.mp4" type="video/mp4" />
+        <!-- Prioritas 1: Video lokal jika diletakkan di repo -->
+        <source src="porsche.mp4" type="video/mp4" />
+        <source src="opening.mp4" type="video/mp4" />
+        <!-- Prioritas 2: Public HD Supercar Drive -->
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
       </video>
     </div>
 
     <div class="cinema-vignette"></div>
+    <canvas id="openingCanvas"></canvas>
 
     <div class="opening-content-box">
       <div class="vip-brand-badge">Z</div>
@@ -631,7 +680,7 @@
       </h1>
 
       <p class="opening-sub-desc">
-        Terminal konfluensi likuiditas pasar institusional, radar transit Astrodox online 24 jam, dan kalender eksekusi news.
+        Terminal konfluensi pasar terenkripsi: Astrodox Transit 24 Jam dan Protokol Eksekusi Likuiditas Berita Global.
       </p>
 
       <div class="video-load-track">
@@ -682,10 +731,10 @@
         <span>📅</span> KALENDER NEWS 10 HARI
       </button>
       <button class="master-tab-btn" onclick="switchMainTab('tab-orderflow', this)">
-        <span>📈</span> LIVE XAUUSD &amp; ORDERFLOW
+        <span>📈</span> LIVE XAUUSD &amp; ORDER FLOW
       </button>
       <button class="master-tab-btn" onclick="switchMainTab('tab-recap', this)">
-        <span>📊</span> REKAPITULASI HISTORIS
+        <span>📊</span> REKAP TRACK RECORD
       </button>
     </div>
 
@@ -936,7 +985,7 @@
     </div>
 
     <!-- =========================================================
-         TAB VIEW 3: LIVE XAUUSD & ORDERFLOW MATRIX
+         TAB VIEW 3: LIVE XAUUSD & ORDER FLOW MATRIX
          ========================================================= -->
     <div id="tab-orderflow" class="tab-view-content">
       <div class="matrix-grid">
@@ -957,7 +1006,6 @@
         </div>
       </div>
 
-      <!-- TradingView Interactive Widget Container -->
       <div style="background:#090b12; border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:16px; height:500px; box-shadow:0 10px 30px rgba(0,0,0,0.7);">
         <div id="tradingview_xauusd" style="width:100%; height:100%;"></div>
       </div>
@@ -967,7 +1015,7 @@
          TAB VIEW 4: REKAPITULASI HISTORIS PERMANEN
          ========================================================= -->
     <div id="tab-recap" class="tab-view-content">
-      <div class="recap-panel" style="margin-top:0;">
+      <div class="recap-panel">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
           <h3 style="font-size:1.05rem; font-weight:900; letter-spacing:0.5px; color:#fff;">
             📊 REKAPITULASI EKSEKUSI NEWS
@@ -997,19 +1045,61 @@
 
   </div>
 
-  <!-- SCRIPT ENGINE -->
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
   <script>
-    // 1. OPENING LOGIC
+    // 1. OPENING LUXURY CANVAS PARTICLES & VIDEO AUTO-START
+    function initOpeningParticles() {
+      const canvas = document.getElementById('openingCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+
+      const particles = [];
+      for (let i = 0; i < 35; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 2 + 1,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: -Math.random() * 0.6 - 0.2,
+          alpha: Math.random() * 0.6 + 0.2
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 42, 84, ${p.alpha})`;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = '#ff2a54';
+          ctx.fill();
+
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.y < 0) p.y = h;
+          if (p.x < 0) p.x = w;
+          if (p.x > w) p.x = 0;
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+      window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
+    }
+    initOpeningParticles();
+
     function dismissOpeningScreen() {
       const overlay = document.getElementById('openingOverlay');
       if (overlay) {
         overlay.classList.add('fade-out');
-        setTimeout(() => { overlay.remove(); }, 1100);
+        setTimeout(() => { overlay.remove(); }, 1000);
       }
     }
 
-    // Paksa video autoplay di iOS Safari
     window.addEventListener('DOMContentLoaded', () => {
       const vid = document.getElementById('heroPorscheVideo');
       if (vid) {
@@ -1034,7 +1124,6 @@
       if (btnElem) btnElem.classList.add('active');
     }
 
-    // TradingView Chart Initializer
     function initTradingViewChart() {
       if (typeof TradingView !== 'undefined' && document.getElementById('tradingview_xauusd')) {
         new TradingView.widget({
@@ -1639,7 +1728,6 @@
     renderPersistentRecapTable();
     loadOfficial10DaysCalendar();
 
-    // Auto-update jam rilis & status eksekusi setiap 1 detik
     setInterval(() => {
       renderNewsCards();
     }, 1000);
