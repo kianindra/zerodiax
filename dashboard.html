@@ -20,19 +20,20 @@
       overflow-x: hidden;
     }
 
-    /* 1. CINEMATIC VIDEO / TEXT OPENING SCREEN */
+    /* =========================================================
+       1. CINEMATIC PORSCHE LUXURY VIDEO OPENING SCREEN (SUPER VIP)
+       ========================================================= */
     #openingOverlay {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, #1b050a 0%, #030406 85%);
+      background: #000000;
       z-index: 99999;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px;
       overflow: hidden;
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1s;
     }
 
     #openingOverlay.fade-out {
@@ -41,173 +42,192 @@
       pointer-events: none;
     }
 
-    .floor-grid-3d {
+    /* Video Fullscreen Background */
+    .bg-video-wrapper {
       position: absolute;
-      bottom: -150px;
-      left: -50%;
-      width: 200%;
-      height: 450px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 42, 84, 0.18) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 42, 84, 0.18) 1px, transparent 1px);
-      background-size: 50px 50px;
-      transform: rotateX(75deg);
-      animation: floorRoll 5s linear infinite;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .bg-cinematic-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.62) contrast(1.18) saturate(1.1);
+      transform: scale(1.05);
+      animation: slowZoomVideo 12s ease-out infinite alternate;
+    }
+
+    @keyframes slowZoomVideo {
+      0% { transform: scale(1.03); }
+      100% { transform: scale(1.12); }
+    }
+
+    /* Lapisan Gradasi Cyber-Vignette & Kaca Mewah */
+    .video-dark-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(5,6,8,0.2) 0%, rgba(2,3,5,0.85) 75%, #000000 100%);
+      z-index: 2;
       pointer-events: none;
     }
 
-    @keyframes floorRoll {
-      0% { background-position: 0 0; }
-      100% { background-position: 0 50px; }
-    }
-
-    .opening-core-3d {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 650px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .hologram-stage {
-      position: relative;
-      width: 140px;
-      height: 180px;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hologram-pedestal {
+    .video-laser-scanner {
       position: absolute;
-      bottom: 0;
-      width: 120px;
-      height: 24px;
-      background: radial-gradient(ellipse at center, rgba(255, 42, 84, 0.8) 0%, rgba(255, 42, 84, 0.1) 70%, transparent 100%);
-      border-radius: 50%;
-      box-shadow: 0 0 25px #ff2a54, 0 0 50px rgba(255, 42, 84, 0.5);
-      animation: pedestalPulse 2s infinite alternate;
-    }
-
-    @keyframes pedestalPulse {
-      0% { transform: scale(0.9); opacity: 0.6; }
-      100% { transform: scale(1.15); opacity: 1; }
-    }
-
-    .cyber-avatar-svg {
-      width: 110px;
-      height: 150px;
-      filter: drop-shadow(0 0 14px rgba(255, 42, 84, 0.85));
-      animation: avatarFloat 3s ease-in-out infinite alternate;
-      z-index: 2;
-    }
-
-    @keyframes avatarFloat {
-      0% { transform: translateY(0px) rotateY(-5deg); }
-      100% { transform: translateY(-12px) rotateY(5deg); }
-    }
-
-    .avatar-scanline {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 120px;
+      top: 0;
+      left: 0;
+      width: 100%;
       height: 2px;
-      background: linear-gradient(90deg, transparent, #ff2a54, #fff, #ff2a54, transparent);
-      box-shadow: 0 0 12px #ff2a54;
-      animation: scanCharacter 2.5s ease-in-out infinite alternate;
+      background: linear-gradient(90deg, transparent, #ff2a54, #ffffff, #ff2a54, transparent);
+      box-shadow: 0 0 20px #ff2a54, 0 0 40px #ff2a54;
+      animation: scanLaserDown 3.5s ease-in-out infinite alternate;
       z-index: 3;
       pointer-events: none;
     }
 
-    @keyframes scanCharacter {
-      0% { top: 15px; opacity: 0.2; }
-      100% { top: 145px; opacity: 1; }
+    @keyframes scanLaserDown {
+      0% { top: 0%; opacity: 0.2; }
+      50% { opacity: 0.9; }
+      100% { top: 100%; opacity: 0.3; }
     }
 
-    .opening-subtext {
-      font-size: 0.75rem;
+    /* Konten Teks Sinematik Mengambang di Atas Video */
+    .opening-text-container {
+      position: relative;
+      z-index: 4;
+      text-align: center;
+      max-width: 700px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: textFadeRise 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes textFadeRise {
+      0% { opacity: 0; transform: translateY(35px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .vip-emblem-badge {
+      width: 70px;
+      height: 70px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255, 42, 84, 0.9) 0%, #1a0307 100%);
+      border: 1.5px solid rgba(255, 42, 84, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 16px;
+      box-shadow: 0 0 35px rgba(255, 42, 84, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.3);
+      animation: pulseEmblem 2.5s infinite alternate;
+    }
+
+    @keyframes pulseEmblem {
+      0% { transform: scale(0.95); box-shadow: 0 0 25px rgba(255, 42, 84, 0.6); }
+      100% { transform: scale(1.05); box-shadow: 0 0 50px rgba(255, 42, 84, 1); }
+    }
+
+    .opening-tagline {
+      font-size: 0.76rem;
       font-weight: 800;
       color: #ff5c7c;
-      letter-spacing: 4px;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      text-shadow: 0 0 12px rgba(255, 92, 124, 0.8);
     }
 
-    .opening-title-3d {
-      font-size: 2.1rem;
+    .opening-main-title {
+      font-size: 2.4rem;
       font-weight: 900;
       line-height: 1.15;
       text-transform: uppercase;
-      margin-bottom: 12px;
-      letter-spacing: 1.5px;
-      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 42, 84, 0.4);
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+      color: #ffffff;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 42, 84, 0.5);
     }
 
-    .opening-title-3d .highlight-red {
+    .opening-main-title .brand-red {
       color: #ff2a54;
-      text-shadow: 0 0 20px rgba(255, 42, 84, 0.9), 0 0 45px rgba(255, 42, 84, 0.6);
+      text-shadow: 0 0 25px rgba(255, 42, 84, 0.95), 0 0 55px rgba(255, 42, 84, 0.7);
       display: inline-block;
-      animation: textGlitch 2.2s infinite ease-in-out alternate;
+      animation: glowTitle 2s ease-in-out infinite alternate;
     }
 
-    @keyframes textGlitch {
-      0% { transform: scale(1); }
-      85% { transform: scale(1); }
-      88% { transform: skewX(-6deg) scale(1.02); filter: drop-shadow(0 0 30px #ff2a54); }
-      92% { transform: skewX(5deg); }
-      100% { transform: scale(1); }
+    @keyframes glowTitle {
+      0% { filter: drop-shadow(0 0 15px rgba(255, 42, 84, 0.6)); }
+      100% { filter: drop-shadow(0 0 30px rgba(255, 42, 84, 1)); }
     }
 
-    .opening-loader-bar-wrap {
-      width: 200px;
+    .opening-desc {
+      color: #cbd5e1;
+      font-size: 0.88rem;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.5;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .video-loader-bar-wrap {
+      width: 220px;
       height: 4px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 4px;
-      margin: 16px auto 14px;
+      margin: 20px auto 16px;
       overflow: hidden;
       position: relative;
     }
 
-    .opening-loader-progress {
+    .video-loader-progress {
       position: absolute;
       top: 0;
       left: 0;
       height: 100%;
       width: 0%;
       background: #ff2a54;
-      box-shadow: 0 0 12px #ff2a54;
-      animation: fillProgress 3.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      box-shadow: 0 0 15px #ff2a54;
+      animation: fillProgressVideo 4.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    @keyframes fillProgress {
+    @keyframes fillProgressVideo {
       0% { width: 0%; }
-      50% { width: 65%; }
+      50% { width: 60%; }
       100% { width: 100%; }
     }
 
-    .opening-btn-skip {
-      background: rgba(255, 42, 84, 0.18);
-      border: 1px solid rgba(255, 42, 84, 0.5);
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 8px 18px;
-      border-radius: 20px;
+    .opening-btn-enter {
+      background: rgba(255, 42, 84, 0.28);
+      border: 1.5px solid #ff2a54;
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      padding: 10px 24px;
+      border-radius: 25px;
       cursor: pointer;
-      margin-top: 8px;
-      transition: all 0.2s;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 20px rgba(255, 42, 84, 0.4);
+      transition: all 0.25s ease;
     }
 
-    .opening-btn-skip:hover {
+    .opening-btn-enter:hover {
       background: #ff2a54;
-      box-shadow: 0 0 15px rgba(255, 42, 84, 0.8);
+      box-shadow: 0 0 35px rgba(255, 42, 84, 0.9);
+      transform: translateY(-2px);
     }
 
-    /* 2. DASHBOARD CONTAINER */
+    /* =========================================================
+       2. TAMPILAN DASHBOARD UTAMA
+       ========================================================= */
     .terminal-container {
       max-width: 1100px;
       margin: 0 auto;
@@ -507,53 +527,43 @@
 </head>
 <body>
 
-  <!-- 1. CINEMATIC VIDEO / TEXT OPENING SCREEN -->
+  <!-- =========================================================
+       1. CINEMATIC PORSCHE LUXURY VIDEO OPENING SCREEN (SUPER VIP)
+       ========================================================= -->
   <div id="openingOverlay">
-    <div class="floor-grid-3d"></div>
-    <div class="opening-scanner-bar"></div>
+    <!-- Background Video Supercar Porsche Hitam / Night Drive Flexing -->
+    <div class="bg-video-wrapper">
+      <video class="bg-cinematic-video" autoplay muted playsinline loop poster="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80">
+        <!-- Direct HD Supercar Night Drive Stream (Pexels Public Supercar Night Footage) -->
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-sports-car-driving-through-the-city-at-night-42775-large.mp4" type="video/mp4" />
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-rear-view-of-a-sports-car-speeding-on-a-highway-42776-large.mp4" type="video/mp4" />
+      </video>
+    </div>
 
-    <div class="opening-core-3d">
-      <div class="hologram-stage">
-        <div class="hologram-pedestal"></div>
-        <div class="avatar-scanline"></div>
+    <!-- Lapisan Gradasi Gelap & Scanner Laser -->
+    <div class="video-dark-vignette"></div>
+    <div class="video-laser-scanner"></div>
 
-        <svg class="cyber-avatar-svg" viewBox="0 0 100 140">
-          <circle cx="50" cy="28" r="16" fill="#11131c" stroke="#ff2a54" stroke-width="2"/>
-          <path d="M 38 28 Q 50 34 62 28" fill="none" stroke="#00f0ff" stroke-width="3" filter="drop-shadow(0 0 5px #00f0ff)"/>
-          
-          <path d="M 46 44 L 54 44 L 58 52 L 42 52 Z" fill="#202430"/>
-          <path d="M 30 54 L 70 54 L 78 78 L 22 78 Z" fill="#141724" stroke="#ff2a54" stroke-width="1.5"/>
-          
-          <circle cx="50" cy="65" r="6" fill="#ff2a54" filter="drop-shadow(0 0 8px #ff2a54)"/>
-          <circle cx="50" cy="65" r="2.5" fill="#fff"/>
-
-          <path d="M 32 78 L 68 78 L 62 108 L 38 108 Z" fill="#0d0f17" stroke="#2a3040" stroke-width="1.5"/>
-          
-          <path d="M 38 108 L 34 135 L 45 135 L 48 108 Z" fill="#161926" stroke="#ff2a54" stroke-width="1"/>
-          <path d="M 62 108 L 66 135 L 55 135 L 52 108 Z" fill="#161926" stroke="#ff2a54" stroke-width="1"/>
-          
-          <circle cx="20" cy="68" r="3" fill="#00f0ff" filter="drop-shadow(0 0 6px #00f0ff)"/>
-          <circle cx="80" cy="68" r="3" fill="#ff2a54" filter="drop-shadow(0 0 6px #ff2a54)"/>
-        </svg>
-      </div>
-
-      <div class="opening-subtext">3D HOLOGRAM MATRIX &bull; VIP TERMINAL PROTOCOL</div>
+    <!-- Teks Sinematik Mengambang di Atas Video -->
+    <div class="opening-text-container">
+      <div class="vip-emblem-badge">Z</div>
+      <div class="opening-tagline">ZERODIAX PRIVATE WEALTH &bull; INSTITUTIONAL DESK</div>
       
-      <h1 class="opening-title-3d">
+      <h1 class="opening-main-title">
         SELAMAT DATANG DI VIP <br/>
-        <span class="highlight-red">ZERODIAX</span>
+        <span class="brand-red">ZERODIAX</span>
       </h1>
 
-      <p style="color:#94a3b8; font-size:0.85rem; max-width:480px; margin:0 auto; line-height:1.5;">
+      <p class="opening-desc">
         Sinkronisasi kalender ekonomi resmi 10 hari ke depan dan radar transit Astrodox online 24 jam...
       </p>
 
-      <div class="opening-loader-bar-wrap">
-        <div class="opening-loader-progress"></div>
+      <div class="video-loader-bar-wrap">
+        <div class="video-loader-progress"></div>
       </div>
 
-      <button class="opening-btn-skip" onclick="dismissOpeningScreen()">
-        LEWATI INTRO &rarr;
+      <button class="opening-btn-enter" onclick="dismissOpeningScreen()">
+        MASUK TERMINAL VIP &rarr;
       </button>
     </div>
   </div>
@@ -829,16 +839,16 @@
       </div>
     </div>
 
-    <!-- REKAPITULASI HASIL NEWS -->
+    <!-- REKAPITULASI HASIL NEWS DENGAN PENYIMPANAN PERMANEN -->
     <div class="recap-panel">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
         <h3 style="font-size:1.05rem; font-weight:900; letter-spacing:0.5px; color:#fff;">
-          📊 REKAPITULASI EKSEKUSI NEWS (TRACK RECORD 100% WR)
+          📊 REKAPITULASI EKSEKUSI NEWS (TRACK RECORD PERMANEN)
         </h3>
         <span class="badge-win">SISTEM TERKONFIRMASI AKTIF</span>
       </div>
       <p style="font-size:0.78rem; color:#94a3b8; line-height:1.4;">
-        Data riwayat hasil rilis berita yang dieksekusi detik rilis tiba oleh mesin konfluensi Astrodox &amp; Forex Factory.
+        Data riwayat hasil rilis berita yang dieksekusi detik rilis tiba tersimpan permanen di memori terminal tanpa pernah ter-reset.
       </p>
 
       <div class="recap-table-wrapper">
@@ -853,7 +863,7 @@
             </tr>
           </thead>
           <tbody id="recapTableBody">
-            <!-- Otomatis diisi oleh JavaScript -->
+            <!-- Otomatis diisi oleh JavaScript dari localStorage -->
           </tbody>
         </table>
       </div>
@@ -862,15 +872,16 @@
   </div>
 
   <script>
-    // 1. OPENING SCREEN
+    // 1. OPENING SCREEN LOGIC
     function dismissOpeningScreen() {
       const overlay = document.getElementById('openingOverlay');
       if (overlay) {
         overlay.classList.add('fade-out');
-        setTimeout(() => { overlay.remove(); }, 800);
+        setTimeout(() => { overlay.remove(); }, 1000);
       }
     }
-    setTimeout(dismissOpeningScreen, 3400);
+    // Auto dismiss setelah video preview 5 detik
+    setTimeout(dismissOpeningScreen, 5200);
 
     // 2. SUPABASE AUTH
     const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
@@ -944,13 +955,11 @@
       const moonDeg = Math.floor((day * 13.2 + (secs / 3600)) % 30);
       const marsDeg = Math.floor((day * 0.5 + 8) % 30);
 
-      // Selisih aspek zodiak transit pada tanggal tersebut
       const aspectDiff = Math.abs((sunDeg * 12) - (moonDeg * 12)) % 360;
       let bias = "BULLISH EXPANSION";
-      let dominant = "Trine 120° Harmonic";
+      let dominant = "Trine 120° Harmonic (Sun-Jupiter)";
       let isBullish = true;
 
-      // Logika variasi aspek: menghasilkan Buy dan Sell seimbang
       if ((aspectDiff >= 90 && aspectDiff <= 150) || (aspectDiff >= 200 && aspectDiff <= 250)) {
         bias = "BULLISH EXPANSION";
         dominant = "Trine 120° Harmonic (Sun-Jupiter)";
@@ -960,7 +969,6 @@
         dominant = "Square 90° Tension (Mars Cross)";
         isBullish = false;
       } else {
-        // Hari-hari tertentu menjadi Sextile dinamis
         bias = (day % 2 === 0) ? "BULLISH EXPANSION" : "BEARISH REJECTION";
         dominant = "Sextile 60° Angle Flow";
         isBullish = (day % 2 === 0);
@@ -999,7 +1007,6 @@
         summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetDate.toLocaleDateString('id-ID')}):</strong> Posisi Sun di ${astro.sunDeg}° dan Moon di ${astro.moonDeg}° membentuk ${astro.dominant}. Menetapkan bias ${astro.bias} pada pergerakan pasar.`;
       }
 
-      // Update Fase Bulan Sesuai Tanggal
       const moonPhaseName = document.getElementById('liveMoonPhaseName');
       const moonIllum = document.getElementById('liveMoonIllum');
       const moonIcon = document.getElementById('liveMoonIcon');
@@ -1307,7 +1314,7 @@
           selectedDayIndex = idx;
           document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
           pill.classList.add('active');
-          updateAstrodox24H(); // Update radar & transit sesuai tanggal yang dipilih
+          updateAstrodox24H();
           renderNewsCards();
         };
 
@@ -1320,14 +1327,83 @@
       });
     }
 
-    // 8. RENDER KARTU NEWS KE LAYAR DAN TABEL REKAPITULASI
+    // ========================================================
+    // 8. PENYIMPANAN REKAPITULASI PERMANEN (LOCALSTORAGE)
+    // ========================================================
+    const RECAP_STORAGE_KEY = "zerodiax_news_recap_history";
+
+    function getSavedRecapHistory() {
+      try {
+        const data = localStorage.getItem(RECAP_STORAGE_KEY);
+        return data ? JSON.parse(data) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveRecapItem(newItem) {
+      let history = getSavedRecapHistory();
+      const exists = history.some(item => item.title === newItem.title && item.displayTime === newItem.displayTime);
+      if (!exists) {
+        history.unshift(newItem);
+        if (history.length > 50) history.pop();
+        localStorage.setItem(RECAP_STORAGE_KEY, JSON.stringify(history));
+      }
+    }
+
+    function renderPersistentRecapTable() {
+      const recapBody = document.getElementById('recapTableBody');
+      if (!recapBody) return;
+
+      const history = getSavedRecapHistory();
+      recapBody.innerHTML = '';
+
+      if (history.length === 0) {
+        recapBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:18px; color:#64748b;">Belum ada riwayat rilis berita yang tersimpan.</td></tr>';
+        return;
+      }
+
+      history.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td style="color:#94a3b8; font-family:monospace;">${item.displayTime}</td>
+          <td><strong style="color:#fff;">${item.country}</strong> - ${item.title}</td>
+          <td><span style="color:#94a3b8;">${item.forecast || '--'}</span> &rarr; <strong style="color:#4ade80;">${item.actual}</strong></td>
+          <td><span class="signal-pill ${item.badgeClass}" style="font-size:0.72rem; padding:3px 8px;">${item.signal}</span></td>
+          <td><span class="badge-win">${item.targetStatus}</span></td>
+        `;
+        recapBody.appendChild(row);
+      });
+    }
+
+    function checkAndStorePastEvents() {
+      const nowTime = Date.now();
+      full10DaysNews.forEach(dayG => {
+        dayG.events.forEach(ev => {
+          if (nowTime >= ev.exactTimestamp && ev.actual && ev.actual !== "Menunggu") {
+            const exec = determineExecutionSignal(ev, dayG.targetDateObj);
+            saveRecapItem({
+              displayTime: ev.displayTime,
+              country: ev.country,
+              title: ev.title,
+              forecast: ev.forecast,
+              actual: ev.actual,
+              signal: exec.signal,
+              badgeClass: exec.badgeClass,
+              targetStatus: exec.targetStatus
+            });
+          }
+        });
+      });
+      renderPersistentRecapTable();
+    }
+
+    // 9. RENDER KARTU NEWS KE LAYAR
     function renderNewsCards() {
       const container = document.getElementById('newsFeedContainer');
-      const recapBody = document.getElementById('recapTableBody');
       if (!container || full10DaysNews.length === 0) return;
 
       container.innerHTML = '';
-      if (recapBody) recapBody.innerHTML = '';
 
       const currentDayData = full10DaysNews[selectedDayIndex];
       if (!currentDayData) return;
@@ -1380,25 +1456,7 @@
         container.appendChild(card);
       });
 
-      // Render Rekapitulasi Otomatis (Hanya event yang sudah terlewati)
-      if (recapBody) {
-        full10DaysNews.forEach(dayG => {
-          dayG.events.forEach(ev => {
-            if (Date.now() >= ev.exactTimestamp && ev.actual && ev.actual !== "Menunggu") {
-              const exec = determineExecutionSignal(ev, dayG.targetDateObj);
-              const row = document.createElement('tr');
-              row.innerHTML = `
-                <td style="color:#94a3b8; font-family:monospace;">${ev.displayTime}</td>
-                <td><strong style="color:#fff;">${ev.country}</strong> - ${ev.title}</td>
-                <td><span style="color:#94a3b8;">${ev.forecast || '--'}</span> &rarr; <strong style="color:#4ade80;">${ev.actual}</strong></td>
-                <td><span class="signal-pill ${exec.badgeClass}" style="font-size:0.72rem; padding:3px 8px;">${exec.signal}</span></td>
-                <td><span class="badge-win">${exec.targetStatus}</span></td>
-              `;
-              recapBody.appendChild(row);
-            }
-          });
-        });
-      }
+      checkAndStorePastEvents();
     }
 
     function setCurrencyFilter(filterVal, e) {
@@ -1408,7 +1466,8 @@
       renderNewsCards();
     }
 
-    // Jalankan sistem kalender otomatis
+    // Inisialisasi awal
+    renderPersistentRecapTable();
     loadOfficial10DaysCalendar();
 
     // Auto-update jam rilis & status eksekusi setiap 1 detik
@@ -1416,7 +1475,7 @@
       renderNewsCards();
     }, 1000);
 
-    // 9. LOGOUT
+    // 10. LOGOUT
     document.getElementById('btnLogout').addEventListener('click', async () => {
       await supabaseClient.auth.signOut();
       window.location.href = 'login.html';
