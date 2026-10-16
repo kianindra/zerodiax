@@ -205,7 +205,7 @@
       background: #ff2a54;
     }
 
-    /* 2. TOP NAVBAR & CONTAINER */
+    /* 2. APP CONTAINER & NAVBAR */
     .terminal-container {
       max-width: 1120px;
       margin: 0 auto;
@@ -345,7 +345,7 @@
       transition: all 0.2s ease;
     }
 
-    /* 3. KONTROL EKSKLUSIF CUSTOM WAKTU ASTRODOX */
+    /* 3. KONTROL WAKTU ASTRODOX */
     .astro-custom-control-card {
       background: #080a13;
       border: 1px solid rgba(255, 42, 84, 0.35);
@@ -575,7 +575,7 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
-    /* 6. TAB KALENDER NEWS (DENGAN BEBAS PILIH TANGGAL & TAHUN) */
+    /* 6. TAB KALENDER NEWS (DENGAN JAM ENTRY & TP 1, 2, 3) */
     .calendar-control-box {
       background: #080a13;
       border: 1px solid rgba(255, 42, 84, 0.35);
@@ -704,6 +704,35 @@
       color: #fde047;
     }
 
+    /* Target Matrix Box (TP 1, 2, 3 & SL) */
+    .target-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+      background: #040508;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .matrix-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .matrix-label {
+      font-size: 0.65rem;
+      color: #64748b;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .matrix-val {
+      font-size: 0.82rem;
+      font-weight: 900;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+    }
+
     .recap-panel {
       background: #07090e;
       border: 1px solid rgba(255, 42, 84, 0.3);
@@ -722,7 +751,7 @@
       border-collapse: collapse;
       font-size: 0.8rem;
       text-align: left;
-      min-width: 600px;
+      min-width: 650px;
     }
 
     .recap-table th {
@@ -1007,17 +1036,16 @@
     </div>
 
     <!-- =========================================================
-         TAB 2: KALENDER NEWS DUNIA (MULTI-FEED REALTIME & TAHUN BEBAS)
+         TAB 2: KALENDER NEWS DUNIA (REALTIME SINKRON EKSEKUSI & TARGET)
          ========================================================= -->
     <div id="tab-calendar" class="tab-view-content">
       
-      <!-- KONTROL KALENDER BEBAS PILIH TANGGAL & TAHUN -->
       <div class="calendar-control-box">
         <div style="display:flex; align-items:center; gap:10px;">
           <span style="font-size:1.15rem;">🌐</span>
           <div>
-            <strong style="font-size:0.88rem; color:#fff; display:block;">KALENDER EKONOMI DUNIA REALTIME</strong>
-            <small style="color:#94a3b8; font-size:0.72rem;">Feed makroekonomi global &bull; Eksekusi BUY/SELL sinkron jam riil</small>
+            <strong style="font-size:0.88rem; color:#fff; display:block;">KALENDER EKONOMI DUNIA &amp; TARGET PRESISI</strong>
+            <small style="color:#94a3b8; font-size:0.72rem;">Otomatis lock Actual News &bull; Window Jam Entry &bull; TP 1, 2, 3</small>
           </div>
         </div>
 
@@ -1069,6 +1097,7 @@
                 <th>Mata Uang / Event</th>
                 <th>Forecast vs Actual</th>
                 <th>Sinyal Eksekusi</th>
+                <th>Window Entry</th>
                 <th>Status Target</th>
               </tr>
             </thead>
@@ -1404,7 +1433,7 @@
       svgContent += `<g id="dynamicAspectLines">`;
       let harmonicScore = 0;
       let stressScore = 0;
-      let dominantAspectName = "Harmonic Polyhedral Network";
+      let dominantAspectName = "Grand Trine 120° Harmonic Flow";
 
       for (let i = 0; i < planets.length; i++) {
         for (let j = i + 1; j < planets.length; j++) {
@@ -1415,26 +1444,35 @@
           let width = 1.2;
           let dash = "";
 
+          // Trine 120° (Harmonis Beli - HIJAU)
           if (dist >= 113 && dist <= 127) {
             color = "#16a34a";
-            width = 2.2;
-            harmonicScore += 4;
-            dominantAspectName = "Grand Trine 120° Harmonic";
-          } else if (dist >= 83 && dist <= 97) {
+            width = 2.4;
+            harmonicScore += 6;
+            dominantAspectName = "Grand Trine 120° Harmonic Flow";
+          }
+          // Square 90° (Tegangan - MERAH)
+          else if (dist >= 83 && dist <= 97) {
             color = "#dc2626";
             width = 2.2;
-            stressScore += 4;
-            dominantAspectName = "Square 90° Tension Cross";
-          } else if (dist >= 173 && dist <= 180) {
+            stressScore += 3;
+            if (harmonicScore === 0) dominantAspectName = "Square 90° Tension Cross";
+          }
+          // Opposition 180° (Konflik/Dump - MERAH TEBAL)
+          else if (dist >= 173 && dist <= 180) {
             color = "#dc2626";
             width = 2.4;
-            stressScore += 5;
-            dominantAspectName = "Opposition 180° Polar Dump";
-          } else if (dist >= 54 && dist <= 66) {
+            stressScore += 4;
+            if (harmonicScore === 0) dominantAspectName = "Opposition 180° Polar Dump";
+          }
+          // Sextile 60° (Peluang Beli - HIJAU)
+          else if (dist >= 54 && dist <= 66) {
             color = "#16a34a";
             width = 1.6;
-            harmonicScore += 2;
-          } else if (dist >= 145 && dist <= 155) {
+            harmonicScore += 3;
+          }
+          // Quincunx 150°
+          else if (dist >= 145 && dist <= 155) {
             color = "#f59e0b";
             width = 1.2;
             dash = 'stroke-dasharray="2,2"';
@@ -1514,6 +1552,7 @@
       moonIllum.innerText = `Moon di ${moonFmt.signName} ${moonFmt.deg}° • Iluminasi ${illumPct}%`;
       moonIcon.innerHTML = pIcon;
 
+      // KOREKSI LOGIKA UTAMA: Trine (Hijau) MENGHASILKAN BUY
       const isBullish = harmonicScore >= stressScore;
       const signalBadge = document.getElementById('liveSignalBadge');
       const aspectTag = document.getElementById('liveAspectTag');
@@ -1523,19 +1562,19 @@
       if (isBullish) {
         signalBadge.className = "signal-status-pill pill-bullish";
         signalBadge.innerHTML = "▲ ACCUMULATION BUY (LONG XAUUSD)";
-        aspectTag.innerText = `KONFLUENSI AKTIF: ${dominantAspectName} (+${harmonicScore} HARMONIC)`;
+        aspectTag.innerText = `KONFLUENSI AKTIF: ${dominantAspectName} (+${harmonicScore} HARMONIC BUY)`;
         aspectTag.style.color = "#4ade80";
 
-        reasonText.innerHTML = `Perpindahan posisi Moon di ${moonFmt.deg}° ${moonFmt.signName} membentuk aspek harmonis terhadap Sun di ${sunFmt.deg}° ${sunFmt.signName}. Jaring aspek hijau mendominasi struktur piringan, menandai siklus ekspansi likuiditas demand institusi. Fokus mencari setup Buy pada area discount FVG/Order Block dengan target likuiditas atas.`;
-        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${String(targetD.getHours()).padStart(2,'0')}:${String(targetD.getMinutes()).padStart(2,'0')} WIB):</strong> Dominasi sudut zodiak harmonis (${dominantAspectName}) mendukung kelanjutan momentum Bullish pada XAUUSD.`;
+        reasonText.innerHTML = `Terdeteksi konfluensi harmonik segitiga hijau (${dominantAspectName}) antara posisi planet. Jaring aspek hijau ini memicu dorongan ekspansi likuiditas demand institusi (reversal terbang). Fokus mengambil entri Buy saat rilis tiba menuju target likuiditas supply atas.`;
+        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${String(targetD.getHours()).padStart(2,'0')}:${String(targetD.getMinutes()).padStart(2,'0')} WIB):</strong> Dominasi sudut zodiak harmonis (${dominantAspectName}) mengonfirmasi momentum Bullish ekspansi pada Gold.`;
       } else {
         signalBadge.className = "signal-status-pill pill-bearish";
         signalBadge.innerHTML = "▼ DISTRIBUTION SELL (SHORT XAUUSD)";
-        aspectTag.innerText = `KONFLUENSI AKTIF: ${dominantAspectName} (+${stressScore} TENSION)`;
+        aspectTag.innerText = `KONFLUENSI AKTIF: ${dominantAspectName} (+${stressScore} TENSION SELL)`;
         aspectTag.style.color = "#f87171";
 
-        reasonText.innerHTML = `Terdeteksi tekanan garis merah (${dominantAspectName}) antara posisi Mars di ${marsFmt.deg}° ${marsFmt.signName} terhadap Moon di ${moonFmt.deg}°. Sudut tegangan ini memicu potensi sapuan likuiditas atas (liquidity sweep) sebelum harga terdistribusi turun menuju level support bawah.`;
-        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${String(targetD.getHours()).padStart(2,'0')}:${String(targetD.getMinutes()).padStart(2,'0')} WIB):</strong> Garis aspek Square/Opposition mendominasi, mengarahkan bias likuiditas Bearish Rejection pada pergerakan pasar.`;
+        reasonText.innerHTML = `Terdeteksi tekanan garis merah (${dominantAspectName}) antara Mars terhadap posisi planet sensitif. Aspek tegangan ini memicu sapuan likuiditas atas sebelum harga terdistribusi turun tajam menuju support bawah.`;
+        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${String(targetD.getHours()).padStart(2,'0')}:${String(targetD.getMinutes()).padStart(2,'0')} WIB):</strong> Dominasi sudut Square/Opposition mengarahkan bias distribusi Bearish pada pergerakan pasar.`;
       }
     }
 
@@ -1627,43 +1666,45 @@
     }, 1000);
 
     // ========================================================
-    // 7. KALKULASI PIPS PRESISI
+    // 7. KALKULASI TARGET PRESISI: JAM ENTRY & TP 1, 2, 3
     // ========================================================
-    function calculatePrecisePips(item, aVal, fVal) {
-      if (aVal === null || fVal === null) {
-        return { pips: 0, label: "PENDING ENTRY" };
-      }
-
-      const deviation = Math.abs(aVal - fVal);
-      const curr = (item.country || "USD").toUpperCase();
+    function calculateExecutionMatrix(item, aVal, fVal, isBullish) {
       const title = item.title.toLowerCase();
-      let calculatedPips = 0;
+      const curr = (item.country || "USD").toUpperCase();
+
+      let tp1 = 35;
+      let tp2 = 70;
+      let tp3 = 140;
+      let sl = 30;
 
       if (curr === "USD") {
         if (title.includes("cpi") || title.includes("inflation")) {
-          calculatedPips = Math.round((deviation / 0.1) * 85 + 40);
+          tp1 = 45; tp2 = 90; tp3 = 180; sl = 35;
         } else if (title.includes("nfp") || title.includes("non-farm")) {
-          calculatedPips = Math.round((deviation / 20) * 65 + 50);
-        } else if (title.includes("retail")) {
-          calculatedPips = Math.round((deviation / 0.2) * 45 + 30);
-        } else if (title.includes("unemployment") || title.includes("claims")) {
-          calculatedPips = Math.round((deviation / 5) * 25 + 35);
-        } else {
-          calculatedPips = Math.round(deviation * 20 + 40);
+          tp1 = 50; tp2 = 100; tp3 = 200; sl = 40;
+        } else if (title.includes("fomc") || title.includes("rate")) {
+          tp1 = 60; tp2 = 120; tp3 = 240; sl = 45;
+        } else if (title.includes("retail") || title.includes("gdp")) {
+          tp1 = 40; tp2 = 80; tp3 = 160; sl = 30;
         }
-        calculatedPips = Math.min(Math.max(calculatedPips, 35), 260);
-      } else {
-        calculatedPips = Math.min(Math.max(Math.round(deviation * 15 + 25), 20), 110);
       }
 
+      const evD = new Date(item.exactTimestamp);
+      const entryTimeStart = evD.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+      const entryTimeEnd = new Date(evD.getTime() + 5 * 60000).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
       return {
-        pips: calculatedPips,
-        label: `TP HIT (+${calculatedPips} PIPS)`
+        windowEntry: `${entryTimeStart} - ${entryTimeEnd} WIB`,
+        sl: `${sl} Pips`,
+        tp1: `+${tp1} Pips`,
+        tp2: `+${tp2} Pips`,
+        tp3: `+${tp3} Pips`,
+        totalPipsHit: `TP 3 HIT (+${tp3} PIPS)`
       };
     }
 
     // ========================================================
-    // 8. ENGINE ANALISA NEWS TERHUBUNG KE ASTRODOX
+    // 8. ENGINE ANALISA NEWS MENGIKUTI ACTUAL & ASTRODOX
     // ========================================================
     function determineExecutionSignal(item, dayDateObj) {
       const curr = (item.country || item.currency || "USD").toUpperCase();
@@ -1692,8 +1733,6 @@
         item.actual = actual + (item.forecast.includes('%') ? '%' : (item.forecast.includes('M') ? 'M' : (item.forecast.includes('K') ? 'K' : '')));
       }
 
-      const pipResult = calculatePrecisePips(item, actual, forecast);
-
       if (isPassed && actual !== null) {
         if (curr === "USD") {
           const isHigherBadForUSD = title.includes("unemployment") || title.includes("jobless");
@@ -1705,31 +1744,38 @@
             usdBullish = !isBullishAstro;
           }
 
-          if (usdBullish) {
-            return {
-              signal: "▼ CONFIRMED: SELL XAUUSD (JUNAM)",
-              badgeClass: "signal-sell",
-              wr: "100% WR CONFIRMED",
-              targetStatus: pipResult.label,
-              desc: `Data rilis ${item.title} (${item.actual}) keluar lebih kuat dibanding forecast (${item.forecast || '--'}). Penguatan Dollar menekan likuiditas demand Gold menuju level support bawah.`
-            };
-          } else {
+          // JIKA USD LEMAH = GOLD HARUS TERBANG (BUY)
+          const isGoldBuy = !usdBullish;
+          const matrix = calculateExecutionMatrix(item, actual, forecast, isGoldBuy);
+
+          if (isGoldBuy) {
             return {
               signal: "▲ CONFIRMED: BUY XAUUSD (TERBANG)",
               badgeClass: "signal-buy",
               wr: "100% WR CONFIRMED",
-              targetStatus: pipResult.label,
+              matrix,
               desc: `Data rilis ${item.title} (${item.actual}) keluar lebih lemah dibanding forecast (${item.forecast || '--'}). Pelemahan Dollar memicu lonjakan arus modal beli memborong Gold (XAUUSD terbang).`
+            };
+          } else {
+            return {
+              signal: "▼ CONFIRMED: SELL XAUUSD (JUNAM)",
+              badgeClass: "signal-sell",
+              wr: "100% WR CONFIRMED",
+              matrix,
+              desc: `Data rilis ${item.title} (${item.actual}) keluar lebih kuat dibanding forecast (${item.forecast || '--'}). Penguatan Dollar menekan likuiditas demand Gold menuju level support bawah.`
             };
           }
         }
 
-        if (actual !== null && forecast !== null && actual >= forecast) {
+        const pairBuy = (forecast !== null && actual >= forecast);
+        const matrix = calculateExecutionMatrix(item, actual, forecast, pairBuy);
+
+        if (pairBuy) {
           return {
             signal: `▲ CONFIRMED: BUY ${curr}USD`,
             badgeClass: "signal-buy",
             wr: "100% WR CONFIRMED",
-            targetStatus: pipResult.label,
+            matrix,
             desc: `Fundamental mata uang ${curr} (${item.title}) menguat melampaui forecast (${item.actual} vs ${item.forecast}). Mengonfirmasi kelanjutan momentum beli pair ${curr}USD.`
           };
         } else {
@@ -1737,28 +1783,30 @@
             signal: `▼ CONFIRMED: SELL ${curr}USD`,
             badgeClass: "signal-sell",
             wr: "100% WR CONFIRMED",
-            targetStatus: pipResult.label,
+            matrix,
             desc: `Fundamental mata uang ${curr} (${item.title}) melemah di bawah konsensus pasar. Melanjutkan dorongan tren distribusi harga pada pair ${curr}USD.`
           };
         }
       }
 
       item.actual = "Menunggu";
+      const matrix = calculateExecutionMatrix(item, 0, 0, isBullishAstro);
+
       if (curr === "USD") {
         if (isBullishAstro) {
           return {
             signal: "▲ STANDBY BUY XAUUSD",
             badgeClass: "signal-buy",
             wr: "ASTRODOX 100% CONFLUENCE",
-            targetStatus: "PENDING ENTRY",
-            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')}): Siklus transit planet mendukung peluang entri Buy di zona demand saat rilis ${item.title} tiba.`
+            matrix,
+            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')}): Siklus transit planet harmonik mendukung peluang entri Buy di zona demand saat rilis ${item.title} tiba.`
           };
         } else {
           return {
             signal: "▼ STANDBY SELL XAUUSD",
             badgeClass: "signal-sell",
             wr: "ASTRODOX 100% CONFLUENCE",
-            targetStatus: "PENDING ENTRY",
+            matrix,
             desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')}): Sudut tekanan planet terdeteksi membentuk potensi sapuan likuiditas atas; fokus pada level supply Sell saat rilis ${item.title} tiba.`
           };
         }
@@ -1768,13 +1816,13 @@
         signal: `▲ STANDBY ${curr}USD`,
         badgeClass: "signal-wait",
         wr: "ASTRODOX 100% CONFLUENCE",
-        targetStatus: "PENDING ENTRY",
+        matrix,
         desc: `Menunggu rilis ${item.title}. Konfigurasi sudut zodiak mengindikasikan lonjakan volatilitas aktif pada pair ${curr}USD.`
       };
     }
 
     // ========================================================
-    // 9. KALENDER EKONOMI DUNIA TANPA DUPLIKASI BERITA
+    // 9. KALENDER EKONOMI DUNIA TANPA DUPLIKASI
     // ========================================================
     function onCustomNewsDatePicked(dateStr) {
       if (!dateStr) return;
@@ -1874,7 +1922,6 @@
       renderNewsCards();
     }
 
-    // Siklus Berita Riil Berbeda Tiap Pekan & Tiap Tanggal
     function generateStandardGlobalCalendar(dateObj, dateStrWIB) {
       const dayOfWeek = dateObj.getDay();
       const dateNum = dateObj.getDate();
@@ -1885,40 +1932,19 @@
         return ev.getTime();
       };
 
-      if (dayOfWeek === 1) { // Senin
-        if (dateNum <= 15) {
-          return [
-            { country: "EUR", impact: "Medium", title: "German Buba Monthly Report", displayTime: `${dateStrWIB} 17:00 WIB`, exactTimestamp: makeTs(17, 0), forecast: "--", previous: "--", actual: null },
-            { country: "USD", impact: "Medium", title: "CB Leading Index m/m", displayTime: `${dateStrWIB} 21:00 WIB`, exactTimestamp: makeTs(21, 0), forecast: "-0.3%", previous: "-0.2%", actual: null }
-          ];
-        } else {
-          return [
-            { country: "USD", impact: "High", title: "Treasury Currency Report", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "--", previous: "--", actual: null },
-            { country: "EUR", impact: "Medium", title: "Eurozone Sentix Investor Confidence", displayTime: `${dateStrWIB} 15:30 WIB`, exactTimestamp: makeTs(15, 30), forecast: "-12.5", previous: "-13.8", actual: null }
-          ];
-        }
-      } else if (dayOfWeek === 2) { // Selasa
-        if (dateNum <= 15) {
-          return [
-            { country: "EUR", impact: "High", title: "German ZEW Economic Sentiment", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "10.2", previous: "3.6", actual: null },
-            { country: "USD", impact: "High", title: "Core Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.1%", actual: null },
-            { country: "USD", impact: "High", title: "Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.4%", previous: "0.1%", actual: null }
-          ];
-        } else {
-          return [
-            { country: "USD", impact: "High", title: "CB Consumer Confidence", displayTime: `${dateStrWIB} 21:00 WIB`, exactTimestamp: makeTs(21, 0), forecast: "99.5", previous: "98.7", actual: null },
-            { country: "USD", impact: "High", title: "JOLTS Job Openings", displayTime: `${dateStrWIB} 21:00 WIB`, exactTimestamp: makeTs(21, 0), forecast: "7.98M", previous: "8.04M", actual: null }
-          ];
-        }
-      } else if (dayOfWeek === 3) { // Rabu
-        if (dateNum <= 14) {
-          return [
-            { country: "USD", impact: "High", title: "Core CPI m/m (Consumer Price Index)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.3%", actual: null },
-            { country: "USD", impact: "High", title: "CPI y/y (Annual Inflation)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "2.4%", previous: "2.5%", actual: null },
-            { country: "USD", impact: "Medium", title: "Crude Oil Inventories", displayTime: `${dateStrWIB} 21:30 WIB`, exactTimestamp: makeTs(21, 30), forecast: "-1.8M", previous: "-2.1M", actual: null }
-          ];
-        } else if (dateNum >= 25) {
-          // Pekan Akhir: GDP & Fed Decision
+      if (dayOfWeek === 1) {
+        return [
+          { country: "EUR", impact: "Medium", title: "German Buba Monthly Report", displayTime: `${dateStrWIB} 17:00 WIB`, exactTimestamp: makeTs(17, 0), forecast: "--", previous: "--", actual: null },
+          { country: "USD", impact: "Medium", title: "CB Leading Index m/m", displayTime: `${dateStrWIB} 21:00 WIB`, exactTimestamp: makeTs(21, 0), forecast: "-0.3%", previous: "-0.2%", actual: null }
+        ];
+      } else if (dayOfWeek === 2) {
+        return [
+          { country: "EUR", impact: "High", title: "German ZEW Economic Sentiment", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "10.2", previous: "3.6", actual: null },
+          { country: "USD", impact: "High", title: "Core Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.1%", actual: null },
+          { country: "USD", impact: "High", title: "Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.4%", previous: "0.1%", actual: null }
+        ];
+      } else if (dayOfWeek === 3) {
+        if (dateNum >= 25) {
           return [
             { country: "USD", impact: "High", title: "Advance GDP q/q (Economic Growth)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "2.8%", previous: "3.0%", actual: null },
             { country: "USD", impact: "High", title: "Core PCE Price Index m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.2%", previous: "0.2%", actual: null },
@@ -1926,41 +1952,25 @@
           ];
         } else {
           return [
-            { country: "GBP", impact: "High", title: "CPI y/y (UK Inflation Rate)", displayTime: `${dateStrWIB} 13:00 WIB`, exactTimestamp: makeTs(13, 0), forecast: "2.2%", previous: "2.2%", actual: null },
+            { country: "GBP", impact: "High", title: "CPI y/y (Inflation Rate)", displayTime: `${dateStrWIB} 13:00 WIB`, exactTimestamp: makeTs(13, 0), forecast: "2.2%", previous: "2.2%", actual: null },
             { country: "USD", impact: "High", title: "Building Permits", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "1.46M", previous: "1.47M", actual: null },
             { country: "USD", impact: "Medium", title: "Crude Oil Inventories", displayTime: `${dateStrWIB} 21:30 WIB`, exactTimestamp: makeTs(21, 30), forecast: "-1.8M", previous: "-2.1M", actual: null }
           ];
         }
-      } else if (dayOfWeek === 4) { // Kamis
-        if (dateNum <= 15) {
-          return [
-            { country: "USD", impact: "High", title: "Core PPI m/m (Producer Price Index)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.2%", previous: "0.3%", actual: null },
-            { country: "USD", impact: "High", title: "Unemployment Claims", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "218K", previous: "223K", actual: null },
-            { country: "USD", impact: "Medium", title: "Natural Gas Storage", displayTime: `${dateStrWIB} 21:30 WIB`, exactTimestamp: makeTs(21, 30), forecast: "78B", previous: "82B", actual: null }
-          ];
-        } else {
-          return [
-            { country: "USD", impact: "High", title: "Unemployment Claims (Weekly Jobless)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "216K", previous: "221K", actual: null },
-            { country: "USD", impact: "High", title: "Philly Fed Manufacturing Index", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "3.2", previous: "1.7", actual: null },
-            { country: "USD", impact: "Medium", title: "Flash Manufacturing PMI", displayTime: `${dateStrWIB} 20:45 WIB`, exactTimestamp: makeTs(20, 45), forecast: "47.5", previous: "47.9", actual: null }
-          ];
-        }
-      } else if (dayOfWeek === 5) { // Jumat
-        if (dateNum <= 7) {
-          return [
-            { country: "USD", impact: "High", title: "Non-Farm Employment Change (NFP)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "175K", previous: "142K", actual: null },
-            { country: "USD", impact: "High", title: "Unemployment Rate", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "4.2%", previous: "4.2%", actual: null },
-            { country: "USD", impact: "High", title: "Average Hourly Earnings m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.4%", actual: null }
-          ];
-        } else {
-          return [
-            { country: "EUR", impact: "High", title: "Final Core CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "2.5%", previous: "2.5%", actual: null },
-            { country: "EUR", impact: "High", title: "Final CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "3.8%", previous: "3.8%", actual: null },
-            { country: "USD", impact: "Medium", title: "Import Prices m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.6%", previous: "0.7%", actual: null },
-            { country: "USD", impact: "Medium", title: "Industrial Production m/m", displayTime: `${dateStrWIB} 20:15 WIB`, exactTimestamp: makeTs(20, 15), forecast: "0.0%", previous: "0.4%", actual: null }
-          ];
-        }
-      } else { // Weekend
+      } else if (dayOfWeek === 4) {
+        return [
+          { country: "USD", impact: "High", title: "Unemployment Claims", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "218K", previous: "223K", actual: null },
+          { country: "USD", impact: "High", title: "Philly Fed Manufacturing Index", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "3.2", previous: "1.7", actual: null },
+          { country: "USD", impact: "Medium", title: "Flash Manufacturing PMI", displayTime: `${dateStrWIB} 20:45 WIB`, exactTimestamp: makeTs(20, 45), forecast: "47.5", previous: "47.9", actual: null }
+        ];
+      } else if (dayOfWeek === 5) {
+        return [
+          { country: "EUR", impact: "High", title: "Final Core CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "2.5%", previous: "2.5%", actual: null },
+          { country: "EUR", impact: "High", title: "Final CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "3.8%", previous: "3.8%", actual: null },
+          { country: "USD", impact: "Medium", title: "Import Prices m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.6%", previous: "0.7%", actual: null },
+          { country: "USD", impact: "Medium", title: "Industrial Production m/m", displayTime: `${dateStrWIB} 20:15 WIB`, exactTimestamp: makeTs(20, 15), forecast: "0.0%", previous: "0.4%", actual: null }
+        ];
+      } else {
         return [
           { country: "USD", impact: "Medium", title: "CFTC Gold Non-Commercial Net Positions", displayTime: `${dateStrWIB} 02:30 WIB`, exactTimestamp: makeTs(2, 30), forecast: "--", previous: "285.4K", actual: "292.1K" },
           { country: "USD", impact: "Medium", title: "Global Central Bank Macro Reserves Rebalancing", displayTime: `${dateStrWIB} 12:00 WIB`, exactTimestamp: makeTs(12, 0), forecast: "--", previous: "--", actual: "Synchronized" }
@@ -2031,7 +2041,7 @@
       recapBody.innerHTML = '';
 
       if (history.length === 0) {
-        recapBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:18px; color:#64748b;">Belum ada riwayat rilis berita yang tersimpan.</td></tr>';
+        recapBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:18px; color:#64748b;">Belum ada riwayat rilis berita yang tersimpan.</td></tr>';
         return;
       }
 
@@ -2040,8 +2050,9 @@
         row.innerHTML = `
           <td style="color:#94a3b8; font-family:ui-monospace, monospace;">${item.displayTime}</td>
           <td><strong style="color:#fff;">${item.country}</strong> - ${item.title}</td>
-          <td><span style="color:#94a3b8;">${item.forecast || '--'}</span> &rarr; <strong style="color:#4ade80;">${item.actual}</strong></td>
+          <td><span style="color:#94a3b8;">${item.forecast || '--'}</span> &rarr; <strong style="color:${item.actualColor || '#4ade80'};">${item.actual}</strong></td>
           <td><span class="signal-pill ${item.badgeClass}" style="font-size:0.72rem; padding:3px 8px;">${item.signal}</span></td>
+          <td style="color:#38bdf8; font-weight:800; font-family:ui-monospace, monospace;">${item.windowEntry}</td>
           <td><span class="badge-win">${item.targetStatus}</span></td>
         `;
         recapBody.appendChild(row);
@@ -2053,15 +2064,22 @@
       eventsList.forEach(ev => {
         if (nowTime >= ev.exactTimestamp && ev.actual && ev.actual !== "Menunggu") {
           const exec = determineExecutionSignal(ev, targetDate);
+          const fVal = parseFloat(ev.forecast);
+          const aVal = parseFloat(ev.actual);
+          const isHigher = aVal >= fVal;
+          const actualColor = isHigher ? '#4ade80' : '#f87171';
+
           saveRecapItem({
             displayTime: ev.displayTime,
             country: ev.country,
             title: ev.title,
             forecast: ev.forecast,
             actual: ev.actual,
+            actualColor: actualColor,
             signal: exec.signal,
             badgeClass: exec.badgeClass,
-            targetStatus: exec.targetStatus
+            windowEntry: exec.matrix.windowEntry,
+            targetStatus: exec.matrix.totalPipsHit
           });
         }
       });
@@ -2118,6 +2136,14 @@
         const impactClass = impact === 'HIGH' ? 'impact-high' : 'impact-medium';
         const impactColor = impact === 'HIGH' ? '#ff2a54' : '#ff8c00';
 
+        // Pewarnaan angka Actual sesuai standar bursa (Hijau jika kuat, Merah jika lemah)
+        let actualColor = '#38bdf8';
+        if (item.actual && item.actual !== 'Menunggu') {
+          const f = parseFloat(item.forecast);
+          const a = parseFloat(item.actual);
+          actualColor = (!isNaN(f) && !isNaN(a)) ? (a >= f ? '#4ade80' : '#f87171') : '#4ade80';
+        }
+
         const card = document.createElement('div');
         card.className = `news-card ${impactClass}`;
         card.innerHTML = `
@@ -2133,7 +2159,7 @@
           <div style="display:grid; grid-template-columns:repeat(3, 1fr); background:#05070c; padding:10px; border-radius:8px; text-align:center; gap:6px;">
             <div><span style="font-size:0.65rem; color:#64748b; display:block;">FORECAST</span><strong style="color:#fff;">${item.forecast || '--'}</strong></div>
             <div><span style="font-size:0.65rem; color:#64748b; display:block;">PREVIOUS</span><strong style="color:#fff;">${item.previous || '--'}</strong></div>
-            <div><span style="font-size:0.65rem; color:#64748b; display:block;">ACTUAL</span><strong style="color:${item.actual && item.actual !== 'Menunggu' ? '#4ade80' : '#38bdf8'};">${item.actual || 'Menunggu'}</strong></div>
+            <div><span style="font-size:0.65rem; color:#64748b; display:block;">ACTUAL</span><strong style="color:${actualColor};">${item.actual || 'Menunggu'}</strong></div>
           </div>
 
           <div style="background:rgba(0,0,0,0.35); border:1px dashed rgba(255,255,255,0.1); padding:12px; border-radius:8px;">
@@ -2142,6 +2168,30 @@
               <span style="color:#fbbf24; font-size:0.7rem; font-weight:800; background:rgba(251,191,36,0.1); border:1px solid rgba(251,191,36,0.25); padding:2px 7px; border-radius:4px;">${exec.wr}</span>
             </div>
             <p style="font-size:0.78rem; color:#cbd5e1; line-height:1.45;">${exec.desc}</p>
+            
+            <!-- TARGET MATRIX: JAM ENTRY, TP 1, 2, 3 & SL -->
+            <div class="target-matrix-grid">
+              <div class="matrix-item">
+                <span class="matrix-label">Window Entry</span>
+                <span class="matrix-val" style="color:#38bdf8;">${exec.matrix.windowEntry}</span>
+              </div>
+              <div class="matrix-item">
+                <span class="matrix-label">Stop Loss (SL)</span>
+                <span class="matrix-val" style="color:#f87171;">-${exec.matrix.sl}</span>
+              </div>
+              <div class="matrix-item">
+                <span class="matrix-label">Target 1 (TP 1)</span>
+                <span class="matrix-val" style="color:#4ade80;">${exec.matrix.tp1}</span>
+              </div>
+              <div class="matrix-item">
+                <span class="matrix-label">Target 2 (TP 2)</span>
+                <span class="matrix-val" style="color:#4ade80;">${exec.matrix.tp2}</span>
+              </div>
+              <div class="matrix-item">
+                <span class="matrix-label">Target 3 (TP 3)</span>
+                <span class="matrix-val" style="color:#22c55e;">${exec.matrix.tp3}</span>
+              </div>
+            </div>
           </div>
         `;
         container.appendChild(card);
@@ -2163,7 +2213,6 @@
     renderPersistentRecapTable();
     loadGlobalEconomicNewsFeed();
 
-    // Auto-update jam rilis & status eksekusi setiap 1 detik
     setInterval(() => {
       renderNewsCards();
     }, 1000);
