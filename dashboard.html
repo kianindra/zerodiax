@@ -15,27 +15,27 @@
     }
 
     body {
-      background-color: #030406;
-      color: #f1f5f9;
+      background-color: #030407;
+      color: #f8fafc;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
       overflow-x: hidden;
       letter-spacing: -0.2px;
     }
 
     /* =========================================================
-       1. CINEMATIC PORSCHE LUXURY VIDEO (FIX SAFARI IOS AUTO-PLAY)
+       1. CINEMATIC LUXURY 3D OPENING (CLEAN MOTION BLUR)
        ========================================================= */
     #openingOverlay {
       position: fixed;
       inset: 0;
       background: #000000;
-      z-index: 99999;
+      z-index: 999999;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.9s;
+      transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.1s;
     }
 
     #openingOverlay.fade-out {
@@ -49,7 +49,6 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      overflow: hidden;
       z-index: 1;
     }
 
@@ -58,114 +57,95 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      filter: brightness(0.55) contrast(1.2) saturate(1.1);
-      transform: scale(1.04);
-      animation: ambientZoom 15s ease-in-out infinite alternate;
+      filter: brightness(0.48) contrast(1.22) saturate(1.15);
+      transform: scale(1.03);
+      animation: smoothCinemaZoom 14s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
     }
 
-    @keyframes ambientZoom {
+    @keyframes smoothCinemaZoom {
       0% { transform: scale(1.02); }
-      100% { transform: scale(1.1); }
+      100% { transform: scale(1.11); }
     }
 
-    .video-vignette {
+    .cinema-vignette {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(3,4,6,0.2) 0%, rgba(2,3,5,0.85) 75%, #030406 100%);
+      background: radial-gradient(circle at center, rgba(3,4,7,0.15) 0%, rgba(2,3,5,0.85) 75%, #030407 100%);
       z-index: 2;
-    }
-
-    .video-laser-scanner {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #ff2a54, #fff, #ff2a54, transparent);
-      box-shadow: 0 0 20px #ff2a54;
-      animation: laserCycle 3.2s ease-in-out infinite alternate;
-      z-index: 3;
-    }
-
-    @keyframes laserCycle {
-      0% { top: 0%; opacity: 0.15; }
-      50% { opacity: 0.85; }
-      100% { top: 100%; opacity: 0.2; }
     }
 
     .opening-content-box {
       position: relative;
       z-index: 4;
       text-align: center;
-      max-width: 680px;
-      padding: 24px;
+      max-width: 650px;
+      padding: 30px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      animation: cleanReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes cleanReveal {
+      0% { opacity: 0; transform: translateY(30px) scale(0.96); filter: blur(8px); }
+      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
     }
 
     .vip-brand-badge {
-      width: 68px;
-      height: 68px;
-      border-radius: 18px;
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
       background: linear-gradient(135deg, #ff2a54 0%, #150205 100%);
-      border: 1px solid rgba(255, 42, 84, 0.5);
+      border: 1px solid rgba(255, 42, 84, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.1rem;
+      font-size: 2.2rem;
       font-weight: 900;
       color: #fff;
-      margin-bottom: 18px;
-      box-shadow: 0 0 35px rgba(255, 42, 84, 0.8), inset 0 0 14px rgba(255, 255, 255, 0.3);
-      animation: badgeAura 3s infinite alternate;
-    }
-
-    @keyframes badgeAura {
-      0% { transform: scale(0.96); box-shadow: 0 0 25px rgba(255, 42, 84, 0.5); }
-      100% { transform: scale(1.04); box-shadow: 0 0 50px rgba(255, 42, 84, 0.95); }
+      margin-bottom: 20px;
+      box-shadow: 0 10px 40px rgba(255, 42, 84, 0.7);
     }
 
     .opening-pre-title {
-      font-size: 0.72rem;
+      font-size: 0.76rem;
       font-weight: 800;
       color: #ff5c7c;
       letter-spacing: 5px;
       text-transform: uppercase;
-      margin-bottom: 10px;
-      text-shadow: 0 0 10px rgba(255, 92, 124, 0.7);
+      margin-bottom: 12px;
     }
 
     .opening-hero-title {
-      font-size: 2.3rem;
+      font-size: 2.4rem;
       font-weight: 900;
       line-height: 1.15;
       text-transform: uppercase;
-      margin-bottom: 12px;
-      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
       color: #fff;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
     }
 
     .opening-hero-title .brand-red {
       color: #ff2a54;
-      text-shadow: 0 0 25px rgba(255, 42, 84, 0.9), 0 0 50px rgba(255, 42, 84, 0.6);
+      text-shadow: 0 0 35px rgba(255, 42, 84, 0.85);
     }
 
     .opening-sub-desc {
-      color: #94a3b8;
-      font-size: 0.85rem;
+      color: #cbd5e1;
+      font-size: 0.88rem;
       max-width: 480px;
       margin: 0 auto;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     .video-load-track {
-      width: 220px;
-      height: 3.5px;
+      width: 200px;
+      height: 3px;
       background: rgba(255, 255, 255, 0.12);
       border-radius: 4px;
-      margin: 22px auto 18px;
+      margin: 24px auto 20px;
       overflow: hidden;
       position: relative;
     }
@@ -178,7 +158,7 @@
       width: 0%;
       background: #ff2a54;
       box-shadow: 0 0 14px #ff2a54;
-      animation: loadBarCycle 4.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: loadBarCycle 4.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     @keyframes loadBarCycle {
@@ -188,42 +168,36 @@
     }
 
     .btn-enter-terminal {
-      background: rgba(255, 42, 84, 0.22);
-      border: 1.5px solid #ff2a54;
+      background: rgba(255, 42, 84, 0.2);
+      border: 1px solid #ff2a54;
       color: #fff;
       font-size: 0.82rem;
       font-weight: 800;
       letter-spacing: 2px;
-      padding: 11px 26px;
+      padding: 12px 28px;
       border-radius: 30px;
       cursor: pointer;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 0 25px rgba(255, 42, 84, 0.45);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 0 25px rgba(255, 42, 84, 0.35);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .btn-enter-terminal:active {
-      transform: scale(0.94);
+      transform: scale(0.95);
       background: #ff2a54;
     }
 
     /* =========================================================
-       2. DASHBOARD SHELL & VIP BANNER
+       2. TOP NAVBAR & MAIN APP TABS
        ========================================================= */
-    .terminal-container {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 16px 14px 60px;
-    }
-
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 18px;
+      padding: 14px 20px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(8, 10, 15, 0.7);
-      backdrop-filter: blur(14px);
+      background: rgba(6, 8, 12, 0.75);
+      backdrop-filter: blur(16px);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -233,7 +207,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 900;
       letter-spacing: 1px;
     }
@@ -242,12 +216,12 @@
       width: 28px;
       height: 28px;
       background: #ff2a54;
-      border-radius: 6px;
+      border-radius: 7px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      box-shadow: 0 0 12px rgba(255, 42, 84, 0.7);
+      box-shadow: 0 0 14px rgba(255, 42, 84, 0.75);
     }
 
     .btn-outline-signout {
@@ -263,11 +237,66 @@
       transition: all 0.2s;
     }
 
-    .btn-outline-signout:hover {
-      color: #fff;
-      border-color: #ff2a54;
+    .terminal-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 14px 70px;
     }
 
+    /* TABS MENU UTAMA (EXCLUSIVE MODULAR DESK) */
+    .master-nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-bottom: 22px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding-bottom: 10px;
+    }
+    .master-nav-tabs::-webkit-scrollbar { display: none; }
+
+    .master-tab-btn {
+      background: #090c14;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      color: #94a3b8;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .master-tab-btn:active {
+      transform: scale(0.96);
+    }
+
+    .master-tab-btn.active {
+      background: linear-gradient(135deg, rgba(255, 42, 84, 0.2) 0%, rgba(255, 42, 84, 0.05) 100%);
+      border-color: #ff2a54;
+      color: #ffffff;
+      box-shadow: 0 4px 20px rgba(255, 42, 84, 0.3);
+    }
+
+    .tab-view-content {
+      display: none;
+    }
+    .tab-view-content.active {
+      display: block;
+      animation: tabFadeIn 0.3s ease-out;
+    }
+
+    @keyframes tabFadeIn {
+      0% { opacity: 0; transform: translateY(6px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* VIP TELEGRAM BANNER */
     .vip-banner-box {
       background: linear-gradient(135deg, rgba(255, 42, 84, 0.16) 0%, rgba(13, 15, 22, 0.95) 100%);
       border: 1px solid rgba(255, 42, 84, 0.35);
@@ -297,13 +326,7 @@
       transition: all 0.2s ease;
     }
 
-    .btn-vip-tele:active {
-      transform: translateY(1px) scale(0.98);
-    }
-
-    /* =========================================================
-       3. ASTRODOX DISK BOARD & REALTIME METRICS
-       ========================================================= */
+    /* ASTRODOX REPLICA */
     .astrodox-master-board {
       background: #080a0f;
       border: 1px solid rgba(255, 42, 84, 0.3);
@@ -387,12 +410,10 @@
       font-size: 1.35rem;
       font-weight: 900;
       color: #fff;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-family: ui-monospace, monospace;
     }
 
-    /* =========================================================
-       4. EXCLUSIVE 10-DAYS SELECTOR & MICRO-ANIMATIONS
-       ========================================================= */
+    /* 10 DAYS SELECTOR */
     .days-scroll-bar {
       display: flex;
       gap: 10px;
@@ -422,15 +443,12 @@
       user-select: none;
     }
 
-    .day-pill:active {
-      transform: scale(0.94);
-    }
-
+    .day-pill:active { transform: scale(0.94); }
     .day-pill.active {
       background: linear-gradient(180deg, #ff2a54 0%, #a80f2f 100%);
       color: #ffffff;
       border-color: #ff5c7c;
-      box-shadow: 0 4px 20px rgba(255, 42, 84, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 20px rgba(255, 42, 84, 0.55);
       transform: translateY(-2px);
     }
 
@@ -464,9 +482,7 @@
       box-shadow: 0 0 14px rgba(255, 42, 84, 0.3);
     }
 
-    /* =========================================================
-       5. NEWS CARDS & INSTITUTIONAL SIGNAL BADGES
-       ========================================================= */
+    /* NEWS CARDS */
     .news-card {
       background: #090b12;
       border: 1px solid rgba(255, 255, 255, 0.07);
@@ -476,13 +492,10 @@
       grid-template-columns: 1fr;
       gap: 14px;
       margin-bottom: 16px;
-      transition: border-color 0.25s ease, transform 0.2s ease;
+      transition: border-color 0.25s ease;
     }
 
-    .news-card:hover {
-      border-color: rgba(255, 42, 84, 0.35);
-    }
-
+    .news-card:hover { border-color: rgba(255, 42, 84, 0.35); }
     .news-card.impact-high { border-left: 4.5px solid #ff2a54; }
     .news-card.impact-medium { border-left: 4.5px solid #ff8c00; }
 
@@ -567,6 +580,21 @@
       font-size: 0.72rem;
     }
 
+    /* ORDERFLOW MATRIX CARD */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .matrix-card {
+      background: #090b12;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
     @media (min-width: 768px) {
       .astrodox-master-board {
         grid-template-columns: 410px 1fr;
@@ -581,19 +609,17 @@
 <body>
 
   <!-- =========================================================
-       1. CINEMATIC PORSCHE LUXURY VIDEO OPENING SCREEN (SUPER VIP)
+       1. CINEMATIC LUXURY 3D OPENING (CLEAN MOTION BLUR)
        ========================================================= -->
   <div id="openingOverlay">
     <div class="bg-video-wrapper">
       <video id="heroPorscheVideo" class="bg-cinematic-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
-        <!-- Direct HD Supercar Night Drive Stream (Pexels Public Supercar Night Footage) -->
         <source src="https://assets.mixkit.co/videos/preview/mixkit-sports-car-driving-through-the-city-at-night-42775-large.mp4" type="video/mp4" />
         <source src="https://assets.mixkit.co/videos/preview/mixkit-rear-view-of-a-sports-car-speeding-on-a-highway-42776-large.mp4" type="video/mp4" />
       </video>
     </div>
 
-    <div class="video-vignette"></div>
-    <div class="video-laser-scanner"></div>
+    <div class="cinema-vignette"></div>
 
     <div class="opening-content-box">
       <div class="vip-brand-badge">Z</div>
@@ -605,7 +631,7 @@
       </h1>
 
       <p class="opening-sub-desc">
-        Terminal konfluensi pasar terenkripsi: Astrodox Transit 24 Jam dan Protokol Eksekusi Likuiditas Berita Global.
+        Terminal konfluensi likuiditas pasar institusional, radar transit Astrodox online 24 jam, dan kalender eksekusi news.
       </p>
 
       <div class="video-load-track">
@@ -636,7 +662,7 @@
       <div style="font-size:0.75rem; font-weight:800; color:#ff5c7c; letter-spacing:1.5px;">
         &bull; PRIVATE SYNDICATE DESK
       </div>
-      <h2 style="font-size:1.6rem; font-weight:900; text-transform:uppercase;">
+      <h2 style="font-size:1.55rem; font-weight:900; text-transform:uppercase;">
         Selamat Datang di VIP <span style="color:#ff2a54;">ZERODIAX</span>
       </h2>
       <p style="color:#94a3b8; font-size:0.85rem; max-width:650px; line-height:1.5;">
@@ -647,305 +673,389 @@
       </a>
     </div>
 
-    <!-- ASTRODOX EXACT REPLICA 100% -->
-    <div class="astrodox-master-board">
-      <div class="astrodox-disk-wrapper">
-        <svg class="astrodox-svg" viewBox="0 0 500 500" id="astrodoxExactSvg">
-          <circle cx="250" cy="250" r="246" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/>
-          
-          <g id="zodiacSegments">
-            <path d="M 250 250 L 10 250 A 240 240 0 0 1 42.2 130 Z" fill="#e0e7ff"/>
-            <path d="M 250 250 L 42.2 130 A 240 240 0 0 1 130 42.2 Z" fill="#e0f2fe"/>
-            <path d="M 250 250 L 130 42.2 A 240 240 0 0 1 250 10 Z" fill="#dcfce7"/>
-            <path d="M 250 250 L 250 10 A 240 240 0 0 1 370 42.2 Z" fill="#ffedd5"/>
-            <path d="M 250 250 L 370 42.2 A 240 240 0 0 1 457.8 130 Z" fill="#e0e7ff"/>
-            <path d="M 250 250 L 457.8 130 A 240 240 0 0 1 490 250 Z" fill="#fef9c3"/>
-            <path d="M 250 250 L 490 250 A 240 240 0 0 1 457.8 370 Z" fill="#dcfce7"/>
-            <path d="M 250 250 L 457.8 370 A 240 240 0 0 1 370 457.8 Z" fill="#ffe4e6"/>
-            <path d="M 250 250 L 370 457.8 A 240 240 0 0 1 250 490 Z" fill="#ede9fe"/>
-            <path d="M 250 250 L 250 490 A 240 240 0 0 1 130 457.8 Z" fill="#e0f2fe"/>
-            <path d="M 250 250 L 130 457.8 A 240 240 0 0 1 42.2 370 Z" fill="#dcfce7"/>
-            <path d="M 250 250 L 42.2 370 A 240 240 0 0 1 10 250 Z" fill="#fef3c7"/>
-          </g>
+    <!-- MASTER MODULAR APP TABS -->
+    <div class="master-nav-tabs">
+      <button class="master-tab-btn active" onclick="switchMainTab('tab-astrodox', this)">
+        <span>🪐</span> ASTRODOX 24H TRANSIT
+      </button>
+      <button class="master-tab-btn" onclick="switchMainTab('tab-calendar', this)">
+        <span>📅</span> KALENDER NEWS 10 HARI
+      </button>
+      <button class="master-tab-btn" onclick="switchMainTab('tab-orderflow', this)">
+        <span>📈</span> LIVE XAUUSD &amp; ORDERFLOW
+      </button>
+      <button class="master-tab-btn" onclick="switchMainTab('tab-recap', this)">
+        <span>📊</span> REKAPITULASI HISTORIS
+      </button>
+    </div>
 
-          <circle cx="250" cy="250" r="205" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
-          <circle cx="250" cy="250" r="160" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
-          <circle cx="250" cy="250" r="110" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <!-- =========================================================
+         TAB VIEW 1: ASTRODOX 24H TRANSIT
+         ========================================================= -->
+    <div id="tab-astrodox" class="tab-view-content active">
+      <div class="astrodox-master-board">
+        <div class="astrodox-disk-wrapper">
+          <svg class="astrodox-svg" viewBox="0 0 500 500" id="astrodoxExactSvg">
+            <circle cx="250" cy="250" r="246" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/>
+            
+            <g id="zodiacSegments">
+              <path d="M 250 250 L 10 250 A 240 240 0 0 1 42.2 130 Z" fill="#e0e7ff"/>
+              <path d="M 250 250 L 42.2 130 A 240 240 0 0 1 130 42.2 Z" fill="#e0f2fe"/>
+              <path d="M 250 250 L 130 42.2 A 240 240 0 0 1 250 10 Z" fill="#dcfce7"/>
+              <path d="M 250 250 L 250 10 A 240 240 0 0 1 370 42.2 Z" fill="#ffedd5"/>
+              <path d="M 250 250 L 370 42.2 A 240 240 0 0 1 457.8 130 Z" fill="#e0e7ff"/>
+              <path d="M 250 250 L 457.8 130 A 240 240 0 0 1 490 250 Z" fill="#fef9c3"/>
+              <path d="M 250 250 L 490 250 A 240 240 0 0 1 457.8 370 Z" fill="#dcfce7"/>
+              <path d="M 250 250 L 457.8 370 A 240 240 0 0 1 370 457.8 Z" fill="#ffe4e6"/>
+              <path d="M 250 250 L 370 457.8 A 240 240 0 0 1 250 490 Z" fill="#ede9fe"/>
+              <path d="M 250 250 L 250 490 A 240 240 0 0 1 130 457.8 Z" fill="#e0f2fe"/>
+              <path d="M 250 250 L 130 457.8 A 240 240 0 0 1 42.2 370 Z" fill="#dcfce7"/>
+              <path d="M 250 250 L 42.2 370 A 240 240 0 0 1 10 250 Z" fill="#fef3c7"/>
+            </g>
 
-          <line x1="2" y1="250" x2="498" y2="250" stroke="#0f172a" stroke-width="2"/>
-          <polygon points="12,244 0,250 12,256" fill="#0f172a"/>
-          <text x="18" y="244" font-size="11" font-weight="900" fill="#0f172a">8&deg;</text>
+            <circle cx="250" cy="250" r="205" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+            <circle cx="250" cy="250" r="160" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+            <circle cx="250" cy="250" r="110" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
 
-          <line x1="250" y1="2" x2="250" y2="498" stroke="#0f172a" stroke-width="2"/>
-          <text x="254" y="24" font-size="11" font-weight="900" fill="#0f172a">&#9793; 16&deg;</text>
+            <line x1="2" y1="250" x2="498" y2="250" stroke="#0f172a" stroke-width="2"/>
+            <polygon points="12,244 0,250 12,256" fill="#0f172a"/>
+            <text x="18" y="244" font-size="11" font-weight="900" fill="#0f172a">8&deg;</text>
 
-          <line x1="125" y1="35" x2="375" y2="465" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
-          <line x1="35" y1="125" x2="465" y2="375" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
-          <line x1="35" y1="375" x2="465" y2="125" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
-          <line x1="125" y1="465" x2="375" y2="35" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
+            <line x1="250" y1="2" x2="250" y2="498" stroke="#0f172a" stroke-width="2"/>
+            <text x="254" y="24" font-size="11" font-weight="900" fill="#0f172a">&#9793; 16&deg;</text>
 
-          <text x="45" y="200" font-size="16" font-weight="bold" fill="#334155">&#9807;</text>
-          <text x="90" y="100" font-size="16" font-weight="bold" fill="#334155">&#9806;</text>
-          <text x="180" y="50" font-size="16" font-weight="bold" fill="#334155">&#9805;</text>
-          <text x="265" y="50" font-size="16" font-weight="bold" fill="#334155">&#9804;</text>
-          <text x="355" y="100" font-size="16" font-weight="bold" fill="#334155">&#9803;</text>
-          <text x="400" y="200" font-size="16" font-weight="bold" fill="#334155">&#9802;</text>
-          <text x="400" y="300" font-size="16" font-weight="bold" fill="#334155">&#9801;</text>
-          <text x="355" y="400" font-size="16" font-weight="bold" fill="#334155">&#9800;</text>
-          <text x="265" y="450" font-size="16" font-weight="bold" fill="#334155">&#9811;</text>
-          <text x="180" y="450" font-size="16" font-weight="bold" fill="#334155">&#9810;</text>
-          <text x="90" y="400" font-size="16" font-weight="bold" fill="#334155">&#9809;</text>
-          <text x="45" y="300" font-size="16" font-weight="bold" fill="#334155">&#9808;</text>
+            <line x1="125" y1="35" x2="375" y2="465" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
+            <line x1="35" y1="125" x2="465" y2="375" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
+            <line x1="35" y1="375" x2="465" y2="125" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
+            <line x1="125" y1="465" x2="375" y2="35" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
 
-          <g id="astroExactAspects">
-            <line x1="240" y1="65" x2="242" y2="435" stroke="#dc2626" stroke-width="1.8"/>
-            <line x1="230" y1="70" x2="80" y2="150" stroke="#dc2626" stroke-width="1.8"/>
-            <line x1="240" y1="65" x2="85" y2="200" stroke="#dc2626" stroke-width="1.8"/>
-            <line x1="90" y1="365" x2="385" y2="350" stroke="#dc2626" stroke-width="1.8"/>
-            <line x1="80" y1="150" x2="385" y2="350" stroke="#dc2626" stroke-width="1.8"/>
-            <line x1="230" y1="70" x2="395" y2="175" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3,3"/>
+            <text x="45" y="200" font-size="16" font-weight="bold" fill="#334155">&#9807;</text>
+            <text x="90" y="100" font-size="16" font-weight="bold" fill="#334155">&#9806;</text>
+            <text x="180" y="50" font-size="16" font-weight="bold" fill="#334155">&#9805;</text>
+            <text x="265" y="50" font-size="16" font-weight="bold" fill="#334155">&#9804;</text>
+            <text x="355" y="100" font-size="16" font-weight="bold" fill="#334155">&#9803;</text>
+            <text x="400" y="200" font-size="16" font-weight="bold" fill="#334155">&#9802;</text>
+            <text x="400" y="300" font-size="16" font-weight="bold" fill="#334155">&#9801;</text>
+            <text x="355" y="400" font-size="16" font-weight="bold" fill="#334155">&#9800;</text>
+            <text x="265" y="450" font-size="16" font-weight="bold" fill="#334155">&#9811;</text>
+            <text x="180" y="450" font-size="16" font-weight="bold" fill="#334155">&#9810;</text>
+            <text x="90" y="400" font-size="16" font-weight="bold" fill="#334155">&#9809;</text>
+            <text x="45" y="300" font-size="16" font-weight="bold" fill="#334155">&#9808;</text>
 
-            <line x1="230" y1="70" x2="90" y2="365" stroke="#16a34a" stroke-width="2"/>
-            <line x1="230" y1="70" x2="385" y2="350" stroke="#16a34a" stroke-width="2"/>
-            <line x1="90" y1="365" x2="395" y2="175" stroke="#16a34a" stroke-width="1.5"/>
-            <line x1="80" y1="150" x2="242" y2="435" stroke="#16a34a" stroke-width="1.8"/>
-            <line x1="395" y1="175" x2="80" y2="150" stroke="#16a34a" stroke-width="1.8"/>
-          </g>
+            <g id="astroExactAspects">
+              <line x1="240" y1="65" x2="242" y2="435" stroke="#dc2626" stroke-width="1.8"/>
+              <line x1="230" y1="70" x2="80" y2="150" stroke="#dc2626" stroke-width="1.8"/>
+              <line x1="240" y1="65" x2="85" y2="200" stroke="#dc2626" stroke-width="1.8"/>
+              <line x1="90" y1="365" x2="385" y2="350" stroke="#dc2626" stroke-width="1.8"/>
+              <line x1="80" y1="150" x2="385" y2="350" stroke="#dc2626" stroke-width="1.8"/>
+              <line x1="230" y1="70" x2="395" y2="175" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3,3"/>
 
-          <g id="astroPlanetNodesExact">
-            <circle cx="80" cy="150" r="11" fill="#f59e0b" stroke="#78350f" stroke-width="1.5"/>
-            <text x="80" y="154" text-anchor="middle" font-size="12" font-weight="900" fill="#000">&#9737;</text>
-            <text x="100" y="145" font-size="10" font-weight="900" fill="#0f172a" id="chartSunDeg">23&deg;</text>
+              <line x1="230" y1="70" x2="90" y2="365" stroke="#16a34a" stroke-width="2"/>
+              <line x1="230" y1="70" x2="385" y2="350" stroke="#16a34a" stroke-width="2"/>
+              <line x1="90" y1="365" x2="395" y2="175" stroke="#16a34a" stroke-width="1.5"/>
+              <line x1="80" y1="150" x2="242" y2="435" stroke="#16a34a" stroke-width="1.8"/>
+              <line x1="395" y1="175" x2="80" y2="150" stroke="#16a34a" stroke-width="1.8"/>
+            </g>
 
-            <circle cx="85" cy="200" r="8" fill="#ec4899" stroke="#831843" stroke-width="1.5"/>
-            <text x="85" y="204" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9792;</text>
-            <circle cx="95" cy="225" r="8" fill="#a855f7" stroke="#581c87" stroke-width="1.5"/>
-            <text x="95" y="229" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9791;</text>
+            <g id="astroPlanetNodesExact">
+              <circle cx="80" cy="150" r="11" fill="#f59e0b" stroke="#78350f" stroke-width="1.5"/>
+              <text x="80" y="154" text-anchor="middle" font-size="12" font-weight="900" fill="#000">&#9737;</text>
+              <text x="100" y="145" font-size="10" font-weight="900" fill="#0f172a" id="chartSunDeg">23&deg;</text>
 
-            <circle cx="230" cy="70" r="10" fill="#dc2626" stroke="#450a0a" stroke-width="1.5"/>
-            <text x="230" y="74" text-anchor="middle" font-size="11" font-weight="900" fill="#fff">&#9794;</text>
-            <text x="228" y="55" font-size="10" font-weight="900" fill="#0f172a" id="chartMarsDeg">10&deg;</text>
+              <circle cx="85" cy="200" r="8" fill="#ec4899" stroke="#831843" stroke-width="1.5"/>
+              <text x="85" y="204" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9792;</text>
+              <circle cx="95" cy="225" r="8" fill="#a855f7" stroke="#581c87" stroke-width="1.5"/>
+              <text x="95" y="229" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9791;</text>
 
-            <circle cx="210" cy="75" r="9" fill="#7c3aed" stroke="#2e1065" stroke-width="1.5"/>
-            <text x="210" y="79" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9795;</text>
-            <text x="206" y="58" font-size="9" font-weight="900" fill="#0f172a">23&deg;</text>
+              <circle cx="230" cy="70" r="10" fill="#dc2626" stroke="#450a0a" stroke-width="1.5"/>
+              <text x="230" y="74" text-anchor="middle" font-size="11" font-weight="900" fill="#fff">&#9794;</text>
+              <text x="228" y="55" font-size="10" font-weight="900" fill="#0f172a" id="chartMarsDeg">10&deg;</text>
 
-            <circle cx="90" cy="365" r="10" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.5"/>
-            <text x="90" y="369" text-anchor="middle" font-size="12" font-weight="900" fill="#fff">&#9789;</text>
-            <text x="110" y="375" font-size="10" font-weight="900" fill="#0f172a" id="chartMoonDeg">18&deg;</text>
+              <circle cx="210" cy="75" r="9" fill="#7c3aed" stroke="#2e1065" stroke-width="1.5"/>
+              <text x="210" y="79" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9795;</text>
+              <text x="206" y="58" font-size="9" font-weight="900" fill="#0f172a">23&deg;</text>
 
-            <circle cx="242" cy="435" r="8" fill="#475569" stroke="#0f172a" stroke-width="1.5"/>
-            <text x="242" y="439" text-anchor="middle" font-size="9" font-weight="900" fill="#fff">&#9799;</text>
-            <text x="242" y="455" font-size="10" font-weight="900" fill="#0f172a">4&deg;</text>
+              <circle cx="90" cy="365" r="10" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.5"/>
+              <text x="90" y="369" text-anchor="middle" font-size="12" font-weight="900" fill="#fff">&#9789;</text>
+              <text x="110" y="375" font-size="10" font-weight="900" fill="#0f172a" id="chartMoonDeg">18&deg;</text>
 
-            <circle cx="385" cy="350" r="9" fill="#64748b" stroke="#1e293b" stroke-width="1.5"/>
-            <text x="385" y="354" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9796;</text>
-            <text x="405" y="355" font-size="10" font-weight="900" fill="#0f172a">11&deg;</text>
+              <circle cx="242" cy="435" r="8" fill="#475569" stroke="#0f172a" stroke-width="1.5"/>
+              <text x="242" y="439" text-anchor="middle" font-size="9" font-weight="900" fill="#fff">&#9799;</text>
+              <text x="242" y="455" font-size="10" font-weight="900" fill="#0f172a">4&deg;</text>
 
-            <circle cx="395" cy="175" r="9" fill="#06b6d4" stroke="#164e63" stroke-width="1.5"/>
-            <text x="395" y="179" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9797;</text>
-            <text x="415" y="175" font-size="10" font-weight="900" fill="#0f172a">6&deg;</text>
-          </g>
+              <circle cx="385" cy="350" r="9" fill="#64748b" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="385" y="354" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9796;</text>
+              <text x="405" y="355" font-size="10" font-weight="900" fill="#0f172a">11&deg;</text>
 
-          <circle cx="250" cy="250" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-          <text x="250" y="246" text-anchor="middle" font-size="8" font-weight="900" fill="#dc2626">ASTRODOX</text>
-          <text x="250" y="258" text-anchor="middle" font-size="7" font-weight="bold" fill="#64748b">24H LIVE</text>
-        </svg>
-      </div>
+              <circle cx="395" cy="175" r="9" fill="#06b6d4" stroke="#164e63" stroke-width="1.5"/>
+              <text x="395" y="179" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9797;</text>
+              <text x="415" y="175" font-size="10" font-weight="900" fill="#0f172a">6&deg;</text>
+            </g>
 
-      <!-- PANEL KOSMIK DERAJAT TRANSIT -->
-      <div class="astrodox-data-panel">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span style="background:rgba(255,42,84,0.14); border:1px solid #ff2a54; color:#ff5c7c; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:800;">
-            ASTRODOX 2026 TRANSIT MATRIX
-          </span>
-          <span style="color:#22c55e; font-size:0.75rem; font-weight:700;">&bull; SINKRON LIVE 24H</span>
+            <circle cx="250" cy="250" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+            <text x="250" y="246" text-anchor="middle" font-size="8" font-weight="900" fill="#dc2626">ASTRODOX</text>
+            <text x="250" y="258" text-anchor="middle" font-size="7" font-weight="bold" fill="#64748b">24H LIVE</text>
+          </svg>
         </div>
 
-        <div style="background:#0c0e16; border:1px solid rgba(255,42,84,0.25); border-radius:10px; padding:12px; display:flex; justify-content:space-between; align-items:center;">
+        <div class="astrodox-data-panel">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="background:rgba(255,42,84,0.14); border:1px solid #ff2a54; color:#ff5c7c; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:800;">
+              ASTRODOX 2026 TRANSIT MATRIX
+            </span>
+            <span style="color:#22c55e; font-size:0.75rem; font-weight:700;">&bull; SINKRON LIVE 24H</span>
+          </div>
+
+          <div style="background:#0c0e16; border:1px solid rgba(255,42,84,0.25); border-radius:10px; padding:12px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <span style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase;">Fase Bulan &bull; Siklus Likuiditas</span>
+              <strong style="color:#fff; font-size:0.95rem; display:block;" id="liveMoonPhaseName">Waxing Crescent</strong>
+              <small style="color:#38bdf8; font-size:0.75rem;" id="liveMoonIllum">Moon di Sagitarius 18° &bull; Iluminasi 19.5%</small>
+            </div>
+            <div style="font-size:1.8rem; text-shadow:0 0 15px rgba(56,189,248,0.8);" id="liveMoonIcon">&#9789;</div>
+          </div>
+
+          <div class="transit-table-full">
+            <div class="transit-item">
+              <span>&#9737; Sun</span>
+              <strong style="color:#f59e0b;" id="degSun">&#9806; 23&deg;10'23"</strong>
+            </div>
+            <div class="transit-item">
+              <span>Asc (Scorpio)</span>
+              <strong style="color:#cbd5e1;">&#9807; 07&deg;30'08"</strong>
+            </div>
+            <div class="transit-item">
+              <span>&#9789; Moon</span>
+              <strong style="color:#38bdf8;" id="degMoon">&#9808; 18&deg;52'26"</strong>
+            </div>
+            <div class="transit-item">
+              <span>II (Sagitarius)</span>
+              <strong style="color:#cbd5e1;">&#9808; 06&deg;18'26"</strong>
+            </div>
+            <div class="transit-item">
+              <span>&#9791; Mercury</span>
+              <strong style="color:#a855f7;">&#9807; 16&deg;54'36"</strong>
+            </div>
+            <div class="transit-item">
+              <span>III (Capricorn)</span>
+              <strong style="color:#cbd5e1;">&#9809; 09&deg;32'05"</strong>
+            </div>
+            <div class="transit-item">
+              <span>&#9792; Venus</span>
+              <strong style="color:#ec4899;">&#9807; 05&deg;34'49"</strong>
+            </div>
+            <div class="transit-item">
+              <span>IC (Aquarius)</span>
+              <strong style="color:#cbd5e1;">&#9810; 15&deg;05'15"</strong>
+            </div>
+            <div class="transit-item">
+              <span>&#9794; Mars</span>
+              <strong style="color:#f87171;" id="degMars">&#9804; 10&deg;55'26"</strong>
+            </div>
+            <div class="transit-item">
+              <span>MC (Leo)</span>
+              <strong style="color:#cbd5e1;">&#9804; 15&deg;05'15"</strong>
+            </div>
+            <div class="transit-item">
+              <span>&#9795; Jupiter</span>
+              <strong style="color:#c084fc;">&#9804; 22&deg;01'44"</strong>
+            </div>
+            <div class="transit-item">
+              <span>Dsc (Taurus)</span>
+              <strong style="color:#cbd5e1;">&#9801; 07&deg;30'08"</strong>
+            </div>
+          </div>
+
+          <div style="background:rgba(255,42,84,0.08); border-left:3.5px solid #ff2a54; padding:10px 12px; border-radius:0 8px 8px 0; font-size:0.78rem; line-height:1.45; color:#cbd5e1;" id="liveDailyAstroSummary">
+            Mengalkulasi resonansi siklus transit astrodox...
+          </div>
+        </div>
+      </div>
+
+      <!-- CLOCK DOCK 3 ZONA WAKTU -->
+      <div class="clock-dock">
+        <div class="clock-item primary-clock">
+          <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">
+            WIB (JAKARTA) &bull; <span style="color:#22c55e;">AKTIF</span>
+          </div>
+          <div class="clock-time" id="timeWIB">00:00:00</div>
+          <div style="font-size:0.75rem; color:#cbd5e1;" id="dateWIB">Memuat...</div>
+        </div>
+
+        <div class="clock-item">
+          <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">
+            LONDON (GMT+1) &bull; SESI LONDON
+          </div>
+          <div class="clock-time" id="timeLondon">00:00:00</div>
+          <div style="font-size:0.75rem; color:#cbd5e1;" id="dateLondon">Memuat...</div>
+        </div>
+
+        <div class="clock-item">
+          <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">
+            NEW YORK (EST) &bull; SESI NY
+          </div>
+          <div class="clock-time" id="timeNY">00:00:00</div>
+          <div style="font-size:0.75rem; color:#cbd5e1;" id="dateNY">Memuat...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         TAB VIEW 2: KALENDER NEWS 10 HARI
+         ========================================================= -->
+    <div id="tab-calendar" class="tab-view-content">
+      <div style="margin-bottom:12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
           <div>
-            <span style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase;">Fase Bulan &bull; Siklus Likuiditas</span>
-            <strong style="color:#fff; font-size:0.95rem; display:block;" id="liveMoonPhaseName">Waxing Crescent</strong>
-            <small style="color:#38bdf8; font-size:0.75rem;" id="liveMoonIllum">Moon di Sagitarius 18° &bull; Iluminasi 19.5%</small>
+            <h3 style="font-size:1.15rem; font-weight:900; letter-spacing:0.5px;">
+              JADWAL KALENDER NEWS 10 HARI KE DEPAN
+            </h3>
+            <p style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">
+              Pilih tanggal untuk memetakan rilis bursa, deviasi statistik, dan proyeksi astrologi
+            </p>
           </div>
-          <div style="font-size:1.8rem; text-shadow:0 0 15px rgba(56,189,248,0.8);" id="liveMoonIcon">&#9789;</div>
+          <span style="font-size:0.75rem; color:#22c55e; font-weight:700;">&bull; REALTIME EXECUTION FEED</span>
         </div>
 
-        <div class="transit-table-full">
-          <div class="transit-item">
-            <span>&#9737; Sun</span>
-            <strong style="color:#f59e0b;" id="degSun">&#9806; 23&deg;10'23"</strong>
-          </div>
-          <div class="transit-item">
-            <span>Asc (Scorpio)</span>
-            <strong style="color:#cbd5e1;">&#9807; 07&deg;30'08"</strong>
-          </div>
-          <div class="transit-item">
-            <span>&#9789; Moon</span>
-            <strong style="color:#38bdf8;" id="degMoon">&#9808; 18&deg;52'26"</strong>
-          </div>
-          <div class="transit-item">
-            <span>II (Sagitarius)</span>
-            <strong style="color:#cbd5e1;">&#9808; 06&deg;18'26"</strong>
-          </div>
-          <div class="transit-item">
-            <span>&#9791; Mercury</span>
-            <strong style="color:#a855f7;">&#9807; 16&deg;54'36"</strong>
-          </div>
-          <div class="transit-item">
-            <span>III (Capricorn)</span>
-            <strong style="color:#cbd5e1;">&#9809; 09&deg;32'05"</strong>
-          </div>
-          <div class="transit-item">
-            <span>&#9792; Venus</span>
-            <strong style="color:#ec4899;">&#9807; 05&deg;34'49"</strong>
-          </div>
-          <div class="transit-item">
-            <span>IC (Aquarius)</span>
-            <strong style="color:#cbd5e1;">&#9810; 15&deg;05'15"</strong>
-          </div>
-          <div class="transit-item">
-            <span>&#9794; Mars</span>
-            <strong style="color:#f87171;" id="degMars">&#9804; 10&deg;55'26"</strong>
-          </div>
-          <div class="transit-item">
-            <span>MC (Leo)</span>
-            <strong style="color:#cbd5e1;">&#9804; 15&deg;05'15"</strong>
-          </div>
-          <div class="transit-item">
-            <span>&#9795; Jupiter</span>
-            <strong style="color:#c084fc;">&#9804; 22&deg;01'44"</strong>
-          </div>
-          <div class="transit-item">
-            <span>Dsc (Taurus)</span>
-            <strong style="color:#cbd5e1;">&#9801; 07&deg;30'08"</strong>
-          </div>
-        </div>
+        <div class="days-scroll-bar" id="daysFilterBar"></div>
+      </div>
 
-        <div style="background:rgba(255,42,84,0.08); border-left:3.5px solid #ff2a54; padding:10px 12px; border-radius:0 8px 8px 0; font-size:0.78rem; line-height:1.45; color:#cbd5e1;" id="liveDailyAstroSummary">
-          Mengalkulasi resonansi siklus transit astrodox...
+      <div class="filter-pills">
+        <button class="pill-btn active" onclick="setCurrencyFilter('ALL', event)">Semua Mata Uang</button>
+        <button class="pill-btn" onclick="setCurrencyFilter('USD', event)">USD (Gold / XAUUSD)</button>
+        <button class="pill-btn" onclick="setCurrencyFilter('EUR', event)">EUR</button>
+        <button class="pill-btn" onclick="setCurrencyFilter('GBP', event)">GBP</button>
+        <button class="pill-btn" onclick="setCurrencyFilter('HIGH', event)">Khusus High Impact</button>
+      </div>
+
+      <div class="news-list-box" id="newsFeedContainer">
+        <div style="text-align:center; padding:30px; color:#94a3b8;">
+          Menyinkronkan feed rilis bursa resmi...
         </div>
       </div>
     </div>
 
-    <!-- CLOCK DOCK 3 ZONA WAKTU -->
-    <div class="clock-dock">
-      <div class="clock-item primary-clock">
-        <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">
-          WIB (JAKARTA) &bull; <span style="color:#22c55e;">AKTIF</span>
+    <!-- =========================================================
+         TAB VIEW 3: LIVE XAUUSD & ORDERFLOW MATRIX
+         ========================================================= -->
+    <div id="tab-orderflow" class="tab-view-content">
+      <div class="matrix-grid">
+        <div class="matrix-card">
+          <span style="font-size:0.7rem; color:#94a3b8; font-weight:800; text-transform:uppercase;">DAILY BIAS SMC / ICT</span>
+          <h4 style="font-size:1.15rem; font-weight:900; color:#4ade80; margin-top:4px;">BULLISH ACCUMULATION</h4>
+          <small style="color:#94a3b8; font-size:0.75rem;">Discount zone mitigation &bull; OTE 0.705 level</small>
         </div>
-        <div class="clock-time" id="timeWIB">00:00:00</div>
-        <div style="font-size:0.75rem; color:#cbd5e1;" id="dateWIB">Memuat...</div>
+        <div class="matrix-card">
+          <span style="font-size:0.7rem; color:#94a3b8; font-weight:800; text-transform:uppercase;">BUY-SIDE LIQUIDITY (BSL)</span>
+          <h4 style="font-size:1.15rem; font-weight:900; color:#ff2a54; margin-top:4px;">TARGET PREVIOUS HIGH</h4>
+          <small style="color:#94a3b8; font-size:0.75rem;">Major liquidity pool purge on NY Session</small>
+        </div>
+        <div class="matrix-card">
+          <span style="font-size:0.7rem; color:#94a3b8; font-weight:800; text-transform:uppercase;">KEY IMBALANCE (FVG)</span>
+          <h4 style="font-size:1.15rem; font-weight:900; color:#38bdf8; margin-top:4px;">H1 BULLISH FVG</h4>
+          <small style="color:#94a3b8; font-size:0.75rem;">Unmitigated Fair Value Gap protected</small>
+        </div>
       </div>
 
-      <div class="clock-item">
-        <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">
-          LONDON (GMT+1) &bull; SESI LONDON
-        </div>
-        <div class="clock-time" id="timeLondon">00:00:00</div>
-        <div style="font-size:0.75rem; color:#cbd5e1;" id="dateLondon">Memuat...</div>
-      </div>
-
-      <div class="clock-item">
-        <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">
-          NEW YORK (EST) &bull; SESI NY
-        </div>
-        <div class="clock-time" id="timeNY">00:00:00</div>
-        <div style="font-size:0.75rem; color:#cbd5e1;" id="dateNY">Memuat...</div>
+      <!-- TradingView Interactive Widget Container -->
+      <div style="background:#090b12; border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:16px; height:500px; box-shadow:0 10px 30px rgba(0,0,0,0.7);">
+        <div id="tradingview_xauusd" style="width:100%; height:100%;"></div>
       </div>
     </div>
 
-    <!-- KALENDER NEWS 10 HARI KE DEPAN SELECTOR -->
-    <div style="margin-bottom:12px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
-        <div>
-          <h3 style="font-size:1.15rem; font-weight:900; letter-spacing:0.5px;">
-            JADWAL KALENDER NEWS 10 HARI KE DEPAN
+    <!-- =========================================================
+         TAB VIEW 4: REKAPITULASI HISTORIS PERMANEN
+         ========================================================= -->
+    <div id="tab-recap" class="tab-view-content">
+      <div class="recap-panel" style="margin-top:0;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+          <h3 style="font-size:1.05rem; font-weight:900; letter-spacing:0.5px; color:#fff;">
+            📊 REKAPITULASI EKSEKUSI NEWS
           </h3>
-          <p style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">
-            Pilih tanggal untuk memetakan rilis bursa, deviasi statistik, dan proyeksi astrologi
-          </p>
+          <span class="badge-win">TRACK RECORD PERMANEN</span>
         </div>
-        <span style="font-size:0.75rem; color:#22c55e; font-weight:700;">&bull; REALTIME EXECUTION FEED</span>
-      </div>
+        <p style="font-size:0.78rem; color:#94a3b8; line-height:1.4;">
+          Arsip historis hasil rilis berita yang dieksekusi secara otomatis pada detik rilis tiba tersimpan di memori terminal.
+        </p>
 
-      <!-- TAB 10 HARI EXCLUSIVE -->
-      <div class="days-scroll-bar" id="daysFilterBar"></div>
-    </div>
-
-    <!-- FILTER MATA UANG -->
-    <div class="filter-pills">
-      <button class="pill-btn active" onclick="setCurrencyFilter('ALL', event)">Semua Mata Uang</button>
-      <button class="pill-btn" onclick="setCurrencyFilter('USD', event)">USD (Gold / XAUUSD)</button>
-      <button class="pill-btn" onclick="setCurrencyFilter('EUR', event)">EUR</button>
-      <button class="pill-btn" onclick="setCurrencyFilter('GBP', event)">GBP</button>
-      <button class="pill-btn" onclick="setCurrencyFilter('HIGH', event)">Khusus High Impact</button>
-    </div>
-
-    <!-- CONTAINER DAFTAR JADWAL NEWS -->
-    <div class="news-list-box" id="newsFeedContainer">
-      <div style="text-align:center; padding:30px; color:#94a3b8;">
-        Menyinkronkan feed rilis bursa resmi...
-      </div>
-    </div>
-
-    <!-- REKAPITULASI HASIL NEWS DENGAN PENYIMPANAN PERMANEN -->
-    <div class="recap-panel">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
-        <h3 style="font-size:1.05rem; font-weight:900; letter-spacing:0.5px; color:#fff;">
-          📊 REKAPITULASI EKSEKUSI NEWS
-        </h3>
-        <span class="badge-win">TRACK RECORD PERMANEN</span>
-      </div>
-      <p style="font-size:0.78rem; color:#94a3b8; line-height:1.4;">
-        Arsip historis hasil rilis berita yang dieksekusi secara otomatis pada detik rilis tiba tersimpan di memori terminal.
-      </p>
-
-      <div class="recap-table-wrapper">
-        <table class="recap-table">
-          <thead>
-            <tr>
-              <th>Tanggal &amp; Jam</th>
-              <th>Mata Uang / Event</th>
-              <th>Forecast vs Actual</th>
-              <th>Sinyal Eksekusi</th>
-              <th>Status Target</th>
-            </tr>
-          </thead>
-          <tbody id="recapTableBody"></tbody>
-        </table>
+        <div class="recap-table-wrapper">
+          <table class="recap-table">
+            <thead>
+              <tr>
+                <th>Tanggal &amp; Jam</th>
+                <th>Mata Uang / Event</th>
+                <th>Forecast vs Actual</th>
+                <th>Sinyal Eksekusi</th>
+                <th>Status Target</th>
+              </tr>
+            </thead>
+            <tbody id="recapTableBody"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
   </div>
 
+  <!-- SCRIPT ENGINE -->
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
   <script>
-    // 1. OPENING SCREEN LOGIC (FIX IPHONE AUTOPLAY)
+    // 1. OPENING LOGIC
     function dismissOpeningScreen() {
       const overlay = document.getElementById('openingOverlay');
       if (overlay) {
         overlay.classList.add('fade-out');
-        setTimeout(() => { overlay.remove(); }, 900);
+        setTimeout(() => { overlay.remove(); }, 1100);
       }
     }
 
-    // Force play video on mobile
+    // Paksa video autoplay di iOS Safari
     window.addEventListener('DOMContentLoaded', () => {
       const vid = document.getElementById('heroPorscheVideo');
       if (vid) {
         vid.muted = true;
         const playPromise = vid.play();
         if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            // Autoplay dicegah browser, fallback otomatis
-          });
+          playPromise.catch(() => {});
         }
       }
+      initTradingViewChart();
     });
 
-    setTimeout(dismissOpeningScreen, 5000);
+    setTimeout(dismissOpeningScreen, 4800);
 
-    // 2. SUPABASE AUTH
+    // 2. SWITCH TAB UTAMA
+    function switchMainTab(tabId, btnElem) {
+      document.querySelectorAll('.tab-view-content').forEach(view => view.classList.remove('active'));
+      document.querySelectorAll('.master-tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      const targetView = document.getElementById(tabId);
+      if (targetView) targetView.classList.add('active');
+      if (btnElem) btnElem.classList.add('active');
+    }
+
+    // TradingView Chart Initializer
+    function initTradingViewChart() {
+      if (typeof TradingView !== 'undefined' && document.getElementById('tradingview_xauusd')) {
+        new TradingView.widget({
+          "width": "100%",
+          "height": "100%",
+          "symbol": "OANDA:XAUUSD",
+          "interval": "15",
+          "timezone": "Asia/Jakarta",
+          "theme": "dark",
+          "style": "1",
+          "locale": "id",
+          "toolbar_bg": "#080a10",
+          "enable_publishing": false,
+          "hide_top_toolbar": false,
+          "save_image": false,
+          "container_id": "tradingview_xauusd"
+        });
+      }
+    }
+
+    // 3. SUPABASE AUTH
     const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjaXZ0eW9sZWJibHJxcWdwdW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMjk0MzAsImV4cCI6MjEwNzYwNTQzMH0.o87Hwhz-I6jv98jW0VfT70UfbfgtEoo63rI3tm9rQbw';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -971,7 +1081,7 @@
     }
     checkMemberAccess();
 
-    // 3. CLOCKS REALTIME
+    // 4. CLOCKS REALTIME
     function updateLiveClocks() {
       const now = new Date();
       const dateOpts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
@@ -1001,7 +1111,7 @@
     updateLiveClocks();
 
     // ========================================================
-    // 4. ENGINE ASTRODOX DINAMIS (BERDASARKAN TANGGAL YANG DIPILIH)
+    // 5. ENGINE ASTRODOX DINAMIS (BERDASARKAN TANGGAL YANG DIPILIH)
     // ========================================================
     let full10DaysNews = [];
     let selectedDayIndex = 0;
@@ -1022,7 +1132,6 @@
       let dominant = "Trine 120° Harmonic (Sun-Jupiter)";
       let isBullish = true;
 
-      // Rasio BUY & SELL seimbang berbasis aspek zodiak
       if ((aspectDiff >= 90 && aspectDiff <= 150) || (aspectDiff >= 200 && aspectDiff <= 250)) {
         bias = "BULLISH EXPANSION";
         dominant = "Trine 120° Harmonic (Sun-Jupiter)";
@@ -1076,19 +1185,19 @@
 
       const moonAge = (astro.day + astro.month) % 29.5;
       if (moonAge < 7.4) {
-        moonPhaseName.innerText = "Waxing Crescent (Sabit Awal)";
+        moonPhaseName.innerText = "Waxing Crescent";
         moonIllum.innerText = `Moon di Sagitarius ${astro.moonDeg}° • Iluminasi ${(moonAge * 13).toFixed(1)}% • Siklus Akumulasi`;
         moonIcon.innerHTML = "&#9789;";
       } else if (moonAge < 14.8) {
-        moonPhaseName.innerText = "First Quarter (Kuartil Pertama)";
+        moonPhaseName.innerText = "First Quarter";
         moonIllum.innerText = `Moon di Sagitarius ${astro.moonDeg}° • Iluminasi 50.0% • Volatilitas Tinggi`;
         moonIcon.innerHTML = "&#9680;";
       } else if (moonAge < 22.1) {
-        moonPhaseName.innerText = "Full Moon (Purnama Penuh)";
+        moonPhaseName.innerText = "Full Moon";
         moonIllum.innerText = `Moon di Sagitarius ${astro.moonDeg}° • Iluminasi 99.2% • Puncak Likuiditas Global`;
         moonIcon.innerHTML = "&#9675;";
       } else {
-        moonPhaseName.innerText = "Waning Gibbous (Bulan Susut)";
+        moonPhaseName.innerText = "Waning Gibbous";
         moonIllum.innerText = `Moon di Sagitarius ${astro.moonDeg}° • Iluminasi ${(100 - (moonAge - 22) * 12).toFixed(1)}% • Distribusi`;
         moonIcon.innerHTML = "&#9790;";
       }
@@ -1097,7 +1206,7 @@
     updateAstrodox24H();
 
     // ========================================================
-    // 5. KALKULASI PIPS PRESISI REALTIME
+    // 6. KALKULASI PIPS PRESISI REALTIME
     // ========================================================
     function calculatePrecisePips(item, aVal, fVal) {
       if (aVal === null || fVal === null) {
@@ -1133,7 +1242,7 @@
     }
 
     // ========================================================
-    // 6. ENGINE ANALISA & EKSEKUSI NEWS
+    // 7. ENGINE ANALISA & EKSEKUSI NEWS
     // ========================================================
     function determineExecutionSignal(item, dayDateObj) {
       const curr = (item.country || item.currency || "USD").toUpperCase();
@@ -1152,7 +1261,6 @@
 
       const pipResult = calculatePrecisePips(item, actual, forecast);
 
-      // KASUS 1: DETIK JAM RILIS SUDAH TIBA / DATA AKTUAL KELUAR
       if (actual !== null || (isPassed && forecast !== null)) {
         if (actual === null && forecast !== null) {
           const dev = astro.isBullish ? -0.2 : 0.3;
@@ -1189,7 +1297,6 @@
           }
         }
 
-        // Pair Lain (EUR / GBP)
         if (actual !== null && forecast !== null && actual >= forecast) {
           return {
             signal: `▲ CONFIRMED: BUY ${curr}USD`,
@@ -1209,7 +1316,6 @@
         }
       }
 
-      // KASUS 2: SEBELUM DETIK JAM RILIS TIBA (STANDBY)
       item.actual = "Menunggu";
       if (curr === "USD") {
         if (astro.isBullish) {
@@ -1241,7 +1347,7 @@
     }
 
     // ========================================================
-    // 7. SISTEM 10 HARI KE DEPAN BERJALAN OTOMATIS TIAP HARI
+    // 8. SISTEM 10 HARI KE DEPAN BERJALAN OTOMATIS TIAP HARI
     // ========================================================
     async function loadOfficial10DaysCalendar() {
       const endpoints = [
@@ -1391,7 +1497,7 @@
     }
 
     // ========================================================
-    // 8. PENYIMPANAN REKAPITULASI PERMANEN (LOCALSTORAGE)
+    // 9. PENYIMPANAN REKAPITULASI PERMANEN (LOCALSTORAGE)
     // ========================================================
     const RECAP_STORAGE_KEY = "zerodiax_news_recap_history";
 
@@ -1461,7 +1567,7 @@
       renderPersistentRecapTable();
     }
 
-    // 9. RENDER KARTU NEWS KE LAYAR
+    // 10. RENDER KARTU NEWS KE LAYAR
     function renderNewsCards() {
       const container = document.getElementById('newsFeedContainer');
       if (!container || full10DaysNews.length === 0) return;
@@ -1538,7 +1644,7 @@
       renderNewsCards();
     }, 1000);
 
-    // 10. LOGOUT
+    // 11. LOGOUT
     document.getElementById('btnLogout').addEventListener('click', async () => {
       await supabaseClient.auth.signOut();
       window.location.href = 'login.html';
