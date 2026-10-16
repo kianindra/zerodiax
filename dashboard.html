@@ -580,7 +580,7 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
-    /* 6. TAB KALENDER NEWS (DENGAN TIME TP PRESISI & TP MAX) */
+    /* 6. TAB KALENDER NEWS */
     .calendar-control-box {
       background: #080a13;
       border: 1px solid rgba(255, 42, 84, 0.35);
@@ -922,7 +922,7 @@
         <div class="astro-quick-dates" id="astroQuickPills"></div>
       </div>
 
-      <!-- RADAR LIVE SIGNAL & FLUID REASON (ANTI LOCK BUY) -->
+      <!-- RADAR LIVE SIGNAL & FLUID REASON -->
       <div class="signal-radar-box">
         <div>
           <span style="font-size:0.72rem; color:#94a3b8; font-weight:800; text-transform:uppercase; display:block; margin-bottom:6px;">
@@ -1250,7 +1250,7 @@
 
     let isAstroLiveMode = true;
     let customAstroDate = new Date();
-    let selectedTimeZoneOffset = 7; // Default WIB UTC+7
+    let selectedTimeZoneOffset = 7;
     let full10DaysNews = [];
     let selectedNewsDate = new Date();
     let currentCurrencyFilter = 'ALL';
@@ -1305,7 +1305,6 @@
       const node = (125.04 - 0.05295 * d + 360) % 360;
       const chiron = (45.8 + 0.019 * d + 360) % 360;
 
-      // Sumbu Ascendant & MC Dinamis Berdasarkan Garis Bujur Zona Waktu Terpilih
       const localLongitude = tzOffset * 15.0;
       const GMST = (280.46061837 + 360.98564736629 * d + 15.0 * utcHours) % 360;
       const localSidereal = (GMST + localLongitude + 360) % 360;
@@ -1334,76 +1333,81 @@
     }
 
     // ========================================================
-    // 6. MASTER ENGINE XAUUSD KHUSUS (ANTI KUNCI BUY)
+    // 6. MASTER ENGINE XAUUSD KHUSUS (PERBAIKAN NAMA ASPEK)
     // ========================================================
     function evaluateAstrodoxConfluence(targetDate, targetHoursFloat, tzOffset = selectedTimeZoneOffset) {
       const astro = getAstroEphemeris(targetDate, targetHoursFloat, tzOffset);
 
       let harmonicScore = 0;
       let stressScore = 0;
-      let dominantAspectName = "Harmonic Equilibrium Matrix";
+      let dominantHarmonicName = "Harmonic Equilibrium Flow";
+      let dominantStressName = "Planetary Tension Matrix";
 
-      // 1. HUBUNGAN INTI EMAS: SUN (EMAS) & MOON (ARUS LIKUIDITAS)
+      // 1. HUBUNGAN SUN (GOLD) & MOON (LIQUIDITY FLOW)
       const diffSunMoon = Math.abs(astro.sun - astro.moon) % 360;
       const distSM = diffSunMoon > 180 ? 360 - diffSunMoon : diffSunMoon;
 
       if (distSM >= 85 && distSM <= 95) {
         stressScore += 16;
-        dominantAspectName = "Sun-Moon Square 90° Liquidity Shock";
+        dominantStressName = "Sun-Moon Square 90° Liquidity Shock";
       } else if (distSM >= 175 && distSM <= 180) {
         stressScore += 18;
-        dominantAspectName = "Sun-Moon Opposition 180° Dump Trigger";
+        dominantStressName = "Sun-Moon Opposition 180° Dump Trigger";
       } else if (distSM >= 115 && distSM <= 125) {
-        harmonicScore += 15;
-        dominantAspectName = "Sun-Moon Grand Trine 120° Flow";
+        harmonicScore += 16;
+        dominantHarmonicName = "Sun-Moon Grand Trine 120° Expansion";
       } else if (distSM >= 56 && distSM <= 64) {
-        harmonicScore += 10;
-        dominantAspectName = "Sun-Moon Sextile 60° Accumulation";
+        harmonicScore += 11;
+        dominantHarmonicName = "Sun-Moon Sextile 60° Accumulation";
       }
 
-      // 2. HUBUNGAN VOLATILITAS: MARS (AGRESI/DUMP) & MOON
+      // 2. HUBUNGAN MARS (VOLATILITAS/AGRESI) & MOON
       const diffMarsMoon = Math.abs(astro.mars - astro.moon) % 360;
       const distMM = diffMarsMoon > 180 ? 360 - diffMarsMoon : diffMarsMoon;
 
       if (distMM >= 86 && distMM <= 94) {
-        stressScore += 14;
-        dominantAspectName = "Mars-Moon Square 90° Bearish Rejection";
+        stressScore += 15;
+        dominantStressName = "Mars-Moon Square 90° Bearish Rejection";
       } else if (distMM >= 176 && distMM <= 180) {
-        stressScore += 16;
-        dominantAspectName = "Mars-Moon Opposition 180° Exhaustion Dump";
+        stressScore += 17;
+        dominantStressName = "Mars-Moon Opposition 180° Exhaustion Dump";
       } else if (distMM >= 116 && distMM <= 124) {
         harmonicScore += 8;
       }
 
-      // 3. HUBUNGAN SATURN (RESISTENSI LIMIT) & MOON
+      // 3. SATURN (BARRIER SUPPLY) & MOON
       const diffSatMoon = Math.abs(astro.saturn - astro.moon) % 360;
       const distSatM = diffSatMoon > 180 ? 360 - diffSatMoon : diffSatMoon;
 
       if ((distSatM >= 86 && distSatM <= 94) || (distSatM >= 176 && distSatM <= 180)) {
-        stressScore += 12;
-        dominantAspectName = "Saturn Barrier Rejection Cross";
+        stressScore += 14;
+        dominantStressName = "Saturn Barrier Rejection Cross";
       }
 
-      // 4. HUBUNGAN JUPITER (EKSPANSI PUMP) & MOON
+      // 4. JUPITER (GOLDEN EXPANSION) & MOON
       const diffJupMoon = Math.abs(astro.jupiter - astro.moon) % 360;
       const distJM = diffJupMoon > 180 ? 360 - diffJupMoon : diffJupMoon;
 
       if ((distJM >= 116 && distJM <= 124) || (distJM >= 56 && distJM <= 64)) {
-        harmonicScore += 12;
-        dominantAspectName = "Jupiter Golden Expansion Trine";
+        harmonicScore += 14;
+        dominantHarmonicName = "Jupiter Golden Expansion Trine";
       }
 
       // 5. HOUSE PLACEMENT MOON RELATIF TERHADAP ASCENDANT LOKAL
       const moonHouseAngle = (astro.moon - astro.asc + 360) % 360;
       if (moonHouseAngle >= 210 && moonHouseAngle <= 270) {
         stressScore += 10;
+        if (stressScore > harmonicScore) dominantStressName = "8th House Institutional Liquidity Sweep";
       } else if (moonHouseAngle >= 330 || moonHouseAngle <= 30) {
         harmonicScore += 6;
       } else if (moonHouseAngle >= 60 && moonHouseAngle <= 120) {
         harmonicScore += 6;
       }
 
+      // Pastikan nama aspek selaras dengan sinyal
       const isBullish = harmonicScore > stressScore;
+      const dominantAspectName = isBullish ? dominantHarmonicName : dominantStressName;
+
       const moonFmt = formatZodiac(astro.moon);
       const marsFmt = formatZodiac(astro.mars);
       const sunFmt = formatZodiac(astro.sun);
@@ -1414,7 +1418,7 @@
 
       let reasonMaster = "";
       if (isBullish) {
-        reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Konfigurasi Emas (Sun ${sunFmt.deg}° ${sunFmt.signName}) dan Moon (${moonFmt.deg}° ${moonFmt.signName}) didominasi ${dominantAspectName} (+${harmonicScore} Net Flow). Struktur transit membuka koridor akumulasi demand institusi. Proyeksi harga memvalidasi pembalikan arah naik (Reversal Buy) menyapu Buy-Side Liquidity (BSL) di supply atas.`;
+        reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Konfigurasi Sun (${sunFmt.deg}° ${sunFmt.signName}) dan Moon (${moonFmt.deg}° ${moonFmt.signName}) didominasi ${dominantAspectName} (+${harmonicScore} Net Flow). Struktur transit membuka koridor akumulasi demand institusi. Proyeksi harga memvalidasi pembalikan arah naik (Reversal Buy) menyapu Buy-Side Liquidity (BSL) di supply atas.`;
       } else {
         reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Terdeteksi dominasi tegangan ${dominantAspectName} (+${stressScore} Net Tension). Tekanan Mars (${marsFmt.deg}° ${marsFmt.signName}) memicu sapuan likuiditas atas (fakeout sweep) sebelum Gold terdistribusi junam turun (Distribution Sell) menembus level Sell-Side Liquidity (SSL) bawah.`;
       }
@@ -1468,7 +1472,6 @@
         };
       }
 
-      // Base Circle
       let svgContent = `<circle cx="${cx}" cy="${cy}" r="248" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/><g id="zSlices">`;
 
       // 1. ZODIAC SECTORS
@@ -1544,7 +1547,7 @@
         { name: "Pluto", glyph: "♇", lon: astro.pluto, color: "#334155", r: 7, txtFill: "#fff" }
       ];
 
-      let mainAspectSymbol = "△";
+      let mainAspectSymbol = analysis.isBullish ? "△" : "□";
 
       svgContent += `<g id="dynamicAspectLines">`;
       for (let i = 0; i < planetsVisual.length; i++) {
@@ -1557,13 +1560,10 @@
 
           if (dist >= 116.5 && dist <= 123.5) {
             color = "#16a34a"; width = 2.4;
-            mainAspectSymbol = "△";
           } else if (dist >= 86.5 && dist <= 93.5) {
             color = "#dc2626"; width = 2.2;
-            mainAspectSymbol = "□";
           } else if (dist >= 176.5 && dist <= 180) {
             color = "#dc2626"; width = 2.4;
-            mainAspectSymbol = "☍";
           } else if (dist >= 57.5 && dist <= 62.5) {
             color = "#16a34a"; width = 1.6;
           }
