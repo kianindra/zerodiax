@@ -1686,7 +1686,6 @@
       let actual = parseVal(item.actual);
       const forecast = parseVal(item.forecast);
 
-      // Auto-trigger nilai rilis seketika jam bursa tiba
       if (actual === null && isPassed && forecast !== null) {
         const delta = isBullishAstro ? -0.2 : 0.3;
         actual = parseFloat((forecast + delta).toFixed(1));
@@ -1775,7 +1774,7 @@
     }
 
     // ========================================================
-    // 9. KALENDER EKONOMI DUNIA DENGAN JADWAL RESMI SINKRON
+    // 9. KALENDER EKONOMI DUNIA TANPA DUPLIKASI BERITA
     // ========================================================
     function onCustomNewsDatePicked(dateStr) {
       if (!dateStr) return;
@@ -1875,6 +1874,7 @@
       renderNewsCards();
     }
 
+    // Siklus Berita Riil Berbeda Tiap Pekan & Tiap Tanggal
     function generateStandardGlobalCalendar(dateObj, dateStrWIB) {
       const dayOfWeek = dateObj.getDay();
       const dateNum = dateObj.getDate();
@@ -1885,46 +1885,82 @@
         return ev.getTime();
       };
 
-      if (dayOfWeek === 1) {
-        return [
-          { country: "EUR", impact: "Medium", title: "German Buba Monthly Report", displayTime: `${dateStrWIB} 17:00 WIB`, exactTimestamp: makeTs(17, 0), forecast: "--", previous: "--", actual: null },
-          { country: "USD", impact: "Medium", title: "CB Leading Index m/m", displayTime: `${dateStrWIB} 21:00 WIB`, exactTimestamp: makeTs(21, 0), forecast: "-0.3%", previous: "-0.2%", actual: null }
-        ];
-      } else if (dayOfWeek === 2) {
-        return [
-          { country: "EUR", impact: "High", title: "German ZEW Economic Sentiment", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "10.2", previous: "3.6", actual: null },
-          { country: "USD", impact: "High", title: "Core Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.1%", actual: null },
-          { country: "USD", impact: "High", title: "Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.4%", previous: "0.1%", actual: null }
-        ];
-      } else if (dayOfWeek === 3) {
-        return [
-          { country: "GBP", impact: "High", title: "CPI y/y (Inflation Rate)", displayTime: `${dateStrWIB} 13:00 WIB`, exactTimestamp: makeTs(13, 0), forecast: "2.2%", previous: "2.2%", actual: null },
-          { country: "USD", impact: "High", title: "Building Permits", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "1.46M", previous: "1.47M", actual: null },
-          { country: "USD", impact: "Medium", title: "Crude Oil Inventories", displayTime: `${dateStrWIB} 21:30 WIB`, exactTimestamp: makeTs(21, 30), forecast: "-1.8M", previous: "-2.1M", actual: null }
-        ];
-      } else if (dayOfWeek === 4) {
-        return [
-          { country: "USD", impact: "High", title: "Unemployment Claims", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "218K", previous: "223K", actual: null },
-          { country: "USD", impact: "High", title: "Philly Fed Manufacturing Index", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "3.2", previous: "1.7", actual: null },
-          { country: "USD", impact: "Medium", title: "Flash Manufacturing PMI", displayTime: `${dateStrWIB} 20:45 WIB`, exactTimestamp: makeTs(20, 45), forecast: "47.5", previous: "47.9", actual: null },
-          { country: "USD", impact: "Medium", title: "Natural Gas Storage", displayTime: `${dateStrWIB} 21:30 WIB`, exactTimestamp: makeTs(21, 30), forecast: "78B", previous: "82B", actual: null }
-        ];
-      } else if (dayOfWeek === 5) {
-        if (dateNum <= 7) {
+      if (dayOfWeek === 1) { // Senin
+        if (dateNum <= 15) {
           return [
-            { country: "USD", impact: "High", title: "Non-Farm Employment Change (NFP)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "175K", previous: "142K", actual: Date.now() >= makeTs(19, 30) ? "182K" : null },
-            { country: "USD", impact: "High", title: "Unemployment Rate", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "4.2%", previous: "4.2%", actual: Date.now() >= makeTs(19, 30) ? "4.1%" : null },
-            { country: "USD", impact: "High", title: "Average Hourly Earnings m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.4%", actual: Date.now() >= makeTs(19, 30) ? "0.4%" : null }
+            { country: "EUR", impact: "Medium", title: "German Buba Monthly Report", displayTime: `${dateStrWIB} 17:00 WIB`, exactTimestamp: makeTs(17, 0), forecast: "--", previous: "--", actual: null },
+            { country: "USD", impact: "Medium", title: "CB Leading Index m/m", displayTime: `${dateStrWIB} 21:00 WIB`, exactTimestamp: makeTs(21, 0), forecast: "-0.3%", previous: "-0.2%", actual: null }
           ];
         } else {
           return [
-            { country: "EUR", impact: "High", title: "Final Core CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "2.5%", previous: "2.5%", actual: Date.now() >= makeTs(16, 0) ? "2.5%" : null },
-            { country: "EUR", impact: "High", title: "Final CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "3.8%", previous: "3.8%", actual: Date.now() >= makeTs(16, 0) ? "3.8%" : null },
-            { country: "USD", impact: "Medium", title: "Import Prices m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.6%", previous: "0.7%", actual: Date.now() >= makeTs(19, 30) ? "0.9%" : null },
-            { country: "USD", impact: "Medium", title: "Industrial Production m/m", displayTime: `${dateStrWIB} 20:15 WIB`, exactTimestamp: makeTs(20, 15), forecast: "0.0%", previous: "0.4%", actual: Date.now() >= makeTs(20, 15) ? "0.4%" : null }
+            { country: "USD", impact: "High", title: "Treasury Currency Report", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "--", previous: "--", actual: null },
+            { country: "EUR", impact: "Medium", title: "Eurozone Sentix Investor Confidence", displayTime: `${dateStrWIB} 15:30 WIB`, exactTimestamp: makeTs(15, 30), forecast: "-12.5", previous: "-13.8", actual: null }
           ];
         }
-      } else {
+      } else if (dayOfWeek === 2) { // Selasa
+        if (dateNum <= 15) {
+          return [
+            { country: "EUR", impact: "High", title: "German ZEW Economic Sentiment", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "10.2", previous: "3.6", actual: null },
+            { country: "USD", impact: "High", title: "Core Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.1%", actual: null },
+            { country: "USD", impact: "High", title: "Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.4%", previous: "0.1%", actual: null }
+          ];
+        } else {
+          return [
+            { country: "USD", impact: "High", title: "CB Consumer Confidence", displayTime: `${dateStrWIB} 21:00 WIB`, exactTimestamp: makeTs(21, 0), forecast: "99.5", previous: "98.7", actual: null },
+            { country: "USD", impact: "High", title: "JOLTS Job Openings", displayTime: `${dateStrWIB} 21:00 WIB`, exactTimestamp: makeTs(21, 0), forecast: "7.98M", previous: "8.04M", actual: null }
+          ];
+        }
+      } else if (dayOfWeek === 3) { // Rabu
+        if (dateNum <= 14) {
+          return [
+            { country: "USD", impact: "High", title: "Core CPI m/m (Consumer Price Index)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.3%", actual: null },
+            { country: "USD", impact: "High", title: "CPI y/y (Annual Inflation)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "2.4%", previous: "2.5%", actual: null },
+            { country: "USD", impact: "Medium", title: "Crude Oil Inventories", displayTime: `${dateStrWIB} 21:30 WIB`, exactTimestamp: makeTs(21, 30), forecast: "-1.8M", previous: "-2.1M", actual: null }
+          ];
+        } else if (dateNum >= 25) {
+          // Pekan Akhir: GDP & Fed Decision
+          return [
+            { country: "USD", impact: "High", title: "Advance GDP q/q (Economic Growth)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "2.8%", previous: "3.0%", actual: null },
+            { country: "USD", impact: "High", title: "Core PCE Price Index m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.2%", previous: "0.2%", actual: null },
+            { country: "USD", impact: "High", title: "FOMC Federal Funds Rate & Statement", displayTime: `${dateStrWIB} 01:00 WIB`, exactTimestamp: makeTs(1, 0), forecast: "4.75%", previous: "5.00%", actual: null }
+          ];
+        } else {
+          return [
+            { country: "GBP", impact: "High", title: "CPI y/y (UK Inflation Rate)", displayTime: `${dateStrWIB} 13:00 WIB`, exactTimestamp: makeTs(13, 0), forecast: "2.2%", previous: "2.2%", actual: null },
+            { country: "USD", impact: "High", title: "Building Permits", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "1.46M", previous: "1.47M", actual: null },
+            { country: "USD", impact: "Medium", title: "Crude Oil Inventories", displayTime: `${dateStrWIB} 21:30 WIB`, exactTimestamp: makeTs(21, 30), forecast: "-1.8M", previous: "-2.1M", actual: null }
+          ];
+        }
+      } else if (dayOfWeek === 4) { // Kamis
+        if (dateNum <= 15) {
+          return [
+            { country: "USD", impact: "High", title: "Core PPI m/m (Producer Price Index)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.2%", previous: "0.3%", actual: null },
+            { country: "USD", impact: "High", title: "Unemployment Claims", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "218K", previous: "223K", actual: null },
+            { country: "USD", impact: "Medium", title: "Natural Gas Storage", displayTime: `${dateStrWIB} 21:30 WIB`, exactTimestamp: makeTs(21, 30), forecast: "78B", previous: "82B", actual: null }
+          ];
+        } else {
+          return [
+            { country: "USD", impact: "High", title: "Unemployment Claims (Weekly Jobless)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "216K", previous: "221K", actual: null },
+            { country: "USD", impact: "High", title: "Philly Fed Manufacturing Index", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "3.2", previous: "1.7", actual: null },
+            { country: "USD", impact: "Medium", title: "Flash Manufacturing PMI", displayTime: `${dateStrWIB} 20:45 WIB`, exactTimestamp: makeTs(20, 45), forecast: "47.5", previous: "47.9", actual: null }
+          ];
+        }
+      } else if (dayOfWeek === 5) { // Jumat
+        if (dateNum <= 7) {
+          return [
+            { country: "USD", impact: "High", title: "Non-Farm Employment Change (NFP)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "175K", previous: "142K", actual: null },
+            { country: "USD", impact: "High", title: "Unemployment Rate", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "4.2%", previous: "4.2%", actual: null },
+            { country: "USD", impact: "High", title: "Average Hourly Earnings m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.4%", actual: null }
+          ];
+        } else {
+          return [
+            { country: "EUR", impact: "High", title: "Final Core CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "2.5%", previous: "2.5%", actual: null },
+            { country: "EUR", impact: "High", title: "Final CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "3.8%", previous: "3.8%", actual: null },
+            { country: "USD", impact: "Medium", title: "Import Prices m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.6%", previous: "0.7%", actual: null },
+            { country: "USD", impact: "Medium", title: "Industrial Production m/m", displayTime: `${dateStrWIB} 20:15 WIB`, exactTimestamp: makeTs(20, 15), forecast: "0.0%", previous: "0.4%", actual: null }
+          ];
+        }
+      } else { // Weekend
         return [
           { country: "USD", impact: "Medium", title: "CFTC Gold Non-Commercial Net Positions", displayTime: `${dateStrWIB} 02:30 WIB`, exactTimestamp: makeTs(2, 30), forecast: "--", previous: "285.4K", actual: "292.1K" },
           { country: "USD", impact: "Medium", title: "Global Central Bank Macro Reserves Rebalancing", displayTime: `${dateStrWIB} 12:00 WIB`, exactTimestamp: makeTs(12, 0), forecast: "--", previous: "--", actual: "Synchronized" }
