@@ -345,7 +345,7 @@
       transition: all 0.2s ease;
     }
 
-    /* 3. KONTROL WAKTU ASTRODOX */
+    /* 3. KONTROL WAKTU & TIME ZONE CUSTOM */
     .astro-custom-control-card {
       background: #080a13;
       border: 1px solid rgba(255, 42, 84, 0.35);
@@ -381,7 +381,7 @@
       text-transform: uppercase;
     }
 
-    .ctrl-field input {
+    .ctrl-field input, .ctrl-field select {
       background: transparent;
       border: none;
       color: #fff;
@@ -390,6 +390,11 @@
       font-weight: 800;
       outline: none;
       color-scheme: dark;
+    }
+
+    .ctrl-field select option {
+      background: #080a13;
+      color: #fff;
     }
 
     .btn-sync-live {
@@ -704,7 +709,7 @@
       color: #fde047;
     }
 
-    /* TARGET MATRIX: TIME TP PRESISI & PIPS */
+    /* TARGET MATRIX */
     .target-matrix-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -872,16 +877,16 @@
     </div>
 
     <!-- =========================================================
-         TAB 1: ASTRODOX TRANSIT MATRIX (REPLIKA EXACT ASTRODOX.COM)
+         TAB 1: ASTRODOX TRANSIT MATRIX (TIME ZONE SESUKA HATI)
          ========================================================= -->
     <div id="tab-astrodox" class="tab-view-content active">
 
-      <!-- PENGATURAN TRANSIT & WAKTU ASTRODOX -->
+      <!-- PENGATURAN TRANSIT, WAKTU & TIME ZONE BEBAS -->
       <div class="astro-custom-control-card">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
           <div>
-            <strong style="font-size:0.95rem; color:#fff; display:block;">PENGATURAN WAKTU &amp; TRANSIT ASTRODOX</strong>
-            <small style="color:#94a3b8; font-size:0.75rem;">Atur tanggal, jam, atau tahun untuk memutar piringan efemeris &amp; jaring aspek astronomis</small>
+            <strong style="font-size:0.95rem; color:#fff; display:block;">PENGATURAN WAKTU, TRANSIT &amp; TIME ZONE BEBAS</strong>
+            <small style="color:#94a3b8; font-size:0.75rem;">Atur tanggal, jam, atau putar time zone sesuka hati untuk memutar chart astro</small>
           </div>
           <button class="btn-sync-live" onclick="resetToLiveTime()">
             <span style="display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%;"></span> SINKRON LIVE SEKARANG
@@ -889,6 +894,20 @@
         </div>
 
         <div class="astro-ctrl-inputs">
+          <div class="ctrl-field">
+            <label for="astroTimeZoneSelect">Time Zone:</label>
+            <select id="astroTimeZoneSelect" onchange="onTimeZoneChange(this.value)">
+              <option value="7" selected>WIB (Jakarta UTC+7)</option>
+              <option value="8">WITA (Bali/Makassar UTC+8)</option>
+              <option value="9">WIT (Jayapura UTC+9)</option>
+              <option value="0">UTC / GMT (London Greenwich)</option>
+              <option value="1">London BST (UTC+1)</option>
+              <option value="-4">New York EDT (UTC-4)</option>
+              <option value="-5">New York EST (UTC-5)</option>
+              <option value="9">Tokyo JST (UTC+9)</option>
+            </select>
+          </div>
+
           <div class="ctrl-field">
             <label for="astroDate">Tanggal &bull; Tahun:</label>
             <input type="date" id="astroDate" onchange="onAstroDateTimeChange()" />
@@ -903,11 +922,11 @@
         <div class="astro-quick-dates" id="astroQuickPills"></div>
       </div>
 
-      <!-- RADAR LIVE SIGNAL & FLUID REASON -->
+      <!-- RADAR LIVE SIGNAL & FLUID REASON (ANTI LOCK BUY) -->
       <div class="signal-radar-box">
         <div>
           <span style="font-size:0.72rem; color:#94a3b8; font-weight:800; text-transform:uppercase; display:block; margin-bottom:6px;">
-            PROYEKSI ARAH PASAR XAUUSD
+            PROYEKSI ARAH PASAR XAUUSD (SUPER JAGO)
           </span>
           <div id="liveSignalBadge" class="signal-status-pill pill-bullish">
             Memuat Sinyal...
@@ -919,7 +938,7 @@
 
         <div>
           <span style="font-size:0.72rem; color:#94a3b8; font-weight:800; text-transform:uppercase; display:block; margin-bottom:6px;">
-            ALASAN ANALISA GEOMETRI TRANSIT
+            ALASAN ANALISA GEOMETRI &amp; LIKUIDITAS XAUUSD
           </span>
           <div class="signal-reason-text" id="liveReasonText">
             Menghubungkan kalkulasi posisi orbit planet terhadap struktur pasar...
@@ -952,19 +971,19 @@
 
           <div class="transit-table-full">
             <div class="transit-item">
-              <span>&#9737; Sun</span>
+              <span>&#9737; Sun (Gold)</span>
               <strong style="color:#f59e0b;" id="degSun">Memuat...</strong>
             </div>
             <div class="transit-item">
-              <span>Asc (Taurus)</span>
+              <span>Asc (<span id="ascSignLabel">Taurus</span>)</span>
               <strong style="color:#cbd5e1;" id="degAsc">Memuat...</strong>
             </div>
             <div class="transit-item">
-              <span>&#9789; Moon</span>
+              <span>&#9789; Moon (Liquidity)</span>
               <strong style="color:#38bdf8;" id="degMoon">Memuat...</strong>
             </div>
             <div class="transit-item">
-              <span>II (Gemini)</span>
+              <span>II (Demand)</span>
               <strong style="color:#cbd5e1;" id="degHouse2">Memuat...</strong>
             </div>
             <div class="transit-item">
@@ -980,15 +999,15 @@
               <strong style="color:#ec4899;" id="degVen">Memuat...</strong>
             </div>
             <div class="transit-item">
-              <span>IC (Leo)</span>
+              <span>IC (Base)</span>
               <strong style="color:#cbd5e1;" id="degIC">Memuat...</strong>
             </div>
             <div class="transit-item">
-              <span>&#9794; Mars</span>
+              <span>&#9794; Mars (Volatility)</span>
               <strong style="color:#f87171;" id="degMars">Memuat...</strong>
             </div>
             <div class="transit-item">
-              <span>MC (Aquarius)</span>
+              <span>MC (<span id="mcSignLabel">Aquarius</span>)</span>
               <strong style="color:#cbd5e1;" id="degMC">Memuat...</strong>
             </div>
             <div class="transit-item">
@@ -996,7 +1015,7 @@
               <strong style="color:#c084fc;" id="degJup">Memuat...</strong>
             </div>
             <div class="transit-item">
-              <span>Dsc (Scorpio)</span>
+              <span>Dsc (Supply)</span>
               <strong style="color:#cbd5e1;" id="degDsc">Memuat...</strong>
             </div>
           </div>
@@ -1260,20 +1279,31 @@
 
     let isAstroLiveMode = true;
     let customAstroDate = new Date();
+    let selectedTimeZoneOffset = 7; // Default WIB UTC+7
     let full10DaysNews = [];
     let selectedNewsDate = new Date();
     let currentCurrencyFilter = 'ALL';
 
-    function getAstroEphemeris(targetDate, targetHoursFloat) {
+    function onTimeZoneChange(offsetVal) {
+      selectedTimeZoneOffset = parseFloat(offsetVal);
+      renderDynamicAstrodox();
+      renderNewsCards();
+    }
+
+    function getAstroEphemeris(targetDate, targetHoursFloat, tzOffset = selectedTimeZoneOffset) {
       const year = targetDate.getFullYear();
       const month = targetDate.getMonth() + 1;
       const day = targetDate.getDate();
 
-      let utcHours = targetHoursFloat - 7.0;
+      // Konversi jam lokal zona waktu pilihan ke UTC
+      let utcHours = targetHoursFloat - tzOffset;
       let y = year, m = month, dVal = day;
       if (utcHours < 0) {
         utcHours += 24.0;
         dVal -= 1;
+      } else if (utcHours >= 24) {
+        utcHours -= 24.0;
+        dVal += 1;
       }
 
       if (m <= 2) { y -= 1; m += 12; }
@@ -1303,9 +1333,10 @@
       const neptune = (2.44 + 0.005981 * d + 360) % 360;
       const pluto = (303.07 + 0.003975 * d + 360) % 360;
 
-      // Asc & MC (Tulungagung: 111°54' E, 8°04' S)
+      // Sumbu Ascendant & MC Dinamis Berdasarkan Garis Bujur Zona Waktu Terpilih
+      const localLongitude = tzOffset * 15.0; // Tiap 1 jam offset = 15 derajat garis bujur
       const GMST = (280.46061837 + 360.98564736629 * d + 15.0 * utcHours) % 360;
-      const localSidereal = (GMST + 111.9 + 360) % 360;
+      const localSidereal = (GMST + localLongitude + 360) % 360;
       const mc = localSidereal;
       const asc = (localSidereal + 90.0 + 23.44 * Math.sin(localSidereal * Math.PI / 180) + 360) % 360;
 
@@ -1331,50 +1362,80 @@
     }
 
     // ========================================================
-    // 6. MASTER ASTRO EVALUATOR (SINGLE SOURCE OF TRUTH)
+    // 6. MASTER ENGINE XAUUSD KHUSUS (ANTI KUNCI BUY)
     // ========================================================
-    function evaluateAstrodoxConfluence(targetDate, targetHoursFloat) {
-      const astro = getAstroEphemeris(targetDate, targetHoursFloat);
-      const planets = [
-        { name: "Sun", glyph: "☉", lon: astro.sun },
-        { name: "Moon", glyph: "☽", lon: astro.moon },
-        { name: "Mercury", glyph: "☿", lon: astro.mercury },
-        { name: "Venus", glyph: "♀", lon: astro.venus },
-        { name: "Mars", glyph: "♂", lon: astro.mars },
-        { name: "Jupiter", glyph: "♃", lon: astro.jupiter },
-        { name: "Saturn", glyph: "♄", lon: astro.saturn },
-        { name: "Uranus", glyph: "♅", lon: astro.uranus },
-        { name: "Neptune", glyph: "♆", lon: astro.neptune },
-        { name: "Pluto", glyph: "♇", lon: astro.pluto }
-      ];
+    function evaluateAstrodoxConfluence(targetDate, targetHoursFloat, tzOffset = selectedTimeZoneOffset) {
+      const astro = getAstroEphemeris(targetDate, targetHoursFloat, tzOffset);
 
       let harmonicScore = 0;
       let stressScore = 0;
-      let dominantAspectName = "Grand Trine 120° Harmonic Flow";
+      let dominantAspectName = "Harmonic Equilibrium Matrix";
 
-      for (let i = 0; i < planets.length; i++) {
-        for (let j = i + 1; j < planets.length; j++) {
-          const diff = Math.abs(planets[i].lon - planets[j].lon) % 360;
-          const dist = diff > 180 ? 360 - diff : diff;
+      // 1. HUBUNGAN INTI EMAS: SUN (EMAS) & MOON (ARUS LIKUIDITAS)
+      const diffSunMoon = Math.abs(astro.sun - astro.moon) % 360;
+      const distSM = diffSunMoon > 180 ? 360 - diffSunMoon : diffSunMoon;
 
-          if (dist >= 113 && dist <= 127) {
-            harmonicScore += 6;
-            dominantAspectName = "Grand Trine 120° Harmonic Flow";
-          } else if (dist >= 54 && dist <= 66) {
-            harmonicScore += 3;
-          } else if (dist >= 83 && dist <= 97) {
-            stressScore += 3;
-            if (harmonicScore === 0) dominantAspectName = "Square 90° Tension Cross";
-          } else if (dist >= 173 && dist <= 180) {
-            stressScore += 5;
-            if (harmonicScore === 0) dominantAspectName = "Opposition 180° Polar Dump";
-          } else if (dist >= 145 && dist <= 155) {
-            stressScore += 1;
-          }
-        }
+      if (distSM >= 85 && distSM <= 95) { // Square 90° Sun-Moon (Tekanan Kuat)
+        stressScore += 16;
+        dominantAspectName = "Sun-Moon Square 90° Liquidity Shock";
+      } else if (distSM >= 175 && distSM <= 180) { // Opposition 180° Full Moon tension
+        stressScore += 18;
+        dominantAspectName = "Sun-Moon Opposition 180° Dump Trigger";
+      } else if (distSM >= 115 && distSM <= 125) { // Trine 120° Sun-Moon
+        harmonicScore += 15;
+        dominantAspectName = "Sun-Moon Grand Trine 120° Flow";
+      } else if (distSM >= 56 && distSM <= 64) { // Sextile 60°
+        harmonicScore += 10;
+        dominantAspectName = "Sun-Moon Sextile 60° Accumulation";
       }
 
-      const isBullish = harmonicScore >= stressScore;
+      // 2. HUBUNGAN VOLATILITAS: MARS (AGRESI/DUMP) & MOON
+      const diffMarsMoon = Math.abs(astro.mars - astro.moon) % 360;
+      const distMM = diffMarsMoon > 180 ? 360 - diffMarsMoon : diffMarsMoon;
+
+      if (distMM >= 86 && distMM <= 94) {
+        stressScore += 14;
+        dominantAspectName = "Mars-Moon Square 90° Bearish Rejection";
+      } else if (distMM >= 176 && distMM <= 180) {
+        stressScore += 16;
+        dominantAspectName = "Mars-Moon Opposition 180° Exhaustion Dump";
+      } else if (distMM >= 116 && distMM <= 124) {
+        harmonicScore += 8;
+      }
+
+      // 3. HUBUNGAN SATURN (RESISTENSI LIMIT) & MOON
+      const diffSatMoon = Math.abs(astro.saturn - astro.moon) % 360;
+      const distSatM = diffSatMoon > 180 ? 360 - diffSatMoon : diffSatMoon;
+
+      if ((distSatM >= 86 && distSatM <= 94) || (distSatM >= 176 && distSatM <= 180)) {
+        stressScore += 12;
+        dominantAspectName = "Saturn Barrier Rejection Cross";
+      }
+
+      // 4. HUBUNGAN JUPITER (EKSPANSI PUMP) & MOON
+      const diffJupMoon = Math.abs(astro.jupiter - astro.moon) % 360;
+      const distJM = diffJupMoon > 180 ? 360 - diffJupMoon : diffJupMoon;
+
+      if ((distJM >= 116 && distJM <= 124) || (distJM >= 56 && distJM <= 64)) {
+        harmonicScore += 12;
+        dominantAspectName = "Jupiter Golden Expansion Trine";
+      }
+
+      // 5. HOUSE PLACEMENT MOON RELATIF TERHADAP ASCENDANT LOKAL
+      const moonHouseAngle = (astro.moon - astro.asc + 360) % 360;
+      if (moonHouseAngle >= 210 && moonHouseAngle <= 270) {
+        // Area House ke-8 (Scorpio Realm): Area Distribusi & Sapuan Likuiditas Bawah
+        stressScore += 10;
+      } else if (moonHouseAngle >= 330 || moonHouseAngle <= 30) {
+        // Area House ke-1 (Ascendant): Momentum Awal Sesi
+        harmonicScore += 6;
+      } else if (moonHouseAngle >= 60 && moonHouseAngle <= 120) {
+        // Area House ke-3/4: Fase Re-accumulation
+        harmonicScore += 6;
+      }
+
+      // Skor Bersih Khusus XAUUSD
+      const isBullish = harmonicScore > stressScore;
       const moonFmt = formatZodiac(astro.moon);
       const marsFmt = formatZodiac(astro.mars);
       const sunFmt = formatZodiac(astro.sun);
@@ -1385,14 +1446,13 @@
 
       let reasonMaster = "";
       if (isBullish) {
-        reasonMaster = `Pukul ${jamStr} WIB: Geometri transit didominasi jaring hijau ${dominantAspectName} (+${harmonicScore} Harmonic). Pergerakan Moon di ${moonFmt.deg}° ${moonFmt.signName} membentuk sudut ekspansi terhadap Sun di ${sunFmt.deg}°, memvalidasi Order Block Demand institusi. Skenario likuiditas mengarah pada Reversal Beli (Pump) dengan target sweep Buy-Side Liquidity (BSL) di resistance atas.`;
+        reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Konfigurasi Emas (Sun ${sunFmt.deg}° ${sunFmt.signName}) dan Moon (${moonFmt.deg}° ${moonFmt.signName}) didominasi ${dominantAspectName} (+${harmonicScore} Net Flow). Struktur transit membuka koridor akumulasi demand institusi. Proyeksi harga memvalidasi pembalikan arah naik (Reversal Buy) menyapu Buy-Side Liquidity (BSL) di supply atas.`;
       } else {
-        reasonMaster = `Pukul ${jamStr} WIB: Terdeteksi konsentrasi garis tegangan merah ${dominantAspectName} (+${stressScore} Tension). Tekanan polaritas Mars di ${marsFmt.deg}° ${marsFmt.signName} terhadap Moon memicu liquidity grab atas sebelum harga terdistribusi turun tajam (Dump) membobol Sell-Side Liquidity (SSL) bawah.`;
+        reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Terdeteksi dominasi tegangan ${dominantAspectName} (+${stressScore} Net Tension). Tekanan Mars (${marsFmt.deg}° ${marsFmt.signName}) memicu sapuan likuiditas atas (fakeout sweep) sebelum Gold terdistribusi junam turun (Distribution Sell) menembus level Sell-Side Liquidity (SSL) bawah.`;
       }
 
       return {
         astro,
-        planets,
         harmonicScore,
         stressScore,
         dominantAspectName,
@@ -1406,7 +1466,7 @@
     }
 
     // ========================================================
-    // 7. RENDERING EXACT REPLIKA ASTRODOX.COM
+    // 7. RENDERING DYNAMIC MASTER BOARD ASTRODOX
     // ========================================================
     function renderDynamicAstrodox() {
       const svg = document.getElementById('astrodoxDynamicSvg');
@@ -1423,7 +1483,7 @@
         syncControlsUI(liveNow);
       }
 
-      const analysis = evaluateAstrodoxConfluence(targetD, targetHoursFloat);
+      const analysis = evaluateAstrodoxConfluence(targetD, targetHoursFloat, selectedTimeZoneOffset);
       const astro = analysis.astro;
       const cx = 250, cy = 250;
       const ascLong = astro.asc;
@@ -1513,16 +1573,14 @@
           let width = 1.2;
           let dash = "";
 
-          if (dist >= 113 && dist <= 127) {
+          if (dist >= 116.5 && dist <= 123.5) {
             color = "#16a34a"; width = 2.4;
-          } else if (dist >= 83 && dist <= 97) {
+          } else if (dist >= 86.5 && dist <= 93.5) {
             color = "#dc2626"; width = 2.2;
-          } else if (dist >= 173 && dist <= 180) {
+          } else if (dist >= 176.5 && dist <= 180) {
             color = "#dc2626"; width = 2.4;
-          } else if (dist >= 54 && dist <= 66) {
+          } else if (dist >= 57.5 && dist <= 62.5) {
             color = "#16a34a"; width = 1.6;
-          } else if (dist >= 145 && dist <= 155) {
-            color = "#f59e0b"; width = 1.2; dash = 'stroke-dasharray="2,2"';
           }
 
           if (color) {
@@ -1549,20 +1607,25 @@
       svgContent += `
         <circle cx="${cx}" cy="${cy}" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
         <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="8" font-weight="900" fill="#dc2626">ASTRODOX</text>
-        <text x="${cx}" y="${cy + 8}" text-anchor="middle" font-size="7" font-weight="bold" fill="#64748b">24H LIVE</text>
+        <text x="${cx}" y="${cy + 8}" text-anchor="middle" font-size="7" font-weight="bold" fill="#64748b">UTC${selectedTimeZoneOffset >= 0 ? '+' + selectedTimeZoneOffset : selectedTimeZoneOffset}</text>
       `;
 
       svg.innerHTML = svgContent;
 
       // Update Panel Data
+      const ascInfo = formatZodiac(astro.asc);
+      const mcInfo = formatZodiac(astro.mc);
+      document.getElementById('ascSignLabel').innerText = ascInfo.signName;
+      document.getElementById('mcSignLabel').innerText = mcInfo.signName;
+
       document.getElementById('degSun').innerText = formatZodiac(astro.sun).text;
       document.getElementById('degMoon').innerText = formatZodiac(astro.moon).text;
       document.getElementById('degMars').innerText = formatZodiac(astro.mars).text;
       document.getElementById('degMerc').innerText = formatZodiac(astro.mercury).text;
       document.getElementById('degVen').innerText = formatZodiac(astro.venus).text;
       document.getElementById('degJup').innerText = formatZodiac(astro.jupiter).text;
-      document.getElementById('degAsc').innerText = formatZodiac(astro.asc).text;
-      document.getElementById('degMC').innerText = formatZodiac(astro.mc).text;
+      document.getElementById('degAsc').innerText = ascInfo.text;
+      document.getElementById('degMC').innerText = mcInfo.text;
       document.getElementById('degHouse2').innerText = formatZodiac(astro.asc + 30).text;
       document.getElementById('degHouse3').innerText = formatZodiac(astro.asc + 60).text;
       document.getElementById('degIC').innerText = formatZodiac(astro.mc + 180).text;
@@ -1585,7 +1648,7 @@
       document.getElementById('liveMoonIllum').innerText = `Moon di ${analysis.moonFmt.signName} ${analysis.moonFmt.deg}° • Iluminasi ${illumPct}%`;
       document.getElementById('liveMoonIcon').innerHTML = pIcon;
 
-      // Update Live UI
+      // Update Live UI Radar
       const signalBadge = document.getElementById('liveSignalBadge');
       const aspectTag = document.getElementById('liveAspectTag');
       const reasonText = document.getElementById('liveReasonText');
@@ -1604,7 +1667,7 @@
       }
 
       reasonText.innerHTML = analysis.reasonMaster;
-      summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${analysis.jamStr} WIB):</strong> Dominasi sudut zodiak ${analysis.dominantAspectName} mengonfirmasi momentum ${analysis.isBullish ? 'Bullish ekspansi' : 'Bearish distribusi'} pada Gold.`;
+      summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${analysis.jamStr} UTC${selectedTimeZoneOffset >= 0 ? '+' + selectedTimeZoneOffset : selectedTimeZoneOffset}):</strong> Dominasi aspek ${analysis.dominantAspectName} mengonfirmasi arah ${analysis.isBullish ? 'Bullish akumulasi' : 'Bearish distribusi'} pada pergerakan Gold.`;
     }
 
     function syncControlsUI(d) {
@@ -1695,7 +1758,7 @@
     }, 1000);
 
     // ========================================================
-    // 8. TIME TP PRESISI BERDASARKAN DERAJAT TRANSIT EKSPLISIT
+    // 8. TIME TP PRESISI BERDASARKAN MENIT EKSPOR ROTASI
     // ========================================================
     function calculateAstroDynamicTimeTP(item, isBullish) {
       const evD = new Date(item.exactTimestamp);
@@ -1705,10 +1768,10 @@
       const entryEndD = new Date(evD.getTime() + 5 * 60000);
       const entryEnd = `${pad(entryEndD.getHours())}:${pad(entryEndD.getMinutes())}`;
 
-      // Perhitungan Time Target berbasis siklus menit Astro eksak
-      const tp1D = new Date(evD.getTime() + 7 * 60000);
-      const tp2D = new Date(evD.getTime() + 19 * 60000);
-      const tp3D = new Date(evD.getTime() + 41 * 60000);
+      // Time TP dinamis mengikuti ritme candle Astro M5, M15, M30
+      const tp1D = new Date(evD.getTime() + 6 * 60000);
+      const tp2D = new Date(evD.getTime() + 18 * 60000);
+      const tp3D = new Date(evD.getTime() + 38 * 60000);
 
       const title = item.title.toLowerCase();
       let tp1Pips = 45, tp2Pips = 95, tp3Pips = 185, slPips = 35;
@@ -1729,15 +1792,16 @@
     }
 
     // ========================================================
-    // 9. ENGINE EVALUASI NEWS TERHUBUNG TOTAL KE ASTRODOX
+    // 9. ENGINE EVALUASI NEWS (KORELASI FUNDAMENTAL X ASTRODOX)
     // ========================================================
     function determineExecutionSignal(item, dayDateObj) {
       const curr = (item.country || "USD").toUpperCase();
+      const title = item.title.toLowerCase();
       const evDate = new Date(item.exactTimestamp);
       const evHoursFloat = evDate.getHours() + evDate.getMinutes() / 60;
 
-      // Baca evaluasi Astrodox persis di jam rilis news bersangkutan
-      const astroEval = evaluateAstrodoxConfluence(dayDateObj, evHoursFloat);
+      // Evaluasi Astro KHUSUS pada jam rilis berita tersebut
+      const astroEval = evaluateAstrodoxConfluence(dayDateObj, evHoursFloat, selectedTimeZoneOffset);
       const isAstroBullish = astroEval.isBullish;
 
       const parseVal = (str) => {
@@ -1752,7 +1816,8 @@
       let actual = parseVal(item.actual);
       const forecast = parseVal(item.forecast);
 
-      // Trigger Actual seketika waktu bursa tiba
+      const isJoblessType = title.includes("unemployment") || title.includes("jobless") || title.includes("claims");
+
       if (actual === null && isPassed && forecast !== null) {
         const delta = isAstroBullish ? -0.2 : 0.3;
         actual = parseFloat((forecast + delta).toFixed(1));
@@ -1761,11 +1826,15 @@
 
       const matrix = calculateAstroDynamicTimeTP(item, isAstroBullish);
 
+      // KONDISI 1: DATA ACTUAL SUDAH KELUAR (WAKTU LEWAT)
       if (isPassed && actual !== null) {
         if (curr === "USD") {
-          const title = item.title.toLowerCase();
-          const isHigherBadForUSD = title.includes("unemployment") || title.includes("jobless");
-          let usdBullish = (forecast !== null) ? (isHigherBadForUSD ? actual < forecast : actual >= forecast) : !isAstroBullish;
+          let usdBullish = false;
+          if (forecast !== null) {
+            usdBullish = isJoblessType ? (actual < forecast) : (actual >= forecast);
+          } else {
+            usdBullish = !isAstroBullish;
+          }
 
           const isGoldBuy = !usdBullish;
           if (isGoldBuy) {
@@ -1774,7 +1843,7 @@
               badgeClass: "signal-buy",
               wr: "100% WR CONFIRMED",
               matrix,
-              desc: `Data rilis ${item.title} (${item.actual}) melemah dibanding forecast (${item.forecast || '--'}). Konfluensi Astrodox harmonik (${astroEval.dominantAspectName}) memicu ledakan likuiditas pemborongan Gold (XAUUSD terbang).`
+              desc: `Data rilis ${item.title} (${item.actual}) keluar melemahkan indeks Dollar AS. Siklus likuiditas terkonfirmasi memborong Gold (XAUUSD terbang) menuju resistance liquidity atas.`
             };
           } else {
             return {
@@ -1782,32 +1851,46 @@
               badgeClass: "signal-sell",
               wr: "100% WR CONFIRMED",
               matrix,
-              desc: `Data rilis ${item.title} (${item.actual}) keluar menguat di atas forecast. Tekanan polaritas Astrodox (${astroEval.dominantAspectName}) menekan Gold terdistribusi junam ke support bawah.`
+              desc: `Data rilis ${item.title} (${item.actual}) keluar menguatkan indeks Dollar AS. Tekanan suplai mendistribusikan Gold junam membobol support bawah.`
             };
           }
         }
 
-        const pairBuy = (forecast !== null && actual >= forecast);
+        const isCurStrong = (forecast !== null && actual >= forecast);
         return {
-          signal: pairBuy ? `▲ CONFIRMED: BUY ${curr}USD` : `▼ CONFIRMED: SELL ${curr}USD`,
-          badgeClass: pairBuy ? "signal-buy" : "signal-sell",
+          signal: isCurStrong ? `▲ CONFIRMED: BUY ${curr}USD` : `▼ CONFIRMED: SELL ${curr}USD`,
+          badgeClass: isCurStrong ? "signal-buy" : "signal-sell",
           wr: "100% WR CONFIRMED",
           matrix,
-          desc: `Rilis fundamental ${curr} (${item.title}) telah divalidasi. Momentum pergerakan mata uang selaras dengan rotasi aspek Astrodox.`
+          desc: `Data rilis ${curr} (${item.title}) keluar ${isCurStrong ? 'menguat di atas forecast' : 'melemah di bawah forecast'}. Momentum order flow terkonfirmasi bergerak searah fundamental.`
         };
       }
 
-      // KONDISI STANDBY: MENGIKUTI 100% HASIL ANALISIS ASTRODOX DI JAM ITU
+      // KONDISI 2: DATA STANDBY (BELUM RILIS)
       item.actual = "Menunggu";
 
       if (curr === "USD") {
-        if (isAstroBullish) {
+        let standbyBiasBuy = false;
+
+        if (forecast !== null && item.previous && item.previous !== "--") {
+          const prev = parseVal(item.previous);
+          if (prev !== null) {
+            const expectsStrongUSD = isJoblessType ? (forecast < prev) : (forecast > prev);
+            standbyBiasBuy = expectsStrongUSD ? false : isAstroBullish;
+          } else {
+            standbyBiasBuy = isAstroBullish;
+          }
+        } else {
+          standbyBiasBuy = isAstroBullish;
+        }
+
+        if (standbyBiasBuy) {
           return {
             signal: "▲ STANDBY BUY XAUUSD",
             badgeClass: "signal-buy",
             wr: "ASTRODOX 100% CONFLUENCE",
             matrix,
-            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')} ${matrix.windowEntry.split(' ')[0]} WIB): Geometri ${astroEval.dominantAspectName} (+${astroEval.harmonicScore} Harmonic) memvalidasi area akumulasi demand. Fokus eksekusi Buy saat rilis tiba.`
+            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')} ${matrix.windowEntry.split(' ')[0]} WIB): Geometri ${astroEval.dominantAspectName} (+${astroEval.harmonicScore} Harmonic) memvalidasi area akumulasi discount. Fokus setup Buy di zona demand saat rilis tiba.`
           };
         } else {
           return {
@@ -1815,22 +1898,23 @@
             badgeClass: "signal-sell",
             wr: "ASTRODOX 100% CONFLUENCE",
             matrix,
-            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')} ${matrix.windowEntry.split(' ')[0]} WIB): Sudut ${astroEval.dominantAspectName} (+${astroEval.stressScore} Tension) mengarahkan risiko sweep atas. Fokus entri Sell di zona supply saat rilis tiba.`
+            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')} ${matrix.windowEntry.split(' ')[0]} WIB): Terdeteksi sudut ${astroEval.dominantAspectName} (+${astroEval.stressScore} Tension). Potensi sweep liquidity atas sebelum harga drop ke level supply Sell.`
           };
         }
       }
 
+      const standbyNonUsdBuy = isAstroBullish;
       return {
-        signal: isAstroBullish ? `▲ STANDBY BUY ${curr}USD` : `▼ STANDBY SELL ${curr}USD`,
-        badgeClass: isAstroBullish ? "signal-buy" : "signal-sell",
+        signal: standbyNonUsdBuy ? `▲ STANDBY BUY ${curr}USD` : `▼ STANDBY SELL ${curr}USD`,
+        badgeClass: standbyNonUsdBuy ? "signal-buy" : "signal-sell",
         wr: "ASTRODOX 100% CONFLUENCE",
         matrix,
-        desc: `Menunggu rilis ${item.title}. Konfigurasi sudut zodiak ${astroEval.dominantAspectName} mengarahkan potensi likuiditas aktif pair ${curr}USD.`
+        desc: `Menunggu rilis ${item.title}. Konfigurasi ${astroEval.dominantAspectName} mengarahkan potensi volatilitas pair ${curr}USD.`
       };
     }
 
     // ========================================================
-    // 10. KALENDER EKONOMI DUNIA DINAMIS
+    // 10. KALENDER EKONOMI DUNIA
     // ========================================================
     function onCustomNewsDatePicked(dateStr) {
       if (!dateStr) return;
@@ -2018,7 +2102,7 @@
     }
 
     // ========================================================
-    // 11. PENYIMPANAN REKAPITULASI (PERMANEN, NO UNDEFINED, TP MAX)
+    // 11. REKAP TRACK RECORD (NO UNDEFINED & TP MAX HIT)
     // ========================================================
     const RECAP_STORAGE_KEY = "zerodiax_news_recap_history";
 
