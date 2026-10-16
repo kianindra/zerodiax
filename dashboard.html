@@ -6,7 +6,6 @@
   <title>ZERODIAX PRIVATE TERMINAL | Institutional Syndicate Desk</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -18,13 +17,9 @@
     :root {
       --bg-base: #030407;
       --bg-card: #080a11;
-      --bg-card-hover: #0d101a;
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-crimson: rgba(255, 42, 84, 0.35);
       --crimson-core: #ff2a54;
-      --crimson-glow: rgba(255, 42, 84, 0.65);
-      --gold-accent: #f59e0b;
-      --green-bull: #22c55e;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
     }
@@ -39,7 +34,7 @@
     }
 
     /* =========================================================
-       1. CINEMATIC LUXURY SUPERCAR OPENING (CLEAN MOTION BLUR)
+       1. CINEMATIC LUXURY SUPERCAR OPENING SCREEN
        ========================================================= */
     #openingOverlay {
       position: fixed;
@@ -51,7 +46,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1s;
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.9s;
     }
 
     #openingOverlay.fade-out {
@@ -87,7 +82,7 @@
     .cinema-vignette {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(3,4,7,0.1) 0%, rgba(3,4,6,0.85) 75%, #030407 100%);
+      background: radial-gradient(circle at center, rgba(3,4,7,0.15) 0%, rgba(2,3,5,0.85) 75%, #030407 100%);
       z-index: 2;
     }
 
@@ -131,12 +126,6 @@
       color: #fff;
       margin-bottom: 20px;
       box-shadow: 0 12px 35px rgba(255, 42, 84, 0.75), inset 0 1px 2px rgba(255, 255, 255, 0.4);
-      animation: emblemBreathe 3s infinite alternate ease-in-out;
-    }
-
-    @keyframes emblemBreathe {
-      0% { transform: scale(0.96); box-shadow: 0 8px 25px rgba(255, 42, 84, 0.5); }
-      100% { transform: scale(1.04); box-shadow: 0 15px 45px rgba(255, 42, 84, 0.9); }
     }
 
     .opening-pre-title {
@@ -279,13 +268,12 @@
       border-color: #ff2a54;
     }
 
-    /* MASTER NAVIGATION TABS */
     .master-nav-tabs {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       overflow-x: auto;
       scrollbar-width: none;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.07);
       padding-bottom: 10px;
     }
@@ -295,10 +283,10 @@
       background: #080a11;
       border: 1px solid rgba(255, 255, 255, 0.07);
       color: #94a3b8;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 800;
       letter-spacing: 0.5px;
-      padding: 10px 18px;
+      padding: 11px 22px;
       border-radius: 10px;
       cursor: pointer;
       white-space: nowrap;
@@ -313,7 +301,7 @@
     }
 
     .master-tab-btn.active {
-      background: linear-gradient(135deg, rgba(255, 42, 84, 0.2) 0%, rgba(255, 42, 84, 0.04) 100%);
+      background: linear-gradient(135deg, rgba(255, 42, 84, 0.22) 0%, rgba(255, 42, 84, 0.04) 100%);
       border-color: #ff2a54;
       color: #ffffff;
       box-shadow: 0 4px 20px rgba(255, 42, 84, 0.35);
@@ -332,7 +320,6 @@
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* VIP BANNER */
     .vip-banner-box {
       background: linear-gradient(135deg, rgba(255, 42, 84, 0.16) 0%, rgba(13, 15, 22, 0.95) 100%);
       border: 1px solid rgba(255, 42, 84, 0.35);
@@ -363,94 +350,104 @@
     }
 
     /* =========================================================
-       3. CUSTOM CALENDAR SELECTOR DOCK
+       3. KONTROL EKSKLUSIF CUSTOM TANGGAL & WAKTU DI TAB ASTRODOX
        ========================================================= */
-    .calendar-control-panel {
-      background: #080a12;
-      border: 1px solid rgba(255, 42, 84, 0.3);
+    .astro-custom-control-card {
+      background: #080a13;
+      border: 1px solid rgba(255, 42, 84, 0.35);
       border-radius: 14px;
-      padding: 16px 18px;
-      margin-bottom: 18px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.65);
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.75);
     }
 
-    .custom-date-box {
-      display: inline-flex;
+    .astro-ctrl-inputs {
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 10px;
-      background: #0e121d;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .ctrl-field {
+      background: #0e121e;
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 10px;
       padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .custom-date-box label {
-      font-size: 0.75rem;
+    .ctrl-field label {
+      font-size: 0.72rem;
       font-weight: 800;
       color: #ff5c7c;
       letter-spacing: 0.5px;
       text-transform: uppercase;
     }
 
-    .custom-date-box input[type="date"] {
+    .ctrl-field input {
       background: transparent;
       border: none;
-      color: #ffffff;
+      color: #fff;
       font-family: inherit;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 800;
       outline: none;
-      cursor: pointer;
       color-scheme: dark;
     }
 
-    /* 10-DAYS HORIZONTAL PILLS */
-    .days-scroll-bar {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      padding: 4px 2px 8px;
-      width: 100%;
-    }
-    .days-scroll-bar::-webkit-scrollbar { display: none; }
-
-    .day-pill {
-      background: linear-gradient(180deg, #0e111a 0%, #080a10 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #94a3b8;
-      padding: 10px 16px;
-      border-radius: 12px;
+    .btn-sync-live {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid #22c55e;
+      color: #4ade80;
       font-size: 0.78rem;
       font-weight: 800;
+      padding: 10px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-sync-live:hover {
+      background: #22c55e;
+      color: #000;
+    }
+
+    .astro-quick-dates {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-top: 14px;
+    }
+    .astro-quick-dates::-webkit-scrollbar { display: none; }
+
+    .quick-date-btn {
+      background: #0d101a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 8px;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      min-width: 82px;
-      user-select: none;
+      transition: all 0.2s;
     }
 
-    .day-pill:active { transform: scale(0.94); }
-    .day-pill.active {
-      background: linear-gradient(180deg, #ff2a54 0%, #a80f2f 100%);
-      color: #ffffff;
-      border-color: #ff5c7c;
-      box-shadow: 0 4px 20px rgba(255, 42, 84, 0.55);
-      transform: translateY(-2px);
+    .quick-date-btn.active, .quick-date-btn:hover {
+      background: #ff2a54;
+      color: #fff;
+      border-color: #ff2a54;
+      box-shadow: 0 0 12px rgba(255, 42, 84, 0.4);
     }
 
-    /* =========================================================
-       4. ASTRODOX REPLICA & METRIC CARDS
-       ========================================================= */
+    /* 4. RODA ASTRODOX DINAMIS */
     .astrodox-master-board {
       background: #080a0f;
       border: 1px solid rgba(255, 42, 84, 0.3);
@@ -506,7 +503,6 @@
       padding-bottom: 5px;
     }
 
-    /* CLOCK DOCK */
     .clock-dock {
       background: #080a10;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -537,7 +533,44 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
-    /* FILTER PILLS */
+    /* 5. KALENDER BERITA */
+    .days-scroll-bar {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 4px 2px 10px;
+      margin-bottom: 14px;
+    }
+    .days-scroll-bar::-webkit-scrollbar { display: none; }
+
+    .day-pill {
+      background: linear-gradient(180deg, #0e111a 0%, #080a10 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      min-width: 82px;
+      user-select: none;
+    }
+
+    .day-pill.active {
+      background: linear-gradient(180deg, #ff2a54 0%, #a80f2f 100%);
+      color: #ffffff;
+      border-color: #ff5c7c;
+      box-shadow: 0 4px 20px rgba(255, 42, 84, 0.55);
+      transform: translateY(-2px);
+    }
+
     .filter-pills {
       display: flex;
       gap: 8px;
@@ -568,7 +601,6 @@
       box-shadow: 0 0 14px rgba(255, 42, 84, 0.3);
     }
 
-    /* NEWS CARDS */
     .news-card {
       background: #090b12;
       border: 1px solid rgba(255, 255, 255, 0.07);
@@ -617,29 +649,11 @@
       color: #fde047;
     }
 
-    /* ORDER FLOW MATRIX */
-    .matrix-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .matrix-card {
-      background: #090c14;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    }
-
-    /* REKAPITULASI NEWS */
     .recap-panel {
       background: #07090e;
       border: 1px solid rgba(255, 42, 84, 0.3);
       border-radius: 14px;
       padding: 20px;
-      margin-top: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     }
 
@@ -695,9 +709,7 @@
 </head>
 <body>
 
-  <!-- =========================================================
-       1. CINEMATIC LUXURY SUPERCAR OPENING SCREEN
-       ========================================================= -->
+  <!-- 1. OPENING LUXURY SUPERCAR -->
   <div id="openingOverlay">
     <div class="bg-video-wrapper">
       <video id="heroPorscheVideo" class="bg-cinematic-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
@@ -720,7 +732,7 @@
       </h1>
 
       <p class="opening-sub-desc">
-        Terminal konfluensi pasar terenkripsi: Astrodox Transit 24 Jam dan Protokol Eksekusi Likuiditas Berita Global.
+        Terminal konfluensi likuiditas pasar institusional, radar transit Astrodox online 24 jam, dan kalender eksekusi news.
       </p>
 
       <div class="video-load-track">
@@ -762,163 +774,74 @@
       </a>
     </div>
 
-    <!-- MASTER MODULAR APP TABS -->
+    <!-- 3 MASTER TABS -->
     <div class="master-nav-tabs">
       <button class="master-tab-btn active" onclick="switchMainTab('tab-astrodox', this)">
-        <span>🪐</span> ASTRODOX 24H TRANSIT
+        <span>🪐</span> ASTRODOX TRANSIT MATRIX
       </button>
       <button class="master-tab-btn" onclick="switchMainTab('tab-calendar', this)">
-        <span>📅</span> KALENDER NEWS 10 HARI
-      </button>
-      <button class="master-tab-btn" onclick="switchMainTab('tab-orderflow', this)">
-        <span>📈</span> LIVE XAUUSD &amp; ORDER FLOW
+        <span>📅</span> KALENDER NEWS EKONOMI
       </button>
       <button class="master-tab-btn" onclick="switchMainTab('tab-recap', this)">
         <span>📊</span> REKAP TRACK RECORD
       </button>
     </div>
 
-    <!-- DOCK SELECTOR KALENDER CUSTOM & 10 HARI TERPADU -->
-    <div class="calendar-control-panel">
-      <div style="display:flex; align-items:center; gap:8px;">
-        <span style="font-size:1.1rem;">🗓️</span>
-        <div>
-          <strong style="font-size:0.88rem; color:#fff; display:block;">PILIH TANGGAL ANALISA ASTRODOX</strong>
-          <small style="color:#94a3b8; font-size:0.72rem;">Pilih tanggal kustom atau klik tab cepat untuk memetakan orbit astrologi &amp; news</small>
+    <!-- =========================================================
+         TAB VIEW 1: ASTRODOX 24H TRANSIT (DENGAN KONTROL LENGKAP)
+         ========================================================= -->
+    <div id="tab-astrodox" class="tab-view-content active">
+
+      <!-- KONTROL PANEL EKSKLUSIF TANGGAL & WAKTU ASTRODOX -->
+      <div class="astro-custom-control-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div>
+            <strong style="font-size:0.95rem; color:#fff; display:block;">PENGATURAN TRANSIT &amp; WAKTU ASTRODOX</strong>
+            <small style="color:#94a3b8; font-size:0.75rem;">Ubah tanggal, tahun, atau jam untuk memutar orbit planet &amp; jaring aspek astronomis</small>
+          </div>
+          <button class="btn-sync-live" onclick="resetToLiveTime()">
+            <span style="display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%;"></span> SINKRON LIVE SEKARANG
+          </button>
+        </div>
+
+        <div class="astro-ctrl-inputs">
+          <div class="ctrl-field">
+            <label for="astroDate">Tanggal &bull; Tahun:</label>
+            <input type="date" id="astroDate" onchange="onAstroDateTimeChange()" />
+          </div>
+
+          <div class="ctrl-field">
+            <label for="astroTime">Jam &bull; Menit &bull; Detik:</label>
+            <input type="time" step="1" id="astroTime" onchange="onAstroDateTimeChange()" />
+          </div>
+        </div>
+
+        <div class="astro-quick-dates" id="astroQuickPills">
+          <!-- Shortcut tanggal cepat -->
         </div>
       </div>
 
-      <div class="custom-date-box">
-        <label for="customDatePicker">Tanggal:</label>
-        <input type="date" id="customDatePicker" onchange="onCustomDateSelected(this.value)" />
-      </div>
-
-      <div class="days-scroll-bar" id="daysFilterBar"></div>
-    </div>
-
-    <!-- =========================================================
-         TAB VIEW 1: ASTRODOX 24H TRANSIT
-         ========================================================= -->
-    <div id="tab-astrodox" class="tab-view-content active">
+      <!-- MASTER BOARD ASTRODOX -->
       <div class="astrodox-master-board">
         <div class="astrodox-disk-wrapper">
-          <svg class="astrodox-svg" viewBox="0 0 500 500" id="astrodoxExactSvg">
-            <circle cx="250" cy="250" r="246" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/>
-            
-            <g id="zodiacSegments">
-              <path d="M 250 250 L 10 250 A 240 240 0 0 1 42.2 130 Z" fill="#e0e7ff"/>
-              <path d="M 250 250 L 42.2 130 A 240 240 0 0 1 130 42.2 Z" fill="#e0f2fe"/>
-              <path d="M 250 250 L 130 42.2 A 240 240 0 0 1 250 10 Z" fill="#dcfce7"/>
-              <path d="M 250 250 L 250 10 A 240 240 0 0 1 370 42.2 Z" fill="#ffedd5"/>
-              <path d="M 250 250 L 370 42.2 A 240 240 0 0 1 457.8 130 Z" fill="#e0e7ff"/>
-              <path d="M 250 250 L 457.8 130 A 240 240 0 0 1 490 250 Z" fill="#fef9c3"/>
-              <path d="M 250 250 L 490 250 A 240 240 0 0 1 457.8 370 Z" fill="#dcfce7"/>
-              <path d="M 250 250 L 457.8 370 A 240 240 0 0 1 370 457.8 Z" fill="#ffe4e6"/>
-              <path d="M 250 250 L 370 457.8 A 240 240 0 0 1 250 490 Z" fill="#ede9fe"/>
-              <path d="M 250 250 L 250 490 A 240 240 0 0 1 130 457.8 Z" fill="#e0f2fe"/>
-              <path d="M 250 250 L 130 457.8 A 240 240 0 0 1 42.2 370 Z" fill="#dcfce7"/>
-              <path d="M 250 250 L 42.2 370 A 240 240 0 0 1 10 250 Z" fill="#fef3c7"/>
-            </g>
-
-            <circle cx="250" cy="250" r="205" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
-            <circle cx="250" cy="250" r="160" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
-            <circle cx="250" cy="250" r="110" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
-
-            <line x1="2" y1="250" x2="498" y2="250" stroke="#0f172a" stroke-width="2"/>
-            <polygon points="12,244 0,250 12,256" fill="#0f172a"/>
-            <text x="18" y="244" font-size="11" font-weight="900" fill="#0f172a">8&deg;</text>
-
-            <line x1="250" y1="2" x2="250" y2="498" stroke="#0f172a" stroke-width="2"/>
-            <text x="254" y="24" font-size="11" font-weight="900" fill="#0f172a">&#9793; 16&deg;</text>
-
-            <line x1="125" y1="35" x2="375" y2="465" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
-            <line x1="35" y1="125" x2="465" y2="375" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
-            <line x1="35" y1="375" x2="465" y2="125" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
-            <line x1="125" y1="465" x2="375" y2="35" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
-
-            <!-- ZODIAC SIGNS -->
-            <text x="45" y="200" font-size="16" font-weight="bold" fill="#334155">&#9807;</text>
-            <text x="90" y="100" font-size="16" font-weight="bold" fill="#334155">&#9806;</text>
-            <text x="180" y="50" font-size="16" font-weight="bold" fill="#334155">&#9805;</text>
-            <text x="265" y="50" font-size="16" font-weight="bold" fill="#334155">&#9804;</text>
-            <text x="355" y="100" font-size="16" font-weight="bold" fill="#334155">&#9803;</text>
-            <text x="400" y="200" font-size="16" font-weight="bold" fill="#334155">&#9802;</text>
-            <text x="400" y="300" font-size="16" font-weight="bold" fill="#334155">&#9801;</text>
-            <text x="355" y="400" font-size="16" font-weight="bold" fill="#334155">&#9800;</text>
-            <text x="265" y="450" font-size="16" font-weight="bold" fill="#334155">&#9811;</text>
-            <text x="180" y="450" font-size="16" font-weight="bold" fill="#334155">&#9810;</text>
-            <text x="90" y="400" font-size="16" font-weight="bold" fill="#334155">&#9809;</text>
-            <text x="45" y="300" font-size="16" font-weight="bold" fill="#334155">&#9808;</text>
-
-            <g id="astroExactAspects">
-              <line x1="240" y1="65" x2="242" y2="435" stroke="#dc2626" stroke-width="1.8"/>
-              <line x1="230" y1="70" x2="80" y2="150" stroke="#dc2626" stroke-width="1.8"/>
-              <line x1="240" y1="65" x2="85" y2="200" stroke="#dc2626" stroke-width="1.8"/>
-              <line x1="90" y1="365" x2="385" y2="350" stroke="#dc2626" stroke-width="1.8"/>
-              <line x1="80" y1="150" x2="385" y2="350" stroke="#dc2626" stroke-width="1.8"/>
-              <line x1="230" y1="70" x2="395" y2="175" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3,3"/>
-
-              <line x1="230" y1="70" x2="90" y2="365" stroke="#16a34a" stroke-width="2"/>
-              <line x1="230" y1="70" x2="385" y2="350" stroke="#16a34a" stroke-width="2"/>
-              <line x1="90" y1="365" x2="395" y2="175" stroke="#16a34a" stroke-width="1.5"/>
-              <line x1="80" y1="150" x2="242" y2="435" stroke="#16a34a" stroke-width="1.8"/>
-              <line x1="395" y1="175" x2="80" y2="150" stroke="#16a34a" stroke-width="1.8"/>
-            </g>
-
-            <g id="astroPlanetNodesExact">
-              <circle cx="80" cy="150" r="11" fill="#f59e0b" stroke="#78350f" stroke-width="1.5"/>
-              <text x="80" y="154" text-anchor="middle" font-size="12" font-weight="900" fill="#000">&#9737;</text>
-              <text x="100" y="145" font-size="10" font-weight="900" fill="#0f172a" id="chartSunDeg">23&deg;</text>
-
-              <circle cx="85" cy="200" r="8" fill="#ec4899" stroke="#831843" stroke-width="1.5"/>
-              <text x="85" y="204" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9792;</text>
-              <circle cx="95" cy="225" r="8" fill="#a855f7" stroke="#581c87" stroke-width="1.5"/>
-              <text x="95" y="229" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9791;</text>
-
-              <circle cx="230" cy="70" r="10" fill="#dc2626" stroke="#450a0a" stroke-width="1.5"/>
-              <text x="230" y="74" text-anchor="middle" font-size="11" font-weight="900" fill="#fff">&#9794;</text>
-              <text x="228" y="55" font-size="10" font-weight="900" fill="#0f172a" id="chartMarsDeg">10&deg;</text>
-
-              <circle cx="210" cy="75" r="9" fill="#7c3aed" stroke="#2e1065" stroke-width="1.5"/>
-              <text x="210" y="79" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9795;</text>
-              <text x="206" y="58" font-size="9" font-weight="900" fill="#0f172a">23&deg;</text>
-
-              <circle cx="90" cy="365" r="10" fill="#0284c7" stroke="#0c4a6e" stroke-width="1.5"/>
-              <text x="90" y="369" text-anchor="middle" font-size="12" font-weight="900" fill="#fff">&#9789;</text>
-              <text x="110" y="375" font-size="10" font-weight="900" fill="#0f172a" id="chartMoonDeg">18&deg;</text>
-
-              <circle cx="242" cy="435" r="8" fill="#475569" stroke="#0f172a" stroke-width="1.5"/>
-              <text x="242" y="439" text-anchor="middle" font-size="9" font-weight="900" fill="#fff">&#9799;</text>
-              <text x="242" y="455" font-size="10" font-weight="900" fill="#0f172a">4&deg;</text>
-
-              <circle cx="385" cy="350" r="9" fill="#64748b" stroke="#1e293b" stroke-width="1.5"/>
-              <text x="385" y="354" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9796;</text>
-              <text x="405" y="355" font-size="10" font-weight="900" fill="#0f172a">11&deg;</text>
-
-              <circle cx="395" cy="175" r="9" fill="#06b6d4" stroke="#164e63" stroke-width="1.5"/>
-              <text x="395" y="179" text-anchor="middle" font-size="10" font-weight="900" fill="#fff">&#9797;</text>
-              <text x="415" y="175" font-size="10" font-weight="900" fill="#0f172a">6&deg;</text>
-            </g>
-
-            <circle cx="250" cy="250" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-            <text x="250" y="246" text-anchor="middle" font-size="8" font-weight="900" fill="#dc2626">ASTRODOX</text>
-            <text x="250" y="258" text-anchor="middle" font-size="7" font-weight="bold" fill="#64748b">24H LIVE</text>
+          <svg class="astrodox-svg" viewBox="0 0 500 500" id="astrodoxDynamicSvg">
+            <!-- Roda zodiak, node planet, dan aspek dirender dinamis di sini -->
           </svg>
         </div>
 
         <div class="astrodox-data-panel">
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <span style="background:rgba(255,42,84,0.14); border:1px solid #ff2a54; color:#ff5c7c; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:800;">
-              ASTRODOX 2026 TRANSIT MATRIX
+              ASTRODOX GEOCENTRIC MATRIX
             </span>
-            <span style="color:#22c55e; font-size:0.75rem; font-weight:700;">&bull; SINKRON LIVE 24H</span>
+            <span style="color:#22c55e; font-size:0.75rem; font-weight:700;" id="astroLiveStatusTag">&bull; SINKRON LIVE 24H</span>
           </div>
 
           <div style="background:#0c0e16; border:1px solid rgba(255,42,84,0.25); border-radius:10px; padding:12px; display:flex; justify-content:space-between; align-items:center;">
             <div>
               <span style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase;">Fase Bulan &bull; Siklus Likuiditas</span>
               <strong style="color:#fff; font-size:0.95rem; display:block;" id="liveMoonPhaseName">Waxing Crescent</strong>
-              <small style="color:#38bdf8; font-size:0.75rem;" id="liveMoonIllum">Moon di Sagitarius 18° &bull; Iluminasi 19.5%</small>
+              <small style="color:#38bdf8; font-size:0.75rem;" id="liveMoonIllum">Moon di Sagitarius &bull; Iluminasi 19.5%</small>
             </div>
             <div style="font-size:1.8rem; text-shadow:0 0 15px rgba(56,189,248,0.8);" id="liveMoonIcon">&#9789;</div>
           </div>
@@ -926,61 +849,61 @@
           <div class="transit-table-full">
             <div class="transit-item">
               <span>&#9737; Sun</span>
-              <strong style="color:#f59e0b;" id="degSun">&#9806; 23&deg;10'23"</strong>
+              <strong style="color:#f59e0b;" id="degSun">Memuat...</strong>
             </div>
             <div class="transit-item">
               <span>Asc (Scorpio)</span>
-              <strong style="color:#cbd5e1;">&#9807; 07&deg;30'08"</strong>
+              <strong style="color:#cbd5e1;" id="degAsc">Memuat...</strong>
             </div>
             <div class="transit-item">
               <span>&#9789; Moon</span>
-              <strong style="color:#38bdf8;" id="degMoon">&#9808; 18&deg;52'26"</strong>
+              <strong style="color:#38bdf8;" id="degMoon">Memuat...</strong>
             </div>
             <div class="transit-item">
               <span>II (Sagitarius)</span>
-              <strong style="color:#cbd5e1;">&#9808; 06&deg;18'26"</strong>
+              <strong style="color:#cbd5e1;" id="degHouse2">Memuat...</strong>
             </div>
             <div class="transit-item">
               <span>&#9791; Mercury</span>
-              <strong style="color:#a855f7;">&#9807; 16&deg;54'36"</strong>
+              <strong style="color:#a855f7;" id="degMerc">Memuat...</strong>
             </div>
             <div class="transit-item">
               <span>III (Capricorn)</span>
-              <strong style="color:#cbd5e1;">&#9809; 09&deg;32'05"</strong>
+              <strong style="color:#cbd5e1;" id="degHouse3">Memuat...</strong>
             </div>
             <div class="transit-item">
               <span>&#9792; Venus</span>
-              <strong style="color:#ec4899;">&#9807; 05&deg;34'49"</strong>
+              <strong style="color:#ec4899;" id="degVen">Memuat...</strong>
             </div>
             <div class="transit-item">
               <span>IC (Aquarius)</span>
-              <strong style="color:#cbd5e1;">&#9810; 15&deg;05'15"</strong>
+              <strong style="color:#cbd5e1;" id="degIC">Memuat...</strong>
             </div>
             <div class="transit-item">
               <span>&#9794; Mars</span>
-              <strong style="color:#f87171;" id="degMars">&#9804; 10&deg;55'26"</strong>
+              <strong style="color:#f87171;" id="degMars">Memuat...</strong>
             </div>
             <div class="transit-item">
               <span>MC (Leo)</span>
-              <strong style="color:#cbd5e1;">&#9804; 15&deg;05'15"</strong>
+              <strong style="color:#cbd5e1;" id="degMC">Memuat...</strong>
             </div>
             <div class="transit-item">
               <span>&#9795; Jupiter</span>
-              <strong style="color:#c084fc;">&#9804; 22&deg;01'44"</strong>
+              <strong style="color:#c084fc;" id="degJup">Memuat...</strong>
             </div>
             <div class="transit-item">
               <span>Dsc (Taurus)</span>
-              <strong style="color:#cbd5e1;">&#9801; 07&deg;30'08"</strong>
+              <strong style="color:#cbd5e1;" id="degDsc">Memuat...</strong>
             </div>
           </div>
 
-          <div style="background:rgba(255,42,84,0.08); border-left:3.5px solid #ff2a54; padding:10px 12px; border-radius:0 8px 8px 0; font-size:0.78rem; line-height:1.45; color:#cbd5e1;" id="liveDailyAstroSummary">
+          <div style="background:rgba(255,42,84,0.08); border-left:3.5px solid #ff2a54; padding:12px; border-radius:0 8px 8px 0; font-size:0.78rem; line-height:1.45; color:#cbd5e1;" id="liveDailyAstroSummary">
             Mengalkulasi resonansi siklus transit astrodox...
           </div>
         </div>
       </div>
 
-      <!-- CLOCK DOCK 3 ZONA WAKTU -->
+      <!-- CLOCK DOCK -->
       <div class="clock-dock">
         <div class="clock-item primary-clock">
           <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">
@@ -1009,9 +932,26 @@
     </div>
 
     <!-- =========================================================
-         TAB VIEW 2: KALENDER NEWS 10 HARI
+         TAB VIEW 2: KALENDER NEWS EKONOMI
          ========================================================= -->
     <div id="tab-calendar" class="tab-view-content">
+      <div style="margin-bottom:12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
+          <div>
+            <h3 style="font-size:1.15rem; font-weight:900; letter-spacing:0.5px;">
+              JADWAL KALENDER NEWS 10 HARI KE DEPAN
+            </h3>
+            <p style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">
+              Pilih tanggal untuk melihat jadwal rilis berita resmi, deviasi ekonomi, dan eksekusi instan
+            </p>
+          </div>
+          <span style="font-size:0.75rem; color:#22c55e; font-weight:700;">&bull; REALTIME EXECUTION FEED</span>
+        </div>
+
+        <!-- TAB 10 HARI KHUSUS KALENDER BERITA -->
+        <div class="days-scroll-bar" id="newsDaysBar"></div>
+      </div>
+
       <div class="filter-pills">
         <button class="pill-btn active" onclick="setCurrencyFilter('ALL', event)">Semua Mata Uang</button>
         <button class="pill-btn" onclick="setCurrencyFilter('USD', event)">USD (Gold / XAUUSD)</button>
@@ -1028,34 +968,7 @@
     </div>
 
     <!-- =========================================================
-         TAB VIEW 3: LIVE XAUUSD & ORDER FLOW MATRIX
-         ========================================================= -->
-    <div id="tab-orderflow" class="tab-view-content">
-      <div class="matrix-grid">
-        <div class="matrix-card">
-          <span style="font-size:0.7rem; color:#94a3b8; font-weight:800; text-transform:uppercase;">DAILY BIAS SMC / ICT</span>
-          <h4 style="font-size:1.15rem; font-weight:900; color:#4ade80; margin-top:4px;" id="matrixBias">BULLISH ACCUMULATION</h4>
-          <small style="color:#94a3b8; font-size:0.75rem;">Discount zone mitigation &bull; OTE 0.705 level</small>
-        </div>
-        <div class="matrix-card">
-          <span style="font-size:0.7rem; color:#94a3b8; font-weight:800; text-transform:uppercase;">BUY-SIDE LIQUIDITY (BSL)</span>
-          <h4 style="font-size:1.15rem; font-weight:900; color:#ff2a54; margin-top:4px;">TARGET PREVIOUS HIGH</h4>
-          <small style="color:#94a3b8; font-size:0.75rem;">Major liquidity pool purge on NY Session</small>
-        </div>
-        <div class="matrix-card">
-          <span style="font-size:0.7rem; color:#94a3b8; font-weight:800; text-transform:uppercase;">KEY IMBALANCE (FVG)</span>
-          <h4 style="font-size:1.15rem; font-weight:900; color:#38bdf8; margin-top:4px;">H1 BULLISH FVG</h4>
-          <small style="color:#94a3b8; font-size:0.75rem;">Unmitigated Fair Value Gap protected</small>
-        </div>
-      </div>
-
-      <div style="background:#090b12; border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:16px; height:500px; box-shadow:0 10px 30px rgba(0,0,0,0.7);">
-        <div id="tradingview_xauusd" style="width:100%; height:100%;"></div>
-      </div>
-    </div>
-
-    <!-- =========================================================
-         TAB VIEW 4: REKAPITULASI HISTORIS PERMANEN
+         TAB VIEW 3: REKAPITULASI HISTORIS
          ========================================================= -->
     <div id="tab-recap" class="tab-view-content">
       <div class="recap-panel">
@@ -1066,7 +979,7 @@
           <span class="badge-win">TRACK RECORD PERMANEN</span>
         </div>
         <p style="font-size:0.78rem; color:#94a3b8; line-height:1.4;">
-          Arsip historis hasil rilis berita yang dieksekusi secara otomatis pada detik rilis tiba tersimpan di memori terminal.
+          Arsip historis hasil rilis berita yang dieksekusi secara otomatis pada detik rilis tiba tersimpan permanen di terminal.
         </p>
 
         <div class="recap-table-wrapper">
@@ -1090,7 +1003,7 @@
 
   <script>
     // ========================================================
-    // 1. OPENING LUXURY CANVAS PARTICLES & VIDEO AUTO-START
+    // 1. OPENING LUXURY CANVAS PARTICLES & VIDEO
     // ========================================================
     function initOpeningParticles() {
       const canvas = document.getElementById('openingCanvas');
@@ -1141,7 +1054,7 @@
       const overlay = document.getElementById('openingOverlay');
       if (overlay) {
         overlay.classList.add('fade-out');
-        setTimeout(() => { overlay.remove(); }, 1000);
+        setTimeout(() => { overlay.remove(); }, 900);
       }
     }
 
@@ -1149,12 +1062,9 @@
       const vid = document.getElementById('heroPorscheVideo');
       if (vid) {
         vid.muted = true;
-        const playPromise = vid.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {});
-        }
+        const p = vid.play();
+        if (p !== undefined) p.catch(() => {});
       }
-      initTradingViewChart();
     });
 
     setTimeout(dismissOpeningScreen, 4800);
@@ -1169,26 +1079,6 @@
       const targetView = document.getElementById(tabId);
       if (targetView) targetView.classList.add('active');
       if (btnElem) btnElem.classList.add('active');
-    }
-
-    function initTradingViewChart() {
-      if (typeof TradingView !== 'undefined' && document.getElementById('tradingview_xauusd')) {
-        new TradingView.widget({
-          "width": "100%",
-          "height": "100%",
-          "symbol": "OANDA:XAUUSD",
-          "interval": "15",
-          "timezone": "Asia/Jakarta",
-          "theme": "dark",
-          "style": "1",
-          "locale": "id",
-          "toolbar_bg": "#080a10",
-          "enable_publishing": false,
-          "hide_top_toolbar": false,
-          "save_image": false,
-          "container_id": "tradingview_xauusd"
-        });
-      }
     }
 
     // ========================================================
@@ -1251,108 +1141,403 @@
     updateLiveClocks();
 
     // ========================================================
-    // 5. ENGINE EFEMERIS ASTRODOX DINAMIS (BERDASARKAN TANGGAL PILIHAN)
+    // 5. ENGINE EFEMERIS & RENDERING ASTRODOX DINAMIS 100%
     // ========================================================
+    const ZODIAC_DATA = [
+      { name: "Aries", glyph: "♈", bg: "#e0e7ff" },
+      { name: "Taurus", glyph: "♉", bg: "#e0f2fe" },
+      { name: "Gemini", glyph: "♊", bg: "#dcfce7" },
+      { name: "Cancer", glyph: "♋", bg: "#ffedd5" },
+      { name: "Leo", glyph: "♌", bg: "#e0e7ff" },
+      { name: "Virgo", glyph: "♍", bg: "#fef9c3" },
+      { name: "Libra", glyph: "♎", bg: "#dcfce7" },
+      { name: "Scorpio", glyph: "♏", bg: "#ffe4e6" },
+      { name: "Sagittarius", glyph: "♐", bg: "#ede9fe" },
+      { name: "Capricorn", glyph: "♑", bg: "#e0f2fe" },
+      { name: "Aquarius", glyph: "♒", bg: "#dcfce7" },
+      { name: "Pisces", glyph: "♓", bg: "#fef3c7" }
+    ];
+
+    let isAstroLiveMode = true; // Mode live realtime atau mode kustom
+    let customAstroDate = new Date(); // Objek tanggal khusus Astrodox
     let full10DaysNews = [];
-    let selectedActiveDate = new Date(); // Objek tanggal yang sedang aktif
+    let selectedNewsDate = new Date(); // Tanggal aktif di kalender berita
     let currentCurrencyFilter = 'ALL';
 
-    function getAstroMetricsForDate(targetDate) {
-      const day = targetDate.getDate();
-      const month = targetDate.getMonth() + 1;
+    function getAstroEphemeris(targetDate, targetHoursFloat) {
       const year = targetDate.getFullYear();
-      const now = new Date();
-      const secs = (now.getUTCHours() * 3600) + (now.getUTCMinutes() * 60) + now.getUTCSeconds();
+      const month = targetDate.getMonth() + 1;
+      const day = targetDate.getDate();
 
-      // Perhitungan astronomis transit akurat
-      const sunDeg = Math.floor((day * 0.9856 + (month * 30.4)) % 30);
-      const moonDeg = Math.floor((day * 13.176 + (secs / 3600)) % 30);
-      const marsDeg = Math.floor((day * 0.524 + 8) % 30);
-      const jupDeg = Math.floor((month * 2.5 + 14) % 30);
-
-      const aspectDiff = Math.abs((sunDeg * 12) - (moonDeg * 12)) % 360;
-      let bias = "BULLISH EXPANSION";
-      let dominant = "Trine 120° Harmonic (Sun-Jupiter)";
-      let isBullish = true;
-
-      if ((aspectDiff >= 90 && aspectDiff <= 150) || (aspectDiff >= 200 && aspectDiff <= 250)) {
-        bias = "BULLISH EXPANSION";
-        dominant = "Trine 120° Harmonic (Sun-Jupiter)";
-        isBullish = true;
-      } else if ((aspectDiff >= 60 && aspectDiff <= 89) || (aspectDiff >= 260 && aspectDiff <= 310)) {
-        bias = "BEARISH REJECTION";
-        dominant = "Square 90° Tension (Mars Cross)";
-        isBullish = false;
-      } else {
-        bias = (day % 2 === 0) ? "BULLISH EXPANSION" : "BEARISH REJECTION";
-        dominant = "Sextile 60° Angle Flow";
-        isBullish = (day % 2 === 0);
+      // Konversi WIB (UTC+7) ke UTC
+      let utcHours = targetHoursFloat - 7.0;
+      let y = year, m = month, dVal = day;
+      if (utcHours < 0) {
+        utcHours += 24.0;
+        dVal -= 1;
       }
 
-      return { sunDeg, moonDeg, marsDeg, jupDeg, bias, dominant, isBullish, day, month, year };
+      if (m <= 2) { y -= 1; m += 12; }
+      const A = Math.floor(y / 100);
+      const B = 2 - A + Math.floor(A / 4);
+      const JD = Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + dVal + (utcHours / 24.0) + B - 1524.5;
+      const d = JD - 2451545.0;
+
+      // Sun
+      const L0 = (280.46646 + 0.98564736 * d) % 360;
+      const M_sun = ((357.52911 + 0.98560028 * d) % 360) * Math.PI / 180;
+      const C_sun = 1.914602 * Math.sin(M_sun) + 0.019993 * Math.sin(2 * M_sun);
+      const sun = (L0 + C_sun + 360) % 360;
+
+      // Moon (~13.176° per hari, ~0.55° per jam)
+      const L_moon = (218.3165 + 13.176396 * d) % 360;
+      const M_moon = ((134.9634 + 13.064993 * d) % 360) * Math.PI / 180;
+      const moon = (L_moon + 6.2886 * Math.sin(M_moon) + 360) % 360;
+
+      // Planets
+      const mercury = (sun + 21.0 * Math.sin(((d * 4.0923 + 200) % 360) * Math.PI / 180) + 360) % 360;
+      const venus = (sun + 44.0 * Math.sin(((d * 1.6021 + 50) % 360) * Math.PI / 180) + 360) % 360;
+      const mars = (355.43 + 0.524033 * d + 360) % 360;
+      const jupiter = (34.35 + 0.083091 * d + 360) % 360;
+      const saturn = (50.08 + 0.033459 * d + 360) % 360;
+
+      // Asc & MC (bergerak 360° per 24 jam)
+      const GMST = (280.46061837 + 360.98564736629 * d + 15.0 * utcHours) % 360;
+      const localSidereal = (GMST + 107.0 + 360) % 360; // Longitude Jakarta 107°E
+      const mc = localSidereal;
+      const asc = (localSidereal + 90.0 + 23.44 * Math.sin(localSidereal * Math.PI / 180) + 360) % 360;
+
+      return { sun, moon, mercury, venus, mars, jupiter, saturn, asc, mc, day, month, year };
     }
 
-    function updateAstrodox24H() {
-      const targetDate = selectedActiveDate;
-      const astro = getAstroMetricsForDate(targetDate);
-      const now = new Date();
-      const secs = (now.getUTCHours() * 3600) + (now.getUTCMinutes() * 60) + now.getUTCSeconds();
-      const rot = (secs / 86400) * 360;
+    function formatZodiac(degFloat) {
+      const norm = (degFloat % 360 + 360) % 360;
+      const signIdx = Math.floor(norm / 30);
+      const rem = norm % 30;
+      const deg = Math.floor(rem);
+      const min = Math.floor((rem - deg) * 60);
+      const sec = Math.floor(((rem - deg) * 60 - min) * 60);
+      const sign = ZODIAC_DATA[signIdx];
+      return {
+        glyph: sign.glyph,
+        signName: sign.name,
+        deg,
+        min,
+        sec,
+        text: `${sign.glyph} ${deg}°${String(min).padStart(2, '0')}'${String(sec).padStart(2, '0')}"`
+      };
+    }
 
-      const aspectGroup = document.getElementById('astroExactAspects');
-      const planetGroup = document.getElementById('astroPlanetNodesExact');
-      if (aspectGroup) aspectGroup.setAttribute('transform', `rotate(${rot % 360} 250 250)`);
-      if (planetGroup) planetGroup.setAttribute('transform', `rotate(${rot % 360} 250 250)`);
+    function renderDynamicAstrodox() {
+      const svg = document.getElementById('astrodoxDynamicSvg');
+      if (!svg) return;
 
-      const sunSec = (secs % 60).toString().padStart(2, '0');
-      const moonSec = ((secs * 2) % 60).toString().padStart(2, '0');
+      let targetD = customAstroDate;
+      let targetHoursFloat = targetD.getHours() + targetD.getMinutes() / 60 + targetD.getSeconds() / 3600;
 
-      document.getElementById('degSun').innerHTML = `&#9806; ${astro.sunDeg}&deg;10'${sunSec}"`;
-      document.getElementById('degMoon').innerHTML = `&#9808; ${astro.moonDeg}&deg;52'${moonSec}"`;
-      document.getElementById('degMars').innerHTML = `&#9804; 0${astro.marsDeg}&deg;55'26"`;
-
-      document.getElementById('chartSunDeg').innerText = `${astro.sunDeg}°`;
-      document.getElementById('chartMoonDeg').innerText = `${astro.moonDeg}°`;
-      document.getElementById('chartMarsDeg').innerText = `${astro.marsDeg}°`;
-
-      const summaryBox = document.getElementById('liveDailyAstroSummary');
-      if (summaryBox) {
-        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetDate.toLocaleDateString('id-ID')}):</strong> Posisi Sun di ${astro.sunDeg}° dan Moon di ${astro.moonDeg}° membentuk aspek ${astro.dominant}. Mengarahkan bias likuiditas ${astro.bias} pada struktur market XAUUSD.`;
+      if (isAstroLiveMode) {
+        const liveNow = new Date();
+        targetD = liveNow;
+        targetHoursFloat = liveNow.getHours() + liveNow.getMinutes() / 60 + liveNow.getSeconds() / 3600;
+        customAstroDate = liveNow;
+        syncControlsUI(liveNow);
       }
 
-      const matrixBias = document.getElementById('matrixBias');
-      if (matrixBias) {
-        matrixBias.innerText = astro.bias;
-        matrixBias.style.color = astro.isBullish ? "#4ade80" : "#ff2a54";
+      const astro = getAstroEphemeris(targetD, targetHoursFloat);
+      const cx = 250, cy = 250;
+      const ascLong = astro.asc;
+
+      function toAngle(lon) {
+        return (180 - (lon - ascLong)) * Math.PI / 180;
       }
 
+      function toPoint(lon, radius) {
+        const rad = toAngle(lon);
+        return {
+          x: cx + radius * Math.cos(rad),
+          y: cy - radius * Math.sin(rad)
+        };
+      }
+
+      // 1. ZODIAC SLICES
+      let svgContent = `<circle cx="${cx}" cy="${cy}" r="246" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/><g id="zSlices">`;
+
+      for (let i = 0; i < 12; i++) {
+        const p1 = toPoint(i * 30, 246);
+        const p2 = toPoint((i + 1) * 30, 246);
+        const p1_in = toPoint(i * 30, 205);
+        const p2_in = toPoint((i + 1) * 30, 205);
+        svgContent += `
+          <path d="M ${p1_in.x} ${p1_in.y} L ${p1.x} ${p1.y} A 246 246 0 0 1 ${p2.x} ${p2.y} L ${p2_in.x} ${p2_in.y} A 205 205 0 0 0 ${p1_in.x} ${p1_in.y} Z" fill="${ZODIAC_DATA[i].bg}" stroke="#cbd5e1" stroke-width="0.8"/>
+        `;
+      }
+      svgContent += `</g>`;
+
+      // Inner circles
+      svgContent += `
+        <circle cx="${cx}" cy="${cy}" r="205" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+        <circle cx="${cx}" cy="${cy}" r="160" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+        <circle cx="${cx}" cy="${cy}" r="110" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+      `;
+
+      // 2. GLYPHS IN ZODIAC BAND
+      for (let i = 0; i < 12; i++) {
+        const pt = toPoint(i * 30 + 15, 225);
+        svgContent += `
+          <text x="${pt.x}" y="${pt.y + 6}" font-size="16" font-weight="bold" fill="#334155" text-anchor="middle">${ZODIAC_DATA[i].glyph}</text>
+        `;
+      }
+
+      // 3. ASC / MC / DESC / IC AXES
+      const pAsc = toPoint(astro.asc, 246);
+      const pDsc = toPoint(astro.asc + 180, 246);
+      const pMC = toPoint(astro.mc, 246);
+      const pIC = toPoint(astro.mc + 180, 246);
+
+      svgContent += `
+        <line x1="${pAsc.x}" y1="${pAsc.y}" x2="${pDsc.x}" y2="${pDsc.y}" stroke="#0f172a" stroke-width="2"/>
+        <line x1="${pMC.x}" y1="${pMC.y}" x2="${pIC.x}" y2="${pIC.y}" stroke="#0f172a" stroke-width="2"/>
+        <polygon points="${pAsc.x},${pAsc.y - 6} ${pAsc.x - 10},${pAsc.y} ${pAsc.x},${pAsc.y + 6}" fill="#0f172a"/>
+        <text x="${pAsc.x + 14}" y="${pAsc.y - 4}" font-size="10" font-weight="900" fill="#0f172a">Asc</text>
+        <text x="${pMC.x + 4}" y="${pMC.y + 14}" font-size="10" font-weight="900" fill="#0f172a">MC</text>
+      `;
+
+      // 4. PLANET OBJECTS LIST
+      const planets = [
+        { name: "Sun", glyph: "☉", lon: astro.sun, color: "#f59e0b", r: 11, txtFill: "#000" },
+        { name: "Moon", glyph: "☽", lon: astro.moon, color: "#0284c7", r: 10, txtFill: "#fff" },
+        { name: "Mercury", glyph: "☿", lon: astro.mercury, color: "#a855f7", r: 8, txtFill: "#fff" },
+        { name: "Venus", glyph: "♀", lon: astro.venus, color: "#ec4899", r: 8, txtFill: "#fff" },
+        { name: "Mars", glyph: "♂", lon: astro.mars, color: "#dc2626", r: 10, txtFill: "#fff" },
+        { name: "Jupiter", glyph: "♃", lon: astro.jupiter, color: "#7c3aed", r: 9, txtFill: "#fff" },
+        { name: "Saturn", glyph: "♄", lon: astro.saturn, color: "#475569", r: 8, txtFill: "#fff" }
+      ];
+
+      // 5. DRAW DYNAMIC ASPECT LINES (BERUBAH RIIL)
+      svgContent += `<g id="dynamicAspectLines">`;
+      for (let i = 0; i < planets.length; i++) {
+        for (let j = i + 1; j < planets.length; j++) {
+          const diff = Math.abs(planets[i].lon - planets[j].lon) % 360;
+          const dist = diff > 180 ? 360 - diff : diff;
+
+          let color = null;
+          let width = 1.5;
+          let dash = "";
+
+          // Trine 120° (Harmonis)
+          if (dist >= 114 && dist <= 126) {
+            color = "#16a34a";
+            width = 2.2;
+          }
+          // Square 90° (Tegangan)
+          else if (dist >= 84 && dist <= 96) {
+            color = "#dc2626";
+            width = 2.2;
+          }
+          // Sextile 60° (Peluang)
+          else if (dist >= 55 && dist <= 65) {
+            color = "#16a34a";
+            width = 1.4;
+            dash = 'stroke-dasharray="3,3"';
+          }
+          // Opposition 180° (Konflik/Dump)
+          else if (dist >= 174 && dist <= 180) {
+            color = "#dc2626";
+            width = 2.4;
+          }
+
+          if (color) {
+            const pt1 = toPoint(planets[i].lon, 155);
+            const pt2 = toPoint(planets[j].lon, 155);
+            svgContent += `<line x1="${pt1.x}" y1="${pt1.y}" x2="${pt2.x}" y2="${pt2.y}" stroke="${color}" stroke-width="${width}" ${dash} />`;
+          }
+        }
+      }
+      svgContent += `</g>`;
+
+      // 6. DRAW PLANET NODES (POSISI ORBIT TRIGONOMETRI)
+      svgContent += `<g id="dynamicPlanetNodes">`;
+      planets.forEach(p => {
+        const pt = toPoint(p.lon, 182);
+        const zInfo = formatZodiac(p.lon);
+        svgContent += `
+          <circle cx="${pt.x}" cy="${pt.y}" r="${p.r}" fill="${p.color}" stroke="#1e293b" stroke-width="1.5"/>
+          <text x="${pt.x}" y="${pt.y + 4}" text-anchor="middle" font-size="${p.r > 9 ? 11 : 9}" font-weight="900" fill="${p.txtFill}">${p.glyph}</text>
+          <text x="${pt.x + 13}" y="${pt.y + 4}" font-size="9" font-weight="900" fill="#0f172a">${zInfo.deg}°</text>
+        `;
+      });
+      svgContent += `</g>`;
+
+      // Center Astrodox Badge
+      svgContent += `
+        <circle cx="${cx}" cy="${cy}" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+        <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="8" font-weight="900" fill="#dc2626">ASTRODOX</text>
+        <text x="${cx}" y="${cy + 8}" text-anchor="middle" font-size="7" font-weight="bold" fill="#64748b">24H LIVE</text>
+      `;
+
+      svg.innerHTML = svgContent;
+
+      // 7. UPDATE TRANSIT DATA PANEL
+      const sunFmt = formatZodiac(astro.sun);
+      const moonFmt = formatZodiac(astro.moon);
+      const marsFmt = formatZodiac(astro.mars);
+      const mercFmt = formatZodiac(astro.mercury);
+      const venFmt = formatZodiac(astro.venus);
+      const jupFmt = formatZodiac(astro.jupiter);
+      const ascFmt = formatZodiac(astro.asc);
+      const mcFmt = formatZodiac(astro.mc);
+
+      document.getElementById('degSun').innerText = sunFmt.text;
+      document.getElementById('degMoon').innerText = moonFmt.text;
+      document.getElementById('degMars').innerText = marsFmt.text;
+      document.getElementById('degMerc').innerText = mercFmt.text;
+      document.getElementById('degVen').innerText = venFmt.text;
+      document.getElementById('degJup').innerText = jupFmt.text;
+      document.getElementById('degAsc').innerText = ascFmt.text;
+      document.getElementById('degMC').innerText = mcFmt.text;
+      document.getElementById('degHouse2').innerText = formatZodiac(astro.asc + 30).text;
+      document.getElementById('degHouse3').innerText = formatZodiac(astro.asc + 60).text;
+      document.getElementById('degIC').innerText = formatZodiac(astro.mc + 180).text;
+      document.getElementById('degDsc').innerText = formatZodiac(astro.asc + 180).text;
+
+      // Moon Phase
+      const phaseDiff = (astro.moon - astro.sun + 360) % 360;
       const moonPhaseName = document.getElementById('liveMoonPhaseName');
       const moonIllum = document.getElementById('liveMoonIllum');
       const moonIcon = document.getElementById('liveMoonIcon');
 
-      const moonAge = (astro.day + astro.month) % 29.5;
-      if (moonAge < 7.4) {
-        moonPhaseName.innerText = "Waxing Crescent";
-        moonIllum.innerText = `Moon di Sagitarius ${astro.moonDeg}° • Iluminasi ${(moonAge * 13).toFixed(1)}% • Siklus Akumulasi`;
-        moonIcon.innerHTML = "&#9789;";
-      } else if (moonAge < 14.8) {
-        moonPhaseName.innerText = "First Quarter";
-        moonIllum.innerText = `Moon di Sagitarius ${astro.moonDeg}° • Iluminasi 50.0% • Volatilitas Tinggi`;
-        moonIcon.innerHTML = "&#9680;";
-      } else if (moonAge < 22.1) {
-        moonPhaseName.innerText = "Full Moon";
-        moonIllum.innerText = `Moon di Sagitarius ${astro.moonDeg}° • Iluminasi 99.2% • Puncak Likuiditas Global`;
-        moonIcon.innerHTML = "&#9675;";
+      let pName = "Waxing Crescent";
+      let pIcon = "&#9789;";
+      const illumPct = ((1 - Math.cos(phaseDiff * Math.PI / 180)) / 2 * 100).toFixed(1);
+
+      if (phaseDiff < 45) { pName = "New Moon (Bulan Baru)"; pIcon = "&#9679;"; }
+      else if (phaseDiff < 90) { pName = "Waxing Crescent (Sabit Awal)"; pIcon = "&#9789;"; }
+      else if (phaseDiff < 135) { pName = "First Quarter (Kuartil Pertama)"; pIcon = "&#9680;"; }
+      else if (phaseDiff < 180) { pName = "Waxing Gibbous (Bulan Bungkuk)"; pIcon = "&#9675;"; }
+      else if (phaseDiff < 225) { pName = "Full Moon (Purnama Penuh)"; pIcon = "&#9675;"; }
+      else if (phaseDiff < 270) { pName = "Waning Gibbous (Bulan Susut)"; pIcon = "&#9790;"; }
+      else if (phaseDiff < 315) { pName = "Last Quarter (Kuartil Akhir)"; pIcon = "&#9681;"; }
+      else { pName = "Waning Crescent (Sabit Akhir)"; pIcon = "&#9790;"; }
+
+      moonPhaseName.innerText = pName;
+      moonIllum.innerText = `Moon di ${moonFmt.signName} ${moonFmt.deg}° • Iluminasi ${illumPct}%`;
+      moonIcon.innerHTML = pIcon;
+
+      // Confluence Narrative
+      const summaryBox = document.getElementById('liveDailyAstroSummary');
+      const aspectSM = Math.abs(astro.sun - astro.moon) % 360;
+      const distSM = aspectSM > 180 ? 360 - aspectSM : aspectSM;
+
+      let biasText = "BULLISH ACCUMULATION";
+      let narrative = "";
+
+      if ((distSM >= 112 && distSM <= 128) || (distSM >= 52 && distSM <= 68)) {
+        biasText = "BULLISH EXPANSION";
+        narrative = `Transit ${targetD.toLocaleDateString('id-ID')}: Sun (${sunFmt.deg}°) dan Moon (${moonFmt.deg}°) membentuk sudut harmonik ${distSM > 90 ? 'Trine 120°' : 'Sextile 60°'}. Mendukung akumulasi likuiditas demand institusi pada instrumen XAUUSD.`;
+      } else if (distSM >= 82 && distSM <= 98) {
+        biasText = "BEARISH REJECTION";
+        narrative = `Transit ${targetD.toLocaleDateString('id-ID')}: Sudut Square 90° (Tension) antara Sun dan Moon aktif. Menandakan tekanan distribusi likuiditas atas (sell imbalance) pada XAUUSD.`;
       } else {
-        moonPhaseName.innerText = "Waning Gibbous";
-        moonIllum.innerText = `Moon di Sagitarius ${astro.moonDeg}° • Iluminasi ${(100 - (moonAge - 22) * 12).toFixed(1)}% • Distribusi`;
-        moonIcon.innerHTML = "&#9790;";
+        const isB = (Math.floor(astro.sun) + Math.floor(astro.moon)) % 2 === 0;
+        biasText = isB ? "BULLISH EXPANSION" : "BEARISH REJECTION";
+        narrative = `Transit ${targetD.toLocaleDateString('id-ID')}: Pergeseran zodiak mengarahkan kecenderungan pasar pada fase ${biasText} terhadap likuiditas safe-haven.`;
+      }
+
+      summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${String(targetD.getHours()).padStart(2,'0')}:${String(targetD.getMinutes()).padStart(2,'0')} WIB):</strong> ${narrative}`;
+    }
+
+    // Sinkronisasi input form saat live
+    function syncControlsUI(d) {
+      const dateInp = document.getElementById('astroDate');
+      const timeInp = document.getElementById('astroTime');
+      if (dateInp) {
+        dateInp.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      }
+      if (timeInp) {
+        timeInp.value = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
+      }
+      const tag = document.getElementById('astroLiveStatusTag');
+      if (tag) {
+        tag.innerHTML = isAstroLiveMode ? '&bull; SINKRON LIVE 24H' : '&bull; MODE KUSTOM TERKUNCI';
+        tag.style.color = isAstroLiveMode ? '#22c55e' : '#f59e0b';
       }
     }
-    setInterval(updateAstrodox24H, 1000);
+
+    function onAstroDateTimeChange() {
+      const dateVal = document.getElementById('astroDate').value;
+      const timeVal = document.getElementById('astroTime').value || "12:00:00";
+      if (!dateVal) return;
+
+      const pDate = dateVal.split('-');
+      const pTime = timeVal.split(':');
+      const yr = parseInt(pDate[0]);
+      const mo = parseInt(pDate[1]) - 1;
+      const dy = parseInt(pDate[2]);
+      const hr = parseInt(pTime[0]) || 0;
+      const mn = parseInt(pTime[1]) || 0;
+      const sc = parseInt(pTime[2]) || 0;
+
+      customAstroDate = new Date(yr, mo, dy, hr, mn, sc);
+      isAstroLiveMode = false;
+
+      // Update pills
+      document.querySelectorAll('.quick-date-btn').forEach(btn => btn.classList.remove('active'));
+
+      renderDynamicAstrodox();
+      renderNewsCards(); // Update alasan news sesuai tanggal yang dipilih
+    }
+
+    function resetToLiveTime() {
+      isAstroLiveMode = true;
+      customAstroDate = new Date();
+      syncControlsUI(customAstroDate);
+      renderDynamicAstrodox();
+      renderNewsCards();
+    }
+
+    function buildAstroQuickPills() {
+      const container = document.getElementById('astroQuickPills');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const labels = [
+        { label: "HARI INI", offset: 0 },
+        { label: "BESOK", offset: 1 },
+        { label: "+2 HARI", offset: 2 },
+        { label: "+3 HARI", offset: 3 },
+        { label: "+7 HARI", offset: 7 },
+        { label: "+30 HARI", offset: 30 }
+      ];
+
+      const now = new Date();
+      labels.forEach(item => {
+        const d = new Date(now);
+        d.setDate(now.getDate() + item.offset);
+        const btn = document.createElement('button');
+        btn.className = `quick-date-btn ${item.offset === 0 ? 'active' : ''}`;
+        btn.innerText = `${item.label} (${d.getDate()} ${d.toLocaleString('id-ID', { month: 'short' })})`;
+        btn.onclick = () => {
+          document.querySelectorAll('.quick-date-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          customAstroDate = new Date(d);
+          isAstroLiveMode = (item.offset === 0);
+          syncControlsUI(customAstroDate);
+          renderDynamicAstrodox();
+          renderNewsCards();
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    // Auto-update roda Astrodox jika mode live aktif
+    setInterval(() => {
+      if (isAstroLiveMode) {
+        renderDynamicAstrodox();
+      }
+    }, 1000);
 
     // ========================================================
-    // 6. KALKULASI PIPS PRESISI REALTIME
+    // 6. KALKULASI PIPS PRESISI
     // ========================================================
     function calculatePrecisePips(item, aVal, fVal) {
       if (aVal === null || fVal === null) {
@@ -1388,12 +1573,16 @@
     }
 
     // ========================================================
-    // 7. ENGINE ANALISA & EKSEKUSI NEWS
+    // 7. ENGINE ANALISA & EKSEKUSI NEWS (TERIKAT ASTRODOX)
     // ========================================================
     function determineExecutionSignal(item, dayDateObj) {
       const curr = (item.country || item.currency || "USD").toUpperCase();
       const title = item.title.toLowerCase();
-      const astro = getAstroMetricsForDate(dayDateObj);
+      
+      const astro = getAstroEphemeris(dayDateObj, 12.0);
+      const aspectSM = Math.abs(astro.sun - astro.moon) % 360;
+      const distSM = aspectSM > 180 ? 360 - aspectSM : aspectSM;
+      const isBullishAstro = (distSM >= 110 && distSM <= 130) || (distSM >= 50 && distSM <= 70) || (astro.day % 2 === 0);
 
       const parseVal = (str) => {
         if (!str || str === "" || str === "--" || str === "Menunggu") return null;
@@ -1409,7 +1598,7 @@
 
       if (actual !== null || (isPassed && forecast !== null)) {
         if (actual === null && forecast !== null) {
-          const dev = astro.isBullish ? -0.2 : 0.3;
+          const dev = isBullishAstro ? -0.2 : 0.3;
           actual = forecast + dev;
           item.actual = actual.toFixed(1) + (item.forecast.includes('%') ? '%' : '');
         }
@@ -1421,7 +1610,7 @@
           if (actual !== null && forecast !== null) {
             usdBullish = isHigherBadForUSD ? (actual < forecast) : (actual >= forecast);
           } else {
-            usdBullish = !astro.isBullish;
+            usdBullish = !isBullishAstro;
           }
 
           if (usdBullish) {
@@ -1464,13 +1653,13 @@
 
       item.actual = "Menunggu";
       if (curr === "USD") {
-        if (astro.isBullish) {
+        if (isBullishAstro) {
           return {
             signal: "▲ STANDBY BUY XAUUSD",
             badgeClass: "signal-buy",
             wr: "ASTRODOX CONFLUENCE",
             targetStatus: "PENDING ENTRY",
-            desc: `Transit Matahari di ${astro.sunDeg}° membentuk aspek ${astro.dominant}. Struktur akumulasi mengarah pada peluang entri Buy di zona demand saat rilis ${item.title} tiba.`
+            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')}): Sudut transit planet mendukung peluang entri Buy di zona demand saat rilis ${item.title} tiba.`
           };
         } else {
           return {
@@ -1478,7 +1667,7 @@
             badgeClass: "signal-sell",
             wr: "ASTRODOX CONFLUENCE",
             targetStatus: "PENDING ENTRY",
-            desc: `Sudut tekanan Mars di ${astro.marsDeg}° membentuk konfigurasi ${astro.dominant}. Terdeteksi potensi sapuan likuiditas atas; fokus pada level supply Sell saat rilis ${item.title} tiba.`
+            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')}): Sudut tekanan planet terdeteksi membentuk potensi sapuan likuiditas atas; fokus pada level supply Sell saat rilis ${item.title} tiba.`
           };
         }
       }
@@ -1488,38 +1677,13 @@
         badgeClass: "signal-wait",
         wr: "ASTRODOX CONFLUENCE",
         targetStatus: "PENDING ENTRY",
-        desc: `Menunggu rilis ${item.title}. Konfigurasi ${astro.dominant} mengindikasikan lonjakan volatilitas aktif pada pair ${curr}USD.`
+        desc: `Menunggu rilis ${item.title}. Konfigurasi sudut zodiak mengindikasikan lonjakan volatilitas aktif pada pair ${curr}USD.`
       };
     }
 
     // ========================================================
-    // 8. SISTEM KALENDER 10 HARI & TANGGAL CUSTOM
+    // 8. KALENDER NEWS 10 HARI KE DEPAN
     // ========================================================
-    function formatDateInput(date) {
-      const y = date.getFullYear();
-      const m = String(date.getMonth() + 1).padStart(2, '0');
-      const d = String(date.getDate()).padStart(2, '0');
-      return `${y}-${m}-${d}`;
-    }
-
-    function onCustomDateSelected(dateVal) {
-      if (!dateVal) return;
-      const parts = dateVal.split('-');
-      selectedActiveDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
-      
-      // Update tab 10 hari jika ada yang cocok
-      document.querySelectorAll('.day-pill').forEach(pill => {
-        if (pill.dataset.dateString === dateVal) {
-          pill.classList.add('active');
-        } else {
-          pill.classList.remove('active');
-        }
-      });
-
-      updateAstrodox24H();
-      renderNewsCards();
-    }
-
     async function loadOfficial10DaysCalendar() {
       const endpoints = [
         'https://api.allorigins.win/get?url=' + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json') + '&timestamp=' + Date.now(),
@@ -1590,14 +1754,7 @@
         });
       }
 
-      // Set input kalender default ke hari ini
-      const datePicker = document.getElementById('customDatePicker');
-      if (datePicker) {
-        datePicker.value = formatDateInput(selectedActiveDate);
-      }
-
-      render10DaysTabs();
-      updateAstrodox24H();
+      renderNewsDaysBar();
       renderNewsCards();
     }
 
@@ -1649,25 +1806,18 @@
       }
     }
 
-    function render10DaysTabs() {
-      const bar = document.getElementById('daysFilterBar');
+    function renderNewsDaysBar() {
+      const bar = document.getElementById('newsDaysBar');
       if (!bar) return;
 
       bar.innerHTML = '';
       full10DaysNews.forEach((dayGroup, idx) => {
         const pill = document.createElement('div');
-        const dateInputStr = formatDateInput(dayGroup.targetDateObj);
         pill.className = `day-pill ${idx === 0 ? 'active' : ''}`;
-        pill.dataset.dateString = dateInputStr;
         pill.onclick = () => {
-          selectedActiveDate = dayGroup.targetDateObj;
-          document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
+          selectedNewsDate = dayGroup.targetDateObj;
+          document.querySelectorAll('#newsDaysBar .day-pill').forEach(p => p.classList.remove('active'));
           pill.classList.add('active');
-          
-          const datePicker = document.getElementById('customDatePicker');
-          if (datePicker) datePicker.value = dateInputStr;
-
-          updateAstrodox24H();
           renderNewsCards();
         };
 
@@ -1681,7 +1831,7 @@
     }
 
     // ========================================================
-    // 9. PENYIMPANAN REKAPITULASI PERMANEN (LOCALSTORAGE)
+    // 9. PENYIMPANAN REKAPITULASI PERMANEN
     // ========================================================
     const RECAP_STORAGE_KEY = "zerodiax_news_recap_history";
 
@@ -1758,14 +1908,21 @@
 
       container.innerHTML = '';
 
-      const targetD = selectedActiveDate;
+      const targetD = selectedNewsDate;
       const dateStrWIB = new Intl.DateTimeFormat('id-ID', {
         weekday: 'short', day: '2-digit', month: 'short', year: 'numeric'
       }).format(targetD);
 
-      // Cari rilis yang sesuai dengan tanggal aktif
+      const yVal = targetD.getFullYear();
+      const mVal = targetD.getMonth();
+      const dVal = targetD.getDate();
+
       let currentEvents = [];
-      const matchedGroup = full10DaysNews.find(g => formatDateInput(g.targetDateObj) === formatDateInput(targetD));
+      const matchedGroup = full10DaysNews.find(g => {
+        const dObj = g.targetDateObj;
+        return dObj.getFullYear() === yVal && dObj.getMonth() === mVal && dObj.getDate() === dVal;
+      });
+
       if (matchedGroup) {
         currentEvents = matchedGroup.events;
       } else {
@@ -1831,7 +1988,9 @@
       renderNewsCards();
     }
 
-    // Inisialisasi awal
+    // Inisialisasi awal sistem
+    buildAstroQuickPills();
+    renderDynamicAstrodox();
     renderPersistentRecapTable();
     loadOfficial10DaysCalendar();
 
@@ -1839,9 +1998,7 @@
       renderNewsCards();
     }, 1000);
 
-    // ========================================================
     // 11. LOGOUT SUPABASE
-    // ========================================================
     document.getElementById('btnLogout').addEventListener('click', async () => {
       await supabaseClient.auth.signOut();
       window.location.href = 'login.html';
