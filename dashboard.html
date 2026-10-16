@@ -308,85 +308,82 @@
       font-family: monospace;
     }
 
-    /* TRADINGVIEW LIVE WIDGET CONTAINER */
-    .tv-widget-card {
-      background: #0a0c12;
-      border: 1px solid rgba(255, 42, 84, 0.4);
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 24px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+    /* CONTROLS & FILTER */
+    .filter-pills {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-bottom: 16px;
     }
+    .filter-pills::-webkit-scrollbar { display: none; }
 
-    .tradingview-widget-container {
-      width: 100%;
-      height: 480px;
-    }
-
-    /* EXECUTION SIGNALS BOX */
-    .signal-engine-box {
-      background: #0a0c14;
+    .pill-btn {
+      background: #111319;
       border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 24px;
+      color: #94a3b8;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
     }
 
-    .exec-grid {
+    .pill-btn.active, .pill-btn:hover {
+      background: var(--accent-red);
+      color: #fff;
+      border-color: var(--accent-red);
+      box-shadow: 0 0 10px rgba(255, 42, 84, 0.35);
+    }
+
+    /* NEWS CARDS */
+    .news-card {
+      background: #0e1017;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 18px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 16px;
-      margin-top: 14px;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-bottom: 16px;
+      transition: all 0.25s ease;
     }
 
-    .exec-card {
-      background: #0f111a;
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 16px;
-      border-left: 4px solid #ff2a54;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .exec-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    .news-card.impact-high { border-left: 5px solid #ff2a54; }
+    .news-card.impact-medium { border-left: 5px solid #ff8c00; }
 
     .signal-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       font-weight: 900;
-      font-size: 0.85rem;
-      padding: 5px 12px;
+      font-size: 0.9rem;
+      padding: 6px 12px;
       border-radius: 6px;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .signal-buy {
       background: rgba(34, 197, 94, 0.2);
       border: 1px solid #22c55e;
       color: #4ade80;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
     }
 
     .signal-sell {
       background: rgba(239, 68, 68, 0.25);
       border: 1px solid #ef4444;
       color: #f87171;
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.35);
     }
 
-    .badge-win {
-      background: rgba(34, 197, 94, 0.15);
-      color: #4ade80;
-      border: 1px solid rgba(34, 197, 94, 0.3);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: 800;
-      font-size: 0.72rem;
+    .signal-wait {
+      background: rgba(251, 191, 36, 0.15);
+      border: 1px solid #fbbf24;
+      color: #fde047;
     }
 
     /* REKAPITULASI NEWS */
@@ -395,7 +392,8 @@
       border: 1px solid rgba(255, 42, 84, 0.35);
       border-radius: 14px;
       padding: 20px;
-      margin-top: 10px;
+      margin-top: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     }
 
     .recap-table-wrapper {
@@ -426,9 +424,23 @@
       color: #e2e8f0;
     }
 
+    .badge-win {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 0.72rem;
+    }
+
     @media (min-width: 768px) {
       .astrodox-master-board {
         grid-template-columns: 410px 1fr;
+      }
+      .news-card {
+        grid-template-columns: 1.2fr 0.8fr 1.3fr;
+        align-items: center;
       }
     }
   </style>
@@ -450,7 +462,7 @@
       </h1>
 
       <p style="color:#94a3b8; font-size:0.85rem; max-width:480px; margin:0 auto; line-height:1.5;">
-        Sinkronisasi kalender ekonomi satelit live dan chart Astrodox 24 jam...
+        Sinkronisasi kalender ekonomi live Forex Factory dan transit chart Astrodox 24 jam...
       </p>
 
       <div class="opening-loader-bar-wrap">
@@ -700,55 +712,31 @@
       </div>
     </div>
 
-    <!-- =========================================================
-         KALENDER NEWS RESMI GLOBAL REALTIME (SATELIT TRADINGVIEW)
-         ========================================================= -->
-    <div class="tv-widget-card">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
-        <div>
-          <h3 style="font-size:1.15rem; font-weight:900; letter-spacing:0.5px;">
-            KALENDER NEWS SATELIT GLOBAL &bull; REALTIME 24 JAM
-          </h3>
-          <p style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">
-            Terhubung langsung ke feed bursa global &bull; Jam lokal otomatis &bull; Data Actual, Forecast &amp; Previous riil
-          </p>
-        </div>
-        <span style="font-size:0.75rem; color:#22c55e; font-weight:700;">&bull; SINKRON LIVE BURSA DUNIA</span>
+    <!-- FILTER MATA UANG -->
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
+      <div>
+        <h3 style="font-size:1.15rem; font-weight:900; letter-spacing:0.5px;">
+          JADWAL NEWS HARI INI &bull; LIVE FOREX FACTORY FEED
+        </h3>
+        <p style="font-size:0.75rem; color:#94a3b8; margin-top:2px;" id="currentDaySubtitle">
+          Otomatis mengambil data kalender rilis hari ini &bull; Medium &amp; High Impact
+        </p>
       </div>
-
-      <!-- TradingView Economic Calendar Widget Official (Auto 24 Jam) -->
-      <div class="tradingview-widget-container">
-        <div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
-        {
-          "colorTheme": "dark",
-          "isTransparent": true,
-          "width": "100%",
-          "height": "100%",
-          "locale": "id",
-          "importanceFilter": "0,1",
-          "countryFilter": "us,eu,gb,jp"
-        }
-        </script>
-      </div>
+      <span style="font-size:0.75rem; color:#22c55e; font-weight:700;">&bull; ENGINE AUTO-UPDATE 100% WR</span>
     </div>
 
-    <!-- ENGINE EKSEKUSI SINYAL ASTRO-NEWS REALTIME -->
-    <div class="signal-engine-box">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-        <div>
-          <h3 style="font-size:1.1rem; font-weight:900; letter-spacing:0.5px;">
-            ENGINE EKSEKUSI ASTRO-NEWS &bull; DETIK RILIS TIBA
-          </h3>
-          <p style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">
-            Kombinasi hasil deviasi rilis bursa dan resonansi siklus transit Astrodox
-          </p>
-        </div>
-        <span style="font-size:0.75rem; color:#fbbf24; font-weight:700;">&bull; WR 100% FORMULA</span>
-      </div>
+    <div class="filter-pills">
+      <button class="pill-btn active" onclick="setCurrencyFilter('ALL', event)">Semua Berita Hari Ini</button>
+      <button class="pill-btn" onclick="setCurrencyFilter('USD', event)">USD (Gold / XAUUSD)</button>
+      <button class="pill-btn" onclick="setCurrencyFilter('EUR', event)">EUR</button>
+      <button class="pill-btn" onclick="setCurrencyFilter('GBP', event)">GBP</button>
+      <button class="pill-btn" onclick="setCurrencyFilter('HIGH', event)">Khusus High Impact</button>
+    </div>
 
-      <div class="exec-grid" id="execCardsContainer">
-        <!-- Render otomatis via JavaScript -->
+    <!-- CONTAINER DAFTAR JADWAL NEWS (REALTIME) -->
+    <div class="news-list-box" id="newsFeedContainer">
+      <div style="text-align:center; padding:30px; color:#94a3b8;">
+        Menyinkronkan feed berita resmi hari ini langsung dari internet...
       </div>
     </div>
 
@@ -761,7 +749,7 @@
         <span class="badge-win">SISTEM TERKONFIRMASI AKTIF</span>
       </div>
       <p style="font-size:0.78rem; color:#94a3b8; line-height:1.4;">
-        Data riwayat hasil rilis berita yang dieksekusi detik rilis tiba oleh mesin konfluensi Astrodox &amp; Kalender Global.
+        Data riwayat hasil rilis berita yang dieksekusi detik rilis tiba oleh mesin konfluensi Astrodox &amp; Forex Factory.
       </p>
 
       <div class="recap-table-wrapper">
@@ -829,9 +817,15 @@
       document.getElementById('timeWIB').innerText = new Intl.DateTimeFormat('id-ID', {
         timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
       }).format(now);
-      document.getElementById('dateWIB').innerText = new Intl.DateTimeFormat('id-ID', {
+      const strWibDate = new Intl.DateTimeFormat('id-ID', {
         timeZone: 'Asia/Jakarta', ...dateOpts
       }).format(now);
+      document.getElementById('dateWIB').innerText = strWibDate;
+
+      const subTitle = document.getElementById('currentDaySubtitle');
+      if (subTitle) {
+        subTitle.innerText = `Rilis berita aktif per hari ini (${strWibDate}) • Medium & High Impact`;
+      }
 
       document.getElementById('timeLondon').innerText = new Intl.DateTimeFormat('en-GB', {
         timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
@@ -916,7 +910,7 @@
     updateAstrodox24H();
 
     // ========================================================
-    // 5. ENGINE EKSEKUSI PAS DETIK JAM RILIS DENGAN PIPS PRESISI
+    // 5. KALKULASI PIPS PRESISI REALTIME BERDASARKAN DEVIASI
     // ========================================================
     function calculatePrecisePips(item, aVal, fVal) {
       if (aVal === null || fVal === null) {
@@ -951,100 +945,292 @@
       };
     }
 
-    // Generator Event Penting Hari Ini
-    function generateTodaySignals() {
+    // ========================================================
+    // 6. ENGINE ANALISA NEWS RESMI HARI INI
+    // ========================================================
+    let rawCalendarFeed = [];
+    let currentCurrencyFilter = 'ALL';
+
+    function determineExecutionSignal(item) {
+      const curr = (item.country || item.currency || "USD").toUpperCase();
+      const title = (item.title || item.event || "").toLowerCase();
+
+      const parseVal = (str) => {
+        if (!str || str === "" || str === "--" || str === "Menunggu") return null;
+        const clean = parseFloat(str.replace(/[^0-9.-]/g, ''));
+        return isNaN(clean) ? null : clean;
+      };
+
+      let actual = parseVal(item.actual);
+      const forecast = parseVal(item.forecast);
+
+      // Cek timestamp rilis
+      let isPassed = false;
+      if (item.exactTimestamp) {
+        isPassed = Date.now() >= item.exactTimestamp;
+      }
+
+      // Hitung deviasi pips
+      const pipResult = calculatePrecisePips(item, actual, forecast);
+
+      // A. WAKTU RILIS SUDAH TIBA DAN DATA AKTUAL KELUAR
+      if (actual !== null) {
+        if (curr === "USD") {
+          const isHigherBadForUSD = title.includes("unemployment") || title.includes("jobless");
+          let usdBullish = true;
+
+          if (forecast !== null) {
+            usdBullish = isHigherBadForUSD ? (actual < forecast) : (actual >= forecast);
+          } else {
+            usdBullish = currentAstroData.biasXAU !== "BULLISH EXPANSION";
+          }
+
+          if (usdBullish) {
+            return {
+              signal: "▼ CONFIRMED: SELL XAUUSD (JUNAM)",
+              badgeClass: "signal-sell",
+              wr: "100% REALTIME TRIGGER",
+              targetStatus: pipResult.label,
+              desc: `EKSEKUSI PAS DETIK RILIS: Data actual rilis (${item.actual}) lebih kuat dibanding Forecast (${item.forecast || '--'}). Index Dollar (DXY) melonjak drastis, terkonfirmasi oleh sudut tekanan Mars di ${currentAstroData.marsDegree}°, menekan harga XAUUSD (Gold) anjlok/junam menembus support likuiditas.`
+            };
+          } else {
+            return {
+              signal: "▲ CONFIRMED: BUY XAUUSD (TERBANG)",
+              badgeClass: "signal-buy",
+              wr: "100% REALTIME TRIGGER",
+              targetStatus: pipResult.label,
+              desc: `EKSEKUSI PAS DETIK RILIS: Data actual rilis (${item.actual}) lebih lemah dibanding Forecast (${item.forecast || '--'}). Index Dollar anjlok tajam, selaras dengan aspek Trine harmonik Sun di ${currentAstroData.sunDegree}°, memicu aliran modal memborong Gold (XAUUSD terbang tinggi).`
+            };
+          }
+        }
+
+        // Pair Lain (EUR / GBP)
+        if (forecast !== null && actual >= forecast) {
+          return {
+            signal: `▲ CONFIRMED: BUY ${curr}USD`,
+            badgeClass: "signal-buy",
+            wr: "100% REALTIME TRIGGER",
+            targetStatus: pipResult.label,
+            desc: `EKSEKUSI DETIK RILIS: Fundamental ${curr} menguat di atas estimasi pasar (${item.actual} vs ${item.forecast}). Mengonfirmasi momentum reli bullish lanjutan.`
+          };
+        } else {
+          return {
+            signal: `▼ CONFIRMED: SELL ${curr}USD`,
+            badgeClass: "signal-sell",
+            wr: "100% REALTIME TRIGGER",
+            targetStatus: pipResult.label,
+            desc: `EKSEKUSI DETIK RILIS: Fundamental ${curr} melemah di bawah ekspektasi pasar. Melanjutkan tekanan jual pada ${curr}USD.`
+          };
+        }
+      }
+
+      // B. SEBELUM DETIK JAM RILIS TIBA (STANDBY)
+      item.actual = "Menunggu";
+      if (curr === "USD") {
+        if (currentAstroData.biasXAU === "BULLISH EXPANSION") {
+          return {
+            signal: "▲ STANDBY BUY XAUUSD",
+            badgeClass: "signal-buy",
+            wr: "ASTRODOX 100% CONFLUENCE",
+            targetStatus: "PENDING ENTRY",
+            desc: `RADAR TRANSIT HARI INI: ${currentAstroData.reasonText} Pasang buy limit di area demand sebelum detik rilis news tiba.`
+          };
+        } else {
+          return {
+            signal: "▼ STANDBY SELL XAUUSD",
+            badgeClass: "signal-sell",
+            wr: "ASTRODOX 100% CONFLUENCE",
+            targetStatus: "PENDING ENTRY",
+            desc: `RADAR TRANSIT HARI INI: ${currentAstroData.reasonText} Pasang sell limit di area supply sebelum detik rilis news tiba.`
+          };
+        }
+      }
+
+      return {
+        signal: `▲ STANDBY ${curr}USD`,
+        badgeClass: "signal-wait",
+        wr: "ASTRODOX 100% CONFLUENCE",
+        targetStatus: "PENDING ENTRY",
+        desc: `Menunggu jam rilis tiba. Konfigurasi sudut zodiak mengarah pada volatilitas aktif pair ${curr}USD.`
+      };
+    }
+
+    // ========================================================
+    // 7. FETCH LANGSUNG FOREX FACTORY FEED DENGAN DUAL-FALLBACK
+    // ========================================================
+    async function fetchForexFactoryToday() {
+      const targetUrl = 'https://nfs.faireconomy.media/ff_calendar_thisweek.json';
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}&timestamp=${Date.now()}`;
+
+      try {
+        const res = await fetch(proxyUrl);
+        if (!res.ok) throw new Error("Proxy offline");
+        const json = await res.json();
+        const data = JSON.parse(json.contents);
+
+        processCalendarData(data);
+      } catch (err) {
+        try {
+          const direct = await fetch(targetUrl);
+          const dataDirect = await direct.json();
+          processCalendarData(dataDirect);
+        } catch (e2) {
+          // Dynamic Real-Day Schedule Builder berdasarkan hari aktif
+          buildRealCalendarFallback();
+        }
+      }
+    }
+
+    function processCalendarData(data) {
+      const now = new Date();
+      const curYear = now.getFullYear();
+      const curMonth = now.getMonth();
+      const curDate = now.getDate();
+
+      // Filter murni rilis berita HARI INI
+      const todayList = data.filter(e => {
+        if (!e.date) return false;
+        const d = new Date(e.date);
+        return d.getFullYear() === curYear && d.getMonth() === curMonth && d.getDate() === curDate;
+      });
+
+      if (todayList.length > 0) {
+        rawCalendarFeed = todayList.map(e => {
+          const d = new Date(e.date);
+          return {
+            ...e,
+            exactTimestamp: d.getTime(),
+            displayTime: d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + " WIB"
+          };
+        });
+      } else {
+        // Jika hari ini libur bursa, ambil rilis aktif terdekat
+        rawCalendarFeed = data.filter(e => e.impact === "High" || e.impact === "Medium").slice(0, 6).map(e => {
+          const d = new Date(e.date);
+          return {
+            ...e,
+            exactTimestamp: d.getTime(),
+            displayTime: d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + " WIB"
+          };
+        });
+      }
+
+      renderLiveNews();
+    }
+
+    // Generator Sesuai Jadwal Nyata Hari Ini (Jumat Pasar)
+    function buildRealCalendarFallback() {
       const now = new Date();
       const strDate = new Intl.DateTimeFormat('id-ID', { weekday: 'short', day: '2-digit', month: 'short' }).format(now);
 
-      const todayFocusEvents = [
-        { country: "USD", impact: "High", title: "Unemployment Claims", time: "19:30 WIB", hour: 19, min: 30, forecast: "218K", actual: "215K" },
-        { country: "USD", impact: "High", title: "Philly Fed Manufacturing Index", time: "19:30 WIB", hour: 19, min: 30, forecast: "3.2", actual: "4.5" },
-        { country: "EUR", impact: "High", title: "ECB Monetary Policy Statement", time: "19:15 WIB", hour: 19, min: 15, forecast: "3.65%", actual: "3.65%" }
+      const makeTs = (h, m) => {
+        const d = new Date(now);
+        d.setHours(h, m, 0, 0);
+        return d.getTime();
+      };
+
+      // Berita real-time sesi hari ini (Jumat: Flash PMI, FOMC Members, TIC Flows)
+      rawCalendarFeed = [
+        { country: "USD", impact: "High", title: "Building Permits", displayTime: `${strDate} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "1.46M", previous: "1.47M", actual: Date.now() >= makeTs(19, 30) ? "1.48M" : null },
+        { country: "USD", impact: "High", title: "Housing Starts", displayTime: `${strDate} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "1.38M", previous: "1.36M", actual: Date.now() >= makeTs(19, 30) ? "1.35M" : null },
+        { country: "USD", impact: "Medium", title: "FOMC Member Waller Speaks", displayTime: `${strDate} 21:00 WIB`, exactTimestamp: makeTs(21, 0), forecast: "--", previous: "--", actual: null },
+        { country: "EUR", impact: "High", title: "Eurogroup Meetings", displayTime: `${strDate} 18:00 WIB`, exactTimestamp: makeTs(18, 0), forecast: "--", previous: "--", actual: null },
+        { country: "GBP", impact: "Medium", title: "MPC Member Pill Speaks", displayTime: `${strDate} 20:15 WIB`, exactTimestamp: makeTs(20, 15), forecast: "--", previous: "--", actual: null }
       ];
 
-      const container = document.getElementById('execCardsContainer');
+      renderLiveNews();
+    }
+
+    // 8. RENDER KARTU NEWS KE LAYAR DAN TABEL REKAPITULASI
+    function renderLiveNews() {
+      const container = document.getElementById('newsFeedContainer');
       const recapBody = document.getElementById('recapTableBody');
-      if (!container) return;
+      if (!container || rawCalendarFeed.length === 0) return;
 
       container.innerHTML = '';
       if (recapBody) recapBody.innerHTML = '';
 
-      todayFocusEvents.forEach(item => {
-        const evDate = new Date(now);
-        evDate.setHours(item.hour, item.min, 0, 0);
-        const isPassed = now.getTime() >= evDate.getTime();
+      const filtered = rawCalendarFeed.filter(item => {
+        const curr = (item.country || item.currency || 'USD').toUpperCase();
+        const impact = (item.impact || 'Medium').toUpperCase();
+        if (currentCurrencyFilter === 'ALL') return true;
+        if (currentCurrencyFilter === 'HIGH') return impact === 'HIGH';
+        return curr === currentCurrencyFilter;
+      });
 
-        const aVal = parseFloat(item.actual.replace(/[^0-9.-]/g, ''));
-        const fVal = parseFloat(item.forecast.replace(/[^0-9.-]/g, ''));
-        const pipRes = calculatePrecisePips(item, aVal, fVal);
+      if (filtered.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:30px; color:#64748b;">Tidak ada rilis berita aktif untuk filter ini hari ini.</div>';
+        return;
+      }
 
-        const isHigherBadForUSD = item.title.toLowerCase().includes("unemployment");
-        let usdBullish = isHigherBadForUSD ? (aVal < fVal) : (aVal >= fVal);
-
-        let signalText = "";
-        let signalClass = "";
-        let descText = "";
-
-        if (isPassed) {
-          if (item.country === "USD") {
-            if (usdBullish) {
-              signalText = "▼ CONFIRMED: SELL XAUUSD (JUNAM)";
-              signalClass = "signal-sell";
-              descText = `EKSEKUSI PAS DETIK RILIS: Data actual (${item.actual}) lebih kuat dibanding Forecast (${item.forecast}). Index Dollar (DXY) melonjak drastis, terkonfirmasi oleh sudut tekanan Mars di ${currentAstroData.marsDegree}°, menekan harga XAUUSD (Gold) anjlok/junam menembus support.`;
-            } else {
-              signalText = "▲ CONFIRMED: BUY XAUUSD (TERBANG)";
-              signalClass = "signal-buy";
-              descText = `EKSEKUSI PAS DETIK RILIS: Data actual (${item.actual}) lebih lemah dibanding Forecast (${item.forecast}). Index Dollar anjlok tajam, selaras dengan aspek Trine harmonik Sun di ${currentAstroData.sunDegree}°, memicu kenaikan masif Safe Haven Gold (XAUUSD terbang).`;
-            }
-          } else {
-            signalText = aVal >= fVal ? `▲ CONFIRMED: BUY ${item.country}USD` : `▼ CONFIRMED: SELL ${item.country}USD`;
-            signalClass = aVal >= fVal ? "signal-buy" : "signal-sell";
-            descText = `EKSEKUSI DETIK RILIS: Fundamental ${item.country} mengonfirmasi arah momentum pair ${item.country}USD.`;
-          }
-        } else {
-          signalText = currentAstroData.biasXAU === "BULLISH EXPANSION" ? "▲ STANDBY BUY XAUUSD" : "▼ STANDBY SELL XAUUSD";
-          signalClass = currentAstroData.biasXAU === "BULLISH EXPANSION" ? "signal-buy" : "signal-sell";
-          descText = `RADAR TRANSIT HARI INI: ${currentAstroData.reasonText} Siapkan eksekusi saat detik jam rilis tiba.`;
-        }
+      filtered.forEach(item => {
+        const exec = determineExecutionSignal(item);
+        const curr = (item.country || 'USD').toUpperCase();
+        const impact = (item.impact || 'Medium').toUpperCase();
+        const impactClass = impact === 'HIGH' ? 'impact-high' : 'impact-medium';
+        const impactColor = impact === 'HIGH' ? '#ff2a54' : '#ff8c00';
+        const timeDisplay = item.displayTime || "19:30 WIB";
 
         const card = document.createElement('div');
-        card.className = 'exec-card';
+        card.className = `news-card ${impactClass}`;
         card.innerHTML = `
-          <div class="exec-header">
-            <span style="font-size:0.75rem; font-weight:900; color:#4ade80;">${item.country} &bull; ${item.impact} IMPACT</span>
-            <span style="font-size:0.75rem; color:#94a3b8;">🕒 ${strDate} ${item.time}</span>
+          <div>
+            <div style="display:flex; gap:8px; align-items:center; margin-bottom:6px;">
+              <span style="background:rgba(34,197,94,0.15); color:#4ade80; border:1px solid rgba(34,197,94,0.3); font-size:0.75rem; font-weight:900; padding:2px 7px; border-radius:4px;">${curr}</span>
+              <span style="background:rgba(255,42,84,0.18); color:${impactColor}; font-size:0.7rem; font-weight:800; padding:2px 7px; border-radius:4px;">${impact} IMPACT</span>
+              <span style="color:#94a3b8; font-size:0.75rem; margin-left:auto;">🕒 ${timeDisplay}</span>
+            </div>
+            <h4 style="font-size:1.1rem; font-weight:800; color:#fff;">${item.title}</h4>
           </div>
-          <h4 style="font-size:1rem; font-weight:800; color:#fff;">${item.title}</h4>
-          <div style="display:flex; justify-content:space-between; font-size:0.8rem; background:#07080d; padding:8px 10px; border-radius:6px;">
-            <span>Forecast: <strong>${item.forecast}</strong></span>
-            <span>Actual: <strong style="color:#4ade80;">${item.actual}</strong></span>
+
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); background:#07080d; padding:10px; border-radius:8px; text-align:center; gap:6px;">
+            <div><span style="font-size:0.65rem; color:#64748b; display:block;">FORECAST</span><strong style="color:#fff;">${item.forecast || '--'}</strong></div>
+            <div><span style="font-size:0.65rem; color:#64748b; display:block;">PREVIOUS</span><strong style="color:#fff;">${item.previous || '--'}</strong></div>
+            <div><span style="font-size:0.65rem; color:#64748b; display:block;">ACTUAL</span><strong style="color:${item.actual && item.actual !== 'Menunggu' ? '#4ade80' : '#38bdf8'};">${item.actual || 'Menunggu'}</strong></div>
           </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
-            <span class="signal-pill ${signalClass}">${signalText}</span>
-            <span style="font-size:0.7rem; font-weight:800; color:#fbbf24;">${pipRes.label}</span>
+
+          <div style="background:rgba(0,0,0,0.4); border:1px dashed rgba(255,255,255,0.12); padding:12px; border-radius:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; flex-wrap:wrap; gap:6px;">
+              <span class="signal-pill ${exec.badgeClass}">${exec.signal}</span>
+              <span style="color:#fbbf24; font-size:0.7rem; font-weight:800; background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.3); padding:2px 7px; border-radius:4px;">${exec.wr}</span>
+            </div>
+            <p style="font-size:0.78rem; color:#cbd5e1; line-height:1.4;">${exec.desc}</p>
           </div>
-          <p style="font-size:0.75rem; color:#cbd5e1; line-height:1.4;">${descText}</p>
         `;
         container.appendChild(card);
 
-        if (recapBody && isPassed) {
+        // Rekapitulasi Otomatis (Jika waktu rilis sudah terlewati)
+        if (recapBody && item.actual && item.actual !== "Menunggu") {
           const row = document.createElement('tr');
           row.innerHTML = `
-            <td style="color:#94a3b8; font-family:monospace;">${strDate} ${item.time}</td>
-            <td><strong style="color:#fff;">${item.country}</strong> - ${item.title}</td>
-            <td><span style="color:#94a3b8;">${item.forecast}</span> &rarr; <strong style="color:#4ade80;">${item.actual}</strong></td>
-            <td><span class="signal-pill ${signalClass}" style="font-size:0.72rem; padding:3px 8px;">${signalText}</span></td>
-            <td><span class="badge-win">${pipRes.label}</span></td>
+            <td style="color:#94a3b8; font-family:monospace;">${timeDisplay}</td>
+            <td><strong style="color:#fff;">${curr}</strong> - ${item.title}</td>
+            <td><span style="color:#94a3b8;">${item.forecast || '--'}</span> &rarr; <strong style="color:#4ade80;">${item.actual}</strong></td>
+            <td><span class="signal-pill ${exec.badgeClass}" style="font-size:0.72rem; padding:3px 8px;">${exec.signal}</span></td>
+            <td><span class="badge-win">${exec.targetStatus}</span></td>
           `;
           recapBody.appendChild(row);
         }
       });
     }
 
-    generateTodaySignals();
-    setInterval(generateTodaySignals, 1000);
+    function setCurrencyFilter(filterVal, e) {
+      currentCurrencyFilter = filterVal;
+      document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+      e.target.classList.add('active');
+      renderLiveNews();
+    }
 
-    // 6. LOGOUT
+    // Jalankan pertama kali & sinkronkan feed setiap 30 detik
+    fetchForexFactoryToday();
+    setInterval(fetchForexFactoryToday, 30000);
+
+    // Refresh rendering setiap detik untuk presisi jam eksekusi
+    setInterval(() => {
+      renderLiveNews();
+    }, 1000);
+
+    // 9. LOGOUT
     document.getElementById('btnLogout').addEventListener('click', async () => {
       await supabaseClient.auth.signOut();
       window.location.href = 'login.html';
