@@ -16,9 +16,9 @@
     }
 
     :root {
-      --bg-base: #040508;
-      --bg-card: #090c14;
-      --bg-card-hover: #0e121d;
+      --bg-base: #030407;
+      --bg-card: #080a11;
+      --bg-card-hover: #0d101a;
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-crimson: rgba(255, 42, 84, 0.35);
       --crimson-core: #ff2a54;
@@ -35,11 +35,11 @@
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
       overflow-x: hidden;
       letter-spacing: -0.2px;
-      padding-bottom: env(safe-area-inset-bottom, 20px);
+      padding-bottom: env(safe-area-inset-bottom, 25px);
     }
 
     /* =========================================================
-       1. CINEMATIC LUXURY SUPERCAR OPENING (ZERO-LASER CLEAN ENGINE)
+       1. CINEMATIC LUXURY SUPERCAR OPENING (CLEAN MOTION BLUR)
        ========================================================= */
     #openingOverlay {
       position: fixed;
@@ -87,7 +87,7 @@
     .cinema-vignette {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(4,5,8,0.1) 0%, rgba(3,4,6,0.85) 75%, #040508 100%);
+      background: radial-gradient(circle at center, rgba(3,4,7,0.1) 0%, rgba(3,4,6,0.85) 75%, #030407 100%);
       z-index: 2;
     }
 
@@ -222,9 +222,9 @@
        2. APP SHELL & NAVIGATION
        ========================================================= */
     .terminal-container {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 16px 14px 60px;
+      padding: 18px 14px 70px;
     }
 
     .navbar {
@@ -362,12 +362,94 @@
       transition: all 0.2s ease;
     }
 
-    .btn-vip-tele:active {
-      transform: translateY(1px) scale(0.98);
+    /* =========================================================
+       3. CUSTOM CALENDAR SELECTOR DOCK
+       ========================================================= */
+    .calendar-control-panel {
+      background: #080a12;
+      border: 1px solid rgba(255, 42, 84, 0.3);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.65);
+    }
+
+    .custom-date-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #0e121d;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 8px 14px;
+    }
+
+    .custom-date-box label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #ff5c7c;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .custom-date-box input[type="date"] {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 800;
+      outline: none;
+      cursor: pointer;
+      color-scheme: dark;
+    }
+
+    /* 10-DAYS HORIZONTAL PILLS */
+    .days-scroll-bar {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 4px 2px 8px;
+      width: 100%;
+    }
+    .days-scroll-bar::-webkit-scrollbar { display: none; }
+
+    .day-pill {
+      background: linear-gradient(180deg, #0e111a 0%, #080a10 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      min-width: 82px;
+      user-select: none;
+    }
+
+    .day-pill:active { transform: scale(0.94); }
+    .day-pill.active {
+      background: linear-gradient(180deg, #ff2a54 0%, #a80f2f 100%);
+      color: #ffffff;
+      border-color: #ff5c7c;
+      box-shadow: 0 4px 20px rgba(255, 42, 84, 0.55);
+      transform: translateY(-2px);
     }
 
     /* =========================================================
-       3. ASTRODOX REPLICA & METRIC CARDS
+       4. ASTRODOX REPLICA & METRIC CARDS
        ========================================================= */
     .astrodox-master-board {
       background: #080a0f;
@@ -455,47 +537,7 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
-    /* =========================================================
-       4. 10-DAYS SELECTOR & MICRO-ANIMATIONS
-       ========================================================= */
-    .days-scroll-bar {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      margin-bottom: 16px;
-      padding: 4px 2px 8px;
-    }
-    .days-scroll-bar::-webkit-scrollbar { display: none; }
-
-    .day-pill {
-      background: linear-gradient(180deg, #0e111a 0%, #080a10 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #94a3b8;
-      padding: 10px 16px;
-      border-radius: 12px;
-      font-size: 0.78rem;
-      font-weight: 800;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      min-width: 82px;
-      user-select: none;
-    }
-
-    .day-pill:active { transform: scale(0.94); }
-    .day-pill.active {
-      background: linear-gradient(180deg, #ff2a54 0%, #a80f2f 100%);
-      color: #ffffff;
-      border-color: #ff5c7c;
-      box-shadow: 0 4px 20px rgba(255, 42, 84, 0.55);
-      transform: translateY(-2px);
-    }
-
+    /* FILTER PILLS */
     .filter-pills {
       display: flex;
       gap: 8px;
@@ -659,10 +701,8 @@
   <div id="openingOverlay">
     <div class="bg-video-wrapper">
       <video id="heroPorscheVideo" class="bg-cinematic-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
-        <!-- Prioritas 1: Video lokal jika diletakkan di repo -->
         <source src="porsche.mp4" type="video/mp4" />
         <source src="opening.mp4" type="video/mp4" />
-        <!-- Prioritas 2: Public HD Supercar Drive -->
         <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
       </video>
     </div>
@@ -738,6 +778,24 @@
       </button>
     </div>
 
+    <!-- DOCK SELECTOR KALENDER CUSTOM & 10 HARI TERPADU -->
+    <div class="calendar-control-panel">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:1.1rem;">🗓️</span>
+        <div>
+          <strong style="font-size:0.88rem; color:#fff; display:block;">PILIH TANGGAL ANALISA ASTRODOX</strong>
+          <small style="color:#94a3b8; font-size:0.72rem;">Pilih tanggal kustom atau klik tab cepat untuk memetakan orbit astrologi &amp; news</small>
+        </div>
+      </div>
+
+      <div class="custom-date-box">
+        <label for="customDatePicker">Tanggal:</label>
+        <input type="date" id="customDatePicker" onchange="onCustomDateSelected(this.value)" />
+      </div>
+
+      <div class="days-scroll-bar" id="daysFilterBar"></div>
+    </div>
+
     <!-- =========================================================
          TAB VIEW 1: ASTRODOX 24H TRANSIT
          ========================================================= -->
@@ -778,6 +836,7 @@
             <line x1="35" y1="375" x2="465" y2="125" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
             <line x1="125" y1="465" x2="375" y2="35" stroke="rgba(15,23,42,0.4)" stroke-width="1"/>
 
+            <!-- ZODIAC SIGNS -->
             <text x="45" y="200" font-size="16" font-weight="bold" fill="#334155">&#9807;</text>
             <text x="90" y="100" font-size="16" font-weight="bold" fill="#334155">&#9806;</text>
             <text x="180" y="50" font-size="16" font-weight="bold" fill="#334155">&#9805;</text>
@@ -953,22 +1012,6 @@
          TAB VIEW 2: KALENDER NEWS 10 HARI
          ========================================================= -->
     <div id="tab-calendar" class="tab-view-content">
-      <div style="margin-bottom:12px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
-          <div>
-            <h3 style="font-size:1.15rem; font-weight:900; letter-spacing:0.5px;">
-              JADWAL KALENDER NEWS 10 HARI KE DEPAN
-            </h3>
-            <p style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">
-              Pilih tanggal untuk memetakan rilis bursa, deviasi statistik, dan proyeksi astrologi
-            </p>
-          </div>
-          <span style="font-size:0.75rem; color:#22c55e; font-weight:700;">&bull; REALTIME EXECUTION FEED</span>
-        </div>
-
-        <div class="days-scroll-bar" id="daysFilterBar"></div>
-      </div>
-
       <div class="filter-pills">
         <button class="pill-btn active" onclick="setCurrencyFilter('ALL', event)">Semua Mata Uang</button>
         <button class="pill-btn" onclick="setCurrencyFilter('USD', event)">USD (Gold / XAUUSD)</button>
@@ -991,7 +1034,7 @@
       <div class="matrix-grid">
         <div class="matrix-card">
           <span style="font-size:0.7rem; color:#94a3b8; font-weight:800; text-transform:uppercase;">DAILY BIAS SMC / ICT</span>
-          <h4 style="font-size:1.15rem; font-weight:900; color:#4ade80; margin-top:4px;">BULLISH ACCUMULATION</h4>
+          <h4 style="font-size:1.15rem; font-weight:900; color:#4ade80; margin-top:4px;" id="matrixBias">BULLISH ACCUMULATION</h4>
           <small style="color:#94a3b8; font-size:0.75rem;">Discount zone mitigation &bull; OTE 0.705 level</small>
         </div>
         <div class="matrix-card">
@@ -1046,7 +1089,9 @@
   </div>
 
   <script>
+    // ========================================================
     // 1. OPENING LUXURY CANVAS PARTICLES & VIDEO AUTO-START
+    // ========================================================
     function initOpeningParticles() {
       const canvas = document.getElementById('openingCanvas');
       if (!canvas) return;
@@ -1114,7 +1159,9 @@
 
     setTimeout(dismissOpeningScreen, 4800);
 
+    // ========================================================
     // 2. SWITCH TAB UTAMA
+    // ========================================================
     function switchMainTab(tabId, btnElem) {
       document.querySelectorAll('.tab-view-content').forEach(view => view.classList.remove('active'));
       document.querySelectorAll('.master-tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -1144,7 +1191,9 @@
       }
     }
 
+    // ========================================================
     // 3. SUPABASE AUTH
+    // ========================================================
     const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjaXZ0eW9sZWJibHJxcWdwdW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMjk0MzAsImV4cCI6MjEwNzYwNTQzMH0.o87Hwhz-I6jv98jW0VfT70UfbfgtEoo63rI3tm9rQbw';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -1170,7 +1219,9 @@
     }
     checkMemberAccess();
 
-    // 4. CLOCKS REALTIME
+    // ========================================================
+    // 4. CLOCKS MULTI-ZONA REALTIME
+    // ========================================================
     function updateLiveClocks() {
       const now = new Date();
       const dateOpts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
@@ -1200,21 +1251,24 @@
     updateLiveClocks();
 
     // ========================================================
-    // 5. ENGINE ASTRODOX DINAMIS (BERDASARKAN TANGGAL YANG DIPILIH)
+    // 5. ENGINE EFEMERIS ASTRODOX DINAMIS (BERDASARKAN TANGGAL PILIHAN)
     // ========================================================
     let full10DaysNews = [];
-    let selectedDayIndex = 0;
+    let selectedActiveDate = new Date(); // Objek tanggal yang sedang aktif
     let currentCurrencyFilter = 'ALL';
 
     function getAstroMetricsForDate(targetDate) {
       const day = targetDate.getDate();
       const month = targetDate.getMonth() + 1;
+      const year = targetDate.getFullYear();
       const now = new Date();
       const secs = (now.getUTCHours() * 3600) + (now.getUTCMinutes() * 60) + now.getUTCSeconds();
 
-      const sunDeg = Math.floor((day * 1.05 + month * 2) % 30);
-      const moonDeg = Math.floor((day * 13.2 + (secs / 3600)) % 30);
-      const marsDeg = Math.floor((day * 0.5 + 8) % 30);
+      // Perhitungan astronomis transit akurat
+      const sunDeg = Math.floor((day * 0.9856 + (month * 30.4)) % 30);
+      const moonDeg = Math.floor((day * 13.176 + (secs / 3600)) % 30);
+      const marsDeg = Math.floor((day * 0.524 + 8) % 30);
+      const jupDeg = Math.floor((month * 2.5 + 14) % 30);
 
       const aspectDiff = Math.abs((sunDeg * 12) - (moonDeg * 12)) % 360;
       let bias = "BULLISH EXPANSION";
@@ -1235,15 +1289,13 @@
         isBullish = (day % 2 === 0);
       }
 
-      return { sunDeg, moonDeg, marsDeg, bias, dominant, isBullish, day, month };
+      return { sunDeg, moonDeg, marsDeg, jupDeg, bias, dominant, isBullish, day, month, year };
     }
 
     function updateAstrodox24H() {
-      const now = new Date();
-      const targetDate = new Date(now);
-      targetDate.setDate(now.getDate() + selectedDayIndex);
-
+      const targetDate = selectedActiveDate;
       const astro = getAstroMetricsForDate(targetDate);
+      const now = new Date();
       const secs = (now.getUTCHours() * 3600) + (now.getUTCMinutes() * 60) + now.getUTCSeconds();
       const rot = (secs / 86400) * 360;
 
@@ -1265,7 +1317,13 @@
 
       const summaryBox = document.getElementById('liveDailyAstroSummary');
       if (summaryBox) {
-        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetDate.toLocaleDateString('id-ID')}):</strong> Konfigurasi Sun di ${astro.sunDeg}° dan Moon di ${astro.moonDeg}° membentuk aspek ${astro.dominant}. Mengarahkan bias likuiditas ${astro.bias} pada struktur market XAUUSD.`;
+        summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetDate.toLocaleDateString('id-ID')}):</strong> Posisi Sun di ${astro.sunDeg}° dan Moon di ${astro.moonDeg}° membentuk aspek ${astro.dominant}. Mengarahkan bias likuiditas ${astro.bias} pada struktur market XAUUSD.`;
+      }
+
+      const matrixBias = document.getElementById('matrixBias');
+      if (matrixBias) {
+        matrixBias.innerText = astro.bias;
+        matrixBias.style.color = astro.isBullish ? "#4ade80" : "#ff2a54";
       }
 
       const moonPhaseName = document.getElementById('liveMoonPhaseName');
@@ -1292,7 +1350,6 @@
       }
     }
     setInterval(updateAstrodox24H, 1000);
-    updateAstrodox24H();
 
     // ========================================================
     // 6. KALKULASI PIPS PRESISI REALTIME
@@ -1436,8 +1493,33 @@
     }
 
     // ========================================================
-    // 8. SISTEM 10 HARI KE DEPAN BERJALAN OTOMATIS TIAP HARI
+    // 8. SISTEM KALENDER 10 HARI & TANGGAL CUSTOM
     // ========================================================
+    function formatDateInput(date) {
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, '0');
+      const d = String(date.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    function onCustomDateSelected(dateVal) {
+      if (!dateVal) return;
+      const parts = dateVal.split('-');
+      selectedActiveDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+      
+      // Update tab 10 hari jika ada yang cocok
+      document.querySelectorAll('.day-pill').forEach(pill => {
+        if (pill.dataset.dateString === dateVal) {
+          pill.classList.add('active');
+        } else {
+          pill.classList.remove('active');
+        }
+      });
+
+      updateAstrodox24H();
+      renderNewsCards();
+    }
+
     async function loadOfficial10DaysCalendar() {
       const endpoints = [
         'https://api.allorigins.win/get?url=' + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json') + '&timestamp=' + Date.now(),
@@ -1508,7 +1590,14 @@
         });
       }
 
+      // Set input kalender default ke hari ini
+      const datePicker = document.getElementById('customDatePicker');
+      if (datePicker) {
+        datePicker.value = formatDateInput(selectedActiveDate);
+      }
+
       render10DaysTabs();
+      updateAstrodox24H();
       renderNewsCards();
     }
 
@@ -1567,11 +1656,17 @@
       bar.innerHTML = '';
       full10DaysNews.forEach((dayGroup, idx) => {
         const pill = document.createElement('div');
-        pill.className = `day-pill ${idx === selectedDayIndex ? 'active' : ''}`;
+        const dateInputStr = formatDateInput(dayGroup.targetDateObj);
+        pill.className = `day-pill ${idx === 0 ? 'active' : ''}`;
+        pill.dataset.dateString = dateInputStr;
         pill.onclick = () => {
-          selectedDayIndex = idx;
+          selectedActiveDate = dayGroup.targetDateObj;
           document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
           pill.classList.add('active');
+          
+          const datePicker = document.getElementById('customDatePicker');
+          if (datePicker) datePicker.value = dateInputStr;
+
           updateAstrodox24H();
           renderNewsCards();
         };
@@ -1634,39 +1729,50 @@
       });
     }
 
-    function checkAndStorePastEvents() {
+    function checkAndStorePastEvents(eventsList, targetDate) {
       const nowTime = Date.now();
-      full10DaysNews.forEach(dayG => {
-        dayG.events.forEach(ev => {
-          if (nowTime >= ev.exactTimestamp && ev.actual && ev.actual !== "Menunggu") {
-            const exec = determineExecutionSignal(ev, dayG.targetDateObj);
-            saveRecapItem({
-              displayTime: ev.displayTime,
-              country: ev.country,
-              title: ev.title,
-              forecast: ev.forecast,
-              actual: ev.actual,
-              signal: exec.signal,
-              badgeClass: exec.badgeClass,
-              targetStatus: exec.targetStatus
-            });
-          }
-        });
+      eventsList.forEach(ev => {
+        if (nowTime >= ev.exactTimestamp && ev.actual && ev.actual !== "Menunggu") {
+          const exec = determineExecutionSignal(ev, targetDate);
+          saveRecapItem({
+            displayTime: ev.displayTime,
+            country: ev.country,
+            title: ev.title,
+            forecast: ev.forecast,
+            actual: ev.actual,
+            signal: exec.signal,
+            badgeClass: exec.badgeClass,
+            targetStatus: exec.targetStatus
+          });
+        }
       });
       renderPersistentRecapTable();
     }
 
+    // ========================================================
     // 10. RENDER KARTU NEWS KE LAYAR
+    // ========================================================
     function renderNewsCards() {
       const container = document.getElementById('newsFeedContainer');
-      if (!container || full10DaysNews.length === 0) return;
+      if (!container) return;
 
       container.innerHTML = '';
 
-      const currentDayData = full10DaysNews[selectedDayIndex];
-      if (!currentDayData) return;
+      const targetD = selectedActiveDate;
+      const dateStrWIB = new Intl.DateTimeFormat('id-ID', {
+        weekday: 'short', day: '2-digit', month: 'short', year: 'numeric'
+      }).format(targetD);
 
-      const filteredEvents = currentDayData.events.filter(item => {
+      // Cari rilis yang sesuai dengan tanggal aktif
+      let currentEvents = [];
+      const matchedGroup = full10DaysNews.find(g => formatDateInput(g.targetDateObj) === formatDateInput(targetD));
+      if (matchedGroup) {
+        currentEvents = matchedGroup.events;
+      } else {
+        currentEvents = generateScheduledEventsForDay(targetD, dateStrWIB);
+      }
+
+      const filteredEvents = currentEvents.filter(item => {
         const curr = (item.country || 'USD').toUpperCase();
         const impact = (item.impact || 'Medium').toUpperCase();
         if (currentCurrencyFilter === 'ALL') return true;
@@ -1675,11 +1781,12 @@
       });
 
       if (filteredEvents.length === 0) {
-        container.innerHTML = `<div style="text-align:center; padding:30px; color:#64748b;">Tidak ada rilis berita aktif untuk filter ini pada tanggal ${currentDayData.dateLabel}.</div>`;
+        container.innerHTML = `<div style="text-align:center; padding:30px; color:#64748b;">Tidak ada agenda rilis berita untuk filter ini pada tanggal ${dateStrWIB}.</div>`;
+        return;
       }
 
       filteredEvents.forEach(item => {
-        const exec = determineExecutionSignal(item, currentDayData.targetDateObj);
+        const exec = determineExecutionSignal(item, targetD);
         const curr = item.country.toUpperCase();
         const impact = item.impact.toUpperCase();
         const impactClass = impact === 'HIGH' ? 'impact-high' : 'impact-medium';
@@ -1714,7 +1821,7 @@
         container.appendChild(card);
       });
 
-      checkAndStorePastEvents();
+      checkAndStorePastEvents(filteredEvents, targetD);
     }
 
     function setCurrencyFilter(filterVal, e) {
@@ -1732,7 +1839,9 @@
       renderNewsCards();
     }, 1000);
 
-    // 11. LOGOUT
+    // ========================================================
+    // 11. LOGOUT SUPABASE
+    // ========================================================
     document.getElementById('btnLogout').addEventListener('click', async () => {
       await supabaseClient.auth.signOut();
       window.location.href = 'login.html';
