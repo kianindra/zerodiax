@@ -207,7 +207,7 @@
 
     /* 2. APP CONTAINER & NAVBAR */
     .terminal-container {
-      max-width: 1120px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 18px 14px 70px;
     }
@@ -511,12 +511,12 @@
     .astrodox-disk-wrapper {
       position: relative;
       width: 100%;
-      max-width: 440px;
+      max-width: 480px;
       aspect-ratio: 1 / 1;
       margin: 0 auto;
       background: #ffffff;
       border-radius: 50%;
-      box-shadow: 0 0 45px rgba(0, 0, 0, 0.95), 0 0 20px rgba(255, 42, 84, 0.35);
+      box-shadow: 0 0 45px rgba(0, 0, 0, 0.95), 0 0 25px rgba(255, 42, 84, 0.35);
       overflow: hidden;
     }
 
@@ -541,7 +541,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 10px 14px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
     }
 
     .transit-item {
@@ -785,9 +785,9 @@
       font-size: 0.72rem;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 820px) {
       .astrodox-master-board {
-        grid-template-columns: 440px 1fr;
+        grid-template-columns: 480px 1fr;
       }
       .signal-radar-box {
         grid-template-columns: 320px 1fr;
@@ -946,7 +946,7 @@
         </div>
       </div>
 
-      <!-- MASTER BOARD ASTRODOX -->
+      <!-- MASTER BOARD ASTRODOX DENGAN PIRINGAN 100% LENGKAP -->
       <div class="astrodox-master-board">
         <div class="astrodox-disk-wrapper">
           <svg class="astrodox-svg" viewBox="0 0 500 500" id="astrodoxDynamicSvg"></svg>
@@ -955,7 +955,7 @@
         <div class="astrodox-data-panel">
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <span style="background:rgba(255,42,84,0.14); border:1px solid #ff2a54; color:#ff5c7c; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:800;">
-              ASTRODOX GEOCENTRIC MATRIX
+              ASTRODOX FULL EPHEMERIS
             </span>
             <span style="color:#22c55e; font-size:0.75rem; font-weight:700;" id="astroLiveStatusTag">&bull; SINKRON LIVE 24H</span>
           </div>
@@ -969,55 +969,26 @@
             <div style="font-size:1.8rem; text-shadow:0 0 15px rgba(56,189,248,0.8);" id="liveMoonIcon">&#9789;</div>
           </div>
 
+          <!-- TABEL EPHEMERIS LENGKAP SEMUA PLANET -->
           <div class="transit-table-full">
-            <div class="transit-item">
-              <span>&#9737; Sun (Gold)</span>
-              <strong style="color:#f59e0b;" id="degSun">Memuat...</strong>
-            </div>
-            <div class="transit-item">
-              <span>Asc (<span id="ascSignLabel">Taurus</span>)</span>
-              <strong style="color:#cbd5e1;" id="degAsc">Memuat...</strong>
-            </div>
-            <div class="transit-item">
-              <span>&#9789; Moon (Liquidity)</span>
-              <strong style="color:#38bdf8;" id="degMoon">Memuat...</strong>
-            </div>
-            <div class="transit-item">
-              <span>II (Demand)</span>
-              <strong style="color:#cbd5e1;" id="degHouse2">Memuat...</strong>
-            </div>
-            <div class="transit-item">
-              <span>&#9791; Mercury</span>
-              <strong style="color:#a855f7;" id="degMerc">Memuat...</strong>
-            </div>
-            <div class="transit-item">
-              <span>III (Cancer)</span>
-              <strong style="color:#cbd5e1;" id="degHouse3">Memuat...</strong>
-            </div>
-            <div class="transit-item">
-              <span>&#9792; Venus</span>
-              <strong style="color:#ec4899;" id="degVen">Memuat...</strong>
-            </div>
-            <div class="transit-item">
-              <span>IC (Base)</span>
-              <strong style="color:#cbd5e1;" id="degIC">Memuat...</strong>
-            </div>
-            <div class="transit-item">
-              <span>&#9794; Mars (Volatility)</span>
-              <strong style="color:#f87171;" id="degMars">Memuat...</strong>
-            </div>
-            <div class="transit-item">
-              <span>MC (<span id="mcSignLabel">Aquarius</span>)</span>
-              <strong style="color:#cbd5e1;" id="degMC">Memuat...</strong>
-            </div>
-            <div class="transit-item">
-              <span>&#9795; Jupiter</span>
-              <strong style="color:#c084fc;" id="degJup">Memuat...</strong>
-            </div>
-            <div class="transit-item">
-              <span>Dsc (Supply)</span>
-              <strong style="color:#cbd5e1;" id="degDsc">Memuat...</strong>
-            </div>
+            <div class="transit-item"><span>☉ Sun (Gold)</span><strong style="color:#f59e0b;" id="degSun">--</strong></div>
+            <div class="transit-item"><span>Asc (<span id="ascSignLabel">Asc</span>)</span><strong style="color:#cbd5e1;" id="degAsc">--</strong></div>
+            <div class="transit-item"><span>☽ Moon (Flow)</span><strong style="color:#38bdf8;" id="degMoon">--</strong></div>
+            <div class="transit-item"><span>II (Demand)</span><strong style="color:#cbd5e1;" id="degHouse2">--</strong></div>
+            <div class="transit-item"><span>☿ Mercury</span><strong style="color:#a855f7;" id="degMerc">--</strong></div>
+            <div class="transit-item"><span>III (Cusp)</span><strong style="color:#cbd5e1;" id="degHouse3">--</strong></div>
+            <div class="transit-item"><span>♀ Venus</span><strong style="color:#ec4899;" id="degVen">--</strong></div>
+            <div class="transit-item"><span>IC (Base)</span><strong style="color:#cbd5e1;" id="degIC">--</strong></div>
+            <div class="transit-item"><span>♂ Mars (Force)</span><strong style="color:#f87171;" id="degMars">--</strong></div>
+            <div class="transit-item"><span>MC (<span id="mcSignLabel">MC</span>)</span><strong style="color:#cbd5e1;" id="degMC">--</strong></div>
+            <div class="transit-item"><span>♃ Jupiter</span><strong style="color:#c084fc;" id="degJup">--</strong></div>
+            <div class="transit-item"><span>Dsc (Supply)</span><strong style="color:#cbd5e1;" id="degDsc">--</strong></div>
+            <div class="transit-item"><span>♄ Saturn</span><strong style="color:#94a3b8;" id="degSat">--</strong></div>
+            <div class="transit-item"><span>♅ Uranus</span><strong style="color:#38bdf8;" id="degUra">--</strong></div>
+            <div class="transit-item"><span>♆ Neptune</span><strong style="color:#2dd4bf;" id="degNep">--</strong></div>
+            <div class="transit-item"><span>♇ Pluto</span><strong style="color:#64748b;" id="degPlu">--</strong></div>
+            <div class="transit-item"><span>☊ Node</span><strong style="color:#e2e8f0;" id="degNode">--</strong></div>
+            <div class="transit-item"><span>⚷ Chiron</span><strong style="color:#f472b6;" id="degChi">--</strong></div>
           </div>
 
           <div style="background:rgba(255,42,84,0.08); border-left:3.5px solid #ff2a54; padding:12px; border-radius:0 8px 8px 0; font-size:0.78rem; line-height:1.45; color:#cbd5e1;" id="liveDailyAstroSummary">
@@ -1295,7 +1266,6 @@
       const month = targetDate.getMonth() + 1;
       const day = targetDate.getDate();
 
-      // Konversi jam lokal zona waktu pilihan ke UTC
       let utcHours = targetHoursFloat - tzOffset;
       let y = year, m = month, dVal = day;
       if (utcHours < 0) {
@@ -1332,15 +1302,17 @@
       const uranus = (65.17 + 0.011728 * d + 360) % 360;
       const neptune = (2.44 + 0.005981 * d + 360) % 360;
       const pluto = (303.07 + 0.003975 * d + 360) % 360;
+      const node = (125.04 - 0.05295 * d + 360) % 360;
+      const chiron = (45.8 + 0.019 * d + 360) % 360;
 
       // Sumbu Ascendant & MC Dinamis Berdasarkan Garis Bujur Zona Waktu Terpilih
-      const localLongitude = tzOffset * 15.0; // Tiap 1 jam offset = 15 derajat garis bujur
+      const localLongitude = tzOffset * 15.0;
       const GMST = (280.46061837 + 360.98564736629 * d + 15.0 * utcHours) % 360;
       const localSidereal = (GMST + localLongitude + 360) % 360;
       const mc = localSidereal;
       const asc = (localSidereal + 90.0 + 23.44 * Math.sin(localSidereal * Math.PI / 180) + 360) % 360;
 
-      return { sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto, asc, mc, day, month, year, utcHours };
+      return { sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto, node, chiron, asc, mc, day, month, year, utcHours };
     }
 
     function formatZodiac(degFloat) {
@@ -1375,16 +1347,16 @@
       const diffSunMoon = Math.abs(astro.sun - astro.moon) % 360;
       const distSM = diffSunMoon > 180 ? 360 - diffSunMoon : diffSunMoon;
 
-      if (distSM >= 85 && distSM <= 95) { // Square 90° Sun-Moon (Tekanan Kuat)
+      if (distSM >= 85 && distSM <= 95) {
         stressScore += 16;
         dominantAspectName = "Sun-Moon Square 90° Liquidity Shock";
-      } else if (distSM >= 175 && distSM <= 180) { // Opposition 180° Full Moon tension
+      } else if (distSM >= 175 && distSM <= 180) {
         stressScore += 18;
         dominantAspectName = "Sun-Moon Opposition 180° Dump Trigger";
-      } else if (distSM >= 115 && distSM <= 125) { // Trine 120° Sun-Moon
+      } else if (distSM >= 115 && distSM <= 125) {
         harmonicScore += 15;
         dominantAspectName = "Sun-Moon Grand Trine 120° Flow";
-      } else if (distSM >= 56 && distSM <= 64) { // Sextile 60°
+      } else if (distSM >= 56 && distSM <= 64) {
         harmonicScore += 10;
         dominantAspectName = "Sun-Moon Sextile 60° Accumulation";
       }
@@ -1424,17 +1396,13 @@
       // 5. HOUSE PLACEMENT MOON RELATIF TERHADAP ASCENDANT LOKAL
       const moonHouseAngle = (astro.moon - astro.asc + 360) % 360;
       if (moonHouseAngle >= 210 && moonHouseAngle <= 270) {
-        // Area House ke-8 (Scorpio Realm): Area Distribusi & Sapuan Likuiditas Bawah
         stressScore += 10;
       } else if (moonHouseAngle >= 330 || moonHouseAngle <= 30) {
-        // Area House ke-1 (Ascendant): Momentum Awal Sesi
         harmonicScore += 6;
       } else if (moonHouseAngle >= 60 && moonHouseAngle <= 120) {
-        // Area House ke-3/4: Fase Re-accumulation
         harmonicScore += 6;
       }
 
-      // Skor Bersih Khusus XAUUSD
       const isBullish = harmonicScore > stressScore;
       const moonFmt = formatZodiac(astro.moon);
       const marsFmt = formatZodiac(astro.mars);
@@ -1466,7 +1434,7 @@
     }
 
     // ========================================================
-    // 7. RENDERING DYNAMIC MASTER BOARD ASTRODOX
+    // 7. RENDERING DYNAMIC MASTER BOARD ASTRODOX LENGKAP
     // ========================================================
     function renderDynamicAstrodox() {
       const svg = document.getElementById('astrodoxDynamicSvg');
@@ -1500,56 +1468,69 @@
         };
       }
 
-      // Zodiac Slices
-      let svgContent = `<circle cx="${cx}" cy="${cy}" r="246" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/><g id="zSlices">`;
+      // Base Circle
+      let svgContent = `<circle cx="${cx}" cy="${cy}" r="248" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/><g id="zSlices">`;
+
+      // 1. ZODIAC SECTORS
       for (let i = 0; i < 12; i++) {
-        const p1 = toPoint(i * 30, 246);
-        const p2 = toPoint((i + 1) * 30, 246);
-        const p1_in = toPoint(i * 30, 206);
-        const p2_in = toPoint((i + 1) * 30, 206);
+        const p1 = toPoint(i * 30, 248);
+        const p2 = toPoint((i + 1) * 30, 248);
+        const p1_in = toPoint(i * 30, 204);
+        const p2_in = toPoint((i + 1) * 30, 204);
         svgContent += `
-          <path d="M ${p1_in.x} ${p1_in.y} L ${p1.x} ${p1.y} A 246 246 0 0 1 ${p2.x} ${p2.y} L ${p2_in.x} ${p2_in.y} A 206 206 0 0 0 ${p1_in.x} ${p1_in.y} Z" fill="${ZODIAC_DATA[i].bg}" stroke="#94a3b8" stroke-width="0.8"/>
+          <path d="M ${p1_in.x} ${p1_in.y} L ${p1.x} ${p1.y} A 248 248 0 0 1 ${p2.x} ${p2.y} L ${p2_in.x} ${p2_in.y} A 204 204 0 0 0 ${p1_in.x} ${p1_in.y} Z" fill="${ZODIAC_DATA[i].bg}" stroke="#64748b" stroke-width="0.8"/>
         `;
       }
       svgContent += `</g>`;
 
-      for (let i = 0; i < 12; i++) {
-        const p1 = toPoint(i * 30, 246);
-        const p2 = toPoint(i * 30, 206);
-        svgContent += `<line x1="${p1.x}" y1="${p1.y}" x2="${p2.x}" y2="${p2.y}" stroke="#64748b" stroke-width="1.2"/>`;
+      // 2. 360 DEGREE TICKS (LENGKAP ASTRODOX)
+      for (let deg = 0; deg < 360; deg++) {
+        const isMajor = deg % 5 === 0;
+        const rIn = isMajor ? 200 : 203;
+        const pt1 = toPoint(deg, 206);
+        const pt2 = toPoint(deg, rIn);
+        svgContent += `<line x1="${pt1.x}" y1="${pt1.y}" x2="${pt2.x}" y2="${pt2.y}" stroke="#64748b" stroke-width="${isMajor ? 1 : 0.4}"/>`;
       }
 
+      // Inner Circles
       svgContent += `
-        <circle cx="${cx}" cy="${cy}" r="206" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
-        <circle cx="${cx}" cy="${cy}" r="162" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
-        <circle cx="${cx}" cy="${cy}" r="114" fill="#fafafa" stroke="#cbd5e1" stroke-width="0.8"/>
+        <circle cx="${cx}" cy="${cy}" r="204" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
+        <circle cx="${cx}" cy="${cy}" r="158" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+        <circle cx="${cx}" cy="${cy}" r="96" fill="#fafafa" stroke="#cbd5e1" stroke-width="0.8"/>
       `;
 
+      // Simbol Zodiak
       for (let i = 0; i < 12; i++) {
         const pt = toPoint(i * 30 + 15, 226);
-        svgContent += `<text x="${pt.x}" y="${pt.y + 6}" font-size="16" font-weight="bold" fill="#1e293b" text-anchor="middle">${ZODIAC_DATA[i].glyph}</text>`;
+        svgContent += `<text x="${pt.x}" y="${pt.y + 6}" font-size="16" font-weight="900" fill="#0f172a" text-anchor="middle">${ZODIAC_DATA[i].glyph}</text>`;
       }
 
+      // 3. 12 HOUSES DENGAN NOMOR (1 - 12)
       for (let h = 0; h < 12; h++) {
         const cuspLon = astro.asc + h * 30;
-        const ptOut = toPoint(cuspLon, 206);
-        const ptIn = toPoint(cuspLon, 162);
+        const ptOut = toPoint(cuspLon, 204);
+        const ptIn = toPoint(cuspLon, 96);
         svgContent += `<line x1="${ptOut.x}" y1="${ptOut.y}" x2="${ptIn.x}" y2="${ptIn.y}" stroke="#94a3b8" stroke-width="0.8"/>`;
+
+        const numPt = toPoint(cuspLon + 15, 126);
+        svgContent += `<text x="${numPt.x}" y="${numPt.y + 4}" font-size="10" font-weight="800" fill="#64748b" text-anchor="middle">${h + 1}</text>`;
       }
 
-      const pAsc = toPoint(astro.asc, 246);
-      const pDsc = toPoint(astro.asc + 180, 246);
-      const pMC = toPoint(astro.mc, 246);
-      const pIC = toPoint(astro.mc + 180, 246);
+      // Axis Sumbu Asc-Dsc & MC-IC
+      const pAsc = toPoint(astro.asc, 248);
+      const pDsc = toPoint(astro.asc + 180, 248);
+      const pMC = toPoint(astro.mc, 248);
+      const pIC = toPoint(astro.mc + 180, 248);
 
       svgContent += `
         <line x1="${pAsc.x}" y1="${pAsc.y}" x2="${pDsc.x}" y2="${pDsc.y}" stroke="#0f172a" stroke-width="2.2"/>
         <line x1="${pMC.x}" y1="${pMC.y}" x2="${pIC.x}" y2="${pIC.y}" stroke="#0f172a" stroke-width="2.2"/>
-        <polygon points="${pAsc.x},${pAsc.y - 7} ${pAsc.x - 12},${pAsc.y} ${pAsc.x},${pAsc.y + 7}" fill="#0f172a"/>
-        <text x="${pAsc.x + 14}" y="${pAsc.y - 5}" font-size="11" font-weight="900" fill="#0f172a">Asc</text>
-        <text x="${pMC.x + 4}" y="${pMC.y + 16}" font-size="11" font-weight="900" fill="#0f172a">MC</text>
+        <polygon points="${pAsc.x},${pAsc.y - 6} ${pAsc.x - 10},${pAsc.y} ${pAsc.x},${pAsc.y + 6}" fill="#0f172a"/>
+        <text x="${pAsc.x + 14}" y="${pAsc.y - 4}" font-size="11" font-weight="900" fill="#0f172a">Asc</text>
+        <text x="${pMC.x + 4}" y="${pMC.y + 15}" font-size="11" font-weight="900" fill="#0f172a">MC</text>
       `;
 
+      // 4. NODUS PLANET & ASPEK GEOMETRI
       const planetsVisual = [
         { name: "Sun", glyph: "☉", lon: astro.sun, color: "#f59e0b", r: 10, txtFill: "#000" },
         { name: "Moon", glyph: "☽", lon: astro.moon, color: "#0284c7", r: 10, txtFill: "#fff" },
@@ -1563,6 +1544,8 @@
         { name: "Pluto", glyph: "♇", lon: astro.pluto, color: "#334155", r: 7, txtFill: "#fff" }
       ];
 
+      let mainAspectSymbol = "△";
+
       svgContent += `<g id="dynamicAspectLines">`;
       for (let i = 0; i < planetsVisual.length; i++) {
         for (let j = i + 1; j < planetsVisual.length; j++) {
@@ -1571,22 +1554,24 @@
 
           let color = null;
           let width = 1.2;
-          let dash = "";
 
           if (dist >= 116.5 && dist <= 123.5) {
             color = "#16a34a"; width = 2.4;
+            mainAspectSymbol = "△";
           } else if (dist >= 86.5 && dist <= 93.5) {
             color = "#dc2626"; width = 2.2;
+            mainAspectSymbol = "□";
           } else if (dist >= 176.5 && dist <= 180) {
             color = "#dc2626"; width = 2.4;
+            mainAspectSymbol = "☍";
           } else if (dist >= 57.5 && dist <= 62.5) {
             color = "#16a34a"; width = 1.6;
           }
 
           if (color) {
-            const pt1 = toPoint(planetsVisual[i].lon, 158);
-            const pt2 = toPoint(planetsVisual[j].lon, 158);
-            svgContent += `<line x1="${pt1.x}" y1="${pt1.y}" x2="${pt2.x}" y2="${pt2.y}" stroke="${color}" stroke-width="${width}" ${dash} />`;
+            const pt1 = toPoint(planetsVisual[i].lon, 156);
+            const pt2 = toPoint(planetsVisual[j].lon, 156);
+            svgContent += `<line x1="${pt1.x}" y1="${pt1.y}" x2="${pt2.x}" y2="${pt2.y}" stroke="${color}" stroke-width="${width}"/>`;
           }
         }
       }
@@ -1594,7 +1579,7 @@
 
       svgContent += `<g id="dynamicPlanetNodes">`;
       planetsVisual.forEach(p => {
-        const pt = toPoint(p.lon, 184);
+        const pt = toPoint(p.lon, 180);
         const zInfo = formatZodiac(p.lon);
         svgContent += `
           <circle cx="${pt.x}" cy="${pt.y}" r="${p.r}" fill="${p.color}" stroke="#0f172a" stroke-width="1.5"/>
@@ -1604,15 +1589,16 @@
       });
       svgContent += `</g>`;
 
+      // Titik Pusat Roda
       svgContent += `
         <circle cx="${cx}" cy="${cy}" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-        <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="8" font-weight="900" fill="#dc2626">ASTRODOX</text>
-        <text x="${cx}" y="${cy + 8}" text-anchor="middle" font-size="7" font-weight="bold" fill="#64748b">UTC${selectedTimeZoneOffset >= 0 ? '+' + selectedTimeZoneOffset : selectedTimeZoneOffset}</text>
+        <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="16" font-weight="900" fill="${analysis.isBullish ? '#16a34a' : '#dc2626'}">${mainAspectSymbol}</text>
+        <text x="${cx}" y="${cy + 10}" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#64748b">UTC${selectedTimeZoneOffset >= 0 ? '+' + selectedTimeZoneOffset : selectedTimeZoneOffset}</text>
       `;
 
       svg.innerHTML = svgContent;
 
-      // Update Panel Data
+      // Update Panel Data Ephemeris Lengkap
       const ascInfo = formatZodiac(astro.asc);
       const mcInfo = formatZodiac(astro.mc);
       document.getElementById('ascSignLabel').innerText = ascInfo.signName;
@@ -1624,6 +1610,13 @@
       document.getElementById('degMerc').innerText = formatZodiac(astro.mercury).text;
       document.getElementById('degVen').innerText = formatZodiac(astro.venus).text;
       document.getElementById('degJup').innerText = formatZodiac(astro.jupiter).text;
+      document.getElementById('degSat').innerText = formatZodiac(astro.saturn).text;
+      document.getElementById('degUra').innerText = formatZodiac(astro.uranus).text;
+      document.getElementById('degNep').innerText = formatZodiac(astro.neptune).text;
+      document.getElementById('degPlu').innerText = formatZodiac(astro.pluto).text;
+      document.getElementById('degNode').innerText = formatZodiac(astro.node).text;
+      document.getElementById('degChi').innerText = formatZodiac(astro.chiron).text;
+
       document.getElementById('degAsc').innerText = ascInfo.text;
       document.getElementById('degMC').innerText = mcInfo.text;
       document.getElementById('degHouse2').innerText = formatZodiac(astro.asc + 30).text;
@@ -1768,7 +1761,6 @@
       const entryEndD = new Date(evD.getTime() + 5 * 60000);
       const entryEnd = `${pad(entryEndD.getHours())}:${pad(entryEndD.getMinutes())}`;
 
-      // Time TP dinamis mengikuti ritme candle Astro M5, M15, M30
       const tp1D = new Date(evD.getTime() + 6 * 60000);
       const tp2D = new Date(evD.getTime() + 18 * 60000);
       const tp3D = new Date(evD.getTime() + 38 * 60000);
@@ -1800,7 +1792,6 @@
       const evDate = new Date(item.exactTimestamp);
       const evHoursFloat = evDate.getHours() + evDate.getMinutes() / 60;
 
-      // Evaluasi Astro KHUSUS pada jam rilis berita tersebut
       const astroEval = evaluateAstrodoxConfluence(dayDateObj, evHoursFloat, selectedTimeZoneOffset);
       const isAstroBullish = astroEval.isBullish;
 
@@ -1826,7 +1817,7 @@
 
       const matrix = calculateAstroDynamicTimeTP(item, isAstroBullish);
 
-      // KONDISI 1: DATA ACTUAL SUDAH KELUAR (WAKTU LEWAT)
+      // KONDISI 1: DATA ACTUAL SUDAH KELUAR
       if (isPassed && actual !== null) {
         if (curr === "USD") {
           let usdBullish = false;
@@ -1866,7 +1857,7 @@
         };
       }
 
-      // KONDISI 2: DATA STANDBY (BELUM RILIS)
+      // KONDISI 2: DATA STANDBY
       item.actual = "Menunggu";
 
       if (curr === "USD") {
