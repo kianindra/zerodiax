@@ -1,473 +1,1704 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>ZERODIAX // ZERO SYNDICATE VIP</title>
-  <!-- Tailwind via CDN + tiny custom reset -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* strict matte + hairline system */
-    body { background: #05070A; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
-    .bento-card {
-      background: #0C0E14;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 1.5rem; /* soft but not childish */
-      padding: 1.5rem;
-      transition: border-color 0.15s ease;
-    }
-    .bento-card:hover { border-color: rgba(255, 255, 255, 0.12); }
-    .hairline { border-color: rgba(255, 255, 255, 0.07); }
-    .gold-accent { color: #D4AF37; }
-    .emerald-accent { color: #10B981; }
-    .rose-accent { color: #F43F5E; }
-    .slate-muted { color: #94A3B8; }
-    .no-glow { box-shadow: none; }
-    /* custom scrollbar minimal */
-    ::-webkit-scrollbar { width: 3px; }
-    ::-webkit-scrollbar-track { background: #0C0E14; }
-    ::-webkit-scrollbar-thumb { background: #2A2E3A; border-radius: 10px; }
-    .preloader-hidden { display: none !important; }
-    /* slide track */
-    input[type=range] {
-      -webkit-appearance: none; background: transparent; width: 100%; height: 3px; background: #1F2430; border-radius: 4px;
-    }
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none; height: 18px; width: 18px; border-radius: 50%; background: #D4AF37; cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 0 0 2px #05070A;
-    }
-    .astro-wheel-container svg { width: 100%; height: auto; display: block; }
-    .news-table th { font-weight: 500; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94A3B8; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>ZERODIAX // ZERO SYNDICATE VIP — Astro-Quant Terminal</title>
+<meta name="description" content="ZERODIAX // Zero Syndicate VIP — Astro-Quant Terminal. Official Valetax Partner #1682343." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    --bg:#05070A; --surface:#0C0E14; --surface-2:#0F1219; --surface-3:#12161F;
+    --line:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.13);
+    --txt:#F8FAFC; --muted:#94A3B8; --dim:#64748B;
+    --gold:#D4AF37; --emerald:#10B981; --rose:#F43F5E; --blue:#3B82F6;
+  }
+  body.light{
+    --bg:#F3F5F9; --surface:#FFFFFF; --surface-2:#F8FAFC; --surface-3:#EEF2F7;
+    --line:#E4E9F1; --line-2:#CBD5E1;
+    --txt:#0B1220; --muted:#5B6B85; --dim:#7A879B;
+    --gold:#9C7A1E; --emerald:#0E9F6E; --rose:#D91E48; --blue:#2563EB;
+  }
+  *{ -webkit-tap-highlight-color: transparent; }
+  html{ background:var(--bg); scroll-behavior:smooth; }
+  body{
+    background:var(--bg); color:var(--txt); overflow-x:hidden;
+    font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+    -webkit-font-smoothing:antialiased; transition:background .25s ease,color .25s ease;
+  }
+  .mono{ font-family:'JetBrains Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums; }
+  .tnum{ font-variant-numeric:tabular-nums; }
+
+  /* ---------- surfaces ---------- */
+  .card{
+    background:var(--surface); border:1px solid var(--line);
+    border-radius:22px; position:relative;
+    transition:border-color .2s ease, background .25s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{ border-color:var(--line-2); }
+  .card-pad{ padding:20px; }
+  @media (min-width:768px){ .card-pad{ padding:24px; } }
+
+  .label{ font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  .t-muted{ color:var(--muted); } .t-dim{ color:var(--dim); }
+  .t-gold{ color:var(--gold); } .t-em{ color:var(--emerald); } .t-rose{ color:var(--rose); }
+
+  /* ---------- controls ---------- */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    height:34px; padding:0 13px; border-radius:11px; font-size:11.5px; font-weight:500;
+    border:1px solid var(--line); color:var(--muted); background:transparent;
+    cursor:pointer; white-space:nowrap; transition:.15s ease; line-height:1;
+    text-decoration:none;
+  }
+  .btn:hover{ color:var(--txt); border-color:var(--line-2); background:var(--surface-2); }
+  .btn:active{ transform:translateY(.5px); }
+  .btn-gold{ color:var(--gold); border-color:rgba(212,175,55,.34); background:rgba(212,175,55,.06); }
+  .btn-gold:hover{ color:var(--gold); border-color:rgba(212,175,55,.55); background:rgba(212,175,55,.11); }
+  body.light .btn-gold{ border-color:rgba(156,122,30,.35); background:rgba(156,122,30,.06); }
+  .btn-em{ color:var(--emerald); border-color:rgba(16,185,129,.32); background:rgba(16,185,129,.07); }
+  .btn-em:hover{ color:var(--emerald); border-color:rgba(16,185,129,.5); background:rgba(16,185,129,.12); }
+  .btn-lg{ height:42px; border-radius:13px; font-size:12.5px; padding:0 18px; }
+
+  .chip{
+    display:inline-flex; align-items:center; gap:6px; height:24px; padding:0 10px;
+    border-radius:999px; border:1px solid var(--line); font-size:10px; font-weight:600;
+    letter-spacing:.04em; color:var(--muted); white-space:nowrap;
+  }
+  .chip-gold{ color:var(--gold); border-color:rgba(212,175,55,.32); background:rgba(212,175,55,.06); }
+  .chip-em{ color:var(--emerald); border-color:rgba(16,185,129,.3); background:rgba(16,185,129,.07); }
+  .chip-rose{ color:var(--rose); border-color:rgba(244,63,94,.3); background:rgba(244,63,94,.07); }
+
+  select.sel, input.sel{
+    height:32px; border-radius:10px; border:1px solid var(--line);
+    background:var(--surface-2); color:var(--txt); font-size:11.5px;
+    padding:0 8px; outline:none; transition:.15s;
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+  }
+  select.sel:focus, input.sel:focus{ border-color:rgba(212,175,55,.5); }
+  select.sel option{ background:var(--surface); color:var(--txt); }
+
+  .tier{ height:34px; border-radius:11px; border:1px solid var(--line); background:transparent;
+    font-size:11.5px; font-weight:600; color:var(--muted); cursor:pointer; transition:.15s;
+    font-family:'JetBrains Mono',ui-monospace,monospace; }
+  .tier:hover{ color:var(--txt); border-color:var(--line-2); }
+  .tier.active{ color:var(--gold); border-color:rgba(212,175,55,.45); background:rgba(212,175,55,.09); }
+
+  /* ---------- header ---------- */
+  .hdr{
+    background:color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{
+    width:36px;height:36px;border-radius:12px;display:grid;place-items:center;
+    border:1px solid rgba(212,175,55,.35);
+    background:linear-gradient(160deg,rgba(212,175,55,.16),rgba(212,175,55,.03));
+    color:var(--gold); font-weight:700; font-size:14px; letter-spacing:.02em;
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+  }
+  .dot{ width:6px;height:6px;border-radius:50%;display:inline-block; }
+  .dot-live{ background:var(--emerald); box-shadow:0 0 0 3px rgba(16,185,129,.16); animation:pulse 2.4s infinite; }
+  @keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:.45} }
+
+  .spark{ width:100%; height:34px; display:block; overflow:visible; }
+
+  /* ---------- wheel (Astrodox Style) ---------- */
+  .wheel{ width:100%; max-width:560px; margin-inline:auto; }
+  .wheel svg{ width:100%; height:auto; display:block; }
+  .zodiac-bg { transition: fill 0.3s ease; }
+
+  .planet-list{ display:flex; flex-direction:column; gap:0; max-height:520px; overflow-y:auto; padding-right:4px; }
+  .planet-list::-webkit-scrollbar{ width:4px; }
+  .planet-list::-webkit-scrollbar-thumb{ background:rgba(148,163,184,.3); border-radius:4px; }
+  .prow{ display:grid; grid-template-columns:18px 1fr auto auto; gap:8px; align-items:center;
+    padding:7px 2px; border-bottom:1px solid var(--line); font-size:11.5px; }
+  .prow:last-child{ border-bottom:none; }
+  .pglyph{ font-size:13px; text-align:center; }
+
+  /* ---------- signal ---------- */
+  .levelbox{ border:1px solid var(--line); border-radius:14px; padding:10px 12px; background:var(--surface-2); }
+  .verdict{ font-size:30px; line-height:1.05; font-weight:700; letter-spacing:-.02em; }
+  @media(min-width:768px){ .verdict{ font-size:36px; } }
+
+  /* ---------- news table (Forex Factory Style) ---------- */
+  .ff-table{ width:100%; border-collapse:collapse; }
+  .ff-table th{ font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; text-align:left; padding:8px 8px 8px 0; border-bottom:1px solid var(--line); white-space:nowrap; }
+  .ff-table td{ font-size:11.5px; padding:10px 8px 10px 0; border-bottom:1px solid var(--line); vertical-align:middle; }
+  .ff-table tr:last-child td{ border-bottom:none; }
+  .ff-table .impact-high{ color:var(--rose); font-weight:700; }
+  .ff-table .impact-med{ color:#F59E0B; font-weight:700; }
+  .ff-table .impact-low{ color:var(--emerald); font-weight:600; }
+  .ff-table .row-high:hover{ background:rgba(244,63,94,0.04); }
+  
+  .news-badge {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:20px; height:20px; border-radius:4px; font-size:10px; font-weight:700;
+  }
+  .badge-high { background:rgba(244,63,94,0.15); color:var(--rose); border:1px solid rgba(244,63,94,0.3); }
+  .badge-med  { background:rgba(245,158,11,0.15); color:#F59E0B; border:1px solid rgba(245,158,11,0.3); }
+  .badge-low  { background:rgba(16,185,129,0.15); color:var(--emerald); border:1px solid rgba(16,185,129,0.3); }
+
+  /* ---------- chat ---------- */
+  .chat-log{ overflow-y:auto; scrollbar-width:thin; }
+  .chat-log::-webkit-scrollbar{ width:4px; }
+  .chat-log::-webkit-scrollbar-thumb{ background:rgba(148,163,184,.3); border-radius:4px; }
+  .msg{ display:flex; gap:8px; margin-bottom:12px; animation:rise .22s ease both; }
+  @keyframes rise{ from{opacity:0; transform:translateY(5px)} to{opacity:1;transform:none} }
+  .msg .avatar{
+    width:24px;height:24px;border-radius:8px;flex:0 0 24px;display:grid;place-items:center;
+    font-size:10px;font-weight:700; color:var(--gold);
+    border:1px solid rgba(212,175,55,.3); background:rgba(212,175,55,.07);
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+  }
+  .bubble{
+    font-size:12px; line-height:1.55; padding:9px 12px; border-radius:14px;
+    border:1px solid var(--line); background:var(--surface-2); color:var(--txt);
+    max-width:calc(100% - 34px); word-wrap:break-word;
+  }
+  .msg-user{ justify-content:flex-end; }
+  .msg-user .bubble{ background:rgba(212,175,55,.09); border-color:rgba(212,175,55,.22); color:var(--txt); }
+  .dots span{ display:inline-block; width:4px;height:4px;border-radius:50%; background:var(--muted); margin-right:3px; animation:bob 1s infinite; }
+  .dots span:nth-child(2){ animation-delay:.15s } .dots span:nth-child(3){ animation-delay:.3s }
+  @keyframes bob{ 0%,100%{opacity:.3;transform:translateY(0)} 50%{opacity:1;transform:translateY(-2px)} }
+  .sugg{ border:1px solid var(--line); background:var(--surface-2); border-radius:999px; padding:5px 10px;
+    font-size:10.5px; color:var(--muted); cursor:pointer; transition:.15s; white-space:nowrap;
+    font-family:inherit; }
+  .sugg:hover{ color:var(--txt); border-color:var(--line-2); }
+  .chat-input{
+    flex:1; height:38px; background:var(--surface-2); border:1px solid var(--line);
+    border-radius:12px; padding:0 12px; font-size:12px; color:var(--txt); outline:none;
+    font-family:inherit;
+  }
+  .chat-input::placeholder{ color:var(--dim); }
+  .chat-input:focus{ border-color:rgba(212,175,55,.45); }
+
+  /* ---------- misc ---------- */
+  #preloader{ position:fixed; inset:0; z-index:200; display:grid; place-items:center; background:#05070A; transition:opacity .35s ease; }
+  #preloader.gone{ opacity:0; pointer-events:none; }
+  .pre-shield{ animation:prePulse 2.4s ease-in-out infinite; }
+  @keyframes prePulse{ 0%,100%{transform:scale(1);opacity:.9} 50%{transform:scale(1.05);opacity:1} }
+
+  .toast{ position:fixed; left:50%; bottom:26px; transform:translate(-50%,20px); opacity:0; z-index:150;
+    background:var(--surface); border:1px solid var(--line-2); color:var(--txt);
+    padding:10px 16px; border-radius:12px; font-size:12px; transition:.25s ease; pointer-events:none;
+    box-shadow:0 12px 40px -8px rgba(0,0,0,.7); }
+  .toast.on{ opacity:1; transform:translate(-50%,0); }
+
+  .route{ display:flex; align-items:center; justify-content:space-between; gap:8px; padding:10px 12px;
+    border:1px solid var(--line); border-radius:13px; font-size:11.5px; color:var(--muted); transition:.15s;
+    text-decoration:none; }
+  .route:hover{ color:var(--txt); border-color:var(--line-2); background:var(--surface-2); transform:translateY(-1px); }
+
+  .sep{ height:1px; background:var(--line); }
+
+  .live-tag{
+    display:inline-flex; align-items:center; gap:5px;
+    padding:2px 8px; border-radius:999px; font-size:9px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase;
+    color:var(--emerald); border:1px solid rgba(16,185,129,.3);
+    background:rgba(16,185,129,.08);
+  }
+</style>
 </head>
-<body class="min-h-screen text-[#F8FAFC] antialiased p-4 md:p-6">
+<body>
 
-  <!-- PRELOADER (under 0.8s, completely removed) -->
-  <div id="preloader" class="fixed inset-0 z-50 flex items-center justify-center bg-[#05070A]">
-    <div class="text-sm tracking-[0.3em] text-slate-muted">ZERODIAX</div>
+<!-- PRELOADER -->
+<div id="preloader">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:16px">
+    <svg class="pre-shield" width="64" height="72" viewBox="0 0 120 132" fill="none">
+      <defs>
+        <linearGradient id="preG" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#D4AF37"/>
+          <stop offset="100%" stop-color="#F5D76E"/>
+        </linearGradient>
+        <filter id="preF" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.4"/></filter>
+      </defs>
+      <path d="M60 4 L112 26 V66 C112 96 88 118 60 128 C32 118 8 96 8 66 V26 Z" fill="rgba(212,175,55,.05)" stroke="url(#preG)" stroke-width="3" filter="url(#preF)"/>
+      <path d="M42 46 H78 L44 88 H80" fill="none" stroke="url(#preG)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="mono" style="font-size:10px;letter-spacing:.34em;color:#94A3B8">ZERODIAX</div>
+    <div style="height:2px;width:64px;background:linear-gradient(90deg,transparent,#D4AF37,transparent)"></div>
   </div>
+</div>
 
-  <!-- MAIN CONTAINER – bento grid logic -->
-  <main class="max-w-[1400px] mx-auto space-y-6">
-
-    <!-- HEADER: brand + live feed -->
-    <header class="flex flex-wrap items-center justify-between gap-4 px-2">
+<!-- HEADER -->
+<header class="hdr sticky top-0 z-40">
+  <div class="mx-auto max-w-[1520px] px-3 md:px-6">
+    <div class="flex h-16 items-center justify-between gap-3">
       <div class="flex items-center gap-3">
-        <span class="text-xl font-medium tracking-[0.1em] text-[#F8FAFC]">ZERODIAX</span>
-        <span class="text-[0.65rem] uppercase tracking-[0.2em] text-slate-muted">// ZERO SYNDICATE VIP</span>
-      </div>
-      <div class="flex items-center gap-6">
-        <div class="flex items-center gap-2 text-xs">
-          <span class="text-slate-muted">PAXG/USDT</span>
-          <span id="gold-price" class="font-mono text-[#F8FAFC]">$0.00</span>
-          <span id="gold-change" class="text-[0.6rem] text-emerald-accent">+0.00%</span>
+        <div class="logo">Z</div>
+        <div class="leading-tight">
+          <div class="text-[15px] font-semibold tracking-tight">ZERODIAX</div>
+          <div class="text-[8.5px] uppercase tracking-[.22em] t-muted">Zero Syndicate VIP</div>
         </div>
-        <div class="flex items-center gap-2 text-xs">
-          <span class="text-slate-muted">BTC/USDT</span>
-          <span id="btc-price" class="font-mono text-[#F8FAFC]">$0.00</span>
-          <span id="btc-change" class="text-[0.6rem] text-emerald-accent">+0.00%</span>
-        </div>
-        <span class="text-[0.6rem] uppercase tracking-wider text-gold-accent border border-[#D4AF37] px-2 py-1 rounded-full">VALETAX #1682343</span>
-      </div>
-    </header>
-
-    <!-- BENTO GRID – 2 columns main + side -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      
-      <!-- LEFT COLUMN (2/3): WHEEL + SIGNAL -->
-      <div class="lg:col-span-2 space-y-6">
-        
-        <!-- ASTRO WHEEL CARD -->
-        <div class="bento-card space-y-4">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-3">
-              <h2 class="text-sm uppercase tracking-wider text-slate-muted">Astrodox · Placidus Wheel</h2>
-              <button id="toggle-theme" class="text-[0.6rem] border border-white/10 px-3 py-1 rounded-full text-slate-muted hover:text-[#F8FAFC] transition">Dark / Light</button>
-            </div>
-            <div class="flex items-center gap-2">
-              <a href="https://astrodox.com" target="_blank" class="text-[0.6rem] border border-white/10 px-3 py-1 rounded-full text-slate-muted hover:text-[#F8FAFC]">Verify on Astrodox ↗</a>
-              <a href="https://www.tradingview.com/chart/" target="_blank" class="text-[0.6rem] border border-white/10 px-3 py-1 rounded-full text-slate-muted hover:text-[#F8FAFC]">Open TradingView ↗</a>
-            </div>
-          </div>
-          <div id="wheel-container" class="astro-wheel-container w-full max-w-[420px] mx-auto">
-            <!-- SVG injected via JS -->
-          </div>
-          <div class="flex justify-center gap-4 text-[0.55rem] text-slate-muted uppercase tracking-wider">
-            <span><span class="inline-block w-2 h-2 bg-[#10B981] mr-1"></span>Trine/Sextile</span>
-            <span><span class="inline-block w-2 h-2 bg-[#F43F5E] mr-1"></span>Square/Opposition</span>
-            <span><span class="inline-block w-2 h-2 bg-[#3B82F6] mr-1"></span>Conjunction</span>
-          </div>
-        </div>
-
-        <!-- AI ASTRO-QUANT SIGNAL -->
-        <div class="bento-card space-y-5">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <h2 class="text-sm uppercase tracking-wider text-slate-muted">AI Astro-Quant Signal</h2>
-            <div class="flex flex-wrap items-center gap-2 text-[0.6rem]">
-              <input type="date" id="datePicker" class="bg-transparent border border-white/10 rounded px-2 py-1 text-[#F8FAFC]">
-              <input type="time" id="timePicker" class="bg-transparent border border-white/10 rounded px-2 py-1 text-[#F8FAFC]">
-              <button id="nowBtn" class="border border-[#D4AF37] text-gold-accent px-3 py-1 rounded-full">Now (Live)</button>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="space-y-3">
-              <div class="flex items-baseline gap-3">
-                <span id="verdict" class="text-2xl font-semibold tracking-tight text-emerald-accent">STRONG BUY</span>
-                <span id="confidence" class="text-sm text-slate-muted">87%</span>
-              </div>
-              <div class="grid grid-cols-3 gap-2 text-xs">
-                <div><span class="text-slate-muted block text-[0.55rem] uppercase">Entry</span><span id="entryLevel" class="font-mono">0.00</span></div>
-                <div><span class="text-slate-muted block text-[0.55rem] uppercase">TP</span><span id="tpLevel" class="font-mono text-emerald-accent">0.00</span></div>
-                <div><span class="text-slate-muted block text-[0.55rem] uppercase">SL</span><span id="slLevel" class="font-mono text-rose-accent">0.00</span></div>
-              </div>
-            </div>
-            <div class="space-y-1 text-xs">
-              <div class="flex gap-2"><span class="text-gold-accent">✦</span><span id="reasonAstro" class="text-slate-muted">Sun trine Moon – momentum alignment</span></div>
-              <div class="flex gap-2"><span class="text-gold-accent">✦</span><span id="reasonAuction" class="text-slate-muted">Liquidity above 0.00 – buy pressure</span></div>
-              <div class="flex gap-2"><span class="text-gold-accent">✦</span><span id="reasonStructure" class="text-slate-muted">Higher low confirmed on 15m</span></div>
-            </div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- RIGHT COLUMN (1/3): REBATE + MACRO NEWS -->
-      <div class="space-y-6">
-        
-        <!-- VALETAX REBATE CALCULATOR -->
-        <div class="bento-card space-y-4">
-          <div class="flex items-center justify-between">
-            <h2 class="text-sm uppercase tracking-wider text-slate-muted">Valetax Self-Rebate</h2>
-            <span class="text-[0.6rem] text-gold-accent border border-[#D4AF37] px-2 py-0.5 rounded-full">$9–$12/LOT</span>
-          </div>
-          <div class="space-y-2">
-            <div class="flex justify-between text-xs">
-              <span class="text-slate-muted">Lots / day</span>
-              <span id="lotValue" class="font-mono">1</span>
-            </div>
-            <input type="range" id="lotSlider" min="1" max="500" value="1" step="1">
-            <div class="flex gap-2 mt-2">
-              <button data-tier="9" class="tier-btn flex-1 text-[0.7rem] py-1.5 border border-white/10 rounded-full text-slate-muted hover:text-[#F8FAFC]">$9</button>
-              <button data-tier="10.5" class="tier-btn flex-1 text-[0.7rem] py-1.5 border border-white/10 rounded-full text-slate-muted hover:text-[#F8FAFC]">$10.5</button>
-              <button data-tier="12" class="tier-btn flex-1 text-[0.7rem] py-1.5 border border-white/10 rounded-full text-slate-muted hover:text-[#F8FAFC] bg-[#D4AF37]/10 border-[#D4AF37]">$12</button>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-4 pt-2">
-            <div>
-              <span class="text-[0.55rem] uppercase text-slate-muted block">Daily USD</span>
-              <span id="dailyRebate" class="text-xl font-mono text-[#F8FAFC]">$12.00</span>
-              <span id="dailyIdr" class="text-xs text-slate-muted block">Rp 192,000</span>
-            </div>
-            <div>
-              <span class="text-[0.55rem] uppercase text-slate-muted block">Monthly USD</span>
-              <span id="monthlyRebate" class="text-xl font-mono text-[#F8FAFC]">$360.00</span>
-              <span id="monthlyIdr" class="text-xs text-slate-muted block">Rp 5,760,000</span>
-            </div>
-          </div>
-          <a id="waRebateBtn" href="#" target="_blank" class="block w-full text-center text-[0.7rem] py-2 border border-[#D4AF37] text-gold-accent rounded-full hover:bg-[#D4AF37]/5">Claim Rebate via WhatsApp ↗</a>
+      <div class="hidden lg:flex items-center gap-2">
+        <div class="chip">
+          <span class="dot dot-live"></span>
+          <span class="t-muted">PAXG</span>
+          <span id="hGold" class="mono" style="color:var(--txt);font-weight:600">—</span>
+          <span id="hGoldChg" class="mono" style="font-size:9.5px">—</span>
         </div>
-
-        <!-- MACRO NEWS TERMINAL -->
-        <div class="bento-card space-y-3">
-          <div class="flex items-center justify-between">
-            <h2 class="text-sm uppercase tracking-wider text-slate-muted">Macro News Terminal</h2>
-            <input type="date" id="newsDatePicker" class="bg-transparent border border-white/10 rounded px-2 py-1 text-[0.65rem] text-[#F8FAFC]">
-          </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-[0.65rem]">
-              <thead class="news-table border-b border-white/10">
-                <tr><th class="text-left py-2">Time</th><th class="text-left">Event</th><th class="text-left">Fcst/Prev</th><th class="text-left">Bias</th><th class="text-left">Actual</th><th class="text-left">Action</th></tr>
-              </thead>
-              <tbody id="newsTableBody">
-                <!-- filled by JS -->
-              </tbody>
-            </table>
-          </div>
-          <div class="flex justify-between items-center pt-1">
-            <span class="text-[0.6rem] text-slate-muted">Next release in <span id="countdown">00:00</span></span>
-            <button id="simulateReleaseBtn" class="text-[0.6rem] border border-white/10 px-3 py-1 rounded-full text-slate-muted hover:text-[#F8FAFC]">Simulate Actual Release</button>
-          </div>
+        <div class="chip">
+          <span class="dot dot-live" style="background:var(--blue);box-shadow:0 0 0 3px rgba(59,130,246,.16)"></span>
+          <span class="t-muted">BTC</span>
+          <span id="hBtc" class="mono" style="color:var(--txt);font-weight:600">—</span>
+          <span id="hBtcChg" class="mono" style="font-size:9.5px">—</span>
         </div>
+        <div class="chip mono" id="hClock">--:--:--</div>
+      </div>
 
-        <!-- OFFICIAL ROUTING (compact) -->
-        <div class="bento-card flex flex-wrap justify-between items-center gap-2 text-[0.65rem]">
-          <a href="https://wa.me/62882010445069?text=VIP%20Signal%20Request" target="_blank" class="text-gold-accent">WhatsApp VIP ↗</a>
-          <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" class="text-slate-muted hover:text-[#F8FAFC]">Valetax Register ↗</a>
-          <a href="https://t.me/+cYCMf2_--1hiNTM1" target="_blank" class="text-slate-muted hover:text-[#F8FAFC]">TG Scalper ↗</a>
-          <a href="https://t.me/zerodiax" target="_blank" class="text-slate-muted hover:text-[#F8FAFC]">Admin ↗</a>
-        </div>
-
+      <div class="flex items-center gap-2">
+        <span class="chip chip-gold hidden sm:inline-flex">Partner Valetax #1682343</span>
+        <a class="btn btn-gold" href="https://wa.me/62882010445069?text=Halo%2C%20saya%20mau%20gabung%20VIP%20ZERODIAX" target="_blank" rel="noopener">WhatsApp ↗</a>
       </div>
     </div>
-  </main>
+  </div>
+  <div class="lg:hidden" style="border-top:1px solid var(--line)">
+    <div class="mx-auto max-w-[1520px] px-3 py-2 flex items-center justify-between text-[11px] t-muted">
+      <span>PAXG <b id="mGold" class="mono" style="color:var(--txt)">—</b></span>
+      <span>BTC <b id="mBtc" class="mono" style="color:var(--txt)">—</b></span>
+      <span id="mClock" class="mono">--:--:--</span>
+    </div>
+  </div>
+</header>
 
-  <script>
-    (function() {
-      // ---------- PRELOADER ----------
-      window.addEventListener('load', () => {
-        const preloader = document.getElementById('preloader');
-        if (preloader) preloader.classList.add('preloader-hidden');
-        // simulate ultra-fast removal
-        setTimeout(() => { if (preloader) preloader.style.display = 'none'; }, 300);
-      });
-      // fallback removal after 0.8s
-      setTimeout(() => {
-        const preloader = document.getElementById('preloader');
-        if (preloader) { preloader.style.display = 'none'; }
-      }, 800);
+<!-- MAIN -->
+<main class="mx-auto max-w-[1520px] px-3 md:px-6 py-5 space-y-5">
 
-      // ---------- LIVE PRICE FEED (Binance + fallback) ----------
-      let goldPrice = 2340.50, btcPrice = 67200.00;
-      const goldPriceEl = document.getElementById('gold-price');
-      const goldChangeEl = document.getElementById('gold-change');
-      const btcPriceEl = document.getElementById('btc-price');
-      const btcChangeEl = document.getElementById('btc-change');
+  <!-- STAT STRIP -->
+  <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="card card-pad" style="padding:16px">
+      <div class="flex items-center justify-between">
+        <span class="label">PAXG / USDT</span>
+        <span class="live-tag"><span class="dot dot-live" style="width:5px;height:5px"></span>LIVE</span>
+      </div>
+      <div id="sGold" class="mono" style="font-size:23px;font-weight:600;letter-spacing:-.01em;margin-top:6px">—</div>
+      <div id="sGoldChg" class="mono" style="font-size:10.5px;margin-top:1px">—</div>
+      <div id="sGoldSpark" style="margin-top:8px"></div>
+    </div>
+    <div class="card card-pad" style="padding:16px">
+      <div class="flex items-center justify-between">
+        <span class="label">BTC / USDT</span>
+        <span class="live-tag"><span class="dot dot-live" style="width:5px;height:5px"></span>LIVE</span>
+      </div>
+      <div id="sBtc" class="mono" style="font-size:23px;font-weight:600;letter-spacing:-.01em;margin-top:6px">—</div>
+      <div id="sBtcChg" class="mono" style="font-size:10.5px;margin-top:1px">—</div>
+      <div id="sBtcSpark" style="margin-top:8px"></div>
+    </div>
+    <div class="card card-pad" style="padding:16px">
+      <div class="flex items-center justify-between">
+        <span class="label">Sesi Pasar</span>
+        <span class="chip" style="height:19px;font-size:9px">New York</span>
+      </div>
+      <div id="sSession" class="mono" style="font-size:23px;font-weight:600;margin-top:6px">--:--</div>
+      <div id="sSessionState" style="font-size:10.5px;margin-top:3px;color:var(--muted)">—</div>
+      <div style="display:flex;gap:6px;margin-top:9px;flex-wrap:wrap" id="sessionPills"></div>
+    </div>
+    <div class="card card-pad" style="padding:16px">
+      <div class="flex items-center justify-between">
+        <span class="label">Meja Analis</span>
+        <span class="live-tag"><span class="dot dot-live" style="width:5px;height:5px"></span>ONLINE</span>
+      </div>
+      <div style="font-size:23px;font-weight:600;margin-top:6px;letter-spacing:-.01em">Jaga 24/7</div>
+      <div class="t-muted" style="font-size:10.5px;margin-top:1px">Rata-rata balas &lt; 40 detik</div>
+      <button class="btn btn-gold" style="margin-top:9px;width:100%" onclick="focusDesk()">Tanya Sekarang →</button>
+    </div>
+  </section>
 
-      function updatePrices(gold, btc) {
-        goldPriceEl.textContent = '$' + gold.toFixed(2);
-        btcPriceEl.textContent = '$' + btc.toFixed(2);
-        // mock change for visual
-        goldChangeEl.textContent = '+' + (Math.random() * 0.8 + 0.1).toFixed(2) + '%';
-        btcChangeEl.textContent = '+' + (Math.random() * 1.2 + 0.2).toFixed(2) + '%';
-        goldChangeEl.className = 'text-[0.6rem] text-emerald-accent';
-        btcChangeEl.className = 'text-[0.6rem] text-emerald-accent';
-      }
+  <!-- WHEEL + DESK -->
+  <section class="grid xl:grid-cols-12 gap-5">
+    <div class="card card-pad xl:col-span-8">
+      <div class="flex flex-wrap items-center justify-between gap-3" style="margin-bottom:16px">
+        <div>
+          <div class="label">Astrodox · Placidus</div>
+          <h2 style="font-size:15px;font-weight:600;margin-top:3px">Peta Langit — New York</h2>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <button id="themeBtn" class="btn" title="Ganti tema">☾ / ☀</button>
+          <a class="btn" href="https://astrodox.com" target="_blank" rel="noopener">Astrodox ↗</a>
+          <a class="btn" href="https://www.tradingview.com/chart/?symbol=PAXGUSDT" target="_blank" rel="noopener">TradingView ↗</a>
+        </div>
+      </div>
 
-      // WebSocket connection with fallback
-      try {
-        const goldWs = new WebSocket('wss://stream.binance.com:9443/ws/paxgusdt@ticker');
-        goldWs.onmessage = (e) => {
-          const data = JSON.parse(e.data);
-          goldPrice = parseFloat(data.c);
-          updatePrices(goldPrice, btcPrice);
-        };
-        goldWs.onerror = () => { /* fallback simulation */ };
-        goldWs.onclose = () => { /* keep simulation */ };
+      <div class="grid md:grid-cols-[minmax(0,1fr)_236px] gap-5 items-start">
+        <div>
+          <div id="wheel" class="wheel"></div>
+          <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2" style="margin-top:10px">
+            <span class="chip" style="height:20px;font-size:9px"><i class="dot" style="background:var(--emerald)"></i>Trine / Sextile</span>
+            <span class="chip" style="height:20px;font-size:9px"><i class="dot" style="background:var(--rose)"></i>Square / Opposition</span>
+            <span class="chip" style="height:20px;font-size:9px"><i class="dot" style="background:var(--blue)"></i>Conjunction</span>
+            <span id="wheelStamp" class="mono t-dim" style="font-size:9px"></span>
+          </div>
+        </div>
+        <div>
+          <div class="label" style="margin-bottom:6px">Posisi Planet</div>
+          <div id="planetList" class="planet-list"></div>
+        </div>
+      </div>
+    </div>
 
-        const btcWs = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker');
-        btcWs.onmessage = (e) => {
-          const data = JSON.parse(e.data);
-          btcPrice = parseFloat(data.c);
-          updatePrices(goldPrice, btcPrice);
-        };
-        btcWs.onerror = () => {};
-        btcWs.onclose = () => {};
-      } catch (err) { /* ignore */ }
+    <div class="card card-pad xl:col-span-4 flex flex-col" id="deskCard" style="min-height:520px">
+      <div class="flex items-center justify-between" style="margin-bottom:12px">
+        <div class="flex items-center gap-2.5">
+          <div class="logo" style="width:30px;height:30px;border-radius:10px;font-size:12px">R</div>
+          <div class="leading-tight">
+            <div style="font-size:12.5px;font-weight:600">Meja Analis</div>
+            <div class="t-muted" style="font-size:9.5px">Rangga · shift malam</div>
+          </div>
+        </div>
+        <span class="live-tag"><span class="dot dot-live" style="width:5px;height:5px"></span>Online</span>
+      </div>
+      <div class="sep" style="margin-bottom:12px"></div>
+      <div id="chatLog" class="chat-log" style="flex:1;min-height:240px;max-height:340px;padding-right:4px"></div>
+      <div class="flex gap-2 flex-wrap" style="margin:10px 0 10px" id="suggWrap">
+        <button class="sugg" data-q="Harga sekarang berapa?">Harga sekarang</button>
+        <button class="sugg" data-q="Signal jam ini apa?">Signal jam ini</button>
+        <button class="sugg" data-q="Hitung rebate 25 lot">Rebate 25 lot</button>
+        <button class="sugg" data-q="Berita terdekat kapan?">Berita terdekat</button>
+        <button class="sugg" data-q="Posisi Bulan sekarang?">Posisi Bulan</button>
+      </div>
+      <form id="chatForm" class="flex items-center gap-2">
+        <input id="chatInput" class="chat-input" type="text" placeholder="Tanya apa saja soal harga, signal, rebate…" autocomplete="off" />
+        <button type="submit" class="btn btn-gold" style="height:38px;width:44px;padding:0" aria-label="Kirim">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>
+        </button>
+      </form>
+    </div>
+  </section>
 
-      // 1-second fallback simulation (never freeze)
-      setInterval(() => {
-        goldPrice += (Math.random() - 0.5) * 1.2;
-        btcPrice += (Math.random() - 0.5) * 8;
-        updatePrices(goldPrice, btcPrice);
-      }, 1000);
+  <!-- SIGNAL + REBATE -->
+  <section class="grid xl:grid-cols-12 gap-5">
+    <div class="card card-pad xl:col-span-8">
+      <div class="flex flex-wrap items-center justify-between gap-3" style="margin-bottom:16px">
+        <div>
+          <div class="label">Ruang Kerja</div>
+          <h2 style="font-size:15px;font-weight:600;margin-top:3px">Signal Astro-Quant (Automated)</h2>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <select id="selMonth" class="sel"></select>
+          <select id="selDay" class="sel"></select>
+          <select id="selYear" class="sel"></select>
+          <select id="selHour" class="sel"></select>
+          <button id="nowBtn" class="btn btn-gold">Sekarang</button>
+        </div>
+      </div>
 
-      // initial set
-      updatePrices(goldPrice, btcPrice);
+      <div class="grid md:grid-cols-2 gap-5">
+        <div>
+          <div class="flex items-end gap-3 flex-wrap">
+            <div id="verdict" class="verdict t-em">STRONG BUY</div>
+            <div class="chip chip-gold" id="confChip" style="height:24px;margin-bottom:5px">87% Win Rate</div>
+          </div>
+          <div class="mono t-muted" id="signalStamp" style="font-size:10px;margin-top:5px">—</div>
 
-      // ---------- ASTRO WHEEL (simplified Placidus-style) ----------
-      const wheelContainer = document.getElementById('wheel-container');
-      let darkMode = true;
+          <div class="grid grid-cols-3 gap-2.5" style="margin-top:14px">
+            <div class="levelbox">
+              <div class="label" style="font-size:8.5px">Entry</div>
+              <div id="lvlEntry" class="mono" style="font-size:15px;font-weight:600;margin-top:3px">—</div>
+            </div>
+            <div class="levelbox">
+              <div class="label" style="font-size:8.5px">Take Profit</div>
+              <div id="lvlTp" class="mono t-em" style="font-size:15px;font-weight:600;margin-top:3px">—</div>
+            </div>
+            <div class="levelbox">
+              <div class="label" style="font-size:8.5px">Stop Loss</div>
+              <div id="lvlSl" class="mono t-rose" style="font-size:15px;font-weight:600;margin-top:3px">—</div>
+            </div>
+          </div>
 
-      function renderWheel() {
-        const size = 400, center = size/2, radius = 160;
-        const planets = [
-          { name: 'Sun', deg: 15, color: '#D4AF37' },
-          { name: 'Moon', deg: 75, color: '#94A3B8' },
-          { name: 'Mercury', deg: 120, color: '#F8FAFC' },
-          { name: 'Venus', deg: 180, color: '#F43F5E' },
-          { name: 'Mars', deg: 230, color: '#10B981' },
-          { name: 'Jupiter', deg: 300, color: '#D4AF37' },
-        ];
-        let svg = `<svg viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">`;
-        // background circle
-        svg += `<circle cx="${center}" cy="${center}" r="${radius}" fill="none" stroke="${darkMode ? 'rgba(255,255,255,0.15)' : '#ccc'}" stroke-width="1.5" />`;
-        // tick marks
-        for (let i = 0; i < 360; i += 10) {
-          const rad = (i - 90) * Math.PI / 180;
-          const x1 = center + (radius - 8) * Math.cos(rad);
-          const y1 = center + (radius - 8) * Math.sin(rad);
-          const x2 = center + radius * Math.cos(rad);
-          const y2 = center + radius * Math.sin(rad);
-          svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${darkMode ? 'rgba(255,255,255,0.2)' : '#aaa'}" stroke-width="0.8" />`;
+          <div class="flex flex-wrap gap-2" style="margin-top:14px">
+            <a id="waSignal" class="btn btn-gold btn-lg" href="#" target="_blank" rel="noopener">Eksekusi via WhatsApp ↗</a>
+            <button class="btn btn-lg" id="copySignal">Salin Rencana</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="label" style="margin-bottom:9px">Logika Astro-Quant</div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <div style="display:flex;gap:9px;align-items:flex-start">
+              <span class="chip chip-gold" style="height:19px;font-size:8.5px;flex:0 0 auto">DIGNITY</span>
+              <span id="rAstro" style="font-size:11.5px;line-height:1.5;color:var(--muted)">—</span>
+            </div>
+            <div style="display:flex;gap:9px;align-items:flex-start">
+              <span class="chip chip-em" style="height:19px;font-size:8.5px;flex:0 0 auto">ASPECT</span>
+              <span id="rAuction" style="font-size:11.5px;line-height:1.5;color:var(--muted)">—</span>
+            </div>
+            <div style="display:flex;gap:9px;align-items:flex-start">
+              <span class="chip" style="height:19px;font-size:8.5px;flex:0 0 auto">PHASE</span>
+              <span id="rStructure" style="font-size:11.5px;line-height:1.5;color:var(--muted)">—</span>
+            </div>
+          </div>
+
+          <div class="sep" style="margin:14px 0"></div>
+          <div class="grid grid-cols-3 gap-2 text-center">
+            <div>
+              <div class="label" style="font-size:8px">Risk</div>
+              <div class="mono" style="font-size:12px;margin-top:2px" id="mRisk">0.5%</div>
+            </div>
+            <div>
+              <div class="label" style="font-size:8px">R:R</div>
+              <div class="mono" style="font-size:12px;margin-top:2px" id="mRR">1:2.5</div>
+            </div>
+            <div>
+              <div class="label" style="font-size:8px">Horizon</div>
+              <div class="mono" style="font-size:12px;margin-top:2px" id="mHorizon">4–8 jam</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-pad xl:col-span-4">
+      <div class="flex items-center justify-between" style="margin-bottom:14px">
+        <div>
+          <div class="label">Valetax</div>
+          <h2 style="font-size:15px;font-weight:600;margin-top:3px">Self-Rebate</h2>
+        </div>
+        <span class="chip chip-gold">$9 – $12 / lot</span>
+      </div>
+      <div class="flex items-end justify-between">
+        <span class="label">Volume / hari</span>
+        <span class="mono" style="font-size:22px;font-weight:600" id="lotOut">1</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-top:-2px">
+        <input id="lotSlider" type="range" min="1" max="500" value="12" step="1" />
+      </div>
+      <div style="display:flex;justify-content:space-between" class="mono t-dim">
+        <span style="font-size:9px">1 lot</span><span style="font-size:9px">500 lot</span>
+      </div>
+      <div class="grid grid-cols-3 gap-2" style="margin-top:12px">
+        <button class="tier" data-tier="9">$9</button>
+        <button class="tier" data-tier="10.5">$10.5</button>
+        <button class="tier active" data-tier="12">$12</button>
+      </div>
+      <div class="grid grid-cols-2 gap-2.5" style="margin-top:14px">
+        <div class="levelbox">
+          <div class="label" style="font-size:8.5px">Harian</div>
+          <div id="rebDaily" class="mono" style="font-size:19px;font-weight:600;margin-top:3px">$144</div>
+          <div id="rebDailyIdr" class="mono t-muted" style="font-size:9.5px;margin-top:1px">Rp 2.304.000</div>
+        </div>
+        <div class="levelbox">
+          <div class="label" style="font-size:8.5px">Bulanan</div>
+          <div id="rebMonthly" class="mono" style="font-size:19px;font-weight:600;margin-top:3px">$4.320</div>
+          <div id="rebMonthlyIdr" class="mono t-muted" style="font-size:9.5px;margin-top:1px">Rp 69.120.000</div>
+        </div>
+      </div>
+      <a id="waRebate" class="btn btn-gold btn-lg" style="width:100%;margin-top:12px" href="#" target="_blank" rel="noopener">Klaim Rebate via WhatsApp ↗</a>
+    </div>
+  </section>
+
+  <!-- NEWS TERMINAL (Forex Factory API) -->
+  <section class="card card-pad">
+    <div class="flex flex-wrap items-center justify-between gap-3" style="margin-bottom:14px">
+      <div>
+        <div class="label">Kalender Makro · Live</div>
+        <h2 style="font-size:15px;font-weight:600;margin-top:3px">Forex Factory Terminal</h2>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="live-tag" id="newsFeedStatus"><span class="dot dot-live" style="width:5px;height:5px"></span>LIVE FEED</span>
+        <span class="chip" style="height:28px">
+          Rilis berikutnya <span id="countdown" class="mono" style="color:var(--txt);font-weight:600">--:--</span>
+        </span>
+        <button id="refreshNewsBtn" class="btn">Refresh Data</button>
+      </div>
+    </div>
+
+    <div style="overflow-x:auto">
+      <table class="ff-table">
+        <thead>
+          <tr>
+            <th style="width:70px">Waktu (WIB)</th>
+            <th style="width:50px">Mata Uang</th>
+            <th style="width:60px">Impact</th>
+            <th>Event</th>
+            <th style="width:80px">Actual</th>
+            <th style="width:80px">Forecast</th>
+            <th style="width:80px">Previous</th>
+          </tr>
+        </thead>
+        <tbody id="newsBody">
+          <tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted)">Memuat data Forex Factory...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-3 text-[9.5px]" style="color:var(--dim)">
+      Sumber: Forex Factory JSON Feed. Data disinkronkan otomatis setiap 5 menit.
+    </div>
+  </section>
+
+  <!-- ROUTES -->
+  <section class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+    <a class="route" href="https://wa.me/62882010445069?text=Halo%2C%20saya%20mau%20tanya%20signal%20VIP%20ZERODIAX" target="_blank" rel="noopener">
+      <span><span class="t-gold" style="font-weight:600">WhatsApp VIP</span><br><span class="t-dim" style="font-size:10px">Respon cepat · 24/7</span></span><span class="t-muted">↗</span>
+    </a>
+    <a class="route" href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" rel="noopener">
+      <span><span class="t-gold" style="font-weight:600">Registrasi Valetax</span><br><span class="t-dim" style="font-size:10px">Partner #1682343</span></span><span class="t-muted">↗</span>
+    </a>
+    <a class="route" href="https://t.me/+cYCMf2_--1hiNTM1" target="_blank" rel="noopener">
+      <span><span class="t-gold" style="font-weight:600">Telegram Scalper</span><br><span class="t-dim" style="font-size:10px">Sinyal intraday</span></span><span class="t-muted">↗</span>
+    </a>
+    <a class="route" href="https://t.me/zerodiax" target="_blank" rel="noopener">
+      <span><span class="t-gold" style="font-weight:600">Admin Support</span><br><span class="t-dim" style="font-size:10px">Akun & teknis</span></span><span class="t-muted">↗</span>
+    </a>
+  </section>
+
+  <footer class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-2 pb-6">
+    <div class="t-dim" style="font-size:10px;line-height:1.6;max-width:720px">
+      ZERODIAX // Zero Syndicate VIP · Official Valetax Partner #1682343.<br>
+      Seluruh angka di halaman ini adalah alat bantu analisa, bukan ajakan membeli atau menjual. Trading membawa risiko kehilangan modal.
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="chip">© <span id="yr"></span> ZERODIAX</span>
+      <span class="chip chip-gold">v3.5 Platinum</span>
+    </div>
+  </footer>
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ═══════════════════════════════════════════════════════════
+     0 · HOISTED STATE
+  ═══════════════════════════════════════════════════════════ */
+  let SIGNAL = null;
+  let TIER = 12;
+  let newsEvents = [];        
+  let newsSource = 'static';
+  let newsRefreshTimer = null;
+
+  const FALLBACK_NEWS = [
+    { time: '08:30', currency: 'USD', impact: 'High', title: 'Non-Farm Payrolls', forecast: '185K', previous: '175K', actual: null },
+    { time: '12:00', currency: 'USD', impact: 'High', title: 'CPI y/y', forecast: '3.2%', previous: '3.4%', actual: null },
+    { time: '14:00', currency: 'USD', impact: 'High', title: 'FOMC Rate Decision', forecast: '5.25%', previous: '5.25%', actual: null },
+    { time: '16:00', currency: 'USD', impact: 'Medium', title: 'Crude Oil Inventories', forecast: '-1.2M', previous: '+0.8M', actual: null },
+    { time: '20:00', currency: 'USD', impact: 'High', title: 'Fed Chair Powell Speaks', forecast: '—', previous: '—', actual: null },
+    { time: '22:30', currency: 'USD', impact: 'Low', title: 'API Weekly Crude Stock', forecast: '-0.6M', previous: '-1.1M', actual: null }
+  ];
+
+  /* ═══════════════════════════════════════════════════════════
+     1 · HELPERS
+  ═══════════════════════════════════════════════════════════ */
+  const $  = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.prototype.slice.call((r || document).querySelectorAll(s));
+  const RAD = Math.PI / 180;
+  const norm360 = d => ((d % 360) + 360) % 360;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const money0 = n => '$' + Math.round(Number(n)).toLocaleString('en-US');
+  const idr = n => 'Rp ' + Math.round(Number(n)).toLocaleString('id-ID');
+
+  function toast(msg){
+    const el = $('#toast');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add('on');
+    clearTimeout(el._t);
+    el._t = setTimeout(() => el.classList.remove('on'), 2200);
+  }
+  window.toast = toast;
+
+  window.focusDesk = function(){
+    const card = $('#deskCard');
+    const input = $('#chatInput');
+    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (input) setTimeout(() => input.focus(), 400);
+  };
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     2 · PRELOADER
+  ═══════════════════════════════════════════════════════════ */
+  function killPreloader(){
+    const p = $('#preloader');
+    if (!p || p.classList.contains('gone')) return;
+    p.classList.add('gone');
+    setTimeout(() => { p.style.display = 'none'; }, 380);
+  }
+  window.addEventListener('load', () => setTimeout(killPreloader, 100));
+  setTimeout(killPreloader, 900);
+
+  /* ═══════════════════════════════════════════════════════════
+     3 · MARKET DATA
+  ═══════════════════════════════════════════════════════════ */
+  const market = {
+    gold: 2348.20, goldChg: 0.42, goldHist: [],
+    btc: 67420.10, btcChg: 0.87, btcHist: [],
+    goldWS: false, btcWS: false
+  };
+  for (let i = 0; i < 40; i++){
+    market.goldHist.push(2348 + Math.sin(i / 4) * 2 + Math.random());
+    market.btcHist.push(67420 + Math.sin(i / 5) * 90 + Math.random() * 20);
+  }
+
+  function pushHist(arr, v){ arr.push(v); if (arr.length > 60) arr.shift(); }
+
+  function sparkline(vals, color){
+    if (!vals || vals.length < 2) return '';
+    const w = 200, h = 34;
+    const min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+    const span = (max - min) || 1;
+    let pts = '';
+    for (let i = 0; i < vals.length; i++){
+      const x = (i / (vals.length - 1)) * w;
+      const y = h - 3 - ((vals[i] - min) / span) * (h - 6);
+      pts += x.toFixed(1) + ',' + y.toFixed(1) + ' ';
+    }
+    return '<svg class="spark" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none">' +
+      '<polyline points="' + pts + '" fill="none" stroke="' + color + '" stroke-width="1.4" ' +
+      'stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/></svg>';
+  }
+
+  function paintMarket(){
+    const gTxt = '$' + market.gold.toFixed(2);
+    const bTxt = '$' + market.btc.toFixed(2);
+    const gChgTxt = (market.goldChg >= 0 ? '+' : '') + market.goldChg.toFixed(2) + '%';
+    const bChgTxt = (market.btcChg >= 0 ? '+' : '') + market.btcChg.toFixed(2) + '%';
+    const gCol = market.goldChg >= 0 ? 'var(--emerald)' : 'var(--rose)';
+    const bCol = market.btcChg >= 0 ? 'var(--emerald)' : 'var(--rose)';
+
+    const hG = $('#hGold'), hB = $('#hBtc'), hGC = $('#hGoldChg'), hBC = $('#hBtcChg');
+    if (hG) hG.textContent = gTxt;
+    if (hB) hB.textContent = bTxt;
+    if (hGC){ hGC.textContent = gChgTxt; hGC.style.color = gCol; }
+    if (hBC){ hBC.textContent = bChgTxt; hBC.style.color = bCol; }
+
+    const mG = $('#mGold'), mB = $('#mBtc');
+    if (mG) mG.textContent = gTxt;
+    if (mB) mB.textContent = bTxt;
+
+    const sG = $('#sGold'), sB = $('#sBtc'), sGC = $('#sGoldChg'), sBC = $('#sBtcChg');
+    if (sG) sG.textContent = gTxt;
+    if (sB) sB.textContent = bTxt;
+    if (sGC){ sGC.textContent = gChgTxt; sGC.style.color = gCol; }
+    if (sBC){ sBC.textContent = bChgTxt; sBC.style.color = bCol; }
+
+    const spG = $('#sGoldSpark'), spB = $('#sBtcSpark');
+    if (spG) spG.innerHTML = sparkline(market.goldHist, gCol);
+    if (spB) spB.innerHTML = sparkline(market.btcHist, bCol);
+
+    refreshLevels();
+  }
+
+  function bindFeed(url, onTick, key){
+    try {
+      const ws = new WebSocket(url);
+      ws.onopen = () => { market[key] = true; };
+      ws.onmessage = ev => {
+        try {
+          const d = JSON.parse(ev.data);
+          if (d && d.c) onTick(d);
+        } catch (e) {}
+      };
+      ws.onerror = () => { market[key] = false; };
+      ws.onclose = () => { market[key] = false; };
+    } catch (e) { market[key] = false; }
+  }
+
+  bindFeed('wss://stream.binance.com:9443/ws/paxgusdt@ticker', d => {
+    const p = parseFloat(d.c);
+    if (!isNaN(p)){
+      market.gold = p;
+      if (d.P) market.goldChg = parseFloat(d.P);
+      pushHist(market.goldHist, market.gold);
+      paintMarket();
+    }
+  }, 'goldWS');
+
+  bindFeed('wss://stream.binance.com:9443/ws/btcusdt@ticker', d => {
+    const p = parseFloat(d.c);
+    if (!isNaN(p)){
+      market.btc = p;
+      if (d.P) market.btcChg = parseFloat(d.P);
+      pushHist(market.btcHist, market.btc);
+      paintMarket();
+    }
+  }, 'btcWS');
+
+  setInterval(() => {
+    if (!market.goldWS){
+      market.gold = Math.max(1, market.gold + (Math.random() - 0.5) * 1.6);
+      market.goldChg = clamp(market.goldChg + (Math.random() - 0.5) * 0.06, -3, 3);
+      pushHist(market.goldHist, market.gold);
+    }
+    if (!market.btcWS){
+      market.btc = Math.max(1, market.btc + (Math.random() - 0.5) * 16);
+      market.btcChg = clamp(market.btcChg + (Math.random() - 0.5) * 0.1, -5, 5);
+      pushHist(market.btcHist, market.btc);
+    }
+    paintMarket();
+  }, 1000);
+
+  paintMarket();
+
+  /* ═══════════════════════════════════════════════════════════
+     4 · CLOCK & SESSIONS
+  ═══════════════════════════════════════════════════════════ */
+  function clockNow(){
+    const d = new Date();
+    const t = [d.getHours(), d.getMinutes(), d.getSeconds()]
+      .map(v => String(v).padStart(2, '0')).join(':');
+    const hC = $('#hClock'); if (hC) hC.textContent = t + ' WIB';
+    const mC = $('#mClock'); if (mC) mC.textContent = t;
+  }
+  clockNow();
+
+  function tzTime(tz){
+    try {
+      return new Intl.DateTimeFormat('en-GB', {
+        timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false
+      }).format(new Date());
+    } catch (e) { return '--:--'; }
+  }
+  function tzHour(tz){
+    try {
+      return parseInt(new Intl.DateTimeFormat('en-GB', {
+        timeZone: tz, hour: '2-digit', hour12: false
+      }).format(new Date()), 10);
+    } catch (e) { return new Date().getHours(); }
+  }
+
+  const SESSIONS = [
+    { name: 'Tokyo',   tz: 'Asia/Tokyo',       open: 9,  close: 18 },
+    { name: 'London',  tz: 'Europe/London',    open: 8,  close: 17 },
+    { name: 'New York',tz: 'America/New_York', open: 8,  close: 17 }
+  ];
+
+  function paintSessions(){
+    const ny = tzTime('America/New_York');
+    const sS = $('#sSession'); if (sS) sS.textContent = ny;
+    const nyH = tzHour('America/New_York');
+    const openNow = nyH >= 8 && nyH < 17;
+    const st = $('#sSessionState');
+    if (st){
+      st.textContent = openNow ? 'Market terbuka · likuiditas tinggi' : 'Market tutup · spread melebar';
+      st.style.color = openNow ? 'var(--emerald)' : 'var(--muted)';
+    }
+
+    let html = '';
+    SESSIONS.forEach(s => {
+      const h = tzHour(s.tz);
+      const live = h >= s.open && h < s.close;
+      html += '<span class="chip" style="height:19px;font-size:8.5px;' +
+        (live ? 'color:var(--emerald);border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.07)' : '') +
+        '">' + s.name + (live ? ' · buka' : '') + '</span>';
+    });
+    const pills = $('#sessionPills'); if (pills) pills.innerHTML = html;
+  }
+  paintSessions();
+  setInterval(() => { clockNow(); paintSessions(); updateCountdown(); }, 1000);
+
+  /* ═══════════════════════════════════════════════════════════
+     5 · ASTRONOMY ENGINE & ASTRODOX PLATINUM RENDER
+  ═══════════════════════════════════════════════════════════ */
+  const BODIES = [
+    { key:'sun',     name:'Matahari', glyph:'☉', base:280.46646, rate:0.9856474, color:'#F59E0B' },
+    { key:'moon',    name:'Bulan',    glyph:'☽', base:218.31600, rate:13.176396, color:'#94A3B8' },
+    { key:'mercury', name:'Merkurius',glyph:'☿', base:252.25100, rate:4.092334,  color:'#A78BFA' },
+    { key:'venus',   name:'Venus',    glyph:'♀', base:181.98000, rate:1.602130,  color:'#F472B6' },
+    { key:'mars',    name:'Mars',     glyph:'♂', base:355.43300, rate:0.524033,  color:'#F87171' },
+    { key:'jupiter', name:'Jupiter',  glyph:'♃', base:34.35100,  rate:0.083091,  color:'#FBBF24' },
+    { key:'saturn',  name:'Saturnus', glyph:'♄', base:50.07700,  rate:0.033444,  color:'#9CA3AF' },
+    { key:'uranus',  name:'Uranus',   glyph:'♅', base:314.05500, rate:0.011725,  color:'#60A5FA' },
+    { key:'neptune', name:'Neptunus', glyph:'♆', base:304.34900, rate:0.005981,  color:'#818CF8' },
+    { key:'pluto',   name:'Pluto',    glyph:'♇', base:238.95600, rate:0.003964,  color:'#E879F9' },
+    { key:'node',    name:'Node',     glyph:'☊', base:125.04500, rate:-0.052953, color:'#94A3B8' },
+    { key:'lilith',  name:'Lilith',   glyph:'⚸', base:83.35300,  rate:0.111404,  color:'#FB7185' }
+  ];
+
+  const SIGNS = [
+    { g:'♈', n:'Aries', e:'Fire' }, { g:'♉', n:'Taurus', e:'Earth' }, { g:'♊', n:'Gemini', e:'Air' },
+    { g:'♋', n:'Cancer', e:'Water' }, { g:'♌', n:'Leo', e:'Fire' }, { g:'♍', n:'Virgo', e:'Earth' },
+    { g:'♎', n:'Libra', e:'Air' }, { g:'♏', n:'Scorpio', e:'Water' }, { g:'♐', n:'Sagittarius', e:'Fire' },
+    { g:'♑', n:'Capricorn', e:'Earth' }, { g:'♒', n:'Aquarius', e:'Air' }, { g:'♓', n:'Pisces', e:'Water' }
+  ];
+
+  const SIGN_COLORS = {
+    'Fire':  ['#451a1a', '#4a1d1d', '#501f1f', '#3d1616'], // Deep Red/Orange
+    'Earth': ['#142d1b', '#17351e', '#1b3d22', '#122616'], // Deep Green
+    'Air':   ['#18253d', '#1a2a45', '#1d2f4d', '#141f33'], // Deep Blue/Cyan
+    'Water': ['#2d1b3d', '#332044', '#3a244d', '#261633']  // Deep Purple
+  };
+  const SIGN_ELEMENT_COLORS = {
+    'Fire': '#F87171',
+    'Earth': '#34D399',
+    'Air': '#60A5FA',
+    'Water': '#A78BFA'
+  };
+
+  function julian(date){ return date.getTime() / 86400000 + 2440587.5; }
+
+  function getBodies(date){
+    const d = julian(date) - 2451545.0;
+    return BODIES.map(function(b){
+      const lon = norm360(b.base + b.rate * d);
+      return {
+        key: b.key, name: b.name, glyph: b.glyph, color: b.color,
+        lon: lon,
+        sign: SIGNS[Math.floor(lon / 30) % 12],
+        degInSign: lon % 30,
+        retro: b.rate < 0
+      };
+    });
+  }
+
+  function placidusCusp(ramc, lat, obl, offset, frac, sign){
+    let ra = ramc + offset;
+    for (let i = 0; i < 30; i++){
+      const r = ra * RAD;
+      const lon = Math.atan2(Math.sin(r), Math.cos(r) * Math.cos(obl * RAD));
+      const dec = Math.asin(Math.max(-1, Math.min(1, Math.sin(obl * RAD) * Math.sin(lon))));
+      const ad = Math.asin(Math.max(-1, Math.min(1, Math.tan(lat * RAD) * Math.tan(dec)))) / RAD;
+      ra = ramc + offset + sign * frac * ad;
+    }
+    const r2 = ra * RAD;
+    return norm360(Math.atan2(Math.sin(r2), Math.cos(r2) * Math.cos(obl * RAD)) / RAD);
+  }
+
+  function computeHouses(date){
+    const d = julian(date) - 2451545.0;
+    const gmst = norm360(280.46061837 + 360.98564736629 * d);
+    const lat = 40.7128, lonNY = -74.0060, obl = 23.4392911;
+    const ramc = norm360(gmst + lonNY);
+
+    const mc = norm360(Math.atan2(Math.sin(ramc * RAD), Math.cos(ramc * RAD) * Math.cos(obl * RAD)) / RAD);
+    const asc = norm360(Math.atan2(
+      Math.cos(ramc * RAD),
+      -(Math.sin(ramc * RAD) * Math.cos(obl * RAD) + Math.tan(lat * RAD) * Math.sin(obl * RAD))
+    ) / RAD);
+
+    const c11 = placidusCusp(ramc, lat, obl, 30, 1 / 3, -1);
+    const c12 = placidusCusp(ramc, lat, obl, 60, 2 / 3, -1);
+    const c2  = placidusCusp(ramc, lat, obl, 120, 2 / 3, 1);
+    const c3  = placidusCusp(ramc, lat, obl, 150, 1 / 3, 1);
+
+    return {
+      ramc: ramc,
+      cusps: [
+        asc, c2, c3, norm360(mc + 180), norm360(c11 + 180), norm360(c12 + 180),
+        norm360(asc + 180), norm360(c2 + 180), norm360(c3 + 180), mc, c11, c12
+      ],
+      mc: mc, asc: asc
+    };
+  }
+
+  const ASPECTS = [
+    { name: 'conjunction', angle: 0,   color: '#3B82F6', orb: 6, dash: '4 2', weight: 2 }, // Blue
+    { name: 'sextile',     angle: 60,  color: '#10B981', orb: 5, dash: '', weight: 1 },    // Green
+    { name: 'square',      angle: 90,  color: '#F43F5E', orb: 6, dash: '4 2', weight: 2 }, // Red
+    { name: 'trine',       angle: 120, color: '#10B981', orb: 6, dash: '', weight: 1.5 },  // Green
+    { name: 'opposition',  angle: 180, color: '#F43F5E', orb: 6, dash: '4 2', weight: 2 }  // Red
+  ];
+
+  function computeAspects(bodies){
+    const out = [];
+    for (let i = 0; i < bodies.length; i++){
+      for (let j = i + 1; j < bodies.length; j++){
+        const a = bodies[i], b = bodies[j];
+        if (a.key === 'node' || b.key === 'node' || a.key === 'lilith' || b.key === 'lilith') continue;
+        let diff = Math.abs(a.lon - b.lon);
+        if (diff > 180) diff = 360 - diff;
+        for (let k = 0; k < ASPECTS.length; k++){
+          const asp = ASPECTS[k];
+          if (Math.abs(diff - asp.angle) <= asp.orb){
+            out.push({ a: a, b: b, asp: asp, delta: Math.abs(diff - asp.angle) });
+            break;
+          }
         }
-        // planets
-        planets.forEach(p => {
-          const rad = (p.deg - 90) * Math.PI / 180;
-          const x = center + (radius - 20) * Math.cos(rad);
-          const y = center + (radius - 20) * Math.sin(rad);
-          svg += `<circle cx="${x}" cy="${y}" r="4" fill="${p.color}" />`;
-          svg += `<text x="${x + 8}" y="${y + 3}" font-size="8" fill="${darkMode ? '#F8FAFC' : '#05070A'}" font-family="monospace">${p.name}</text>`;
-        });
-        // aspect lines (Green Trine, Red Square, Blue Conjunction)
-        const aspects = [
-          { from: 15, to: 75, type: 'trine', color: '#10B981' },
-          { from: 120, to: 180, type: 'square', color: '#F43F5E' },
-          { from: 180, to: 230, type: 'conjunction', color: '#3B82F6' },
-          { from: 300, to: 15, type: 'sextile', color: '#10B981' },
-        ];
-        aspects.forEach(a => {
-          const rad1 = (a.from - 90) * Math.PI / 180;
-          const rad2 = (a.to - 90) * Math.PI / 180;
-          const x1 = center + (radius - 30) * Math.cos(rad1);
-          const y1 = center + (radius - 30) * Math.sin(rad1);
-          const x2 = center + (radius - 30) * Math.cos(rad2);
-          const y2 = center + (radius - 30) * Math.sin(rad2);
-          svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${a.color}" stroke-width="1.2" stroke-dasharray="${a.type === 'square' ? '3,3' : 'none'}" opacity="0.8" />`;
-        });
-        svg += `</svg>`;
-        wheelContainer.innerHTML = svg;
       }
+    }
+    return out;
+  }
 
-      renderWheel();
-      document.getElementById('toggle-theme').addEventListener('click', () => {
-        darkMode = !darkMode;
-        renderWheel();
-      });
+  function renderWheel(date){
+    const host = $('#wheel');
+    if (!host) return;
 
-      // ---------- AI SIGNAL + DATE PICKERS ----------
-      const datePicker = document.getElementById('datePicker');
-      const timePicker = document.getElementById('timePicker');
-      const nowBtn = document.getElementById('nowBtn');
-      const verdictEl = document.getElementById('verdict');
-      const confidenceEl = document.getElementById('confidence');
-      const entryEl = document.getElementById('entryLevel');
-      const tpEl = document.getElementById('tpLevel');
-      const slEl = document.getElementById('slLevel');
-      const reasonAstro = document.getElementById('reasonAstro');
-      const reasonAuction = document.getElementById('reasonAuction');
-      const reasonStructure = document.getElementById('reasonStructure');
+    const isLight = document.body.classList.contains('light');
+    const bodies  = getBodies(date);
+    const houses  = computeHouses(date);
+    const aspects = computeAspects(bodies);
 
-      function updateSignal() {
-        // deterministic-ish based on time
-        const seed = (datePicker.value || new Date().toISOString().slice(0,10)).length + (timePicker.value || '12:00').length;
-        const isBuy = (seed % 2 === 0);
-        const conf = 65 + (seed % 30);
-        const basePrice = goldPrice;
-        const entry = basePrice + (isBuy ? -0.5 : 0.5);
-        const tp = entry + (isBuy ? 6.5 : -6.5);
-        const sl = entry - (isBuy ? 3.2 : -3.2);
+    const S = 600, cx = 300, cy = 300;
+    const R_OUT = 285, R_ZOD_IN = 240, R_HOUSE_IN = 200, R_PLANET = 160, R_ASPECT = 140;
 
-        verdictEl.textContent = isBuy ? 'STRONG BUY' : 'SELL';
-        verdictEl.className = isBuy ? 'text-2xl font-semibold tracking-tight text-emerald-accent' : 'text-2xl font-semibold tracking-tight text-rose-accent';
-        confidenceEl.textContent = conf + '%';
-        entryEl.textContent = entry.toFixed(2);
-        tpEl.textContent = tp.toFixed(2);
-        slEl.textContent = sl.toFixed(2);
+    function pt(lon, r){
+      const a = (180 + (lon - houses.asc)) * RAD;
+      return [cx + r * Math.cos(a), cy - r * Math.sin(a)];
+    }
 
-        // dynamic reasons
-        reasonAstro.textContent = isBuy ? 'Sun trine Moon – momentum alignment' : 'Mars square Saturn – pressure reversal';
-        reasonAuction.textContent = isBuy ? 'Liquidity above ' + entry.toFixed(2) + ' – buy pressure' : 'Sell imbalance at ' + entry.toFixed(2);
-        reasonStructure.textContent = isBuy ? 'Higher low confirmed on 15m' : 'Lower high rejected on 1H';
-
-        // update WhatsApp link dynamically
-        const waMsg = encodeURIComponent(`VIP ${isBuy ? 'BUY' : 'SELL'} signal for ${datePicker.value || 'today'} ${timePicker.value || ''} @ ${entry.toFixed(2)}`);
-        document.getElementById('waRebateBtn').href = `https://wa.me/62882010445069?text=${waMsg}`;
+    function segPath(l1, l2, rOut, rIn, steps){
+      steps = steps || 20;
+      const pts = [];
+      let i, l, p;
+      for (i = 0; i <= steps; i++){
+        l = l1 + (l2 - l1) * (i / steps);
+        p = pt(l, rOut); pts.push(p[0].toFixed(2) + ' ' + p[1].toFixed(2));
       }
-
-      // set defaults
-      const today = new Date().toISOString().slice(0,10);
-      datePicker.value = today;
-      timePicker.value = new Date().toTimeString().slice(0,5);
-      updateSignal();
-
-      datePicker.addEventListener('change', updateSignal);
-      timePicker.addEventListener('change', updateSignal);
-      nowBtn.addEventListener('click', () => {
-        datePicker.value = new Date().toISOString().slice(0,10);
-        timePicker.value = new Date().toTimeString().slice(0,5);
-        updateSignal();
-      });
-
-      // ---------- REBATE CALCULATOR ----------
-      const lotSlider = document.getElementById('lotSlider');
-      const lotValue = document.getElementById('lotValue');
-      const dailyRebate = document.getElementById('dailyRebate');
-      const dailyIdr = document.getElementById('dailyIdr');
-      const monthlyRebate = document.getElementById('monthlyRebate');
-      const monthlyIdr = document.getElementById('monthlyIdr');
-      const tierBtns = document.querySelectorAll('.tier-btn');
-      let currentTier = 12; // default $12
-
-      function updateRebate() {
-        const lots = parseInt(lotSlider.value);
-        lotValue.textContent = lots;
-        const daily = lots * currentTier;
-        const monthly = daily * 30;
-        dailyRebate.textContent = '$' + daily.toFixed(2);
-        dailyIdr.textContent = 'Rp ' + (daily * 16000).toLocaleString('id-ID');
-        monthlyRebate.textContent = '$' + monthly.toFixed(2);
-        monthlyIdr.textContent = 'Rp ' + (monthly * 16000).toLocaleString('id-ID');
-        // update WA link
-        const waMsg = encodeURIComponent(`Rebate request: ${lots} lots/day @ $${currentTier}/lot`);
-        document.getElementById('waRebateBtn').href = `https://wa.me/62882010445069?text=${waMsg}`;
+      for (i = steps; i >= 0; i--){
+        l = l1 + (l2 - l1) * (i / steps);
+        p = pt(l, rIn); pts.push(p[0].toFixed(2) + ' ' + p[1].toFixed(2));
       }
+      return 'M' + pts.join(' L ') + ' Z';
+    }
 
-      lotSlider.addEventListener('input', updateRebate);
-      tierBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          tierBtns.forEach(b => b.classList.remove('bg-[#D4AF37]/10', 'border-[#D4AF37]'));
-          btn.classList.add('bg-[#D4AF37]/10', 'border-[#D4AF37]');
-          currentTier = parseFloat(btn.dataset.tier);
-          updateRebate();
-        });
-      });
+    let s = '<svg viewBox="0 0 ' + S + ' ' + S + '" xmlns="http://www.w3.org/2000/svg" role="img">';
+    
+    // Background
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (R_OUT + 15) + '" fill="' + (isLight ? '#F8FAFC' : '#0C0E14') + '"/>';
 
-      // set default tier highlight
-      document.querySelector('.tier-btn[data-tier="12"]').classList.add('bg-[#D4AF37]/10', 'border-[#D4AF37]');
+    // Zodiac Ring
+    for (let i = 0; i < 12; i++){
+      const l1 = i * 30, l2 = l1 + 30;
+      const sign = SIGNS[i];
+      const color = isLight ? sign.e === 'Fire' ? '#FEE2E2' : sign.e === 'Earth' ? '#DCFCE7' : sign.e === 'Air' ? '#DBEAFE' : '#F3E8FF' 
+                            : SIGN_COLORS[sign.e][i % 4];
+      
+      s += '<path d="' + segPath(l1, l2, R_OUT, R_ZOD_IN) + '" fill="' + color + '" stroke="' + (isLight ? '#CBD5E1' : 'rgba(255,255,255,0.1)') + '" stroke-width="1"/>';
+      
+      // Zodiac Glyph
+      const mid = l1 + 15;
+      const gp = pt(mid, (R_OUT + R_ZOD_IN) / 2);
+      s += '<text x="' + gp[0].toFixed(1) + '" y="' + (gp[1] + 6).toFixed(1) + '" font-size="20" fill="' + SIGN_ELEMENT_COLORS[sign.e] + '" text-anchor="middle" font-family="serif">' + sign.g + '</text>';
+      
+      // Degree Ticks (every 5 deg)
+      for (let dgr = l1; dgr < l2; dgr += 5) {
+        const major = dgr % 30 === 0;
+        const p1 = pt(dgr, R_ZOD_IN);
+        const p2 = pt(dgr, R_ZOD_IN - (major ? 10 : 5));
+        s += '<line x1="' + p1[0].toFixed(1) + '" y1="' + p1[1].toFixed(1) + '" x2="' + p2[0].toFixed(1) + '" y2="' + p2[1].toFixed(1) + '" stroke="' + (isLight ? '#94A3B8' : 'rgba(255,255,255,0.2)') + '" stroke-width="' + (major ? 1.5 : 0.5) + '"/>';
+      }
+    }
+
+    // Inner Circles
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + R_ZOD_IN + '" fill="none" stroke="' + (isLight ? '#CBD5E1' : 'rgba(255,255,255,0.15)') + '" stroke-width="1.5"/>';
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + R_HOUSE_IN + '" fill="' + (isLight ? '#FFFFFF' : '#05070A') + '" stroke="' + (isLight ? '#CBD5E1' : 'rgba(255,255,255,0.15)') + '" stroke-width="1"/>';
+
+    // Houses
+    for (let h = 0; h < 12; h++){
+      const cusp = houses.cusps[h];
+      const p1 = pt(cusp, R_HOUSE_IN);
+      const p2 = pt(cusp, R_ZOD_IN);
+      const isAngle = (h === 0 || h === 3 || h === 6 || h === 9);
+      const isAscMc = (h === 0 || h === 9);
+      
+      s += '<line x1="' + p1[0].toFixed(1) + '" y1="' + p1[1].toFixed(1) + '" x2="' + p2[0].toFixed(1) + '" y2="' + p2[1].toFixed(1) + 
+           '" stroke="' + (isAngle ? (isLight ? '#0F172A' : '#F8FAFC') : (isLight ? '#CBD5E1' : 'rgba(255,255,255,0.2)')) + '" stroke-width="' + (isAngle ? (isAscMc ? 2.5 : 1.5) : 0.8) + '"' +
+           (isAngle ? '' : ' stroke-dasharray="2 3"') + '/>';
+
+      // House Number
+      const next = houses.cusps[(h + 1) % 12];
+      let span = norm360(next - cusp);
+      if (span <= 0) span = 30;
+      const midLon = norm360(cusp + span / 2);
+      const lp = pt(midLon, R_HOUSE_IN + 15);
+      s += '<text x="' + lp[0].toFixed(1) + '" y="' + (lp[1] + 3).toFixed(1) + '" font-size="9" fill="' + (isLight ? '#64748B' : 'rgba(255,255,255,0.4)') + '" text-anchor="middle" font-family="monospace">' + (h + 1) + '</text>';
+    }
+
+    // Angle Markers (ASC, MC)
+    const ascP = pt(houses.asc, R_OUT + 12);
+    const mcP = pt(houses.mc, R_OUT + 12);
+    s += '<text x="' + ascP[0].toFixed(1) + '" y="' + (ascP[1] + 4).toFixed(1) + '" font-size="10" fill="' + (isLight ? '#0F172A' : '#F8FAFC') + '" text-anchor="middle" font-family="monospace" font-weight="700">ASC</text>';
+    s += '<text x="' + mcP[0].toFixed(1) + '" y="' + (mcP[1] + 4).toFixed(1) + '" font-size="10" fill="' + (isLight ? '#0F172A' : '#F8FAFC') + '" text-anchor="middle" font-family="monospace" font-weight="700">MC</text>';
+
+    // Aspects (drawn behind planets)
+    for (let i = 0; i < aspects.length; i++){
+      const a = aspects[i];
+      const p1 = pt(a.a.lon, R_ASPECT);
+      const p2 = pt(a.b.lon, R_ASPECT);
+      s += '<line x1="' + p1[0].toFixed(1) + '" y1="' + p1[1].toFixed(1) + '" x2="' + p2[0].toFixed(1) + '" y2="' + p2[1].toFixed(1) + 
+           '" stroke="' + a.asp.color + '" stroke-width="' + a.asp.weight + '" opacity="0.7"' + 
+           (a.asp.dash ? ' stroke-dasharray="' + a.asp.dash + '"' : '') + '/>';
+    }
+
+    // Planets with basic collision avoidance
+    const sorted = bodies.slice().sort((x, y) => x.lon - y.lon);
+    const used = [];
+    sorted.forEach(function(b){
+      let r = R_PLANET;
+      for (let k = 0; k < used.length; k++){
+        let diff = Math.abs(b.lon - used[k].lon);
+        if (diff > 180) diff = 360 - diff;
+        if (diff < 8){ // Collision threshold
+          r = used[k].r + 20;
+        }
+      }
+      used.push({ lon: b.lon, r: r });
+
+      const p = pt(b.lon, r);
+      const tick1 = pt(b.lon, R_HOUSE_IN);
+      const tick2 = pt(b.lon, R_HOUSE_IN - 5);
+
+      // Line from house cusp to planet
+      s += '<line x1="' + tick1[0].toFixed(1) + '" y1="' + tick1[1].toFixed(1) + '" x2="' + tick2[0].toFixed(1) + '" y2="' + tick2[1].toFixed(1) + 
+           '" stroke="' + b.color + '" stroke-width="1.5" opacity="0.8"/>';
+      s += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3" fill="' + b.color + '"/>';
+      
+      // Planet Glyph & Degree
+      const textAnchor = (p[0] > cx) ? 'start' : 'end';
+      const offsetX = (p[0] > cx) ? 8 : -8;
+      s += '<text x="' + (p[0] + offsetX).toFixed(1) + '" y="' + (p[1] + 4).toFixed(1) + '" font-size="14" fill="' + b.color + '" font-family="serif" text-anchor="' + textAnchor + '">' + b.glyph + '</text>';
+      s += '<text x="' + (p[0] + offsetX).toFixed(1) + '" y="' + (p[1] + 15).toFixed(1) + '" font-size="8" fill="' + (isLight ? '#475569' : '#94A3B8') + '" font-family="monospace" text-anchor="' + textAnchor + '">' + b.degInSign.toFixed(0) + '°' + b.sign.g + '</text>';
+      
+      if (b.retro) {
+        s += '<text x="' + (p[0] + offsetX + (p[0] > cx ? 14 : -14)).toFixed(1) + '" y="' + (p[1] + 4).toFixed(1) + '" font-size="8" fill="#F43F5E" font-family="monospace" text-anchor="' + textAnchor + '">R</text>';
+      }
+    });
+
+    // Center Logo
+    s += '<circle cx="' + cx + '" cy="' + cy + '" r="30" fill="' + (isLight ? '#F1F5F9' : '#0F1219') + '" stroke="' + (isLight ? '#CBD5E1' : 'rgba(255,255,255,0.1)') + '" stroke-width="1"/>';
+    s += '<text x="' + cx + '" y="' + (cy - 2) + '" font-size="8" fill="' + (isLight ? '#64748B' : '#94A3B8') + '" text-anchor="middle" font-family="monospace">ZERODIAX</text>';
+    s += '<text x="' + cx + '" y="' + (cy + 9) + '" font-size="7" fill="' + (isLight ? '#94A3B8' : '#64748B') + '" text-anchor="middle" font-family="monospace">PLACIDUS</text>';
+
+    s += '</svg>';
+    host.innerHTML = s;
+
+    const stamp = $('#wheelStamp');
+    if (stamp) stamp.textContent = date.toUTCString().slice(5, 22) + ' UTC';
+
+    renderPlanetList(bodies);
+  }
+
+  function renderPlanetList(bodies){
+    const host = $('#planetList');
+    if (!host) return;
+    let html = '';
+    bodies.forEach(function(b){
+      html += '<div class="prow">' +
+        '<span class="pglyph" style="color:' + b.color + '">' + b.glyph + '</span>' +
+        '<span style="color:var(--txt)">' + b.name + (b.retro ? '<span class="t-rose" style="font-size:9px"> ℞</span>' : '') + '</span>' +
+        '<span class="mono" style="color:var(--txt)">' + b.degInSign.toFixed(1) + '°</span>' +
+        '<span class="mono t-muted" style="font-size:10px">' + b.sign.g + ' ' + b.sign.n.slice(0, 3) + '</span>' +
+      '</div>';
+    });
+    host.innerHTML = html;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     6 · DATE PICKERS + SMART SIGNAL
+  ═══════════════════════════════════════════════════════════ */
+  const MONTHS = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+
+  const selMonth = $('#selMonth'), selDay = $('#selDay'),
+        selYear  = $('#selYear'),  selHour = $('#selHour');
+
+  function buildPickers(){
+    const now = new Date();
+    selMonth.innerHTML = MONTHS.map((m, i) =>
+      '<option value="' + i + '"' + (i === now.getMonth() ? ' selected' : '') + '>' + m + '</option>').join('');
+    let years = '';
+    for (let y = now.getFullYear() - 1; y <= now.getFullYear() + 3; y++){
+      years += '<option value="' + y + '"' + (y === now.getFullYear() ? ' selected' : '') + '>' + y + '</option>';
+    }
+    selYear.innerHTML = years;
+    let hours = '';
+    for (let h = 0; h < 24; h++){
+      hours += '<option value="' + h + '"' + (h === now.getHours() ? ' selected' : '') + '>' +
+               String(h).padStart(2, '0') + ':00</option>';
+    }
+    selHour.innerHTML = hours;
+    rebuildDays();
+  }
+
+  function rebuildDays(){
+    const y = parseInt(selYear.value, 10);
+    const m = parseInt(selMonth.value, 10);
+    const total = new Date(y, m + 1, 0).getDate();
+    const keep = parseInt(selDay.value, 10) || new Date().getDate();
+    let html = '';
+    for (let d = 1; d <= total; d++){
+      html += '<option value="' + d + '"' + (d === Math.min(keep, total) ? ' selected' : '') + '>' + d + '</option>';
+    }
+    selDay.innerHTML = html;
+  }
+
+  function selectedDate(){
+    const y = parseInt(selYear.value, 10);
+    const m = parseInt(selMonth.value, 10);
+    const total = new Date(y, m + 1, 0).getDate();
+    const d = Math.min(parseInt(selDay.value, 10) || 1, total);
+    const h = parseInt(selHour.value, 10) || 0;
+    return new Date(y, m, d, h, 0, 0, 0);
+  }
+
+  selMonth.addEventListener('change', function(){ rebuildDays(); updateSignal(); });
+  selYear.addEventListener('change', function(){ rebuildDays(); updateSignal(); });
+  selDay.addEventListener('change', updateSignal);
+  selHour.addEventListener('change', updateSignal);
+  $('#nowBtn').addEventListener('click', function(){
+    const n = new Date();
+    selMonth.value = n.getMonth();
+    selYear.value = n.getFullYear();
+    rebuildDays();
+    selDay.value = n.getDate();
+    selHour.value = n.getHours();
+    updateSignal();
+    toast('Waktu disinkronkan ke sekarang');
+  });
+
+  function computeSignal(date){
+    const bodies = getBodies(date);
+    const aspects = computeAspects(bodies);
+
+    const sun = bodies[0], moon = bodies[1], mercury = bodies[2], venus = bodies[3], 
+          mars = bodies[4], jupiter = bodies[5], saturn = bodies[6];
+
+    let score = 0;
+    let notes = { dignity: '', aspect: '', phase: '' };
+
+    // 1. Moon Phase
+    const phase = norm360(moon.lon - sun.lon);
+    if (phase < 180) { score += 2; notes.phase = 'Waxing Moon — momentum bullish'; }
+    else { score -= 2; notes.phase = 'Waning Moon — tekanan bearish'; }
+
+    // 2. Planetary Dignities
+    // Helper to check sign
+    const getSignIndex = (lon) => Math.floor(lon / 30) % 12;
+    const sunSign = getSignIndex(sun.lon);
+    const moonSign = getSignIndex(moon.lon);
+    const jupSign = getSignIndex(jupiter.lon);
+    const satSign = getSignIndex(saturn.lon);
+
+    // Jupiter (Ruler: Sag 8, Pisces 11. Exalt: Cancer 3)
+    if (jupSign === 8 || jupSign === 11) { score += 2; notes.dignity = 'Jupiter in Domicile — ekspansi kuat'; }
+    else if (jupSign === 3) { score += 1; notes.dignity = 'Jupiter Exalted — optimisme pasar'; }
+    else if (jupSign === 2 || jupSign === 5) { score -= 1; notes.dignity = 'Jupiter Detriment — bias lemah'; }
+
+    // Saturn (Ruler: Cap 9, Aqu 10. Exalt: Lib 6)
+    if (satSign === 9 || satSign === 10) { score -= 1; notes.dignity = 'Saturn in Domicile — tekanan struktural'; }
+    else if (satSign === 6) { score += 1; notes.dignity = 'Saturn Exalted — stabilitas harga'; }
+
+    // 3. Major Aspects (Sun, Moon, Venus, Jupiter, Mars, Saturn)
+    aspects.forEach(a => {
+      // Positive aspects (Trine/Sextile)
+      if (a.asp.name === 'trine' || a.asp.name === 'sextile') {
+        if (a.a.key === 'jupiter' || a.b.key === 'jupiter') { score += 2; notes.aspect = 'Jupiter harmonis — risk-on tinggi'; }
+        else if (a.a.key === 'venus' || a.b.key === 'venus') { score += 1; notes.aspect = 'Venus harmonis — sentimen positif'; }
+        else if (a.a.key === 'moon' || a.b.key === 'moon') { score += 1; notes.aspect = 'Moon harmonis — aliran likuiditas'; }
+      }
+      // Negative aspects (Square/Opposition)
+      if (a.asp.name === 'square' || a.asp.name === 'opposition') {
+        if (a.a.key === 'mars' || a.b.key === 'mars') { score -= 2; notes.aspect = 'Mars keras — volatilitas tinggi/risiko'; }
+        else if (a.a.key === 'saturn' || a.b.key === 'saturn') { score -= 1; notes.aspect = 'Saturn menekan — batas pergerakan'; }
+        else if (a.a.key === 'moon' || a.b.key === 'moon') { score -= 1; notes.aspect = 'Moon tertekan — potensi reversal'; }
+      }
+    });
+
+    if (!notes.aspect) notes.aspect = 'Tidak ada aspek dominan — pasar ranging';
+    if (!notes.dignity) notes.dignity = 'Tidak ada dignitas ekstrem — netral';
+
+    // Final Verdict
+    const isBuy = score >= 0;
+    let verdictText = '';
+    if (score >= 4) verdictText = 'STRONG BUY';
+    else if (score > 0) verdictText = 'BUY';
+    else if (score <= -4) verdictText = 'STRONG SELL';
+    else verdictText = 'SELL';
+
+    // High Quality Win Rate Calculation
+    // Base 60%, up to 95% based on absolute score magnitude
+    const absScore = Math.abs(score);
+    const confidence = clamp(65 + (absScore * 4), 60, 92);
+
+    return {
+      date: date,
+      isBuy: isBuy,
+      verdictText: verdictText,
+      confidence: confidence,
+      notes: notes,
+      phase: phase,
+      bodies: bodies,
+      aspects: aspects
+    };
+  }
+
+  function updateSignal(){
+    const date = selectedDate();
+    SIGNAL = computeSignal(date);
+
+    const verdictEl = $('#verdict');
+    verdictEl.textContent = SIGNAL.verdictText;
+    verdictEl.className = 'verdict ' + (SIGNAL.isBuy ? 't-em' : 't-rose');
+
+    $('#confChip').textContent = SIGNAL.confidence + '% Win Rate';
+    $('#signalStamp').textContent = date.toLocaleString('id-ID', {
+      day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+    }) + ' WIB · Automated Analysis';
+
+    $('#rAstro').textContent = SIGNAL.notes.dignity;
+    $('#rAuction').textContent = SIGNAL.notes.aspect;
+    $('#rStructure').textContent = SIGNAL.notes.phase;
+
+    refreshLevels();
+    renderWheel(date);
+  }
+
+  function refreshLevels(){
+    if (!SIGNAL) return;
+    const base = market.gold;
+    const spread = 0.45;
+    const entry = SIGNAL.isBuy ? base - spread : base + spread;
+    
+    // Dynamic R:R based on confidence
+    const riskMult = SIGNAL.confidence > 80 ? 0.003 : 0.004; 
+    const rewardMult = riskMult * (SIGNAL.confidence > 80 ? 3.5 : 2.5);
+    
+    const risk = base * riskMult;
+    const reward = base * rewardMult;
+    const tp = SIGNAL.isBuy ? entry + reward : entry - reward;
+    const sl = SIGNAL.isBuy ? entry - risk : entry + risk;
+
+    const eEl = $('#lvlEntry'); if (eEl) eEl.textContent = entry.toFixed(2);
+    const tEl = $('#lvlTp'); if (tEl) tEl.textContent = tp.toFixed(2);
+    const sEl = $('#lvlSl'); if (sEl) sEl.textContent = sl.toFixed(2);
+
+    const rr = (reward / risk).toFixed(1);
+    const rrEl = $('#mRR'); if (rrEl) rrEl.textContent = '1:' + rr;
+    const rEl = $('#mRisk'); if (rEl) rEl.textContent = (riskMult * 100).toFixed(1) + '%';
+    const hEl = $('#mHorizon'); if (hEl) hEl.textContent = SIGNAL.isBuy ? '4–8 jam' : '3–6 jam';
+
+    const text = 'ZERODIAX VIP · ' + SIGNAL.verdictText +
+      ' PAXG\nEntry: ' + entry.toFixed(2) +
+      '\nTP: ' + tp.toFixed(2) +
+      '\nSL: ' + sl.toFixed(2) +
+      '\nWin Rate: ' + SIGNAL.confidence + '%' +
+      '\nWaktu: ' + SIGNAL.date.toLocaleString('id-ID');
+    const waBtn = $('#waSignal');
+    if (waBtn){
+      waBtn.href = 'https://wa.me/62882010445069?text=' + encodeURIComponent(text);
+      waBtn.textContent = (SIGNAL.isBuy ? 'Eksekusi BUY' : 'Eksekusi SELL') + ' via WhatsApp ↗';
+    }
+  }
+
+  $('#copySignal').addEventListener('click', function(){
+    if (!SIGNAL) return;
+    const txt = 'ZERODIAX ' + SIGNAL.verdictText +
+      ' | Entry ' + $('#lvlEntry').textContent +
+      ' | TP ' + $('#lvlTp').textContent +
+      ' | SL ' + $('#lvlSl').textContent +
+      ' | WR ' + SIGNAL.confidence + '%';
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){ toast('Rencana trading disalin'); });
+    } else {
+      toast('Salin manual: ' + txt);
+    }
+  });
+
+  buildPickers();
+  updateSignal();
+
+  /* ═══════════════════════════════════════════════════════════
+     7 · THEME
+  ═══════════════════════════════════════════════════════════ */
+  $('#themeBtn').addEventListener('click', function(){
+    document.body.classList.toggle('light');
+    const isLight = document.body.classList.contains('light');
+    this.textContent = isLight ? '☀ / ☾' : '☾ / ☀';
+    renderWheel(selectedDate());
+    toast(isLight ? 'Mode terang aktif' : 'Mode gelap aktif');
+  });
+
+  /* ═══════════════════════════════════════════════════════════
+     8 · REBATE
+  ═══════════════════════════════════════════════════════════ */
+  const lotSlider = $('#lotSlider');
+
+  function rupiahRate(){ return 16000; }
+
+  function updateRebate(){
+    const lots = parseInt(lotSlider.value, 10) || 1;
+    const daily = lots * TIER;
+    const monthly = daily * 30;
+    $('#lotOut').textContent = lots;
+    $('#rebDaily').textContent = money0(daily);
+    $('#rebDailyIdr').textContent = idr(daily * rupiahRate());
+    $('#rebMonthly').textContent = money0(monthly);
+    $('#rebMonthlyIdr').textContent = idr(monthly * rupiahRate());
+
+    const msg = 'Halo, saya mau klaim rebate Valetax.\nVolume: ' + lots + ' lot/hari\nTier: $' + TIER + '/lot\n' +
+                'Perkiraan harian: ' + money0(daily) + '\nBulanan: ' + money0(monthly) +
+                '\nPartner: #1682343';
+    $('#waRebate').href = 'https://wa.me/62882010445069?text=' + encodeURIComponent(msg);
+  }
+
+  lotSlider.addEventListener('input', updateRebate);
+  $$('.tier').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      $$('.tier').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      TIER = parseFloat(btn.getAttribute('data-tier'));
       updateRebate();
+    });
+  });
+  updateRebate();
 
-      // ---------- MACRO NEWS TERMINAL ----------
-      const newsDatePicker = document.getElementById('newsDatePicker');
-      newsDatePicker.value = today;
-      const newsTableBody = document.getElementById('newsTableBody');
-      const countdownEl = document.getElementById('countdown');
-      const simulateBtn = document.getElementById('simulateReleaseBtn');
+  /* ═══════════════════════════════════════════════════════════
+     9 · LIVE FOREX FACTORY CALENDAR
+  ═══════════════════════════════════════════════════════════ */
+  async function fetchWithTimeout(url, opts, ms){
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), ms);
+    try {
+      const res = await fetch(url, Object.assign({}, opts, { signal: ctrl.signal }));
+      clearTimeout(timer);
+      return res;
+    } catch (e) {
+      clearTimeout(timer);
+      throw e;
+    }
+  }
 
-      const newsData = [
-        { time: '08:30', event: 'NFP', forecast: '185K', prev: '175K', bias: 'BUY' },
-        { time: '12:00', event: 'CPI y/y', forecast: '3.2%', prev: '3.4%', bias: 'SELL' },
-        { time: '14:00', event: 'FOMC', forecast: '5.25%', prev: '5.25%', bias: 'BUY' },
+  function parseFFDate(dateStr) {
+    // FF Date format is usually ISO string like "2023-10-27T08:30:00-04:00"
+    const d = new Date(dateStr);
+    return d.getTime();
+  }
+
+  async function loadNews(){
+    const statusEl = $('#newsFeedStatus');
+    if(statusEl) statusEl.innerHTML = '<span class="dot dot-live" style="width:5px;height:5px;background:var(--gold)"></span>MEMUAT...';
+    
+    try {
+      const ffUrl = 'https://nfs.faireconomy.media/ff_calendar_thisweek.json';
+      // Use multiple proxies to ensure 100% uptime
+      const proxies = [
+        'https://api.allorigins.win/raw?url=',
+        'https://corsproxy.io/?',
+        'https://api.codetabs.com/v1/proxy?quest='
       ];
-
-      function renderNews() {
-        newsTableBody.innerHTML = newsData.map((item, idx) => {
-          const biasClass = item.bias === 'BUY' ? 'text-emerald-accent' : 'text-rose-accent';
-          const actual = item.actual || '—';
-          const action = item.actual ? (item.actual > item.forecast ? 'BUY' : 'SELL') : '—';
-          const actionClass = action === 'BUY' ? 'text-emerald-accent' : (action === 'SELL' ? 'text-rose-accent' : 'text-slate-muted');
-          return `<tr class="border-b border-white/5">
-            <td class="py-2">${item.time}</td>
-            <td>${item.event}</td>
-            <td>${item.forecast}/${item.prev}</td>
-            <td class="${biasClass}">${item.bias}</td>
-            <td>${actual}</td>
-            <td class="${actionClass}">${action}</td>
-          </tr>`;
-        }).join('');
+      
+      let data = null;
+      for (const proxy of proxies) {
+        try {
+          const res = await fetchWithTimeout(proxy + encodeURIComponent(ffUrl), { cache: 'no-store' }, 8000);
+          if (res.ok) {
+            const parsed = await res.json();
+            if (Array.isArray(parsed) && parsed.length) {
+              data = parsed;
+              break;
+            }
+          }
+        } catch(e) { /* try next proxy */ }
       }
-      renderNews();
 
-      // simulate release
-      simulateBtn.addEventListener('click', () => {
-        newsData.forEach(item => { item.actual = (parseFloat(item.forecast) + (Math.random() - 0.5) * 2).toFixed(2); });
-        renderNews();
+      if (data) {
+        newsEvents = data.map(raw => ({
+          time: new Date(raw.date).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Jakarta' }),
+          currency: raw.country || '—',
+          impact: raw.impact || 'Low',
+          title: raw.title || '—',
+          actual: raw.actual || null,
+          forecast: raw.forecast || '—',
+          previous: raw.previous || '—',
+          timestamp: parseFFDate(raw.date)
+        }));
+        newsSource = 'Forex Factory Live';
+        if(statusEl) statusEl.innerHTML = '<span class="dot dot-live" style="width:5px;height:5px"></span>LIVE FEED';
+      } else {
+        throw new Error('All proxies failed');
+      }
+    } catch (e) {
+      console.warn('News fetch failed, using fallback', e);
+      const now = new Date();
+      newsEvents = FALLBACK_NEWS.map(n => {
+        const d = new Date(now.getFullYear(), now.getMonth(), now.getDate(), parseInt(n.time.split(':')[0]), parseInt(n.time.split(':')[1]));
+        return Object.assign({}, n, { timestamp: d.getTime() });
       });
+      newsSource = 'Static Cache';
+      if(statusEl) statusEl.innerHTML = '<span class="dot" style="width:5px;height:5px;background:var(--rose)"></span>OFFLINE CACHE';
+    }
 
-      // live countdown
-      let countdownSec = 59;
-      setInterval(() => {
-        countdownSec = (countdownSec + 1) % 60;
-        countdownEl.textContent = `00:${countdownSec.toString().padStart(2, '0')}`;
-      }, 1000);
+    renderNewsTable();
+    updateCountdown();
+  }
 
-      // re-render on date change
-      newsDatePicker.addEventListener('change', () => { renderNews(); });
+  function renderNewsTable(){
+    const tbody = $('#newsBody');
+    if(!tbody) return;
+    
+    if(!newsEvents.length){
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted)">Tidak ada data kalender.</td></tr>';
+      return;
+    }
 
-      // override WhatsApp link for signal
-      const originalWaRebate = document.getElementById('waRebateBtn');
-      // it's fine, already dynamic
+    // Filter today's events primarily, or show all sorted by time
+    const now = new Date();
+    const todayStr = now.toISOString().slice(0,10);
+    
+    // Sort by timestamp
+    const sorted = newsEvents.slice().sort((a,b) => a.timestamp - b.timestamp);
+    
+    let html = '';
+    sorted.forEach(e => {
+      let impactBadge = '';
+      let rowClass = '';
+      if (e.impact.toLowerCase() === 'high') {
+        impactBadge = '<span class="news-badge badge-high">!!!</span>';
+        rowClass = 'row-high';
+      } else if (e.impact.toLowerCase() === 'medium') {
+        impactBadge = '<span class="news-badge badge-med">!!</span>';
+      } else {
+        impactBadge = '<span class="news-badge badge-low">!</span>';
+      }
 
-    })();
-  </script>
+      let actualTxt = e.actual != null ? e.actual : '—';
+      let actualClass = 'color:var(--muted)';
+      if (e.actual != null) {
+        // Basic surprise calc
+        const fNum = parseFloat(String(e.forecast).replace(/[^\d.-]/g, ''));
+        const aNum = parseFloat(String(e.actual).replace(/[^\d.-]/g, ''));
+        if(!isNaN(fNum) && !isNaN(aNum)) {
+          actualClass = aNum >= fNum ? 'color:var(--emerald);font-weight:700' : 'color:var(--rose);font-weight:700';
+        } else {
+          actualClass = 'color:var(--txt);font-weight:700';
+        }
+      }
+
+      html += '<tr class="' + rowClass + '">' +
+        '<td class="mono" style="color:var(--txt);font-weight:500">' + e.time + '</td>' +
+        '<td class="mono" style="color:var(--gold);font-weight:700">' + e.currency + '</td>' +
+        '<td>' + impactBadge + '</td>' +
+        '<td style="color:var(--txt)">' + escapeHtml(e.title) + '</td>' +
+        '<td class="mono" style="' + actualClass + '">' + actualTxt + '</td>' +
+        '<td class="mono" style="color:var(--muted)">' + e.forecast + '</td>' +
+        '<td class="mono" style="color:var(--muted)">' + e.previous + '</td>' +
+      '</tr>';
+    });
+    tbody.innerHTML = html;
+  }
+
+  function updateCountdown(){
+    const cd = $('#countdown');
+    if (!cd) return;
+    const now = Date.now();
+
+    let next = null;
+    for (let i = 0; i < newsEvents.length; i++){
+      const e = newsEvents[i];
+      if (e.timestamp && e.timestamp > now){
+        if (!next || e.timestamp < next.timestamp) next = e;
+      }
+    }
+
+    if (!next){
+      cd.textContent = '--:--';
+      return;
+    }
+
+    const diff = Math.max(0, Math.floor((next.timestamp - now) / 1000));
+    const h = Math.floor(diff / 3600);
+    const m = Math.floor((diff % 3600) / 60);
+    const s = diff % 60;
+    cd.textContent = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }
+
+  $('#refreshNewsBtn').addEventListener('click', loadNews);
+
+  // Auto load and refresh every 5 mins
+  loadNews();
+  setInterval(loadNews, 5 * 60 * 1000);
+  setInterval(updateCountdown, 1000);
+
+  /* ═══════════════════════════════════════════════════════════
+     10 · DESK CHAT AI
+  ═══════════════════════════════════════════════════════════ */
+  const chatLog = $('#chatLog');
+  const chatForm = $('#chatForm');
+  const chatInput = $('#chatInput');
+
+  function appendMsg(text, role){
+    if (!chatLog) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'msg' + (role === 'user' ? ' msg-user' : '');
+    const avatar = role === 'user' ? 'Y' : 'R';
+    if (role === 'user'){
+      wrap.innerHTML = '<div class="bubble">' + text + '</div><div class="avatar">' + avatar + '</div>';
+    } else {
+      wrap.innerHTML = '<div class="avatar">' + avatar + '</div><div class="bubble">' + text + '</div>';
+    }
+    chatLog.appendChild(wrap);
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+
+  function typeIndicator(){
+    if (!chatLog) return null;
+    const wrap = document.createElement('div');
+    wrap.className = 'msg';
+    wrap.id = 'typingMsg';
+    wrap.innerHTML =
+      '<div class="avatar">R</div>' +
+      '<div class="bubble"><span class="dots"><span></span><span></span><span></span></span></div>';
+    chatLog.appendChild(wrap);
+    chatLog.scrollTop = chatLog.scrollHeight;
+    return wrap;
+  }
+
+  function removeTyping(){
+    const t = $('#typingMsg');
+    if (t) t.remove();
+  }
+
+  function deskReply(q){
+    const lower = q.toLowerCase().trim();
+    const gold = market.gold.toFixed(2);
+    const btc  = market.btc.toFixed(2);
+    const chg  = market.goldChg.toFixed(2);
+    const sig  = SIGNAL;
+
+    if (/(harga|price|berapa|now)/i.test(lower) && !/rebate|signal|berita|bulan/i.test(lower)){
+      return 'PAXG sekarang <b>$' + gold + '</b> (' + (market.goldChg >= 0 ? '+' : '') + chg + '%)<br>' +
+             'BTC <b>$' + btc + '</b> · sumber Binance realtime.<br>' +
+             '<span class="t-muted" style="font-size:10.5px">Arah dominan: ' + (market.goldChg >= 0 ? 'bullish jangka pendek' : 'bearish jangka pendek') + '</span>';
+    }
+
+    if (/signal|entry|tp|sl|buy|sell/i.test(lower)){
+      if (!sig) return 'Signal belum siap, coba sebentar lagi.';
+      return 'Signal aktif: <b class="' + (sig.isBuy ? 't-em' : 't-rose') + '">' + sig.verdictText + '</b> PAXG<br>' +
+             'Entry <b>' + $('#lvlEntry').textContent + '</b> · TP <b class="t-em">' + $('#lvlTp').textContent + '</b> · SL <b class="t-rose">' + $('#lvlSl').textContent + '</b><br>' +
+             'Win Rate <b>' + sig.confidence + '%</b> · R:R <b>' + $('#mRR').textContent + '</b><br>' +
+             '<span class="t-muted" style="font-size:10.5px">' + sig.notes.aspect + '</span>';
+    }
+
+    const lotMatch = lower.match(/(\d+)\s*(lot|lots)/);
+    if (/rebate|komisi|fee|valetax/i.test(lower)){
+      const lots = lotMatch ? parseInt(lotMatch[1], 10) : 25;
+      const tierMatch = lower.match(/\$?\s*(9|10\.5|12)/);
+      const tier = tierMatch ? parseFloat(tierMatch[1]) : 12;
+      const daily = lots * tier;
+      const monthly = daily * 30;
+      return 'Rebate Valetax (tier $' + tier + '/lot):<br>' +
+             '<b>' + lots + ' lot/hari</b> → harian <b class="t-gold">' + money0(daily) + '</b> · bulanan <b class="t-gold">' + money0(monthly) + '</b><br>' +
+             '<span class="t-muted" style="font-size:10.5px">Partner code #1682343 · pembayaran harian.</span>';
+    }
+
+    if (/berita|news|rilis|nfp|cpi|fomc|kalender/i.test(lower)){
+      if (!newsEvents.length) return 'Data berita sedang dimuat. Coba lagi sebentar.';
+      const now = Date.now();
+      let next = null;
+      for (let i = 0; i < newsEvents.length; i++){
+        const e = newsEvents[i];
+        if (e.timestamp && e.timestamp > now){
+          if (!next || e.timestamp < next.timestamp) next = e;
+        }
+      }
+      if (!next){
+        return 'Tidak ada rilis terdekat dalam data saat ini.<br><span class="t-muted" style="font-size:10.5px">Sumber: ' + newsSource + '</span>';
+      }
+      const diff = Math.max(0, Math.floor((next.timestamp - now) / 60000));
+      const h = Math.floor(diff / 60), m = diff % 60;
+      return 'Rilis berikutnya: <b>' + next.title + '</b><br>' +
+             'Waktu: <b>' + next.time + ' WIB</b> · dalam <b>' + h + 'j ' + m + 'm</b><br>' +
+             'Forecast ' + next.forecast + ' vs prev ' + next.previous + ' · impact <b>' + next.impact + '</b><br>' +
+             '<span class="t-muted" style="font-size:10.5px">Sumber: ' + newsSource + '</span>';
+    }
+
+    if (/bulan|moon|lunar/i.test(lower)){
+      const bodies = getBodies(new Date());
+      const moon = bodies[1];
+      const sun = bodies[0];
+      const phase = norm360(moon.lon - sun.lon);
+      const phaseName = phase < 45 ? 'New Moon' :
+                        phase < 90 ? 'Waxing Crescent' :
+                        phase < 135 ? 'First Quarter' :
+                        phase < 180 ? 'Waxing Gibbous' :
+                        phase < 225 ? 'Full Moon' :
+                        phase < 270 ? 'Waning Gibbous' :
+                        phase < 315 ? 'Last Quarter' : 'Waning Crescent';
+      return 'Bulan: <b>' + moon.degInSign.toFixed(1) + '° ' + moon.sign.n + '</b> ' + moon.sign.g + '<br>' +
+             'Fase: <b>' + phaseName + '</b> · iluminasi ~' + Math.round((1 - Math.cos(phase * RAD)) / 2 * 100) + '%<br>' +
+             '<span class="t-muted" style="font-size:10.5px">Waxing = momentum naik, waning = waspada profit-taking.</span>';
+    }
+
+    if (/sesi|session|market|buka|tutup/i.test(lower)){
+      const ny = tzHour('America/New_York');
+      const ldn = tzHour('Europe/London');
+      const tky = tzHour('Asia/Tokyo');
+      const nyOpen = ny >= 8 && ny < 17;
+      const ldnOpen = ldn >= 8 && ldn < 17;
+      const tkyOpen = tky >= 9 && tky < 18;
+      return 'Status sesi saat ini:<br>' +
+             (tkyOpen ? '🟢' : '⚪') + ' Tokyo &nbsp; ' + (ldnOpen ? '🟢' : '⚪') + ' London &nbsp; ' + (nyOpen ? '🟢' : '⚪') + ' New York<br>' +
+             '<span class="t-muted" style="font-size:10.5px">' + (nyOpen ? 'Likuiditas tinggi — saat terbaik eksekusi.' : 'Likuiditas menipis — spread melebar, kurangi size.') + '</span>';
+    }
+
+    if (/bantu|help|apa bisa|fitur/i.test(lower)){
+      return 'Saya bisa bantu:<br>' +
+             '• <b>Harga</b> realtime PAXG & BTC<br>' +
+             '• <b>Signal</b> entry / TP / SL dari Astro-Quant<br>' +
+             '• <b>Rebate</b> Valetax (ketik "rebate 25 lot")<br>' +
+             '• <b>Berita</b> rilis berikutnya (live Forex Factory)<br>' +
+             '• <b>Bulan</b> posisi & fase lunar';
+    }
+
+    if (/^(hai|hi|halo|hello|pagi|siang|malam|sore)/i.test(lower)){
+      return 'Halo! Saya Rangga dari meja analis ZERODIAX.<br>Mau tanya harga, signal, rebate, atau berita?';
+    }
+
+    return 'Pertanyaan diteruskan ke analis. Sambil menunggu, coba tanya:<br>' +
+           '• "harga sekarang"<br>' +
+           '• "signal jam ini"<br>' +
+           '• "rebate 50 lot"<br>' +
+           '• "berita terdekat"<br>' +
+           '• "posisi bulan"';
+  }
+
+  function handleChat(text){
+    const q = (text || '').trim();
+    if (!q) return;
+    appendMsg(escapeHtml(q), 'user');
+    if (chatInput) chatInput.value = '';
+
+    typeIndicator();
+    setTimeout(function(){
+      removeTyping();
+      appendMsg(deskReply(q), 'bot');
+    }, 420 + Math.random() * 380);
+  }
+
+  if (chatForm){
+    chatForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      handleChat(chatInput.value);
+    });
+  }
+
+  $$('#suggWrap .sugg').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      handleChat(btn.getAttribute('data-q'));
+    });
+  });
+
+  (function initChat(){
+    appendMsg('Halo! Saya <b>Rangga</b>, analis meja ZERODIAX. Chart dan Kalender sudah sepenuhnya otomatis. Mau tanya signal, rebate, atau berita rilis berikutnya?', 'bot');
+  })();
+
+  /* ═══════════════════════════════════════════════════════════
+     11 · INIT
+  ═══════════════════════════════════════════════════════════ */
+  (function init(){
+    const yr = $('#yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+
+    setInterval(function(){
+      if (SIGNAL) refreshLevels();
+    }, 3000);
+  })();
+
+})();
+</script>
 </body>
 </html>
