@@ -446,7 +446,7 @@
       box-shadow: 0 0 12px rgba(255, 42, 84, 0.4);
     }
 
-    /* 4. RADAR LIVE SIGNAL (FOKUS BUY / SELL) */
+    /* 4. RADAR LIVE SIGNAL */
     .signal-radar-box {
       background: #090c14;
       border: 1px solid rgba(255, 255, 255, 0.09);
@@ -495,7 +495,7 @@
       border-radius: 0 10px 10px 0;
     }
 
-    /* 5. MASTER BOARD ASTRODOX DENGAN PIRINGAN LENGKAP */
+    /* 5. MASTER BOARD ASTRODOX REPLIKA EXACT */
     .astrodox-master-board {
       background: #080a0f;
       border: 1px solid rgba(255, 42, 84, 0.3);
@@ -792,7 +792,7 @@
 </head>
 <body>
 
-  <!-- 1. OPENING CINEMATIC LUXURY -->
+  <!-- 1. OPENING LUXURY CINEMATIC -->
   <div id="openingOverlay">
     <div class="bg-video-wrapper">
       <video id="heroPorscheVideo" class="bg-cinematic-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
@@ -875,7 +875,7 @@
          ========================================================= -->
     <div id="tab-astrodox" class="tab-view-content active">
 
-      <!-- PENGATURAN TRANSIT, WAKTU & TIME ZONE -->
+      <!-- PENGATURAN TRANSIT, WAKTU & TIME ZONE BEBAS -->
       <div class="astro-custom-control-card">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
           <div>
@@ -916,7 +916,7 @@
         <div class="astro-quick-dates" id="astroQuickPills"></div>
       </div>
 
-      <!-- RADAR LIVE SIGNAL (FOKUS BUY / SELL) -->
+      <!-- RADAR LIVE SIGNAL (FOKUS BUY / FOKUS SELL) -->
       <div class="signal-radar-box">
         <div>
           <span style="font-size:0.72rem; color:#94a3b8; font-weight:800; text-transform:uppercase; display:block; margin-bottom:6px;">
@@ -1094,7 +1094,6 @@
   </div>
 
   <script>
-    // 1. OPENING LUXURY CANVAS PARTICLES
     function initOpeningParticles() {
       const canvas = document.getElementById('openingCanvas');
       if (!canvas) return;
@@ -1159,7 +1158,6 @@
 
     setTimeout(dismissOpeningScreen, 4800);
 
-    // 2. SWITCH TAB UTAMA
     function switchMainTab(tabId, btnElem) {
       document.querySelectorAll('.tab-view-content').forEach(view => view.classList.remove('active'));
       document.querySelectorAll('.master-tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -1169,7 +1167,6 @@
       if (btnElem) btnElem.classList.add('active');
     }
 
-    // 3. SUPABASE AUTH
     const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjaXZ0eW9sZWJibHJxcWdwdW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMjk0MzAsImV4cCI6MjEwNzYwNTQzMH0.o87Hwhz-I6jv98jW0VfT70UfbfgtEoo63rI3tm9rQbw';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -1195,7 +1192,6 @@
     }
     checkMemberAccess();
 
-    // 4. CLOCKS MULTI-ZONA REALTIME
     function updateLiveClocks() {
       const now = new Date();
       const dateOpts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
@@ -1224,9 +1220,6 @@
     setInterval(updateLiveClocks, 1000);
     updateLiveClocks();
 
-    // ========================================================
-    // 5. ENGINE ASTRONOMIS JEAN MEEUS (REPLIKA EXACT ASTRODOX)
-    // ========================================================
     const ZODIAC_DATA = [
       { name: "Aries", glyph: "♈", bg: "#ffe4e6" },
       { name: "Taurus", glyph: "♉", bg: "#dcfce7" },
@@ -1276,7 +1269,6 @@
       const JD = Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + dVal + (utcHours / 24.0) + B - 1524.5;
       const d = JD - 2451545.0;
 
-      // Ephemeris Planets
       const sun = (280.46646 + 0.98564736 * d + 1.9146 * Math.sin(((357.529 + 0.9856 * d) % 360) * Math.PI / 180) + 360) % 360;
       const moon = (218.3165 + 13.176396 * d + 6.2886 * Math.sin(((134.963 + 13.065 * d) % 360) * Math.PI / 180) + 360) % 360;
       const mercury = (sun + 22.0 * Math.sin(((d * 4.092 + 120) % 360) * Math.PI / 180) + 360) % 360;
@@ -1317,9 +1309,6 @@
       };
     }
 
-    // ========================================================
-    // 6. MASTER ENGINE XAUUSD (FOKUS BUY / SELL)
-    // ========================================================
     function evaluateAstrodoxConfluence(targetDate, targetHoursFloat, tzOffset = selectedTimeZoneOffset) {
       const astro = getAstroEphemeris(targetDate, targetHoursFloat, tzOffset);
 
@@ -1389,7 +1378,7 @@
 
       let reasonMaster = "";
       if (isBullish) {
-        reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Aspek geometri ${dominantAspectName} (+${harmonicScore} Buy Flow). Sinergi Sun (${sunFmt.deg}° ${sunFmt.signName}) dan Moon (${moonFmt.deg}° ${moonFmt.signName}) memvalidasi area discount demand. Aliran likuiditas mengarahkan dorongan beli (expansion pump) menuju level Buy-Side Liquidity (BSL) di supply atas.`;
+        reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Aspek geometri ${dominantAspectName} (+${harmonicScore} Buy Flow). Sinergi Sun (${sunFmt.deg}° ${sunFmt.signName}) dan Moon (${moonFmt.deg}° ${moonFmt.signName}) memvalidasi area discount demand. Aliran likuiditas mendorong kenaikan harga (Pump) menuju level Buy-Side Liquidity (BSL) di supply atas.`;
       } else {
         reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Aspek geometri ${dominantAspectName} (+${stressScore} Sell Tension). Tekanan Mars (${marsFmt.deg}° ${marsFmt.signName}) terhadap Moon memicu sapuan likuiditas atas (fakeout sweep) sebelum harga drop terdistribusi turun menuju Sell-Side Liquidity (SSL) bawah.`;
       }
@@ -1399,9 +1388,6 @@
       };
     }
 
-    // ========================================================
-    // 7. RENDERING MASTER BOARD ASTRODOX DENGAN PIRINGAN LENGKAP
-    // ========================================================
     function renderDynamicAstrodox() {
       const svg = document.getElementById('astrodoxDynamicSvg');
       if (!svg) return;
@@ -1430,7 +1416,6 @@
 
       let content = `<circle cx="${cx}" cy="${cy}" r="248" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/><g id="zSlices">`;
 
-      // 1. ZODIAC SECTORS
       for (let i = 0; i < 12; i++) {
         const p1 = toPoint(i * 30, 248), p2 = toPoint((i + 1) * 30, 248);
         const p1_in = toPoint(i * 30, 204), p2_in = toPoint((i + 1) * 30, 204);
@@ -1438,7 +1423,6 @@
       }
       content += `</g>`;
 
-      // 2. 360 DEGREE TICKS (LENGKAP PERSIS ASLINYA)
       for (let deg = 0; deg < 360; deg++) {
         const isMajor = deg % 5 === 0;
         const rIn = isMajor ? 199 : 202;
@@ -1453,13 +1437,11 @@
         <circle cx="${cx}" cy="${cy}" r="96" fill="#fafafa" stroke="#cbd5e1" stroke-width="0.8"/>
       `;
 
-      // Simbol Zodiak
       for (let i = 0; i < 12; i++) {
         const pt = toPoint(i * 30 + 15, 226);
         content += `<text x="${pt.x}" y="${pt.y + 6}" font-size="16" font-weight="900" fill="#0f172a" text-anchor="middle">${ZODIAC_DATA[i].glyph}</text>`;
       }
 
-      // 3. 12 HOUSES DENGAN NOMOR
       for (let h = 0; h < 12; h++) {
         const cuspLon = astro.asc + h * 30;
         const ptOut = toPoint(cuspLon, 204);
@@ -1470,7 +1452,6 @@
         content += `<text x="${numPt.x}" y="${numPt.y + 4}" font-size="10" font-weight="800" fill="#64748b" text-anchor="middle">${h + 1}</text>`;
       }
 
-      // Sumbu Asc-Dsc & MC-IC
       const pAsc = toPoint(astro.asc, 248);
       const pDsc = toPoint(astro.asc + 180, 248);
       const pMC = toPoint(astro.mc, 248);
@@ -1484,7 +1465,6 @@
         <text x="${pMC.x + 4}" y="${pMC.y + 15}" font-size="11" font-weight="900" fill="#0f172a">MC</text>
       `;
 
-      // 4. PLANET NODES & GARIS ASPEK PERSIS 100%
       const planetsVisual = [
         { name: "Sun", glyph: "☉", lon: astro.sun, color: "#f59e0b", r: 10 },
         { name: "Moon", glyph: "☽", lon: astro.moon, color: "#0284c7", r: 10 },
@@ -1524,7 +1504,6 @@
       }
       content += `</g>`;
 
-      // Planet Nodes
       planetsVisual.forEach(p => {
         const pt = toPoint(p.lon, 180);
         const zInfo = formatZodiac(p.lon);
@@ -1535,7 +1514,6 @@
         `;
       });
 
-      // Pusat Lingkaran
       content += `
         <circle cx="${cx}" cy="${cy}" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
         <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="16" font-weight="900" fill="${analysis.isBullish ? '#16a34a' : '#dc2626'}">${analysis.isBullish ? '△' : '□'}</text>
@@ -1544,7 +1522,6 @@
 
       svg.innerHTML = content;
 
-      // Update Panel Data Ephemeris Lengkap
       const ascInfo = formatZodiac(astro.asc);
       const mcInfo = formatZodiac(astro.mc);
       document.getElementById('ascSignLabel').innerText = ascInfo.signName;
@@ -1570,7 +1547,6 @@
       document.getElementById('degIC').innerText = formatZodiac(astro.mc + 180).text;
       document.getElementById('degDsc').innerText = formatZodiac(astro.asc + 180).text;
 
-      // Moon Phase
       const phaseDiff = (astro.moon - astro.sun + 360) % 360;
       const illumPct = ((1 - Math.cos(phaseDiff * Math.PI / 180)) / 2 * 100).toFixed(1);
       let pName = "Waxing Crescent", pIcon = "&#9789;";
@@ -1587,7 +1563,6 @@
       document.getElementById('liveMoonIllum').innerText = `Moon di ${formatZodiac(astro.moon).signName} ${formatZodiac(astro.moon).deg}° • Iluminasi ${illumPct}%`;
       document.getElementById('liveMoonIcon').innerHTML = pIcon;
 
-      // Update Live UI Radar (Fokus Buy / Fokus Sell)
       const signalBadge = document.getElementById('liveSignalBadge');
       const aspectTag = document.getElementById('liveAspectTag');
       const reasonText = document.getElementById('liveReasonText');
@@ -1690,471 +1665,6 @@
       });
     }
 
-    // ========================================================
-    // 8. TIME TP PRESISI & ENGINE KALENDER BERITA
-    // ========================================================
-    function calculateAstroDynamicTimeTP(item, isBullish) {
-      const evD = new Date(item.exactTimestamp);
-      const pad = (n) => String(n).padStart(2, '0');
-
-      const entryStart = `${pad(evD.getHours())}:${pad(evD.getMinutes())}`;
-      const entryEndD = new Date(evD.getTime() + 5 * 60000);
-      const entryEnd = `${pad(entryEndD.getHours())}:${pad(entryEndD.getMinutes())}`;
-
-      const tp1D = new Date(evD.getTime() + 6 * 60000);
-      const tp2D = new Date(evD.getTime() + 18 * 60000);
-      const tp3D = new Date(evD.getTime() + 38 * 60000);
-
-      const title = item.title.toLowerCase();
-      let tp1Pips = 45, tp2Pips = 95, tp3Pips = 185, slPips = 35;
-      if (title.includes("fomc") || title.includes("rate")) {
-        tp1Pips = 70; tp2Pips = 145; tp3Pips = 260; slPips = 45;
-      } else if (title.includes("cpi") || title.includes("nfp")) {
-        tp1Pips = 60; tp2Pips = 120; tp3Pips = 240; slPips = 40;
-      }
-
-      return {
-        windowEntry: `${entryStart} - ${entryEnd} WIB`,
-        sl: `-${slPips} Pips`,
-        timeTP1: `${pad(tp1D.getHours())}:${pad(tp1D.getMinutes())} WIB (+${tp1Pips}p)`,
-        timeTP2: `${pad(tp2D.getHours())}:${pad(tp2D.getMinutes())} WIB (+${tp2Pips}p)`,
-        timeTP3: `${pad(tp3D.getHours())}:${pad(tp3D.getMinutes())} WIB (+${tp3Pips}p)`,
-        tpMaxHit: `TP MAX HIT (+${tp3Pips} PIPS)`
-      };
-    }
-
-    function determineExecutionSignal(item, dayDateObj) {
-      const curr = (item.country || "USD").toUpperCase();
-      const title = item.title.toLowerCase();
-      const evDate = new Date(item.exactTimestamp);
-      const evHoursFloat = evDate.getHours() + evDate.getMinutes() / 60;
-
-      const astroEval = evaluateAstrodoxConfluence(dayDateObj, evHoursFloat, selectedTimeZoneOffset);
-      const isAstroBullish = astroEval.isBullish;
-
-      const parseVal = (str) => {
-        if (!str || str === "" || str === "--" || str === "Menunggu") return null;
-        const clean = parseFloat(str.replace(/[^0-9.-]/g, ''));
-        return isNaN(clean) ? null : clean;
-      };
-
-      const nowTs = Date.now();
-      const isPassed = nowTs >= item.exactTimestamp;
-
-      let actual = parseVal(item.actual);
-      const forecast = parseVal(item.forecast);
-      const isJoblessType = title.includes("unemployment") || title.includes("jobless") || title.includes("claims");
-
-      if (actual === null && isPassed && forecast !== null) {
-        const delta = isAstroBullish ? -0.2 : 0.3;
-        actual = parseFloat((forecast + delta).toFixed(1));
-        item.actual = actual + (item.forecast.includes('%') ? '%' : (item.forecast.includes('M') ? 'M' : ''));
-      }
-
-      const matrix = calculateAstroDynamicTimeTP(item, isAstroBullish);
-
-      // KONDISI 1: SUDAH LEWAT
-      if (isPassed && actual !== null) {
-        if (curr === "USD") {
-          let usdBullish = (forecast !== null) ? (isJoblessType ? actual < forecast : actual >= forecast) : !isAstroBullish;
-          const isGoldBuy = !usdBullish;
-          return {
-            signal: isGoldBuy ? "▲ CONFIRMED: BUY XAUUSD (TERBANG)" : "▼ CONFIRMED: SELL XAUUSD (JUNAM)",
-            badgeClass: isGoldBuy ? "signal-buy" : "signal-sell",
-            wr: "100% WR CONFIRMED",
-            matrix,
-            desc: `Data rilis ${item.title} (${item.actual}) keluar ${isGoldBuy ? 'melemahkan' : 'menguatkan'} indeks Dollar AS. Siklus likuiditas mengonfirmasi eksekusi ${isGoldBuy ? 'BUY' : 'SELL'} pada Gold.`
-          };
-        }
-      }
-
-      // KONDISI 2: STANDBY
-      item.actual = "Menunggu";
-      if (curr === "USD") {
-        return {
-          signal: isAstroBullish ? "▲ FOKUS BUY XAUUSD" : "▼ FOKUS SELL XAUUSD",
-          badgeClass: isAstroBullish ? "signal-buy" : "signal-sell",
-          wr: "ASTRODOX 100% CONFLUENCE",
-          matrix,
-          desc: `Konfigurasi Astrodox (${matrix.windowEntry.split(' ')[0]} WIB): Aspek ${astroEval.dominantAspectName}. Fokus eksekusi ${isAstroBullish ? 'BUY' : 'SELL'} saat rilis tiba.`
-        };
-      }
-
-      return {
-        signal: isAstroBullish ? `▲ FOKUS BUY ${curr}USD` : `▼ FOKUS SELL ${curr}USD`,
-        badgeClass: isAstroBullish ? "signal-buy" : "signal-sell",
-        wr: "ASTRODOX 100% CONFLUENCE",
-        matrix,
-        desc: `Menunggu rilis ${item.title}. Konfigurasi ${astroEval.dominantAspectName} mengarahkan volatilitas pair ${curr}USD.`
-      };
-    }
-
-    // ========================================================
-    // 9. REKAPITULASI REAL-TIME & PERMANEN
-    // ========================================================
-    const RECAP_STORAGE_KEY = "zerodiax_news_recap_history";
-
-    function getSavedRecapHistory() {
-      try {
-        const data = localStorage.getItem(RECAP_STORAGE_KEY);
-        return data ? JSON.parse(data) : [];
-      } catch (e) { return []; }
-    }
-
-    function saveRecapItem(newItem) {
-      let history = getSavedRecapHistory();
-      const idx = history.findIndex(it => it.title === newItem.title && it.displayTime === newItem.displayTime);
-      if (idx === -1) {
-        history.unshift(newItem);
-        if (history.length > 60) history.pop();
-      } else {
-        history[idx] = newItem;
-      }
-      localStorage.setItem(RECAP_STORAGE_KEY, JSON.stringify(history));
-    }
-
-    function renderPersistentRecapTable() {
-      const recapBody = document.getElementById('recapTableBody');
-      if (!recapBody) return;
-      const history = getSavedRecapHistory();
-      recapBody.innerHTML = '';
-
-      if (history.length === 0) {
-        recapBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:18px; color:#64748b;">Belum ada riwayat rilis berita tersimpan.</td></tr>';
-        return;
-      }
-
-      history.forEach(item => {
-        const row = document.createElement('tr');
-        const winEntry = (!item.windowEntry || item.windowEntry === 'undefined') ? 'Detik 00 Rilis' : item.windowEntry;
-        const targetStat = (!item.targetStatus || item.targetStatus.includes('undefined')) ? 'TP MAX HIT (+185 PIPS)' : item.targetStatus;
-
-        row.innerHTML = `
-          <td style="color:#94a3b8; font-family:ui-monospace, monospace;">${item.displayTime}</td>
-          <td><strong style="color:#fff;">${item.country}</strong> - ${item.title}</td>
-          <td><span style="color:#94a3b8;">${item.forecast || '--'}</span> &rarr; <strong style="color:#4ade80;">${item.actual}</strong></td>
-          <td><span class="signal-pill ${item.badgeClass}" style="font-size:0.72rem; padding:3px 8px;">${item.signal}</span></td>
-          <td style="color:#38bdf8; font-weight:800; font-family:ui-monospace, monospace;">${winEntry}</td>
-          <td><span class="badge-win">${targetStat}</span></td>
-        `;
-        recapBody.appendChild(row);
-      });
-    }
-
-    function checkAndStorePastEvents(eventsList, targetDate) {
-      const nowTime = Date.now();
-      eventsList.forEach(ev => {
-        if (nowTime >= ev.exactTimestamp && ev.actual && ev.actual !== "Menunggu") {
-          const exec = determineExecutionSignal(ev, targetDate);
-          saveRecapItem({
-            displayTime: ev.displayTime,
-            country: ev.country,
-            title: ev.title,
-            forecast: ev.forecast,
-            actual: ev.actual,
-            signal: exec.signal,
-            badgeClass: exec.badgeClass,
-            windowEntry: exec.matrix ? exec.matrix.windowEntry : 'Detik 00 Rilis',
-            targetStatus: exec.matrix ? exec.matrix.tpMaxHit : 'TP MAX HIT (+185 PIPS)'
-          });
-        }
-      });
-      renderPersistentRecapTable();
-    }
-
-    // ========================================================
-    // 10. KALENDER BERITA 10 HARI LENGKAP
-    // ========================================================
-    function onCustomNewsDatePicked(dateStr) {
-      if (!dateStr) return;
-      const parts = dateStr.split('-');
-      selectedNewsDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
-
-      document.querySelectorAll('#newsDaysBar .day-pill').forEach(pill => {
-        if (pill.dataset.date === dateStr) {
-          pill.classList.add('active');
-        } else {
-          pill.classList.remove('active');
-        }
-      });
-
-      renderNewsCards();
-    }
-
-    async function loadGlobalEconomicNewsFeed() {
-      const endpoints = [
-        'https://api.allorigins.win/get?url=' + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json') + '&timestamp=' + Date.now(),
-        'https://corsproxy.io/?' + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json')
-      ];
-
-      let rawApiEvents = [];
-      for (let url of endpoints) {
-        try {
-          const res = await fetch(url);
-          if (res.ok) {
-            const json = await res.json();
-            const contents = json.contents ? JSON.parse(json.contents) : json;
-            if (Array.isArray(contents) && contents.length > 0) {
-              rawApiEvents = contents;
-              break;
-            }
-          }
-        } catch(e) {}
-      }
-
-      const now = new Date();
-      full10DaysNews = [];
-
-      for (let i = 0; i < 10; i++) {
-        const targetD = new Date(now);
-        targetD.setDate(now.getDate() + i);
-
-        const y = targetD.getFullYear();
-        const m = targetD.getMonth();
-        const d = targetD.getDate();
-
-        const dateStrWIB = new Intl.DateTimeFormat('id-ID', {
-          weekday: 'short', day: '2-digit', month: 'short', year: 'numeric'
-        }).format(targetD);
-
-        let matchedEvents = rawApiEvents.filter(ev => {
-          if (!ev.date) return false;
-          const evDate = new Date(ev.date);
-          return evDate.getFullYear() === y && evDate.getMonth() === m && evDate.getDate() === d;
-        });
-
-        if (matchedEvents.length === 0) {
-          matchedEvents = generateStandardGlobalCalendar(targetD, dateStrWIB);
-        } else {
-          matchedEvents = matchedEvents.map((ev, idx) => {
-            const evDate = new Date(ev.date);
-            return {
-              id: `ev_${i}_${idx}`,
-              country: ev.country || "USD",
-              impact: ev.impact || "High",
-              title: ev.title || "Economic Release",
-              exactTimestamp: evDate.getTime(),
-              displayTime: `${dateStrWIB} ` + evDate.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + " WIB",
-              forecast: ev.forecast || "--",
-              previous: ev.previous || "--",
-              actual: ev.actual || null
-            };
-          });
-        }
-
-        full10DaysNews.push({
-          dayOffset: i,
-          targetDateObj: targetD,
-          dateLabel: dateStrWIB,
-          dayTitle: i === 0 ? "HARI INI" : (i === 1 ? "BESOK" : dateStrWIB.split(',')[0].toUpperCase()),
-          events: matchedEvents
-        });
-      }
-
-      const picker = document.getElementById('customNewsDatePicker');
-      if (picker) {
-        const yStr = now.getFullYear();
-        const mStr = String(now.getMonth() + 1).padStart(2, '0');
-        const dStr = String(now.getDate()).padStart(2, '0');
-        picker.value = `${yStr}-${mStr}-${dStr}`;
-      }
-
-      renderNewsDaysBar();
-      renderNewsCards();
-    }
-
-    function generateStandardGlobalCalendar(dateObj, dateStrWIB) {
-      const dayOfWeek = dateObj.getDay();
-      const dateNum = dateObj.getDate();
-
-      const makeTs = (h, m) => {
-        const ev = new Date(dateObj);
-        ev.setHours(h, m, 0, 0);
-        return ev.getTime();
-      };
-
-      if (dayOfWeek === 1) {
-        return [
-          { country: "EUR", impact: "Medium", title: "German Buba Monthly Report", displayTime: `${dateStrWIB} 17:00 WIB`, exactTimestamp: makeTs(17, 0), forecast: "--", previous: "--", actual: null },
-          { country: "USD", impact: "Medium", title: "CB Leading Index m/m", displayTime: `${dateStrWIB} 21:00 WIB`, exactTimestamp: makeTs(21, 0), forecast: "-0.3%", previous: "-0.2%", actual: null }
-        ];
-      } else if (dayOfWeek === 2) {
-        return [
-          { country: "EUR", impact: "High", title: "German ZEW Economic Sentiment", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "10.2", previous: "3.6", actual: null },
-          { country: "USD", impact: "High", title: "Core Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.1%", actual: null },
-          { country: "USD", impact: "High", title: "Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.4%", previous: "0.1%", actual: null }
-        ];
-      } else if (dayOfWeek === 3) {
-        if (dateNum >= 25) {
-          return [
-            { country: "USD", impact: "High", title: "Advance GDP q/q (Economic Growth)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "2.8%", previous: "3.0%", actual: null },
-            { country: "USD", impact: "High", title: "Core PCE Price Index m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.2%", previous: "0.2%", actual: null },
-            { country: "USD", impact: "High", title: "FOMC Federal Funds Rate & Statement", displayTime: `${dateStrWIB} 01:00 WIB`, exactTimestamp: makeTs(1, 0), forecast: "4.75%", previous: "5.00%", actual: null }
-          ];
-        } else {
-          return [
-            { country: "GBP", impact: "High", title: "CPI y/y (Inflation Rate)", displayTime: `${dateStrWIB} 13:00 WIB`, exactTimestamp: makeTs(13, 0), forecast: "2.2%", previous: "2.2%", actual: null },
-            { country: "USD", impact: "High", title: "Building Permits", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "1.46M", previous: "1.47M", actual: null }
-          ];
-        }
-      } else if (dayOfWeek === 4) {
-        return [
-          { country: "USD", impact: "High", title: "Unemployment Claims", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "218K", previous: "223K", actual: null },
-          { country: "USD", impact: "High", title: "Philly Fed Manufacturing Index", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "3.2", previous: "1.7", actual: null }
-        ];
-      } else if (dayOfWeek === 5) {
-        return [
-          { country: "EUR", impact: "High", title: "Final Core CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "2.5%", previous: "2.5%", actual: null },
-          { country: "EUR", impact: "High", title: "Final CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "3.8%", previous: "3.8%", actual: null },
-          { country: "USD", impact: "Medium", title: "Import Prices m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.6%", previous: "0.7%", actual: null },
-          { country: "USD", impact: "Medium", title: "Industrial Production m/m", displayTime: `${dateStrWIB} 20:15 WIB`, exactTimestamp: makeTs(20, 15), forecast: "0.0%", previous: "0.4%", actual: null }
-        ];
-      } else {
-        return [
-          { country: "USD", impact: "Medium", title: "CFTC Gold Non-Commercial Net Positions", displayTime: `${dateStrWIB} 02:30 WIB`, exactTimestamp: makeTs(2, 30), forecast: "--", previous: "285.4K", actual: "292.1K" }
-        ];
-      }
-    }
-
-    function renderNewsDaysBar() {
-      const bar = document.getElementById('newsDaysBar');
-      if (!bar) return;
-
-      bar.innerHTML = '';
-      full10DaysNews.forEach((dayGroup, idx) => {
-        const pill = document.createElement('div');
-        const dObj = dayGroup.targetDateObj;
-        const dStr = `${dObj.getFullYear()}-${String(dObj.getMonth()+1).padStart(2,'0')}-${String(dObj.getDate()).padStart(2,'0')}`;
-        pill.className = `day-pill ${idx === 0 ? 'active' : ''}`;
-        pill.dataset.date = dStr;
-        pill.onclick = () => {
-          selectedNewsDate = dayGroup.targetDateObj;
-          document.querySelectorAll('#newsDaysBar .day-pill').forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
-
-          const picker = document.getElementById('customNewsDatePicker');
-          if (picker) picker.value = dStr;
-
-          renderNewsCards();
-        };
-
-        const shortDate = dayGroup.dateLabel.split(',')[1] || dayGroup.dateLabel;
-        pill.innerHTML = `
-          <span>${dayGroup.dayTitle}</span>
-          <small style="font-size:0.65rem; opacity:0.8;">${shortDate.trim()}</small>
-        `;
-        bar.appendChild(pill);
-      });
-    }
-
-    function renderNewsCards() {
-      const container = document.getElementById('newsFeedContainer');
-      if (!container) return;
-      container.innerHTML = '';
-
-      const targetD = selectedNewsDate;
-      const dateStrWIB = new Intl.DateTimeFormat('id-ID', {
-        weekday: 'short', day: '2-digit', month: 'short', year: 'numeric'
-      }).format(targetD);
-
-      const yVal = targetD.getFullYear();
-      const mVal = targetD.getMonth();
-      const dVal = targetD.getDate();
-
-      let currentEvents = [];
-      const matchedGroup = full10DaysNews.find(g => {
-        const dObj = g.targetDateObj;
-        return dObj.getFullYear() === yVal && dObj.getMonth() === mVal && dObj.getDate() === dVal;
-      });
-
-      if (matchedGroup) {
-        currentEvents = matchedGroup.events;
-      } else {
-        currentEvents = generateStandardGlobalCalendar(targetD, dateStrWIB);
-      }
-
-      const filteredEvents = currentEvents.filter(item => {
-        const curr = (item.country || 'USD').toUpperCase();
-        const impact = (item.impact || 'Medium').toUpperCase();
-        if (currentCurrencyFilter === 'ALL') return true;
-        if (currentCurrencyFilter === 'HIGH') return impact === 'HIGH';
-        return curr === currentCurrencyFilter;
-      });
-
-      if (filteredEvents.length === 0) {
-        container.innerHTML = `<div style="text-align:center; padding:30px; color:#64748b;">Tidak ada agenda rilis berita untuk filter ini pada tanggal ${dateStrWIB}.</div>`;
-        return;
-      }
-
-      filteredEvents.forEach(item => {
-        const exec = determineExecutionSignal(item, targetD);
-        const curr = item.country.toUpperCase();
-        const impact = item.impact.toUpperCase();
-        const impactClass = impact === 'HIGH' ? 'impact-high' : 'impact-medium';
-        const impactColor = impact === 'HIGH' ? '#ff2a54' : '#ff8c00';
-
-        let actualColor = '#38bdf8';
-        if (item.actual && item.actual !== 'Menunggu') {
-          const f = parseFloat(item.forecast);
-          const a = parseFloat(item.actual);
-          actualColor = (!isNaN(f) && !isNaN(a)) ? (a >= f ? '#4ade80' : '#f87171') : '#4ade80';
-        }
-
-        const card = document.createElement('div');
-        card.className = `news-card ${impactClass}`;
-        card.innerHTML = `
-          <div>
-            <div style="display:flex; gap:8px; align-items:center; margin-bottom:6px;">
-              <span style="background:rgba(34,197,94,0.15); color:#4ade80; border:1px solid rgba(34,197,94,0.3); font-size:0.75rem; font-weight:900; padding:2px 7px; border-radius:4px;">${curr}</span>
-              <span style="background:rgba(255,42,84,0.18); color:${impactColor}; font-size:0.7rem; font-weight:800; padding:2px 7px; border-radius:4px;">${impact} IMPACT</span>
-              <span style="color:#94a3b8; font-size:0.75rem; margin-left:auto;">🕒 ${item.displayTime}</span>
-            </div>
-            <h4 style="font-size:1.1rem; font-weight:800; color:#fff;">${item.title}</h4>
-          </div>
-
-          <div style="display:grid; grid-template-columns:repeat(3, 1fr); background:#05070c; padding:10px; border-radius:8px; text-align:center; gap:6px;">
-            <div><span style="font-size:0.65rem; color:#64748b; display:block;">FORECAST</span><strong style="color:#fff;">${item.forecast || '--'}</strong></div>
-            <div><span style="font-size:0.65rem; color:#64748b; display:block;">PREVIOUS</span><strong style="color:#fff;">${item.previous || '--'}</strong></div>
-            <div><span style="font-size:0.65rem; color:#64748b; display:block;">ACTUAL</span><strong style="color:${actualColor};">${item.actual || 'Menunggu'}</strong></div>
-          </div>
-
-          <div style="background:rgba(0,0,0,0.35); border:1px dashed rgba(255,255,255,0.1); padding:12px; border-radius:8px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; flex-wrap:wrap; gap:6px;">
-              <span class="signal-pill ${exec.badgeClass}">${exec.signal}</span>
-              <span style="color:#fbbf24; font-size:0.7rem; font-weight:800; background:rgba(251,191,36,0.1); border:1px solid rgba(251,191,36,0.25); padding:2px 7px; border-radius:4px;">${exec.wr}</span>
-            </div>
-            <p style="font-size:0.78rem; color:#cbd5e1; line-height:1.45;">${exec.desc}</p>
-            
-            <div class="target-matrix-grid">
-              <div class="matrix-item">
-                <span class="matrix-label">Window Entry</span>
-                <span class="matrix-val" style="color:#38bdf8;">${exec.matrix.windowEntry}</span>
-              </div>
-              <div class="matrix-item">
-                <span class="matrix-label">Stop Loss (SL)</span>
-                <span class="matrix-val" style="color:#f87171;">${exec.matrix.sl}</span>
-              </div>
-              <div class="matrix-item">
-                <span class="matrix-label">Time TP 1 (+Scalp)</span>
-                <span class="matrix-val" style="color:#4ade80;">${exec.matrix.timeTP1}</span>
-              </div>
-              <div class="matrix-item">
-                <span class="matrix-label">Time TP 2 (+Swing)</span>
-                <span class="matrix-val" style="color:#4ade80;">${exec.matrix.timeTP2}</span>
-              </div>
-              <div class="matrix-item">
-                <span class="matrix-label">Time TP 3 (TP MAX)</span>
-                <span class="matrix-val" style="color:#22c55e;">${exec.matrix.timeTP3}</span>
-              </div>
-            </div>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-
-      checkAndStorePastEvents(filteredEvents, targetD);
-    }
-
     function setCurrencyFilter(filterVal, e) {
       currentCurrencyFilter = filterVal;
       document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
@@ -2162,7 +1672,7 @@
       renderNewsCards();
     }
 
-    // Inisialisasi awal sistem
+    // Eksekusi Panggilan Awal
     buildAstroQuickPills();
     renderDynamicAstrodox();
     renderPersistentRecapTable();
