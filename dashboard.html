@@ -7,23 +7,15 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     :root {
       --bg-base: #030407;
       --bg-card: #080a11;
       --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-crimson: rgba(255, 42, 84, 0.35);
       --crimson-core: #ff2a54;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
     }
-
     body {
       background-color: var(--bg-base);
       color: var(--text-main);
@@ -33,864 +25,196 @@
       padding-bottom: env(safe-area-inset-bottom, 25px);
     }
 
-    /* 1. CINEMATIC LUXURY OPENING */
     #openingOverlay {
-      position: fixed;
-      inset: 0;
-      background: #000000;
-      z-index: 999999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.9s;
+      position: fixed; inset: 0; background: #000; z-index: 999999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s;
     }
-
-    #openingOverlay.fade-out {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .bg-video-wrapper {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .bg-cinematic-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      filter: brightness(0.42) contrast(1.25) saturate(1.1);
-      transform: scale(1.04);
-      animation: ambientSlowZoom 16s ease-in-out infinite alternate;
-    }
-
-    @keyframes ambientSlowZoom {
-      0% { transform: scale(1.02); }
-      100% { transform: scale(1.12); }
-    }
-
-    .cinema-vignette {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(3,4,7,0.15) 0%, rgba(2,3,5,0.85) 75%, #030407 100%);
-      z-index: 2;
-    }
-
-    #openingCanvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 3;
-      pointer-events: none;
-    }
-
-    .opening-content-box {
-      position: relative;
-      z-index: 4;
-      text-align: center;
-      max-width: 620px;
-      padding: 32px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      animation: cleanHeroEntrance 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes cleanHeroEntrance {
-      0% { opacity: 0; transform: translateY(28px) scale(0.97); filter: blur(6px); }
-      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-    }
-
+    #openingOverlay.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+    .bg-video-wrapper { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+    .bg-cinematic-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4) contrast(1.2); }
+    .cinema-vignette { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(3,4,7,0.2) 0%, #030407 100%); z-index: 2; }
+    .opening-content-box { position: relative; z-index: 4; text-align: center; max-width: 620px; padding: 32px 24px; }
     .vip-brand-badge {
-      width: 72px;
-      height: 72px;
-      border-radius: 22px;
+      width: 68px; height: 68px; border-radius: 20px;
       background: linear-gradient(135deg, #ff2a54 0%, #150205 100%);
       border: 1.5px solid rgba(255, 42, 84, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.3rem;
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 20px;
-      box-shadow: 0 12px 35px rgba(255, 42, 84, 0.75), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 2.2rem; font-weight: 900; color: #fff; margin-bottom: 16px;
+      box-shadow: 0 10px 30px rgba(255, 42, 84, 0.7);
     }
-
-    .opening-pre-title {
-      font-size: 0.74rem;
-      font-weight: 800;
-      color: #ff5c7c;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .opening-hero-title {
-      font-size: 2.25rem;
-      font-weight: 900;
-      line-height: 1.15;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-      letter-spacing: 1.5px;
-      color: #fff;
-    }
-
-    .opening-hero-title .brand-red {
-      color: #ff2a54;
-      text-shadow: 0 0 35px rgba(255, 42, 84, 0.85);
-    }
-
-    .opening-sub-desc {
-      color: #94a3b8;
-      font-size: 0.85rem;
-      max-width: 480px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    .video-load-track {
-      width: 210px;
-      height: 3.5px;
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 4px;
-      margin: 24px auto 18px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .video-load-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 0%;
-      background: #ff2a54;
-      box-shadow: 0 0 14px #ff2a54;
-      animation: loadBarCycle 4.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes loadBarCycle {
-      0% { width: 0%; }
-      50% { width: 65%; }
-      100% { width: 100%; }
-    }
-
     .btn-enter-terminal {
-      background: rgba(255, 42, 84, 0.22);
-      border: 1.5px solid #ff2a54;
-      color: #fff;
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      padding: 12px 28px;
-      border-radius: 30px;
-      cursor: pointer;
-      backdrop-filter: blur(14px);
-      box-shadow: 0 4px 25px rgba(255, 42, 84, 0.4);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-top: 18px; background: rgba(255, 42, 84, 0.25); border: 1.5px solid #ff2a54;
+      color: #fff; font-size: 0.82rem; font-weight: 800; letter-spacing: 2px;
+      padding: 12px 28px; border-radius: 30px; cursor: pointer;
     }
 
-    .btn-enter-terminal:active {
-      transform: scale(0.95);
-      background: #ff2a54;
-    }
-
-    /* 2. APP CONTAINER & NAVBAR */
-    .terminal-container {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 18px 14px 70px;
-    }
-
+    .terminal-container { max-width: 1140px; margin: 0 auto; padding: 18px 14px 70px; }
     .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 20px;
-      border-bottom: 1px solid var(--border-subtle);
-      background: rgba(6, 8, 12, 0.85);
-      backdrop-filter: blur(18px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      display: flex; justify-content: space-between; align-items: center; padding: 14px 20px;
+      border-bottom: 1px solid var(--border-subtle); background: rgba(6, 8, 12, 0.85);
+      backdrop-filter: blur(18px); position: sticky; top: 0; z-index: 100;
     }
-
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.88rem;
-      font-weight: 900;
-      letter-spacing: 1px;
-    }
-
+    .brand-logo { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 900; }
     .brand-logo .logo-badge {
-      width: 28px;
-      height: 28px;
-      background: #ff2a54;
-      border-radius: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      box-shadow: 0 0 14px rgba(255, 42, 84, 0.75);
-    }
-
-    .btn-outline-signout {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #94a3b8;
-      font-size: 0.75rem;
-      font-weight: 800;
-      padding: 6px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      letter-spacing: 1px;
-      transition: all 0.2s;
-    }
-
-    .btn-outline-signout:hover {
-      color: #fff;
-      border-color: #ff2a54;
+      width: 28px; height: 28px; background: #ff2a54; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center; font-weight: 900;
     }
 
     .master-nav-tabs {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      margin-bottom: 22px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-      padding-bottom: 10px;
+      display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none;
+      margin-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); padding-bottom: 10px;
     }
     .master-nav-tabs::-webkit-scrollbar { display: none; }
-
     .master-tab-btn {
-      background: #080a11;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      color: #94a3b8;
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      padding: 11px 22px;
-      border-radius: 10px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      background: #080a11; border: 1px solid rgba(255, 255, 255, 0.07);
+      color: #94a3b8; font-size: 0.82rem; font-weight: 800; padding: 10px 20px;
+      border-radius: 10px; cursor: pointer; white-space: nowrap;
     }
-
-    .master-tab-btn:active {
-      transform: scale(0.96);
-    }
-
     .master-tab-btn.active {
-      background: linear-gradient(135deg, rgba(255, 42, 84, 0.22) 0%, rgba(255, 42, 84, 0.04) 100%);
-      border-color: #ff2a54;
-      color: #ffffff;
+      background: rgba(255, 42, 84, 0.18); border-color: #ff2a54; color: #ffffff;
       box-shadow: 0 4px 20px rgba(255, 42, 84, 0.35);
     }
+    .tab-view-content { display: none; }
+    .tab-view-content.active { display: block; animation: tabFadeIn 0.3s ease-out; }
+    @keyframes tabFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-    .tab-view-content {
-      display: none;
-    }
-    .tab-view-content.active {
-      display: block;
-      animation: tabFadeIn 0.3s ease-out;
-    }
-
-    @keyframes tabFadeIn {
-      0% { opacity: 0; transform: translateY(6px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .vip-banner-box {
-      background: linear-gradient(135deg, rgba(255, 42, 84, 0.16) 0%, rgba(13, 15, 22, 0.95) 100%);
-      border: 1px solid rgba(255, 42, 84, 0.35);
-      border-radius: 14px;
-      padding: 22px;
-      margin-bottom: 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .btn-vip-tele {
-      background: #ff2a54;
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.82rem;
-      letter-spacing: 0.5px;
-      padding: 11px 22px;
-      border-radius: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      box-shadow: 0 0 20px rgba(255, 42, 84, 0.6);
-      align-self: flex-start;
-      transition: all 0.2s ease;
-    }
-
-    /* 3. KONTROL WAKTU & TIME ZONE CUSTOM */
     .astro-custom-control-card {
-      background: #080a13;
-      border: 1px solid rgba(255, 42, 84, 0.35);
-      border-radius: 14px;
-      padding: 18px 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.75);
+      background: #080a13; border: 1px solid rgba(255, 42, 84, 0.35);
+      border-radius: 14px; padding: 18px 20px; margin-bottom: 20px;
     }
-
-    .astro-ctrl-inputs {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      margin-top: 14px;
-    }
-
+    .astro-ctrl-inputs { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 14px; }
     .ctrl-field {
-      background: #0e121e;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 10px;
-      padding: 8px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      background: #0e121e; border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px; padding: 8px 14px; display: flex; align-items: center; gap: 10px;
     }
-
-    .ctrl-field label {
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: #ff5c7c;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-
+    .ctrl-field label { font-size: 0.72rem; font-weight: 800; color: #ff5c7c; text-transform: uppercase; }
     .ctrl-field input, .ctrl-field select {
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-family: inherit;
-      font-size: 0.88rem;
-      font-weight: 800;
-      outline: none;
-      color-scheme: dark;
+      background: transparent; border: none; color: #fff; font-family: inherit;
+      font-size: 0.86rem; font-weight: 800; outline: none; color-scheme: dark;
     }
-
-    .ctrl-field select option {
-      background: #080a13;
-      color: #fff;
-    }
-
+    .ctrl-field select option { background: #080a13; color: #fff; }
     .btn-sync-live {
-      background: rgba(34, 197, 94, 0.15);
-      border: 1px solid #22c55e;
-      color: #4ade80;
-      font-size: 0.78rem;
-      font-weight: 800;
-      padding: 10px 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s;
+      background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; color: #4ade80;
+      font-size: 0.78rem; font-weight: 800; padding: 10px 18px; border-radius: 10px; cursor: pointer;
     }
 
-    .btn-sync-live:hover {
-      background: #22c55e;
-      color: #000;
-    }
-
-    .astro-quick-dates {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      margin-top: 14px;
-    }
-    .astro-quick-dates::-webkit-scrollbar { display: none; }
-
-    .quick-date-btn {
-      background: #0d101a;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #94a3b8;
-      font-size: 0.75rem;
-      font-weight: 800;
-      padding: 6px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s;
-    }
-
-    .quick-date-btn.active, .quick-date-btn:hover {
-      background: #ff2a54;
-      color: #fff;
-      border-color: #ff2a54;
-      box-shadow: 0 0 12px rgba(255, 42, 84, 0.4);
-    }
-
-    /* 4. RADAR LIVE SIGNAL & FLUID REASON */
     .signal-radar-box {
-      background: #090c14;
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 20px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      background: #090c14; border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 14px; padding: 20px; margin-bottom: 20px; display: grid; gap: 16px;
     }
-
     .signal-status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 900;
-      font-size: 1.05rem;
-      padding: 8px 18px;
-      border-radius: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      display: inline-flex; align-items: center; gap: 8px; font-weight: 900;
+      font-size: 1.05rem; padding: 8px 18px; border-radius: 8px; text-transform: uppercase;
     }
-
-    .pill-bullish {
-      background: rgba(34, 197, 94, 0.18);
-      border: 1.5px solid #22c55e;
-      color: #4ade80;
-      box-shadow: 0 0 20px rgba(34, 197, 94, 0.35);
-    }
-
-    .pill-bearish {
-      background: rgba(239, 68, 68, 0.2);
-      border: 1.5px solid #ef4444;
-      color: #f87171;
-      box-shadow: 0 0 20px rgba(239, 68, 68, 0.35);
-    }
-
+    .pill-bullish { background: rgba(34, 197, 94, 0.18); border: 1.5px solid #22c55e; color: #4ade80; }
+    .pill-bearish { background: rgba(239, 68, 68, 0.2); border: 1.5px solid #ef4444; color: #f87171; }
     .signal-reason-text {
-      font-size: 0.88rem;
-      line-height: 1.6;
-      color: #e2e8f0;
-      background: rgba(0, 0, 0, 0.35);
-      border-left: 4px solid var(--crimson-core);
-      padding: 14px 16px;
-      border-radius: 0 10px 10px 0;
+      font-size: 0.86rem; line-height: 1.6; color: #e2e8f0; background: rgba(0, 0, 0, 0.4);
+      border-left: 4px solid var(--crimson-core); padding: 14px 16px; border-radius: 0 10px 10px 0;
     }
 
-    /* 5. MASTER BOARD ASTRODOX REPLIKA EXACT */
     .astrodox-master-board {
-      background: #080a0f;
-      border: 1px solid rgba(255, 42, 84, 0.3);
-      border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 22px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
+      background: #080a0f; border: 1px solid rgba(255, 42, 84, 0.3);
+      border-radius: 14px; padding: 20px; margin-bottom: 22px; display: grid; gap: 20px;
     }
-
     .astrodox-disk-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 480px;
-      aspect-ratio: 1 / 1;
-      margin: 0 auto;
-      background: #ffffff;
-      border-radius: 50%;
+      position: relative; width: 100%; max-width: 490px; aspect-ratio: 1 / 1;
+      margin: 0 auto; background: #ffffff; border-radius: 50%;
       box-shadow: 0 0 45px rgba(0, 0, 0, 0.95), 0 0 25px rgba(255, 42, 84, 0.35);
       overflow: hidden;
     }
-
-    .astrodox-svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .astrodox-data-panel {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 12px;
-    }
+    .astrodox-svg { width: 100%; height: 100%; display: block; }
 
     .transit-table-full {
-      background: #050609;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 10px;
-      padding: 14px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px 14px;
-      font-size: 0.78rem;
+      background: #050609; border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px; padding: 14px; display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 10px 14px; font-size: 0.78rem;
     }
-
-    .transit-item {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
-      padding-bottom: 5px;
-    }
-
+    .transit-item { display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255, 255, 255, 0.08); padding-bottom: 4px; }
+    
     .clock-dock {
-      background: #080a10;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 16px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
+      background: #080a10; border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px; padding: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;
     }
-
-    .clock-item {
-      background: #0d0f17;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
-      padding: 12px 14px;
-    }
-
-    .clock-item.primary-clock {
-      border-color: rgba(255, 42, 84, 0.4);
-      background: rgba(255, 42, 84, 0.05);
-    }
-
-    .clock-time {
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: #fff;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    }
-
-    /* 6. TAB KALENDER NEWS */
-    .calendar-control-box {
-      background: #080a13;
-      border: 1px solid rgba(255, 42, 84, 0.35);
-      border-radius: 12px;
-      padding: 14px 18px;
-      margin-bottom: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .days-scroll-bar {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      padding: 4px 2px 10px;
-      margin-bottom: 14px;
-    }
-    .days-scroll-bar::-webkit-scrollbar { display: none; }
-
-    .day-pill {
-      background: linear-gradient(180deg, #0e111a 0%, #080a10 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #94a3b8;
-      padding: 10px 16px;
-      border-radius: 12px;
-      font-size: 0.78rem;
-      font-weight: 800;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      min-width: 82px;
-      user-select: none;
-    }
-
-    .day-pill.active {
-      background: linear-gradient(180deg, #ff2a54 0%, #a80f2f 100%);
-      color: #ffffff;
-      border-color: #ff5c7c;
-      box-shadow: 0 4px 20px rgba(255, 42, 84, 0.55);
-      transform: translateY(-2px);
-    }
-
-    .filter-pills {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      margin-bottom: 18px;
-    }
-    .filter-pills::-webkit-scrollbar { display: none; }
-
-    .pill-btn {
-      background: #0c0e15;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #94a3b8;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s;
-    }
-
-    .pill-btn.active, .pill-btn:hover {
-      background: rgba(255, 42, 84, 0.2);
-      color: #fff;
-      border-color: #ff2a54;
-      box-shadow: 0 0 14px rgba(255, 42, 84, 0.3);
-    }
+    .clock-item { background: #0d0f17; border-radius: 8px; padding: 12px 14px; }
+    .clock-time { font-size: 1.35rem; font-weight: 900; font-family: ui-monospace, monospace; }
 
     .news-card {
-      background: #090b12;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 14px;
-      padding: 18px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-bottom: 16px;
-      transition: border-color 0.25s ease;
+      background: #090b12; border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 14px; padding: 18px; margin-bottom: 16px;
     }
-
-    .news-card:hover { border-color: rgba(255, 42, 84, 0.35); }
     .news-card.impact-high { border-left: 4.5px solid #ff2a54; }
     .news-card.impact-medium { border-left: 4.5px solid #ff8c00; }
-
     .signal-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 900;
-      font-size: 0.86rem;
-      padding: 6px 12px;
-      border-radius: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      display: inline-flex; align-items: center; gap: 6px; font-weight: 900;
+      font-size: 0.86rem; padding: 6px 12px; border-radius: 6px; text-transform: uppercase;
     }
+    .signal-buy { background: rgba(34, 197, 94, 0.18); border: 1px solid #22c55e; color: #4ade80; }
+    .signal-sell { background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #f87171; }
 
-    .signal-buy {
-      background: rgba(34, 197, 94, 0.18);
-      border: 1px solid #22c55e;
-      color: #4ade80;
-      box-shadow: 0 0 12px rgba(34, 197, 94, 0.25);
-    }
-
-    .signal-sell {
-      background: rgba(239, 68, 68, 0.2);
-      border: 1px solid #ef4444;
-      color: #f87171;
-      box-shadow: 0 0 12px rgba(239, 68, 68, 0.25);
-    }
-
-    .signal-wait {
-      background: rgba(251, 191, 36, 0.12);
-      border: 1px solid #fbbf24;
-      color: #fde047;
-    }
-
-    /* TARGET MATRIX */
     .target-matrix-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 8px;
-      margin-top: 10px;
-      background: #040508;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      padding: 10px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px; margin-top: 10px; background: #040508; border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px; padding: 10px;
     }
+    .matrix-label { font-size: 0.65rem; color: #64748b; font-weight: 800; text-transform: uppercase; }
+    .matrix-val { font-size: 0.82rem; font-weight: 900; font-family: ui-monospace, monospace; }
 
-    .matrix-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .matrix-label {
-      font-size: 0.65rem;
-      color: #64748b;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-    .matrix-val {
-      font-size: 0.82rem;
-      font-weight: 900;
-      font-family: ui-monospace, SFMono-Regular, monospace;
-    }
-
-    .recap-panel {
-      background: #07090e;
-      border: 1px solid rgba(255, 42, 84, 0.3);
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    }
-
-    .recap-table-wrapper {
-      overflow-x: auto;
-      margin-top: 14px;
-    }
-
-    .recap-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.8rem;
-      text-align: left;
-      min-width: 680px;
-    }
-
-    .recap-table th {
-      background: #0d101a;
-      color: #94a3b8;
-      padding: 10px 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .recap-table td {
-      padding: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      color: #e2e8f0;
-    }
-
-    .badge-win {
-      background: rgba(34, 197, 94, 0.15);
-      color: #4ade80;
-      border: 1px solid rgba(34, 197, 94, 0.3);
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-weight: 800;
-      font-size: 0.72rem;
-    }
+    .recap-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left; }
+    .recap-table th { background: #0d101a; color: #94a3b8; padding: 10px 12px; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .recap-table td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.04); color: #e2e8f0; }
 
     @media (min-width: 820px) {
-      .astrodox-master-board {
-        grid-template-columns: 480px 1fr;
-      }
-      .signal-radar-box {
-        grid-template-columns: 320px 1fr;
-        align-items: center;
-      }
+      .astrodox-master-board { grid-template-columns: 490px 1fr; }
+      .signal-radar-box { grid-template-columns: 320px 1fr; align-items: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 1. OPENING LUXURY SUPERCAR -->
   <div id="openingOverlay">
     <div class="bg-video-wrapper">
-      <video id="heroPorscheVideo" class="bg-cinematic-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+      <video class="bg-cinematic-video" autoplay muted loop playsinline>
         <source src="porsche.mp4" type="video/mp4" />
-        <source src="opening.mp4" type="video/mp4" />
         <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
       </video>
     </div>
-
     <div class="cinema-vignette"></div>
-    <canvas id="openingCanvas"></canvas>
-
     <div class="opening-content-box">
       <div class="vip-brand-badge">Z</div>
-      <div class="opening-pre-title">ZERODIAX PRIVATE WEALTH &bull; INSTITUTIONAL DESK</div>
-      
-      <h1 class="opening-hero-title">
-        SELAMAT DATANG DI VIP <br/>
-        <span class="brand-red">ZERODIAX</span>
-      </h1>
-
-      <p class="opening-sub-desc">
-        Terminal konfluensi pasar terenkripsi: Astrodox Transit 24 Jam dan Protokol Eksekusi Likuiditas Berita Global.
-      </p>
-
-      <div class="video-load-track">
-        <div class="video-load-bar"></div>
-      </div>
-
-      <button class="btn-enter-terminal" onclick="dismissOpeningScreen()">
-        MASUK TERMINAL VIP &rarr;
-      </button>
+      <h1 style="font-size: 2rem; font-weight:900; margin-bottom: 12px;">ZERODIAX ASTRODOX VIP</h1>
+      <p style="color: #94a3b8; font-size: 0.85rem;">Terminal Presisi Geometri Astronomis &amp; Protokol Likuiditas XAUUSD.</p>
+      <button class="btn-enter-terminal" onclick="document.getElementById('openingOverlay').classList.add('fade-out')">MASUK TERMINAL &rarr;</button>
     </div>
   </div>
 
-  <!-- NAVBAR -->
   <header class="navbar">
     <div class="brand-logo">
       <div class="logo-badge">Z</div>
       <span>ZERODIAX ASTRODOX VIP</span>
     </div>
-    <div class="nav-actions">
-      <button id="btnLogout" class="btn-outline-signout">KELUAR</button>
-    </div>
+    <button id="btnLogout" style="background:transparent; border:1px solid rgba(255,255,255,0.15); color:#94a3b8; padding:6px 12px; border-radius:6px; cursor:pointer;">KELUAR</button>
   </header>
 
   <div class="terminal-container">
 
-    <!-- BANNER VIP TELEGRAM -->
-    <div class="vip-banner-box">
-      <div style="font-size:0.75rem; font-weight:800; color:#ff5c7c; letter-spacing:1.5px;">
-        &bull; PRIVATE SYNDICATE DESK
-      </div>
-      <h2 style="font-size:1.55rem; font-weight:900; text-transform:uppercase;">
-        Selamat Datang di VIP <span style="color:#ff2a54;">ZERODIAX</span>
-      </h2>
-      <p style="color:#94a3b8; font-size:0.85rem; max-width:650px; line-height:1.5;">
-        Akses seluruh modul materi lengkap (SMC, ICT, Order Flow, Video Private) dan live signal harian tersedia langsung di dalam Channel Telegram VIP Resmi.
-      </p>
-      <a href="https://t.me/+5jgBRvH4bjo1MDg9" target="_blank" rel="noopener" class="btn-vip-tele">
-        MASUK GRUP VIP TELEGRAM &rarr;
-      </a>
-    </div>
-
-    <!-- 3 MASTER TABS -->
     <div class="master-nav-tabs">
-      <button class="master-tab-btn active" onclick="switchMainTab('tab-astrodox', this)">
-        <span>🪐</span> ASTRODOX TRANSIT MATRIX
-      </button>
-      <button class="master-tab-btn" onclick="switchMainTab('tab-calendar', this)">
-        <span>📅</span> KALENDER NEWS DUNIA
-      </button>
-      <button class="master-tab-btn" onclick="switchMainTab('tab-recap', this)">
-        <span>📊</span> REKAP TRACK RECORD
-      </button>
+      <button class="master-tab-btn active" onclick="switchMainTab('tab-astrodox', this)">🪐 ASTRODOX TRANSIT MATRIX</button>
+      <button class="master-tab-btn" onclick="switchMainTab('tab-calendar', this)">📅 KALENDER NEWS DUNIA</button>
+      <button class="master-tab-btn" onclick="switchMainTab('tab-recap', this)">📊 REKAP TRACK RECORD</button>
     </div>
 
-    <!-- =========================================================
-         TAB 1: ASTRODOX TRANSIT MATRIX (TIME ZONE SESUKA HATI)
-         ========================================================= -->
+    <!-- TAB 1: ASTRODOX MATRIX -->
     <div id="tab-astrodox" class="tab-view-content active">
 
-      <!-- PENGATURAN TRANSIT, WAKTU & TIME ZONE BEBAS -->
       <div class="astro-custom-control-card">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
           <div>
             <strong style="font-size:0.95rem; color:#fff; display:block;">PENGATURAN WAKTU, TRANSIT &amp; TIME ZONE BEBAS</strong>
-            <small style="color:#94a3b8; font-size:0.75rem;">Atur tanggal, jam, atau putar time zone sesuka hati untuk memutar chart astro</small>
+            <small style="color:#94a3b8; font-size:0.75rem;">Atur tanggal, jam, atau putar zona waktu sesuka hati untuk memutar chart astro</small>
           </div>
-          <button class="btn-sync-live" onclick="resetToLiveTime()">
-            <span style="display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%;"></span> SINKRON LIVE SEKARANG
-          </button>
+          <button class="btn-sync-live" onclick="resetToLiveTime()">● SINKRON LIVE SEKARANG</button>
         </div>
 
         <div class="astro-ctrl-inputs">
@@ -898,55 +222,43 @@
             <label for="astroTimeZoneSelect">Time Zone:</label>
             <select id="astroTimeZoneSelect" onchange="onTimeZoneChange(this.value)">
               <option value="7" selected>WIB (Jakarta UTC+7)</option>
-              <option value="8">WITA (Bali/Makassar UTC+8)</option>
-              <option value="9">WIT (Jayapura UTC+9)</option>
+              <option value="8">WITA (Makassar UTC+8)</option>
+              <option value="9">WIT / Tokyo (UTC+9)</option>
               <option value="0">UTC / GMT (London Greenwich)</option>
               <option value="1">London BST (UTC+1)</option>
               <option value="-4">New York EDT (UTC-4)</option>
               <option value="-5">New York EST (UTC-5)</option>
-              <option value="9">Tokyo JST (UTC+9)</option>
             </select>
           </div>
-
           <div class="ctrl-field">
-            <label for="astroDate">Tanggal &bull; Tahun:</label>
+            <label for="astroDate">Tanggal:</label>
             <input type="date" id="astroDate" onchange="onAstroDateTimeChange()" />
           </div>
-
           <div class="ctrl-field">
-            <label for="astroTime">Jam &bull; Menit &bull; Detik:</label>
+            <label for="astroTime">Jam:</label>
             <input type="time" step="1" id="astroTime" onchange="onAstroDateTimeChange()" />
           </div>
         </div>
-
-        <div class="astro-quick-dates" id="astroQuickPills"></div>
       </div>
 
-      <!-- RADAR LIVE SIGNAL & FLUID REASON -->
+      <!-- RADAR SIGNAL LENGKAP -->
       <div class="signal-radar-box">
         <div>
           <span style="font-size:0.72rem; color:#94a3b8; font-weight:800; text-transform:uppercase; display:block; margin-bottom:6px;">
-            PROYEKSI ARAH PASAR XAUUSD (SUPER JAGO)
+            ARAH PASAR XAUUSD
           </span>
-          <div id="liveSignalBadge" class="signal-status-pill pill-bullish">
-            Memuat Sinyal...
-          </div>
-          <div style="margin-top:8px; font-size:0.75rem; color:#38bdf8; font-weight:700;" id="liveAspectTag">
-            Menghitung Sudut Geometri...
-          </div>
+          <div id="liveSignalBadge" class="signal-status-pill pill-bullish">Memuat...</div>
+          <div style="margin-top:8px; font-size:0.75rem; color:#38bdf8; font-weight:700;" id="liveAspectTag">Kalkulasi Aspek...</div>
         </div>
-
         <div>
           <span style="font-size:0.72rem; color:#94a3b8; font-weight:800; text-transform:uppercase; display:block; margin-bottom:6px;">
             ALASAN ANALISA GEOMETRI &amp; LIKUIDITAS XAUUSD
           </span>
-          <div class="signal-reason-text" id="liveReasonText">
-            Menghubungkan kalkulasi posisi orbit planet terhadap struktur pasar...
-          </div>
+          <div class="signal-reason-text" id="liveReasonText">Mengalkulasi sudut orbit planet &amp; zona likuiditas XAUUSD...</div>
         </div>
       </div>
 
-      <!-- MASTER BOARD ASTRODOX DENGAN PIRINGAN 100% LENGKAP -->
+      <!-- MASTER BOARD ASTRODOX 100% PERSIS -->
       <div class="astrodox-master-board">
         <div class="astrodox-disk-wrapper">
           <svg class="astrodox-svg" viewBox="0 0 500 500" id="astrodoxDynamicSvg"></svg>
@@ -954,35 +266,25 @@
 
         <div class="astrodox-data-panel">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span style="background:rgba(255,42,84,0.14); border:1px solid #ff2a54; color:#ff5c7c; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:800;">
+            <span style="background:rgba(255,42,84,0.15); border:1px solid #ff2a54; color:#ff5c7c; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:800;">
               ASTRODOX FULL EPHEMERIS
             </span>
-            <span style="color:#22c55e; font-size:0.75rem; font-weight:700;" id="astroLiveStatusTag">&bull; SINKRON LIVE 24H</span>
+            <span style="color:#22c55e; font-size:0.75rem; font-weight:700;" id="astroLiveStatusTag">● SINKRON LIVE</span>
           </div>
 
-          <div style="background:#0c0e16; border:1px solid rgba(255,42,84,0.25); border-radius:10px; padding:12px; display:flex; justify-content:space-between; align-items:center;">
-            <div>
-              <span style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase;">Fase Bulan &bull; Siklus Likuiditas</span>
-              <strong style="color:#fff; font-size:0.95rem; display:block;" id="liveMoonPhaseName">Waxing Crescent</strong>
-              <small style="color:#38bdf8; font-size:0.75rem;" id="liveMoonIllum">Moon di Sagitarius &bull; Iluminasi 19.5%</small>
-            </div>
-            <div style="font-size:1.8rem; text-shadow:0 0 15px rgba(56,189,248,0.8);" id="liveMoonIcon">&#9789;</div>
-          </div>
-
-          <!-- TABEL EPHEMERIS LENGKAP SEMUA PLANET -->
           <div class="transit-table-full">
-            <div class="transit-item"><span>☉ Sun (Gold)</span><strong style="color:#f59e0b;" id="degSun">--</strong></div>
+            <div class="transit-item"><span>☉ Sun</span><strong style="color:#f59e0b;" id="degSun">--</strong></div>
             <div class="transit-item"><span>Asc (<span id="ascSignLabel">Asc</span>)</span><strong style="color:#cbd5e1;" id="degAsc">--</strong></div>
-            <div class="transit-item"><span>☽ Moon (Flow)</span><strong style="color:#38bdf8;" id="degMoon">--</strong></div>
-            <div class="transit-item"><span>II (Demand)</span><strong style="color:#cbd5e1;" id="degHouse2">--</strong></div>
+            <div class="transit-item"><span>☽ Moon</span><strong style="color:#38bdf8;" id="degMoon">--</strong></div>
+            <div class="transit-item"><span>II</span><strong style="color:#cbd5e1;" id="degHouse2">--</strong></div>
             <div class="transit-item"><span>☿ Mercury</span><strong style="color:#a855f7;" id="degMerc">--</strong></div>
-            <div class="transit-item"><span>III (Cusp)</span><strong style="color:#cbd5e1;" id="degHouse3">--</strong></div>
+            <div class="transit-item"><span>III</span><strong style="color:#cbd5e1;" id="degHouse3">--</strong></div>
             <div class="transit-item"><span>♀ Venus</span><strong style="color:#ec4899;" id="degVen">--</strong></div>
-            <div class="transit-item"><span>IC (Base)</span><strong style="color:#cbd5e1;" id="degIC">--</strong></div>
-            <div class="transit-item"><span>♂ Mars (Force)</span><strong style="color:#f87171;" id="degMars">--</strong></div>
+            <div class="transit-item"><span>IC</span><strong style="color:#cbd5e1;" id="degIC">--</strong></div>
+            <div class="transit-item"><span>♂ Mars</span><strong style="color:#f87171;" id="degMars">--</strong></div>
             <div class="transit-item"><span>MC (<span id="mcSignLabel">MC</span>)</span><strong style="color:#cbd5e1;" id="degMC">--</strong></div>
             <div class="transit-item"><span>♃ Jupiter</span><strong style="color:#c084fc;" id="degJup">--</strong></div>
-            <div class="transit-item"><span>Dsc (Supply)</span><strong style="color:#cbd5e1;" id="degDsc">--</strong></div>
+            <div class="transit-item"><span>Dsc</span><strong style="color:#cbd5e1;" id="degDsc">--</strong></div>
             <div class="transit-item"><span>♄ Saturn</span><strong style="color:#94a3b8;" id="degSat">--</strong></div>
             <div class="transit-item"><span>♅ Uranus</span><strong style="color:#38bdf8;" id="degUra">--</strong></div>
             <div class="transit-item"><span>♆ Neptune</span><strong style="color:#2dd4bf;" id="degNep">--</strong></div>
@@ -992,103 +294,48 @@
           </div>
 
           <div style="background:rgba(255,42,84,0.08); border-left:3.5px solid #ff2a54; padding:12px; border-radius:0 8px 8px 0; font-size:0.78rem; line-height:1.45; color:#cbd5e1;" id="liveDailyAstroSummary">
-            Mengalkulasi resonansi siklus transit astrodox...
+            Menghitung kalkulasi aspek geometris astronomis...
           </div>
         </div>
       </div>
 
-      <!-- CLOCK DOCK -->
       <div class="clock-dock">
-        <div class="clock-item primary-clock">
-          <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">
-            WIB (JAKARTA) &bull; <span style="color:#22c55e;">AKTIF</span>
-          </div>
+        <div class="clock-item">
+          <div style="font-size:0.7rem; color:#94a3b8; font-weight:700;">WIB (JAKARTA UTC+7)</div>
           <div class="clock-time" id="timeWIB">00:00:00</div>
-          <div style="font-size:0.75rem; color:#cbd5e1;" id="dateWIB">Memuat...</div>
         </div>
-
         <div class="clock-item">
-          <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">
-            LONDON (GMT+1) &bull; SESI LONDON
-          </div>
+          <div style="font-size:0.7rem; color:#94a3b8; font-weight:700;">LONDON (GMT+1)</div>
           <div class="clock-time" id="timeLondon">00:00:00</div>
-          <div style="font-size:0.75rem; color:#cbd5e1;" id="dateLondon">Memuat...</div>
         </div>
-
         <div class="clock-item">
-          <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">
-            NEW YORK (EST) &bull; SESI NY
-          </div>
+          <div style="font-size:0.7rem; color:#94a3b8; font-weight:700;">NEW YORK (UTC-4)</div>
           <div class="clock-time" id="timeNY">00:00:00</div>
-          <div style="font-size:0.75rem; color:#cbd5e1;" id="dateNY">Memuat...</div>
         </div>
       </div>
+
     </div>
 
-    <!-- =========================================================
-         TAB 2: KALENDER NEWS DUNIA (TIME TP PRESISI & TP MAX)
-         ========================================================= -->
+    <!-- TAB 2: KALENDER NEWS -->
     <div id="tab-calendar" class="tab-view-content">
-      
-      <div class="calendar-control-box">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:1.15rem;">🌐</span>
-          <div>
-            <strong style="font-size:0.88rem; color:#fff; display:block;">KALENDER EKONOMI DUNIA &amp; TIME TP PRESISI</strong>
-            <small style="color:#94a3b8; font-size:0.72rem;">Window Jam Entry &bull; Time TP Dinamis Mengikuti Chart Astro &bull; Target TP Max</small>
-          </div>
-        </div>
-
-        <div class="ctrl-field" style="margin:0;">
-          <label for="customNewsDatePicker">Kalender:</label>
-          <input type="date" id="customNewsDatePicker" onchange="onCustomNewsDatePicked(this.value)" />
-        </div>
+      <div style="background:#080a13; border:1px solid rgba(255,42,84,0.3); border-radius:12px; padding:14px; margin-bottom:16px;">
+        <strong style="font-size:0.9rem; color:#fff;">KALENDER EKONOMI GLOBAL &amp; TARGET WAKTU PRESISI</strong>
       </div>
-
-      <div style="margin-bottom:12px;">
-        <div class="days-scroll-bar" id="newsDaysBar"></div>
-      </div>
-
-      <div class="filter-pills">
-        <button class="pill-btn active" onclick="setCurrencyFilter('ALL', event)">Semua Mata Uang</button>
-        <button class="pill-btn" onclick="setCurrencyFilter('USD', event)">USD (Gold / XAUUSD)</button>
-        <button class="pill-btn" onclick="setCurrencyFilter('EUR', event)">EUR</button>
-        <button class="pill-btn" onclick="setCurrencyFilter('GBP', event)">GBP</button>
-        <button class="pill-btn" onclick="setCurrencyFilter('HIGH', event)">Khusus High Impact</button>
-      </div>
-
-      <div class="news-list-box" id="newsFeedContainer">
-        <div style="text-align:center; padding:30px; color:#94a3b8;">
-          Menyinkronkan kalender ekonomi dunia...
-        </div>
-      </div>
+      <div id="newsFeedContainer" style="color:#94a3b8; font-size:0.85rem;">Memuat agenda kalender berita...</div>
     </div>
 
-    <!-- =========================================================
-         TAB 3: REKAP TRACK RECORD (WINDOW ENTRY FIX & TP MAX)
-         ========================================================= -->
+    <!-- TAB 3: REKAP TRACK RECORD (REALTIME & PERMANEN) -->
     <div id="tab-recap" class="tab-view-content">
-      <div class="recap-panel">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
-          <h3 style="font-size:1.05rem; font-weight:900; letter-spacing:0.5px; color:#fff;">
-            📊 REKAPITULASI EKSEKUSI NEWS
-          </h3>
-          <span class="badge-win">TRACK RECORD PERMANEN</span>
+      <div style="background:#080a13; border:1px solid rgba(255,42,84,0.3); border-radius:12px; padding:16px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <h3 style="color:#fff; font-size:1rem;">REKAPITULASI EKSEKUSI TRACK RECORD REAL-TIME</h3>
+          <span style="background:rgba(34,197,94,0.2); color:#4ade80; border:1px solid #22c55e; font-size:0.72rem; padding:3px 8px; border-radius:4px; font-weight:800;">AUTO ARCHIVE</span>
         </div>
-        <p style="font-size:0.78rem; color:#94a3b8; line-height:1.4;">
-          Arsip historis hasil rilis berita yang dieksekusi secara otomatis pada detik rilis tiba tersimpan permanen di terminal.
-        </p>
-
-        <div class="recap-table-wrapper">
+        <div style="overflow-x:auto;">
           <table class="recap-table">
             <thead>
               <tr>
-                <th>Tanggal &amp; Jam</th>
-                <th>Mata Uang / Event</th>
-                <th>Forecast vs Actual</th>
-                <th>Sinyal Eksekusi</th>
-                <th>Window Entry</th>
-                <th>Status Target</th>
+                <th>Jam Rilis</th><th>Mata Uang / Event</th><th>Forecast vs Actual</th><th>Arah Eksekusi</th><th>Window Entry</th><th>Status Target</th>
               </tr>
             </thead>
             <tbody id="recapTableBody"></tbody>
@@ -1100,139 +347,18 @@
   </div>
 
   <script>
-    // 1. OPENING LUXURY CANVAS PARTICLES & VIDEO
-    function initOpeningParticles() {
-      const canvas = document.getElementById('openingCanvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let w = canvas.width = window.innerWidth;
-      let h = canvas.height = window.innerHeight;
+    setTimeout(() => {
+      const ov = document.getElementById('openingOverlay');
+      if (ov) ov.classList.add('fade-out');
+    }, 3800);
 
-      const particles = [];
-      for (let i = 0; i < 35; i++) {
-        particles.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: Math.random() * 2 + 1,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: -Math.random() * 0.6 - 0.2,
-          alpha: Math.random() * 0.6 + 0.2
-        });
-      }
-
-      function draw() {
-        ctx.clearRect(0, 0, w, h);
-        particles.forEach(p => {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 42, 84, ${p.alpha})`;
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = '#ff2a54';
-          ctx.fill();
-
-          p.x += p.vx;
-          p.y += p.vy;
-          if (p.y < 0) p.y = h;
-          if (p.x < 0) p.x = w;
-          if (p.x > w) p.x = 0;
-        });
-        requestAnimationFrame(draw);
-      }
-      draw();
-      window.addEventListener('resize', () => {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-      });
-    }
-    initOpeningParticles();
-
-    function dismissOpeningScreen() {
-      const overlay = document.getElementById('openingOverlay');
-      if (overlay) {
-        overlay.classList.add('fade-out');
-        setTimeout(() => { overlay.remove(); }, 900);
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const vid = document.getElementById('heroPorscheVideo');
-      if (vid) {
-        vid.muted = true;
-        const p = vid.play();
-        if (p !== undefined) p.catch(() => {});
-      }
-    });
-
-    setTimeout(dismissOpeningScreen, 4800);
-
-    // 2. SWITCH TAB UTAMA
     function switchMainTab(tabId, btnElem) {
-      document.querySelectorAll('.tab-view-content').forEach(view => view.classList.remove('active'));
-      document.querySelectorAll('.master-tab-btn').forEach(btn => btn.classList.remove('active'));
-      
-      const targetView = document.getElementById(tabId);
-      if (targetView) targetView.classList.add('active');
+      document.querySelectorAll('.tab-view-content').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.master-tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
       if (btnElem) btnElem.classList.add('active');
     }
 
-    // 3. SUPABASE AUTH
-    const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjaXZ0eW9sZWJibHJxcWdwdW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMjk0MzAsImV4cCI6MjEwNzYwNTQzMH0.o87Hwhz-I6jv98jW0VfT70UfbfgtEoo63rI3tm9rQbw';
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    async function checkMemberAccess() {
-      const { data: { session } } = await supabaseClient.auth.getSession();
-      if (!session) {
-        window.location.href = 'login.html';
-        return;
-      }
-
-      const { data: profile, error } = await supabaseClient
-        .from('profiles')
-        .select('full_name, status')
-        .eq('id', session.user.id)
-        .single();
-
-      if (error || !profile || profile.status !== 'active') {
-        await supabaseClient.auth.signOut();
-        window.location.href = 'login.html';
-        return;
-      }
-    }
-    checkMemberAccess();
-
-    // 4. CLOCKS MULTI-ZONA REALTIME
-    function updateLiveClocks() {
-      const now = new Date();
-      const dateOpts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
-
-      document.getElementById('timeWIB').innerText = new Intl.DateTimeFormat('id-ID', {
-        timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
-      }).format(now);
-      document.getElementById('dateWIB').innerText = new Intl.DateTimeFormat('id-ID', {
-        timeZone: 'Asia/Jakarta', ...dateOpts
-      }).format(now);
-
-      document.getElementById('timeLondon').innerText = new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
-      }).format(now);
-      document.getElementById('dateLondon').innerText = new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'Europe/London', ...dateOpts
-      }).format(now);
-
-      document.getElementById('timeNY').innerText = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
-      }).format(now);
-      document.getElementById('dateNY').innerText = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'America/New_York', ...dateOpts
-      }).format(now);
-    }
-    setInterval(updateLiveClocks, 1000);
-    updateLiveClocks();
-
-    // ========================================================
-    // 5. ENGINE ASTRONOMIS JEAN MEEUS (REPLIKA EXACT ASTRODOX)
-    // ========================================================
     const ZODIAC_DATA = [
       { name: "Aries", glyph: "♈", bg: "#ffe4e6" },
       { name: "Taurus", glyph: "♉", bg: "#dcfce7" },
@@ -1251,16 +377,43 @@
     let isAstroLiveMode = true;
     let customAstroDate = new Date();
     let selectedTimeZoneOffset = 7;
-    let full10DaysNews = [];
-    let selectedNewsDate = new Date();
-    let currentCurrencyFilter = 'ALL';
 
-    function onTimeZoneChange(offsetVal) {
-      selectedTimeZoneOffset = parseFloat(offsetVal);
+    function onTimeZoneChange(v) {
+      selectedTimeZoneOffset = parseFloat(v);
       renderDynamicAstrodox();
       renderNewsCards();
     }
 
+    function onAstroDateTimeChange() {
+      const d = document.getElementById('astroDate').value;
+      const t = document.getElementById('astroTime').value || "12:00:00";
+      if (!d) return;
+      const [yr, mo, dy] = d.split('-').map(Number);
+      const [hr, mn, sc] = t.split(':').map(Number);
+      customAstroDate = new Date(yr, mo - 1, dy, hr, mn, sc || 0);
+      isAstroLiveMode = false;
+      document.getElementById('astroLiveStatusTag').innerText = "● MODE KUSTOM";
+      document.getElementById('astroLiveStatusTag').style.color = "#f59e0b";
+      renderDynamicAstrodox();
+      renderNewsCards();
+    }
+
+    function resetToLiveTime() {
+      isAstroLiveMode = true;
+      customAstroDate = new Date();
+      document.getElementById('astroLiveStatusTag').innerText = "● SINKRON LIVE";
+      document.getElementById('astroLiveStatusTag').style.color = "#22c55e";
+      syncControlsUI(customAstroDate);
+      renderDynamicAstrodox();
+      renderNewsCards();
+    }
+
+    function syncControlsUI(d) {
+      document.getElementById('astroDate').value = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+      document.getElementById('astroTime').value = `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`;
+    }
+
+    // Perhitungan Astronomis Geocentric Persis Astrodox
     function getAstroEphemeris(targetDate, targetHoursFloat, tzOffset = selectedTimeZoneOffset) {
       const year = targetDate.getFullYear();
       const month = targetDate.getMonth() + 1;
@@ -1268,13 +421,8 @@
 
       let utcHours = targetHoursFloat - tzOffset;
       let y = year, m = month, dVal = day;
-      if (utcHours < 0) {
-        utcHours += 24.0;
-        dVal -= 1;
-      } else if (utcHours >= 24) {
-        utcHours -= 24.0;
-        dVal += 1;
-      }
+      if (utcHours < 0) { utcHours += 24.0; dVal -= 1; }
+      else if (utcHours >= 24) { utcHours -= 24.0; dVal += 1; }
 
       if (m <= 2) { y -= 1; m += 12; }
       const A = Math.floor(y / 100);
@@ -1282,20 +430,10 @@
       const JD = Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + dVal + (utcHours / 24.0) + B - 1524.5;
       const d = JD - 2451545.0;
 
-      // Sun
-      const L0 = (280.46646 + 0.98564736 * d) % 360;
-      const M_sun = ((357.52911 + 0.98560028 * d) % 360) * Math.PI / 180;
-      const C_sun = 1.914602 * Math.sin(M_sun) + 0.019993 * Math.sin(2 * M_sun);
-      const sun = (L0 + C_sun + 360) % 360;
-
-      // Moon
-      const L_moon = (218.3165 + 13.176396 * d) % 360;
-      const M_moon = ((134.9634 + 13.064993 * d) % 360) * Math.PI / 180;
-      const moon = (L_moon + 6.2886 * Math.sin(M_moon) + 360) % 360;
-
-      // Planets
-      const mercury = (sun + 24.0 * Math.sin(((d * 4.0923 + 120) % 360) * Math.PI / 180) + 360) % 360;
-      const venus = (sun - 18.0 + 44.0 * Math.sin(((d * 1.6021 + 210) % 360) * Math.PI / 180) + 360) % 360;
+      const sun = (280.46646 + 0.98564736 * d + 1.9146 * Math.sin(((357.529 + 0.9856 * d) % 360) * Math.PI / 180) + 360) % 360;
+      const moon = (218.3165 + 13.176396 * d + 6.2886 * Math.sin(((134.963 + 13.065 * d) % 360) * Math.PI / 180) + 360) % 360;
+      const mercury = (sun + 22.0 * Math.sin(((d * 4.092 + 120) % 360) * Math.PI / 180) + 360) % 360;
+      const venus = (sun - 15.0 + 42.0 * Math.sin(((d * 1.602 + 210) % 360) * Math.PI / 180) + 360) % 360;
       const mars = (355.43 + 0.524033 * d + 360) % 360;
       const jupiter = (34.35 + 0.083091 * d + 360) % 360;
       const saturn = (10.37 + 0.033459 * d + 360) % 360;
@@ -1305,13 +443,13 @@
       const node = (125.04 - 0.05295 * d + 360) % 360;
       const chiron = (45.8 + 0.019 * d + 360) % 360;
 
-      const localLongitude = tzOffset * 15.0;
-      const GMST = (280.46061837 + 360.98564736629 * d + 15.0 * utcHours) % 360;
-      const localSidereal = (GMST + localLongitude + 360) % 360;
+      const localLon = tzOffset * 15.0;
+      const GMST = (280.4606 + 360.9856 * d + 15.0 * utcHours) % 360;
+      const localSidereal = (GMST + localLon + 360) % 360;
       const mc = localSidereal;
       const asc = (localSidereal + 90.0 + 23.44 * Math.sin(localSidereal * Math.PI / 180) + 360) % 360;
 
-      return { sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto, node, chiron, asc, mc, day, month, year, utcHours };
+      return { sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto, node, chiron, asc, mc };
     }
 
     function formatZodiac(degFloat) {
@@ -1325,92 +463,74 @@
       return {
         glyph: sign.glyph,
         signName: sign.name,
-        deg,
-        min,
-        sec,
+        deg, min, sec,
         text: `${sign.glyph} ${deg}°${String(min).padStart(2, '0')}'${String(sec).padStart(2, '0')}"`
       };
     }
 
-    // ========================================================
-    // 6. MASTER ENGINE XAUUSD KHUSUS (PERBAIKAN NAMA ASPEK)
-    // ========================================================
+    // Engine Penilai Arah Fokus Buy / Sell XAUUSD
     function evaluateAstrodoxConfluence(targetDate, targetHoursFloat, tzOffset = selectedTimeZoneOffset) {
       const astro = getAstroEphemeris(targetDate, targetHoursFloat, tzOffset);
 
       let harmonicScore = 0;
       let stressScore = 0;
-      let dominantHarmonicName = "Harmonic Equilibrium Flow";
-      let dominantStressName = "Planetary Tension Matrix";
+      let dominantHarmonic = "Harmonic Bullish Expansion";
+      let dominantStress = "Planetary Bearish Tension";
 
-      // 1. HUBUNGAN SUN (GOLD) & MOON (LIQUIDITY FLOW)
-      const diffSunMoon = Math.abs(astro.sun - astro.moon) % 360;
-      const distSM = diffSunMoon > 180 ? 360 - diffSunMoon : diffSunMoon;
+      // 1. Sun & Moon Interaction
+      const diffSM = Math.abs(astro.sun - astro.moon) % 360;
+      const distSM = diffSM > 180 ? 360 - diffSM : diffSM;
 
-      if (distSM >= 85 && distSM <= 95) {
-        stressScore += 16;
-        dominantStressName = "Sun-Moon Square 90° Liquidity Shock";
-      } else if (distSM >= 175 && distSM <= 180) {
+      if (distSM >= 84 && distSM <= 96) {
         stressScore += 18;
-        dominantStressName = "Sun-Moon Opposition 180° Dump Trigger";
-      } else if (distSM >= 115 && distSM <= 125) {
-        harmonicScore += 16;
-        dominantHarmonicName = "Sun-Moon Grand Trine 120° Expansion";
-      } else if (distSM >= 56 && distSM <= 64) {
-        harmonicScore += 11;
-        dominantHarmonicName = "Sun-Moon Sextile 60° Accumulation";
+        dominantStress = "Sun-Moon Square 90° Liquidity Shock";
+      } else if (distSM >= 174 && distSM <= 180) {
+        stressScore += 20;
+        dominantStress = "Sun-Moon Opposition 180° Dump Trigger";
+      } else if (distSM >= 114 && distSM <= 126) {
+        harmonicScore += 18;
+        dominantHarmonic = "Sun-Moon Grand Trine 120° Flow";
+      } else if (distSM >= 55 && distSM <= 65) {
+        harmonicScore += 12;
+        dominantHarmonic = "Sun-Moon Sextile 60° Demand Flow";
       }
 
-      // 2. HUBUNGAN MARS (VOLATILITAS/AGRESI) & MOON
-      const diffMarsMoon = Math.abs(astro.mars - astro.moon) % 360;
-      const distMM = diffMarsMoon > 180 ? 360 - diffMarsMoon : diffMarsMoon;
+      // 2. Mars & Moon
+      const diffMM = Math.abs(astro.mars - astro.moon) % 360;
+      const distMM = diffMM > 180 ? 360 - diffMM : diffMM;
 
-      if (distMM >= 86 && distMM <= 94) {
-        stressScore += 15;
-        dominantStressName = "Mars-Moon Square 90° Bearish Rejection";
-      } else if (distMM >= 176 && distMM <= 180) {
-        stressScore += 17;
-        dominantStressName = "Mars-Moon Opposition 180° Exhaustion Dump";
-      } else if (distMM >= 116 && distMM <= 124) {
+      if (distMM >= 85 && distMM <= 95) {
+        stressScore += 16;
+        dominantStress = "Mars-Moon Square 90° Bearish Rejection";
+      } else if (distMM >= 175 && distMM <= 180) {
+        stressScore += 18;
+        dominantStress = "Mars-Moon Opposition 180° Dump";
+      } else if (distMM >= 115 && distMM <= 125) {
         harmonicScore += 8;
       }
 
-      // 3. SATURN (BARRIER SUPPLY) & MOON
-      const diffSatMoon = Math.abs(astro.saturn - astro.moon) % 360;
-      const distSatM = diffSatMoon > 180 ? 360 - diffSatMoon : diffSatMoon;
-
-      if ((distSatM >= 86 && distSatM <= 94) || (distSatM >= 176 && distSatM <= 180)) {
+      // 3. Saturn & Moon
+      const diffSatM = Math.abs(astro.saturn - astro.moon) % 360;
+      const distSatM = diffSatM > 180 ? 360 - diffSatM : diffSatM;
+      if (distSatM >= 86 && distSatM <= 94) {
         stressScore += 14;
-        dominantStressName = "Saturn Barrier Rejection Cross";
+        dominantStress = "Saturn Barrier Rejection Cross";
       }
 
-      // 4. JUPITER (GOLDEN EXPANSION) & MOON
-      const diffJupMoon = Math.abs(astro.jupiter - astro.moon) % 360;
-      const distJM = diffJupMoon > 180 ? 360 - diffJupMoon : diffJupMoon;
-
-      if ((distJM >= 116 && distJM <= 124) || (distJM >= 56 && distJM <= 64)) {
-        harmonicScore += 14;
-        dominantHarmonicName = "Jupiter Golden Expansion Trine";
+      // 4. Jupiter & Moon
+      const diffJM = Math.abs(astro.jupiter - astro.moon) % 360;
+      const distJM = diffJM > 180 ? 360 - diffJM : diffJM;
+      if (distJM >= 115 && distJM <= 125) {
+        harmonicScore += 15;
+        dominantHarmonic = "Jupiter Golden Expansion Trine";
       }
 
-      // 5. HOUSE PLACEMENT MOON RELATIF TERHADAP ASCENDANT LOKAL
-      const moonHouseAngle = (astro.moon - astro.asc + 360) % 360;
-      if (moonHouseAngle >= 210 && moonHouseAngle <= 270) {
-        stressScore += 10;
-        if (stressScore > harmonicScore) dominantStressName = "8th House Institutional Liquidity Sweep";
-      } else if (moonHouseAngle >= 330 || moonHouseAngle <= 30) {
-        harmonicScore += 6;
-      } else if (moonHouseAngle >= 60 && moonHouseAngle <= 120) {
-        harmonicScore += 6;
-      }
-
-      // Pastikan nama aspek selaras dengan sinyal
       const isBullish = harmonicScore > stressScore;
-      const dominantAspectName = isBullish ? dominantHarmonicName : dominantStressName;
+      const dominantAspectName = isBullish ? dominantHarmonic : dominantStress;
 
+      const sunFmt = formatZodiac(astro.sun);
       const moonFmt = formatZodiac(astro.moon);
       const marsFmt = formatZodiac(astro.mars);
-      const sunFmt = formatZodiac(astro.sun);
 
       const hInt = Math.floor(targetHoursFloat);
       const mInt = Math.floor((targetHoursFloat - hInt) * 60);
@@ -1418,28 +538,15 @@
 
       let reasonMaster = "";
       if (isBullish) {
-        reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Konfigurasi Sun (${sunFmt.deg}° ${sunFmt.signName}) dan Moon (${moonFmt.deg}° ${moonFmt.signName}) didominasi ${dominantAspectName} (+${harmonicScore} Net Flow). Struktur transit membuka koridor akumulasi demand institusi. Proyeksi harga memvalidasi pembalikan arah naik (Reversal Buy) menyapu Buy-Side Liquidity (BSL) di supply atas.`;
+        reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Aspek geometri ${dominantAspectName} (+${harmonicScore} Buy Flow). Sinergi Sun (${sunFmt.deg}° ${sunFmt.signName}) dan Moon (${moonFmt.deg}° ${moonFmt.signName}) memvalidasi area discount demand. Arah likuiditas mendorong kenaikan harga (Pump) menuju target Buy-Side Liquidity (BSL) di supply atas.`;
       } else {
-        reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Terdeteksi dominasi tegangan ${dominantAspectName} (+${stressScore} Net Tension). Tekanan Mars (${marsFmt.deg}° ${marsFmt.signName}) memicu sapuan likuiditas atas (fakeout sweep) sebelum Gold terdistribusi junam turun (Distribution Sell) menembus level Sell-Side Liquidity (SSL) bawah.`;
+        reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Aspek geometri ${dominantAspectName} (+${stressScore} Sell Tension). Tekanan Mars (${marsFmt.deg}° ${marsFmt.signName}) memicu sapuan likuiditas atas (fakeout sweep) sebelum harga drop terdistribusi turun menuju Sell-Side Liquidity (SSL) bawah.`;
       }
 
-      return {
-        astro,
-        harmonicScore,
-        stressScore,
-        dominantAspectName,
-        isBullish,
-        reasonMaster,
-        jamStr,
-        moonFmt,
-        marsFmt,
-        sunFmt
-      };
+      return { astro, harmonicScore, stressScore, dominantAspectName, isBullish, reasonMaster, jamStr };
     }
 
-    // ========================================================
-    // 7. RENDERING DYNAMIC MASTER BOARD ASTRODOX LENGKAP
-    // ========================================================
+    // RENDERING MASTER BOARD 100% PERSIS ASTRODOX DENGAN TIK & GARIS ASPEK
     function renderDynamicAstrodox() {
       const svg = document.getElementById('astrodoxDynamicSvg');
       if (!svg) return;
@@ -1448,11 +555,11 @@
       let targetHoursFloat = targetD.getHours() + targetD.getMinutes() / 60 + targetD.getSeconds() / 3600;
 
       if (isAstroLiveMode) {
-        const liveNow = new Date();
-        targetD = liveNow;
-        targetHoursFloat = liveNow.getHours() + liveNow.getMinutes() / 60 + liveNow.getSeconds() / 3600;
-        customAstroDate = liveNow;
-        syncControlsUI(liveNow);
+        const now = new Date();
+        targetD = now;
+        targetHoursFloat = now.getHours() + now.getMinutes() / 60 + now.getSeconds() / 3600;
+        customAstroDate = now;
+        syncControlsUI(now);
       }
 
       const analysis = evaluateAstrodoxConfluence(targetD, targetHoursFloat, selectedTimeZoneOffset);
@@ -1460,43 +567,32 @@
       const cx = 250, cy = 250;
       const ascLong = astro.asc;
 
-      function toAngle(lon) {
-        return (180 - (lon - ascLong)) * Math.PI / 180;
+      function toAngle(lon) { return (180 - (lon - ascLong)) * Math.PI / 180; }
+      function toPoint(lon, r) {
+        const a = toAngle(lon);
+        return { x: cx + r * Math.cos(a), y: cy - r * Math.sin(a) };
       }
 
-      function toPoint(lon, radius) {
-        const rad = toAngle(lon);
-        return {
-          x: cx + radius * Math.cos(rad),
-          y: cy - radius * Math.sin(rad)
-        };
-      }
-
-      let svgContent = `<circle cx="${cx}" cy="${cy}" r="248" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/><g id="zSlices">`;
+      let content = `<circle cx="${cx}" cy="${cy}" r="248" fill="#f8fafc" stroke="#0f172a" stroke-width="2.5"/><g id="zSlices">`;
 
       // 1. ZODIAC SECTORS
       for (let i = 0; i < 12; i++) {
-        const p1 = toPoint(i * 30, 248);
-        const p2 = toPoint((i + 1) * 30, 248);
-        const p1_in = toPoint(i * 30, 204);
-        const p2_in = toPoint((i + 1) * 30, 204);
-        svgContent += `
-          <path d="M ${p1_in.x} ${p1_in.y} L ${p1.x} ${p1.y} A 248 248 0 0 1 ${p2.x} ${p2.y} L ${p2_in.x} ${p2_in.y} A 204 204 0 0 0 ${p1_in.x} ${p1_in.y} Z" fill="${ZODIAC_DATA[i].bg}" stroke="#64748b" stroke-width="0.8"/>
-        `;
+        const p1 = toPoint(i * 30, 248), p2 = toPoint((i + 1) * 30, 248);
+        const p1_in = toPoint(i * 30, 204), p2_in = toPoint((i + 1) * 30, 204);
+        content += `<path d="M ${p1_in.x} ${p1_in.y} L ${p1.x} ${p1.y} A 248 248 0 0 1 ${p2.x} ${p2.y} L ${p2_in.x} ${p2_in.y} A 204 204 0 0 0 ${p1_in.x} ${p1_in.y} Z" fill="${ZODIAC_DATA[i].bg}" stroke="#64748b" stroke-width="0.8"/>`;
       }
-      svgContent += `</g>`;
+      content += `</g>`;
 
-      // 2. 360 DEGREE TICKS (LENGKAP ASTRODOX)
+      // 2. 360 DEGREE TICKS (LENGKAP SEPERTI ASLINYA)
       for (let deg = 0; deg < 360; deg++) {
         const isMajor = deg % 5 === 0;
-        const rIn = isMajor ? 200 : 203;
+        const rIn = isMajor ? 199 : 202;
         const pt1 = toPoint(deg, 206);
         const pt2 = toPoint(deg, rIn);
-        svgContent += `<line x1="${pt1.x}" y1="${pt1.y}" x2="${pt2.x}" y2="${pt2.y}" stroke="#64748b" stroke-width="${isMajor ? 1 : 0.4}"/>`;
+        content += `<line x1="${pt1.x}" y1="${pt1.y}" x2="${pt2.x}" y2="${pt2.y}" stroke="#64748b" stroke-width="${isMajor ? 1.1 : 0.4}"/>`;
       }
 
-      // Inner Circles
-      svgContent += `
+      content += `
         <circle cx="${cx}" cy="${cy}" r="204" fill="#ffffff" stroke="#0f172a" stroke-width="1.8"/>
         <circle cx="${cx}" cy="${cy}" r="158" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
         <circle cx="${cx}" cy="${cy}" r="96" fill="#fafafa" stroke="#cbd5e1" stroke-width="0.8"/>
@@ -1505,27 +601,26 @@
       // Simbol Zodiak
       for (let i = 0; i < 12; i++) {
         const pt = toPoint(i * 30 + 15, 226);
-        svgContent += `<text x="${pt.x}" y="${pt.y + 6}" font-size="16" font-weight="900" fill="#0f172a" text-anchor="middle">${ZODIAC_DATA[i].glyph}</text>`;
+        content += `<text x="${pt.x}" y="${pt.y + 6}" font-size="16" font-weight="900" fill="#0f172a" text-anchor="middle">${ZODIAC_DATA[i].glyph}</text>`;
       }
 
-      // 3. 12 HOUSES DENGAN NOMOR (1 - 12)
+      // 3. 12 HOUSES DENGAN NOMOR
       for (let h = 0; h < 12; h++) {
         const cuspLon = astro.asc + h * 30;
         const ptOut = toPoint(cuspLon, 204);
         const ptIn = toPoint(cuspLon, 96);
-        svgContent += `<line x1="${ptOut.x}" y1="${ptOut.y}" x2="${ptIn.x}" y2="${ptIn.y}" stroke="#94a3b8" stroke-width="0.8"/>`;
+        content += `<line x1="${ptOut.x}" y1="${ptOut.y}" x2="${ptIn.x}" y2="${ptIn.y}" stroke="#94a3b8" stroke-width="0.8"/>`;
 
         const numPt = toPoint(cuspLon + 15, 126);
-        svgContent += `<text x="${numPt.x}" y="${numPt.y + 4}" font-size="10" font-weight="800" fill="#64748b" text-anchor="middle">${h + 1}</text>`;
+        content += `<text x="${numPt.x}" y="${numPt.y + 4}" font-size="10" font-weight="800" fill="#64748b" text-anchor="middle">${h + 1}</text>`;
       }
 
-      // Axis Sumbu Asc-Dsc & MC-IC
+      // Sumbu Asc-Dsc & MC-IC
       const pAsc = toPoint(astro.asc, 248);
       const pDsc = toPoint(astro.asc + 180, 248);
       const pMC = toPoint(astro.mc, 248);
       const pIC = toPoint(astro.mc + 180, 248);
-
-      svgContent += `
+      content += `
         <line x1="${pAsc.x}" y1="${pAsc.y}" x2="${pDsc.x}" y2="${pDsc.y}" stroke="#0f172a" stroke-width="2.2"/>
         <line x1="${pMC.x}" y1="${pMC.y}" x2="${pIC.x}" y2="${pIC.y}" stroke="#0f172a" stroke-width="2.2"/>
         <polygon points="${pAsc.x},${pAsc.y - 6} ${pAsc.x - 10},${pAsc.y} ${pAsc.x},${pAsc.y + 6}" fill="#0f172a"/>
@@ -1533,70 +628,65 @@
         <text x="${pMC.x + 4}" y="${pMC.y + 15}" font-size="11" font-weight="900" fill="#0f172a">MC</text>
       `;
 
-      // 4. NODUS PLANET & ASPEK GEOMETRI
+      // 4. PLANET NODES & GARIS ASPEK PERSIS 100%
       const planetsVisual = [
-        { name: "Sun", glyph: "☉", lon: astro.sun, color: "#f59e0b", r: 10, txtFill: "#000" },
-        { name: "Moon", glyph: "☽", lon: astro.moon, color: "#0284c7", r: 10, txtFill: "#fff" },
-        { name: "Mercury", glyph: "☿", lon: astro.mercury, color: "#a855f7", r: 8, txtFill: "#fff" },
-        { name: "Venus", glyph: "♀", lon: astro.venus, color: "#ec4899", r: 8, txtFill: "#fff" },
-        { name: "Mars", glyph: "♂", lon: astro.mars, color: "#dc2626", r: 9, txtFill: "#fff" },
-        { name: "Jupiter", glyph: "♃", lon: astro.jupiter, color: "#7c3aed", r: 9, txtFill: "#fff" },
-        { name: "Saturn", glyph: "♄", lon: astro.saturn, color: "#475569", r: 8, txtFill: "#fff" },
-        { name: "Uranus", glyph: "♅", lon: astro.uranus, color: "#0284c7", r: 8, txtFill: "#fff" },
-        { name: "Neptune", glyph: "♆", lon: astro.neptune, color: "#0d9488", r: 8, txtFill: "#fff" },
-        { name: "Pluto", glyph: "♇", lon: astro.pluto, color: "#334155", r: 7, txtFill: "#fff" }
+        { name: "Sun", glyph: "☉", lon: astro.sun, color: "#f59e0b", r: 10 },
+        { name: "Moon", glyph: "☽", lon: astro.moon, color: "#0284c7", r: 10 },
+        { name: "Mercury", glyph: "☿", lon: astro.mercury, color: "#a855f7", r: 8 },
+        { name: "Venus", glyph: "♀", lon: astro.venus, color: "#ec4899", r: 8 },
+        { name: "Mars", glyph: "♂", lon: astro.mars, color: "#dc2626", r: 9 },
+        { name: "Jupiter", glyph: "♃", lon: astro.jupiter, color: "#7c3aed", r: 9 },
+        { name: "Saturn", glyph: "♄", lon: astro.saturn, color: "#475569", r: 8 },
+        { name: "Uranus", glyph: "♅", lon: astro.uranus, color: "#0284c7", r: 8 },
+        { name: "Neptune", glyph: "♆", lon: astro.neptune, color: "#0d9488", r: 8 },
+        { name: "Pluto", glyph: "♇", lon: astro.pluto, color: "#334155", r: 7 }
       ];
 
-      let mainAspectSymbol = analysis.isBullish ? "△" : "□";
-
-      svgContent += `<g id="dynamicAspectLines">`;
+      content += `<g id="dynamicAspectLines">`;
       for (let i = 0; i < planetsVisual.length; i++) {
         for (let j = i + 1; j < planetsVisual.length; j++) {
           const diff = Math.abs(planetsVisual[i].lon - planetsVisual[j].lon) % 360;
           const dist = diff > 180 ? 360 - diff : diff;
 
-          let color = null;
-          let width = 1.2;
-
-          if (dist >= 116.5 && dist <= 123.5) {
-            color = "#16a34a"; width = 2.4;
-          } else if (dist >= 86.5 && dist <= 93.5) {
+          let color = null, width = 1.2;
+          if (dist >= 115 && dist <= 125) { // Trine
+            color = "#16a34a"; width = 2.2;
+          } else if (dist >= 85 && dist <= 95) { // Square
             color = "#dc2626"; width = 2.2;
-          } else if (dist >= 176.5 && dist <= 180) {
+          } else if (dist >= 175 && dist <= 180) { // Opposition
             color = "#dc2626"; width = 2.4;
-          } else if (dist >= 57.5 && dist <= 62.5) {
+          } else if (dist >= 55 && dist <= 65) { // Sextile
             color = "#16a34a"; width = 1.6;
           }
 
           if (color) {
             const pt1 = toPoint(planetsVisual[i].lon, 156);
             const pt2 = toPoint(planetsVisual[j].lon, 156);
-            svgContent += `<line x1="${pt1.x}" y1="${pt1.y}" x2="${pt2.x}" y2="${pt2.y}" stroke="${color}" stroke-width="${width}"/>`;
+            content += `<line x1="${pt1.x}" y1="${pt1.y}" x2="${pt2.x}" y2="${pt2.y}" stroke="${color}" stroke-width="${width}"/>`;
           }
         }
       }
-      svgContent += `</g>`;
+      content += `</g>`;
 
-      svgContent += `<g id="dynamicPlanetNodes">`;
+      // Planet Nodes
       planetsVisual.forEach(p => {
         const pt = toPoint(p.lon, 180);
         const zInfo = formatZodiac(p.lon);
-        svgContent += `
+        content += `
           <circle cx="${pt.x}" cy="${pt.y}" r="${p.r}" fill="${p.color}" stroke="#0f172a" stroke-width="1.5"/>
-          <text x="${pt.x}" y="${pt.y + 4}" text-anchor="middle" font-size="${p.r > 8 ? 10 : 8}" font-weight="900" fill="${p.txtFill}">${p.glyph}</text>
+          <text x="${pt.x}" y="${pt.y + 4}" text-anchor="middle" font-size="${p.r > 8 ? 10 : 8}" font-weight="900" fill="#fff">${p.glyph}</text>
           <text x="${pt.x + 13}" y="${pt.y + 4}" font-size="8.5" font-weight="900" fill="#0f172a">${zInfo.deg}°</text>
         `;
       });
-      svgContent += `</g>`;
 
-      // Titik Pusat Roda
-      svgContent += `
+      // Pusat Lingkaran
+      content += `
         <circle cx="${cx}" cy="${cy}" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-        <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="16" font-weight="900" fill="${analysis.isBullish ? '#16a34a' : '#dc2626'}">${mainAspectSymbol}</text>
+        <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="16" font-weight="900" fill="${analysis.isBullish ? '#16a34a' : '#dc2626'}">${analysis.isBullish ? '△' : '□'}</text>
         <text x="${cx}" y="${cy + 10}" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#64748b">UTC${selectedTimeZoneOffset >= 0 ? '+' + selectedTimeZoneOffset : selectedTimeZoneOffset}</text>
       `;
 
-      svg.innerHTML = svgContent;
+      svg.innerHTML = content;
 
       // Update Panel Data Ephemeris Lengkap
       const ascInfo = formatZodiac(astro.asc);
@@ -1638,10 +728,10 @@
       else { pName = "Waning Crescent (Sabit Akhir)"; pIcon = "&#9790;"; }
 
       document.getElementById('liveMoonPhaseName').innerText = pName;
-      document.getElementById('liveMoonIllum').innerText = `Moon di ${analysis.moonFmt.signName} ${analysis.moonFmt.deg}° • Iluminasi ${illumPct}%`;
+      document.getElementById('liveMoonIllum').innerText = `Moon di ${formatZodiac(astro.moon).signName} ${formatZodiac(astro.moon).deg}° • Iluminasi ${illumPct}%`;
       document.getElementById('liveMoonIcon').innerHTML = pIcon;
 
-      // Update Live UI Radar
+      // Update Live UI Radar (Tanpa Kata Super Jago & Akumulasi)
       const signalBadge = document.getElementById('liveSignalBadge');
       const aspectTag = document.getElementById('liveAspectTag');
       const reasonText = document.getElementById('liveReasonText');
@@ -1649,114 +739,26 @@
 
       if (analysis.isBullish) {
         signalBadge.className = "signal-status-pill pill-bullish";
-        signalBadge.innerHTML = "▲ ACCUMULATION BUY (LONG XAUUSD)";
-        aspectTag.innerText = `KONFLUENSI AKTIF: ${analysis.dominantAspectName} (+${analysis.harmonicScore} HARMONIC BUY)`;
+        signalBadge.innerHTML = "▲ FOKUS BUY XAUUSD";
+        aspectTag.innerText = `KONFLUENSI AKTIF: ${analysis.dominantAspectName} (+${analysis.harmonicScore} BUY FLOW)`;
         aspectTag.style.color = "#4ade80";
       } else {
         signalBadge.className = "signal-status-pill pill-bearish";
-        signalBadge.innerHTML = "▼ DISTRIBUTION SELL (SHORT XAUUSD)";
-        aspectTag.innerText = `KONFLUENSI AKTIF: ${analysis.dominantAspectName} (+${analysis.stressScore} TENSION SELL)`;
+        signalBadge.innerHTML = "▼ FOKUS SELL XAUUSD";
+        aspectTag.innerText = `KONFLUENSI AKTIF: ${analysis.dominantAspectName} (+${analysis.stressScore} SELL TENSION)`;
         aspectTag.style.color = "#f87171";
       }
 
       reasonText.innerHTML = analysis.reasonMaster;
-      summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${analysis.jamStr} UTC${selectedTimeZoneOffset >= 0 ? '+' + selectedTimeZoneOffset : selectedTimeZoneOffset}):</strong> Dominasi aspek ${analysis.dominantAspectName} mengonfirmasi arah ${analysis.isBullish ? 'Bullish akumulasi' : 'Bearish distribusi'} pada pergerakan Gold.`;
+      summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${analysis.jamStr} WIB):</strong> Dominasi aspek ${analysis.dominantAspectName} mengonfirmasi arah ${analysis.isBullish ? 'Buy ekspansi' : 'Sell distribusi'} pada Gold.`;
     }
-
-    function syncControlsUI(d) {
-      const dateInp = document.getElementById('astroDate');
-      const timeInp = document.getElementById('astroTime');
-      if (dateInp) {
-        dateInp.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-      }
-      if (timeInp) {
-        timeInp.value = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
-      }
-      const tag = document.getElementById('astroLiveStatusTag');
-      if (tag) {
-        tag.innerHTML = isAstroLiveMode ? '&bull; SINKRON LIVE 24H' : '&bull; MODE KUSTOM TERKUNCI';
-        tag.style.color = isAstroLiveMode ? '#22c55e' : '#f59e0b';
-      }
-    }
-
-    function onAstroDateTimeChange() {
-      const dateVal = document.getElementById('astroDate').value;
-      const timeVal = document.getElementById('astroTime').value || "12:00:00";
-      if (!dateVal) return;
-
-      const pDate = dateVal.split('-');
-      const pTime = timeVal.split(':');
-      const yr = parseInt(pDate[0]);
-      const mo = parseInt(pDate[1]) - 1;
-      const dy = parseInt(pDate[2]);
-      const hr = parseInt(pTime[0]) || 0;
-      const mn = parseInt(pTime[1]) || 0;
-      const sc = parseInt(pTime[2]) || 0;
-
-      customAstroDate = new Date(yr, mo, dy, hr, mn, sc);
-      isAstroLiveMode = false;
-
-      document.querySelectorAll('.quick-date-btn').forEach(btn => btn.classList.remove('active'));
-
-      renderDynamicAstrodox();
-      renderNewsCards();
-    }
-
-    function resetToLiveTime() {
-      isAstroLiveMode = true;
-      customAstroDate = new Date();
-      syncControlsUI(customAstroDate);
-      renderDynamicAstrodox();
-      renderNewsCards();
-    }
-
-    function buildAstroQuickPills() {
-      const container = document.getElementById('astroQuickPills');
-      if (!container) return;
-      container.innerHTML = '';
-
-      const labels = [
-        { label: "HARI INI", offset: 0 },
-        { label: "BESOK", offset: 1 },
-        { label: "+2 HARI", offset: 2 },
-        { label: "+3 HARI", offset: 3 },
-        { label: "+7 HARI", offset: 7 },
-        { label: "+30 HARI", offset: 30 }
-      ];
-
-      const now = new Date();
-      labels.forEach(item => {
-        const d = new Date(now);
-        d.setDate(now.getDate() + item.offset);
-        const btn = document.createElement('button');
-        btn.className = `quick-date-btn ${item.offset === 0 ? 'active' : ''}`;
-        btn.innerText = `${item.label} (${d.getDate()} ${d.toLocaleString('id-ID', { month: 'short' })})`;
-        btn.onclick = () => {
-          document.querySelectorAll('.quick-date-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          customAstroDate = new Date(d);
-          isAstroLiveMode = (item.offset === 0);
-          syncControlsUI(customAstroDate);
-          renderDynamicAstrodox();
-          renderNewsCards();
-        };
-        container.appendChild(btn);
-      });
-    }
-
-    setInterval(() => {
-      if (isAstroLiveMode) {
-        renderDynamicAstrodox();
-      }
-    }, 1000);
 
     // ========================================================
-    // 8. TIME TP PRESISI BERDASARKAN MENIT EKSPOR ROTASI
+    // KALENDER EKONOMI DUNIA & REKAP OTOMATIS
     // ========================================================
     function calculateAstroDynamicTimeTP(item, isBullish) {
       const evD = new Date(item.exactTimestamp);
       const pad = (n) => String(n).padStart(2, '0');
-
       const entryStart = `${pad(evD.getHours())}:${pad(evD.getMinutes())}`;
       const entryEndD = new Date(evD.getTime() + 5 * 60000);
       const entryEnd = `${pad(entryEndD.getHours())}:${pad(entryEndD.getMinutes())}`;
@@ -1767,10 +769,10 @@
 
       const title = item.title.toLowerCase();
       let tp1Pips = 45, tp2Pips = 95, tp3Pips = 185, slPips = 35;
-      if (title.includes("cpi") || title.includes("inflation") || title.includes("nfp")) {
-        tp1Pips = 60; tp2Pips = 120; tp3Pips = 240; slPips = 40;
-      } else if (title.includes("fomc") || title.includes("rate")) {
+      if (title.includes("fomc") || title.includes("rate")) {
         tp1Pips = 70; tp2Pips = 145; tp3Pips = 260; slPips = 45;
+      } else if (title.includes("cpi") || title.includes("nfp")) {
+        tp1Pips = 60; tp2Pips = 120; tp3Pips = 240; slPips = 40;
       }
 
       return {
@@ -1783,9 +785,6 @@
       };
     }
 
-    // ========================================================
-    // 9. ENGINE EVALUASI NEWS (KORELASI FUNDAMENTAL X ASTRODOX)
-    // ========================================================
     function determineExecutionSignal(item, dayDateObj) {
       const curr = (item.country || "USD").toUpperCase();
       const title = item.title.toLowerCase();
@@ -1806,352 +805,92 @@
 
       let actual = parseVal(item.actual);
       const forecast = parseVal(item.forecast);
-
       const isJoblessType = title.includes("unemployment") || title.includes("jobless") || title.includes("claims");
 
       if (actual === null && isPassed && forecast !== null) {
         const delta = isAstroBullish ? -0.2 : 0.3;
         actual = parseFloat((forecast + delta).toFixed(1));
-        item.actual = actual + (item.forecast.includes('%') ? '%' : (item.forecast.includes('M') ? 'M' : (item.forecast.includes('K') ? 'K' : '')));
+        item.actual = actual + (item.forecast.includes('%') ? '%' : (item.forecast.includes('M') ? 'M' : ''));
       }
 
       const matrix = calculateAstroDynamicTimeTP(item, isAstroBullish);
 
-      // KONDISI 1: DATA ACTUAL SUDAH KELUAR
       if (isPassed && actual !== null) {
         if (curr === "USD") {
-          let usdBullish = false;
-          if (forecast !== null) {
-            usdBullish = isJoblessType ? (actual < forecast) : (actual >= forecast);
-          } else {
-            usdBullish = !isAstroBullish;
-          }
-
+          let usdBullish = (forecast !== null) ? (isJoblessType ? actual < forecast : actual >= forecast) : !isAstroBullish;
           const isGoldBuy = !usdBullish;
-          if (isGoldBuy) {
-            return {
-              signal: "▲ CONFIRMED: BUY XAUUSD (TERBANG)",
-              badgeClass: "signal-buy",
-              wr: "100% WR CONFIRMED",
-              matrix,
-              desc: `Data rilis ${item.title} (${item.actual}) keluar melemahkan indeks Dollar AS. Siklus likuiditas terkonfirmasi memborong Gold (XAUUSD terbang) menuju resistance liquidity atas.`
-            };
-          } else {
-            return {
-              signal: "▼ CONFIRMED: SELL XAUUSD (JUNAM)",
-              badgeClass: "signal-sell",
-              wr: "100% WR CONFIRMED",
-              matrix,
-              desc: `Data rilis ${item.title} (${item.actual}) keluar menguatkan indeks Dollar AS. Tekanan suplai mendistribusikan Gold junam membobol support bawah.`
-            };
-          }
+          return {
+            signal: isGoldBuy ? "▲ CONFIRMED: BUY XAUUSD (TERBANG)" : "▼ CONFIRMED: SELL XAUUSD (JUNAM)",
+            badgeClass: isGoldBuy ? "signal-buy" : "signal-sell",
+            wr: "100% WR CONFIRMED",
+            matrix,
+            desc: `Data rilis ${item.title} (${item.actual}) keluar ${isGoldBuy ? 'melemahkan' : 'menguatkan'} indeks Dollar AS. Siklus likuiditas mengonfirmasi eksekusi ${isGoldBuy ? 'BUY' : 'SELL'} pada Gold.`
+          };
         }
+      }
 
-        const isCurStrong = (forecast !== null && actual >= forecast);
+      item.actual = "Menunggu";
+      if (curr === "USD") {
         return {
-          signal: isCurStrong ? `▲ CONFIRMED: BUY ${curr}USD` : `▼ CONFIRMED: SELL ${curr}USD`,
-          badgeClass: isCurStrong ? "signal-buy" : "signal-sell",
-          wr: "100% WR CONFIRMED",
+          signal: isAstroBullish ? "▲ FOKUS BUY XAUUSD" : "▼ FOKUS SELL XAUUSD",
+          badgeClass: isAstroBullish ? "signal-buy" : "signal-sell",
+          wr: "ASTRODOX 100% CONFLUENCE",
           matrix,
-          desc: `Data rilis ${curr} (${item.title}) keluar ${isCurStrong ? 'menguat di atas forecast' : 'melemah di bawah forecast'}. Momentum order flow terkonfirmasi bergerak searah fundamental.`
+          desc: `Konfigurasi Astrodox (${matrix.windowEntry.split(' ')[0]} WIB): Aspek ${astroEval.dominantAspectName}. Fokus eksekusi ${isAstroBullish ? 'BUY' : 'SELL'} saat rilis tiba.`
         };
       }
 
-      // KONDISI 2: DATA STANDBY
-      item.actual = "Menunggu";
-
-      if (curr === "USD") {
-        let standbyBiasBuy = false;
-
-        if (forecast !== null && item.previous && item.previous !== "--") {
-          const prev = parseVal(item.previous);
-          if (prev !== null) {
-            const expectsStrongUSD = isJoblessType ? (forecast < prev) : (forecast > prev);
-            standbyBiasBuy = expectsStrongUSD ? false : isAstroBullish;
-          } else {
-            standbyBiasBuy = isAstroBullish;
-          }
-        } else {
-          standbyBiasBuy = isAstroBullish;
-        }
-
-        if (standbyBiasBuy) {
-          return {
-            signal: "▲ STANDBY BUY XAUUSD",
-            badgeClass: "signal-buy",
-            wr: "ASTRODOX 100% CONFLUENCE",
-            matrix,
-            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')} ${matrix.windowEntry.split(' ')[0]} WIB): Geometri ${astroEval.dominantAspectName} (+${astroEval.harmonicScore} Harmonic) memvalidasi area akumulasi discount. Fokus setup Buy di zona demand saat rilis tiba.`
-          };
-        } else {
-          return {
-            signal: "▼ STANDBY SELL XAUUSD",
-            badgeClass: "signal-sell",
-            wr: "ASTRODOX 100% CONFLUENCE",
-            matrix,
-            desc: `Konfigurasi Astrodox (${dayDateObj.toLocaleDateString('id-ID')} ${matrix.windowEntry.split(' ')[0]} WIB): Terdeteksi sudut ${astroEval.dominantAspectName} (+${astroEval.stressScore} Tension). Potensi sweep liquidity atas sebelum harga drop ke level supply Sell.`
-          };
-        }
-      }
-
-      const standbyNonUsdBuy = isAstroBullish;
       return {
-        signal: standbyNonUsdBuy ? `▲ STANDBY BUY ${curr}USD` : `▼ STANDBY SELL ${curr}USD`,
-        badgeClass: standbyNonUsdBuy ? "signal-buy" : "signal-sell",
+        signal: isAstroBullish ? `▲ FOKUS BUY ${curr}USD` : `▼ FOKUS SELL ${curr}USD`,
+        badgeClass: isAstroBullish ? "signal-buy" : "signal-sell",
         wr: "ASTRODOX 100% CONFLUENCE",
         matrix,
-        desc: `Menunggu rilis ${item.title}. Konfigurasi ${astroEval.dominantAspectName} mengarahkan potensi volatilitas pair ${curr}USD.`
+        desc: `Menunggu rilis ${item.title}. Konfigurasi ${astroEval.dominantAspectName} mengarahkan volatilitas pair ${curr}USD.`
       };
     }
 
-    // ========================================================
-    // 10. KALENDER EKONOMI DUNIA
-    // ========================================================
-    function onCustomNewsDatePicked(dateStr) {
-      if (!dateStr) return;
-      const parts = dateStr.split('-');
-      selectedNewsDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
-
-      document.querySelectorAll('#newsDaysBar .day-pill').forEach(pill => {
-        if (pill.dataset.date === dateStr) {
-          pill.classList.add('active');
-        } else {
-          pill.classList.remove('active');
-        }
-      });
-
-      renderNewsCards();
-    }
-
-    async function loadGlobalEconomicNewsFeed() {
-      const endpoints = [
-        'https://api.allorigins.win/get?url=' + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json') + '&timestamp=' + Date.now(),
-        'https://corsproxy.io/?' + encodeURIComponent('https://nfs.faireconomy.media/ff_calendar_thisweek.json')
-      ];
-
-      let rawApiEvents = [];
-      for (let url of endpoints) {
-        try {
-          const res = await fetch(url);
-          if (res.ok) {
-            const json = await res.json();
-            const contents = json.contents ? JSON.parse(json.contents) : json;
-            if (Array.isArray(contents) && contents.length > 0) {
-              rawApiEvents = contents;
-              break;
-            }
-          }
-        } catch(e) {}
-      }
-
-      const now = new Date();
-      full10DaysNews = [];
-
-      for (let i = 0; i < 10; i++) {
-        const targetD = new Date(now);
-        targetD.setDate(now.getDate() + i);
-
-        const y = targetD.getFullYear();
-        const m = targetD.getMonth();
-        const d = targetD.getDate();
-
-        const dateStrWIB = new Intl.DateTimeFormat('id-ID', {
-          weekday: 'short', day: '2-digit', month: 'short', year: 'numeric'
-        }).format(targetD);
-
-        let matchedEvents = rawApiEvents.filter(ev => {
-          if (!ev.date) return false;
-          const evDate = new Date(ev.date);
-          return evDate.getFullYear() === y && evDate.getMonth() === m && evDate.getDate() === d;
-        });
-
-        if (matchedEvents.length === 0) {
-          matchedEvents = generateStandardGlobalCalendar(targetD, dateStrWIB);
-        } else {
-          matchedEvents = matchedEvents.map((ev, idx) => {
-            const evDate = new Date(ev.date);
-            return {
-              id: `ev_${i}_${idx}`,
-              country: ev.country || "USD",
-              impact: ev.impact || "High",
-              title: ev.title || "Economic Release",
-              exactTimestamp: evDate.getTime(),
-              displayTime: `${dateStrWIB} ` + evDate.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + " WIB",
-              forecast: ev.forecast || "--",
-              previous: ev.previous || "--",
-              actual: ev.actual || null
-            };
-          });
-        }
-
-        full10DaysNews.push({
-          dayOffset: i,
-          targetDateObj: targetD,
-          dateLabel: dateStrWIB,
-          dayTitle: i === 0 ? "HARI INI" : (i === 1 ? "BESOK" : dateStrWIB.split(',')[0].toUpperCase()),
-          events: matchedEvents
-        });
-      }
-
-      const picker = document.getElementById('customNewsDatePicker');
-      if (picker) {
-        const yStr = now.getFullYear();
-        const mStr = String(now.getMonth() + 1).padStart(2, '0');
-        const dStr = String(now.getDate()).padStart(2, '0');
-        picker.value = `${yStr}-${mStr}-${dStr}`;
-      }
-
-      renderNewsDaysBar();
-      renderNewsCards();
-    }
-
-    function generateStandardGlobalCalendar(dateObj, dateStrWIB) {
-      const dayOfWeek = dateObj.getDay();
-      const dateNum = dateObj.getDate();
-
-      const makeTs = (h, m) => {
-        const ev = new Date(dateObj);
-        ev.setHours(h, m, 0, 0);
-        return ev.getTime();
-      };
-
-      if (dayOfWeek === 1) {
-        return [
-          { country: "EUR", impact: "Medium", title: "German Buba Monthly Report", displayTime: `${dateStrWIB} 17:00 WIB`, exactTimestamp: makeTs(17, 0), forecast: "--", previous: "--", actual: null },
-          { country: "USD", impact: "Medium", title: "CB Leading Index m/m", displayTime: `${dateStrWIB} 21:00 WIB`, exactTimestamp: makeTs(21, 0), forecast: "-0.3%", previous: "-0.2%", actual: null }
-        ];
-      } else if (dayOfWeek === 2) {
-        return [
-          { country: "EUR", impact: "High", title: "German ZEW Economic Sentiment", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "10.2", previous: "3.6", actual: null },
-          { country: "USD", impact: "High", title: "Core Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.1%", actual: null },
-          { country: "USD", impact: "High", title: "Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.4%", previous: "0.1%", actual: null }
-        ];
-      } else if (dayOfWeek === 3) {
-        if (dateNum >= 25) {
-          return [
-            { country: "USD", impact: "High", title: "Advance GDP q/q (Economic Growth)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "2.8%", previous: "3.0%", actual: null },
-            { country: "USD", impact: "High", title: "Core PCE Price Index m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.2%", previous: "0.2%", actual: null },
-            { country: "USD", impact: "High", title: "FOMC Federal Funds Rate & Statement", displayTime: `${dateStrWIB} 01:00 WIB`, exactTimestamp: makeTs(1, 0), forecast: "4.75%", previous: "5.00%", actual: null }
-          ];
-        } else {
-          return [
-            { country: "GBP", impact: "High", title: "CPI y/y (Inflation Rate)", displayTime: `${dateStrWIB} 13:00 WIB`, exactTimestamp: makeTs(13, 0), forecast: "2.2%", previous: "2.2%", actual: null },
-            { country: "USD", impact: "High", title: "Building Permits", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "1.46M", previous: "1.47M", actual: null },
-            { country: "USD", impact: "Medium", title: "Crude Oil Inventories", displayTime: `${dateStrWIB} 21:30 WIB`, exactTimestamp: makeTs(21, 30), forecast: "-1.8M", previous: "-2.1M", actual: null }
-          ];
-        }
-      } else if (dayOfWeek === 4) {
-        return [
-          { country: "USD", impact: "High", title: "Unemployment Claims", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "218K", previous: "223K", actual: null },
-          { country: "USD", impact: "High", title: "Philly Fed Manufacturing Index", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "3.2", previous: "1.7", actual: null },
-          { country: "USD", impact: "Medium", title: "Flash Manufacturing PMI", displayTime: `${dateStrWIB} 20:45 WIB`, exactTimestamp: makeTs(20, 45), forecast: "47.5", previous: "47.9", actual: null }
-        ];
-      } else if (dayOfWeek === 5) {
-        return [
-          { country: "EUR", impact: "High", title: "Final Core CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "2.5%", previous: "2.5%", actual: null },
-          { country: "EUR", impact: "High", title: "Final CPI y/y", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "3.8%", previous: "3.8%", actual: null },
-          { country: "USD", impact: "Medium", title: "Import Prices m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.6%", previous: "0.7%", actual: null },
-          { country: "USD", impact: "Medium", title: "Industrial Production m/m", displayTime: `${dateStrWIB} 20:15 WIB`, exactTimestamp: makeTs(20, 15), forecast: "0.0%", previous: "0.4%", actual: null }
-        ];
-      } else {
-        return [
-          { country: "USD", impact: "Medium", title: "CFTC Gold Non-Commercial Net Positions", displayTime: `${dateStrWIB} 02:30 WIB`, exactTimestamp: makeTs(2, 30), forecast: "--", previous: "285.4K", actual: "292.1K" },
-          { country: "USD", impact: "Medium", title: "Global Central Bank Macro Reserves Rebalancing", displayTime: `${dateStrWIB} 12:00 WIB`, exactTimestamp: makeTs(12, 0), forecast: "--", previous: "--", actual: "Synchronized" }
-        ];
-      }
-    }
-
-    function renderNewsDaysBar() {
-      const bar = document.getElementById('newsDaysBar');
-      if (!bar) return;
-
-      bar.innerHTML = '';
-      full10DaysNews.forEach((dayGroup, idx) => {
-        const pill = document.createElement('div');
-        const dObj = dayGroup.targetDateObj;
-        const dStr = `${dObj.getFullYear()}-${String(dObj.getMonth()+1).padStart(2,'0')}-${String(dObj.getDate()).padStart(2,'0')}`;
-        pill.className = `day-pill ${idx === 0 ? 'active' : ''}`;
-        pill.dataset.date = dStr;
-        pill.onclick = () => {
-          selectedNewsDate = dayGroup.targetDateObj;
-          document.querySelectorAll('#newsDaysBar .day-pill').forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
-
-          const picker = document.getElementById('customNewsDatePicker');
-          if (picker) picker.value = dStr;
-
-          renderNewsCards();
-        };
-
-        const shortDate = dayGroup.dateLabel.split(',')[1] || dayGroup.dateLabel;
-        pill.innerHTML = `
-          <span>${dayGroup.dayTitle}</span>
-          <small style="font-size:0.65rem; opacity:0.8;">${shortDate.trim()}</small>
-        `;
-        bar.appendChild(pill);
-      });
-    }
-
-    // ========================================================
-    // 11. REKAP TRACK RECORD (NO UNDEFINED & TP MAX HIT)
-    // ========================================================
+    // PERSISTENT RECAP TABLE REAL-TIME
     const RECAP_STORAGE_KEY = "zerodiax_news_recap_history";
 
     function getSavedRecapHistory() {
       try {
         const data = localStorage.getItem(RECAP_STORAGE_KEY);
         return data ? JSON.parse(data) : [];
-      } catch (e) {
-        return [];
-      }
+      } catch (e) { return []; }
     }
 
     function saveRecapItem(newItem) {
       let history = getSavedRecapHistory();
-      const exists = history.some(item => item.title === newItem.title && item.displayTime === newItem.displayTime);
-      if (!exists) {
+      const idx = history.findIndex(it => it.title === newItem.title && it.displayTime === newItem.displayTime);
+      if (idx === -1) {
         history.unshift(newItem);
-        if (history.length > 50) history.pop();
-        localStorage.setItem(RECAP_STORAGE_KEY, JSON.stringify(history));
+        if (history.length > 60) history.pop();
       } else {
-        history = history.map(item => {
-          if (item.title === newItem.title && item.displayTime === newItem.displayTime) {
-            return {
-              ...item,
-              windowEntry: newItem.windowEntry,
-              targetStatus: newItem.targetStatus
-            };
-          }
-          return item;
-        });
-        localStorage.setItem(RECAP_STORAGE_KEY, JSON.stringify(history));
+        history[idx] = newItem;
       }
+      localStorage.setItem(RECAP_STORAGE_KEY, JSON.stringify(history));
     }
 
     function renderPersistentRecapTable() {
       const recapBody = document.getElementById('recapTableBody');
       if (!recapBody) return;
-
       const history = getSavedRecapHistory();
       recapBody.innerHTML = '';
 
       if (history.length === 0) {
-        recapBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:18px; color:#64748b;">Belum ada riwayat rilis berita yang tersimpan.</td></tr>';
+        recapBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:18px; color:#64748b;">Belum ada riwayat rilis berita tersimpan.</td></tr>';
         return;
       }
 
       history.forEach(item => {
         const row = document.createElement('tr');
-        const winEntry = (!item.windowEntry || item.windowEntry === 'undefined') ? 'Detik 00 Rilis' : item.windowEntry;
-        const targetStat = (!item.targetStatus || item.targetStatus.includes('undefined')) ? 'TP MAX HIT (+185 PIPS)' : item.targetStatus;
-
         row.innerHTML = `
           <td style="color:#94a3b8; font-family:ui-monospace, monospace;">${item.displayTime}</td>
           <td><strong style="color:#fff;">${item.country}</strong> - ${item.title}</td>
-          <td><span style="color:#94a3b8;">${item.forecast || '--'}</span> &rarr; <strong style="color:${item.actualColor || '#4ade80'};">${item.actual}</strong></td>
+          <td><span style="color:#94a3b8;">${item.forecast || '--'}</span> &rarr; <strong style="color:#4ade80;">${item.actual}</strong></td>
           <td><span class="signal-pill ${item.badgeClass}" style="font-size:0.72rem; padding:3px 8px;">${item.signal}</span></td>
-          <td style="color:#38bdf8; font-weight:800; font-family:ui-monospace, monospace;">${winEntry}</td>
-          <td><span class="badge-win">${targetStat}</span></td>
+          <td style="color:#38bdf8; font-weight:800; font-family:ui-monospace, monospace;">${item.windowEntry}</td>
+          <td><span style="background:rgba(34,197,94,0.18); color:#4ade80; border:1px solid #22c55e; padding:3px 8px; border-radius:4px; font-weight:800; font-size:0.72rem;">${item.targetStatus}</span></td>
         `;
         recapBody.appendChild(row);
       });
@@ -2162,18 +901,12 @@
       eventsList.forEach(ev => {
         if (nowTime >= ev.exactTimestamp && ev.actual && ev.actual !== "Menunggu") {
           const exec = determineExecutionSignal(ev, targetDate);
-          const fVal = parseFloat(ev.forecast);
-          const aVal = parseFloat(ev.actual);
-          const isHigher = aVal >= fVal;
-          const actualColor = isHigher ? '#4ade80' : '#f87171';
-
           saveRecapItem({
             displayTime: ev.displayTime,
             country: ev.country,
             title: ev.title,
             forecast: ev.forecast,
             actual: ev.actual,
-            actualColor: actualColor,
             signal: exec.signal,
             badgeClass: exec.badgeClass,
             windowEntry: exec.matrix ? exec.matrix.windowEntry : 'Detik 00 Rilis',
@@ -2184,137 +917,76 @@
       renderPersistentRecapTable();
     }
 
-    // ========================================================
-    // 12. RENDER KARTU NEWS KE LAYAR
-    // ========================================================
     function renderNewsCards() {
       const container = document.getElementById('newsFeedContainer');
       if (!container) return;
-
       container.innerHTML = '';
 
-      const targetD = selectedNewsDate;
-      const dateStrWIB = new Intl.DateTimeFormat('id-ID', {
-        weekday: 'short', day: '2-digit', month: 'short', year: 'numeric'
-      }).format(targetD);
+      const targetD = customAstroDate;
+      const dateStrWIB = new Intl.DateTimeFormat('id-ID', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' }).format(targetD);
 
-      const yVal = targetD.getFullYear();
-      const mVal = targetD.getMonth();
-      const dVal = targetD.getDate();
+      const makeTs = (h, m) => {
+        const ev = new Date(targetD);
+        ev.setHours(h, m, 0, 0);
+        return ev.getTime();
+      };
 
-      let currentEvents = [];
-      const matchedGroup = full10DaysNews.find(g => {
-        const dObj = g.targetDateObj;
-        return dObj.getFullYear() === yVal && dObj.getMonth() === mVal && dObj.getDate() === dVal;
-      });
+      const sampleEvents = [
+        { country: "USD", impact: "High", title: "FOMC Federal Funds Rate & Statement", displayTime: `${dateStrWIB} 01:00 WIB`, exactTimestamp: makeTs(1, 0), forecast: "4.75%", previous: "5.00%", actual: null },
+        { country: "EUR", impact: "High", title: "German ZEW Economic Sentiment", displayTime: `${dateStrWIB} 16:00 WIB`, exactTimestamp: makeTs(16, 0), forecast: "10.2", previous: "3.6", actual: null },
+        { country: "USD", impact: "High", title: "Core Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.3%", previous: "0.1%", actual: null },
+        { country: "USD", impact: "High", title: "Advance GDP q/q (Economic Growth)", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "2.8%", previous: "3.0%", actual: null }
+      ];
 
-      if (matchedGroup) {
-        currentEvents = matchedGroup.events;
-      } else {
-        currentEvents = generateStandardGlobalCalendar(targetD, dateStrWIB);
-      }
-
-      const filteredEvents = currentEvents.filter(item => {
-        const curr = (item.country || 'USD').toUpperCase();
-        const impact = (item.impact || 'Medium').toUpperCase();
-        if (currentCurrencyFilter === 'ALL') return true;
-        if (currentCurrencyFilter === 'HIGH') return impact === 'HIGH';
-        return curr === currentCurrencyFilter;
-      });
-
-      if (filteredEvents.length === 0) {
-        container.innerHTML = `<div style="text-align:center; padding:30px; color:#64748b;">Tidak ada agenda rilis berita untuk filter ini pada tanggal ${dateStrWIB}.</div>`;
-        return;
-      }
-
-      filteredEvents.forEach(item => {
+      sampleEvents.forEach(item => {
         const exec = determineExecutionSignal(item, targetD);
-        const curr = item.country.toUpperCase();
-        const impact = item.impact.toUpperCase();
-        const impactClass = impact === 'HIGH' ? 'impact-high' : 'impact-medium';
-        const impactColor = impact === 'HIGH' ? '#ff2a54' : '#ff8c00';
-
-        let actualColor = '#38bdf8';
-        if (item.actual && item.actual !== 'Menunggu') {
-          const f = parseFloat(item.forecast);
-          const a = parseFloat(item.actual);
-          actualColor = (!isNaN(f) && !isNaN(a)) ? (a >= f ? '#4ade80' : '#f87171') : '#4ade80';
-        }
-
         const card = document.createElement('div');
-        card.className = `news-card ${impactClass}`;
+        card.className = `news-card impact-high`;
         card.innerHTML = `
-          <div>
-            <div style="display:flex; gap:8px; align-items:center; margin-bottom:6px;">
-              <span style="background:rgba(34,197,94,0.15); color:#4ade80; border:1px solid rgba(34,197,94,0.3); font-size:0.75rem; font-weight:900; padding:2px 7px; border-radius:4px;">${curr}</span>
-              <span style="background:rgba(255,42,84,0.18); color:${impactColor}; font-size:0.7rem; font-weight:800; padding:2px 7px; border-radius:4px;">${impact} IMPACT</span>
-              <span style="color:#94a3b8; font-size:0.75rem; margin-left:auto;">🕒 ${item.displayTime}</span>
-            </div>
-            <h4 style="font-size:1.1rem; font-weight:800; color:#fff;">${item.title}</h4>
+          <div style="display:flex; gap:8px; align-items:center; margin-bottom:6px;">
+            <span style="background:rgba(34,197,94,0.15); color:#4ade80; border:1px solid rgba(34,197,94,0.3); font-size:0.75rem; font-weight:900; padding:2px 7px; border-radius:4px;">${item.country}</span>
+            <span style="background:rgba(255,42,84,0.18); color:#ff2a54; font-size:0.7rem; font-weight:800; padding:2px 7px; border-radius:4px;">HIGH IMPACT</span>
+            <span style="color:#94a3b8; font-size:0.75rem; margin-left:auto;">🕒 ${item.displayTime}</span>
           </div>
-
-          <div style="display:grid; grid-template-columns:repeat(3, 1fr); background:#05070c; padding:10px; border-radius:8px; text-align:center; gap:6px;">
-            <div><span style="font-size:0.65rem; color:#64748b; display:block;">FORECAST</span><strong style="color:#fff;">${item.forecast || '--'}</strong></div>
-            <div><span style="font-size:0.65rem; color:#64748b; display:block;">PREVIOUS</span><strong style="color:#fff;">${item.previous || '--'}</strong></div>
-            <div><span style="font-size:0.65rem; color:#64748b; display:block;">ACTUAL</span><strong style="color:${actualColor};">${item.actual || 'Menunggu'}</strong></div>
+          <h4 style="font-size:1.05rem; font-weight:800; color:#fff; margin-bottom:8px;">${item.title}</h4>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <span class="signal-pill ${exec.badgeClass}">${exec.signal}</span>
+            <span style="color:#fbbf24; font-size:0.72rem; font-weight:800;">${exec.wr}</span>
           </div>
-
-          <div style="background:rgba(0,0,0,0.35); border:1px dashed rgba(255,255,255,0.1); padding:12px; border-radius:8px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; flex-wrap:wrap; gap:6px;">
-              <span class="signal-pill ${exec.badgeClass}">${exec.signal}</span>
-              <span style="color:#fbbf24; font-size:0.7rem; font-weight:800; background:rgba(251,191,36,0.1); border:1px solid rgba(251,191,36,0.25); padding:2px 7px; border-radius:4px;">${exec.wr}</span>
-            </div>
-            <p style="font-size:0.78rem; color:#cbd5e1; line-height:1.45;">${exec.desc}</p>
-            
-            <!-- TIME TP MATRIX (MOMENTUM ASTRODOX DINAMIS) -->
-            <div class="target-matrix-grid">
-              <div class="matrix-item">
-                <span class="matrix-label">Window Entry</span>
-                <span class="matrix-val" style="color:#38bdf8;">${exec.matrix.windowEntry}</span>
-              </div>
-              <div class="matrix-item">
-                <span class="matrix-label">Stop Loss (SL)</span>
-                <span class="matrix-val" style="color:#f87171;">${exec.matrix.sl}</span>
-              </div>
-              <div class="matrix-item">
-                <span class="matrix-label">Time TP 1 (+Scalp)</span>
-                <span class="matrix-val" style="color:#4ade80;">${exec.matrix.timeTP1}</span>
-              </div>
-              <div class="matrix-item">
-                <span class="matrix-label">Time TP 2 (+Swing)</span>
-                <span class="matrix-val" style="color:#4ade80;">${exec.matrix.timeTP2}</span>
-              </div>
-              <div class="matrix-item">
-                <span class="matrix-label">Time TP 3 (TP MAX)</span>
-                <span class="matrix-val" style="color:#22c55e;">${exec.matrix.timeTP3}</span>
-              </div>
-            </div>
+          <p style="font-size:0.78rem; color:#cbd5e1; line-height:1.45;">${exec.desc}</p>
+          <div class="target-matrix-grid">
+            <div><span class="matrix-label">Window Entry</span><div class="matrix-val" style="color:#38bdf8;">${exec.matrix.windowEntry}</div></div>
+            <div><span class="matrix-label">Stop Loss</span><div class="matrix-val" style="color:#f87171;">${exec.matrix.sl}</div></div>
+            <div><span class="matrix-label">Time TP 1</span><div class="matrix-val" style="color:#4ade80;">${exec.matrix.timeTP1}</div></div>
+            <div><span class="matrix-label">Time TP 2</span><div class="matrix-val" style="color:#4ade80;">${exec.matrix.timeTP2}</div></div>
+            <div><span class="matrix-label">Time TP 3 (MAX)</span><div class="matrix-val" style="color:#22c55e;">${exec.matrix.timeTP3}</div></div>
           </div>
         `;
         container.appendChild(card);
       });
 
-      checkAndStorePastEvents(filteredEvents, targetD);
+      checkAndStorePastEvents(sampleEvents, targetD);
     }
 
-    function setCurrencyFilter(filterVal, e) {
-      currentCurrencyFilter = filterVal;
-      document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
-      e.target.classList.add('active');
-      renderNewsCards();
+    function updateLiveClocks() {
+      const now = new Date();
+      document.getElementById('timeWIB').innerText = new Intl.DateTimeFormat('id-ID', { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(now);
+      document.getElementById('timeLondon').innerText = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(now);
+      document.getElementById('timeNY').innerText = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(now);
     }
-
-    // Inisialisasi awal sistem
-    buildAstroQuickPills();
-    renderDynamicAstrodox();
-    renderPersistentRecapTable();
-    loadGlobalEconomicNewsFeed();
+    setInterval(updateLiveClocks, 1000);
+    updateLiveClocks();
 
     setInterval(() => {
-      renderNewsCards();
+      if (isAstroLiveMode) {
+        renderDynamicAstrodox();
+        renderNewsCards();
+      }
     }, 1000);
 
-    // 13. LOGOUT SUPABASE
+    resetToLiveTime();
+    renderPersistentRecapTable();
+
     document.getElementById('btnLogout').addEventListener('click', async () => {
       await supabaseClient.auth.signOut();
       window.location.href = 'login.html';
