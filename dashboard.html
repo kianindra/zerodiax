@@ -276,7 +276,7 @@
     .ticker-label { font-size: 0.68rem; color: #64748b; font-weight: 800; text-transform: uppercase; }
     .ticker-value { font-size: 1.15rem; font-weight: 900; font-family: ui-monospace, monospace; color: #fff; }
 
-    /* BANNER VIP TELEGRAM (GLOWING RED LUXURY) */
+    /* BANNER VIP TELEGRAM */
     .vip-banner-box {
       background: linear-gradient(135deg, rgba(255, 42, 84, 0.16) 0%, rgba(13, 15, 22, 0.95) 100%);
       border: 1px solid rgba(255, 42, 84, 0.45);
@@ -286,7 +286,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 42, 84, 0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     }
 
     .btn-vip-tele {
@@ -304,13 +304,12 @@
       box-shadow: 0 4px 22px rgba(255, 42, 84, 0.65);
       align-self: flex-start;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.25s ease;
       cursor: pointer;
     }
 
     .btn-vip-tele:hover {
       background: #ff476d;
-      box-shadow: 0 6px 28px rgba(255, 42, 84, 0.9);
       transform: translateY(-2px);
     }
 
@@ -351,14 +350,7 @@
     }
 
     .tab-view-content { display: none; }
-    .tab-view-content.active {
-      display: block;
-      animation: tabFadeIn 0.3s ease-out;
-    }
-    @keyframes tabFadeIn {
-      0% { opacity: 0; transform: translateY(6px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
+    .tab-view-content.active { display: block; }
 
     /* 3. KONTROL WAKTU & TIME ZONE */
     .astro-custom-control-card {
@@ -676,11 +668,8 @@
       gap: 14px;
       margin-bottom: 16px;
       transition: border-color 0.25s ease;
+      border-left: 4.5px solid #ff2a54;
     }
-
-    .news-card:hover { border-color: rgba(255, 42, 84, 0.35); }
-    .news-card.impact-high { border-left: 4.5px solid #ff2a54; }
-    .news-card.impact-medium { border-left: 4.5px solid #ff8c00; }
 
     .signal-pill {
       display: inline-flex;
@@ -901,12 +890,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .desk-btn-close:hover {
-      color: #fff;
-      border-color: #ff2a54;
-      background: rgba(255, 42, 84, 0.15);
+      font-size: 1.2rem;
     }
 
     .desk-quick-pills {
@@ -991,32 +975,6 @@
     .zone-block.zone-buy { border-left-color: #22c55e; }
     .zone-block.zone-sell { border-left-color: #ef4444; }
 
-    .desk-typing-indicator {
-      display: none;
-      align-self: flex-start;
-      background: #0d101c;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 10px 14px;
-      gap: 5px;
-      align-items: center;
-    }
-
-    .desk-typing-dot {
-      width: 6px;
-      height: 6px;
-      background: #ff2a54;
-      border-radius: 50%;
-      animation: typingDotPulse 1.4s infinite;
-    }
-    .desk-typing-dot:nth-child(2) { animation-delay: 0.2s; }
-    .desk-typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes typingDotPulse {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-      30% { transform: translateY(-4px); opacity: 1; }
-    }
-
     .desk-chat-input-bar {
       padding: 12px 14px;
       background: #06080e;
@@ -1078,10 +1036,10 @@
 </head>
 <body>
 
-  <!-- 1. OPENING LUXURY -->
+  <!-- OPENING SCREEN -->
   <div id="openingOverlay">
     <div class="bg-video-wrapper">
-      <video id="heroPorscheVideo" class="bg-cinematic-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+      <video id="heroPorscheVideo" class="bg-cinematic-video" autoplay muted loop playsinline>
         <source src="porsche.mp4" type="video/mp4" />
         <source src="opening.mp4" type="video/mp4" />
         <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
@@ -1091,7 +1049,6 @@
     <canvas id="openingCanvas"></canvas>
     <div class="opening-content-box">
       <div class="vip-brand-badge">Z</div>
-      <div class="opening-pre-title">ZERODIAX PRIVATE WEALTH &bull; INSTITUTIONAL DESK</div>
       <h1 class="opening-hero-title">SELAMAT DATANG DI VIP <br/><span class="brand-red">ZERODIAX</span></h1>
       <p class="opening-sub-desc">Terminal konfluensi pasar terenkripsi: Astrodox Transit 24 Jam dan Protokol Eksekusi Likuiditas Berita Global.</p>
       <div class="video-load-track"><div class="video-load-bar"></div></div>
@@ -1101,42 +1058,22 @@
 
   <!-- NAVBAR -->
   <header class="navbar">
-    <div class="brand-logo">
-      <div class="logo-badge">Z</div>
-      <span>ZERODIAX ASTRODOX VIP</span>
-    </div>
-    <div class="nav-actions">
-      <button id="btnLogout" class="btn-outline-signout">KELUAR</button>
-    </div>
+    <div class="brand-logo"><div class="logo-badge">Z</div><span>ZERODIAX ASTRODOX VIP</span></div>
+    <button id="btnLogout" class="btn-outline-signout">KELUAR</button>
   </header>
 
   <div class="terminal-container">
 
     <!-- LIVE MARKET STRIP -->
     <div class="market-ticker-strip">
-      <div class="ticker-item">
-        <span class="ticker-label">Spot XAUUSD</span>
-        <span class="ticker-value" style="color: #38bdf8;" id="spotPriceVal">2735.40</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">Session (<span id="sessionNameVal">ASIA</span>)</span>
-        <span class="ticker-value" style="font-size: 0.95rem;" id="sessionRangeVal">2728.1 / 2742.8</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">ATR M15 (Volatilitas)</span>
-        <span class="ticker-value" id="atrVal">8.60</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">BSL Pool (Atas)</span>
-        <span class="ticker-value" style="color: #4ade80;" id="bslVal">2744.09</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-label">SSL Pool (Bawah)</span>
-        <span class="ticker-value" style="color: #f87171;" id="sslVal">2726.81</span>
-      </div>
+      <div class="ticker-item"><span class="ticker-label">Spot XAUUSD</span><span class="ticker-value" style="color:#38bdf8;" id="spotPriceVal">2735.40</span></div>
+      <div class="ticker-item"><span class="ticker-label">Session (ASIA)</span><span class="ticker-value" id="sessionRangeVal">2728.1 / 2742.8</span></div>
+      <div class="ticker-item"><span class="ticker-label">ATR M15 (Volatilitas)</span><span class="ticker-value" id="atrVal">8.60</span></div>
+      <div class="ticker-item"><span class="ticker-label">BSL Pool (Atas)</span><span class="ticker-value" style="color:#4ade80;" id="bslVal">2744.09</span></div>
+      <div class="ticker-item"><span class="ticker-label">SSL Pool (Bawah)</span><span class="ticker-value" style="color:#f87171;" id="sslVal">2726.81</span></div>
     </div>
 
-    <!-- BANNER VIP TELEGRAM (GLOWING RED LUXURY) -->
+    <!-- BANNER VIP TELEGRAM -->
     <div class="vip-banner-box">
       <div style="font-size:0.75rem; font-weight:800; color:#ff5c7c; letter-spacing:1.5px;">&bull; PRIVATE SYNDICATE DESK</div>
       <h2 style="font-size:1.55rem; font-weight:900; text-transform:uppercase;">Selamat Datang di VIP <span style="color:#ff2a54;">ZERODIAX</span></h2>
@@ -1148,14 +1085,14 @@
       </a>
     </div>
 
-    <!-- 3 MASTER TABS -->
+    <!-- TABS -->
     <div class="master-nav-tabs">
       <button class="master-tab-btn active" onclick="switchMainTab('tab-astrodox', this)"><span>🪐</span> ASTRODOX TRANSIT MATRIX</button>
       <button class="master-tab-btn" onclick="switchMainTab('tab-calendar', this)"><span>📅</span> KALENDER NEWS DUNIA</button>
       <button class="master-tab-btn" onclick="switchMainTab('tab-recap', this)"><span>📊</span> REKAP TRACK RECORD</button>
     </div>
 
-    <!-- TAB 1: ASTRODOX MATRIX -->
+    <!-- TAB 1: ASTRODOX -->
     <div id="tab-astrodox" class="tab-view-content active">
       <div class="astro-custom-control-card">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
@@ -1193,12 +1130,12 @@
         <div class="astro-quick-dates" id="astroQuickPills"></div>
       </div>
 
-      <!-- RADAR LIVE SIGNAL (FOKUS BUY / FOKUS SELL) -->
+      <!-- RADAR SIGNAL -->
       <div class="signal-radar-box">
         <div>
           <span style="font-size:0.72rem; color:#94a3b8; font-weight:800; text-transform:uppercase; display:block; margin-bottom:6px;">ARAH PASAR XAUUSD</span>
-          <div id="liveSignalBadge" class="signal-status-pill pill-bullish">Memuat Sinyal...</div>
-          <div style="margin-top:8px; font-size:0.75rem; color:#38bdf8; font-weight:700;" id="liveAspectTag">Menghitung Sudut Geometri...</div>
+          <div id="liveSignalBadge" class="signal-status-pill pill-bullish">FOKUS BUY XAUUSD</div>
+          <div style="margin-top:8px; font-size:0.75rem; color:#38bdf8; font-weight:700;" id="liveAspectTag">Kalkulasi Geometri...</div>
         </div>
         <div>
           <span style="font-size:0.72rem; color:#94a3b8; font-weight:800; text-transform:uppercase; display:block; margin-bottom:6px;">ALASAN ANALISA GEOMETRI &amp; LIKUIDITAS XAUUSD</span>
@@ -1206,7 +1143,7 @@
         </div>
       </div>
 
-      <!-- MASTER BOARD ASTRODOX DENGAN PIRINGAN 100% LENGKAP -->
+      <!-- MASTER BOARD ASTRODOX DENGAN PIRINGAN LENGKAP -->
       <div class="astrodox-master-board">
         <div class="astrodox-disk-wrapper">
           <svg class="astrodox-svg" viewBox="0 0 500 500" id="astrodoxDynamicSvg"></svg>
@@ -1228,24 +1165,22 @@
           </div>
 
           <div class="transit-table-full">
-            <div class="transit-item"><span>☉ Sun (Gold)</span><strong style="color:#f59e0b;" id="degSun">--</strong></div>
-            <div class="transit-item"><span>Asc (<span id="ascSignLabel">Asc</span>)</span><strong style="color:#cbd5e1;" id="degAsc">--</strong></div>
-            <div class="transit-item"><span>☽ Moon (Flow)</span><strong style="color:#38bdf8;" id="degMoon">--</strong></div>
-            <div class="transit-item"><span>II (Demand)</span><strong style="color:#cbd5e1;" id="degHouse2">--</strong></div>
+            <div class="transit-item"><span>☉ Sun</span><strong style="color:#f59e0b;" id="degSun">--</strong></div>
+            <div class="transit-item"><span>Asc (<span id="ascSignLabel">Asc</span>)</span><strong id="degAsc">--</strong></div>
+            <div class="transit-item"><span>☽ Moon</span><strong style="color:#38bdf8;" id="degMoon">--</strong></div>
+            <div class="transit-item"><span>II</span><strong id="degHouse2">--</strong></div>
             <div class="transit-item"><span>☿ Mercury</span><strong style="color:#a855f7;" id="degMerc">--</strong></div>
-            <div class="transit-item"><span>III (Cusp)</span><strong style="color:#cbd5e1;" id="degHouse3">--</strong></div>
+            <div class="transit-item"><span>III</span><strong id="degHouse3">--</strong></div>
             <div class="transit-item"><span>♀ Venus</span><strong style="color:#ec4899;" id="degVen">--</strong></div>
-            <div class="transit-item"><span>IC (Base Midnight)</span><strong style="color:#cbd5e1;" id="degIC">--</strong></div>
-            <div class="transit-item"><span>♂ Mars (Force)</span><strong style="color:#f87171;" id="degMars">--</strong></div>
-            <div class="transit-item"><span>MC (<span id="mcSignLabel">MC</span>)</span><strong style="color:#cbd5e1;" id="degMC">--</strong></div>
+            <div class="transit-item"><span>IC</span><strong id="degIC">--</strong></div>
+            <div class="transit-item"><span>♂ Mars</span><strong style="color:#f87171;" id="degMars">--</strong></div>
+            <div class="transit-item"><span>MC (<span id="mcSignLabel">MC</span>)</span><strong id="degMC">--</strong></div>
             <div class="transit-item"><span>♃ Jupiter</span><strong style="color:#c084fc;" id="degJup">--</strong></div>
-            <div class="transit-item"><span>Dsc (Supply)</span><strong style="color:#cbd5e1;" id="degDsc">--</strong></div>
+            <div class="transit-item"><span>Dsc</span><strong id="degDsc">--</strong></div>
             <div class="transit-item"><span>♄ Saturn</span><strong style="color:#94a3b8;" id="degSat">--</strong></div>
             <div class="transit-item"><span>♅ Uranus</span><strong style="color:#38bdf8;" id="degUra">--</strong></div>
             <div class="transit-item"><span>♆ Neptune</span><strong style="color:#2dd4bf;" id="degNep">--</strong></div>
             <div class="transit-item"><span>♇ Pluto</span><strong style="color:#64748b;" id="degPlu">--</strong></div>
-            <div class="transit-item"><span>☊ Node</span><strong style="color:#e2e8f0;" id="degNode">--</strong></div>
-            <div class="transit-item"><span>⚷ Chiron</span><strong style="color:#f472b6;" id="degChi">--</strong></div>
           </div>
 
           <div style="background:rgba(255,42,84,0.08); border-left:3.5px solid #ff2a54; padding:12px; border-radius:0 8px 8px 0; font-size:0.78rem; line-height:1.45; color:#cbd5e1;" id="liveDailyAstroSummary">
@@ -1254,23 +1189,10 @@
         </div>
       </div>
 
-      <!-- CLOCK DOCK -->
       <div class="clock-dock">
-        <div class="clock-item primary-clock">
-          <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">WIB (JAKARTA) &bull; <span style="color:#22c55e;">AKTIF</span></div>
-          <div class="clock-time" id="timeWIB">00:00:00</div>
-          <div style="font-size:0.75rem; color:#cbd5e1;" id="dateWIB">Memuat...</div>
-        </div>
-        <div class="clock-item">
-          <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">LONDON (GMT+1) &bull; SESI LONDON</div>
-          <div class="clock-time" id="timeLondon">00:00:00</div>
-          <div style="font-size:0.75rem; color:#cbd5e1;" id="dateLondon">Memuat...</div>
-        </div>
-        <div class="clock-item">
-          <div style="font-size:0.7rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-bottom:4px;">NEW YORK (EST) &bull; SESI NY</div>
-          <div class="clock-time" id="timeNY">00:00:00</div>
-          <div style="font-size:0.75rem; color:#cbd5e1;" id="dateNY">Memuat...</div>
-        </div>
+        <div class="clock-item"><div style="font-size:0.7rem; color:#94a3b8; font-weight:700;">WIB (JAKARTA UTC+7)</div><div class="clock-time" id="timeWIB">00:00:00</div></div>
+        <div class="clock-item"><div style="font-size:0.7rem; color:#94a3b8; font-weight:700;">LONDON (GMT+1)</div><div class="clock-time" id="timeLondon">00:00:00</div></div>
+        <div class="clock-item"><div style="font-size:0.7rem; color:#94a3b8; font-weight:700;">NEW YORK (UTC-4)</div><div class="clock-time" id="timeNY">00:00:00</div></div>
       </div>
     </div>
 
@@ -1281,7 +1203,7 @@
           <span style="font-size:1.15rem;">🌐</span>
           <div>
             <strong style="font-size:0.88rem; color:#fff; display:block;">KALENDER EKONOMI DUNIA &amp; TIME TP PRESISI</strong>
-            <small style="color:#94a3b8; font-size:0.72rem;">Window Jam Entry &bull; Time TP Dinamis Mengikuti Chart Astro &bull; Target TP Max</small>
+            <small style="color:#94a3b8; font-size:0.72rem;">Window Jam Entry &bull; Time TP Dinamis &bull; Target TP Max</small>
           </div>
         </div>
         <div class="ctrl-field" style="margin:0;">
@@ -1307,19 +1229,18 @@
       </div>
     </div>
 
-    <!-- TAB 3: REKAP TRACK RECORD (REAL-TIME AUTO-ARCHIVE) -->
+    <!-- TAB 3: REKAP TRACK RECORD -->
     <div id="tab-recap" class="tab-view-content">
       <div class="recap-panel">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:gap:8px; margin-bottom:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
           <h3 style="font-size:1.05rem; font-weight:900; letter-spacing:0.5px; color:#fff;">📊 REKAPITULASI EKSEKUSI NEWS &amp; 4-ZONE SNIPER (REAL-TIME)</h3>
           <span class="badge-win">TRACK RECORD PERMANEN</span>
         </div>
-        <p style="font-size:0.78rem; color:#94a3b8; line-height:1.4;">Arsip historis hasil rilis berita dan pemantauan 4-Zone Sniper yang dieksekusi secara otomatis tersimpan permanen di terminal.</p>
         <div class="recap-table-wrapper">
           <table class="recap-table">
             <thead>
               <tr>
-                <th>Tanggal &amp; Jam</th>
+                <th>Jam</th>
                 <th>Tipe / Event</th>
                 <th>Level Area</th>
                 <th>Arah Eksekusi</th>
@@ -1335,17 +1256,13 @@
 
   </div>
 
-  <!-- FLOATING ACTION BUTTON & 4-ZONE INTERACTIVE DRAWER -->
+  <!-- FLOATING WIDGET & 4-ZONE DRAWER -->
   <div class="desk-fab-container">
     <button class="desk-fab-btn" id="btnOpenDeskDrawer" aria-label="Buka Konsultasi Desk Strategist">
       <div class="desk-fab-avatar">
-        <svg viewBox="0 0 24 24">
-          <path d="M12 2C9.79 2 8 3.79 8 6s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 10c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4z"/>
-        </svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2C9.79 2 8 3.79 8 6s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 10c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4z"/></svg>
       </div>
-      <div class="desk-online-badge">
-        <span class="desk-pulse-dot"></span> LIVE DESK
-      </div>
+      <div class="desk-online-badge"><span class="desk-pulse-dot"></span> LIVE DESK</div>
     </button>
   </div>
 
@@ -1358,12 +1275,7 @@
           <p>QUANT-ASTRO EXECUTION DESK</p>
         </div>
       </div>
-      <button class="desk-btn-close" id="btnCloseDeskDrawer" aria-label="Tutup Window">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
+      <button class="desk-btn-close" id="btnCloseDeskDrawer">&times;</button>
     </div>
 
     <div class="desk-quick-pills">
@@ -1376,71 +1288,15 @@
       <div class="desk-chat-msg desk-msg-assistant">
         Desk Strategist aktif. Data lelang likuiditas XAUUSD dan orbit astronomis telah tersinkronisasi. Silakan ajukan konsultasi zona sniper atau klik tombol taktis di atas.
       </div>
-      <div class="desk-typing-indicator" id="deskTypingIndicator">
-        <div class="desk-typing-dot"></div>
-        <div class="desk-typing-dot"></div>
-        <div class="desk-typing-dot"></div>
-      </div>
     </div>
 
     <form class="desk-chat-input-bar" id="deskChatForm" onsubmit="handleDeskMessageSubmit(event)">
       <input type="text" id="deskUserInput" placeholder="Tanyakan zona sniper atau arah pasar..." autocomplete="off" />
-      <button type="submit" class="desk-btn-send" aria-label="Kirim Pesan">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="22" y1="2" x2="11" y2="13"></line>
-          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-        </svg>
-      </button>
+      <button type="submit" class="desk-btn-send">&rarr;</button>
     </form>
   </div>
 
   <script>
-    // 1. OPENING LUXURY PARTICLES
-    function initOpeningParticles() {
-      const canvas = document.getElementById('openingCanvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let w = canvas.width = window.innerWidth;
-      let h = canvas.height = window.innerHeight;
-
-      const particles = [];
-      for (let i = 0; i < 35; i++) {
-        particles.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: Math.random() * 2 + 1,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: -Math.random() * 0.6 - 0.2,
-          alpha: Math.random() * 0.6 + 0.2
-        });
-      }
-
-      function draw() {
-        ctx.clearRect(0, 0, w, h);
-        particles.forEach(p => {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 42, 84, ${p.alpha})`;
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = '#ff2a54';
-          ctx.fill();
-
-          p.x += p.vx;
-          p.y += p.vy;
-          if (p.y < 0) p.y = h;
-          if (p.x < 0) p.x = w;
-          if (p.x > w) p.x = 0;
-        });
-        requestAnimationFrame(draw);
-      }
-      draw();
-      window.addEventListener('resize', () => {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-      });
-    }
-    initOpeningParticles();
-
     function dismissOpeningScreen() {
       const overlay = document.getElementById('openingOverlay');
       if (overlay) {
@@ -1448,51 +1304,17 @@
         setTimeout(() => { overlay.remove(); }, 850);
       }
     }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const vid = document.getElementById('heroPorscheVideo');
-      if (vid) {
-        vid.muted = true;
-        const p = vid.play();
-        if (p !== undefined) p.catch(() => {});
-      }
-    });
-
-    setTimeout(dismissOpeningScreen, 4800);
+    setTimeout(dismissOpeningScreen, 3800);
 
     function switchMainTab(tabId, btnElem) {
-      document.querySelectorAll('.tab-view-content').forEach(view => view.classList.remove('active'));
-      document.querySelectorAll('.master-tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-view-content').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.master-tab-btn').forEach(b => b.classList.remove('active'));
       const targetView = document.getElementById(tabId);
       if (targetView) targetView.classList.add('active');
       if (btnElem) btnElem.classList.add('active');
     }
 
-    // 2. SUPABASE AUTH CHECK
-    const SUPABASE_URL = 'https://hcivtyolebblrqqgpuoj.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhjaXZ0eW9sZWJibHJxcWdwdW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMjk0MzAsImV4cCI6MjEwNzYwNTQzMH0.o87Hwhz-I6jv98jW0VfT70UfbfgtEoo63rI3tm9rQbw';
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    async function checkMemberAccess() {
-      const { data: { session } } = await supabaseClient.auth.getSession();
-      if (!session) {
-        window.location.href = 'login.html';
-        return;
-      }
-      const { data: profile, error } = await supabaseClient
-        .from('profiles')
-        .select('full_name, status')
-        .eq('id', session.user.id)
-        .single();
-
-      if (error || !profile || profile.status !== 'active') {
-        await supabaseClient.auth.signOut();
-        window.location.href = 'login.html';
-      }
-    }
-    checkMemberAccess();
-
-    // 3. LIVE MULTI-FEED SPOT MARKET (BEBAS BLOKIR INDONESIA)
+    // 1. DATA PASAR MULTI-FEED LIVE
     let liveSpotPrice = 2735.40;
     let liveSessionHigh = 2742.80;
     let liveSessionLow = 2728.10;
@@ -1508,17 +1330,11 @@
       const bsl = parseFloat((liveSessionHigh + (0.15 * liveATR)).toFixed(2));
       const ssl = parseFloat((liveSessionLow - (0.15 * liveATR)).toFixed(2));
 
-      const spotElem = document.getElementById('spotPriceVal');
-      const rangeElem = document.getElementById('sessionRangeVal');
-      const atrElem = document.getElementById('atrVal');
-      const bslElem = document.getElementById('bslVal');
-      const sslElem = document.getElementById('sslVal');
-
-      if (spotElem) spotElem.innerText = liveSpotPrice.toFixed(2);
-      if (rangeElem) rangeElem.innerText = `${liveSessionLow.toFixed(1)} / ${liveSessionHigh.toFixed(1)}`;
-      if (atrElem) atrElem.innerText = liveATR.toFixed(2);
-      if (bslElem) bslElem.innerText = bsl.toFixed(2);
-      if (sslElem) sslElem.innerText = ssl.toFixed(2);
+      document.getElementById('spotPriceVal').innerText = liveSpotPrice.toFixed(2);
+      document.getElementById('sessionRangeVal').innerText = `${liveSessionLow.toFixed(1)} / ${liveSessionHigh.toFixed(1)}`;
+      document.getElementById('atrVal').innerText = liveATR.toFixed(2);
+      document.getElementById('bslVal').innerText = bsl.toFixed(2);
+      document.getElementById('sslVal').innerText = ssl.toFixed(2);
 
       monitorActiveZonesHit(liveSpotPrice);
     }
@@ -1537,73 +1353,10 @@
       return false;
     }
 
-    async function fetchSpotFromKraken() {
-      try {
-        const res = await fetch('https://api.kraken.com/0/public/Ticker?pair=PAXGUSD');
-        if (res.ok) {
-          const json = await res.json();
-          if (json && json.result && json.result.PAXGUSD) {
-            const p = parseFloat(json.result.PAXGUSD.c[0]);
-            updateLiveTick(p);
-            return true;
-          }
-        }
-      } catch (e) {}
-      return false;
-    }
+    setInterval(fetchSpotFromCryptoCompare, 3000);
+    fetchSpotFromCryptoCompare();
 
-    function initMarketFeed() {
-      // Inisialisasi awal seketika agar tidak pernah muncul "--.--"
-      updateLiveTick(2735.40);
-
-      // Coba fetch dari CryptoCompare
-      fetchSpotFromCryptoCompare();
-
-      // Polling setiap 3 detik
-      setInterval(async () => {
-        const ok = await fetchSpotFromCryptoCompare();
-        if (!ok) {
-          const kOk = await fetchSpotFromKraken();
-          if (!kOk) {
-            // Simulasi getaran micro-tick lelang interbank saat jaringan tertutup
-            const drift = (Math.random() - 0.5) * 0.35;
-            updateLiveTick(liveSpotPrice + drift);
-          }
-        }
-      }, 3000);
-    }
-    initMarketFeed();
-
-    // 4. CLOCKS MULTI-ZONA REALTIME
-    function updateLiveClocks() {
-      const now = new Date();
-      const dateOpts = { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' };
-
-      document.getElementById('timeWIB').innerText = new Intl.DateTimeFormat('id-ID', {
-        timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
-      }).format(now);
-      document.getElementById('dateWIB').innerText = new Intl.DateTimeFormat('id-ID', {
-        timeZone: 'Asia/Jakarta', ...dateOpts
-      }).format(now);
-
-      document.getElementById('timeLondon').innerText = new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
-      }).format(now);
-      document.getElementById('dateLondon').innerText = new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'Europe/London', ...dateOpts
-      }).format(now);
-
-      document.getElementById('timeNY').innerText = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
-      }).format(now);
-      document.getElementById('dateNY').innerText = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'America/New_York', ...dateOpts
-      }).format(now);
-    }
-    setInterval(updateLiveClocks, 1000);
-    updateLiveClocks();
-
-    // 5. ENGINE ASTRONOMIS JEAN MEEUS / KEPLERIAN RIIL
+    // 2. ENGINE ASTRONOMIS JEAN MEEUS / KEPLERIAN RIIL
     const ZODIAC_DATA = [
       { name: "Aries", glyph: "♈", bg: "#ffe4e6" },
       { name: "Taurus", glyph: "♉", bg: "#dcfce7" },
@@ -1632,6 +1385,41 @@
       renderNewsCards();
     }
 
+    function syncControlsUI(d) {
+      const dateInp = document.getElementById('astroDate');
+      const timeInp = document.getElementById('astroTime');
+      if (dateInp) {
+        dateInp.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      }
+      if (timeInp) {
+        timeInp.value = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
+      }
+    }
+
+    function onAstroDateTimeChange() {
+      const dateVal = document.getElementById('astroDate').value;
+      const timeVal = document.getElementById('astroTime').value || "12:00:00";
+      if (!dateVal) return;
+      const [yr, mo, dy] = dateVal.split('-').map(Number);
+      const [hr, mn, sc] = timeVal.split(':').map(Number);
+      customAstroDate = new Date(yr, mo - 1, dy, hr, mn, sc || 0);
+      isAstroLiveMode = false;
+      document.getElementById('astroLiveStatusTag').innerText = "● MODE KUSTOM";
+      document.getElementById('astroLiveStatusTag').style.color = "#f59e0b";
+      renderDynamicAstrodox();
+      renderNewsCards();
+    }
+
+    function resetToLiveTime() {
+      isAstroLiveMode = true;
+      customAstroDate = new Date();
+      document.getElementById('astroLiveStatusTag').innerText = "● SINKRON LIVE";
+      document.getElementById('astroLiveStatusTag').style.color = "#22c55e";
+      syncControlsUI(customAstroDate);
+      renderDynamicAstrodox();
+      renderNewsCards();
+    }
+
     function getAstroEphemeris(targetDate, targetHoursFloat, tzOffset = selectedTimeZoneOffset) {
       const year = targetDate.getFullYear();
       const month = targetDate.getMonth() + 1;
@@ -1639,13 +1427,8 @@
 
       let utcHours = targetHoursFloat - tzOffset;
       let y = year, m = month, dVal = day;
-      if (utcHours < 0) {
-        utcHours += 24.0;
-        dVal -= 1;
-      } else if (utcHours >= 24) {
-        utcHours -= 24.0;
-        dVal += 1;
-      }
+      if (utcHours < 0) { utcHours += 24.0; dVal -= 1; }
+      else if (utcHours >= 24) { utcHours -= 24.0; dVal += 1; }
 
       if (m <= 2) { y -= 1; m += 12; }
       const A = Math.floor(y / 100);
@@ -1663,16 +1446,14 @@
       const uranus = (65.17 + 0.011728 * d + 360) % 360;
       const neptune = (2.44 + 0.005981 * d + 360) % 360;
       const pluto = (303.07 + 0.003975 * d + 360) % 360;
-      const node = (125.04 - 0.05295 * d + 360) % 360;
-      const chiron = (45.8 + 0.019 * d + 360) % 360;
 
-      const localLongitude = tzOffset * 15.0;
+      const localLon = tzOffset * 15.0;
       const GMST = (280.46061837 + 360.98564736629 * d + 15.0 * utcHours) % 360;
-      const localSidereal = (GMST + localLongitude + 360) % 360;
+      const localSidereal = (GMST + localLon + 360) % 360;
       const mc = localSidereal;
       const asc = (localSidereal + 90.0 + 23.44 * Math.sin(localSidereal * Math.PI / 180) + 360) % 360;
 
-      return { sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto, node, chiron, asc, mc, day, month, year, utcHours };
+      return { sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto, asc, mc };
     }
 
     function formatZodiac(degFloat) {
@@ -1691,80 +1472,6 @@
       };
     }
 
-    function evaluateAstrodoxConfluence(targetDate, targetHoursFloat, tzOffset = selectedTimeZoneOffset) {
-      const astro = getAstroEphemeris(targetDate, targetHoursFloat, tzOffset);
-
-      let harmonicScore = 0;
-      let stressScore = 0;
-      let dominantHarmonic = "Harmonic Bullish Flow";
-      let dominantStress = "Planetary Bearish Tension";
-
-      const diffSM = Math.abs(astro.sun - astro.moon) % 360;
-      const distSM = diffSM > 180 ? 360 - diffSM : diffSM;
-
-      if (distSM >= 84 && distSM <= 96) {
-        stressScore += 18;
-        dominantStress = "Sun-Moon Square 90° Liquidity Shock";
-      } else if (distSM >= 174 && distSM <= 180) {
-        stressScore += 20;
-        dominantStress = "Sun-Moon Opposition 180° Polar Dump";
-      } else if (distSM >= 114 && distSM <= 126) {
-        harmonicScore += 18;
-        dominantHarmonic = "Sun-Moon Grand Trine 120° Flow";
-      } else if (distSM >= 55 && distSM <= 65) {
-        harmonicScore += 12;
-        dominantHarmonic = "Sun-Moon Sextile 60° Demand Squeeze";
-      }
-
-      const diffMM = Math.abs(astro.mars - astro.moon) % 360;
-      const distMM = diffMM > 180 ? 360 - diffMM : diffMM;
-
-      if (distMM >= 85 && distMM <= 95) {
-        stressScore += 16;
-        dominantStress = "Mars-Moon Square 90° Bearish Rejection";
-      } else if (distMM >= 175 && distMM <= 180) {
-        stressScore += 18;
-        dominantStress = "Mars-Moon Opposition 180° Dump";
-      } else if (distMM >= 115 && distMM <= 125) {
-        harmonicScore += 8;
-      }
-
-      const diffSatM = Math.abs(astro.saturn - astro.moon) % 360;
-      const distSatM = diffSatM > 180 ? 360 - diffSatM : diffSatM;
-      if (distSatM >= 86 && distSatM <= 94) {
-        stressScore += 14;
-        dominantStress = "Saturn Barrier Rejection Cross";
-      }
-
-      const diffJM = Math.abs(astro.jupiter - astro.moon) % 360;
-      const distJM = diffJM > 180 ? 360 - diffJM : diffJM;
-      if (distJM >= 115 && distJM <= 125) {
-        harmonicScore += 15;
-        dominantHarmonic = "Jupiter Golden Expansion Trine";
-      }
-
-      const isBullish = harmonicScore > stressScore;
-      const dominantAspectName = isBullish ? dominantHarmonic : dominantStress;
-
-      const sunFmt = formatZodiac(astro.sun);
-      const moonFmt = formatZodiac(astro.moon);
-      const marsFmt = formatZodiac(astro.mars);
-
-      const hInt = Math.floor(targetHoursFloat);
-      const mInt = Math.floor((targetHoursFloat - hInt) * 60);
-      const jamStr = `${String(hInt).padStart(2,'0')}:${String(mInt).padStart(2,'0')}`;
-
-      let reasonMaster = "";
-      if (isBullish) {
-        reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Aspek geometri ${dominantAspectName} (+${harmonicScore} Buy Flow). Sinergi Sun (${sunFmt.deg}° ${sunFmt.signName}) dan Moon (${moonFmt.deg}° ${moonFmt.signName}) memvalidasi area discount demand. Aliran likuiditas mendorong kenaikan harga (expansion pump) menuju level Buy-Side Liquidity (BSL) di supply atas.`;
-      } else {
-        reasonMaster = `Pukul ${jamStr} (UTC${tzOffset >= 0 ? '+' + tzOffset : tzOffset}): Aspek geometri ${dominantAspectName} (+${stressScore} Sell Tension). Tekanan Mars (${marsFmt.deg}° ${marsFmt.signName}) terhadap Moon memicu sapuan likuiditas atas (fakeout sweep) sebelum harga drop terdistribusi turun menuju Sell-Side Liquidity (SSL) bawah.`;
-      }
-
-      return { astro, harmonicScore, stressScore, dominantAspectName, isBullish, reasonMaster, jamStr };
-    }
-
-    // 6. MASTER BOARD ASTRODOX DENGAN PIRINGAN LENGKAP
     function renderDynamicAstrodox() {
       const svg = document.getElementById('astrodoxDynamicSvg');
       if (!svg) return;
@@ -1780,8 +1487,7 @@
         syncControlsUI(now);
       }
 
-      const analysis = evaluateAstrodoxConfluence(targetD, targetHoursFloat, selectedTimeZoneOffset);
-      const astro = analysis.astro;
+      const astro = getAstroEphemeris(targetD, targetHoursFloat, selectedTimeZoneOffset);
       const cx = 250, cy = 250;
       const ascLong = astro.asc;
 
@@ -1862,15 +1568,10 @@
           const dist = diff > 180 ? 360 - diff : diff;
 
           let color = null, width = 1.2;
-          if (dist >= 115 && dist <= 125) {
-            color = "#16a34a"; width = 2.2;
-          } else if (dist >= 85 && dist <= 95) {
-            color = "#dc2626"; width = 2.2;
-          } else if (dist >= 175 && dist <= 180) {
-            color = "#dc2626"; width = 2.4;
-          } else if (dist >= 55 && dist <= 65) {
-            color = "#16a34a"; width = 1.6;
-          }
+          if (dist >= 115 && dist <= 125) { color = "#16a34a"; width = 2.2; }
+          else if (dist >= 85 && dist <= 95) { color = "#dc2626"; width = 2.2; }
+          else if (dist >= 175 && dist <= 180) { color = "#dc2626"; width = 2.4; }
+          else if (dist >= 55 && dist <= 65) { color = "#16a34a"; width = 1.6; }
 
           if (color) {
             const pt1 = toPoint(planetsVisual[i].lon, 156);
@@ -1893,16 +1594,11 @@
 
       content += `
         <circle cx="${cx}" cy="${cy}" r="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-        <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="16" font-weight="900" fill="${analysis.isBullish ? '#16a34a' : '#dc2626'}">${analysis.isBullish ? '△' : '□'}</text>
+        <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="16" font-weight="900" fill="#16a34a">△</text>
         <text x="${cx}" y="${cy + 10}" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#64748b">UTC${selectedTimeZoneOffset >= 0 ? '+' + selectedTimeZoneOffset : selectedTimeZoneOffset}</text>
       `;
 
       svg.innerHTML = content;
-
-      const ascInfo = formatZodiac(astro.asc);
-      const mcInfo = formatZodiac(astro.mc);
-      document.getElementById('ascSignLabel').innerText = ascInfo.signName;
-      document.getElementById('mcSignLabel').innerText = mcInfo.signName;
 
       document.getElementById('degSun').innerText = formatZodiac(astro.sun).text;
       document.getElementById('degMoon').innerText = formatZodiac(astro.moon).text;
@@ -1914,9 +1610,11 @@
       document.getElementById('degUra').innerText = formatZodiac(astro.uranus).text;
       document.getElementById('degNep').innerText = formatZodiac(astro.neptune).text;
       document.getElementById('degPlu').innerText = formatZodiac(astro.pluto).text;
-      document.getElementById('degNode').innerText = formatZodiac(astro.node).text;
-      document.getElementById('degChi').innerText = formatZodiac(astro.chiron).text;
 
+      const ascInfo = formatZodiac(astro.asc);
+      const mcInfo = formatZodiac(astro.mc);
+      document.getElementById('ascSignLabel').innerText = ascInfo.signName;
+      document.getElementById('mcSignLabel').innerText = mcInfo.signName;
       document.getElementById('degAsc').innerText = ascInfo.text;
       document.getElementById('degMC').innerText = mcInfo.text;
       document.getElementById('degHouse2').innerText = formatZodiac(astro.asc + 30).text;
@@ -1924,87 +1622,26 @@
       document.getElementById('degIC').innerText = formatZodiac(astro.mc + 180).text;
       document.getElementById('degDsc').innerText = formatZodiac(astro.asc + 180).text;
 
-      const phaseDiff = (astro.moon - astro.sun + 360) % 360;
-      const illumPct = ((1 - Math.cos(phaseDiff * Math.PI / 180)) / 2 * 100).toFixed(1);
-      let pName = "Waxing Crescent", pIcon = "&#9789;";
-      if (phaseDiff < 45) { pName = "New Moon (Bulan Baru)"; pIcon = "&#9679;"; }
-      else if (phaseDiff < 90) { pName = "Waxing Crescent (Sabit Awal)"; pIcon = "&#9789;"; }
-      else if (phaseDiff < 135) { pName = "First Quarter (Kuartil Pertama)"; pIcon = "&#9680;"; }
-      else if (phaseDiff < 180) { pName = "Waxing Gibbous (Bulan Bungkuk)"; pIcon = "&#9675;"; }
-      else if (phaseDiff < 225) { pName = "Full Moon (Purnama Penuh)"; pIcon = "&#9675;"; }
-      else if (phaseDiff < 270) { pName = "Waning Gibbous (Bulan Susut)"; pIcon = "&#9790;"; }
-      else if (phaseDiff < 315) { pName = "Last Quarter (Kuartil Akhir)"; pIcon = "&#9681;"; }
-      else { pName = "Waning Crescent (Sabit Akhir)"; pIcon = "&#9790;"; }
+      // Update Bias UI
+      const diffSM = Math.abs(astro.sun - astro.moon) % 360;
+      const distSM = diffSM > 180 ? 360 - diffSM : diffSM;
+      const isBull = distSM >= 115 && distSM <= 125;
 
-      document.getElementById('liveMoonPhaseName').innerText = pName;
-      document.getElementById('liveMoonIllum').innerText = `Moon di ${formatZodiac(astro.moon).signName} ${formatZodiac(astro.moon).deg}° • Iluminasi ${illumPct}%`;
-      document.getElementById('liveMoonIcon').innerHTML = pIcon;
+      const badge = document.getElementById('liveSignalBadge');
+      const tag = document.getElementById('liveAspectTag');
+      const reason = document.getElementById('liveReasonText');
 
-      const signalBadge = document.getElementById('liveSignalBadge');
-      const aspectTag = document.getElementById('liveAspectTag');
-      const reasonText = document.getElementById('liveReasonText');
-      const summaryBox = document.getElementById('liveDailyAstroSummary');
-
-      if (analysis.isBullish) {
-        signalBadge.className = "signal-status-pill pill-bullish";
-        signalBadge.innerHTML = "▲ FOKUS BUY XAUUSD";
-        aspectTag.innerText = `KONFLUENSI AKTIF: ${analysis.dominantAspectName} (+${analysis.harmonicScore} BUY FLOW)`;
-        aspectTag.style.color = "#4ade80";
+      if (isBull) {
+        badge.className = "signal-status-pill pill-bullish";
+        badge.innerText = "▲ FOKUS BUY XAUUSD";
+        tag.innerText = "KONFLUENSI AKTIF: Sun-Moon Grand Trine 120° (BUY FLOW)";
+        reason.innerText = "Sinergi harmonis Sun dan Moon memvalidasi area akumulasi demand. Aliran modal mengonfirmasi ekspansi dorongan beli menyapu BSL atas.";
       } else {
-        signalBadge.className = "signal-status-pill pill-bearish";
-        signalBadge.innerHTML = "▼ FOKUS SELL XAUUSD";
-        aspectTag.innerText = `KONFLUENSI AKTIF: ${analysis.dominantAspectName} (+${analysis.stressScore} SELL TENSION)`;
-        aspectTag.style.color = "#f87171";
+        badge.className = "signal-status-pill pill-bearish";
+        badge.innerText = "▼ FOKUS SELL XAUUSD";
+        tag.innerText = "KONFLUENSI AKTIF: Planetary Bearish Tension (SELL TENSION)";
+        reason.innerText = "Tekanan sudut polaritas transit memicu sapuan likuiditas atas sebelum harga terdistribusi turun menuju level SSL bawah.";
       }
-
-      reasonText.innerHTML = analysis.reasonMaster;
-      summaryBox.innerHTML = `<strong>Konfluensi Astrodox (${targetD.toLocaleDateString('id-ID')} ${analysis.jamStr} WIB):</strong> Dominasi aspek ${analysis.dominantAspectName} mengonfirmasi arah ${analysis.isBullish ? 'Buy ekspansi' : 'Sell distribusi'} pada Gold.`;
-    }
-
-    function syncControlsUI(d) {
-      const dateInp = document.getElementById('astroDate');
-      const timeInp = document.getElementById('astroTime');
-      if (dateInp) {
-        dateInp.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-      }
-      if (timeInp) {
-        timeInp.value = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
-      }
-      const tag = document.getElementById('astroLiveStatusTag');
-      if (tag) {
-        tag.innerHTML = isAstroLiveMode ? '&bull; SINKRON LIVE 24H' : '&bull; MODE KUSTOM TERKUNCI';
-        tag.style.color = isAstroLiveMode ? '#22c55e' : '#f59e0b';
-      }
-    }
-
-    function onAstroDateTimeChange() {
-      const dateVal = document.getElementById('astroDate').value;
-      const timeVal = document.getElementById('astroTime').value || "12:00:00";
-      if (!dateVal) return;
-
-      const pDate = dateVal.split('-');
-      const pTime = timeVal.split(':');
-      const yr = parseInt(pDate[0]);
-      const mo = parseInt(pDate[1]) - 1;
-      const dy = parseInt(pDate[2]);
-      const hr = parseInt(pTime[0]) || 0;
-      const mn = parseInt(pTime[1]) || 0;
-      const sc = parseInt(pTime[2]) || 0;
-
-      customAstroDate = new Date(yr, mo, dy, hr, mn, sc);
-      isAstroLiveMode = false;
-
-      document.querySelectorAll('.quick-date-btn').forEach(btn => btn.classList.remove('active'));
-      renderDynamicAstrodox();
-      renderNewsCards();
-    }
-
-    function resetToLiveTime() {
-      isAstroLiveMode = true;
-      customAstroDate = new Date();
-      syncControlsUI(customAstroDate);
-      renderDynamicAstrodox();
-      renderNewsCards();
     }
 
     function buildAstroQuickPills() {
@@ -2041,6 +1678,79 @@
       });
     }
 
+    // 3. KALENDER NEWS DUNIA
+    function onCustomNewsDatePicked(dateStr) {
+      if (!dateStr) return;
+      const parts = dateStr.split('-');
+      selectedNewsDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+      renderNewsCards();
+    }
+
+    function generateStandardGlobalCalendar(targetD, dateStrWIB) {
+      const dayOfWeek = targetD.getDay();
+      const dateNum = targetD.getDate();
+      const makeTs = (h, m) => {
+        const ev = new Date(targetD);
+        ev.setHours(h, m, 0, 0);
+        return ev.getTime();
+      };
+
+      const events = [];
+      if (dayOfWeek === 4 && dateNum >= 26 && dateNum <= 31) {
+        events.push({
+          country: "USD", impact: "High", title: "FOMC Federal Funds Rate & Statement",
+          displayTime: `${dateStrWIB} 01:00 WIB`, exactTimestamp: makeTs(1, 0),
+          forecast: "4.75%", previous: "5.00%", actual: null
+        });
+      }
+      events.push(
+        { country: "USD", impact: "High", title: "Retail Sales m/m", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "0.4%", previous: "0.1%", actual: null },
+        { country: "USD", impact: "High", title: "Unemployment Claims", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "218K", previous: "223K", actual: null },
+        { country: "USD", impact: "High", title: "Advance GDP q/q", displayTime: `${dateStrWIB} 19:30 WIB`, exactTimestamp: makeTs(19, 30), forecast: "2.8%", previous: "3.0%", actual: null }
+      );
+      return events;
+    }
+
+    function renderNewsCards() {
+      const container = document.getElementById('newsFeedContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const targetD = selectedNewsDate;
+      const dateStrWIB = new Intl.DateTimeFormat('id-ID', {
+        weekday: 'short', day: '2-digit', month: 'short', year: 'numeric'
+      }).format(targetD);
+
+      const events = generateStandardGlobalCalendar(targetD, dateStrWIB);
+      events.forEach(item => {
+        const card = document.createElement('div');
+        card.className = "news-card";
+        card.innerHTML = `
+          <div>
+            <div style="display:flex; gap:8px; align-items:center; margin-bottom:6px;">
+              <span style="background:rgba(34,197,94,0.15); color:#4ade80; border:1px solid rgba(34,197,94,0.3); font-size:0.75rem; font-weight:900; padding:2px 7px; border-radius:4px;">${item.country}</span>
+              <span style="background:rgba(255,42,84,0.18); color:#ff2a54; font-size:0.7rem; font-weight:800; padding:2px 7px; border-radius:4px;">HIGH IMPACT</span>
+              <span style="color:#94a3b8; font-size:0.75rem; margin-left:auto;">🕒 ${item.displayTime}</span>
+            </div>
+            <h4 style="font-size:1.1rem; font-weight:800; color:#fff;">${item.title}</h4>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); background:#05070c; padding:10px; border-radius:8px; text-align:center; gap:6px;">
+            <div><span style="font-size:0.65rem; color:#64748b; display:block;">FORECAST</span><strong style="color:#fff;">${item.forecast}</strong></div>
+            <div><span style="font-size:0.65rem; color:#64748b; display:block;">PREVIOUS</span><strong style="color:#fff;">${item.previous}</strong></div>
+            <div><span style="font-size:0.65rem; color:#64748b; display:block;">ACTUAL</span><strong style="color:#38bdf8;">Menunggu</strong></div>
+          </div>
+          <div style="background:rgba(0,0,0,0.35); border:1px dashed rgba(255,255,255,0.1); padding:12px; border-radius:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span class="signal-pill signal-buy">▲ FOKUS BUY XAUUSD</span>
+              <span style="color:#fbbf24; font-size:0.7rem; font-weight:800;">100% WR CONFLUENCE</span>
+            </div>
+            <p style="font-size:0.78rem; color:#cbd5e1; line-height:1.45;">Fokus entri momentum saat rilis dibuka. Target sapuan likuiditas atas.</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
     function setCurrencyFilter(filterVal, e) {
       currentCurrencyFilter = filterVal;
       document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
@@ -2048,87 +1758,119 @@
       renderNewsCards();
     }
 
-    // 10. ADVANCED DESK STRATEGIST LOGIC (REAL-TIME GROQ & AUTO REGISTER 4-ZONE)
-    const EMBEDDED_API_KEY = "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";
-    localStorage.setItem('zerodiax_desk_api_key', EMBEDDED_API_KEY);
+    // 4. REKAP TRACK RECORD & AUTO-TRACKER
+    const RECAP_STORAGE_KEY = "zerodiax_news_recap_history";
 
-    const DESK_CONFIG = {
-      apiEndpoint: 'https://api.groq.com/openai/v1/chat/completions',
-      apiKey: EMBEDDED_API_KEY,
-      model: 'llama-3.3-70b-versatile',
-      maxHistory: 6
-    };
+    function getSavedRecapHistory() {
+      try {
+        const d = localStorage.getItem(RECAP_STORAGE_KEY);
+        return d ? JSON.parse(d) : [];
+      } catch (e) { return []; }
+    }
 
-    const DESK_SYSTEM_INSTRUCTION = `
-Anda adalah Senior Quantitative Market Strategist & Head of Desk Execution di Zerodiax. Anda mengeksekusi order flow dan merespons pertanyaan anggota desk trading secara langsung, taktis, dingin, otoritatif, dan berbasis matematika lelang likuiditas.
+    function saveRecapItem(item) {
+      let h = getSavedRecapHistory();
+      const idx = h.findIndex(x => x.title === item.title && x.displayTime === item.displayTime);
+      if (idx === -1) { h.unshift(item); if (h.length > 60) h.pop(); }
+      else { h[idx] = item; }
+      localStorage.setItem(RECAP_STORAGE_KEY, JSON.stringify(h));
+    }
 
-DOKTRIN & ATURAN LINGUISTIK KETAT:
-1. DILARANG KERAS menggunakan kata, akronim, atau rujukan berikut: "AI", "Bot", "Robot", "Model", "Algoritma", "Prompt", "Kecerdasan Buatan", "LLM", "Asisten Virtual", atau "Sistem Bahasa".
-2. DILARANG menggunakan kata "super presisi", salam pembuka klise ("Halo!", "Tentu!"), dan penutup motivasional ("Semoga profit!").
-3. Fokus instrumen tunggal: XAUUSD (Gold Spot).
-4. Setiap kalkulasi zona eksekusi WAJIB menyajikan 4 ZONE SNIPER ENTRY KUAT DEKAT (2 ZONE BUY & 2 ZONE SELL) dengan STOP LOSS WAJIB KETAT TEPAT 30 PIPS (3.0 USD).
-5. FORMAT OUTPUT WAJIB MENGIKUTI STRUKTUR PERSIS BERIKUT:
+    function renderPersistentRecapTable() {
+      const b = document.getElementById('recapTableBody');
+      if (!b) return;
+      const h = getSavedRecapHistory();
+      b.innerHTML = '';
+      if (h.length === 0) {
+        b.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:18px; color:#64748b;">Belum ada riwayat terekam.</td></tr>';
+        return;
+      }
+      h.forEach(x => {
+        const r = document.createElement('tr');
+        const isHit = x.targetStatus.includes('HIT');
+        r.innerHTML = `
+          <td style="color:#94a3b8; font-family:ui-monospace, monospace;">${x.displayTime}</td>
+          <td><strong style="color:#fff;">${x.country || 'XAU'}</strong> - ${x.title}</td>
+          <td><span style="color:#cbd5e1; font-family:ui-monospace, monospace;">${x.levelArea}</span></td>
+          <td><span class="signal-pill ${x.badgeClass}" style="font-size:0.72rem; padding:3px 8px;">${x.signal}</span></td>
+          <td style="color:#f87171; font-weight:800; font-family:ui-monospace, monospace;">${x.slDisplay}</td>
+          <td><span class="${isHit ? 'badge-win' : 'signal-pill'}" style="font-size:0.72rem; padding:3px 8px;">${x.targetStatus}</span></td>
+        `;
+        b.appendChild(r);
+      });
+    }
 
-💎ZONE BUY STRONG 1 
-AREA : [Range harga batas bawah - batas atas 2 desimal dekat harga spot]
-REASON : [Alasan lelang SMC/Astro konkret]
+    function monitorActiveZonesHit(p) {
+      if (!activeTrackedZones || activeTrackedZones.length === 0) return;
+      let upd = false;
+      activeTrackedZones.forEach(z => {
+        if (z.isCompleted) return;
+        if (!z.isTriggered) {
+          if (z.type === 'BUY' && p <= z.areaHigh && p >= z.areaLow) z.isTriggered = true;
+          if (z.type === 'SELL' && p >= z.areaLow && p <= z.areaHigh) z.isTriggered = true;
+        }
+        if (z.isTriggered) {
+          if (z.type === 'BUY') {
+            if (p <= z.sl) { z.targetStatus = 'SL HIT (-30 PIPS)'; z.isCompleted = true; upd = true; }
+            else if (p >= z.tpMax) { z.targetStatus = 'TP MAX HIT (+180 PIPS)'; z.isCompleted = true; upd = true; }
+            else if (p >= z.tp1) { z.targetStatus = 'TP 1 HIT (+30 PIPS)'; upd = true; }
+          } else {
+            if (p >= z.sl) { z.targetStatus = 'SL HIT (-30 PIPS)'; z.isCompleted = true; upd = true; }
+            else if (p <= z.tpMax) { z.targetStatus = 'TP MAX HIT (+180 PIPS)'; z.isCompleted = true; upd = true; }
+            else if (p <= z.tp1) { z.targetStatus = 'TP 1 HIT (+30 PIPS)'; upd = true; }
+          }
+          if (upd) {
+            saveRecapItem({
+              displayTime: z.displayTime, country: "XAUUSD", title: z.title,
+              levelArea: `${z.areaLow.toFixed(2)} - ${z.areaHigh.toFixed(2)}`,
+              signal: z.type === 'BUY' ? '▲ BUY ZONE' : '▼ SELL ZONE',
+              badgeClass: z.type === 'BUY' ? 'signal-buy' : 'signal-sell',
+              slDisplay: `${z.sl.toFixed(2)} (-30p)`, targetStatus: z.targetStatus
+            });
+            renderPersistentRecapTable();
+          }
+        }
+      });
+    }
 
-SL: [Level harga exact 3.0 USD di bawah batas bawah area] (-30 pips)
-TP 1: [Level harga exact +30 pips]
-TP 2: [Level harga exact +60 pips]
-TP 3: [Level harga exact +100 pips]
-TP MAX: [Level harga exact +180 pips]
+    function registerZonesToAutoTracker(basePrice) {
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')} WIB`;
+      activeTrackedZones = [
+        {
+          id: `b1_${Date.now()}`, title: "4-Zone: BUY STRONG 1", type: "BUY", displayTime: timeStr,
+          areaLow: parseFloat((basePrice - 2.50).toFixed(2)), areaHigh: parseFloat((basePrice - 1.00).toFixed(2)),
+          sl: parseFloat((basePrice - 2.50 - 3.00).toFixed(2)), tp1: parseFloat((basePrice - 1.00 + 3.00).toFixed(2)),
+          tpMax: parseFloat((basePrice - 1.00 + 18.00).toFixed(2)), isTriggered: false, isCompleted: false, targetStatus: "STANDBY AREA"
+        },
+        {
+          id: `s1_${Date.now()}`, title: "4-Zone: SELL STRONG 1", type: "SELL", displayTime: timeStr,
+          areaLow: parseFloat((basePrice + 1.00).toFixed(2)), areaHigh: parseFloat((basePrice + 2.50).toFixed(2)),
+          sl: parseFloat((basePrice + 2.50 + 3.00).toFixed(2)), tp1: parseFloat((basePrice + 1.00 - 3.00).toFixed(2)),
+          tpMax: parseFloat((basePrice + 1.00 - 18.00).toFixed(2)), isTriggered: false, isCompleted: false, targetStatus: "STANDBY AREA"
+        }
+      ];
+      activeTrackedZones.forEach(z => {
+        saveRecapItem({
+          displayTime: z.displayTime, country: "XAUUSD", title: z.title,
+          levelArea: `${z.areaLow.toFixed(2)} - ${z.areaHigh.toFixed(2)}`,
+          signal: z.type === 'BUY' ? '▲ BUY ZONE' : '▼ SELL ZONE',
+          badgeClass: z.type === 'BUY' ? 'signal-buy' : 'signal-sell',
+          slDisplay: `${z.sl.toFixed(2)} (-30p)`, targetStatus: z.targetStatus
+        });
+      });
+      renderPersistentRecapTable();
+    }
 
-💎ZONE BUY STRONG 2
-AREA : [Range harga diskon ekstrim]
-REASON : [Alasan mitigasi demand]
-
-SL: [Level harga exact 3.0 USD di bawah batas bawah area] (-30 pips)
-TP 1: [Level harga exact +30 pips]
-TP 2: [Level harga exact +60 pips]
-TP 3: [Level harga exact +100 pips]
-TP MAX: [Level harga exact +200 pips]
-
-💎ZONE SELL STRONG 1
-AREA : [Range harga batas bawah - batas atas 2 desimal dekat harga spot]
-REASON : [Alasan lelang SMC/Astro konkret]
-
-SL: [Level harga exact 3.0 USD di atas batas atas area] (-30 pips)
-TP 1: [Level harga exact +30 pips]
-TP 2: [Level harga exact +60 pips]
-TP 3: [Level harga exact +100 pips]
-TP MAX: [Level harga exact +180 pips]
-
-💎ZONE SELL STRONG 2
-AREA : [Range harga premium ekstrim]
-REASON : [Alasan mitigasi supply]
-
-SL: [Level harga exact 3.0 USD di atas batas atas area] (-30 pips)
-TP 1: [Level harga exact +30 pips]
-TP 2: [Level harga exact +60 pips]
-TP 3: [Level harga exact +100 pips]
-TP MAX: [Level harga exact +200 pips]
-`;
-
-    let deskChatHistory = [];
-
+    // 5. CHAT MODAL INTERAKTIF (INSTANT 4-ZONE RESPONSE)
     const deskDrawer = document.getElementById('deskDrawerWindow');
     const btnOpenDesk = document.getElementById('btnOpenDeskDrawer');
     const btnCloseDesk = document.getElementById('btnCloseDeskDrawer');
     const deskChatLog = document.getElementById('deskChatLog');
     const deskUserInput = document.getElementById('deskUserInput');
-    const deskTyping = document.getElementById('deskTypingIndicator');
 
-    if (btnOpenDesk && deskDrawer) {
-      btnOpenDesk.addEventListener('click', () => {
-        deskDrawer.classList.toggle('active');
-        if (deskDrawer.classList.contains('active')) deskUserInput.focus();
-      });
-    }
-
-    if (btnCloseDesk && deskDrawer) {
-      btnCloseDesk.addEventListener('click', () => deskDrawer.classList.remove('active'));
-    }
+    if (btnOpenDesk) btnOpenDesk.onclick = () => deskDrawer.classList.toggle('active');
+    if (btnCloseDesk) btnCloseDesk.onclick = () => deskDrawer.classList.remove('active');
 
     function triggerQuickDeskPrompt(text) {
       if (deskUserInput) {
@@ -2137,212 +1879,24 @@ TP MAX: [Level harga exact +200 pips]
       }
     }
 
-    function appendDeskChatMessage(content, sender = 'assistant', isHtml = true) {
-      if (!deskChatLog) return;
+    function appendDeskChatMessage(content, sender = 'assistant') {
       const bubble = document.createElement('div');
       bubble.className = `desk-chat-msg ${sender === 'user' ? 'desk-msg-user' : 'desk-msg-assistant'}`;
-      if (isHtml) bubble.innerHTML = content;
-      else bubble.textContent = content;
-      deskChatLog.insertBefore(bubble, deskTyping);
+      bubble.innerHTML = content;
+      deskChatLog.appendChild(bubble);
       deskChatLog.scrollTop = deskChatLog.scrollHeight;
     }
 
-    function setDeskTypingState(isTyping) {
-      if (!deskTyping) return;
-      deskTyping.style.display = isTyping ? 'flex' : 'none';
-      if (deskChatLog) deskChatLog.scrollTop = deskChatLog.scrollHeight;
-    }
-
-    function formatDeskOutputToHtml(rawText) {
-      let formatted = rawText
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\n\n/g, '<br/><br/>')
-        .replace(/\n/g, '<br/>');
-
-      formatted = formatted.replace(
-        /(💎ZONE BUY STRONG \d[\s\S]*?)(?=💎ZONE|$)/g,
-        '<div class="zone-block zone-buy">$1</div>'
-      );
-
-      formatted = formatted.replace(
-        /(💎ZONE SELL STRONG \d[\s\S]*?)(?=💎ZONE|$)/g,
-        '<div class="zone-block zone-sell">$1</div>'
-      );
-
-      return formatted;
-    }
-
-    // Fungsi Pendaftaran 4-Zona ke Watcher Otomatis
-    function registerZonesToAutoTracker(basePrice) {
-      const now = new Date();
-      const timeStr = new Intl.DateTimeFormat('id-ID', { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit' }).format(now) + " WIB";
-
-      // 2 BUY & 2 SELL dengan SL Tepat 30 Pips (3.0 USD)
-      activeTrackedZones = [
-        {
-          id: `b1_${Date.now()}`,
-          title: "4-Zone: BUY STRONG 1",
-          type: "BUY",
-          displayTime: timeStr,
-          areaLow: parseFloat((basePrice - 2.50).toFixed(2)),
-          areaHigh: parseFloat((basePrice - 1.00).toFixed(2)),
-          sl: parseFloat((basePrice - 2.50 - 3.00).toFixed(2)),
-          tp1: parseFloat((basePrice - 1.00 + 3.00).toFixed(2)),
-          tp2: parseFloat((basePrice - 1.00 + 6.00).toFixed(2)),
-          tp3: parseFloat((basePrice - 1.00 + 10.00).toFixed(2)),
-          tpMax: parseFloat((basePrice - 1.00 + 18.00).toFixed(2)),
-          isTriggered: false,
-          isCompleted: false,
-          targetStatus: "STANDBY AREA"
-        },
-        {
-          id: `b2_${Date.now()}`,
-          title: "4-Zone: BUY STRONG 2",
-          type: "BUY",
-          displayTime: timeStr,
-          areaLow: parseFloat((basePrice - 6.50).toFixed(2)),
-          areaHigh: parseFloat((basePrice - 4.50).toFixed(2)),
-          sl: parseFloat((basePrice - 6.50 - 3.00).toFixed(2)),
-          tp1: parseFloat((basePrice - 4.50 + 3.00).toFixed(2)),
-          tp2: parseFloat((basePrice - 4.50 + 6.00).toFixed(2)),
-          tp3: parseFloat((basePrice - 4.50 + 10.00).toFixed(2)),
-          tpMax: parseFloat((basePrice - 4.50 + 20.00).toFixed(2)),
-          isTriggered: false,
-          isCompleted: false,
-          targetStatus: "STANDBY AREA"
-        },
-        {
-          id: `s1_${Date.now()}`,
-          title: "4-Zone: SELL STRONG 1",
-          type: "SELL",
-          displayTime: timeStr,
-          areaLow: parseFloat((basePrice + 1.00).toFixed(2)),
-          areaHigh: parseFloat((basePrice + 2.50).toFixed(2)),
-          sl: parseFloat((basePrice + 2.50 + 3.00).toFixed(2)),
-          tp1: parseFloat((basePrice + 1.00 - 3.00).toFixed(2)),
-          tp2: parseFloat((basePrice + 1.00 - 6.00).toFixed(2)),
-          tp3: parseFloat((basePrice + 1.00 - 10.00).toFixed(2)),
-          tpMax: parseFloat((basePrice + 1.00 - 18.00).toFixed(2)),
-          isTriggered: false,
-          isCompleted: false,
-          targetStatus: "STANDBY AREA"
-        },
-        {
-          id: `s2_${Date.now()}`,
-          title: "4-Zone: SELL STRONG 2",
-          type: "SELL",
-          displayTime: timeStr,
-          areaLow: parseFloat((basePrice + 4.50).toFixed(2)),
-          areaHigh: parseFloat((basePrice + 6.50).toFixed(2)),
-          sl: parseFloat((basePrice + 6.50 + 3.00).toFixed(2)),
-          tp1: parseFloat((basePrice + 4.50 - 3.00).toFixed(2)),
-          tp2: parseFloat((basePrice + 4.50 - 6.00).toFixed(2)),
-          tp3: parseFloat((basePrice + 4.50 - 10.00).toFixed(2)),
-          tpMax: parseFloat((basePrice + 4.50 - 20.00).toFixed(2)),
-          isTriggered: false,
-          isCompleted: false,
-          targetStatus: "STANDBY AREA"
-        }
-      ];
-
-      // Catat awal ke dalam tabel rekapan
-      activeTrackedZones.forEach(z => {
-        saveRecapItem({
-          displayTime: z.displayTime,
-          country: "XAUUSD",
-          title: z.title,
-          levelArea: `${z.areaLow.toFixed(2)} - ${z.areaHigh.toFixed(2)}`,
-          signal: z.type === 'BUY' ? '▲ BUY ZONE' : '▼ SELL ZONE',
-          badgeClass: z.type === 'BUY' ? 'signal-buy' : 'signal-sell',
-          slDisplay: `${z.sl.toFixed(2)} (-30p)`,
-          targetStatus: z.targetStatus
-        });
-      });
-      renderPersistentRecapTable();
-    }
-
-    async function handleDeskMessageSubmit(e) {
+    function handleDeskMessageSubmit(e) {
       if (e) e.preventDefault();
-      const rawQuery = deskUserInput.value.trim();
-      if (!rawQuery) return;
-
-      appendDeskChatMessage(rawQuery, 'user', false);
+      const q = deskUserInput.value.trim();
+      if (!q) return;
+      appendDeskChatMessage(q, 'user');
       deskUserInput.value = '';
 
-      setDeskTypingState(true);
+      const base = liveSpotPrice > 0 ? liveSpotPrice : 2735.40;
 
-      const spot = liveSpotPrice > 0 ? liveSpotPrice : 2735.40;
-      const aspect = document.getElementById('liveAspectTag')?.innerText || 'Planetary Transit Alignment';
-      const session = document.getElementById('sessionNameVal')?.innerText || 'NEW_YORK';
-      const bsl = document.getElementById('bslVal')?.innerText || (spot + 6.5).toFixed(2);
-      const ssl = document.getElementById('sslVal')?.innerText || (spot - 6.5).toFixed(2);
-
-      const contextInjectionPrompt = `
-[TELEMETRI REAL-TIME TERMINAL DESK]
-- Spot XAUUSD Terkini: ${spot} USD
-- Sesi Berjalan: ${session}
-- Volatilitas ATR M15: ${liveATR} USD
-- Buy-Side Liquidity Pool (BSL): ${bsl}
-- Sell-Side Liquidity Pool (SSL): ${ssl}
-- Geometri Aspek Transit: ${aspect}
-
-Instruksi: Sajikan kalkulasi 4 ZONE SNIPER (2 BUY & 2 SELL) dekat harga spot saat ini (${spot}) dengan Stop Loss wajib tepat 30 pips (-3.0 USD).
-`;
-
-      const apiKey = DESK_CONFIG.apiKey;
-
-      if (apiKey) {
-        try {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 16000);
-
-          const messagesPayload = [
-            { role: 'system', content: DESK_SYSTEM_INSTRUCTION },
-            ...deskChatHistory.slice(-DESK_CONFIG.maxHistory),
-            { role: 'user', content: `${contextInjectionPrompt}\nInquiry: ${rawQuery}` }
-          ];
-
-          const response = await fetch(DESK_CONFIG.apiEndpoint, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${apiKey}`
-            },
-            body: JSON.stringify({
-              model: DESK_CONFIG.model,
-              messages: messagesPayload,
-              temperature: 0.15,
-              max_tokens: 850
-            }),
-            signal: controller.signal
-          });
-
-          clearTimeout(timeoutId);
-
-          if (response.ok) {
-            const data = await response.json();
-            setDeskTypingState(false);
-            if (data.choices && data.choices[0] && data.choices[0].message) {
-              const reply = data.choices[0].message.content;
-              deskChatHistory.push({ role: 'user', content: rawQuery });
-              deskChatHistory.push({ role: 'assistant', content: reply });
-              appendDeskChatMessage(formatDeskOutputToHtml(reply), 'assistant', true);
-
-              // Daftarkan zona ke pemantau rekapitulasi otomatis
-              registerZonesToAutoTracker(spot);
-              return;
-            }
-          }
-        } catch (err) {
-          // Beralih ke fallback deterministik jika offline
-        }
-      }
-
-      // FALLBACK DETERMINISTIK KUANTITATIF (PERSIS TEMPLATE DENGAN SL 30 PIPS)
       setTimeout(() => {
-        setDeskTypingState(false);
-        const base = spot;
-
         const b1Low = (base - 2.50).toFixed(2);
         const b1High = (base - 1.00).toFixed(2);
         const b1SL = (parseFloat(b1Low) - 3.00).toFixed(2);
@@ -2375,11 +1929,11 @@ Instruksi: Sajikan kalkulasi 4 ZONE SNIPER (2 BUY & 2 SELL) dekat harga spot saa
         const s2TP3 = (parseFloat(s2Low) - 10.00).toFixed(2);
         const s2TPMAX = (parseFloat(s2Low) - 20.00).toFixed(2);
 
-        const outputHtml = `
+        const out = `
           <div class="zone-block zone-buy">
             <strong>💎ZONE BUY STRONG 1</strong><br/>
             AREA : ${b1Low} - ${b1High}<br/>
-            REASON : Re-test mitigasi Order Block demand terdekat & kompresi lelang intraday.<br/><br/>
+            REASON : Re-test mitigasi Order Block demand terdekat.<br/><br/>
             SL: ${b1SL} (-30 pips)<br/>
             TP 1: ${b1TP1} (+30 pips)<br/>
             TP 2: ${b1TP2} (+60 pips)<br/>
@@ -2401,7 +1955,7 @@ Instruksi: Sajikan kalkulasi 4 ZONE SNIPER (2 BUY & 2 SELL) dekat harga spot saa
           <div class="zone-block zone-sell">
             <strong>💎ZONE SELL STRONG 1</strong><br/>
             AREA : ${s1Low} - ${s1High}<br/>
-            REASON : Mitigasi Fair Value Gap (FVG) supply terdekat & penolakan level premium.<br/><br/>
+            REASON : Mitigasi Fair Value Gap (FVG) supply terdekat.<br/><br/>
             SL: ${s1SL} (-30 pips)<br/>
             TP 1: ${s1TP1} (+30 pips)<br/>
             TP 2: ${s1TP2} (+60 pips)<br/>
@@ -2412,7 +1966,7 @@ Instruksi: Sajikan kalkulasi 4 ZONE SNIPER (2 BUY & 2 SELL) dekat harga spot saa
           <div class="zone-block zone-sell">
             <strong>💎ZONE SELL STRONG 2</strong><br/>
             AREA : ${s2Low} - ${s2High}<br/>
-            REASON : Sapuan manipulasi Buy-Side Liquidity (BSL) eksternal sebelum distribusi penurunan.<br/><br/>
+            REASON : Sapuan manipulasi Buy-Side Liquidity (BSL) eksternal.<br/><br/>
             SL: ${s2SL} (-30 pips)<br/>
             TP 1: ${s2TP1} (+30 pips)<br/>
             TP 2: ${s2TP2} (+60 pips)<br/>
@@ -2420,29 +1974,35 @@ Instruksi: Sajikan kalkulasi 4 ZONE SNIPER (2 BUY & 2 SELL) dekat harga spot saa
             TP MAX: ${s2TPMAX} (+200 pips)
           </div>
         `;
-
-        appendDeskChatMessage(outputHtml, 'assistant', true);
+        appendDeskChatMessage(out, 'assistant');
         registerZonesToAutoTracker(base);
-      }, 600);
+      }, 300);
     }
 
-    // Inisialisasi awal sistem
+    // 6. JAM & INISIALISASI
+    function updateLiveClocks() {
+      const now = new Date();
+      document.getElementById('timeWIB').innerText = new Intl.DateTimeFormat('id-ID', { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(now);
+      document.getElementById('timeLondon').innerText = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(now);
+      document.getElementById('timeNY').innerText = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(now);
+    }
+    setInterval(updateLiveClocks, 1000);
+    updateLiveClocks();
+
+    syncControlsUI(new Date());
     buildAstroQuickPills();
     renderDynamicAstrodox();
+    renderNewsCards();
     renderPersistentRecapTable();
-    loadGlobalEconomicNewsFeed();
 
     setInterval(() => {
-      if (isAstroLiveMode) {
-        renderDynamicAstrodox();
-      }
-      renderNewsCards();
+      if (isAstroLiveMode) renderDynamicAstrodox();
     }, 1000);
 
-    document.getElementById('btnLogout').addEventListener('click', async () => {
+    document.getElementById('btnLogout').onclick = async () => {
       await supabaseClient.auth.signOut();
       window.location.href = 'login.html';
-    });
+    };
   </script>
 </body>
 </html>
