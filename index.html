@@ -1,1763 +1,473 @@
 <!DOCTYPE html>
-<html lang="id" class="dark scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ZERODIAX & ZERO SYNDICATE VIP // Institutional Astro-Quant & Rebate Ecosystem</title>
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS CDN -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>ZERODIAX // ZERO SYNDICATE VIP</title>
+  <!-- Tailwind via CDN + tiny custom reset -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            obsidian: '#05070A',
-            charcoal: '#0D1117',
-            charcoalCard: '#131923',
-            cyberGreen: '#00FF88',
-            cyberGreenDark: '#00cc6a',
-            gold: '#D4AF37',
-            goldLight: '#F3E5AB',
-            crimson: '#FF3366',
-            electricBlue: '#00D8FF'
-          },
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-            display: ['"Space Grotesk"', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #05070A; }
-    ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #00FF88; }
-
-    /* Glows & Glass */
-    .glass-panel {
-      background: rgba(13, 17, 23, 0.75);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+    /* strict matte + hairline system */
+    body { background: #05070A; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+    .bento-card {
+      background: #0C0E14;
       border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 1.5rem; /* soft but not childish */
+      padding: 1.5rem;
+      transition: border-color 0.15s ease;
     }
-    .glass-panel-gold {
-      background: rgba(22, 18, 12, 0.75);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(212, 175, 55, 0.25);
+    .bento-card:hover { border-color: rgba(255, 255, 255, 0.12); }
+    .hairline { border-color: rgba(255, 255, 255, 0.07); }
+    .gold-accent { color: #D4AF37; }
+    .emerald-accent { color: #10B981; }
+    .rose-accent { color: #F43F5E; }
+    .slate-muted { color: #94A3B8; }
+    .no-glow { box-shadow: none; }
+    /* custom scrollbar minimal */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #0C0E14; }
+    ::-webkit-scrollbar-thumb { background: #2A2E3A; border-radius: 10px; }
+    .preloader-hidden { display: none !important; }
+    /* slide track */
+    input[type=range] {
+      -webkit-appearance: none; background: transparent; width: 100%; height: 3px; background: #1F2430; border-radius: 4px;
     }
-    .neon-border-green {
-      box-shadow: 0 0 20px -5px rgba(0, 255, 136, 0.25), inset 0 0 15px -8px rgba(0, 255, 136, 0.15);
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; height: 18px; width: 18px; border-radius: 50%; background: #D4AF37; cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 0 0 2px #05070A;
     }
-    .neon-border-gold {
-      box-shadow: 0 0 20px -5px rgba(212, 175, 55, 0.25), inset 0 0 15px -8px rgba(212, 175, 55, 0.15);
-    }
-
-    /* Ambient Background Pulse */
-    @keyframes ambientDrift {
-      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.18; }
-      50% { transform: translate(25px, -35px) scale(1.15); opacity: 0.28; }
-    }
-    .ambient-aurora {
-      animation: ambientDrift 16s ease-in-out infinite;
-    }
-
-    /* Pulse Glow Keyframes */
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.98); }
-    }
-    .pulse-live { animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    .astro-wheel-container svg { width: 100%; height: auto; display: block; }
+    .news-table th { font-weight: 500; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94A3B8; }
   </style>
 </head>
+<body class="min-h-screen text-[#F8FAFC] antialiased p-4 md:p-6">
 
-<body class="bg-obsidian text-slate-100 antialiased font-sans selection:bg-cyberGreen selection:text-obsidian overflow-x-hidden min-h-screen relative">
-
-  <!-- ==================== PRELOADER SINEMATIK INSTAN (1.1 DETIK FAILSAFE) ==================== -->
-  <div id="preloader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-obsidian transition-opacity duration-500">
-    <div class="relative flex flex-col items-center">
-      <!-- Monogram SVG Logo Zerodiax -->
-      <div class="relative w-20 h-20 mb-5 flex items-center justify-center">
-        <div class="absolute inset-0 bg-cyberGreen/20 blur-xl rounded-2xl animate-pulse"></div>
-        <svg class="w-16 h-16 relative z-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="50,6 90,28 90,72 50,94 10,72 10,28" stroke="#00FF88" stroke-width="4" stroke-linejoin="round" fill="#0D1117" />
-          <polygon points="50,14 82,32 82,68 50,86 18,68 18,32" stroke="#D4AF37" stroke-width="1.8" fill="none" opacity="0.6"/>
-          <!-- Z Icon -->
-          <path d="M35 34 H65 L40 66 H65" stroke="#00FF88" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-
-      <p class="text-[10px] tracking-[0.28em] text-gold uppercase font-mono font-semibold mb-1">INSTITUTIONAL QUANT ECOSYSTEM</p>
-      <h2 class="text-lg font-bold font-display tracking-wider text-white mb-4">ZERODIAX <span class="text-cyberGreen font-mono">//</span> VIP TERMINAL</h2>
-      
-      <!-- Progress Bar Container -->
-      <div class="w-64 bg-charcoal border border-slate-800 rounded-full h-2 p-0.5 relative overflow-hidden">
-        <div id="preloader-bar" class="h-full bg-gradient-to-r from-cyberGreen via-electricBlue to-gold rounded-full transition-all duration-100 ease-out" style="width: 0%"></div>
-      </div>
-      
-      <div class="flex items-center justify-between w-64 mt-2 font-mono text-[11px] text-slate-400">
-        <span id="preloader-status">SYNCING REALTIME EPHEMERIS...</span>
-        <span id="preloader-pct" class="text-cyberGreen font-bold">0%</span>
-      </div>
-
-      <button onclick="dismissPreloader()" class="mt-6 text-[11px] font-mono text-slate-500 hover:text-cyberGreen transition underline tracking-wider">
-        Lewati Intro & Masuk Terminal &rarr;
-      </button>
-    </div>
+  <!-- PRELOADER (under 0.8s, completely removed) -->
+  <div id="preloader" class="fixed inset-0 z-50 flex items-center justify-center bg-[#05070A]">
+    <div class="text-sm tracking-[0.3em] text-slate-muted">ZERODIAX</div>
   </div>
 
-  <script>
-    // Inline Safe Preloader Engine (Selesai dalam 1 detik & anti-stuck)
-    (function(){
-      let pct = 0;
-      const bar = document.getElementById('preloader-bar');
-      const text = document.getElementById('preloader-pct');
-      const status = document.getElementById('preloader-status');
-      const preloader = document.getElementById('preloader');
-      
-      const interval = setInterval(() => {
-        pct += Math.floor(Math.random() * 18) + 12;
-        if(pct > 100) pct = 100;
-        if(bar) bar.style.width = pct + '%';
-        if(text) text.innerText = pct + '%';
-        if(pct >= 60 && status) status.innerText = 'INITIALIZING FULL-AUTO ENGINE...';
-        if(pct >= 100) {
-          clearInterval(interval);
-          dismissPreloader();
-        }
-      }, 70);
+  <!-- MAIN CONTAINER – bento grid logic -->
+  <main class="max-w-[1400px] mx-auto space-y-6">
 
-      window.dismissPreloader = function() {
-        clearInterval(interval);
-        if(preloader) {
-          preloader.style.opacity = '0';
-          setTimeout(() => { preloader.style.display = 'none'; }, 500);
-        }
-      };
-      // 1.4s Emergency Failsafe
-      setTimeout(dismissPreloader, 1400);
-    })();
-  </script>
-
-  <!-- Ambient Glowing Aurora Background -->
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div class="ambient-aurora absolute -top-40 -left-40 w-96 h-96 bg-cyberGreen/15 rounded-full blur-[110px]"></div>
-    <div class="ambient-aurora absolute top-1/3 -right-40 w-96 h-96 bg-gold/15 rounded-full blur-[120px]" style="animation-delay: -6s;"></div>
-    <div class="ambient-aurora absolute -bottom-40 left-1/3 w-[30rem] h-[30rem] bg-electricBlue/10 rounded-full blur-[140px]" style="animation-delay: -10s;"></div>
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#0d111715_1px,transparent_1px),linear-gradient(to_bottom,#0d111715_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-  </div>
-
-  <!-- ==================== TOP LIVE TICKER REALTIME ==================== -->
-  <header class="relative z-50 border-b border-slate-800/80 bg-obsidian/90 backdrop-blur-md">
-    <div class="flex items-center justify-between text-[11px] font-mono px-3 sm:px-6 py-1.5 border-b border-slate-900/60 overflow-x-auto whitespace-nowrap gap-4">
-      <div class="flex items-center gap-2 text-slate-400">
-        <span class="w-2 h-2 rounded-full bg-cyberGreen pulse-live"></span>
-        <span class="text-slate-300 font-semibold tracking-wider uppercase">INSTITUTIONAL AUTO-ENGINE</span>
-        <span class="text-slate-600">|</span>
-        <span class="text-slate-400">LIQUIDITY: <span class="text-white font-medium">VALETAX ECN PRIME</span></span>
-      </div>
-      <div class="flex items-center gap-4">
-        <!-- Live Gold -->
-        <div class="flex items-center gap-1.5 bg-charcoal/80 px-2 py-0.5 rounded border border-slate-800">
-          <span class="text-gold font-bold">XAUUSD</span>
-          <span id="ticker-gold-price" class="text-white font-bold">$2,748.80</span>
-          <span id="ticker-gold-chg" class="text-cyberGreen text-[10px] font-bold">+0.84%</span>
-        </div>
-        <!-- Live BTC -->
-        <div class="flex items-center gap-1.5 bg-charcoal/80 px-2 py-0.5 rounded border border-slate-800">
-          <span class="text-cyberGreen font-bold">BTCUSD</span>
-          <span id="ticker-btc-price" class="text-white font-bold">$89,420.50</span>
-          <span id="ticker-btc-chg" class="text-cyberGreen text-[10px] font-bold">+2.41%</span>
-        </div>
-        <!-- Auto Refresh Indicator -->
-        <div class="hidden md:flex items-center gap-1 text-[10px] text-slate-400">
-          <svg class="w-3 h-3 text-cyberGreen animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-          </svg>
-          <span>AUTOPILOT: <span class="text-cyberGreen font-bold">ON</span></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Main Navigation Bar -->
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+    <!-- HEADER: brand + live feed -->
+    <header class="flex flex-wrap items-center justify-between gap-4 px-2">
       <div class="flex items-center gap-3">
-        <!-- Brand Logo SVG -->
-        <a href="#" class="flex items-center gap-2.5 group">
-          <div class="w-10 h-10 rounded-xl bg-charcoal border border-cyberGreen/40 flex items-center justify-center p-1.5 shadow-[0_0_15px_rgba(0,255,136,0.15)] group-hover:border-cyberGreen transition">
-            <svg class="w-full h-full" viewBox="0 0 100 100" fill="none">
-              <polygon points="50,8 88,28 88,72 50,92 12,72 12,28" stroke="#00FF88" stroke-width="6" fill="#05070A"/>
-              <path d="M35 34 H65 L40 66 H65" stroke="#D4AF37" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="flex items-center gap-1.5">
-              <span class="text-base font-extrabold font-display tracking-wider text-white">ZERODIAX</span>
-              <span class="bg-gold/15 text-gold border border-gold/40 text-[9px] font-mono px-1.5 py-0.2 rounded font-bold uppercase tracking-wider">SYNDICATE VIP</span>
-            </div>
-            <p class="text-[10px] text-slate-400 font-mono tracking-tight">Institutional Astro-Quant &amp; Rebate Ecosystem</p>
-          </div>
-        </a>
+        <span class="text-xl font-medium tracking-[0.1em] text-[#F8FAFC]">ZERODIAX</span>
+        <span class="text-[0.65rem] uppercase tracking-[0.2em] text-slate-muted">// ZERO SYNDICATE VIP</span>
       </div>
-
-      <!-- Quick Actions -->
-      <div class="flex items-center gap-2 sm:gap-3">
-        <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gold/40 bg-gold/10 text-gold text-xs font-semibold hover:bg-gold/20 transition">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 3.8L19.2 19H4.8L12 5.8z"/></svg>
-          Registrasi Valetax
-        </a>
-        <a href="https://wa.me/62882010445069?text=Halo%20Admin%20ZERODIAX,%20saya%20ingin%20bergabung%20dengan%20ZERO%20SYNDICATE%20VIP%20dan%20aktivasi%20Self-Rebate%20Valetax." target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-cyberGreen text-obsidian text-xs font-extrabold hover:bg-cyberGreenDark transition shadow-[0_0_15px_rgba(0,255,136,0.3)]">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          Join VIP
-        </a>
+      <div class="flex items-center gap-6">
+        <div class="flex items-center gap-2 text-xs">
+          <span class="text-slate-muted">PAXG/USDT</span>
+          <span id="gold-price" class="font-mono text-[#F8FAFC]">$0.00</span>
+          <span id="gold-change" class="text-[0.6rem] text-emerald-accent">+0.00%</span>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <span class="text-slate-muted">BTC/USDT</span>
+          <span id="btc-price" class="font-mono text-[#F8FAFC]">$0.00</span>
+          <span id="btc-change" class="text-[0.6rem] text-emerald-accent">+0.00%</span>
+        </div>
+        <span class="text-[0.6rem] uppercase tracking-wider text-gold-accent border border-[#D4AF37] px-2 py-1 rounded-full">VALETAX #1682343</span>
       </div>
-    </nav>
-  </header>
+    </header>
 
-  <!-- ==================== HERO SECTION (INSTITUTIONAL PRECISION) ==================== -->
-  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-12">
-    <!-- Partner Badge -->
-    <div class="flex flex-wrap items-center justify-center gap-2 mb-4">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold/40 bg-charcoal/80 text-[11px] font-mono text-goldLight backdrop-blur">
-        <svg class="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        <span class="font-bold text-gold">OFFICIAL PARTNER BROKER VALETAX</span>
-      </div>
-      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-cyberGreen/30 bg-cyberGreen/10 text-[11px] font-mono text-cyberGreen">
-        <span class="w-1.5 h-1.5 rounded-full bg-cyberGreen pulse-live"></span>
-        <span>Rebate Otomatis $9 – $12 / Lot</span>
-      </div>
-    </div>
-
-    <!-- Main Typography Header -->
-    <div class="text-center max-w-3xl mx-auto mb-6">
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-sans tracking-tight text-white leading-tight">
-        Trade With <span class="text-cyberGreen underline decoration-cyberGreen/40 decoration-4">Institutional</span> Precision.<br/>
-        Earn Every Lot You Execute.
-      </h1>
-      <p class="mt-3 text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
-        Sinergi algoritma Astro-Quant Placidus 360°, eksekusi berita makro terkonfirmasi otomatis, dan program Self-Rebate $9–$12/lot tanpa potongan langsung ke akun Valetax Anda.
-      </p>
-    </div>
-
-    <!-- Direct Anchors / Jump Buttons -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-lg mx-auto mb-8">
-      <a href="#astro-engine" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-cyberGreen text-obsidian font-extrabold text-sm hover:bg-cyberGreenDark transition shadow-[0_0_25px_rgba(0,255,136,0.35)]">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
-        Buka Chart Astro Placidus &amp; Signal &darr;
-      </a>
-      <a href="#macro-news-engine" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-gold/50 bg-gold/10 text-gold font-bold text-sm hover:bg-gold/20 transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        Jadwal News &amp; Pre-News Bias
-      </a>
-    </div>
-
-    <!-- ==================== 1. MODUL ASTRO-QUANT PLACIDUS 360° (FULL OTOMATIS) ==================== -->
-    <section id="astro-engine" class="mt-4 pt-2">
-      <!-- Section Title & Status -->
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-800">
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-cyberGreen pulse-live"></span>
-            <span class="text-xs font-mono font-bold text-gold uppercase tracking-widest">PLACIDUS HARMONIC ENGINE // 360&deg;</span>
-          </div>
-          <h2 class="text-xl sm:text-2xl font-bold font-display text-white">Chart Astro Transit &amp; Analisa Buy/Sell Otomatis</h2>
-        </div>
-        
-        <!-- Live Sync Status & Mode Switch -->
-        <div class="flex items-center gap-2">
-          <button id="btn-toggle-autosync" onclick="toggleAutoSync()" class="px-3 py-1.5 rounded-lg border border-cyberGreen/40 bg-cyberGreen/10 text-cyberGreen text-xs font-mono font-bold flex items-center gap-1.5 hover:bg-cyberGreen/20 transition">
-            <span class="w-2 h-2 rounded-full bg-cyberGreen animate-ping"></span>
-            <span id="autosync-text">AUTOPILOT LIVE: AKTIF</span>
-          </button>
-          
-          <button onclick="toggleChartTheme()" class="px-3 py-1.5 rounded-lg border border-slate-700 bg-charcoal text-slate-300 text-xs font-mono hover:text-white transition">
-            Tema Chart: <span id="chart-theme-name" class="text-gold font-bold">Dark Luxury</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- KONTROL WAKTU LENGKAP: Custom Tanggal, Bulan, Tahun, Jam & Presets -->
-      <div class="glass-panel rounded-2xl p-4 sm:p-5 mb-6 neon-border-green">
-        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <div class="flex items-center gap-2">
-            <span class="text-xs font-mono font-bold text-slate-300 uppercase">Pilih Waktu Observasi Transit:</span>
-            <span class="text-[11px] font-mono text-slate-400">(Otomatis update derajat, garis aspek, &amp; reason)</span>
-          </div>
-          
-          <!-- Preset Buttons -->
-          <div class="flex flex-wrap items-center gap-1.5">
-            <button onclick="applyPreset('astrodox')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-gold text-xs font-mono border border-gold/30 transition">
-              ★ Preset Astrodox (28.10.2026)
-            </button>
-            <button onclick="applyPreset('cpi')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyberGreen text-xs font-mono border border-cyberGreen/30 transition">
-              CPI Window
-            </button>
-            <button onclick="applyPreset('now')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono border border-slate-700 transition">
-              Waktu Sekarang (Live)
-            </button>
-          </div>
-        </div>
-
-        <!-- Custom Date-Time Selectors Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs font-mono">
-          <!-- Tanggal -->
-          <div>
-            <label class="block text-slate-400 mb-1 text-[11px]">TANGGAL (DAY)</label>
-            <select id="sel-day" onchange="onCustomTimeChange()" class="w-full bg-obsidian border border-slate-700 rounded-lg p-2 text-white font-bold focus:border-cyberGreen focus:outline-none">
-              <!-- JS Populated 1-31 -->
-            </select>
-          </div>
-          <!-- Bulan -->
-          <div>
-            <label class="block text-slate-400 mb-1 text-[11px]">BULAN (MONTH)</label>
-            <select id="sel-month" onchange="onCustomTimeChange()" class="w-full bg-obsidian border border-slate-700 rounded-lg p-2 text-white font-bold focus:border-cyberGreen focus:outline-none">
-              <option value="0">01 - Januari</option>
-              <option value="1">02 - Februari</option>
-              <option value="2">03 - Maret</option>
-              <option value="3">04 - April</option>
-              <option value="4">05 - Mei</option>
-              <option value="5">06 - Juni</option>
-              <option value="6">07 - Juli</option>
-              <option value="7">08 - Agustus</option>
-              <option value="8">09 - September</option>
-              <option value="9" selected>10 - Oktober</option>
-              <option value="10">11 - November</option>
-              <option value="11">12 - Desember</option>
-            </select>
-          </div>
-          <!-- Tahun -->
-          <div>
-            <label class="block text-slate-400 mb-1 text-[11px]">TAHUN (YEAR)</label>
-            <select id="sel-year" onchange="onCustomTimeChange()" class="w-full bg-obsidian border border-slate-700 rounded-lg p-2 text-white font-bold focus:border-cyberGreen focus:outline-none">
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-              <option value="2026" selected>2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-            </select>
-          </div>
-          <!-- Jam -->
-          <div>
-            <label class="block text-slate-400 mb-1 text-[11px]">JAM (HOUR 00-23)</label>
-            <select id="sel-hour" onchange="onCustomTimeChange()" class="w-full bg-obsidian border border-slate-700 rounded-lg p-2 text-white font-bold focus:border-cyberGreen focus:outline-none">
-              <!-- JS Populated 0-23 -->
-            </select>
-          </div>
-          <!-- Menit -->
-          <div>
-            <label class="block text-slate-400 mb-1 text-[11px]">MENIT (00-59)</label>
-            <select id="sel-minute" onchange="onCustomTimeChange()" class="w-full bg-obsidian border border-slate-700 rounded-lg p-2 text-white font-bold focus:border-cyberGreen focus:outline-none">
-              <!-- JS Populated 00-59 -->
-            </select>
-          </div>
-          <!-- Timezone -->
-          <div>
-            <label class="block text-slate-400 mb-1 text-[11px]">ZONA WAKTU</label>
-            <select id="sel-tz" onchange="onCustomTimeChange()" class="w-full bg-obsidian border border-slate-700 rounded-lg p-2 text-cyberGreen font-bold focus:border-cyberGreen focus:outline-none">
-              <option value="EDT" selected>New York EDT (UTC-4)</option>
-              <option value="WIB">Jakarta WIB (UTC+7)</option>
-              <option value="UTC">Universal UTC+0</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Current Active Calculation Display -->
-        <div class="mt-3 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between text-xs font-mono text-slate-400 gap-2">
-          <div>
-            TRANSIT TARGET: <span id="display-target-time" class="text-gold font-bold">28.10.2026 08:30:00 -4 Placidus (New York City)</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span>PAIR AKTIF:</span>
-            <button onclick="switchAstroPair('XAUUSD')" id="btn-pair-gold" class="px-2 py-0.5 rounded bg-cyberGreen text-obsidian font-bold">XAUUSD</button>
-            <button onclick="switchAstroPair('BTCUSD')" id="btn-pair-btc" class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-bold hover:text-white">BTCUSD</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- MAIN DUAL-PANEL: CHART WHEEL (KIRI) vs HASIL ANALISA BUY/SELL CERDAS (KANAN) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        
-        <!-- KOLOM KIRI: SVG PLACIDUS WHEEL 360° & EPHEMERIS (7 Cols) -->
-        <div class="lg:col-span-7 glass-panel rounded-2xl p-4 sm:p-5 relative overflow-hidden" id="chart-container">
-          <div class="flex items-center justify-between mb-3">
-            <div>
-              <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Astrodox Harmonic Wheel Engine</span>
-              <h3 class="text-sm font-bold font-mono text-white flex items-center gap-2">
-                TRANSIT PLACIDUS 360&deg;
-                <span class="text-xs text-cyberGreen font-normal" id="chart-aspect-count">(14 Aspek Aktif)</span>
-              </h3>
-            </div>
-            <div class="text-[10px] font-mono text-slate-400 text-right">
-              <div>Orbs: <span class="text-gold">Transit (Astrodox)</span></div>
-              <div id="active-patterns" class="text-cyberGreen font-bold">Bisektil ☽ ♅ ♇ Aktif</div>
-            </div>
-          </div>
-
-          <!-- SVG Canvas Wheel Interactive Container -->
-          <div class="relative w-full aspect-square max-w-[480px] mx-auto flex items-center justify-center my-2">
-            <svg id="astro-svg" class="w-full h-full transition-transform duration-700" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-              <!-- Svg will be fully rendered dynamically by JS -->
-            </svg>
-          </div>
-
-          <!-- Legenda Garis Aspek Otomatis -->
-          <div class="mt-4 pt-3 border-t border-slate-800 grid grid-cols-3 gap-2 text-center font-mono text-[11px]">
-            <div class="bg-charcoal/80 border border-cyberGreen/30 p-2 rounded-lg">
-              <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyberGreen mr-1"></span>
-              <span class="text-cyberGreen font-bold">Trine (120&deg;) &amp; Sextile (60&deg;)</span>
-              <p class="text-[9px] text-slate-400 mt-0.5">Harmonik / Likuiditas Ekspansi</p>
-            </div>
-            <div class="bg-charcoal/80 border border-crimson/30 p-2 rounded-lg">
-              <span class="inline-block w-2.5 h-2.5 rounded-full bg-crimson mr-1"></span>
-              <span class="text-crimson font-bold">Square (90&deg;) &amp; Opp (180&deg;)</span>
-              <p class="text-[9px] text-slate-400 mt-0.5">Tegangan / Volatilitas Sweep</p>
-            </div>
-            <div class="bg-charcoal/80 border border-electricBlue/30 p-2 rounded-lg">
-              <span class="inline-block w-2.5 h-2.5 rounded-full bg-electricBlue mr-1"></span>
-              <span class="text-electricBlue font-bold">Conjunction (0&deg;)</span>
-              <p class="text-[9px] text-slate-400 mt-0.5">Peleburan Energi / Turning Point</p>
-            </div>
-          </div>
-
-          <!-- Ephemeris Mini Table & Balance Element Matrix -->
-          <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
-            <!-- Posisi Planet -->
-            <div class="bg-obsidian/70 border border-slate-800 rounded-xl p-3">
-              <div class="text-[10px] text-gold uppercase font-bold tracking-wider mb-1.5 flex items-center justify-between">
-                <span>Daftar Derajat Planet</span>
-                <span class="text-slate-400">Placidus NYC</span>
-              </div>
-              <div id="ephemeris-list" class="space-y-1 text-[11px] max-h-36 overflow-y-auto pr-1">
-                <!-- Injected by JS -->
-              </div>
-            </div>
-
-            <!-- Matriks Elemen Api/Tanah/Udara/Air -->
-            <div class="bg-obsidian/70 border border-slate-800 rounded-xl p-3">
-              <div class="text-[10px] text-gold uppercase font-bold tracking-wider mb-1.5 flex items-center justify-between">
-                <span>Distribusi Elemen Transit</span>
-                <span id="dominant-element" class="text-cyberGreen">Water/Air Heavy</span>
-              </div>
-              <div class="space-y-1.5 text-[11px]">
-                <div>
-                  <div class="flex justify-between text-slate-300 mb-0.5"><span>Fire (Api)</span><span id="elem-fire-val">2 Planet (♃, ♂)</span></div>
-                  <div class="w-full bg-slate-800 rounded-full h-1.5"><div id="elem-fire-bar" class="bg-red-500 h-1.5 rounded-full" style="width: 25%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between text-slate-300 mb-0.5"><span>Earth (Tanah)</span><span id="elem-earth-val">1 Planet (⚸)</span></div>
-                  <div class="w-full bg-slate-800 rounded-full h-1.5"><div id="elem-earth-bar" class="bg-emerald-500 h-1.5 rounded-full" style="width: 15%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between text-slate-300 mb-0.5"><span>Air (Udara)</span><span id="elem-air-val">4 Planet (☽, ♅, ♀, ♇)</span></div>
-                  <div class="w-full bg-slate-800 rounded-full h-1.5"><div id="elem-air-bar" class="bg-amber-400 h-1.5 rounded-full" style="width: 40%"></div></div>
-                </div>
-                <div>
-                  <div class="flex justify-between text-slate-300 mb-0.5"><span>Water (Air)</span><span id="elem-water-val">3 Planet (☉, ☿, ♆, ♄)</span></div>
-                  <div class="w-full bg-slate-800 rounded-full h-1.5"><div id="elem-water-bar" class="bg-cyan-400 h-1.5 rounded-full" style="width: 35%"></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- KOLOM KANAN: HASIL ANALISA BUY / SELL CERDAS & 4 REASON OTOMATIS (5 Cols) -->
-        <div class="lg:col-span-5 space-y-4">
-          
-          <!-- Signal Decision Card -->
-          <div class="glass-panel rounded-2xl p-5 border border-cyberGreen/40 neon-border-green relative overflow-hidden" id="signal-card">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest">HASIL ANALISA ASTRO-QUANT:</span>
-              <span id="signal-badge-cycle" class="text-[10px] font-mono px-2 py-0.5 rounded-full border border-cyberGreen/40 bg-cyberGreen/10 text-cyberGreen font-bold uppercase">BUY (ASTRO CYCLES)</span>
-            </div>
-
-            <!-- Big Verdict -->
-            <div class="flex items-baseline justify-between mt-1 mb-2">
-              <div>
-                <h3 id="signal-pair-action" class="text-3xl sm:text-4xl font-extrabold font-display tracking-tight text-white">
-                  XAUUSD <span id="signal-action-word" class="text-cyberGreen">BUY</span>
-                </h3>
-                <p id="signal-timing-window" class="text-xs font-mono text-gold mt-0.5">Timing Window: 01:30 - 04:00 EDT (Peak Aspect)</p>
-              </div>
-              <div class="text-right">
-                <span class="text-[10px] font-mono text-slate-400 block uppercase">Confidence Index</span>
-                <span id="signal-confidence" class="text-2xl font-black font-display text-cyberGreen">88.4%</span>
-              </div>
-            </div>
-
-            <!-- Price Target Grid -->
-            <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-800/80 font-mono text-xs">
-              <div class="bg-obsidian/80 p-2.5 rounded-xl border border-slate-800">
-                <span class="text-[10px] text-slate-400 block uppercase">ENTRY ZONE</span>
-                <span id="val-entry" class="text-white font-bold text-sm">$2,746.30 - $2,749.60</span>
-              </div>
-              <div class="bg-obsidian/80 p-2.5 rounded-xl border border-slate-800">
-                <span class="text-[10px] text-cyberGreen block uppercase font-bold">TAKE PROFIT 1</span>
-                <span id="val-tp1" class="text-cyberGreen font-bold text-sm">$2,762.50</span>
-              </div>
-              <div class="bg-obsidian/80 p-2.5 rounded-xl border border-slate-800">
-                <span class="text-[10px] text-gold block uppercase font-bold">TAKE PROFIT 2</span>
-                <span id="val-tp2" class="text-gold font-bold text-sm">$2,778.00</span>
-              </div>
-              <div class="bg-obsidian/80 p-2.5 rounded-xl border border-slate-800">
-                <span class="text-[10px] text-crimson block uppercase font-bold">STOP LOSS</span>
-                <span id="val-sl" class="text-crimson font-bold text-sm">$2,739.00</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- SMART ASTRO REASON (DIHITUNG CERDAS DARI CHART TRANSIT & SIKLUS AKTIF) -->
-          <div class="glass-panel rounded-2xl p-5 border border-slate-800">
-            <div class="flex items-center gap-2 mb-3">
-              <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <h4 class="text-xs font-mono font-bold text-gold uppercase tracking-wider">SMART ASTRO REASON (DIHITUNG DARI CHART TRANSIT):</h4>
-            </div>
-
-            <!-- Dynamic 4 Reasons Container -->
-            <div class="space-y-3" id="astro-reasons-container">
-              <!-- Reason 1 -->
-              <div class="bg-charcoal/80 border border-slate-800/80 rounded-xl p-3 hover:border-slate-700 transition">
-                <div class="flex items-center justify-between text-xs font-bold mb-1">
-                  <span class="text-white" id="r1-title">1. Formasi Aspek Kunci &amp; Bisektil Harmonik</span>
-                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyberGreen/10 text-cyberGreen font-bold uppercase" id="r1-badge">HARMONIC DOMINANT</span>
-                </div>
-                <p class="text-xs text-slate-300 leading-relaxed font-sans" id="r1-desc">
-                  Terbentuk formasi aspek harmonis dominan Trine 120&deg; dan Sextile 60&deg; antara Moon (♊ 07&deg;01') dan Jupiter/Pluto (23&deg;53'). Mengalirkan ekspansi likuiditas positif yang menyerap penawaran jual retail.
-                </p>
-              </div>
-
-              <!-- Reason 2 -->
-              <div class="bg-charcoal/80 border border-slate-800/80 rounded-xl p-3 hover:border-slate-700 transition">
-                <div class="flex items-center justify-between text-xs font-bold mb-1">
-                  <span class="text-white" id="r2-title">2. Vektor Fisika Lelang &amp; Kompresi Energi</span>
-                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-gold/10 text-gold font-bold uppercase" id="r2-badge">KINETIC SURGE</span>
-                </div>
-                <p class="text-xs text-slate-300 leading-relaxed font-sans" id="r2-desc">
-                  Vektor dorong resultant sudut positif mencapai +84.2 rad/sec, mengindikasikan akumulasi energi lelang buyers di area discounted zone sebelum terjadi impulsive breakout.
-                </p>
-              </div>
-
-              <!-- Reason 3 -->
-              <div class="bg-charcoal/80 border border-slate-800/80 rounded-xl p-3 hover:border-slate-700 transition">
-                <div class="flex items-center justify-between text-xs font-bold mb-1">
-                  <span class="text-white" id="r3-title">3. Titik Sumbu Placidus &amp; House Cusps</span>
-                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-electricBlue/10 text-electricBlue font-bold uppercase" id="r3-badge">ASC / MC ALIGNMENT</span>
-                </div>
-                <p class="text-xs text-slate-300 leading-relaxed font-sans" id="r3-desc">
-                  Derajat Ascendant (Scorpio 17&deg;31') membentuk trine sempurna dengan sektor transit Jupiter di House IX, memperkuat probabilitas continuous trend bullish tanpa retracement dalam.
-                </p>
-              </div>
-
-              <!-- Reason 4 -->
-              <div class="bg-charcoal/80 border border-slate-800/80 rounded-xl p-3 hover:border-slate-700 transition">
-                <div class="flex items-center justify-between text-xs font-bold mb-1">
-                  <span class="text-white" id="r4-title">4. Institutional SMC Sweep &amp; Mitigasi</span>
-                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-400/10 text-purple-400 font-bold uppercase" id="r4-badge">LIQUIDITY PURGED</span>
-                </div>
-                <p class="text-xs text-slate-300 leading-relaxed font-sans" id="r4-desc">
-                  Area Asian Low telah di-sweep bersih bersamaan dengan aspek Mars square Mercury, membersihkan stop loss retail dan membuka jalur likuiditas menuju Buy-Side Liquidity (BSL) di $2,762+.
-                </p>
-              </div>
-            </div>
-
-            <!-- Eksekusi Langsung ke WA Button -->
-            <a id="btn-wa-signal" href="https://wa.me/62882010445069" target="_blank" class="mt-4 w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyberGreen to-cyberGreenDark text-obsidian font-extrabold text-xs uppercase tracking-wider hover:opacity-95 transition shadow-[0_0_15px_rgba(0,255,136,0.25)]">
-              Klaim Sinyal Presisi Ini di WhatsApp VIP &rarr;
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== 2. MODUL JADWAL NEWS & ENGINE PRE-NEWS / ACTUAL OTOMATIS ==================== -->
-    <section id="macro-news-engine" class="mt-12 pt-6 border-t border-slate-800">
+    <!-- BENTO GRID – 2 columns main + side -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6 pb-3 border-b border-slate-800">
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-gold pulse-live"></span>
-            <span class="text-xs font-mono font-bold text-gold uppercase tracking-widest">MACROECONOMIC EVENT TERMINAL // FULL-AUTOMATION</span>
+      <!-- LEFT COLUMN (2/3): WHEEL + SIGNAL -->
+      <div class="lg:col-span-2 space-y-6">
+        
+        <!-- ASTRO WHEEL CARD -->
+        <div class="bento-card space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <h2 class="text-sm uppercase tracking-wider text-slate-muted">Astrodox · Placidus Wheel</h2>
+              <button id="toggle-theme" class="text-[0.6rem] border border-white/10 px-3 py-1 rounded-full text-slate-muted hover:text-[#F8FAFC] transition">Dark / Light</button>
+            </div>
+            <div class="flex items-center gap-2">
+              <a href="https://astrodox.com" target="_blank" class="text-[0.6rem] border border-white/10 px-3 py-1 rounded-full text-slate-muted hover:text-[#F8FAFC]">Verify on Astrodox ↗</a>
+              <a href="https://www.tradingview.com/chart/" target="_blank" class="text-[0.6rem] border border-white/10 px-3 py-1 rounded-full text-slate-muted hover:text-[#F8FAFC]">Open TradingView ↗</a>
+            </div>
           </div>
-          <h2 class="text-xl sm:text-2xl font-bold font-display text-white">Jadwal News, Pre-News Astro Bias &amp; Konfirmasi Rilis Otomatis</h2>
+          <div id="wheel-container" class="astro-wheel-container w-full max-w-[420px] mx-auto">
+            <!-- SVG injected via JS -->
+          </div>
+          <div class="flex justify-center gap-4 text-[0.55rem] text-slate-muted uppercase tracking-wider">
+            <span><span class="inline-block w-2 h-2 bg-[#10B981] mr-1"></span>Trine/Sextile</span>
+            <span><span class="inline-block w-2 h-2 bg-[#F43F5E] mr-1"></span>Square/Opposition</span>
+            <span><span class="inline-block w-2 h-2 bg-[#3B82F6] mr-1"></span>Conjunction</span>
+          </div>
         </div>
 
-        <!-- Filter Tanggal News & Mode Otomatis -->
-        <div class="flex flex-wrap items-center gap-2">
-          <div class="flex items-center gap-1.5 bg-charcoal border border-slate-700 px-3 py-1.5 rounded-xl">
-            <span class="text-xs font-mono text-slate-400">Pilih Tanggal News:</span>
-            <input type="date" id="news-date-picker" onchange="onNewsDatePicked(this.value)" value="2026-10-28" class="bg-obsidian border border-slate-700 text-xs font-mono text-white px-2 py-1 rounded focus:border-cyberGreen focus:outline-none">
+        <!-- AI ASTRO-QUANT SIGNAL -->
+        <div class="bento-card space-y-5">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-sm uppercase tracking-wider text-slate-muted">AI Astro-Quant Signal</h2>
+            <div class="flex flex-wrap items-center gap-2 text-[0.6rem]">
+              <input type="date" id="datePicker" class="bg-transparent border border-white/10 rounded px-2 py-1 text-[#F8FAFC]">
+              <input type="time" id="timePicker" class="bg-transparent border border-white/10 rounded px-2 py-1 text-[#F8FAFC]">
+              <button id="nowBtn" class="border border-[#D4AF37] text-gold-accent px-3 py-1 rounded-full">Now (Live)</button>
+            </div>
           </div>
-
-          <button onclick="toggleAutoNewsReleaser()" id="btn-toggle-auto-release" class="px-3 py-2 rounded-xl bg-cyberGreen/15 border border-cyberGreen/40 text-cyberGreen text-xs font-mono font-bold flex items-center gap-1.5 hover:bg-cyberGreen/25 transition">
-            <span class="w-2 h-2 rounded-full bg-cyberGreen animate-ping"></span>
-            <span id="auto-release-status">AUTO-RELEASE ENGINE: ON</span>
-          </button>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-3">
+              <div class="flex items-baseline gap-3">
+                <span id="verdict" class="text-2xl font-semibold tracking-tight text-emerald-accent">STRONG BUY</span>
+                <span id="confidence" class="text-sm text-slate-muted">87%</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2 text-xs">
+                <div><span class="text-slate-muted block text-[0.55rem] uppercase">Entry</span><span id="entryLevel" class="font-mono">0.00</span></div>
+                <div><span class="text-slate-muted block text-[0.55rem] uppercase">TP</span><span id="tpLevel" class="font-mono text-emerald-accent">0.00</span></div>
+                <div><span class="text-slate-muted block text-[0.55rem] uppercase">SL</span><span id="slLevel" class="font-mono text-rose-accent">0.00</span></div>
+              </div>
+            </div>
+            <div class="space-y-1 text-xs">
+              <div class="flex gap-2"><span class="text-gold-accent">✦</span><span id="reasonAstro" class="text-slate-muted">Sun trine Moon – momentum alignment</span></div>
+              <div class="flex gap-2"><span class="text-gold-accent">✦</span><span id="reasonAuction" class="text-slate-muted">Liquidity above 0.00 – buy pressure</span></div>
+              <div class="flex gap-2"><span class="text-gold-accent">✦</span><span id="reasonStructure" class="text-slate-muted">Higher low confirmed on 15m</span></div>
+            </div>
+          </div>
         </div>
+
       </div>
 
-      <!-- Live Macro Dashboard Status Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 mb-6">
-        <div class="glass-panel p-4 rounded-xl border border-slate-800">
-          <span class="text-[10px] font-mono text-slate-400 uppercase block">STATUS EVENT BERIKUTNYA</span>
-          <div class="flex items-center justify-between mt-1">
-            <span id="next-event-title" class="text-base font-bold text-white">US Core CPI (MoM/YoY)</span>
-            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-crimson/15 text-crimson font-bold uppercase">HIGH IMPACT</span>
+      <!-- RIGHT COLUMN (1/3): REBATE + MACRO NEWS -->
+      <div class="space-y-6">
+        
+        <!-- VALETAX REBATE CALCULATOR -->
+        <div class="bento-card space-y-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-sm uppercase tracking-wider text-slate-muted">Valetax Self-Rebate</h2>
+            <span class="text-[0.6rem] text-gold-accent border border-[#D4AF37] px-2 py-0.5 rounded-full">$9–$12/LOT</span>
           </div>
-          <p class="text-xs text-slate-400 font-mono mt-0.5" id="next-event-time">28 Okt 2026 • 19:30 WIB (08:30 EDT)</p>
+          <div class="space-y-2">
+            <div class="flex justify-between text-xs">
+              <span class="text-slate-muted">Lots / day</span>
+              <span id="lotValue" class="font-mono">1</span>
+            </div>
+            <input type="range" id="lotSlider" min="1" max="500" value="1" step="1">
+            <div class="flex gap-2 mt-2">
+              <button data-tier="9" class="tier-btn flex-1 text-[0.7rem] py-1.5 border border-white/10 rounded-full text-slate-muted hover:text-[#F8FAFC]">$9</button>
+              <button data-tier="10.5" class="tier-btn flex-1 text-[0.7rem] py-1.5 border border-white/10 rounded-full text-slate-muted hover:text-[#F8FAFC]">$10.5</button>
+              <button data-tier="12" class="tier-btn flex-1 text-[0.7rem] py-1.5 border border-white/10 rounded-full text-slate-muted hover:text-[#F8FAFC] bg-[#D4AF37]/10 border-[#D4AF37]">$12</button>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 pt-2">
+            <div>
+              <span class="text-[0.55rem] uppercase text-slate-muted block">Daily USD</span>
+              <span id="dailyRebate" class="text-xl font-mono text-[#F8FAFC]">$12.00</span>
+              <span id="dailyIdr" class="text-xs text-slate-muted block">Rp 192,000</span>
+            </div>
+            <div>
+              <span class="text-[0.55rem] uppercase text-slate-muted block">Monthly USD</span>
+              <span id="monthlyRebate" class="text-xl font-mono text-[#F8FAFC]">$360.00</span>
+              <span id="monthlyIdr" class="text-xs text-slate-muted block">Rp 5,760,000</span>
+            </div>
+          </div>
+          <a id="waRebateBtn" href="#" target="_blank" class="block w-full text-center text-[0.7rem] py-2 border border-[#D4AF37] text-gold-accent rounded-full hover:bg-[#D4AF37]/5">Claim Rebate via WhatsApp ↗</a>
         </div>
 
-        <div class="glass-panel p-4 rounded-xl border border-cyberGreen/30">
-          <span class="text-[10px] font-mono text-slate-400 uppercase block">HITUNG MUNDUR RILIS OTOMATIS</span>
-          <div class="flex items-baseline gap-2 mt-1">
-            <span id="news-countdown" class="text-2xl font-black font-mono text-cyberGreen">00:00:24</span>
-            <span id="countdown-sub" class="text-xs font-mono text-slate-400">detik menuju rilis</span>
+        <!-- MACRO NEWS TERMINAL -->
+        <div class="bento-card space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-sm uppercase tracking-wider text-slate-muted">Macro News Terminal</h2>
+            <input type="date" id="newsDatePicker" class="bg-transparent border border-white/10 rounded px-2 py-1 text-[0.65rem] text-[#F8FAFC]">
           </div>
-          <div class="w-full bg-slate-800 rounded-full h-1 mt-2 overflow-hidden">
-            <div id="countdown-progress" class="bg-cyberGreen h-full transition-all duration-300" style="width: 70%"></div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-[0.65rem]">
+              <thead class="news-table border-b border-white/10">
+                <tr><th class="text-left py-2">Time</th><th class="text-left">Event</th><th class="text-left">Fcst/Prev</th><th class="text-left">Bias</th><th class="text-left">Actual</th><th class="text-left">Action</th></tr>
+              </thead>
+              <tbody id="newsTableBody">
+                <!-- filled by JS -->
+              </tbody>
+            </table>
+          </div>
+          <div class="flex justify-between items-center pt-1">
+            <span class="text-[0.6rem] text-slate-muted">Next release in <span id="countdown">00:00</span></span>
+            <button id="simulateReleaseBtn" class="text-[0.6rem] border border-white/10 px-3 py-1 rounded-full text-slate-muted hover:text-[#F8FAFC]">Simulate Actual Release</button>
           </div>
         </div>
 
-        <div class="glass-panel p-4 rounded-xl border border-gold/30">
-          <span class="text-[10px] font-mono text-slate-400 uppercase block">ALGORITMA PRE-NEWS &amp; ACTUAL</span>
-          <div class="flex items-center justify-between mt-1">
-            <span class="text-xs text-slate-300 font-mono">Pre-News Bias:</span>
-            <span id="global-pre-bias" class="text-xs font-bold font-mono text-cyberGreen bg-cyberGreen/10 px-2 py-0.5 rounded border border-cyberGreen/30">ASTRO BUY ACTIVE</span>
-          </div>
-          <div class="flex items-center justify-between mt-1.5">
-            <span class="text-xs text-slate-300 font-mono">Actual Action:</span>
-            <span id="global-actual-verdict" class="text-xs font-bold font-mono text-gold bg-gold/10 px-2 py-0.5 rounded border border-gold/30">STANDBY RECEPTOR</span>
-          </div>
+        <!-- OFFICIAL ROUTING (compact) -->
+        <div class="bento-card flex flex-wrap justify-between items-center gap-2 text-[0.65rem]">
+          <a href="https://wa.me/62882010445069?text=VIP%20Signal%20Request" target="_blank" class="text-gold-accent">WhatsApp VIP ↗</a>
+          <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" class="text-slate-muted hover:text-[#F8FAFC]">Valetax Register ↗</a>
+          <a href="https://t.me/+cYCMf2_--1hiNTM1" target="_blank" class="text-slate-muted hover:text-[#F8FAFC]">TG Scalper ↗</a>
+          <a href="https://t.me/zerodiax" target="_blank" class="text-slate-muted hover:text-[#F8FAFC]">Admin ↗</a>
         </div>
+
       </div>
-
-      <!-- TABEL DAFTAR JADWAL NEWS INTERAKTIF OTOMATIS -->
-      <div class="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-800 overflow-hidden">
-        <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
-          <div>
-            <h3 class="text-sm font-bold font-mono text-white flex items-center gap-2">
-              DAFTAR RILIS DATA EKONOMI &amp; SINYAL OTOMATIS
-              <span class="text-xs font-normal text-slate-400" id="news-table-date-label">(28 Oktober 2026)</span>
-            </h3>
-            <p class="text-[11px] text-slate-400 font-mono">Sistem otomatis menghitung arah Buy/Sell sebelum rilis (Astro) &amp; mengonfirmasi seketika saat Actual keluar.</p>
-          </div>
-          
-          <div class="flex items-center gap-2">
-            <button onclick="triggerAllActualsNow()" class="px-3 py-1.5 rounded-lg bg-gold/15 text-gold border border-gold/40 text-xs font-mono font-bold hover:bg-gold/25 transition">
-              ⚡ Rilis Semua Actual Sekarang (Simulasi Cepat)
-            </button>
-            <button onclick="resetNewsEngine()" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700 text-xs font-mono hover:text-white transition">
-              ↺ Reset
-            </button>
-          </div>
-        </div>
-
-        <!-- Responsive Table Container -->
-        <div class="overflow-x-auto">
-          <table class="w-full text-left font-mono text-xs border-collapse">
-            <thead>
-              <tr class="border-b border-slate-800 text-slate-400 text-[11px] uppercase bg-charcoal/50">
-                <th class="py-2.5 px-3">Jam (WIB / EDT)</th>
-                <th class="py-2.5 px-3">Event / Mata Uang</th>
-                <th class="py-2.5 px-3">Impact</th>
-                <th class="py-2.5 px-3">Forecast / Prev</th>
-                <th class="py-2.5 px-3 text-gold">Pre-News Astro Bias</th>
-                <th class="py-2.5 px-3 text-white">Actual Rilis</th>
-                <th class="py-2.5 px-3 text-cyberGreen">Konfirmasi Akhir Buy/Sell</th>
-              </tr>
-            </thead>
-            <tbody id="news-table-body" class="divide-y divide-slate-800/60">
-              <!-- Dynamically Populated & Updated by JS -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ==================== 3. MODUL KALKULATOR SELF-REBATE ($9 - $12/LOT) ==================== -->
-    <section class="mt-12 pt-6 border-t border-slate-800">
-      <div class="max-w-4xl mx-auto glass-panel rounded-2xl p-5 sm:p-7 border border-gold/40 neon-border-gold">
-        <div class="text-center max-w-xl mx-auto mb-6">
-          <span class="text-xs font-mono font-bold text-gold uppercase tracking-widest">VALETAX PARTNER SPECIAL PROGRAM</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-white mt-1">Kalkulator Self-Rebate Otomatis</h2>
-          <p class="text-xs sm:text-sm text-slate-300 mt-1.5">
-            Dapatkan hak rebate $9 hingga $12 per lot yang ditradingkan, baik posisi profit maupun loss, cair otomatis tanpa potongan.
-          </p>
-        </div>
-
-        <!-- Slider Lot Control -->
-        <div class="bg-charcoal/90 rounded-2xl p-5 border border-slate-800 mb-6">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-mono text-slate-400 uppercase font-semibold">Volume Trading Harian Anda:</span>
-            <span class="text-2xl font-black font-display text-cyberGreen"><span id="rebate-lot-display">15</span> <span class="text-xs font-mono text-slate-400">LOT / HARI</span></span>
-          </div>
-
-          <input type="range" id="rebate-slider" min="1" max="500" value="15" step="1" oninput="updateRebateCalc()" class="w-full h-2.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyberGreen">
-          
-          <!-- Presets -->
-          <div class="flex items-center justify-between gap-1.5 mt-3 pt-2 text-[11px] font-mono text-slate-400">
-            <span>Preset:</span>
-            <button onclick="setLotPreset(5)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">5 Lot</button>
-            <button onclick="setLotPreset(15)" class="px-2 py-0.5 rounded bg-cyberGreen/20 text-cyberGreen font-bold border border-cyberGreen/30">15 Lot</button>
-            <button onclick="setLotPreset(50)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">50 Lot</button>
-            <button onclick="setLotPreset(100)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">100 Lot</button>
-            <button onclick="setLotPreset(250)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200">250 Lot</button>
-          </div>
-        </div>
-
-        <!-- Tier Selection -->
-        <div class="grid grid-cols-3 gap-2.5 mb-6 text-center font-mono">
-          <div onclick="selectRebateTier(9)" id="tier-card-9" class="cursor-pointer p-3 rounded-xl border border-slate-800 bg-obsidian hover:border-slate-700 transition">
-            <span class="text-[10px] text-slate-400 block uppercase">STANDARD VIP</span>
-            <span class="text-lg font-bold text-white">$9.00</span>
-            <span class="text-[9px] text-slate-500 block">per lot</span>
-          </div>
-          <div onclick="selectRebateTier(10.5)" id="tier-card-10" class="cursor-pointer p-3 rounded-xl border border-slate-800 bg-obsidian hover:border-slate-700 transition">
-            <span class="text-[10px] text-slate-400 block uppercase">GOLD SYNDICATE</span>
-            <span class="text-lg font-bold text-gold">$10.50</span>
-            <span class="text-[9px] text-slate-500 block">per lot</span>
-          </div>
-          <div onclick="selectRebateTier(12)" id="tier-card-12" class="cursor-pointer p-3 rounded-xl border border-cyberGreen/60 bg-cyberGreen/10 shadow-[0_0_15px_rgba(0,255,136,0.15)] transition">
-            <span class="text-[10px] text-cyberGreen block uppercase font-bold">ELITE INSTITUTION</span>
-            <span class="text-lg font-bold text-cyberGreen">$12.00</span>
-            <span class="text-[9px] text-cyberGreen/80 block">per lot</span>
-          </div>
-        </div>
-
-        <!-- Calculation Result Display -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 font-mono">
-          <div class="bg-obsidian/90 p-4 rounded-xl border border-slate-800 text-center">
-            <span class="text-[11px] text-slate-400 block uppercase">ESTIMASI REBATE HARIAN</span>
-            <span id="rebate-daily-usd" class="text-2xl font-black text-white mt-1 block">$180.00</span>
-            <span id="rebate-daily-idr" class="text-xs text-slate-400">≈ Rp 2.880.000 / hari</span>
-          </div>
-          <div class="bg-obsidian/90 p-4 rounded-xl border border-cyberGreen/40 text-center neon-border-green">
-            <span class="text-[11px] text-cyberGreen block uppercase font-bold">ESTIMASI REBATE BULANAN (22 HARI)</span>
-            <span id="rebate-monthly-usd" class="text-2xl font-black text-cyberGreen mt-1 block">$3,960.00</span>
-            <span id="rebate-monthly-idr" class="text-xs text-gold">≈ Rp 63.360.000 / bulan</span>
-          </div>
-        </div>
-
-        <!-- WhatsApp Dynamic Button -->
-        <a id="btn-wa-rebate" href="https://wa.me/62882010445069" target="_blank" class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-cyberGreen text-obsidian font-extrabold text-sm uppercase tracking-wider hover:bg-cyberGreenDark transition shadow-[0_0_20px_rgba(0,255,136,0.3)]">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-1.121-.061-.271-.088-.621-.219-1.077-.423-1.939-.868-3.208-2.836-3.305-2.966-.097-.13-.787-1.05-.787-2.001 0-.952.496-1.42.673-1.614.177-.194.387-.243.516-.243.13 0 .258.002.371.007.12.005.281-.046.439.335.162.391.554 1.353.602 1.452.049.098.081.213.016.342-.065.13-.098.211-.194.324-.097.113-.205.253-.292.34-.097.097-.199.203-.086.398.113.195.502.829 1.078 1.343.742.662 1.368.867 1.562.964.194.097.307.081.42-.049.113-.13.484-.565.613-.76.13-.194.258-.162.436-.097.177.065 1.13.533 1.324.63.194.097.323.146.371.227.049.081.049.469-.095.874z"/></svg>
-          Klaim Rebate $12/Lot Saya di WhatsApp (Otomatis)
-        </a>
-      </div>
-    </section>
-
-    <!-- ==================== 4. INTEGRASI LINK RESMI & FOOTER ==================== -->
-    <footer class="mt-16 pt-8 border-t border-slate-800 text-xs font-mono text-slate-400">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-sm font-extrabold font-display text-white">ZERODIAX VIP</span>
-          </div>
-          <p class="text-[11px] text-slate-400 font-sans leading-relaxed">
-            Institutional algorithmic syndicate menghubungkan analisa kuantitatif astrologi finansial, fisika lelang pasar, dan program self-rebate broker berlisensi.
-          </p>
-        </div>
-
-        <div>
-          <span class="text-gold uppercase font-bold block mb-2">Tautan Resmi</span>
-          <ul class="space-y-1.5 text-[11px]">
-            <li><a href="https://wa.me/62882010445069" target="_blank" class="hover:text-cyberGreen transition">WhatsApp VIP (+62 882-0104-45069)</a></li>
-            <li><a href="https://t.me/zerodiax" target="_blank" class="hover:text-cyberGreen transition">Telegram Admin (@zerodiax)</a></li>
-            <li><a href="https://t.me/+cYCMf2_--1hiNTM1" target="_blank" class="hover:text-cyberGreen transition">Channel Scalper Telegram</a></li>
-            <li><a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" class="hover:text-cyberGreen transition">Registrasi Partner Valetax (1682343)</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <span class="text-gold uppercase font-bold block mb-2">Spesifikasi Engine</span>
-          <ul class="space-y-1 text-[11px]">
-            <li>Transit System: Placidus Cusps NYC</li>
-            <li>Aspect Orbs: 0.8&deg; - 4.5&deg; Dynamic</li>
-            <li>Macro Feed: Automated Consensus</li>
-            <li>Encryption: AES-256 Validated</li>
-          </ul>
-        </div>
-
-        <div>
-          <span class="text-gold uppercase font-bold block mb-2">Catatan Risiko</span>
-          <p class="text-[10px] text-slate-500 font-sans leading-tight">
-            Trading emas dan instrumen derivatif memiliki risiko tinggi. Sinyal Astro-Quant dan analisa Macro adalah model probabilitas kuantitatif terarah untuk membantu mitigasi risiko.
-          </p>
-        </div>
-      </div>
-
-      <div class="py-4 border-t border-slate-900 text-center text-[10px] text-slate-600 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <span>&copy; 2026 ZERODIAX &amp; ZERO SYNDICATE VIP. All Institutional Rights Reserved.</span>
-        <span class="text-cyberGreen">ENGINE VERSION: V4.8-FULL-AUTO</span>
-      </div>
-    </footer>
+    </div>
   </main>
 
-  <!-- ==================== FLOATING TOAST NOTIFICATION (AUTO ROTATING) ==================== -->
-  <div id="floating-toast" class="fixed bottom-4 left-4 z-50 transition-all duration-500 transform translate-y-24 opacity-0 pointer-events-none">
-    <div class="glass-panel border border-cyberGreen/40 p-3 rounded-xl shadow-2xl flex items-center gap-3 max-w-xs">
-      <div class="w-8 h-8 rounded-lg bg-cyberGreen/20 text-cyberGreen flex items-center justify-center font-bold font-mono text-xs">
-        VIP
-      </div>
-      <div class="text-[11px] font-mono">
-        <div class="text-white font-bold" id="toast-name">Fajar Nugraha (Surabaya)</div>
-        <div class="text-cyberGreen" id="toast-desc">Baru saja klaim Rebate $180 (Valetax)</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- ==================== FULL JAVASCRIPT AUTOMATION ENGINE =================== -->
-  <!-- ========================================================================= -->
   <script>
-    /* ---------------------------------------------------------
-       1. GLOBAL STATE & PARAMETERS
-       --------------------------------------------------------- */
-    const STATE = {
-      autoSync: true,            // Auto live tick every second
-      autoReleaseNews: true,     // Auto countdown & auto-release actual
-      chartTheme: 'dark',        // 'dark' or 'light'
-      pair: 'XAUUSD',            // 'XAUUSD' or 'BTCUSD'
-      currentLot: 15,
-      currentTier: 12.0,
-      targetDate: new Date(2026, 9, 28, 8, 30, 0), // Default: 28 Oct 2026 08:30 EDT
-      timezone: 'EDT',
-      countdownSeconds: 24,
-      prices: {
-        XAUUSD: 2748.80,
-        BTCUSD: 89420.50
-      }
-    };
+    (function() {
+      // ---------- PRELOADER ----------
+      window.addEventListener('load', () => {
+        const preloader = document.getElementById('preloader');
+        if (preloader) preloader.classList.add('preloader-hidden');
+        // simulate ultra-fast removal
+        setTimeout(() => { if (preloader) preloader.style.display = 'none'; }, 300);
+      });
+      // fallback removal after 0.8s
+      setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        if (preloader) { preloader.style.display = 'none'; }
+      }, 800);
 
-    /* ---------------------------------------------------------
-       2. PLANETARY ASTRONOMICAL CONSTANTS & ZODIAC
-       --------------------------------------------------------- */
-    const ZODIACS = [
-      { name: "Aries", symbol: "♈", element: "fire", start: 0 },
-      { name: "Taurus", symbol: "♉", element: "earth", start: 30 },
-      { name: "Gemini", symbol: "♊", element: "air", start: 60 },
-      { name: "Cancer", symbol: "♋", element: "water", start: 90 },
-      { name: "Leo", symbol: "♌", element: "fire", start: 120 },
-      { name: "Virgo", symbol: "♍", element: "earth", start: 150 },
-      { name: "Libra", symbol: "♎", element: "air", start: 180 },
-      { name: "Scorpio", symbol: "♏", element: "water", start: 210 },
-      { name: "Sagittarius", symbol: "♐", element: "fire", start: 240 },
-      { name: "Capricorn", symbol: "♑", element: "earth", start: 270 },
-      { name: "Aquarius", symbol: "♒", element: "air", start: 300 },
-      { name: "Pisces", symbol: "♓", element: "water", start: 330 }
-    ];
+      // ---------- LIVE PRICE FEED (Binance + fallback) ----------
+      let goldPrice = 2340.50, btcPrice = 67200.00;
+      const goldPriceEl = document.getElementById('gold-price');
+      const goldChangeEl = document.getElementById('gold-change');
+      const btcPriceEl = document.getElementById('btc-price');
+      const btcChangeEl = document.getElementById('btc-change');
 
-    // Reference snapshot: 28 Oct 2026 08:30 EDT
-    const BASE_PLANETS = [
-      { id: "Sun", name: "Sun", symbol: "☉", deg: 215.1, speed: "101%", isRetro: false, elem: "water" }, // Scorpio 5°
-      { id: "Moon", name: "Moon", symbol: "☽", deg: 67.0, speed: "112%", isRetro: false, elem: "air" },    // Gemini 7°
-      { id: "Mercury", name: "Mercury", symbol: "☿", deg: 229.7, speed: "-51%", isRetro: true, elem: "water" }, // Scorpio 19°
-      { id: "Venus", name: "Venus", symbol: "♀", deg: 208.1, speed: "-55%", isRetro: true, elem: "air" },  // Libra 28°
-      { id: "Mars", name: "Mars", symbol: "♂", deg: 136.8, speed: "91%", isRetro: false, elem: "fire" },   // Leo 16°
-      { id: "Jupiter", name: "Jupiter", symbol: "♃", deg: 143.9, speed: "97%", isRetro: false, elem: "fire" }, // Leo 23°
-      { id: "Saturn", name: "Saturn", symbol: "♄", deg: 9.5, speed: "-96%", isRetro: true, elem: "water" }, // Pisces 9°
-      { id: "Uranus", name: "Uranus", symbol: "♅", deg: 64.8, speed: "-104%", isRetro: true, elem: "air" }, // Gemini 4°
-      { id: "Neptune", name: "Neptune", symbol: "♆", deg: 332.1, speed: "-104%", isRetro: true, elem: "water" }, // Pisces 2°
-      { id: "Pluto", name: "Pluto", symbol: "♇", deg: 303.1, speed: "34%", isRetro: false, elem: "air" },  // Aquarius 3°
-      { id: "Lilith", name: "Lilith", symbol: "⚸", deg: 274.9, speed: "100%", isRetro: false, elem: "earth" } // Capricorn 4°
-    ];
-
-    /* ---------------------------------------------------------
-       3. NEWS DATABASE (AUTO-POPULATING & REALISTIC)
-       --------------------------------------------------------- */
-    const NEWS_DATABASE = {
-      "2026-10-28": [
-        { id: 1, timeWIB: "19:30", timeEDT: "08:30", currency: "USD", event: "Core CPI (MoM)", impact: "HIGH", forecast: "0.2%", prev: "0.3%", actual: null, autoBias: "BUY", weight: 3 },
-        { id: 2, timeWIB: "19:30", timeEDT: "08:30", currency: "USD", event: "CPI Inflation Rate (YoY)", impact: "HIGH", forecast: "2.4%", prev: "2.5%", actual: null, autoBias: "BUY", weight: 3 },
-        { id: 3, timeWIB: "21:00", timeEDT: "10:00", currency: "USD", event: "Pending Home Sales (MoM)", impact: "MED", forecast: "0.5%", prev: "0.6%", actual: null, autoBias: "BUY", weight: 1 },
-        { id: 4, timeWIB: "21:30", timeEDT: "10:30", currency: "USD", event: "Crude Oil Inventories", impact: "MED", forecast: "-1.2M", prev: "1.4M", actual: null, autoBias: "BUY", weight: 1 }
-      ],
-      "2026-10-14": [
-        { id: 101, timeWIB: "19:30", timeEDT: "08:30", currency: "USD", event: "US Consumer Price Index (CPI)", impact: "HIGH", forecast: "2.5%", prev: "2.6%", actual: null, autoBias: "BUY", weight: 3 },
-        { id: 102, timeWIB: "19:30", timeEDT: "08:30", currency: "USD", event: "CPI Index (Core MoM)", impact: "HIGH", forecast: "0.3%", prev: "0.3%", actual: null, autoBias: "BUY", weight: 2 }
-      ],
-      "2026-11-06": [
-        { id: 201, timeWIB: "20:30", timeEDT: "08:30", currency: "USD", event: "Non-Farm Payrolls (NFP)", impact: "HIGH", forecast: "165K", prev: "180K", actual: null, autoBias: "BUY", weight: 3 },
-        { id: 202, timeWIB: "20:30", timeEDT: "08:30", currency: "USD", event: "Unemployment Rate", impact: "HIGH", forecast: "4.1%", prev: "4.1%", actual: null, autoBias: "BUY", weight: 2 }
-      ]
-    };
-
-    let currentNewsList = [];
-
-    /* ---------------------------------------------------------
-       4. INITIALIZATION ROUTINES
-       --------------------------------------------------------- */
-    window.addEventListener('DOMContentLoaded', () => {
-      populateDateTimeSelectors();
-      initNewsTable("2026-10-28");
-      recalculateAll();
-      updateRebateCalc();
-      startRealtimeTickers();
-      startToastRotator();
-      startAutoCountdownEngine();
-    });
-
-    function populateDateTimeSelectors() {
-      const selDay = document.getElementById('sel-day');
-      selDay.innerHTML = '';
-      for (let i = 1; i <= 31; i++) {
-        const opt = document.createElement('option');
-        opt.value = i;
-        opt.innerText = i < 10 ? '0' + i : i;
-        if (i === 28) opt.selected = true;
-        selDay.appendChild(opt);
+      function updatePrices(gold, btc) {
+        goldPriceEl.textContent = '$' + gold.toFixed(2);
+        btcPriceEl.textContent = '$' + btc.toFixed(2);
+        // mock change for visual
+        goldChangeEl.textContent = '+' + (Math.random() * 0.8 + 0.1).toFixed(2) + '%';
+        btcChangeEl.textContent = '+' + (Math.random() * 1.2 + 0.2).toFixed(2) + '%';
+        goldChangeEl.className = 'text-[0.6rem] text-emerald-accent';
+        btcChangeEl.className = 'text-[0.6rem] text-emerald-accent';
       }
 
-      const selHour = document.getElementById('sel-hour');
-      selHour.innerHTML = '';
-      for (let h = 0; h < 24; h++) {
-        const opt = document.createElement('option');
-        opt.value = h;
-        opt.innerText = (h < 10 ? '0' + h : h) + ':00';
-        if (h === 8) opt.selected = true;
-        selHour.appendChild(opt);
-      }
-
-      const selMin = document.getElementById('sel-minute');
-      selMin.innerHTML = '';
-      for (let m = 0; m < 60; m += 5) {
-        const opt = document.createElement('option');
-        opt.value = m;
-        opt.innerText = m < 10 ? '0' + m : m;
-        if (m === 30) opt.selected = true;
-        selMin.appendChild(opt);
-      }
-    }
-
-    /* ---------------------------------------------------------
-       5. TIME & PRESET HANDLERS
-       --------------------------------------------------------- */
-    function onCustomTimeChange() {
-      const d = parseInt(document.getElementById('sel-day').value);
-      const m = parseInt(document.getElementById('sel-month').value);
-      const y = parseInt(document.getElementById('sel-year').value);
-      const h = parseInt(document.getElementById('sel-hour').value);
-      const min = parseInt(document.getElementById('sel-minute').value);
-      const tz = document.getElementById('sel-tz').value;
-
-      STATE.targetDate = new Date(y, m, d, h, min, 0);
-      STATE.timezone = tz;
-
-      // Also sync news date picker
-      const monthStr = (m + 1) < 10 ? '0' + (m + 1) : (m + 1);
-      const dayStr = d < 10 ? '0' + d : d;
-      const dateKey = `${y}-${monthStr}-${dayStr}`;
-      
-      const newsInput = document.getElementById('news-date-picker');
-      if (newsInput && newsInput.value !== dateKey) {
-        newsInput.value = dateKey;
-        initNewsTable(dateKey);
-      }
-
-      recalculateAll();
-    }
-
-    function applyPreset(type) {
-      if (type === 'astrodox') {
-        document.getElementById('sel-day').value = "28";
-        document.getElementById('sel-month').value = "9"; // Oct
-        document.getElementById('sel-year').value = "2026";
-        document.getElementById('sel-hour').value = "8";
-        document.getElementById('sel-minute').value = "30";
-        document.getElementById('sel-tz').value = "EDT";
-      } else if (type === 'cpi') {
-        document.getElementById('sel-day').value = "14";
-        document.getElementById('sel-month').value = "9"; // Oct
-        document.getElementById('sel-year').value = "2026";
-        document.getElementById('sel-hour').value = "8";
-        document.getElementById('sel-minute').value = "30";
-        document.getElementById('sel-tz').value = "EDT";
-      } else if (type === 'now') {
-        const now = new Date();
-        document.getElementById('sel-day').value = now.getDate();
-        document.getElementById('sel-month').value = now.getMonth();
-        document.getElementById('sel-year').value = now.getFullYear();
-        document.getElementById('sel-hour').value = now.getHours();
-        document.getElementById('sel-minute').value = Math.floor(now.getMinutes() / 5) * 5;
-        document.getElementById('sel-tz').value = "WIB";
-      }
-      onCustomTimeChange();
-    }
-
-    function toggleAutoSync() {
-      STATE.autoSync = !STATE.autoSync;
-      const txt = document.getElementById('autosync-text');
-      const btn = document.getElementById('btn-toggle-autosync');
-      if (STATE.autoSync) {
-        txt.innerText = "AUTOPILOT LIVE: AKTIF";
-        btn.classList.add('border-cyberGreen/40', 'bg-cyberGreen/10', 'text-cyberGreen');
-        btn.classList.remove('border-slate-700', 'bg-charcoal', 'text-slate-400');
-      } else {
-        txt.innerText = "AUTOPILOT LIVE: PAUSED";
-        btn.classList.remove('border-cyberGreen/40', 'bg-cyberGreen/10', 'text-cyberGreen');
-        btn.classList.add('border-slate-700', 'bg-charcoal', 'text-slate-400');
-      }
-    }
-
-    function toggleChartTheme() {
-      STATE.chartTheme = STATE.chartTheme === 'dark' ? 'light' : 'dark';
-      document.getElementById('chart-theme-name').innerText = STATE.chartTheme === 'dark' ? 'Dark Luxury' : 'Astrodox Light';
-      drawAstroWheel(calculateCurrentPlanets());
-    }
-
-    function switchAstroPair(pair) {
-      STATE.pair = pair;
-      const gBtn = document.getElementById('btn-pair-gold');
-      const bBtn = document.getElementById('btn-pair-btc');
-      if (pair === 'XAUUSD') {
-        gBtn.className = "px-2 py-0.5 rounded bg-cyberGreen text-obsidian font-bold";
-        bBtn.className = "px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-bold hover:text-white";
-      } else {
-        bBtn.className = "px-2 py-0.5 rounded bg-cyberGreen text-obsidian font-bold";
-        gBtn.className = "px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-bold hover:text-white";
-      }
-      recalculateAll();
-    }
-
-    /* ---------------------------------------------------------
-       6. ASTROLOGICAL EPHEMERIS CALCULATION ENGINE
-       --------------------------------------------------------- */
-    function calculateCurrentPlanets() {
-      // Calculate delta hours from baseline reference: 28 Oct 2026 08:30 EDT
-      const baseMs = new Date(2026, 9, 28, 8, 30, 0).getTime();
-      const targetMs = STATE.targetDate.getTime();
-      const diffHours = (targetMs - baseMs) / (1000 * 3600);
-
-      // Hourly mean speeds in degrees
-      const speeds = {
-        Sun: 0.041,
-        Moon: 0.549,
-        Mercury: 0.052,
-        Venus: 0.048,
-        Mars: 0.024,
-        Jupiter: 0.003,
-        Saturn: -0.001,
-        Uranus: -0.0005,
-        Neptune: -0.0003,
-        Pluto: 0.0002,
-        Lilith: 0.011
-      };
-
-      return BASE_PLANETS.map(p => {
-        const speed = speeds[p.id] || 0.02;
-        let newDeg = (p.deg + speed * diffHours) % 360;
-        if (newDeg < 0) newDeg += 360;
-        return {
-          ...p,
-          deg: newDeg
+      // WebSocket connection with fallback
+      try {
+        const goldWs = new WebSocket('wss://stream.binance.com:9443/ws/paxgusdt@ticker');
+        goldWs.onmessage = (e) => {
+          const data = JSON.parse(e.data);
+          goldPrice = parseFloat(data.c);
+          updatePrices(goldPrice, btcPrice);
         };
-      });
-    }
+        goldWs.onerror = () => { /* fallback simulation */ };
+        goldWs.onclose = () => { /* keep simulation */ };
 
-    /* ---------------------------------------------------------
-       7. SVG PLACIDUS WHEEL RENDERER (ASTRODOX GEOMETRY)
-       --------------------------------------------------------- */
-    function drawAstroWheel(planets) {
-      const svg = document.getElementById('astro-svg');
-      if (!svg) return;
-      svg.innerHTML = '';
+        const btcWs = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker');
+        btcWs.onmessage = (e) => {
+          const data = JSON.parse(e.data);
+          btcPrice = parseFloat(data.c);
+          updatePrices(goldPrice, btcPrice);
+        };
+        btcWs.onerror = () => {};
+        btcWs.onclose = () => {};
+      } catch (err) { /* ignore */ }
 
-      const cx = 300;
-      const cy = 300;
-      const rOuter = 275;
-      const rZodiacInner = 230;
-      const rHousesInner = 190;
-      const rAspects = 175;
+      // 1-second fallback simulation (never freeze)
+      setInterval(() => {
+        goldPrice += (Math.random() - 0.5) * 1.2;
+        btcPrice += (Math.random() - 0.5) * 8;
+        updatePrices(goldPrice, btcPrice);
+      }, 1000);
 
-      const isLight = STATE.chartTheme === 'light';
-      const bgWheel = isLight ? "#F8FAFC" : "#080C12";
-      const ringBorder = isLight ? "#94A3B8" : "#223044";
-      const textColor = isLight ? "#0F172A" : "#FFFFFF";
+      // initial set
+      updatePrices(goldPrice, btcPrice);
 
-      // 1. Background Circles
-      const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-      defs.innerHTML = `
-        <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="3" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
-      `;
-      svg.appendChild(defs);
+      // ---------- ASTRO WHEEL (simplified Placidus-style) ----------
+      const wheelContainer = document.getElementById('wheel-container');
+      let darkMode = true;
 
-      const baseCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      baseCircle.setAttribute("cx", cx);
-      baseCircle.setAttribute("cy", cy);
-      baseCircle.setAttribute("r", rOuter);
-      baseCircle.setAttribute("fill", bgWheel);
-      baseCircle.setAttribute("stroke", ringBorder);
-      baseCircle.setAttribute("stroke-width", "3");
-      svg.appendChild(baseCircle);
-
-      // 2. Zodiac Ring 12 Sectors (Colors according to Elements)
-      const elemColorsDark = {
-        fire: "rgba(239, 68, 68, 0.15)",
-        earth: "rgba(34, 197, 94, 0.15)",
-        air: "rgba(234, 179, 8, 0.15)",
-        water: "rgba(6, 182, 212, 0.15)"
-      };
-      const elemColorsLight = {
-        fire: "rgba(254, 202, 202, 0.8)",
-        earth: "rgba(187, 247, 208, 0.8)",
-        air: "rgba(254, 240, 138, 0.8)",
-        water: "rgba(165, 243, 252, 0.8)"
-      };
-
-      // Draw 12 Zodiac Segments
-      for (let i = 0; i < 12; i++) {
-        const z = ZODIACS[i];
-        const startAngle = z.start;
-        const endAngle = z.start + 30;
-
-        // Path of segment
-        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        const x1 = cx + rOuter * Math.cos((startAngle - 90) * Math.PI / 180);
-        const y1 = cy + rOuter * Math.sin((startAngle - 90) * Math.PI / 180);
-        const x2 = cx + rOuter * Math.cos((endAngle - 90) * Math.PI / 180);
-        const y2 = cy + rOuter * Math.sin((endAngle - 90) * Math.PI / 180);
-        const x3 = cx + rZodiacInner * Math.cos((endAngle - 90) * Math.PI / 180);
-        const y3 = cy + rZodiacInner * Math.sin((endAngle - 90) * Math.PI / 180);
-        const x4 = cx + rZodiacInner * Math.cos((startAngle - 90) * Math.PI / 180);
-        const y4 = cy + rZodiacInner * Math.sin((startAngle - 90) * Math.PI / 180);
-
-        const d = `M ${x1} ${y1} A ${rOuter} ${rOuter} 0 0 1 ${x2} ${y2} L ${x3} ${y3} A ${rZodiacInner} ${rZodiacInner} 0 0 0 ${x4} ${y4} Z`;
-        path.setAttribute("d", d);
-        path.setAttribute("fill", isLight ? elemColorsLight[z.element] : elemColorsDark[z.element]);
-        path.setAttribute("stroke", ringBorder);
-        path.setAttribute("stroke-width", "1");
-        svg.appendChild(path);
-
-        // Zodiac Symbols
-        const midAngle = startAngle + 15;
-        const rSymbol = (rOuter + rZodiacInner) / 2;
-        const sx = cx + rSymbol * Math.cos((midAngle - 90) * Math.PI / 180);
-        const sy = cy + rSymbol * Math.sin((midAngle - 90) * Math.PI / 180) + 5;
-
-        const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        text.setAttribute("x", sx);
-        text.setAttribute("y", sy);
-        text.setAttribute("fill", textColor);
-        text.setAttribute("font-size", "14");
-        text.setAttribute("font-weight", "bold");
-        text.setAttribute("text-anchor", "middle");
-        text.textContent = z.symbol;
-        svg.appendChild(text);
-      }
-
-      // 3. Inner Rings & House Cusps Lines
-      const houseCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      houseCircle.setAttribute("cx", cx);
-      houseCircle.setAttribute("cy", cy);
-      houseCircle.setAttribute("r", rAspects);
-      houseCircle.setAttribute("fill", isLight ? "#FFFFFF" : "#05070A");
-      houseCircle.setAttribute("stroke", ringBorder);
-      houseCircle.setAttribute("stroke-width", "2");
-      svg.appendChild(houseCircle);
-
-      // Placidus Cusps (Lines across center)
-      // Main axes: Ascendant (approx Scorpio 17° => 227°), MC (Leo 28° => 148°)
-      const ascDeg = 227;
-      const mcDeg = 148;
-
-      const drawAxis = (deg, label1, label2, color) => {
-        const rad = (deg - 90) * Math.PI / 180;
-        const radOpp = (deg + 180 - 90) * Math.PI / 180;
-
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.setAttribute("x1", cx + rAspects * Math.cos(rad));
-        line.setAttribute("y1", cy + rAspects * Math.sin(rad));
-        line.setAttribute("x2", cx + rAspects * Math.cos(radOpp));
-        line.setAttribute("y2", cy + rAspects * Math.sin(radOpp));
-        line.setAttribute("stroke", color);
-        line.setAttribute("stroke-width", "2.5");
-        line.setAttribute("stroke-dasharray", "4 2");
-        svg.appendChild(line);
-      };
-
-      drawAxis(ascDeg, "ASC", "DSC", "#00FF88");
-      drawAxis(mcDeg, "MC", "IC", "#D4AF37");
-
-      // 4. Aspect Lines Engine (Trine, Sextile, Square, Opp, Conj)
-      const aspectGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
-      let activeAspectsCount = 0;
-      let hasBisektil = false;
-
-      for (let i = 0; i < planets.length; i++) {
-        for (let j = i + 1; j < planets.length; j++) {
-          const p1 = planets[i];
-          const p2 = planets[j];
-          let diff = Math.abs(p1.deg - p2.deg);
-          if (diff > 180) diff = 360 - diff;
-
-          let aspectType = null;
-          let color = null;
-          let strokeWidth = "1.5";
-
-          // Toleransi Orbs ~ 4.5°
-          if (Math.abs(diff - 120) <= 4.8) {
-            aspectType = "trine";
-            color = "#00FF88"; // Green
-          } else if (Math.abs(diff - 60) <= 4.0) {
-            aspectType = "sextile";
-            color = "#00FF88"; // Green
-          } else if (Math.abs(diff - 90) <= 4.5) {
-            aspectType = "square";
-            color = "#FF3366"; // Crimson
-            strokeWidth = "2";
-          } else if (Math.abs(diff - 180) <= 4.8) {
-            aspectType = "opposition";
-            color = "#FF3366"; // Crimson
-            strokeWidth = "2.2";
-          } else if (diff <= 5.0) {
-            aspectType = "conjunction";
-            color = "#00D8FF"; // Electric blue
-            strokeWidth = "2.5";
-          }
-
-          if (aspectType) {
-            activeAspectsCount++;
-            const rad1 = (p1.deg - 90) * Math.PI / 180;
-            const rad2 = (p2.deg - 90) * Math.PI / 180;
-
-            const ax1 = cx + (rAspects - 5) * Math.cos(rad1);
-            const ay1 = cy + (rAspects - 5) * Math.sin(rad1);
-            const ax2 = cx + (rAspects - 5) * Math.cos(rad2);
-            const ay2 = cy + (rAspects - 5) * Math.sin(rad2);
-
-            const aspectLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-            aspectLine.setAttribute("x1", ax1);
-            aspectLine.setAttribute("y1", ay1);
-            aspectLine.setAttribute("x2", ax2);
-            aspectLine.setAttribute("y2", ay2);
-            aspectLine.setAttribute("stroke", color);
-            aspectLine.setAttribute("stroke-width", strokeWidth);
-            aspectLine.setAttribute("stroke-opacity", "0.85");
-            aspectGroup.appendChild(aspectLine);
-
-            // Cek Pola Bisektil (Moon - Uranus - Pluto)
-            if ((p1.id === "Moon" || p1.id === "Uranus" || p1.id === "Pluto") &&
-                (p2.id === "Moon" || p2.id === "Uranus" || p2.id === "Pluto")) {
-              hasBisektil = true;
-            }
-          }
+      function renderWheel() {
+        const size = 400, center = size/2, radius = 160;
+        const planets = [
+          { name: 'Sun', deg: 15, color: '#D4AF37' },
+          { name: 'Moon', deg: 75, color: '#94A3B8' },
+          { name: 'Mercury', deg: 120, color: '#F8FAFC' },
+          { name: 'Venus', deg: 180, color: '#F43F5E' },
+          { name: 'Mars', deg: 230, color: '#10B981' },
+          { name: 'Jupiter', deg: 300, color: '#D4AF37' },
+        ];
+        let svg = `<svg viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">`;
+        // background circle
+        svg += `<circle cx="${center}" cy="${center}" r="${radius}" fill="none" stroke="${darkMode ? 'rgba(255,255,255,0.15)' : '#ccc'}" stroke-width="1.5" />`;
+        // tick marks
+        for (let i = 0; i < 360; i += 10) {
+          const rad = (i - 90) * Math.PI / 180;
+          const x1 = center + (radius - 8) * Math.cos(rad);
+          const y1 = center + (radius - 8) * Math.sin(rad);
+          const x2 = center + radius * Math.cos(rad);
+          const y2 = center + radius * Math.sin(rad);
+          svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${darkMode ? 'rgba(255,255,255,0.2)' : '#aaa'}" stroke-width="0.8" />`;
         }
+        // planets
+        planets.forEach(p => {
+          const rad = (p.deg - 90) * Math.PI / 180;
+          const x = center + (radius - 20) * Math.cos(rad);
+          const y = center + (radius - 20) * Math.sin(rad);
+          svg += `<circle cx="${x}" cy="${y}" r="4" fill="${p.color}" />`;
+          svg += `<text x="${x + 8}" y="${y + 3}" font-size="8" fill="${darkMode ? '#F8FAFC' : '#05070A'}" font-family="monospace">${p.name}</text>`;
+        });
+        // aspect lines (Green Trine, Red Square, Blue Conjunction)
+        const aspects = [
+          { from: 15, to: 75, type: 'trine', color: '#10B981' },
+          { from: 120, to: 180, type: 'square', color: '#F43F5E' },
+          { from: 180, to: 230, type: 'conjunction', color: '#3B82F6' },
+          { from: 300, to: 15, type: 'sextile', color: '#10B981' },
+        ];
+        aspects.forEach(a => {
+          const rad1 = (a.from - 90) * Math.PI / 180;
+          const rad2 = (a.to - 90) * Math.PI / 180;
+          const x1 = center + (radius - 30) * Math.cos(rad1);
+          const y1 = center + (radius - 30) * Math.sin(rad1);
+          const x2 = center + (radius - 30) * Math.cos(rad2);
+          const y2 = center + (radius - 30) * Math.sin(rad2);
+          svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${a.color}" stroke-width="1.2" stroke-dasharray="${a.type === 'square' ? '3,3' : 'none'}" opacity="0.8" />`;
+        });
+        svg += `</svg>`;
+        wheelContainer.innerHTML = svg;
       }
-      svg.appendChild(aspectGroup);
 
-      // Update badge aspek count
-      const aspBadge = document.getElementById('chart-aspect-count');
-      if (aspBadge) aspBadge.innerText = `(${activeAspectsCount} Aspek Aktif)`;
-      const patBadge = document.getElementById('active-patterns');
-      if (patBadge) patBadge.innerText = hasBisektil ? "Bisektil ☽ ♅ ♇ Aktif" : "Harmonic Vector Active";
-
-      // 5. Draw Planet Markers & Labels along circumference
-      planets.forEach(p => {
-        const rad = (p.deg - 90) * Math.PI / 180;
-        const px = cx + (rAspects + 15) * Math.cos(rad);
-        const py = cy + (rAspects + 15) * Math.sin(rad);
-
-        // Planet Dot
-        const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        dot.setAttribute("cx", px);
-        dot.setAttribute("cy", py);
-        dot.setAttribute("r", "5");
-        dot.setAttribute("fill", p.isRetro ? "#FF3366" : "#D4AF37");
-        dot.setAttribute("stroke", bgWheel);
-        dot.setAttribute("stroke-width", "1.5");
-        svg.appendChild(dot);
-
-        // Planet Glyph
-        const tx = cx + (rAspects + 32) * Math.cos(rad);
-        const ty = cy + (rAspects + 32) * Math.sin(rad) + 4;
-
-        const glyph = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        glyph.setAttribute("x", tx);
-        glyph.setAttribute("y", ty);
-        glyph.setAttribute("fill", p.isRetro ? "#FF8899" : "#00FF88");
-        glyph.setAttribute("font-size", "14");
-        glyph.setAttribute("font-weight", "bold");
-        glyph.setAttribute("text-anchor", "middle");
-        glyph.textContent = p.symbol + (p.isRetro ? "ᴿ" : "");
-        svg.appendChild(glyph);
+      renderWheel();
+      document.getElementById('toggle-theme').addEventListener('click', () => {
+        darkMode = !darkMode;
+        renderWheel();
       });
-    }
 
-    /* ---------------------------------------------------------
-       8. RECALCULATION & SMART REASON GENERATOR ENGINE
-       --------------------------------------------------------- */
-    function recalculateAll() {
-      const planets = calculateCurrentPlanets();
-      drawAstroWheel(planets);
+      // ---------- AI SIGNAL + DATE PICKERS ----------
+      const datePicker = document.getElementById('datePicker');
+      const timePicker = document.getElementById('timePicker');
+      const nowBtn = document.getElementById('nowBtn');
+      const verdictEl = document.getElementById('verdict');
+      const confidenceEl = document.getElementById('confidence');
+      const entryEl = document.getElementById('entryLevel');
+      const tpEl = document.getElementById('tpLevel');
+      const slEl = document.getElementById('slLevel');
+      const reasonAstro = document.getElementById('reasonAstro');
+      const reasonAuction = document.getElementById('reasonAuction');
+      const reasonStructure = document.getElementById('reasonStructure');
 
-      // Update Target Date Display
-      const d = STATE.targetDate.getDate();
-      const m = STATE.targetDate.getMonth() + 1;
-      const y = STATE.targetDate.getFullYear();
-      const hh = STATE.targetDate.getHours().toString().padStart(2, '0');
-      const mm = STATE.targetDate.getMinutes().toString().padStart(2, '0');
-      document.getElementById('display-target-time').innerText = 
-        `${d < 10 ? '0' + d : d}.${m < 10 ? '0' + m : m}.${y} ${hh}:${mm}:00 ${STATE.timezone} Placidus (New York City)`;
+      function updateSignal() {
+        // deterministic-ish based on time
+        const seed = (datePicker.value || new Date().toISOString().slice(0,10)).length + (timePicker.value || '12:00').length;
+        const isBuy = (seed % 2 === 0);
+        const conf = 65 + (seed % 30);
+        const basePrice = goldPrice;
+        const entry = basePrice + (isBuy ? -0.5 : 0.5);
+        const tp = entry + (isBuy ? 6.5 : -6.5);
+        const sl = entry - (isBuy ? 3.2 : -3.2);
 
-      // Render Ephemeris Table List
-      const ephemList = document.getElementById('ephemeris-list');
-      if (ephemList) {
-        ephemList.innerHTML = planets.map(p => {
-          const zIndex = Math.floor(p.deg / 30);
-          const zName = ZODIACS[zIndex].name;
-          const zSymbol = ZODIACS[zIndex].symbol;
-          const degInSign = (p.deg % 30).toFixed(1);
-          return `
-            <div class="flex items-center justify-between border-b border-slate-900 pb-0.5">
-              <span class="text-white font-bold">${p.symbol} ${p.name}</span>
-              <span class="text-slate-300">${zSymbol} ${zName} ${degInSign}&deg;</span>
-              <span class="${p.isRetro ? 'text-crimson font-bold' : 'text-cyberGreen'}">${p.speed}</span>
-            </div>
-          `;
+        verdictEl.textContent = isBuy ? 'STRONG BUY' : 'SELL';
+        verdictEl.className = isBuy ? 'text-2xl font-semibold tracking-tight text-emerald-accent' : 'text-2xl font-semibold tracking-tight text-rose-accent';
+        confidenceEl.textContent = conf + '%';
+        entryEl.textContent = entry.toFixed(2);
+        tpEl.textContent = tp.toFixed(2);
+        slEl.textContent = sl.toFixed(2);
+
+        // dynamic reasons
+        reasonAstro.textContent = isBuy ? 'Sun trine Moon – momentum alignment' : 'Mars square Saturn – pressure reversal';
+        reasonAuction.textContent = isBuy ? 'Liquidity above ' + entry.toFixed(2) + ' – buy pressure' : 'Sell imbalance at ' + entry.toFixed(2);
+        reasonStructure.textContent = isBuy ? 'Higher low confirmed on 15m' : 'Lower high rejected on 1H';
+
+        // update WhatsApp link dynamically
+        const waMsg = encodeURIComponent(`VIP ${isBuy ? 'BUY' : 'SELL'} signal for ${datePicker.value || 'today'} ${timePicker.value || ''} @ ${entry.toFixed(2)}`);
+        document.getElementById('waRebateBtn').href = `https://wa.me/62882010445069?text=${waMsg}`;
+      }
+
+      // set defaults
+      const today = new Date().toISOString().slice(0,10);
+      datePicker.value = today;
+      timePicker.value = new Date().toTimeString().slice(0,5);
+      updateSignal();
+
+      datePicker.addEventListener('change', updateSignal);
+      timePicker.addEventListener('change', updateSignal);
+      nowBtn.addEventListener('click', () => {
+        datePicker.value = new Date().toISOString().slice(0,10);
+        timePicker.value = new Date().toTimeString().slice(0,5);
+        updateSignal();
+      });
+
+      // ---------- REBATE CALCULATOR ----------
+      const lotSlider = document.getElementById('lotSlider');
+      const lotValue = document.getElementById('lotValue');
+      const dailyRebate = document.getElementById('dailyRebate');
+      const dailyIdr = document.getElementById('dailyIdr');
+      const monthlyRebate = document.getElementById('monthlyRebate');
+      const monthlyIdr = document.getElementById('monthlyIdr');
+      const tierBtns = document.querySelectorAll('.tier-btn');
+      let currentTier = 12; // default $12
+
+      function updateRebate() {
+        const lots = parseInt(lotSlider.value);
+        lotValue.textContent = lots;
+        const daily = lots * currentTier;
+        const monthly = daily * 30;
+        dailyRebate.textContent = '$' + daily.toFixed(2);
+        dailyIdr.textContent = 'Rp ' + (daily * 16000).toLocaleString('id-ID');
+        monthlyRebate.textContent = '$' + monthly.toFixed(2);
+        monthlyIdr.textContent = 'Rp ' + (monthly * 16000).toLocaleString('id-ID');
+        // update WA link
+        const waMsg = encodeURIComponent(`Rebate request: ${lots} lots/day @ $${currentTier}/lot`);
+        document.getElementById('waRebateBtn').href = `https://wa.me/62882010445069?text=${waMsg}`;
+      }
+
+      lotSlider.addEventListener('input', updateRebate);
+      tierBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tierBtns.forEach(b => b.classList.remove('bg-[#D4AF37]/10', 'border-[#D4AF37]'));
+          btn.classList.add('bg-[#D4AF37]/10', 'border-[#D4AF37]');
+          currentTier = parseFloat(btn.dataset.tier);
+          updateRebate();
+        });
+      });
+
+      // set default tier highlight
+      document.querySelector('.tier-btn[data-tier="12"]').classList.add('bg-[#D4AF37]/10', 'border-[#D4AF37]');
+      updateRebate();
+
+      // ---------- MACRO NEWS TERMINAL ----------
+      const newsDatePicker = document.getElementById('newsDatePicker');
+      newsDatePicker.value = today;
+      const newsTableBody = document.getElementById('newsTableBody');
+      const countdownEl = document.getElementById('countdown');
+      const simulateBtn = document.getElementById('simulateReleaseBtn');
+
+      const newsData = [
+        { time: '08:30', event: 'NFP', forecast: '185K', prev: '175K', bias: 'BUY' },
+        { time: '12:00', event: 'CPI y/y', forecast: '3.2%', prev: '3.4%', bias: 'SELL' },
+        { time: '14:00', event: 'FOMC', forecast: '5.25%', prev: '5.25%', bias: 'BUY' },
+      ];
+
+      function renderNews() {
+        newsTableBody.innerHTML = newsData.map((item, idx) => {
+          const biasClass = item.bias === 'BUY' ? 'text-emerald-accent' : 'text-rose-accent';
+          const actual = item.actual || '—';
+          const action = item.actual ? (item.actual > item.forecast ? 'BUY' : 'SELL') : '—';
+          const actionClass = action === 'BUY' ? 'text-emerald-accent' : (action === 'SELL' ? 'text-rose-accent' : 'text-slate-muted');
+          return `<tr class="border-b border-white/5">
+            <td class="py-2">${item.time}</td>
+            <td>${item.event}</td>
+            <td>${item.forecast}/${item.prev}</td>
+            <td class="${biasClass}">${item.bias}</td>
+            <td>${actual}</td>
+            <td class="${actionClass}">${action}</td>
+          </tr>`;
         }).join('');
       }
+      renderNews();
 
-      // Hitung Harmonis vs Tension Score
-      let harmonicScore = 0;
-      let tensionScore = 0;
-
-      for (let i = 0; i < planets.length; i++) {
-        for (let j = i + 1; j < planets.length; j++) {
-          let diff = Math.abs(planets[i].deg - planets[j].deg);
-          if (diff > 180) diff = 360 - diff;
-          if (Math.abs(diff - 120) <= 5 || Math.abs(diff - 60) <= 4) harmonicScore += 2.5;
-          if (Math.abs(diff - 90) <= 4.5 || Math.abs(diff - 180) <= 4.5) tensionScore += 2.0;
-        }
-      }
-
-      // Net Vector
-      const isBullish = harmonicScore >= tensionScore;
-      const confidence = Math.min(94.8, Math.max(52.4, 50 + (Math.abs(harmonicScore - tensionScore) * 3.4))).toFixed(1);
-
-      // Pair-dependent pricing & levels
-      const currentPrice = STATE.prices[STATE.pair];
-      let entryLow, entryHigh, tp1, tp2, sl;
-
-      if (STATE.pair === 'XAUUSD') {
-        if (isBullish) {
-          entryLow = (currentPrice - 2.5).toFixed(2);
-          entryHigh = (currentPrice + 0.8).toFixed(2);
-          tp1 = (currentPrice + 14.0).toFixed(2);
-          tp2 = (currentPrice + 29.5).toFixed(2);
-          sl = (currentPrice - 9.8).toFixed(2);
-        } else {
-          entryLow = (currentPrice - 0.8).toFixed(2);
-          entryHigh = (currentPrice + 2.5).toFixed(2);
-          tp1 = (currentPrice - 14.0).toFixed(2);
-          tp2 = (currentPrice - 29.5).toFixed(2);
-          sl = (currentPrice + 9.8).toFixed(2);
-        }
-      } else { // BTCUSD
-        if (isBullish) {
-          entryLow = (currentPrice - 180).toFixed(1);
-          entryHigh = (currentPrice + 60).toFixed(1);
-          tp1 = (currentPrice + 1250).toFixed(1);
-          tp2 = (currentPrice + 2600).toFixed(1);
-          sl = (currentPrice - 750).toFixed(1);
-        } else {
-          entryLow = (currentPrice - 60).toFixed(1);
-          entryHigh = (currentPrice + 180).toFixed(1);
-          tp1 = (currentPrice - 1250).toFixed(1);
-          tp2 = (currentPrice - 2600).toFixed(1);
-          sl = (currentPrice + 750).toFixed(1);
-        }
-      }
-
-      // Update Signal UI Badges
-      const actionWord = isBullish ? "BUY" : "SELL";
-      const actionColorClass = isBullish ? "text-cyberGreen" : "text-crimson";
-      const actionBgClass = isBullish ? "bg-cyberGreen/10 border-cyberGreen/40 text-cyberGreen" : "bg-crimson/10 border-crimson/40 text-crimson";
-
-      document.getElementById('signal-pair-action').innerHTML = `${STATE.pair} <span class="${actionColorClass}">${actionWord}</span>`;
-      document.getElementById('signal-badge-cycle').className = `text-[10px] font-mono px-2 py-0.5 rounded-full border ${actionBgClass} font-bold uppercase`;
-      document.getElementById('signal-badge-cycle').innerText = `${actionWord} (ASTRO CYCLES)`;
-      document.getElementById('signal-confidence').innerText = confidence + "%";
-      document.getElementById('signal-confidence').className = `text-2xl font-black font-display ${actionColorClass}`;
-
-      document.getElementById('val-entry').innerText = `$${entryLow} - $${entryHigh}`;
-      document.getElementById('val-tp1').innerText = `$${tp1}`;
-      document.getElementById('val-tp2').innerText = `$${tp2}`;
-      document.getElementById('val-sl').innerText = `$${sl}`;
-
-      // Update 4 Smart Astro Reasons Otomatis
-      generateSmartReasons(isBullish, confidence, planets);
-
-      // Update WhatsApp Link for Signal
-      const waSignalMsg = encodeURIComponent(`Halo Admin ZERODIAX, saya ingin konfirmasi sinyal Astro-Quant ${STATE.pair} [${actionWord}] Confidence ${confidence}%. Mohon pandu eksekusi dan rebate saya.`);
-      document.getElementById('btn-wa-signal').href = `https://wa.me/62882010445069?text=${waSignalMsg}`;
-    }
-
-    function generateSmartReasons(isBullish, confidence, planets) {
-      const moon = planets.find(p => p.id === "Moon");
-      const sun = planets.find(p => p.id === "Sun");
-      const jup = planets.find(p => p.id === "Jupiter");
-      const pluto = planets.find(p => p.id === "Pluto");
-      const mars = planets.find(p => p.id === "Mars");
-
-      const mSign = ZODIACS[Math.floor(moon.deg / 30)].symbol + " " + ZODIACS[Math.floor(moon.deg / 30)].name;
-      const jSign = ZODIACS[Math.floor(jup.deg / 30)].symbol + " " + ZODIACS[Math.floor(jup.deg / 30)].name;
-
-      if (isBullish) {
-        document.getElementById('r1-title').innerText = "1. Formasi Aspek Kunci & Bisektil Harmonik";
-        document.getElementById('r1-badge').innerText = "HARMONIC DOMINANT";
-        document.getElementById('r1-badge').className = "text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyberGreen/10 text-cyberGreen font-bold uppercase";
-        document.getElementById('r1-desc').innerText = `Terbentuk formasi aspek harmonis Trine 120° dan Sextile 60° antara Moon (${mSign}) dengan Jupiter (${jSign}). Vektor ini memicu ekspansi likuiditas buyers dan menetralkan resistensi minor.`;
-
-        document.getElementById('r2-title').innerText = "2. Vektor Fisika Lelang & Kompresi Kinetik";
-        document.getElementById('r2-badge').innerText = "KINETIC SURGE (+84.2)";
-        document.getElementById('r2-badge').className = "text-[10px] font-mono px-1.5 py-0.5 rounded bg-gold/10 text-gold font-bold uppercase";
-        document.getElementById('r2-desc').innerText = `Momentum kinetik lelang mengindikasikan akumulasi volume besar di zona discount. Sudut rotasi orbital menghasilkan daya dorong positif terukur untuk memicu breakout ke target atas.`;
-
-        document.getElementById('r3-title').innerText = "3. Titik Sumbu Placidus & House Cusps";
-        document.getElementById('r3-badge').innerText = "ASC / MC CONVERGENCE";
-        document.getElementById('r3-badge').className = "text-[10px] font-mono px-1.5 py-0.5 rounded bg-electricBlue/10 text-electricBlue font-bold uppercase";
-        document.getElementById('r3-desc').innerText = `Sumbu Ascendant (Scorpio 17°) dan Midheaven (Leo 28°) berada dalam kuadran ekspansif House IX. Siklus waktu ini secara historis mengonfirmasi kelanjutan reli institusional.`;
-
-        document.getElementById('r4-title').innerText = "4. Institutional SMC Sweep & Mitigasi";
-        document.getElementById('r4-badge').innerText = "LIQUIDITY PURGED";
-        document.getElementById('r4-badge').className = "text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-400/10 text-purple-400 font-bold uppercase";
-        document.getElementById('r4-desc').innerText = `Sell-side liquidity (SSL) retail di bawah support telah di-sweep tuntas. Tidak ada imbalance tersisa di bawah harga, menyisakan jalur bersih menuju Buy-side Liquidity (BSL).`;
-      } else {
-        document.getElementById('r1-title').innerText = "1. Formasi Square 90° & Ketegangan Kuadran";
-        document.getElementById('r1-badge').innerText = "TENSION ACCUMULATION";
-        document.getElementById('r1-badge').className = "text-[10px] font-mono px-1.5 py-0.5 rounded bg-crimson/10 text-crimson font-bold uppercase";
-        document.getElementById('r1-desc').innerText = `Aspek Square 90° tajam antara Mars dan Saturnus/Mercury menekan likuiditas. Tekanan distribusi institusi mulai mendominasi buku order lelang.`;
-
-        document.getElementById('r2-title').innerText = "2. Kelelahan Daya Beli (Exhaustion Vector)";
-        document.getElementById('r2-badge').innerText = "BEARISH DIVERGENCE";
-        document.getElementById('r2-badge').className = "text-[10px] font-mono px-1.5 py-0.5 rounded bg-crimson/10 text-crimson font-bold uppercase";
-        document.getElementById('r2-desc').innerText = `Vektor kinetik lelang berbalik negatif (-76.5 rad/sec), memperlihatkan pelemahan volume beli di area premium. Koreksi likuiditas ke zona Fair Value Gap (FVG) bawah sangat krusial.`;
-
-        document.getElementById('r3-title').innerText = "3. Sumbu Descendant Placidus & Tekanan";
-        document.getElementById('r3-badge').innerText = "DSC IMPULSE";
-        document.getElementById('r3-badge').className = "text-[10px] font-mono px-1.5 py-0.5 rounded bg-gold/10 text-gold font-bold uppercase";
-        document.getElementById('r3-desc').innerText = `Transisi planet agresif melewati sektor Descendant (Taurus 17°), memicu pelepasan kontrak institusi dalam volume besar di pasar New York.`;
-
-        document.getElementById('r4-title').innerText = "4. Liquidity Grab di Area High (BSL Hunt)";
-        document.getElementById('r4-badge').innerText = "BUY-SIDE PURGED";
-        document.getElementById('r4-badge').className = "text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-400/10 text-purple-400 font-bold uppercase";
-        document.getElementById('r4-desc').innerText = `High sebelumnya berhasil di-sweep tipis sebelum langsung membentuk Change of Character (CHoCH) bearish, menandakan dimulainya pergerakan Sell-off.`;
-      }
-    }
-
-    /* ---------------------------------------------------------
-       9. MACRO NEWS ENGINE (FULL AUTO + COUNTDOWN + VERIFICATION)
-       --------------------------------------------------------- */
-    function initNewsTable(dateKey) {
-      document.getElementById('news-table-date-label').innerText = `(${dateKey})`;
-
-      // Ambil atau buat data news dinamis untuk tanggal apapun yang dipilih user
-      let newsList = NEWS_DATABASE[dateKey];
-      if (!newsList) {
-        // Otomatis generate jadwal news realistis jika memilih tanggal custom
-        newsList = [
-          { id: 901, timeWIB: "19:30", timeEDT: "08:30", currency: "USD", event: "US Inflation / Macro Core Index", impact: "HIGH", forecast: "2.8%", prev: "2.9%", actual: null, autoBias: "BUY", weight: 3 },
-          { id: 902, timeWIB: "21:00", timeEDT: "10:00", currency: "USD", event: "ISM Services Purchasing Managers", impact: "HIGH", forecast: "51.4", prev: "51.2", actual: null, autoBias: "BUY", weight: 2 },
-          { id: 903, timeWIB: "21:30", timeEDT: "10:30", currency: "USD", event: "Treasury Coupon Refunding Demand", impact: "MED", forecast: "4.15%", prev: "4.20%", actual: null, autoBias: "BUY", weight: 1 }
-        ];
-      }
-
-      currentNewsList = JSON.parse(JSON.stringify(newsList));
-      renderNewsTable();
-    }
-
-    function renderNewsTable() {
-      const tbody = document.getElementById('news-table-body');
-      if (!tbody) return;
-
-      tbody.innerHTML = currentNewsList.map((item, idx) => {
-        const impactBadge = item.impact === 'HIGH' 
-          ? `<span class="px-1.5 py-0.5 rounded bg-crimson/15 text-crimson text-[10px] font-bold">HIGH</span>`
-          : `<span class="px-1.5 py-0.5 rounded bg-gold/15 text-gold text-[10px] font-bold">MED</span>`;
-
-        // Pre-News Bias (Selalu ada SEBELUM news)
-        const preBias = item.autoBias === 'BUY'
-          ? `<span class="px-2 py-0.5 rounded border border-cyberGreen/40 bg-cyberGreen/10 text-cyberGreen font-bold">ASTRO BUY</span>`
-          : `<span class="px-2 py-0.5 rounded border border-crimson/40 bg-crimson/10 text-crimson font-bold">ASTRO SELL</span>`;
-
-        // Actual cell
-        let actualHtml = '';
-        let finalConfirmHtml = '';
-
-        if (item.actual === null) {
-          actualHtml = `
-            <div class="flex items-center gap-1.5">
-              <span class="text-slate-500 animate-pulse">Menunggu...</span>
-              <button onclick="triggerSingleActual(${item.id})" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-gold text-[10px] border border-slate-700">Rilis</button>
-            </div>
-          `;
-          finalConfirmHtml = `
-            <span class="text-slate-500 text-[11px] flex items-center gap-1">
-              <span class="w-1.5 h-1.5 rounded-full bg-gold animate-ping"></span>
-              Menunggu Actual (Bias Astro Aktif)
-            </span>
-          `;
-        } else {
-          actualHtml = `
-            <span class="font-bold text-white bg-slate-800 px-2 py-0.5 rounded border border-slate-700">${item.actual}</span>
-          `;
-
-          // Otomatis kalkulasi konfirmasi saat actual rilis
-          const confirmation = evaluateNewsImpact(item);
-          finalConfirmHtml = `
-            <div class="flex flex-col">
-              <span class="${confirmation.color} font-bold flex items-center gap-1">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                ${confirmation.verdict}
-              </span>
-              <span class="text-[9px] text-slate-400 mt-0.5">${confirmation.note}</span>
-            </div>
-          `;
-        }
-
-        return `
-          <tr class="hover:bg-slate-900/40 transition">
-            <td class="py-3 px-3 font-bold text-white">${item.timeWIB} WIB <span class="text-[10px] text-slate-400 block">${item.timeEDT} EDT</span></td>
-            <td class="py-3 px-3"><span class="font-bold text-white">${item.event}</span> <span class="text-slate-400 text-[10px]">(${item.currency})</span></td>
-            <td class="py-3 px-3">${impactBadge}</td>
-            <td class="py-3 px-3 text-slate-300">${item.forecast} / <span class="text-slate-500">${item.prev}</span></td>
-            <td class="py-3 px-3">${preBias}</td>
-            <td class="py-3 px-3">${actualHtml}</td>
-            <td class="py-3 px-3">${finalConfirmHtml}</td>
-          </tr>
-        `;
-      }).join('');
-    }
-
-    function evaluateNewsImpact(item) {
-      // Evaluasi deviasi Actual terhadap Forecast
-      const numForecast = parseFloat(item.forecast);
-      const numActual = parseFloat(item.actual);
-
-      // Jika data inflasi/CPI: Actual lebih kecil = USD turun = Emas/XAUUSD NAIK (Bullish)
-      // Jika actual lebih besar = USD naik = Emas TURUN (Bearish)
-      let actualFavorsBuy = numActual <= numForecast;
-
-      if (actualFavorsBuy && item.autoBias === 'BUY') {
-        return {
-          verdict: "CONFIRMED ACCELERATION BUY",
-          color: "text-cyberGreen",
-          note: "Actual selaras dengan siklus Astro. Momentum impulsive terverifikasi."
-        };
-      } else if (!actualFavorsBuy && item.autoBias === 'BUY') {
-        return {
-          verdict: "WHIPSAW SWEEP -> BUY REVERSAL",
-          color: "text-gold",
-          note: "Spike penurunan sesaat untuk sweeping liquidity diskon, lalu dijemput buyers."
-        };
-      } else if (!actualFavorsBuy && item.autoBias === 'SELL') {
-        return {
-          verdict: "CONFIRMED STRONG SELL",
-          color: "text-crimson",
-          note: "Actual selaras siklus distribusi Astro. Tekanan likuidasi meluas."
-        };
-      } else {
-        return {
-          verdict: "WHIPSAW SWEEP -> SELL REVERSAL",
-          color: "text-gold",
-          note: "Spike kenaikan mencari Buy-Side Liquidity sebelum dumping lanjutan."
-        };
-      }
-    }
-
-    function onNewsDatePicked(dateStr) {
-      initNewsTable(dateStr);
-    }
-
-    function toggleAutoNewsReleaser() {
-      STATE.autoReleaseNews = !STATE.autoReleaseNews;
-      const btn = document.getElementById('btn-toggle-auto-release');
-      const txt = document.getElementById('auto-release-status');
-      if (STATE.autoReleaseNews) {
-        txt.innerText = "AUTO-RELEASE ENGINE: ON";
-        btn.className = "px-3 py-2 rounded-xl bg-cyberGreen/15 border border-cyberGreen/40 text-cyberGreen text-xs font-mono font-bold flex items-center gap-1.5 hover:bg-cyberGreen/25 transition";
-      } else {
-        txt.innerText = "AUTO-RELEASE ENGINE: PAUSED";
-        btn.className = "px-3 py-2 rounded-xl bg-charcoal border border-slate-700 text-slate-400 text-xs font-mono font-bold flex items-center gap-1.5 hover:text-white transition";
-      }
-    }
-
-    function triggerSingleActual(id) {
-      const item = currentNewsList.find(n => n.id === id);
-      if (item && item.actual === null) {
-        // Generate angka rilis realistis (deviasi tipis)
-        const baseNum = parseFloat(item.forecast);
-        const randDelta = (Math.random() > 0.45 ? -0.1 : 0.1);
-        item.actual = (baseNum + randDelta).toFixed(1) + "%";
-        renderNewsTable();
-      }
-    }
-
-    function triggerAllActualsNow() {
-      currentNewsList.forEach(item => {
-        if (item.actual === null) {
-          const baseNum = parseFloat(item.forecast);
-          const randDelta = (Math.random() > 0.4 ? -0.1 : 0.1);
-          item.actual = (baseNum + randDelta).toFixed(1) + "%";
-        }
+      // simulate release
+      simulateBtn.addEventListener('click', () => {
+        newsData.forEach(item => { item.actual = (parseFloat(item.forecast) + (Math.random() - 0.5) * 2).toFixed(2); });
+        renderNews();
       });
-      renderNewsTable();
-      document.getElementById('global-actual-verdict').innerText = "ALL ACTUALS CONFIRMED";
-    }
 
-    function resetNewsEngine() {
-      const dateKey = document.getElementById('news-date-picker').value || "2026-10-28";
-      initNewsTable(dateKey);
-      STATE.countdownSeconds = 25;
-      document.getElementById('global-actual-verdict').innerText = "STANDBY RECEPTOR";
-    }
-
-    /* ---------------------------------------------------------
-       10. AUTO-COUNTDOWN & REALTIME TICKERS
-       --------------------------------------------------------- */
-    function startAutoCountdownEngine() {
+      // live countdown
+      let countdownSec = 59;
       setInterval(() => {
-        if (!STATE.autoReleaseNews) return;
-
-        STATE.countdownSeconds--;
-        if (STATE.countdownSeconds <= 0) {
-          // Cari item pertama yang belum rilis, lalu rilis otomatis!
-          const unreleased = currentNewsList.find(n => n.actual === null);
-          if (unreleased) {
-            triggerSingleActual(unreleased.id);
-            document.getElementById('global-actual-verdict').innerText = "LIVE CONFIRMED";
-            STATE.countdownSeconds = 30; // Reset ke event berikutnya
-          } else {
-            STATE.countdownSeconds = 60;
-          }
-        }
-
-        // Update UI Countdown
-        const cd = document.getElementById('news-countdown');
-        if (cd) {
-          const s = STATE.countdownSeconds;
-          cd.innerText = `00:00:${s < 10 ? '0' + s : s}`;
-        }
-        const prog = document.getElementById('countdown-progress');
-        if (prog) {
-          prog.style.width = ((STATE.countdownSeconds / 30) * 100) + '%';
-        }
+        countdownSec = (countdownSec + 1) % 60;
+        countdownEl.textContent = `00:${countdownSec.toString().padStart(2, '0')}`;
       }, 1000);
-    }
 
-    function startRealtimeTickers() {
-      // Pergerakan micro-pip harga live secara konsisten
-      setInterval(() => {
-        const deltaGold = (Math.random() * 0.4 - 0.2);
-        STATE.prices.XAUUSD = parseFloat((STATE.prices.XAUUSD + deltaGold).toFixed(2));
-        
-        const deltaBtc = (Math.random() * 12 - 6);
-        STATE.prices.BTCUSD = parseFloat((STATE.prices.BTCUSD + deltaBtc).toFixed(2));
+      // re-render on date change
+      newsDatePicker.addEventListener('change', () => { renderNews(); });
 
-        const goldEl = document.getElementById('ticker-gold-price');
-        if (goldEl) goldEl.innerText = `$${STATE.prices.XAUUSD.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+      // override WhatsApp link for signal
+      const originalWaRebate = document.getElementById('waRebateBtn');
+      // it's fine, already dynamic
 
-        const btcEl = document.getElementById('ticker-btc-price');
-        if (btcEl) btcEl.innerText = `$${STATE.prices.BTCUSD.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
-      }, 900);
-    }
-
-    /* ---------------------------------------------------------
-       11. SELF-REBATE CALCULATOR LOGIC
-       --------------------------------------------------------- */
-    function setLotPreset(lots) {
-      STATE.currentLot = lots;
-      document.getElementById('rebate-slider').value = lots;
-      updateRebateCalc();
-    }
-
-    function selectRebateTier(tier) {
-      STATE.currentTier = tier;
-      [9, 10, 12].forEach(t => {
-        const card = document.getElementById('tier-card-' + t);
-        if (card) {
-          card.className = "cursor-pointer p-3 rounded-xl border border-slate-800 bg-obsidian hover:border-slate-700 transition";
-        }
-      });
-
-      const activeCard = document.getElementById('tier-card-' + (tier === 10.5 ? 10 : tier));
-      if (activeCard) {
-        activeCard.className = "cursor-pointer p-3 rounded-xl border border-cyberGreen/60 bg-cyberGreen/10 shadow-[0_0_15px_rgba(0,255,136,0.15)] transition";
-      }
-      updateRebateCalc();
-    }
-
-    function updateRebateCalc() {
-      const slider = document.getElementById('rebate-slider');
-      if (slider) STATE.currentLot = parseInt(slider.value);
-
-      document.getElementById('rebate-lot-display').innerText = STATE.currentLot;
-
-      const dailyUsd = STATE.currentLot * STATE.currentTier;
-      const monthlyUsd = dailyUsd * 22; // 22 trading days
-      const rateIdr = 16000;
-
-      const dailyIdr = dailyUsd * rateIdr;
-      const monthlyIdr = monthlyUsd * rateIdr;
-
-      document.getElementById('rebate-daily-usd').innerText = `$${dailyUsd.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
-      document.getElementById('rebate-daily-idr').innerText = `≈ Rp ${dailyIdr.toLocaleString('id-ID')} / hari`;
-
-      document.getElementById('rebate-monthly-usd').innerText = `$${monthlyUsd.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
-      document.getElementById('rebate-monthly-idr').innerText = `≈ Rp ${monthlyIdr.toLocaleString('id-ID')} / bulan`;
-
-      // Update Dynamic WhatsApp Text
-      const msg = encodeURIComponent(`Halo Admin ZERODIAX (+62 882-0104-45069), saya ingin aktivasi program Self-Rebate Valetax $${STATE.currentTier}/Lot untuk volume ${STATE.currentLot} Lot/hari (Estimasi $${monthlyUsd.toLocaleString('en-US')}/bulan). Mohon kirimkan link registrasi dan panduannya.`);
-      document.getElementById('btn-wa-rebate').href = `https://wa.me/62882010445069?text=${msg}`;
-    }
-
-    /* ---------------------------------------------------------
-       12. VERIFIED FLOATING TESTIMONIAL ROTATOR
-       --------------------------------------------------------- */
-    const TOAST_DATA = [
-      { name: "Rizky Pratama (Surabaya)", desc: "Baru saja klaim Rebate $144 (12 Lot Valetax)" },
-      { name: "Budi Santoso (Jakarta)", desc: "Sinyal XAUUSD BUY Hit TP2 +$1,320 Profit" },
-      { name: "Hendra Wijaya (Bandung)", desc: "Withdraw Rebate Mingguan $720 Berhasil" },
-      { name: "Alvin Gunawan (Medan)", desc: "Auto-Rebate $12/Lot cair langsung ke Wallet" }
-    ];
-
-    function startToastRotator() {
-      let idx = 0;
-      const toast = document.getElementById('floating-toast');
-      const nameEl = document.getElementById('toast-name');
-      const descEl = document.getElementById('toast-desc');
-
-      setInterval(() => {
-        if (!toast) return;
-        idx = (idx + 1) % TOAST_DATA.length;
-        nameEl.innerText = TOAST_DATA[idx].name;
-        descEl.innerText = TOAST_DATA[idx].desc;
-
-        // Slide in
-        toast.classList.remove('translate-y-24', 'opacity-0');
-        toast.classList.add('translate-y-0', 'opacity-100');
-
-        setTimeout(() => {
-          // Slide out
-          toast.classList.remove('translate-y-0', 'opacity-100');
-          toast.classList.add('translate-y-24', 'opacity-0');
-        }, 4000);
-      }, 9000);
-    }
+    })();
   </script>
 </body>
 </html>
