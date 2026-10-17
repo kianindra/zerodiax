@@ -200,10 +200,7 @@
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .btn-enter-terminal:active {
-      transform: scale(0.95);
-      background: #ff2a54;
-    }
+    .btn-enter-terminal:active { transform: scale(0.95); background: #ff2a54; }
 
     /* 2. NAVBAR & CONTAINER */
     .terminal-container {
@@ -372,10 +369,7 @@
       color-scheme: dark;
     }
 
-    .ctrl-field select option {
-      background: #080a13;
-      color: #fff;
-    }
+    .ctrl-field select option { background: #080a13; color: #fff; }
 
     .btn-sync-live {
       background: rgba(34, 197, 94, 0.15);
@@ -423,7 +417,7 @@
       box-shadow: 0 0 12px rgba(255, 42, 84, 0.4);
     }
 
-    /* 4. RADAR LIVE SIGNAL (FOKUS BUY / FOKUS SELL) */
+    /* 4. RADAR LIVE SIGNAL */
     .signal-radar-box {
       background: #090c14;
       border: 1px solid rgba(255, 255, 255, 0.09);
@@ -497,11 +491,7 @@
       overflow: hidden;
     }
 
-    .astrodox-svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
+    .astrodox-svg { width: 100%; height: 100%; display: block; }
 
     .astrodox-data-panel {
       display: flex;
@@ -691,22 +681,9 @@
       padding: 10px;
     }
 
-    .matrix-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .matrix-label {
-      font-size: 0.65rem;
-      color: #64748b;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-    .matrix-val {
-      font-size: 0.82rem;
-      font-weight: 900;
-      font-family: ui-monospace, SFMono-Regular, monospace;
-    }
+    .matrix-item { display: flex; flex-direction: column; gap: 2px; }
+    .matrix-label { font-size: 0.65rem; color: #64748b; font-weight: 800; text-transform: uppercase; }
+    .matrix-val { font-size: 0.82rem; font-weight: 900; font-family: ui-monospace, SFMono-Regular, monospace; }
 
     /* 7. TAB REKAPITULASI */
     .recap-panel {
@@ -717,19 +694,8 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     }
 
-    .recap-table-wrapper {
-      overflow-x: auto;
-      margin-top: 14px;
-    }
-
-    .recap-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.8rem;
-      text-align: left;
-      min-width: 680px;
-    }
-
+    .recap-table-wrapper { overflow-x: auto; margin-top: 14px; }
+    .recap-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left; min-width: 680px; }
     .recap-table th {
       background: #0d101a;
       color: #94a3b8;
@@ -739,13 +705,7 @@
       letter-spacing: 0.5px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
-
-    .recap-table td {
-      padding: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      color: #e2e8f0;
-    }
-
+    .recap-table td { padding: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); color: #e2e8f0; }
     .badge-win {
       background: rgba(34, 197, 94, 0.15);
       color: #4ade80;
@@ -756,9 +716,7 @@
       font-size: 0.72rem;
     }
 
-    /* ========================================================
-       8. FLOATING DESK STRATEGIST WIDGET & 4-ZONE DRAWER
-       ======================================================== */
+    /* 8. FLOATING DESK STRATEGIST WIDGET & 4-ZONE DRAWER */
     .desk-fab-container {
       position: fixed;
       bottom: 24px;
@@ -786,11 +744,7 @@
       outline: none;
     }
 
-    .desk-fab-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 25px rgba(255, 42, 84, 0.75);
-    }
-
+    .desk-fab-btn:hover { transform: scale(1.08); box-shadow: 0 0 25px rgba(255, 42, 84, 0.75); }
     .desk-fab-btn:active { transform: scale(0.94); }
 
     .desk-fab-avatar {
@@ -802,12 +756,7 @@
       justify-content: center;
       color: #fff;
     }
-
-    .desk-fab-avatar svg {
-      width: 32px;
-      height: 32px;
-      fill: #f8fafc;
-    }
+    .desk-fab-avatar svg { width: 32px; height: 32px; fill: #f8fafc; }
 
     .desk-online-badge {
       position: absolute;
@@ -845,9 +794,9 @@
       position: fixed;
       bottom: 96px;
       right: 24px;
-      width: 390px;
+      width: 410px;
       max-width: calc(100vw - 32px);
-      height: 620px;
+      height: 650px;
       max-height: calc(100vh - 120px);
       background: #080a13;
       border: 1px solid rgba(255, 42, 84, 0.38);
@@ -916,7 +865,6 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-
     .desk-btn-close:hover {
       color: #fff;
       border-color: #ff2a54;
@@ -946,12 +894,7 @@
       white-space: nowrap;
       transition: all 0.2s ease;
     }
-
-    .desk-pill-btn:hover {
-      background: rgba(255, 42, 84, 0.18);
-      border-color: #ff2a54;
-      color: #fff;
-    }
+    .desk-pill-btn:hover { background: rgba(255, 42, 84, 0.18); border-color: #ff2a54; color: #fff; }
 
     .desk-chat-log {
       flex: 1;
@@ -967,12 +910,11 @@
     .desk-chat-msg {
       display: flex;
       flex-direction: column;
-      max-width: 88%;
+      max-width: 92%;
       font-size: 0.82rem;
       line-height: 1.5;
       animation: msgEntrance 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
     @keyframes msgEntrance {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
@@ -996,12 +938,11 @@
       padding: 12px 14px;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
     }
-
     .desk-msg-assistant strong { color: #38bdf8; }
 
     .zone-block {
       margin-top: 8px;
-      padding: 8px 10px;
+      padding: 10px 12px;
       background: #030407;
       border-radius: 6px;
       border-left: 3.5px solid #ff2a54;
@@ -1009,7 +950,6 @@
       font-size: 0.76rem;
       line-height: 1.6;
     }
-
     .zone-block.zone-buy { border-left-color: #22c55e; }
     .zone-block.zone-sell { border-left-color: #ef4444; }
 
@@ -1076,7 +1016,6 @@
       box-shadow: 0 0 14px rgba(255, 42, 84, 0.5);
       transition: all 0.2s ease;
     }
-
     .desk-btn-send:hover { background: #ff476d; transform: scale(1.04); }
     .desk-btn-send:active { transform: scale(0.95); }
 
@@ -1101,7 +1040,7 @@
 </head>
 <body>
 
-  <!-- 1. OPENING LUXURY SUPERCAR -->
+  <!-- 1. OPENING LUXURY -->
   <div id="openingOverlay">
     <div class="bg-video-wrapper">
       <video id="heroPorscheVideo" class="bg-cinematic-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
@@ -1110,10 +1049,8 @@
         <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
       </video>
     </div>
-
     <div class="cinema-vignette"></div>
     <canvas id="openingCanvas"></canvas>
-
     <div class="opening-content-box">
       <div class="vip-brand-badge">Z</div>
       <div class="opening-pre-title">ZERODIAX PRIVATE WEALTH &bull; INSTITUTIONAL DESK</div>
@@ -1250,7 +1187,6 @@
             <div style="font-size:1.8rem; text-shadow:0 0 15px rgba(56,189,248,0.8);" id="liveMoonIcon">&#9789;</div>
           </div>
 
-          <!-- TABEL EPHEMERIS LENGKAP -->
           <div class="transit-table-full">
             <div class="transit-item"><span>☉ Sun (Gold)</span><strong style="color:#f59e0b;" id="degSun">--</strong></div>
             <div class="transit-item"><span>Asc (<span id="ascSignLabel">Asc</span>)</span><strong style="color:#cbd5e1;" id="degAsc">--</strong></div>
@@ -1331,23 +1267,23 @@
       </div>
     </div>
 
-    <!-- TAB 3: REKAP TRACK RECORD -->
+    <!-- TAB 3: REKAP TRACK RECORD (REAL-TIME AUTO-ARCHIVE) -->
     <div id="tab-recap" class="tab-view-content">
       <div class="recap-panel">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
-          <h3 style="font-size:1.05rem; font-weight:900; letter-spacing:0.5px; color:#fff;">📊 REKAPITULASI EKSEKUSI NEWS (REAL-TIME)</h3>
+          <h3 style="font-size:1.05rem; font-weight:900; letter-spacing:0.5px; color:#fff;">📊 REKAPITULASI EKSEKUSI NEWS &amp; 4-ZONE SNIPER (REAL-TIME)</h3>
           <span class="badge-win">TRACK RECORD PERMANEN</span>
         </div>
-        <p style="font-size:0.78rem; color:#94a3b8; line-height:1.4;">Arsip historis hasil rilis berita yang dieksekusi secara otomatis pada detik rilis tiba tersimpan permanen di terminal.</p>
+        <p style="font-size:0.78rem; color:#94a3b8; line-height:1.4;">Arsip historis hasil rilis berita dan pemantauan 4-Zone Sniper yang dieksekusi secara otomatis tersimpan permanen di terminal.</p>
         <div class="recap-table-wrapper">
           <table class="recap-table">
             <thead>
               <tr>
                 <th>Tanggal &amp; Jam</th>
-                <th>Mata Uang / Event</th>
-                <th>Forecast vs Actual</th>
-                <th>Sinyal Eksekusi</th>
-                <th>Window Entry</th>
+                <th>Tipe / Event</th>
+                <th>Level Area</th>
+                <th>Arah Eksekusi</th>
+                <th>Batas Risiko (SL)</th>
                 <th>Status Target</th>
               </tr>
             </thead>
@@ -1359,9 +1295,7 @@
 
   </div>
 
-  <!-- ========================================================
-       8. FLOATING ACTION BUTTON & 4-ZONE INTERACTIVE DRAWER
-       ======================================================== -->
+  <!-- FLOATING ACTION BUTTON & 4-ZONE INTERACTIVE DRAWER -->
   <div class="desk-fab-container">
     <button class="desk-fab-btn" id="btnOpenDeskDrawer" aria-label="Buka Konsultasi Desk Strategist">
       <div class="desk-fab-avatar">
@@ -1393,9 +1327,9 @@
     </div>
 
     <div class="desk-quick-pills">
-      <button class="desk-pill-btn" onclick="triggerQuickDeskPrompt('🎯 Hitung 4 Zone Sniper Sekarang')">🎯 4 Zone Sniper</button>
-      <button class="desk-pill-btn" onclick="triggerQuickDeskPrompt('⚡ Cek Setup Pre-News')">⚡ Setup Pre-News</button>
-      <button class="desk-pill-btn" onclick="triggerQuickDeskPrompt('🛡️ Rekomendasi SL Tipis Hari Ini')">🛡️ SL Tipis XAUUSD</button>
+      <button class="desk-pill-btn" onclick="triggerQuickDeskPrompt('🎯 4 Zone Sniper')">🎯 4 Zone Sniper</button>
+      <button class="desk-pill-btn" onclick="triggerQuickDeskPrompt('⚡ Setup Pre-News')">⚡ Setup Pre-News</button>
+      <button class="desk-pill-btn" onclick="triggerQuickDeskPrompt('🛡️ SL Tipis XAUUSD')">🛡️ SL Tipis XAUUSD</button>
     </div>
 
     <div class="desk-chat-log" id="deskChatLog">
@@ -1410,7 +1344,7 @@
     </div>
 
     <form class="desk-chat-input-bar" id="deskChatForm" onsubmit="handleDeskMessageSubmit(event)">
-      <input type="text" id="deskChatInput" placeholder="Tanyakan zona sniper atau arah pasar..." autocomplete="off" />
+      <input type="text" id="deskUserInput" placeholder="Tanyakan zona sniper atau arah pasar..." autocomplete="off" />
       <button type="submit" class="desk-btn-send" aria-label="Kirim Pesan">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -1421,7 +1355,7 @@
   </div>
 
   <script>
-    // 1. OPENING LUXURY CANVAS PARTICLES
+    // 1. OPENING LUXURY PARTICLES
     function initOpeningParticles() {
       const canvas = document.getElementById('openingCanvas');
       if (!canvas) return;
@@ -1523,6 +1457,7 @@
     let liveSessionHigh = 2742.80;
     let liveSessionLow = 2728.10;
     let liveATR = 8.60;
+    let activeTrackedZones = []; // Array of monitored zones for auto-recap
 
     function initMarketFeed() {
       try {
@@ -1565,6 +1500,9 @@
       document.getElementById('atrVal').innerText = liveATR.toFixed(2);
       document.getElementById('bslVal').innerText = bsl.toFixed(2);
       document.getElementById('sslVal').innerText = ssl.toFixed(2);
+
+      // Otomatis cek apakah harga menyentuh TP/SL dari Zona Aktif
+      monitorActiveZonesHit(liveSpotPrice);
     }
     initMarketFeed();
 
@@ -1647,7 +1585,6 @@
       const JD = Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + dVal + (utcHours / 24.0) + B - 1524.5;
       const d = JD - 2451545.0;
 
-      // Ephemeris Planets
       const sun = (280.46646 + 0.98564736 * d + 1.9146 * Math.sin(((357.529 + 0.9856 * d) % 360) * Math.PI / 180) + 360) % 360;
       const moon = (218.3165 + 13.176396 * d + 6.2886 * Math.sin(((134.963 + 13.065 * d) % 360) * Math.PI / 180) + 360) % 360;
       const mercury = (sun + 22.0 * Math.sin(((d * 4.092 + 120) % 360) * Math.PI / 180) + 360) % 360;
@@ -1702,7 +1639,7 @@
         dominantStress = "Sun-Moon Square 90° Liquidity Shock";
       } else if (distSM >= 174 && distSM <= 180) {
         stressScore += 20;
-        dominantStress = "Sun-Moon Opposition 180° Dump Trigger";
+        dominantStress = "Sun-Moon Opposition 180° Polar Dump";
       } else if (distSM >= 114 && distSM <= 126) {
         harmonicScore += 18;
         dominantHarmonic = "Sun-Moon Grand Trine 120° Flow";
@@ -1759,7 +1696,7 @@
       return { astro, harmonicScore, stressScore, dominantAspectName, isBullish, reasonMaster, jamStr };
     }
 
-    // 6. MASTER BOARD ASTRODOX DENGAN PIRINGAN 100% LENGKAP
+    // 6. MASTER BOARD ASTRODOX DENGAN PIRINGAN LENGKAP
     function renderDynamicAstrodox() {
       const svg = document.getElementById('astrodoxDynamicSvg');
       if (!svg) return;
@@ -2036,6 +1973,13 @@
       });
     }
 
+    function setCurrencyFilter(filterVal, e) {
+      currentCurrencyFilter = filterVal;
+      document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+      e.target.classList.add('active');
+      renderNewsCards();
+    }
+
     // 7. TIME TP PRESISI & ENGINE KALENDER BERITA
     function calculateAstroDynamicTimeTP(item, isBullish) {
       const evD = new Date(item.exactTimestamp);
@@ -2097,7 +2041,6 @@
 
       const matrix = calculateAstroDynamicTimeTP(item, isAstroBullish);
 
-      // KONDISI 1: SUDAH LEWAT
       if (isPassed && actual !== null) {
         if (curr === "USD") {
           let usdBullish = (forecast !== null) ? (isJoblessType ? actual < forecast : actual >= forecast) : !isAstroBullish;
@@ -2112,7 +2055,6 @@
         }
       }
 
-      // KONDISI 2: STANDBY
       item.actual = "Menunggu";
       if (curr === "USD") {
         return {
@@ -2133,7 +2075,7 @@
       };
     }
 
-    // 8. REKAPITULASI REAL-TIME & PERMANEN
+    // 8. REKAPITULASI REAL-TIME & PERMANEN DENGAN SISTEM AUTO HIT TP/SL
     const RECAP_STORAGE_KEY = "zerodiax_news_recap_history";
 
     function getSavedRecapHistory() {
@@ -2148,7 +2090,7 @@
       const idx = history.findIndex(it => it.title === newItem.title && it.displayTime === newItem.displayTime);
       if (idx === -1) {
         history.unshift(newItem);
-        if (history.length > 60) history.pop();
+        if (history.length > 80) history.pop();
       } else {
         history[idx] = newItem;
       }
@@ -2162,24 +2104,100 @@
       recapBody.innerHTML = '';
 
       if (history.length === 0) {
-        recapBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:18px; color:#64748b;">Belum ada riwayat rilis berita tersimpan.</td></tr>';
+        recapBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:18px; color:#64748b;">Belum ada riwayat rilis berita / zona sniper tersimpan.</td></tr>';
         return;
       }
 
       history.forEach(item => {
         const row = document.createElement('tr');
-        const winEntry = (!item.windowEntry || item.windowEntry === 'undefined') ? 'Detik 00 Rilis' : item.windowEntry;
-        const targetStat = (!item.targetStatus || item.targetStatus.includes('undefined')) ? 'TP MAX HIT (+185 PIPS)' : item.targetStatus;
+        const levelArea = item.levelArea || (item.forecast ? `${item.forecast} → ${item.actual}` : '--');
+        const slDisplay = item.slDisplay || item.windowEntry || '-30 Pips';
+        const isHit = item.targetStatus.includes('HIT');
 
         row.innerHTML = `
           <td style="color:#94a3b8; font-family:ui-monospace, monospace;">${item.displayTime}</td>
-          <td><strong style="color:#fff;">${item.country}</strong> - ${item.title}</td>
-          <td><span style="color:#94a3b8;">${item.forecast || '--'}</span> &rarr; <strong style="color:#4ade80;">${item.actual}</strong></td>
+          <td><strong style="color:#fff;">${item.country || 'XAU'}</strong> - ${item.title}</td>
+          <td><span style="color:#cbd5e1; font-family:ui-monospace, monospace;">${levelArea}</span></td>
           <td><span class="signal-pill ${item.badgeClass}" style="font-size:0.72rem; padding:3px 8px;">${item.signal}</span></td>
-          <td style="color:#38bdf8; font-weight:800; font-family:ui-monospace, monospace;">${winEntry}</td>
-          <td><span class="badge-win">${targetStat}</span></td>
+          <td style="color:#f87171; font-weight:800; font-family:ui-monospace, monospace;">${slDisplay}</td>
+          <td><span class="${isHit ? 'badge-win' : 'signal-pill'}" style="font-size:0.72rem; padding:3px 8px;">${item.targetStatus}</span></td>
         `;
         recapBody.appendChild(row);
+      });
+    }
+
+    // Pemindai Otomatis Eksekusi TP/SL untuk 4-Zone Sniper
+    function monitorActiveZonesHit(currentPrice) {
+      if (!activeTrackedZones || activeTrackedZones.length === 0) return;
+      let hasUpdate = false;
+
+      activeTrackedZones.forEach(zone => {
+        if (zone.isCompleted) return;
+
+        // Cek apakah harga sudah pernah menyentuh area entri
+        if (!zone.isTriggered) {
+          if (zone.type === 'BUY' && currentPrice <= zone.areaHigh && currentPrice >= zone.areaLow) {
+            zone.isTriggered = true;
+          } else if (zone.type === 'SELL' && currentPrice >= zone.areaLow && currentPrice <= zone.areaHigh) {
+            zone.isTriggered = true;
+          }
+        }
+
+        if (zone.isTriggered) {
+          if (zone.type === 'BUY') {
+            if (currentPrice <= zone.sl) {
+              zone.targetStatus = 'SL HIT (-30 PIPS)';
+              zone.isCompleted = true;
+              hasUpdate = true;
+            } else if (currentPrice >= zone.tpMax) {
+              zone.targetStatus = 'TP MAX HIT (+180 PIPS)';
+              zone.isCompleted = true;
+              hasUpdate = true;
+            } else if (currentPrice >= zone.tp3) {
+              zone.targetStatus = 'TP 3 HIT (+100 PIPS)';
+              hasUpdate = true;
+            } else if (currentPrice >= zone.tp2) {
+              zone.targetStatus = 'TP 2 HIT (+60 PIPS)';
+              hasUpdate = true;
+            } else if (currentPrice >= zone.tp1) {
+              zone.targetStatus = 'TP 1 HIT (+30 PIPS)';
+              hasUpdate = true;
+            }
+          } else { // SELL
+            if (currentPrice >= zone.sl) {
+              zone.targetStatus = 'SL HIT (-30 PIPS)';
+              zone.isCompleted = true;
+              hasUpdate = true;
+            } else if (currentPrice <= zone.tpMax) {
+              zone.targetStatus = 'TP MAX HIT (+180 PIPS)';
+              zone.isCompleted = true;
+              hasUpdate = true;
+            } else if (currentPrice <= zone.tp3) {
+              zone.targetStatus = 'TP 3 HIT (+100 PIPS)';
+              hasUpdate = true;
+            } else if (currentPrice <= zone.tp2) {
+              zone.targetStatus = 'TP 2 HIT (+60 PIPS)';
+              hasUpdate = true;
+            } else if (currentPrice <= zone.tp1) {
+              zone.targetStatus = 'TP 1 HIT (+30 PIPS)';
+              hasUpdate = true;
+            }
+          }
+
+          if (hasUpdate) {
+            saveRecapItem({
+              displayTime: zone.displayTime,
+              country: "XAUUSD",
+              title: zone.title,
+              levelArea: `${zone.areaLow.toFixed(2)} - ${zone.areaHigh.toFixed(2)}`,
+              signal: zone.type === 'BUY' ? '▲ BUY ZONE' : '▼ SELL ZONE',
+              badgeClass: zone.type === 'BUY' ? 'signal-buy' : 'signal-sell',
+              slDisplay: `${zone.sl.toFixed(2)} (-30p)`,
+              targetStatus: zone.targetStatus
+            });
+            renderPersistentRecapTable();
+          }
+        }
       });
     }
 
@@ -2192,11 +2210,10 @@
             displayTime: ev.displayTime,
             country: ev.country,
             title: ev.title,
-            forecast: ev.forecast,
-            actual: ev.actual,
+            levelArea: `${ev.forecast || '--'} → ${ev.actual}`,
             signal: exec.signal,
             badgeClass: exec.badgeClass,
-            windowEntry: exec.matrix ? exec.matrix.windowEntry : 'Detik 00 Rilis',
+            slDisplay: exec.matrix ? exec.matrix.windowEntry : 'Detik 00 Rilis',
             targetStatus: exec.matrix ? exec.matrix.tpMaxHit : 'TP MAX HIT (+185 PIPS)'
           });
         }
@@ -2500,25 +2517,81 @@
       checkAndStorePastEvents(filteredEvents, targetD);
     }
 
-    function setCurrencyFilter(filterVal, e) {
-      currentCurrencyFilter = filterVal;
-      document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
-      e.target.classList.add('active');
-      renderNewsCards();
-    }
+    // 10. ADVANCED DESK STRATEGIST LOGIC (REAL-TIME GROQ & AUTO REGISTER 4-ZONE)
+    const EMBEDDED_API_KEY = "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";
+    localStorage.setItem('zerodiax_desk_api_key', EMBEDDED_API_KEY);
 
-    // 10. INTERACTIVE DESK STRATEGIST & 4-ZONE LOGIC
+    const DESK_CONFIG = {
+      apiEndpoint: 'https://api.groq.com/openai/v1/chat/completions',
+      apiKey: EMBEDDED_API_KEY,
+      model: 'llama-3.3-70b-versatile',
+      maxHistory: 6
+    };
+
+    const DESK_SYSTEM_INSTRUCTION = `
+Anda adalah Senior Quantitative Market Strategist & Head of Desk Execution di Zerodiax. Anda mengeksekusi order flow dan merespons pertanyaan anggota desk trading secara langsung, taktis, dingin, otoritatif, dan berbasis matematika lelang likuiditas.
+
+DOKTRIN & ATURAN LINGUISTIK KETAT:
+1. DILARANG KERAS menggunakan kata, akronim, atau rujukan berikut: "AI", "Bot", "Robot", "Model", "Algoritma", "Prompt", "Kecerdasan Buatan", "LLM", "Asisten Virtual", atau "Sistem Bahasa".
+2. DILARANG menggunakan kata "super presisi", salam pembuka klise ("Halo!", "Tentu!"), dan penutup motivasional ("Semoga profit!").
+3. Fokus instrumen tunggal: XAUUSD (Gold Spot).
+4. Setiap kalkulasi zona eksekusi WAJIB menyajikan 4 ZONE SNIPER ENTRY KUAT DEKAT (2 ZONE BUY & 2 ZONE SELL) dengan STOP LOSS WAJIB KETAT TEPAT 30 PIPS (3.0 USD).
+5. FORMAT OUTPUT WAJIB MENGIKUTI STRUKTUR PERSIS BERIKUT:
+
+💎ZONE BUY STRONG 1 
+AREA : [Range harga batas bawah - batas atas 2 desimal dekat harga spot]
+REASON : [Alasan lelang SMC/Astro konkret]
+
+SL: [Level harga exact 3.0 USD di bawah batas bawah area] (-30 pips)
+TP 1: [Level harga exact +30 pips]
+TP 2: [Level harga exact +60 pips]
+TP 3: [Level harga exact +100 pips]
+TP MAX: [Level harga exact +180 pips]
+
+💎ZONE BUY STRONG 2
+AREA : [Range harga diskon ekstrim]
+REASON : [Alasan mitigasi demand]
+
+SL: [Level harga exact 3.0 USD di bawah batas bawah area] (-30 pips)
+TP 1: [Level harga exact +30 pips]
+TP 2: [Level harga exact +60 pips]
+TP 3: [Level harga exact +100 pips]
+TP MAX: [Level harga exact +200 pips]
+
+💎ZONE SELL STRONG 1
+AREA : [Range harga batas bawah - batas atas 2 desimal dekat harga spot]
+REASON : [Alasan lelang SMC/Astro konkret]
+
+SL: [Level harga exact 3.0 USD di atas batas atas area] (-30 pips)
+TP 1: [Level harga exact +30 pips]
+TP 2: [Level harga exact +60 pips]
+TP 3: [Level harga exact +100 pips]
+TP MAX: [Level harga exact +180 pips]
+
+💎ZONE SELL STRONG 2
+AREA : [Range harga premium ekstrim]
+REASON : [Alasan mitigasi supply]
+
+SL: [Level harga exact 3.0 USD di atas batas atas area] (-30 pips)
+TP 1: [Level harga exact +30 pips]
+TP 2: [Level harga exact +60 pips]
+TP 3: [Level harga exact +100 pips]
+TP MAX: [Level harga exact +200 pips]
+`;
+
+    let deskChatHistory = [];
+
     const deskDrawer = document.getElementById('deskDrawerWindow');
     const btnOpenDesk = document.getElementById('btnOpenDeskDrawer');
     const btnCloseDesk = document.getElementById('btnCloseDeskDrawer');
     const deskChatLog = document.getElementById('deskChatLog');
-    const deskChatInput = document.getElementById('deskChatInput');
+    const deskUserInput = document.getElementById('deskUserInput');
     const deskTyping = document.getElementById('deskTypingIndicator');
 
     if (btnOpenDesk && deskDrawer) {
       btnOpenDesk.addEventListener('click', () => {
         deskDrawer.classList.toggle('active');
-        if (deskDrawer.classList.contains('active')) deskChatInput.focus();
+        if (deskDrawer.classList.contains('active')) deskUserInput.focus();
       });
     }
 
@@ -2527,107 +2600,299 @@
     }
 
     function triggerQuickDeskPrompt(text) {
-      if (deskChatInput) {
-        deskChatInput.value = text;
+      if (deskUserInput) {
+        deskUserInput.value = text;
         handleDeskMessageSubmit(new Event('submit'));
       }
     }
 
-    function appendDeskMessage(text, sender = 'assistant', isHtml = false) {
-      const msgElem = document.createElement('div');
-      msgElem.className = `desk-chat-msg ${sender === 'user' ? 'desk-msg-user' : 'desk-msg-assistant'}`;
-      if (isHtml) msgElem.innerHTML = text;
-      else msgElem.textContent = text;
-      deskChatLog.insertBefore(msgElem, deskTyping);
+    function appendDeskChatMessage(content, sender = 'assistant', isHtml = true) {
+      if (!deskChatLog) return;
+      const bubble = document.createElement('div');
+      bubble.className = `desk-chat-msg ${sender === 'user' ? 'desk-msg-user' : 'desk-msg-assistant'}`;
+      if (isHtml) bubble.innerHTML = content;
+      else bubble.textContent = content;
+      deskChatLog.insertBefore(bubble, deskTyping);
       deskChatLog.scrollTop = deskChatLog.scrollHeight;
+    }
+
+    function setDeskTypingState(isTyping) {
+      if (!deskTyping) return;
+      deskTyping.style.display = isTyping ? 'flex' : 'none';
+      if (deskChatLog) deskChatLog.scrollTop = deskChatLog.scrollHeight;
+    }
+
+    function formatDeskOutputToHtml(rawText) {
+      let formatted = rawText
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n\n/g, '<br/><br/>')
+        .replace(/\n/g, '<br/>');
+
+      formatted = formatted.replace(
+        /(💎ZONE BUY STRONG \d[\s\S]*?)(?=💎ZONE|$)/g,
+        '<div class="zone-block zone-buy">$1</div>'
+      );
+
+      formatted = formatted.replace(
+        /(💎ZONE SELL STRONG \d[\s\S]*?)(?=💎ZONE|$)/g,
+        '<div class="zone-block zone-sell">$1</div>'
+      );
+
+      return formatted;
+    }
+
+    // Fungsi Pendaftaran 4-Zona ke Watcher Otomatis
+    function registerZonesToAutoTracker(basePrice) {
+      const now = new Date();
+      const timeStr = new Intl.DateTimeFormat('id-ID', { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit' }).format(now) + " WIB";
+
+      // 2 BUY & 2 SELL dengan SL Tepat 30 Pips (3.0 USD)
+      activeTrackedZones = [
+        {
+          id: `b1_${Date.now()}`,
+          title: "4-Zone: BUY STRONG 1",
+          type: "BUY",
+          displayTime: timeStr,
+          areaLow: parseFloat((basePrice - 2.50).toFixed(2)),
+          areaHigh: parseFloat((basePrice - 1.00).toFixed(2)),
+          sl: parseFloat((basePrice - 2.50 - 3.00).toFixed(2)),
+          tp1: parseFloat((basePrice - 1.00 + 3.00).toFixed(2)),
+          tp2: parseFloat((basePrice - 1.00 + 6.00).toFixed(2)),
+          tp3: parseFloat((basePrice - 1.00 + 10.00).toFixed(2)),
+          tpMax: parseFloat((basePrice - 1.00 + 18.00).toFixed(2)),
+          isTriggered: false,
+          isCompleted: false,
+          targetStatus: "STANDBY AREA"
+        },
+        {
+          id: `b2_${Date.now()}`,
+          title: "4-Zone: BUY STRONG 2",
+          type: "BUY",
+          displayTime: timeStr,
+          areaLow: parseFloat((basePrice - 6.50).toFixed(2)),
+          areaHigh: parseFloat((basePrice - 4.50).toFixed(2)),
+          sl: parseFloat((basePrice - 6.50 - 3.00).toFixed(2)),
+          tp1: parseFloat((basePrice - 4.50 + 3.00).toFixed(2)),
+          tp2: parseFloat((basePrice - 4.50 + 6.00).toFixed(2)),
+          tp3: parseFloat((basePrice - 4.50 + 10.00).toFixed(2)),
+          tpMax: parseFloat((basePrice - 4.50 + 20.00).toFixed(2)),
+          isTriggered: false,
+          isCompleted: false,
+          targetStatus: "STANDBY AREA"
+        },
+        {
+          id: `s1_${Date.now()}`,
+          title: "4-Zone: SELL STRONG 1",
+          type: "SELL",
+          displayTime: timeStr,
+          areaLow: parseFloat((basePrice + 1.00).toFixed(2)),
+          areaHigh: parseFloat((basePrice + 2.50).toFixed(2)),
+          sl: parseFloat((basePrice + 2.50 + 3.00).toFixed(2)),
+          tp1: parseFloat((basePrice + 1.00 - 3.00).toFixed(2)),
+          tp2: parseFloat((basePrice + 1.00 - 6.00).toFixed(2)),
+          tp3: parseFloat((basePrice + 1.00 - 10.00).toFixed(2)),
+          tpMax: parseFloat((basePrice + 1.00 - 18.00).toFixed(2)),
+          isTriggered: false,
+          isCompleted: false,
+          targetStatus: "STANDBY AREA"
+        },
+        {
+          id: `s2_${Date.now()}`,
+          title: "4-Zone: SELL STRONG 2",
+          type: "SELL",
+          displayTime: timeStr,
+          areaLow: parseFloat((basePrice + 4.50).toFixed(2)),
+          areaHigh: parseFloat((basePrice + 6.50).toFixed(2)),
+          sl: parseFloat((basePrice + 6.50 + 3.00).toFixed(2)),
+          tp1: parseFloat((basePrice + 4.50 - 3.00).toFixed(2)),
+          tp2: parseFloat((basePrice + 4.50 - 6.00).toFixed(2)),
+          tp3: parseFloat((basePrice + 4.50 - 10.00).toFixed(2)),
+          tpMax: parseFloat((basePrice + 4.50 - 20.00).toFixed(2)),
+          isTriggered: false,
+          isCompleted: false,
+          targetStatus: "STANDBY AREA"
+        }
+      ];
+
+      // Catat awal ke dalam tabel rekapan
+      activeTrackedZones.forEach(z => {
+        saveRecapItem({
+          displayTime: z.displayTime,
+          country: "XAUUSD",
+          title: z.title,
+          levelArea: `${z.areaLow.toFixed(2)} - ${z.areaHigh.toFixed(2)}`,
+          signal: z.type === 'BUY' ? '▲ BUY ZONE' : '▼ SELL ZONE',
+          badgeClass: z.type === 'BUY' ? 'signal-buy' : 'signal-sell',
+          slDisplay: `${z.sl.toFixed(2)} (-30p)`,
+          targetStatus: z.targetStatus
+        });
+      });
+      renderPersistentRecapTable();
     }
 
     async function handleDeskMessageSubmit(e) {
       if (e) e.preventDefault();
-      const query = deskChatInput.value.trim();
-      if (!query) return;
+      const rawQuery = deskUserInput.value.trim();
+      if (!rawQuery) return;
 
-      appendDeskMessage(query, 'user');
-      deskChatInput.value = '';
-      deskChatLog.scrollTop = deskChatLog.scrollHeight;
+      appendDeskChatMessage(rawQuery, 'user', false);
+      deskUserInput.value = '';
 
-      deskTyping.style.display = 'flex';
-      deskChatLog.scrollTop = deskChatLog.scrollHeight;
+      setDeskTypingState(true);
 
-      const currentAspect = document.getElementById('liveAspectTag')?.innerText || 'Grand Trine 120° Harmonic Flow';
+      const spot = liveSpotPrice > 0 ? liveSpotPrice : 2735.40;
+      const aspect = document.getElementById('liveAspectTag')?.innerText || 'Planetary Transit Alignment';
+      const session = document.getElementById('sessionNameVal')?.innerText || 'NEW_YORK';
+      const bsl = document.getElementById('bslVal')?.innerText || (spot + 6.5).toFixed(2);
+      const ssl = document.getElementById('sslVal')?.innerText || (spot - 6.5).toFixed(2);
 
-      // Fallback Kuantitatif Cerdas & Dingin (Zero-AI Linguistic Protocol)
-      setTimeout(() => {
-        deskTyping.style.display = 'none';
-        const responseText = generateQuantSniperResponse(query, liveSpotPrice, currentAspect, liveATR);
-        appendDeskMessage(responseText, 'assistant', true);
-      }, 700);
-    }
+      const contextInjectionPrompt = `
+[TELEMETRI REAL-TIME TERMINAL DESK]
+- Spot XAUUSD Terkini: ${spot} USD
+- Sesi Berjalan: ${session}
+- Volatilitas ATR M15: ${liveATR} USD
+- Buy-Side Liquidity Pool (BSL): ${bsl}
+- Sell-Side Liquidity Pool (SSL): ${ssl}
+- Geometri Aspek Transit: ${aspect}
 
-    function generateQuantSniperResponse(query, spotPrice, aspect, atr) {
-      const isBuyBias = aspect.toLowerCase().includes('trine') || aspect.toLowerCase().includes('sextile') || aspect.toLowerCase().includes('buy');
-      const basePrice = spotPrice > 0 ? spotPrice : 2735.50;
+Instruksi: Sajikan kalkulasi 4 ZONE SNIPER (2 BUY & 2 SELL) dekat harga spot saat ini (${spot}) dengan Stop Loss wajib tepat 30 pips (-3.0 USD).
+`;
 
-      if (query.includes('4 Zone') || query.includes('Sniper') || query.includes('Entry') || query.includes('Arah')) {
-        if (isBuyBias) {
-          const z1Low = (basePrice - 2.8).toFixed(2);
-          const z1High = (basePrice - 1.2).toFixed(2);
-          const z2Entry = (basePrice - 0.8).toFixed(2);
-          const slLevel = (parseFloat(z2Entry) - 1.8).toFixed(2); // SL 18 pips (1.8 USD)
-          const tp1Level = (basePrice + 4.5).toFixed(2);
-          const tp2Level = (basePrice + 12.0).toFixed(2);
+      const apiKey = DESK_CONFIG.apiKey;
 
-          return `
-            <strong>[PROTOKOL 4 ZONA SNIPER &bull; FOKUS BUY XAUUSD]</strong><br/>
-            Konfluensi Geometri: ${aspect}. Struktur likuiditas terakumulasi pada area demand.<br/>
-            &bull; <strong>Harga Spot Live:</strong> ${basePrice.toFixed(2)} USD<br/>
-            <div class="zone-block zone-buy">
-              <strong>ZONE 1 (Liquidity Sweep):</strong> ${z1Low} - ${z1High} (Area Judas Swing Bawah)<br/>
-              <strong>ZONE 2 (Sniper Entry Node):</strong> ${z2Entry} (Limit Demand Re-test)<br/>
-              <strong>STOP LOSS TIPIS:</strong> ${slLevel} (-18 Pips / Strict Risk Limit)<br/>
-              <strong>ZONE 3 (Tactical TP1):</strong> ${tp1Level} (+45 Pips &bull; Amankan 70% & Lock BEP)<br/>
-              <strong>ZONE 4 (Terminal Runner TP2):</strong> ${tp2Level} (+120 Pips &bull; Sweep BSL Eksternal)
-            </div>
-            <strong>Syarat Validasi Eksekusi:</strong> Konfirmasi rejection pinbar atau Change of Character (CHoCH) pada timeframe 1 menit saat harga menyentuh Zone 2.
-          `;
-        } else {
-          const z1High = (basePrice + 2.8).toFixed(2);
-          const z1Low = (basePrice + 1.2).toFixed(2);
-          const z2Entry = (basePrice + 0.8).toFixed(2);
-          const slLevel = (parseFloat(z2Entry) + 1.8).toFixed(2); // SL 18 pips (1.8 USD)
-          const tp1Level = (basePrice - 4.5).toFixed(2);
-          const tp2Level = (basePrice - 12.0).toFixed(2);
+      if (apiKey) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 16000);
 
-          return `
-            <strong>[PROTOKOL 4 ZONA SNIPER &bull; FOKUS SELL XAUUSD]</strong><br/>
-            Konfluensi Geometri: ${aspect}. Terdeteksi tekanan distribusi supply pada kuadran atas.<br/>
-            &bull; <strong>Harga Spot Live:</strong> ${basePrice.toFixed(2)} USD<br/>
-            <div class="zone-block zone-sell">
-              <strong>ZONE 1 (Liquidity Sweep):</strong> ${z1Low} - ${z1High} (Area Manipulasi Judas Swing Atas)<br/>
-              <strong>ZONE 2 (Sniper Entry Node):</strong> ${z2Entry} (Limit Supply Order Block)<br/>
-              <strong>STOP LOSS TIPIS:</strong> ${slLevel} (-18 Pips / Strict Invalidation)<br/>
-              <strong>ZONE 3 (Tactical TP1):</strong> ${tp1Level} (+45 Pips &bull; Parsial Exit & Kunci BEP)<br/>
-              <strong>ZONE 4 (Terminal Runner TP2):</strong> ${tp2Level} (+120 Pips &bull; Mitigasi SSL Bawah)
-            </div>
-            <strong>Syarat Validasi Eksekusi:</strong> Rejection candle impulsif M1 mengonfirmasi kegagalan dorongan buyers di Zone 2 sebelum membuka posisi.
-          `;
+          const messagesPayload = [
+            { role: 'system', content: DESK_SYSTEM_INSTRUCTION },
+            ...deskChatHistory.slice(-DESK_CONFIG.maxHistory),
+            { role: 'user', content: `${contextInjectionPrompt}\nInquiry: ${rawQuery}` }
+          ];
+
+          const response = await fetch(DESK_CONFIG.apiEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+              model: DESK_CONFIG.model,
+              messages: messagesPayload,
+              temperature: 0.15,
+              max_tokens: 850
+            }),
+            signal: controller.signal
+          });
+
+          clearTimeout(timeoutId);
+
+          if (response.ok) {
+            const data = await response.json();
+            setDeskTypingState(false);
+            if (data.choices && data.choices[0] && data.choices[0].message) {
+              const reply = data.choices[0].message.content;
+              deskChatHistory.push({ role: 'user', content: rawQuery });
+              deskChatHistory.push({ role: 'assistant', content: reply });
+              appendDeskChatMessage(formatDeskOutputToHtml(reply), 'assistant', true);
+
+              // Daftarkan zona ke pemantau rekapitulasi otomatis
+              registerZonesToAutoTracker(spot);
+              return;
+            }
+          }
+        } catch (err) {
+          // Beralih ke fallback deterministik jika offline
         }
       }
 
-      if (query.includes('Pre-News') || query.includes('News')) {
-        return `
-          <strong>[PRE-NEWS EXECUTION DIRECTIVE]</strong><br/>
-          Menjelang rilis high-impact, volatilitas terkompresi. Jangan pasang order sembarangan di tengah konsolidasi.<br/>
-          1. Tandai batas Session High (${(basePrice + 5).toFixed(2)}) dan Session Low (${(basePrice - 5).toFixed(2)}).<br/>
-          2. Biarkan candle pertama menyapu likuiditas Zone 1 (Judas Swing).<br/>
-          3. Ambil posisi hanya saat terjadi pullback ke Zone 2 pasca-sapuan dengan SL maksimal 20 pips.
-        `;
-      }
+      // FALLBACK DETERMINISTIK KUANTITATIF (PERSIS TEMPLATE DENGAN SL 30 PIPS)
+      setTimeout(() => {
+        setDeskTypingState(false);
+        const base = spot;
 
-      return `
-        <strong>[DESK RISK MANAGEMENT DIRECTIVE]</strong><br/>
-        Pada pergerakan XAUUSD sesi aktif, parameter invalidasi risiko dipatok maksimal 15-20 pips (1.5 - 2.0 USD) dari titik mitigasi Order Block. Jika level harga melampaui toleransi tersebut, struktur dinyatakan batal dan posisi wajib di-cut tanpa kompromi.
-      `;
+        const b1Low = (base - 2.50).toFixed(2);
+        const b1High = (base - 1.00).toFixed(2);
+        const b1SL = (parseFloat(b1Low) - 3.00).toFixed(2);
+        const b1TP1 = (parseFloat(b1High) + 3.00).toFixed(2);
+        const b1TP2 = (parseFloat(b1High) + 6.00).toFixed(2);
+        const b1TP3 = (parseFloat(b1High) + 10.00).toFixed(2);
+        const b1TPMAX = (parseFloat(b1High) + 18.00).toFixed(2);
+
+        const b2Low = (base - 6.50).toFixed(2);
+        const b2High = (base - 4.50).toFixed(2);
+        const b2SL = (parseFloat(b2Low) - 3.00).toFixed(2);
+        const b2TP1 = (parseFloat(b2High) + 3.00).toFixed(2);
+        const b2TP2 = (parseFloat(b2High) + 6.00).toFixed(2);
+        const b2TP3 = (parseFloat(b2High) + 10.00).toFixed(2);
+        const b2TPMAX = (parseFloat(b2High) + 20.00).toFixed(2);
+
+        const s1Low = (base + 1.00).toFixed(2);
+        const s1High = (base + 2.50).toFixed(2);
+        const s1SL = (parseFloat(s1High) + 3.00).toFixed(2);
+        const s1TP1 = (parseFloat(s1Low) - 3.00).toFixed(2);
+        const s1TP2 = (parseFloat(s1Low) - 6.00).toFixed(2);
+        const s1TP3 = (parseFloat(s1Low) - 10.00).toFixed(2);
+        const s1TPMAX = (parseFloat(s1Low) - 18.00).toFixed(2);
+
+        const s2Low = (base + 4.50).toFixed(2);
+        const s2High = (base + 6.50).toFixed(2);
+        const s2SL = (parseFloat(s2High) + 3.00).toFixed(2);
+        const s2TP1 = (parseFloat(s2Low) - 3.00).toFixed(2);
+        const s2TP2 = (parseFloat(s2Low) - 6.00).toFixed(2);
+        const s2TP3 = (parseFloat(s2Low) - 10.00).toFixed(2);
+        const s2TPMAX = (parseFloat(s2Low) - 20.00).toFixed(2);
+
+        const outputHtml = `
+          <div class="zone-block zone-buy">
+            <strong>💎ZONE BUY STRONG 1</strong><br/>
+            AREA : ${b1Low} - ${b1High}<br/>
+            REASON : Re-test mitigasi Order Block demand terdekat & kompresi lelang intraday.<br/><br/>
+            SL: ${b1SL} (-30 pips)<br/>
+            TP 1: ${b1TP1} (+30 pips)<br/>
+            TP 2: ${b1TP2} (+60 pips)<br/>
+            TP 3: ${b1TP3} (+100 pips)<br/>
+            TP MAX: ${b1TPMAX} (+180 pips)
+          </div>
+
+          <div class="zone-block zone-buy">
+            <strong>💎ZONE BUY STRONG 2</strong><br/>
+            AREA : ${b2Low} - ${b2High}<br/>
+            REASON : Sapuan likuiditas Sell-Side (SSL) sebelum dorongan pembalikan arah institusi.<br/><br/>
+            SL: ${b2SL} (-30 pips)<br/>
+            TP 1: ${b2TP1} (+30 pips)<br/>
+            TP 2: ${b2TP2} (+60 pips)<br/>
+            TP 3: ${b2TP3} (+100 pips)<br/>
+            TP MAX: ${b2TPMAX} (+200 pips)
+          </div>
+
+          <div class="zone-block zone-sell">
+            <strong>💎ZONE SELL STRONG 1</strong><br/>
+            AREA : ${s1Low} - ${s1High}<br/>
+            REASON : Mitigasi Fair Value Gap (FVG) supply terdekat & penolakan level premium.<br/><br/>
+            SL: ${s1SL} (-30 pips)<br/>
+            TP 1: ${s1TP1} (+30 pips)<br/>
+            TP 2: ${s1TP2} (+60 pips)<br/>
+            TP 3: ${s1TP3} (+100 pips)<br/>
+            TP MAX: ${s1TPMAX} (+180 pips)
+          </div>
+
+          <div class="zone-block zone-sell">
+            <strong>💎ZONE SELL STRONG 2</strong><br/>
+            AREA : ${s2Low} - ${s2High}<br/>
+            REASON : Sapuan manipulasi Buy-Side Liquidity (BSL) eksternal sebelum distribusi penurunan.<br/><br/>
+            SL: ${s2SL} (-30 pips)<br/>
+            TP 1: ${s2TP1} (+30 pips)<br/>
+            TP 2: ${s2TP2} (+60 pips)<br/>
+            TP 3: ${s2TP3} (+100 pips)<br/>
+            TP MAX: ${s2TPMAX} (+200 pips)
+          </div>
+        `;
+
+        appendDeskChatMessage(outputHtml, 'assistant', true);
+        registerZonesToAutoTracker(base);
+      }, 600);
     }
 
     // Inisialisasi awal sistem
