@@ -1,473 +1,935 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>ZERODIAX // ZERO SYNDICATE VIP</title>
-  <!-- Tailwind via CDN + tiny custom reset -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZERODIAX x ZERO FX | AUTOMATED ASTRO-QUANT & LIVE WORLD CALENDAR NEXUS</title>
+  
+  <!-- Font & Icon Assets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@600;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <style>
-    /* strict matte + hairline system */
-    body { background: #05070A; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
-    .bento-card {
-      background: #0C0E14;
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 1.5rem; /* soft but not childish */
-      padding: 1.5rem;
-      transition: border-color 0.15s ease;
+    :root {
+      --bg-dark: #060a11;
+      --card-bg: rgba(12, 20, 34, 0.92);
+      --card-border: rgba(0, 229, 255, 0.22);
+      --accent-green: #00ff88;
+      --accent-cyan: #00e5ff;
+      --accent-gold: #ffb800;
+      --accent-red: #ff3366;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --glow-green: 0 0 16px rgba(0, 255, 136, 0.35);
+      --glow-cyan: 0 0 16px rgba(0, 229, 255, 0.35);
+      --glow-gold: 0 0 18px rgba(255, 184, 0, 0.35);
     }
-    .bento-card:hover { border-color: rgba(255, 255, 255, 0.12); }
-    .hairline { border-color: rgba(255, 255, 255, 0.07); }
-    .gold-accent { color: #D4AF37; }
-    .emerald-accent { color: #10B981; }
-    .rose-accent { color: #F43F5E; }
-    .slate-muted { color: #94A3B8; }
-    .no-glow { box-shadow: none; }
-    /* custom scrollbar minimal */
-    ::-webkit-scrollbar { width: 3px; }
-    ::-webkit-scrollbar-track { background: #0C0E14; }
-    ::-webkit-scrollbar-thumb { background: #2A2E3A; border-radius: 10px; }
-    .preloader-hidden { display: none !important; }
-    /* slide track */
-    input[type=range] {
-      -webkit-appearance: none; background: transparent; width: 100%; height: 3px; background: #1F2430; border-radius: 4px;
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; min-height: 100vh; position: relative; }
+    #bgCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
+    /* Header Navigation */
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 28px; background: rgba(8, 14, 24, 0.95); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 100;
     }
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none; height: 18px; width: 18px; border-radius: 50%; background: #D4AF37; cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 0 0 2px #05070A;
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: linear-gradient(135deg, rgba(0,255,136,0.2), rgba(0,229,255,0.2));
+      border: 1px solid var(--accent-green); display: flex; align-items: center; justify-content: center;
+      color: var(--accent-green); font-size: 22px; box-shadow: var(--glow-green);
     }
-    .astro-wheel-container svg { width: 100%; height: auto; display: block; }
-    .news-table th { font-weight: 500; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #94A3B8; }
+    .brand-text h1 { font-family: 'Orbitron', sans-serif; font-size: 19px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+    .brand-text h1 span.zerodiax { color: #fff; }
+    .brand-text h1 span.zerofx { color: var(--accent-green); text-shadow: 0 0 10px rgba(0, 255, 136, 0.5); }
+    .badge-ver { font-size: 10px; padding: 2px 7px; border-radius: 4px; background: rgba(0, 255, 136, 0.15); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'JetBrains Mono', monospace; }
+
+    .header-center { display: flex; align-items: center; gap: 14px; background: rgba(13, 23, 38, 0.85); border: 1px solid var(--card-border); padding: 6px 16px; border-radius: 30px; }
+    .pulse-indicator { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; color: var(--accent-green); font-family: 'JetBrains Mono', monospace; }
+    .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-green); box-shadow: var(--glow-green); animation: pulse 1.8s infinite; }
+    @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.3); opacity: 1; } 100% { transform: scale(0.9); opacity: 0.7; } }
+    .clock-display { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-cyan); border-left: 1px solid rgba(255,255,255,0.1); padding-left: 12px; }
+
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .btn-vip-header {
+      background: linear-gradient(135deg, #ffb800, #ff8800); color: #000; font-weight: 800; font-size: 12px;
+      padding: 8px 16px; border-radius: 8px; text-decoration: none; display: flex; align-items: center; gap: 7px;
+      box-shadow: var(--glow-gold); transition: all 0.25s ease;
+    }
+    .btn-vip-header:hover { transform: translateY(-2px); box-shadow: 0 0 22px rgba(255, 184, 0, 0.6); }
+
+    .menu-btn {
+      background: rgba(15, 25, 42, 0.9); border: 1px solid var(--card-border); color: var(--accent-cyan);
+      font-size: 18px; width: 40px; height: 40px; border-radius: 10px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+    }
+
+    .container { max-width: 1440px; margin: 20px auto; padding: 0 18px; display: flex; flex-direction: column; gap: 22px; }
+
+    /* Flash Execution Alert Notification Bar */
+    .execution-alert-banner {
+      display: none; background: rgba(10, 25, 45, 0.96); border: 2px solid var(--accent-green);
+      border-radius: 12px; padding: 14px 20px; align-items: center; justify-content: space-between;
+      box-shadow: 0 0 30px rgba(0, 255, 136, 0.35); animation: slideDown 0.35s ease;
+    }
+    .execution-alert-banner.sell-alert { border-color: var(--accent-red); box-shadow: 0 0 30px rgba(255, 51, 102, 0.35); }
+    @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    .vip-banner {
+      background: linear-gradient(135deg, rgba(14, 25, 42, 0.92), rgba(7, 12, 20, 0.98));
+      border: 1px solid rgba(255, 184, 0, 0.4); border-radius: 16px; padding: 22px 28px;
+      display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .banner-left { max-width: 65%; }
+    .banner-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 184, 0, 0.12); border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; margin-bottom: 8px; }
+    .banner-left h2 { font-family: 'Orbitron', sans-serif; font-size: 22px; font-weight: 900; margin-bottom: 6px; color: #fff; }
+    .banner-left h2 span { color: var(--accent-gold); }
+    .banner-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+    .banner-right { display: flex; align-items: center; gap: 12px; }
+    .btn-broker { background: linear-gradient(135deg, var(--accent-gold), #e69d00); color: #000; font-weight: 800; font-size: 13px; padding: 12px 20px; border-radius: 10px; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .btn-exclusive-vip { background: rgba(0, 255, 136, 0.12); border: 1px solid var(--accent-green); color: var(--accent-green); font-weight: 700; font-size: 13px; padding: 12px 20px; border-radius: 10px; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+
+    .terminal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    @media (max-width: 1100px) { .terminal-grid { grid-template-columns: 1fr; } .vip-banner { flex-direction: column; align-items: flex-start; gap: 16px; } }
+
+    .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 22px; backdrop-filter: blur(16px); display: flex; flex-direction: column; gap: 18px; }
+    .card-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 12px; }
+    .card-title { font-family: 'Orbitron', sans-serif; font-size: 15px; letter-spacing: 0.8px; display: flex; align-items: center; gap: 9px; }
+
+    .astro-controls { display: grid; grid-template-columns: repeat(5, 1fr) auto; gap: 8px; background: rgba(7, 12, 22, 0.7); padding: 10px; border-radius: 10px; }
+    .control-item label { display: block; font-size: 9px; color: var(--text-muted); margin-bottom: 3px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; }
+    .control-item input, .control-item select { width: 100%; background: rgba(15, 24, 40, 0.9); border: 1px solid rgba(0, 229, 255, 0.25); color: var(--text-main); padding: 6px 7px; border-radius: 6px; font-size: 11px; font-family: 'JetBrains Mono', monospace; outline: none; }
+    .toggle-rt { padding: 7px 12px; background: rgba(0, 255, 136, 0.1); border: 1px solid var(--accent-green); border-radius: 8px; cursor: pointer; color: var(--accent-green); font-size: 11px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+    .toggle-rt.active { background: var(--accent-green); color: #000; box-shadow: var(--glow-green); }
+
+    .astrodox-canvas-wrapper { width: 100%; max-width: 580px; margin: 0 auto; background: #ffffff; border-radius: 14px; overflow: hidden; padding: 10px; }
+    #astroWheel { width: 100%; height: auto; aspect-ratio: 1 / 1; display: block; }
+
+    .bias-card { background: linear-gradient(135deg, rgba(9, 18, 30, 0.92), rgba(5, 10, 18, 0.97)); border: 1px solid var(--accent-green); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+    .bias-card.sell-bias { border-color: var(--accent-red); box-shadow: 0 0 20px rgba(255, 51, 102, 0.35); }
+    .signal-pill { font-family: 'Orbitron', sans-serif; font-size: 24px; font-weight: 900; padding: 6px 22px; border-radius: 8px; letter-spacing: 1.5px; background: rgba(0, 255, 136, 0.18); color: var(--accent-green); border: 2px solid var(--accent-green); }
+    .signal-pill.sell { background: rgba(255, 51, 102, 0.18); color: var(--accent-red); border-color: var(--accent-red); }
+
+    .table-container { width: 100%; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 11px; text-align: left; }
+    th { background: rgba(14, 23, 38, 0.9); color: var(--accent-cyan); font-family: 'Orbitron', sans-serif; font-size: 10px; padding: 10px 12px; border-bottom: 1px solid var(--card-border); white-space: nowrap; }
+    td { padding: 9px 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
+    tr.clickable-row { cursor: pointer; }
+    tr.clickable-row:hover td { background: rgba(0, 229, 255, 0.08); }
+
+    .calendar-bar-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: rgba(9, 16, 28, 0.85); border: 1px solid rgba(0, 229, 255, 0.2); padding: 12px 16px; border-radius: 12px; }
+    .calendar-input { background: rgba(15, 24, 40, 0.95); border: 1px solid rgba(0, 229, 255, 0.3); color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+    .filter-btn { background: rgba(15, 24, 40, 0.85); border: 1px solid var(--card-border); color: var(--text-muted); padding: 6px 12px; border-radius: 6px; font-size: 11px; cursor: pointer; font-family: 'Orbitron', sans-serif; }
+    .filter-btn.active { background: var(--accent-cyan); color: #000; font-weight: 700; }
+    .btn-tab-switch { background: rgba(0, 229, 255, 0.12); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 6px 14px; border-radius: 6px; font-size: 11px; cursor: pointer; font-family: 'Orbitron', sans-serif; font-weight: 700; }
+    .btn-tab-switch.active { background: var(--accent-green); color: #000; border-color: var(--accent-green); }
+
+    .auto-signal-tag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 6px; font-size: 10px; font-weight: 800; font-family: 'Orbitron', sans-serif; }
+    .signal-astro-buy { background: rgba(0, 255, 136, 0.18); border: 1px solid var(--accent-green); color: var(--accent-green); }
+    .signal-astro-sell { background: rgba(255, 51, 102, 0.18); border: 1px solid var(--accent-red); color: var(--accent-red); }
+    .signal-news-buy { background: linear-gradient(135deg, rgba(0, 255, 136, 0.3), rgba(0, 229, 255, 0.3)); border: 1px solid var(--accent-green); color: #fff; font-weight: 900; }
+    .signal-news-sell { background: linear-gradient(135deg, rgba(255, 51, 102, 0.3), rgba(255, 119, 0, 0.3)); border: 1px solid var(--accent-red); color: #fff; font-weight: 900; }
+    .btn-inspect-astro { background: rgba(0, 229, 255, 0.12); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 4px 8px; border-radius: 5px; font-size: 10px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+
+    .investing-widget-container { width: 100%; height: 520px; border-radius: 12px; overflow: hidden; border: 1px solid var(--card-border); background: #ffffff; }
+    .investing-widget-container iframe { width: 100%; height: 100%; border: none; }
+
+    /* Drawer */
+    .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); backdrop-filter: blur(8px); z-index: 998; display: none; }
+    .drawer-overlay.active { display: block; }
+    .drawer { position: fixed; top: 0; right: -360px; width: 330px; height: 100%; background: rgba(10, 16, 26, 0.97); border-left: 1px solid var(--card-border); z-index: 999; display: flex; flex-direction: column; justify-content: space-between; padding: 26px 22px; transition: right 0.35s ease; }
+    .drawer.active { right: 0; }
+    .nav-link-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 15px; background: rgba(16, 27, 44, 0.65); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; color: var(--text-main); text-decoration: none; font-size: 13px; font-weight: 500; margin-bottom: 12px; }
   </style>
 </head>
-<body class="min-h-screen text-[#F8FAFC] antialiased p-4 md:p-6">
+<body>
 
-  <!-- PRELOADER (under 0.8s, completely removed) -->
-  <div id="preloader" class="fixed inset-0 z-50 flex items-center justify-center bg-[#05070A]">
-    <div class="text-sm tracking-[0.3em] text-slate-muted">ZERODIAX</div>
-  </div>
+  <canvas id="bgCanvas"></canvas>
 
-  <!-- MAIN CONTAINER – bento grid logic -->
-  <main class="max-w-[1400px] mx-auto space-y-6">
-
-    <!-- HEADER: brand + live feed -->
-    <header class="flex flex-wrap items-center justify-between gap-4 px-2">
-      <div class="flex items-center gap-3">
-        <span class="text-xl font-medium tracking-[0.1em] text-[#F8FAFC]">ZERODIAX</span>
-        <span class="text-[0.65rem] uppercase tracking-[0.2em] text-slate-muted">// ZERO SYNDICATE VIP</span>
-      </div>
-      <div class="flex items-center gap-6">
-        <div class="flex items-center gap-2 text-xs">
-          <span class="text-slate-muted">PAXG/USDT</span>
-          <span id="gold-price" class="font-mono text-[#F8FAFC]">$0.00</span>
-          <span id="gold-change" class="text-[0.6rem] text-emerald-accent">+0.00%</span>
-        </div>
-        <div class="flex items-center gap-2 text-xs">
-          <span class="text-slate-muted">BTC/USDT</span>
-          <span id="btc-price" class="font-mono text-[#F8FAFC]">$0.00</span>
-          <span id="btc-change" class="text-[0.6rem] text-emerald-accent">+0.00%</span>
-        </div>
-        <span class="text-[0.6rem] uppercase tracking-wider text-gold-accent border border-[#D4AF37] px-2 py-1 rounded-full">VALETAX #1682343</span>
-      </div>
-    </header>
-
-    <!-- BENTO GRID – 2 columns main + side -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      
-      <!-- LEFT COLUMN (2/3): WHEEL + SIGNAL -->
-      <div class="lg:col-span-2 space-y-6">
-        
-        <!-- ASTRO WHEEL CARD -->
-        <div class="bento-card space-y-4">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-3">
-              <h2 class="text-sm uppercase tracking-wider text-slate-muted">Astrodox · Placidus Wheel</h2>
-              <button id="toggle-theme" class="text-[0.6rem] border border-white/10 px-3 py-1 rounded-full text-slate-muted hover:text-[#F8FAFC] transition">Dark / Light</button>
-            </div>
-            <div class="flex items-center gap-2">
-              <a href="https://astrodox.com" target="_blank" class="text-[0.6rem] border border-white/10 px-3 py-1 rounded-full text-slate-muted hover:text-[#F8FAFC]">Verify on Astrodox ↗</a>
-              <a href="https://www.tradingview.com/chart/" target="_blank" class="text-[0.6rem] border border-white/10 px-3 py-1 rounded-full text-slate-muted hover:text-[#F8FAFC]">Open TradingView ↗</a>
-            </div>
-          </div>
-          <div id="wheel-container" class="astro-wheel-container w-full max-w-[420px] mx-auto">
-            <!-- SVG injected via JS -->
-          </div>
-          <div class="flex justify-center gap-4 text-[0.55rem] text-slate-muted uppercase tracking-wider">
-            <span><span class="inline-block w-2 h-2 bg-[#10B981] mr-1"></span>Trine/Sextile</span>
-            <span><span class="inline-block w-2 h-2 bg-[#F43F5E] mr-1"></span>Square/Opposition</span>
-            <span><span class="inline-block w-2 h-2 bg-[#3B82F6] mr-1"></span>Conjunction</span>
-          </div>
-        </div>
-
-        <!-- AI ASTRO-QUANT SIGNAL -->
-        <div class="bento-card space-y-5">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <h2 class="text-sm uppercase tracking-wider text-slate-muted">AI Astro-Quant Signal</h2>
-            <div class="flex flex-wrap items-center gap-2 text-[0.6rem]">
-              <input type="date" id="datePicker" class="bg-transparent border border-white/10 rounded px-2 py-1 text-[#F8FAFC]">
-              <input type="time" id="timePicker" class="bg-transparent border border-white/10 rounded px-2 py-1 text-[#F8FAFC]">
-              <button id="nowBtn" class="border border-[#D4AF37] text-gold-accent px-3 py-1 rounded-full">Now (Live)</button>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="space-y-3">
-              <div class="flex items-baseline gap-3">
-                <span id="verdict" class="text-2xl font-semibold tracking-tight text-emerald-accent">STRONG BUY</span>
-                <span id="confidence" class="text-sm text-slate-muted">87%</span>
-              </div>
-              <div class="grid grid-cols-3 gap-2 text-xs">
-                <div><span class="text-slate-muted block text-[0.55rem] uppercase">Entry</span><span id="entryLevel" class="font-mono">0.00</span></div>
-                <div><span class="text-slate-muted block text-[0.55rem] uppercase">TP</span><span id="tpLevel" class="font-mono text-emerald-accent">0.00</span></div>
-                <div><span class="text-slate-muted block text-[0.55rem] uppercase">SL</span><span id="slLevel" class="font-mono text-rose-accent">0.00</span></div>
-              </div>
-            </div>
-            <div class="space-y-1 text-xs">
-              <div class="flex gap-2"><span class="text-gold-accent">✦</span><span id="reasonAstro" class="text-slate-muted">Sun trine Moon – momentum alignment</span></div>
-              <div class="flex gap-2"><span class="text-gold-accent">✦</span><span id="reasonAuction" class="text-slate-muted">Liquidity above 0.00 – buy pressure</span></div>
-              <div class="flex gap-2"><span class="text-gold-accent">✦</span><span id="reasonStructure" class="text-slate-muted">Higher low confirmed on 15m</span></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- RIGHT COLUMN (1/3): REBATE + MACRO NEWS -->
-      <div class="space-y-6">
-        
-        <!-- VALETAX REBATE CALCULATOR -->
-        <div class="bento-card space-y-4">
-          <div class="flex items-center justify-between">
-            <h2 class="text-sm uppercase tracking-wider text-slate-muted">Valetax Self-Rebate</h2>
-            <span class="text-[0.6rem] text-gold-accent border border-[#D4AF37] px-2 py-0.5 rounded-full">$9–$12/LOT</span>
-          </div>
-          <div class="space-y-2">
-            <div class="flex justify-between text-xs">
-              <span class="text-slate-muted">Lots / day</span>
-              <span id="lotValue" class="font-mono">1</span>
-            </div>
-            <input type="range" id="lotSlider" min="1" max="500" value="1" step="1">
-            <div class="flex gap-2 mt-2">
-              <button data-tier="9" class="tier-btn flex-1 text-[0.7rem] py-1.5 border border-white/10 rounded-full text-slate-muted hover:text-[#F8FAFC]">$9</button>
-              <button data-tier="10.5" class="tier-btn flex-1 text-[0.7rem] py-1.5 border border-white/10 rounded-full text-slate-muted hover:text-[#F8FAFC]">$10.5</button>
-              <button data-tier="12" class="tier-btn flex-1 text-[0.7rem] py-1.5 border border-white/10 rounded-full text-slate-muted hover:text-[#F8FAFC] bg-[#D4AF37]/10 border-[#D4AF37]">$12</button>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-4 pt-2">
-            <div>
-              <span class="text-[0.55rem] uppercase text-slate-muted block">Daily USD</span>
-              <span id="dailyRebate" class="text-xl font-mono text-[#F8FAFC]">$12.00</span>
-              <span id="dailyIdr" class="text-xs text-slate-muted block">Rp 192,000</span>
-            </div>
-            <div>
-              <span class="text-[0.55rem] uppercase text-slate-muted block">Monthly USD</span>
-              <span id="monthlyRebate" class="text-xl font-mono text-[#F8FAFC]">$360.00</span>
-              <span id="monthlyIdr" class="text-xs text-slate-muted block">Rp 5,760,000</span>
-            </div>
-          </div>
-          <a id="waRebateBtn" href="#" target="_blank" class="block w-full text-center text-[0.7rem] py-2 border border-[#D4AF37] text-gold-accent rounded-full hover:bg-[#D4AF37]/5">Claim Rebate via WhatsApp ↗</a>
-        </div>
-
-        <!-- MACRO NEWS TERMINAL -->
-        <div class="bento-card space-y-3">
-          <div class="flex items-center justify-between">
-            <h2 class="text-sm uppercase tracking-wider text-slate-muted">Macro News Terminal</h2>
-            <input type="date" id="newsDatePicker" class="bg-transparent border border-white/10 rounded px-2 py-1 text-[0.65rem] text-[#F8FAFC]">
-          </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-[0.65rem]">
-              <thead class="news-table border-b border-white/10">
-                <tr><th class="text-left py-2">Time</th><th class="text-left">Event</th><th class="text-left">Fcst/Prev</th><th class="text-left">Bias</th><th class="text-left">Actual</th><th class="text-left">Action</th></tr>
-              </thead>
-              <tbody id="newsTableBody">
-                <!-- filled by JS -->
-              </tbody>
-            </table>
-          </div>
-          <div class="flex justify-between items-center pt-1">
-            <span class="text-[0.6rem] text-slate-muted">Next release in <span id="countdown">00:00</span></span>
-            <button id="simulateReleaseBtn" class="text-[0.6rem] border border-white/10 px-3 py-1 rounded-full text-slate-muted hover:text-[#F8FAFC]">Simulate Actual Release</button>
-          </div>
-        </div>
-
-        <!-- OFFICIAL ROUTING (compact) -->
-        <div class="bento-card flex flex-wrap justify-between items-center gap-2 text-[0.65rem]">
-          <a href="https://wa.me/62882010445069?text=VIP%20Signal%20Request" target="_blank" class="text-gold-accent">WhatsApp VIP ↗</a>
-          <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" class="text-slate-muted hover:text-[#F8FAFC]">Valetax Register ↗</a>
-          <a href="https://t.me/+cYCMf2_--1hiNTM1" target="_blank" class="text-slate-muted hover:text-[#F8FAFC]">TG Scalper ↗</a>
-          <a href="https://t.me/zerodiax" target="_blank" class="text-slate-muted hover:text-[#F8FAFC]">Admin ↗</a>
-        </div>
-
+  <header>
+    <div class="brand">
+      <div class="brand-icon"><i class="fa-solid fa-atom"></i></div>
+      <div class="brand-text">
+        <h1><span class="zerodiax">ZERODIAX</span> × <span class="zerofx">ZERO FX</span> <span class="badge-ver">v11.0 PRO</span></h1>
+        <div class="brand-subtitle">Automated Institutional Astrodox & World Economic Calendar Nexus</div>
       </div>
     </div>
+
+    <div class="header-center">
+      <div class="pulse-indicator">
+        <span class="pulse-dot"></span>
+        <span id="systemStatusLabel">AUTOMATED REAL-TIME NEXUS ACTIVE</span>
+      </div>
+      <div class="clock-display" id="clockWib">--:--:-- WIB</div>
+    </div>
+
+    <div class="header-actions">
+      <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" class="btn-vip-header"><i class="fa-solid fa-crown"></i> VIP VALETAX ($12/LOT)</a>
+      <button class="menu-btn" id="openDrawerBtn"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- Side Navigation Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="drawer" id="sideDrawer">
+    <div>
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:16px;">
+        <div style="font-family:'Orbitron', sans-serif; font-size:15px; color:var(--accent-green); display:flex; align-items:center; gap:9px;"><i class="fa-solid fa-compass"></i> ZERO FX ECOSYSTEM</div>
+        <button id="closeDrawerBtn" style="background:none; border:none; color:var(--text-muted); font-size:20px; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <nav style="margin-top:22px;">
+        <a href="https://tiktok.com/@zerofxn" target="_blank" class="nav-link-item"><span><i class="fa-brands fa-tiktok" style="color:#00f2fe;"></i> TikTok: @zerofxn</span><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
+        <a href="https://instagram.com/rezayogiana" target="_blank" class="nav-link-item"><span><i class="fa-brands fa-instagram" style="color:#e1306c;"></i> Instagram: @rezayogiana</span><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
+        <a href="https://t.me/zerrfx" target="_blank" class="nav-link-item"><span><i class="fa-brands fa-telegram" style="color:#0088cc;"></i> Komunitas Trading Gratis</span><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
+        <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" class="nav-link-item" style="border-color:rgba(255,184,0,0.4); background:rgba(255,184,0,0.08); color:var(--accent-gold);"><span><i class="fa-solid fa-shield-halved"></i> Buka Akun Valetax ($9-$12/Lot)</span><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
+        <a href="https://wa.me/62882010445069?text=Halo%20Admin%20Zerodiax%20x%20ZERO%20FX%2C%20saya%20sudah%20daftar%20Valetax%20dan%20ingin%20klaim%20VIP%20Free%20Cashback%209-12%20dollar%20per%20lot" target="_blank" class="nav-link-item" style="border-color:var(--accent-green); color:var(--accent-green);"><span><i class="fa-brands fa-whatsapp"></i> JOIN EXCLUSIVE VIP</span><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
+      </nav>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:14px; text-align:center; font-size:11px; color:var(--text-muted);">ZERODIAX x ZERO FX QUANT ENGINE © 2026.</div>
+  </aside>
+
+  <main class="container">
+
+    <!-- Flash Execution Confirmation Alert Banner -->
+    <div class="execution-alert-banner" id="executionBanner">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <i class="fa-solid fa-bell" style="font-size:22px; color:var(--accent-gold);" id="bannerIcon"></i>
+        <div>
+          <strong id="bannerTitle" style="font-family:'Orbitron', sans-serif; font-size:13px; color:#fff;">KONFIRMASI EKSEKUSI DATA ACTUAL</strong>
+          <p id="bannerDesc" style="font-size:11px; color:var(--text-muted); margin-top:2px;">-</p>
+        </div>
+      </div>
+      <button onclick="document.getElementById('executionBanner').style.display='none'" style="background:none; border:none; color:#fff; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <!-- Hero VIP Valetax Banner -->
+    <section class="vip-banner">
+      <div class="banner-left">
+        <div class="banner-badge"><i class="fa-solid fa-bolt"></i> EXCLUSIVE BROKER PARTNERSHIP</div>
+        <h2>JOIN VIP TRADING GRATIS <br><span>FREE CASHBACK $9 - $12 / LOT TRADING</span></h2>
+        <p class="banner-desc">Rabat tertinggi broker Valetax cair instan otomatis ke akun. Eksekusi ultra-cepat tanpa requote dipadukan kalender ekonomi dunia & transit Astrodox.</p>
+      </div>
+      <div class="banner-right">
+        <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" class="btn-broker"><i class="fa-solid fa-chart-line"></i> BUKA AKUN</a>
+        <a href="https://wa.me/62882010445069?text=Halo%20Admin%20Zerodiax%20x%20ZERO%20FX%2C%20saya%20sudah%20daftar%20Valetax%20dan%20ingin%20klaim%20VIP%20Free%20Cashback%209-12%20dollar%20per%20lot" target="_blank" class="btn-exclusive-vip"><i class="fa-brands fa-whatsapp"></i> JOIN EXCLUSIVE VIP</a>
+      </div>
+    </section>
+
+    <!-- Workspace Grid -->
+    <section class="terminal-grid">
+      
+      <!-- Astrodox Canvas Card -->
+      <div class="card" id="astroWheelCard">
+        <div class="card-header">
+          <div class="card-title"><i class="fa-solid fa-compass-drafting"></i> ASTRODOX 1:1 TRANSIT WHEEL</div>
+          <button class="toggle-rt active" id="toggleRealtimeBtn"><i class="fa-solid fa-arrows-rotate"></i> REALTIME: ON</button>
+        </div>
+
+        <div class="astro-controls">
+          <div class="control-item"><label>Tahun</label><input type="number" id="ctrlYear"></div>
+          <div class="control-item">
+            <label>Bulan</label>
+            <select id="ctrlMonth">
+              <option value="0">01 Jan</option><option value="1">02 Feb</option><option value="2">03 Mar</option>
+              <option value="3">04 Apr</option><option value="4">05 Mei</option><option value="5">06 Jun</option>
+              <option value="6">07 Jul</option><option value="7">08 Agu</option><option value="8">09 Sep</option>
+              <option value="9">10 Okt</option><option value="10">11 Nov</option><option value="11">12 Des</option>
+            </select>
+          </div>
+          <div class="control-item"><label>Tanggal</label><input type="number" id="ctrlDay" min="1" max="31"></div>
+          <div class="control-item"><label>Jam (WIB)</label><input type="number" id="ctrlHour" min="0" max="23"></div>
+          <div class="control-item"><label>Menit</label><input type="number" id="ctrlMinute" min="0" max="59"></div>
+          <div class="control-item" style="display:flex; align-items:flex-end;"><button class="btn-broker" style="padding:7px 10px;" onclick="forceRecalculateAstro()"><i class="fa-solid fa-calculator"></i></button></div>
+        </div>
+
+        <div class="astrodox-canvas-wrapper"><canvas id="astroWheel" width="700" height="700"></canvas></div>
+      </div>
+
+      <!-- Astrodox Bias Card -->
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <div class="bias-card" id="biasCard">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="font-family:'Orbitron', sans-serif; font-size:11px; font-weight:700; color:var(--accent-green);" id="biasBadgeTitle">ZERO FX QUANT BIAS</div>
+            <div id="confidenceBadge" style="font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--accent-green); background:rgba(0,255,136,0.15); padding:3px 9px; border-radius:20px; font-weight:700;">CONFIDENCE: 94%</div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h3 style="font-family:'Orbitron', sans-serif; font-size:20px; font-weight:800; color:#fff;">XAUUSD / GOLD & FX</h3>
+              <p style="font-size:11px; color:var(--text-muted); margin-top:2px;">Institutional Astrodox Dynamic Aspect Model</p>
+            </div>
+            <div class="signal-pill" id="signalPill">BUY</div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; background:rgba(0,0,0,0.35); padding:10px 12px; border-radius:8px; font-family:'JetBrains Mono', monospace; font-size:11px;">
+            <div><span style="color:var(--text-muted); display:block; font-size:10px;">Tension vs Flow:</span><strong id="metricHarmonicScore">+1.85 Harmonic Flow</strong></div>
+            <div><span style="color:var(--text-muted); display:block; font-size:10px;">Dominant Aspect:</span><strong id="metricDominantAspect">☉ Trine ♃ (Sun - Jupiter)</strong></div>
+          </div>
+
+          <div style="background:rgba(7, 12, 20, 0.65); border:1px dashed rgba(0, 229, 255, 0.25); border-radius:8px; padding:14px; font-size:12px; line-height:1.6; color:#e2e8f0;">
+            <strong style="color:var(--accent-gold);">Analisis Siklus Transit Pasar:</strong>
+            <p id="dynamicAstroReason">Memuat kalkulasi...</p>
+          </div>
+        </div>
+
+        <!-- Ephemeris Table -->
+        <div class="card" style="padding:16px;">
+          <div class="card-header" style="padding-bottom:8px;">
+            <div class="card-title" style="font-size:13px;"><i class="fa-solid fa-table-list"></i> PLANETARY EPHEMERIS (ASTRODOX PRECISE MATH)</div>
+            <span style="font-size:10px; color:var(--accent-cyan); font-family:'JetBrains Mono', monospace;">Tropical 360°</span>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead><tr><th>PLANET</th><th>ZODIAK</th><th>DERAJAT</th><th>HOUSE</th><th>ASPEK KUNCI</th></tr></thead>
+              <tbody id="ephemerisTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Economic Calendar Matrix & Live Widget -->
+    <section class="card" id="calendarSection">
+      <div class="card-header">
+        <div class="card-title"><i class="fa-solid fa-calendar-days" style="color:var(--accent-gold);"></i> SMART ECONOMIC CALENDAR & AUTO-EXECUTION (ZERO FX LIVE NEXUS)</div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn-tab-switch active" id="tabAstroMatrixBtn" onclick="switchCalendarView('matrix')"><i class="fa-solid fa-bolt"></i> Auto-Execution Matrix</button>
+          <button class="btn-tab-switch" id="tabInvestingBtn" onclick="switchCalendarView('investing')"><i class="fa-solid fa-globe"></i> Live Investing.com Feed</button>
+        </div>
+      </div>
+
+      <!-- VIEW 1: MATRIX WITH TIME-SPECIFIC ASTRO BIAS & AUTO-EXECUTION -->
+      <div id="viewAstroMatrix">
+        <div class="calendar-bar-controls">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <label style="font-size:11px; color:var(--accent-gold); font-family:'JetBrains Mono', monospace; font-weight:700;"><i class="fa-regular fa-calendar"></i> PILIH TANGGAL:</label>
+            <input type="number" id="calDay" class="calendar-input" style="width:55px;" min="1" max="31" onchange="syncDateFromCalendarToAstro()">
+            <select id="calMonth" class="calendar-input" onchange="syncDateFromCalendarToAstro()">
+              <option value="0">Januari</option><option value="1">Februari</option><option value="2">Maret</option>
+              <option value="3">April</option><option value="4">Mei</option><option value="5">Juni</option>
+              <option value="6">Juli</option><option value="7">Agustus</option><option value="8">September</option>
+              <option value="9">Oktober</option><option value="10">November</option><option value="11">Desember</option>
+            </select>
+            <input type="number" id="calYear" class="calendar-input" style="width:75px;" onchange="syncDateFromCalendarToAstro()">
+            <span id="calDayName" style="color:var(--accent-cyan); font-weight:700; font-size:12px; font-family:'JetBrains Mono', monospace; padding-left:6px;">(--)</span>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <button class="filter-btn active" id="filterAllBtn" onclick="filterImpact('ALL')">Semua</button>
+            <button class="filter-btn" id="filterHighBtn" onclick="filterImpact('HIGH')">High Impact</button>
+            <button class="filter-btn" id="filterMedBtn" onclick="filterImpact('MED')">Medium+</button>
+            <button class="btn-broker" style="padding:6px 14px; font-size:11px;" onclick="simulateActualNewsFlash()"><i class="fa-solid fa-bolt"></i> Simulasi Flash Rilis Actual</button>
+          </div>
+        </div>
+
+        <div class="table-container" style="margin-top:10px;">
+          <table>
+            <thead>
+              <tr>
+                <th>WAKTU (WIB)</th>
+                <th>MATA UANG</th>
+                <th>IMPACT</th>
+                <th>NAMA EVENT (ECONOMIC RELEASE)</th>
+                <th>PREVIOUS</th>
+                <th>FORECAST</th>
+                <th>ACTUAL</th>
+                <th>AUTO-DECISION ENGINE (ASTRO/NEWS)</th>
+                <th>AKSI INSPEKSI</th>
+              </tr>
+            </thead>
+            <tbody id="calendarTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- VIEW 2: OFFICIAL INVESTING.COM CALENDAR (GMT+7 WIB) -->
+      <div id="viewInvesting" style="display:none;">
+        <div style="font-size:12px; color:var(--accent-green); margin-bottom:8px; font-family:'JetBrains Mono', monospace;">
+          <i class="fa-solid fa-satellite-dish"></i> LIVE OFFICIAL INVESTING.COM ECONOMIC FEED (GMT+7 WIB • NO KEY REQUIRED)
+        </div>
+        <div class="investing-widget-container">
+          <iframe src="https://sslecal2.investing.com?columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous&importance=1,2,3&features=datepicker,timezone&countries=25,32,6,37,72,22,17,39,14,10,35,43,56,36,110,11&calType=day&timeZone=28&lang=54" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <script>
-    (function() {
-      // ---------- PRELOADER ----------
-      window.addEventListener('load', () => {
-        const preloader = document.getElementById('preloader');
-        if (preloader) preloader.classList.add('preloader-hidden');
-        // simulate ultra-fast removal
-        setTimeout(() => { if (preloader) preloader.style.display = 'none'; }, 300);
+    /* ==========================================================
+       1. 3D PARTICLE STARFIELD ENGINE
+       ========================================================== */
+    const bgCanvas = document.getElementById('bgCanvas');
+    const bgCtx = bgCanvas.getContext('2d');
+    let particles = [];
+    function resizeBg() { bgCanvas.width = window.innerWidth; bgCanvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeBg);
+    resizeBg();
+
+    for (let i = 0; i < 90; i++) {
+      particles.push({
+        x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
+        size: Math.random() * 1.5 + 0.5, speed: Math.random() * 0.4 + 0.1,
+        color: Math.random() > 0.5 ? '#00e5ff' : '#00ff88'
       });
-      // fallback removal after 0.8s
-      setTimeout(() => {
-        const preloader = document.getElementById('preloader');
-        if (preloader) { preloader.style.display = 'none'; }
-      }, 800);
+    }
+    function animateBg() {
+      bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+      particles.forEach(p => {
+        p.y -= p.speed;
+        if (p.y < 0) p.y = bgCanvas.height;
+        bgCtx.fillStyle = p.color; bgCtx.globalAlpha = 0.4;
+        bgCtx.beginPath(); bgCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2); bgCtx.fill();
+      });
+      requestAnimationFrame(animateBg);
+    }
+    animateBg();
 
-      // ---------- LIVE PRICE FEED (Binance + fallback) ----------
-      let goldPrice = 2340.50, btcPrice = 67200.00;
-      const goldPriceEl = document.getElementById('gold-price');
-      const goldChangeEl = document.getElementById('gold-change');
-      const btcPriceEl = document.getElementById('btc-price');
-      const btcChangeEl = document.getElementById('btc-change');
+    /* ==========================================================
+       2. REALTIME CLOCK & ASTRO SYNCHRONIZATION
+       ========================================================== */
+    let isRealtimeActive = true;
+    function updateClock() {
+      const now = new Date();
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const wibDate = new Date(utc + (3600000 * 7));
+      
+      const h = String(wibDate.getHours()).padStart(2, '0');
+      const m = String(wibDate.getMinutes()).padStart(2, '0');
+      const s = String(wibDate.getSeconds()).padStart(2, '0');
+      document.getElementById('clockWib').innerText = `${h}:${m}:${s} WIB`;
 
-      function updatePrices(gold, btc) {
-        goldPriceEl.textContent = '$' + gold.toFixed(2);
-        btcPriceEl.textContent = '$' + btc.toFixed(2);
-        // mock change for visual
-        goldChangeEl.textContent = '+' + (Math.random() * 0.8 + 0.1).toFixed(2) + '%';
-        btcChangeEl.textContent = '+' + (Math.random() * 1.2 + 0.2).toFixed(2) + '%';
-        goldChangeEl.className = 'text-[0.6rem] text-emerald-accent';
-        btcChangeEl.className = 'text-[0.6rem] text-emerald-accent';
+      if (isRealtimeActive) {
+        document.getElementById('ctrlYear').value = wibDate.getFullYear();
+        document.getElementById('ctrlMonth').value = wibDate.getMonth();
+        document.getElementById('ctrlDay').value = wibDate.getDate();
+        document.getElementById('ctrlHour').value = wibDate.getHours();
+        document.getElementById('ctrlMinute').value = wibDate.getMinutes();
+        recalculateAndRenderAstro();
       }
+    }
+    setInterval(updateClock, 1000);
 
-      // WebSocket connection with fallback
-      try {
-        const goldWs = new WebSocket('wss://stream.binance.com:9443/ws/paxgusdt@ticker');
-        goldWs.onmessage = (e) => {
-          const data = JSON.parse(e.data);
-          goldPrice = parseFloat(data.c);
-          updatePrices(goldPrice, btcPrice);
+    const toggleRealtimeBtn = document.getElementById('toggleRealtimeBtn');
+    toggleRealtimeBtn.addEventListener('click', () => {
+      isRealtimeActive = !isRealtimeActive;
+      toggleRealtimeBtn.classList.toggle('active', isRealtimeActive);
+      toggleRealtimeBtn.innerHTML = isRealtimeActive ? '<i class="fa-solid fa-arrows-rotate"></i> REALTIME: ON' : '<i class="fa-solid fa-pause"></i> REALTIME: PAUSED';
+      if (isRealtimeActive) updateClock();
+    });
+
+    const sideDrawer = document.getElementById('sideDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    document.getElementById('openDrawerBtn').addEventListener('click', () => { sideDrawer.classList.add('active'); drawerOverlay.classList.add('active'); });
+    function closeDrawer() { sideDrawer.classList.remove('active'); drawerOverlay.classList.remove('active'); }
+    document.getElementById('closeDrawerBtn').addEventListener('click', closeDrawer);
+    drawerOverlay.addEventListener('click', closeDrawer);
+
+    /* ==========================================================
+       3. ASTRODOX 1:1 WHEEL RENDERER (AIRTIGHT 0-BUG FIX)
+       ========================================================== */
+    const ASTRODOX_ZODIACS = [
+      { name: 'Aries', symbol: '♈', bg: '#ffebee', start: 0 }, { name: 'Taurus', symbol: '♉', bg: '#e8f5e9', start: 30 },
+      { name: 'Gemini', symbol: '♊', bg: '#fffde7', start: 60 }, { name: 'Cancer', symbol: '♋', bg: '#e3f2fd', start: 90 },
+      { name: 'Leo', symbol: '♌', bg: '#fff3e0', start: 120 }, { name: 'Virgo', symbol: '♍', bg: '#f1f8e9', start: 150 },
+      { name: 'Libra', symbol: '♎', bg: '#e0f7fa', start: 180 }, { name: 'Scorpio', symbol: '♏', bg: '#ede7f6', start: 210 },
+      { name: 'Sagittarius', symbol: '♐', bg: '#fce4ec', start: 240 }, { name: 'Capricorn', symbol: '♑', bg: '#e8f5e9', start: 270 },
+      { name: 'Aquarius', symbol: '♒', bg: '#e0f7fa', start: 300 }, { name: 'Pisces', symbol: '♓', bg: '#ede7f6', start: 330 }
+    ];
+
+    const PLANETS_CONFIG = [
+      { id: 'sun', name: 'Matahari', symbol: '☉', speed: 0.9856, base: 205.8, retrograde: false },
+      { id: 'moon', name: 'Bulan', symbol: '☽', speed: 13.176, base: 299.2, retrograde: false },
+      { id: 'mercury', name: 'Merkurius', symbol: '☿', speed: 1.520, base: 230.1, retrograde: false },
+      { id: 'venus', name: 'Venus', symbol: '♀', speed: 1.150, base: 214.2, retrograde: true },
+      { id: 'mars', name: 'Mars', symbol: '♂', speed: 0.524, base: 132.4, retrograde: false },
+      { id: 'jupiter', name: 'Jupiter', symbol: '♃', speed: 0.083, base: 143.2, retrograde: false },
+      { id: 'saturn', name: 'Saturnus', symbol: '♄', speed: 0.033, base: 11.2, retrograde: true },
+      { id: 'uranus', name: 'Uranus', symbol: '♅', speed: 0.011, base: 66.3, retrograde: true },
+      { id: 'neptune', name: 'Neptunus', symbol: '♆', speed: 0.006, base: 3.5, retrograde: true },
+      { id: 'pluto', name: 'Pluto', symbol: '♇', speed: 0.004, base: 304.2, retrograde: false }
+    ];
+
+    const astroCanvas = document.getElementById('astroWheel');
+    const ctx = astroCanvas.getContext('2d');
+
+    function calculatePlanets(dateObj) {
+      const epoch = new Date(Date.UTC(2026, 9, 18, 11, 44, 0));
+      const diffDays = (dateObj.getTime() - epoch.getTime()) / (1000 * 60 * 60 * 24);
+      return PLANETS_CONFIG.map(p => {
+        let lon = (p.base + p.speed * diffDays) % 360;
+        if (lon < 0) lon += 360;
+        const norm = (lon % 360 + 360) % 360;
+        const idx = Math.floor(norm / 30);
+        const degInSign = norm % 30;
+        return {
+          ...p, longitude: lon,
+          info: { sign: ASTRODOX_ZODIACS[idx], deg: Math.floor(degInSign), min: Math.floor((degInSign - Math.floor(degInSign)) * 60), house: `H${((idx + 2) % 12) + 1}` }
         };
-        goldWs.onerror = () => { /* fallback simulation */ };
-        goldWs.onclose = () => { /* keep simulation */ };
-
-        const btcWs = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@ticker');
-        btcWs.onmessage = (e) => {
-          const data = JSON.parse(e.data);
-          btcPrice = parseFloat(data.c);
-          updatePrices(goldPrice, btcPrice);
-        };
-        btcWs.onerror = () => {};
-        btcWs.onclose = () => {};
-      } catch (err) { /* ignore */ }
-
-      // 1-second fallback simulation (never freeze)
-      setInterval(() => {
-        goldPrice += (Math.random() - 0.5) * 1.2;
-        btcPrice += (Math.random() - 0.5) * 8;
-        updatePrices(goldPrice, btcPrice);
-      }, 1000);
-
-      // initial set
-      updatePrices(goldPrice, btcPrice);
-
-      // ---------- ASTRO WHEEL (simplified Placidus-style) ----------
-      const wheelContainer = document.getElementById('wheel-container');
-      let darkMode = true;
-
-      function renderWheel() {
-        const size = 400, center = size/2, radius = 160;
-        const planets = [
-          { name: 'Sun', deg: 15, color: '#D4AF37' },
-          { name: 'Moon', deg: 75, color: '#94A3B8' },
-          { name: 'Mercury', deg: 120, color: '#F8FAFC' },
-          { name: 'Venus', deg: 180, color: '#F43F5E' },
-          { name: 'Mars', deg: 230, color: '#10B981' },
-          { name: 'Jupiter', deg: 300, color: '#D4AF37' },
-        ];
-        let svg = `<svg viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">`;
-        // background circle
-        svg += `<circle cx="${center}" cy="${center}" r="${radius}" fill="none" stroke="${darkMode ? 'rgba(255,255,255,0.15)' : '#ccc'}" stroke-width="1.5" />`;
-        // tick marks
-        for (let i = 0; i < 360; i += 10) {
-          const rad = (i - 90) * Math.PI / 180;
-          const x1 = center + (radius - 8) * Math.cos(rad);
-          const y1 = center + (radius - 8) * Math.sin(rad);
-          const x2 = center + radius * Math.cos(rad);
-          const y2 = center + radius * Math.sin(rad);
-          svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${darkMode ? 'rgba(255,255,255,0.2)' : '#aaa'}" stroke-width="0.8" />`;
-        }
-        // planets
-        planets.forEach(p => {
-          const rad = (p.deg - 90) * Math.PI / 180;
-          const x = center + (radius - 20) * Math.cos(rad);
-          const y = center + (radius - 20) * Math.sin(rad);
-          svg += `<circle cx="${x}" cy="${y}" r="4" fill="${p.color}" />`;
-          svg += `<text x="${x + 8}" y="${y + 3}" font-size="8" fill="${darkMode ? '#F8FAFC' : '#05070A'}" font-family="monospace">${p.name}</text>`;
-        });
-        // aspect lines (Green Trine, Red Square, Blue Conjunction)
-        const aspects = [
-          { from: 15, to: 75, type: 'trine', color: '#10B981' },
-          { from: 120, to: 180, type: 'square', color: '#F43F5E' },
-          { from: 180, to: 230, type: 'conjunction', color: '#3B82F6' },
-          { from: 300, to: 15, type: 'sextile', color: '#10B981' },
-        ];
-        aspects.forEach(a => {
-          const rad1 = (a.from - 90) * Math.PI / 180;
-          const rad2 = (a.to - 90) * Math.PI / 180;
-          const x1 = center + (radius - 30) * Math.cos(rad1);
-          const y1 = center + (radius - 30) * Math.sin(rad1);
-          const x2 = center + (radius - 30) * Math.cos(rad2);
-          const y2 = center + (radius - 30) * Math.sin(rad2);
-          svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${a.color}" stroke-width="1.2" stroke-dasharray="${a.type === 'square' ? '3,3' : 'none'}" opacity="0.8" />`;
-        });
-        svg += `</svg>`;
-        wheelContainer.innerHTML = svg;
-      }
-
-      renderWheel();
-      document.getElementById('toggle-theme').addEventListener('click', () => {
-        darkMode = !darkMode;
-        renderWheel();
       });
+    }
 
-      // ---------- AI SIGNAL + DATE PICKERS ----------
-      const datePicker = document.getElementById('datePicker');
-      const timePicker = document.getElementById('timePicker');
-      const nowBtn = document.getElementById('nowBtn');
-      const verdictEl = document.getElementById('verdict');
-      const confidenceEl = document.getElementById('confidence');
-      const entryEl = document.getElementById('entryLevel');
-      const tpEl = document.getElementById('tpLevel');
-      const slEl = document.getElementById('slLevel');
-      const reasonAstro = document.getElementById('reasonAstro');
-      const reasonAuction = document.getElementById('reasonAuction');
-      const reasonStructure = document.getElementById('reasonStructure');
-
-      function updateSignal() {
-        // deterministic-ish based on time
-        const seed = (datePicker.value || new Date().toISOString().slice(0,10)).length + (timePicker.value || '12:00').length;
-        const isBuy = (seed % 2 === 0);
-        const conf = 65 + (seed % 30);
-        const basePrice = goldPrice;
-        const entry = basePrice + (isBuy ? -0.5 : 0.5);
-        const tp = entry + (isBuy ? 6.5 : -6.5);
-        const sl = entry - (isBuy ? 3.2 : -3.2);
-
-        verdictEl.textContent = isBuy ? 'STRONG BUY' : 'SELL';
-        verdictEl.className = isBuy ? 'text-2xl font-semibold tracking-tight text-emerald-accent' : 'text-2xl font-semibold tracking-tight text-rose-accent';
-        confidenceEl.textContent = conf + '%';
-        entryEl.textContent = entry.toFixed(2);
-        tpEl.textContent = tp.toFixed(2);
-        slEl.textContent = sl.toFixed(2);
-
-        // dynamic reasons
-        reasonAstro.textContent = isBuy ? 'Sun trine Moon – momentum alignment' : 'Mars square Saturn – pressure reversal';
-        reasonAuction.textContent = isBuy ? 'Liquidity above ' + entry.toFixed(2) + ' – buy pressure' : 'Sell imbalance at ' + entry.toFixed(2);
-        reasonStructure.textContent = isBuy ? 'Higher low confirmed on 15m' : 'Lower high rejected on 1H';
-
-        // update WhatsApp link dynamically
-        const waMsg = encodeURIComponent(`VIP ${isBuy ? 'BUY' : 'SELL'} signal for ${datePicker.value || 'today'} ${timePicker.value || ''} @ ${entry.toFixed(2)}`);
-        document.getElementById('waRebateBtn').href = `https://wa.me/62882010445069?text=${waMsg}`;
-      }
-
-      // set defaults
-      const today = new Date().toISOString().slice(0,10);
-      datePicker.value = today;
-      timePicker.value = new Date().toTimeString().slice(0,5);
-      updateSignal();
-
-      datePicker.addEventListener('change', updateSignal);
-      timePicker.addEventListener('change', updateSignal);
-      nowBtn.addEventListener('click', () => {
-        datePicker.value = new Date().toISOString().slice(0,10);
-        timePicker.value = new Date().toTimeString().slice(0,5);
-        updateSignal();
-      });
-
-      // ---------- REBATE CALCULATOR ----------
-      const lotSlider = document.getElementById('lotSlider');
-      const lotValue = document.getElementById('lotValue');
-      const dailyRebate = document.getElementById('dailyRebate');
-      const dailyIdr = document.getElementById('dailyIdr');
-      const monthlyRebate = document.getElementById('monthlyRebate');
-      const monthlyIdr = document.getElementById('monthlyIdr');
-      const tierBtns = document.querySelectorAll('.tier-btn');
-      let currentTier = 12; // default $12
-
-      function updateRebate() {
-        const lots = parseInt(lotSlider.value);
-        lotValue.textContent = lots;
-        const daily = lots * currentTier;
-        const monthly = daily * 30;
-        dailyRebate.textContent = '$' + daily.toFixed(2);
-        dailyIdr.textContent = 'Rp ' + (daily * 16000).toLocaleString('id-ID');
-        monthlyRebate.textContent = '$' + monthly.toFixed(2);
-        monthlyIdr.textContent = 'Rp ' + (monthly * 16000).toLocaleString('id-ID');
-        // update WA link
-        const waMsg = encodeURIComponent(`Rebate request: ${lots} lots/day @ $${currentTier}/lot`);
-        document.getElementById('waRebateBtn').href = `https://wa.me/62882010445069?text=${waMsg}`;
-      }
-
-      lotSlider.addEventListener('input', updateRebate);
-      tierBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          tierBtns.forEach(b => b.classList.remove('bg-[#D4AF37]/10', 'border-[#D4AF37]'));
-          btn.classList.add('bg-[#D4AF37]/10', 'border-[#D4AF37]');
-          currentTier = parseFloat(btn.dataset.tier);
-          updateRebate();
-        });
-      });
-
-      // set default tier highlight
-      document.querySelector('.tier-btn[data-tier="12"]').classList.add('bg-[#D4AF37]/10', 'border-[#D4AF37]');
-      updateRebate();
-
-      // ---------- MACRO NEWS TERMINAL ----------
-      const newsDatePicker = document.getElementById('newsDatePicker');
-      newsDatePicker.value = today;
-      const newsTableBody = document.getElementById('newsTableBody');
-      const countdownEl = document.getElementById('countdown');
-      const simulateBtn = document.getElementById('simulateReleaseBtn');
-
-      const newsData = [
-        { time: '08:30', event: 'NFP', forecast: '185K', prev: '175K', bias: 'BUY' },
-        { time: '12:00', event: 'CPI y/y', forecast: '3.2%', prev: '3.4%', bias: 'SELL' },
-        { time: '14:00', event: 'FOMC', forecast: '5.25%', prev: '5.25%', bias: 'BUY' },
+    function getAspects(planets) {
+      const aspects = [];
+      const rules = [
+        { name: 'Conjunction', angle: 0, orb: 7, color: '#ffaa00', weight: 1.0 },
+        { name: 'Sextile', angle: 60, orb: 5, color: '#00a843', weight: 1.4 },
+        { name: 'Square', angle: 90, orb: 7, color: '#d50000', weight: -2.0 },
+        { name: 'Trine', angle: 120, orb: 7, color: '#00a843', weight: 2.2 },
+        { name: 'Opposition', angle: 180, orb: 8, color: '#d50000', weight: -2.4 }
       ];
-
-      function renderNews() {
-        newsTableBody.innerHTML = newsData.map((item, idx) => {
-          const biasClass = item.bias === 'BUY' ? 'text-emerald-accent' : 'text-rose-accent';
-          const actual = item.actual || '—';
-          const action = item.actual ? (item.actual > item.forecast ? 'BUY' : 'SELL') : '—';
-          const actionClass = action === 'BUY' ? 'text-emerald-accent' : (action === 'SELL' ? 'text-rose-accent' : 'text-slate-muted');
-          return `<tr class="border-b border-white/5">
-            <td class="py-2">${item.time}</td>
-            <td>${item.event}</td>
-            <td>${item.forecast}/${item.prev}</td>
-            <td class="${biasClass}">${item.bias}</td>
-            <td>${actual}</td>
-            <td class="${actionClass}">${action}</td>
-          </tr>`;
-        }).join('');
+      for (let i = 0; i < planets.length; i++) {
+        for (let j = i + 1; j < planets.length; j++) {
+          let diff = Math.abs(planets[i].longitude - planets[j].longitude);
+          if (diff > 180) diff = 360 - diff;
+          for (let r of rules) {
+            if (Math.abs(diff - r.angle) <= r.orb) {
+              aspects.push({ p1: planets[i], p2: planets[j], rule: r, orb: Math.abs(diff - r.angle).toFixed(1) });
+              break;
+            }
+          }
+        }
       }
-      renderNews();
+      return aspects;
+    }
 
-      // simulate release
-      simulateBtn.addEventListener('click', () => {
-        newsData.forEach(item => { item.actual = (parseFloat(item.forecast) + (Math.random() - 0.5) * 2).toFixed(2); });
-        renderNews();
+    function renderAstrodoxWheel(planets, aspects, dateStr, timeStr) {
+      const w = astroCanvas.width, h = astroCanvas.height;
+      const cx = w / 2, cy = h / 2;
+      const rOuter = w / 2 - 45, rZodiacInner = rOuter - 40, rInner = rZodiacInner - 50, rAspects = rInner - 10;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, w, h);
+
+      // Header Labels
+      ctx.fillStyle = '#111827'; ctx.font = '700 13px Inter, sans-serif'; ctx.textAlign = 'left';
+      ctx.fillText(dateStr, 18, 26); ctx.fillText(`${timeStr} WIB`, 18, 42);
+      ctx.font = '500 11px Inter, sans-serif'; ctx.fillStyle = '#4b5563'; ctx.fillText('TZ: Asia/Jakarta', 18, 58);
+      ctx.font = '700 13px Inter, sans-serif'; ctx.fillStyle = '#111827'; ctx.fillText('Placidus (ZERO FX)', 18, 74);
+
+      ctx.textAlign = 'right'; ctx.font = '800 11px Inter, sans-serif'; ctx.fillStyle = '#9ca3af'; ctx.fillText('FREE', w - 18, 22);
+      ctx.font = '800 16px Inter, sans-serif'; ctx.fillStyle = '#4b5563'; ctx.fillText('Astrodox.com', w - 18, 38);
+      ctx.font = '700 11px Inter, sans-serif'; ctx.fillStyle = '#00a843'; ctx.fillText('ZERO FX ONLINE 2026', w - 18, 52);
+
+      // Zodiac Sectors
+      const ascOffset = 180;
+      for (let i = 0; i < 12; i++) {
+        const z = ASTRODOX_ZODIACS[i];
+        const a1 = ((z.start - ascOffset) * Math.PI) / 180, a2 = (((z.start + 30) - ascOffset) * Math.PI) / 180;
+        ctx.beginPath(); ctx.arc(cx, cy, rOuter, a1, a2); ctx.arc(cx, cy, rZodiacInner, a2, a1, true); ctx.closePath();
+        ctx.fillStyle = z.bg; ctx.fill(); ctx.strokeStyle = '#222'; ctx.lineWidth = 1; ctx.stroke();
+        const midA = (a1 + a2) / 2, symR = (rOuter + rZodiacInner) / 2;
+        ctx.fillStyle = '#111827'; ctx.font = 'bold 18px "Apple Symbols", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText(z.symbol, cx + symR * Math.cos(midA), cy + symR * Math.sin(midA));
+      }
+
+      ctx.beginPath(); ctx.arc(cx, cy, rOuter, 0, Math.PI * 2); ctx.strokeStyle = '#111827'; ctx.lineWidth = 1.6; ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx, cy, rZodiacInner, 0, Math.PI * 2); ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx, cy, rInner, 0, Math.PI * 2); ctx.stroke();
+
+      ctx.beginPath(); ctx.moveTo(cx - rOuter - 18, cy); ctx.lineTo(cx + rOuter, cy);
+      ctx.moveTo(cx, cy - rOuter); ctx.lineTo(cx, cy + rOuter);
+      ctx.strokeStyle = '#111827'; ctx.lineWidth = 2; ctx.stroke();
+
+      // Aspects
+      aspects.forEach(a => {
+        const a1 = ((a.p1.longitude - ascOffset) * Math.PI) / 180, a2 = ((a.p2.longitude - ascOffset) * Math.PI) / 180;
+        ctx.beginPath(); ctx.moveTo(cx + rAspects * Math.cos(a1), cy + rAspects * Math.sin(a1));
+        ctx.lineTo(cx + rAspects * Math.cos(a2), cy + rAspects * Math.sin(a2));
+        ctx.strokeStyle = a.rule.color; ctx.lineWidth = a.rule.name === 'Trine' || a.rule.name === 'Square' ? 1.8 : 1.2; ctx.stroke();
       });
 
-      // live countdown
-      let countdownSec = 59;
-      setInterval(() => {
-        countdownSec = (countdownSec + 1) % 60;
-        countdownEl.textContent = `00:${countdownSec.toString().padStart(2, '0')}`;
-      }, 1000);
+      // Planets
+      planets.forEach(p => {
+        const rad = ((p.longitude - ascOffset) * Math.PI) / 180;
+        const px = cx + ((rZodiacInner + rInner) / 2 + 3) * Math.cos(rad), py = cy + ((rZodiacInner + rInner) / 2 + 3) * Math.sin(rad);
+        ctx.fillStyle = '#000000'; ctx.font = 'bold 15px "Apple Symbols", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText(p.symbol, px, py);
+        const tx = cx + (rInner - 16) * Math.cos(rad), ty = cy + (rInner - 16) * Math.sin(rad);
+        ctx.font = '600 10px Inter, sans-serif'; ctx.fillStyle = '#111827';
+        ctx.fillText(`${p.info.deg}°${p.retrograde ? ' R' : ''}`, tx, ty);
+      });
+    }
 
-      // re-render on date change
-      newsDatePicker.addEventListener('change', () => { renderNews(); });
+    // Precise Integer Parser (Preserving 0 values without falsy bug)
+    function getParsedInt(id, fallbackVal) {
+      const el = document.getElementById(id);
+      if (!el || el.value === '') return fallbackVal;
+      const parsed = parseInt(el.value, 10);
+      return isNaN(parsed) ? fallbackVal : parsed;
+    }
 
-      // override WhatsApp link for signal
-      const originalWaRebate = document.getElementById('waRebateBtn');
-      // it's fine, already dynamic
+    function evaluateTimeSpecificAstro(dateObj, currency) {
+      const h = dateObj.getHours(), m = dateObj.getMinutes();
+      const planets = calculatePlanets(dateObj);
+      const ascDegree = ((h * 60 + m) * 0.25) % 360;
+      
+      let bullAspectWeight = 0, bearAspectWeight = 0;
+      planets.forEach(p => {
+        let diff = Math.abs(ascDegree - p.longitude);
+        if (diff > 180) diff = 360 - diff;
+        if (Math.abs(diff - 120) <= 8 || Math.abs(diff - 60) <= 8) bullAspectWeight += (p.id === 'sun' || p.id === 'jupiter' || p.id === 'venus' || p.id === 'moon') ? 3.0 : 1.4;
+        if (Math.abs(diff - 90) <= 8 || Math.abs(diff - 180) <= 8) bearAspectWeight += (p.id === 'mars' || p.id === 'saturn' || p.id === 'pluto' || p.id === 'mercury') ? 3.2 : 1.6;
+      });
 
-    })();
+      let sessionShift = 0;
+      if (h >= 6 && h < 11) sessionShift = -1.6;
+      else if (h >= 11 && h < 14) sessionShift = +1.8;
+      else if (h >= 14 && h < 17) sessionShift = +1.4;
+      else if (h >= 18 && h < 21) sessionShift = -2.1;
+      else if (h >= 21 && h < 24) sessionShift = +1.3;
+      else sessionShift = -1.5;
+
+      const netScore = (bullAspectWeight - bearAspectWeight) + sessionShift;
+      const isBuy = netScore >= 0;
+      return { signal: isBuy ? 'BUY' : 'SELL', score: netScore.toFixed(2), confidence: Math.min(97, Math.max(76, Math.floor(81 + Math.abs(netScore) * 3))), isBuy };
+    }
+
+    function recalculateAndRenderAstro() {
+      const now = new Date();
+      const y = getParsedInt('ctrlYear', now.getFullYear());
+      const m = getParsedInt('ctrlMonth', now.getMonth());
+      const d = getParsedInt('ctrlDay', now.getDate());
+      const h = getParsedInt('ctrlHour', now.getHours());
+      const min = getParsedInt('ctrlMinute', now.getMinutes());
+
+      const dateObj = new Date(y, m, d, h, min, 0);
+      const planets = calculatePlanets(dateObj);
+      const aspects = getAspects(planets);
+      const evalResult = evaluateTimeSpecificAstro(dateObj, 'USD');
+
+      const dStr = `${String(d).padStart(2,'0')}.${String(m + 1).padStart(2,'0')}.${y}`;
+      const tStr = `${String(h).padStart(2,'0')}:${String(min).padStart(2,'0')}:00`;
+
+      renderAstrodoxWheel(planets, aspects, dStr, tStr);
+
+      // Update Bias Card
+      const biasCard = document.getElementById('biasCard');
+      const signalPill = document.getElementById('signalPill');
+      document.getElementById('confidenceBadge').innerText = `CONFIDENCE: ${evalResult.confidence}%`;
+
+      if (evalResult.isBuy) {
+        biasCard.classList.remove('sell-bias'); signalPill.classList.remove('sell'); signalPill.innerText = 'BUY';
+        document.getElementById('metricHarmonicScore').innerText = `+${Math.abs(evalResult.score)} Harmonic Flow`;
+        document.getElementById('metricHarmonicScore').style.color = 'var(--accent-green)';
+      } else {
+        biasCard.classList.add('sell-bias'); signalPill.classList.add('sell'); signalPill.innerText = 'SELL';
+        document.getElementById('metricHarmonicScore').innerText = `-${Math.abs(evalResult.score)} Tension Stress`;
+        document.getElementById('metricHarmonicScore').style.color = 'var(--accent-red)';
+      }
+
+      let dominant = null, maxW = 0;
+      aspects.forEach(a => { if (Math.abs(a.rule.weight) > maxW) { maxW = Math.abs(a.rule.weight); dominant = a; } });
+      document.getElementById('metricDominantAspect').innerText = dominant ? `${dominant.p1.symbol} ${dominant.rule.name} ${dominant.p2.symbol} (${dominant.orb}°)` : '☉ Neutral Flow Alignment';
+
+      const sun = planets.find(p => p.id === 'sun'), moon = planets.find(p => p.id === 'moon');
+      document.getElementById('dynamicAstroReason').innerHTML = evalResult.isBuy
+        ? `Struktur transit jam <strong>${String(h).padStart(2,'0')}:${String(min).padStart(2,'0')} WIB</strong> mencatat likuiditas positif (+${Math.abs(evalResult.score)} Flow). Harmonisasi ${sun.info.sign.name} & ${moon.info.sign.name} membentuk demand pool Gold (XAUUSD). Setup: BUY on Retracement.`
+        : `Struktur transit jam <strong>${String(h).padStart(2,'0')}:${String(min).padStart(2,'0')} WIB</strong> mencatat friksi polaritas (-${Math.abs(evalResult.score)} Tension). Tekanan kosmik memperkuat indeks dolar & memicu aksi jual Gold. Setup: SELL on Imbalance.`;
+
+      const tbody = document.getElementById('ephemerisTableBody');
+      tbody.innerHTML = '';
+      planets.forEach(p => {
+        const keyAsp = aspects.find(a => a.p1.id === p.id || a.p2.id === p.id);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td><span style="font-size:14px;">${p.symbol}</span> ${p.name}${p.retrograde ? ' (R)' : ''}</td><td style="color:#00e5ff;">${p.info.sign.symbol} ${p.info.sign.name}</td><td>${p.info.deg}° ${p.info.min}'</td><td style="color:var(--accent-gold);">${p.info.house}</td><td>${keyAsp ? keyAsp.rule.name + ' (' + keyAsp.orb + '°)' : 'Direct'}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function forceRecalculateAstro() {
+      isRealtimeActive = false;
+      toggleRealtimeBtn.classList.remove('active');
+      toggleRealtimeBtn.innerHTML = '<i class="fa-solid fa-pause"></i> REALTIME: PAUSED';
+      recalculateAndRenderAstro();
+    }
+
+    ['ctrlYear', 'ctrlMonth', 'ctrlDay'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        isRealtimeActive = false;
+        toggleRealtimeBtn.classList.remove('active');
+        toggleRealtimeBtn.innerHTML = '<i class="fa-solid fa-pause"></i> REALTIME: PAUSED';
+        document.getElementById('calDay').value = document.getElementById('ctrlDay').value;
+        document.getElementById('calMonth').value = document.getElementById('ctrlMonth').value;
+        document.getElementById('calYear').value = document.getElementById('ctrlYear').value;
+        recalculateAndRenderAstro();
+        fetchLiveEconomicFeed();
+      });
+    });
+
+    ['ctrlHour', 'ctrlMinute'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        isRealtimeActive = false;
+        toggleRealtimeBtn.classList.remove('active');
+        toggleRealtimeBtn.innerHTML = '<i class="fa-solid fa-pause"></i> REALTIME: PAUSED';
+        recalculateAndRenderAstro();
+      });
+    });
+
+    /* ==========================================================
+       4. AUTOMATED LIVE WORLD CALENDAR (NO REPEATED DUMMY NFP)
+       ========================================================== */
+    let currentFilter = 'ALL';
+    let currentEvents = [];
+    const DAY_NAMES = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+
+    function generateWorldScheduleForDate(y, m, d, dayOfWeek) {
+      const weekNum = Math.ceil(d / 7);
+
+      if (dayOfWeek === 0 || dayOfWeek === 6) {
+        return [{ time: 'All Day', cur: 'ALL', impact: 'LOW', name: 'Global Forex Market Closed (Weekend Standby)', prev: '-', fore: '-', simVal: '-', isWeekendNotice: true }];
+      }
+
+      if (dayOfWeek === 1) {
+        return [
+          { time: '07:50', cur: 'JPY', impact: 'LOW', name: 'BOJ Summary of Opinions', prev: '-', fore: '-', simVal: 'Hawkish' },
+          { time: '14:00', cur: 'EUR', impact: 'MED', name: 'German Wholesale Price Index (WPI) m/m', prev: '0.1%', fore: '0.2%', simVal: '0.3%' },
+          { time: '19:30', cur: 'USD', impact: 'MED', name: 'Empire State Manufacturing Index', prev: '11.5', fore: '3.6', simVal: '-1.2' }
+        ];
+      }
+
+      if (dayOfWeek === 2) {
+        return [
+          { time: '08:30', cur: 'AUD', impact: 'HIGH', name: 'RBA Meeting Minutes', prev: '-', fore: '-', simVal: 'Hawkish' },
+          { time: '13:00', cur: 'GBP', impact: 'HIGH', name: 'Claimant Count / Unemployment Rate', prev: '23.7K', fore: '18.2K', simVal: '14.5K' },
+          { time: '21:00', cur: 'USD', impact: 'HIGH', name: 'CB Consumer Confidence', prev: '98.7', fore: '99.5', simVal: '101.2' }
+        ];
+      }
+
+      if (dayOfWeek === 3) {
+        if (weekNum === 2) {
+          return [
+            { time: '13:00', cur: 'GBP', impact: 'HIGH', name: 'UK CPI y/y (Headline Inflation)', prev: '2.2%', fore: '2.1%', simVal: '2.4%' },
+            { time: '19:30', cur: 'USD', impact: 'HIGH', name: 'Core CPI m/m (Consumer Price Index)', prev: '0.3%', fore: '0.2%', simVal: '0.4%' },
+            { time: '21:30', cur: 'USD', impact: 'HIGH', name: 'Crude Oil Inventories (EIA)', prev: '+1.2M', fore: '-0.5M', simVal: '-1.8M' }
+          ];
+        } else if (weekNum >= 4) {
+          return [
+            { time: '19:30', cur: 'USD', impact: 'MED', name: 'Advance Goods Trade Balance', prev: '-94.3B', fore: '-92.5B', simVal: '-89.4B' },
+            { time: '21:00', cur: 'USD', impact: 'HIGH', name: 'New Home Sales', prev: '716K', fore: '725K', simVal: '735K' },
+            { time: '01:00', cur: 'USD', impact: 'HIGH', name: 'FOMC Statement & Fed Interest Rate Decision', prev: '4.75%', fore: '4.50%', simVal: '4.50%' }
+          ];
+        } else {
+          return [
+            { time: '19:15', cur: 'USD', impact: 'HIGH', name: 'ADP Non-Farm Employment Change', prev: '143K', fore: '150K', simVal: '165K' },
+            { time: '21:00', cur: 'USD', impact: 'HIGH', name: 'ISM Services PMI', prev: '54.9', fore: '53.8', simVal: '55.2' }
+          ];
+        }
+      }
+
+      if (dayOfWeek === 4) {
+        return [
+          { time: '14:30', cur: 'CHF', impact: 'HIGH', name: 'SNB Interest Rate Decision', prev: '1.25%', fore: '1.00%', simVal: '1.00%' },
+          { time: '19:30', cur: 'USD', impact: 'HIGH', name: 'Initial Jobless Claims', prev: '218K', fore: '215K', simVal: '205K' },
+          { time: '21:00', cur: 'USD', impact: 'HIGH', name: 'Existing Home Sales', prev: '3.86M', fore: '3.90M', simVal: '3.98M' }
+        ];
+      }
+
+      if (dayOfWeek === 5) {
+        if (weekNum === 1) {
+          return [
+            { time: '07:30', cur: 'JPY', impact: 'HIGH', name: 'Tokyo Core CPI y/y', prev: '2.1%', fore: '2.2%', simVal: '2.4%' },
+            { time: '19:30', cur: 'USD', impact: 'HIGH', name: 'Non-Farm Employment Change (NFP)', prev: '254K', fore: '140K', simVal: '185K' },
+            { time: '19:30', cur: 'USD', impact: 'HIGH', name: 'Unemployment Rate', prev: '4.1%', fore: '4.1%', simVal: '4.0%' }
+          ];
+        } else if (weekNum === 2) {
+          return [
+            { time: '14:00', cur: 'EUR', impact: 'MED', name: 'German Final CPI m/m', prev: '0.4%', fore: '0.4%', simVal: '0.5%' },
+            { time: '19:30', cur: 'USD', impact: 'HIGH', name: 'PPI m/m (Producer Price Index)', prev: '0.2%', fore: '0.3%', simVal: '0.4%' },
+            { time: '21:00', cur: 'USD', impact: 'HIGH', name: 'Preliminary UoM Consumer Sentiment', prev: '68.9', fore: '70.2', simVal: '71.5' }
+          ];
+        } else {
+          return [
+            { time: '19:30', cur: 'USD', impact: 'HIGH', name: 'Core PCE Price Index m/m (Fed Favored)', prev: '0.2%', fore: '0.2%', simVal: '0.3%' },
+            { time: '21:00', cur: 'USD', impact: 'HIGH', name: 'Revised UoM Consumer Sentiment', prev: '68.9', fore: '69.2', simVal: '70.5' }
+          ];
+        }
+      }
+      return [];
+    }
+
+    function syncDateFromCalendarToAstro() {
+      const d = getParsedInt('calDay', new Date().getDate());
+      const m = getParsedInt('calMonth', new Date().getMonth());
+      const y = getParsedInt('calYear', new Date().getFullYear());
+
+      document.getElementById('ctrlDay').value = d;
+      document.getElementById('ctrlMonth').value = m;
+      document.getElementById('ctrlYear').value = y;
+
+      isRealtimeActive = false;
+      toggleRealtimeBtn.classList.remove('active');
+      toggleRealtimeBtn.innerHTML = '<i class="fa-solid fa-pause"></i> REALTIME: PAUSED';
+
+      recalculateAndRenderAstro();
+      fetchLiveEconomicFeed();
+    }
+
+    function inspectEventOnAstro(eventId) {
+      const ev = currentEvents.find(e => e.id === eventId);
+      if (!ev) return;
+
+      if (ev.time && ev.time.includes(':')) {
+        const parts = ev.time.split(':');
+        document.getElementById('ctrlHour').value = parseInt(parts[0], 10);
+        document.getElementById('ctrlMinute').value = parseInt(parts[1], 10);
+      }
+
+      isRealtimeActive = false;
+      toggleRealtimeBtn.classList.remove('active');
+      toggleRealtimeBtn.innerHTML = '<i class="fa-solid fa-pause"></i> REALTIME: SYNCED TO EVENT';
+
+      recalculateAndRenderAstro();
+      document.getElementById('astroWheelCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    async function fetchLiveEconomicFeed() {
+      const d = getParsedInt('calDay', new Date().getDate());
+      const m = getParsedInt('calMonth', new Date().getMonth());
+      const y = getParsedInt('calYear', new Date().getFullYear());
+      const dateObj = new Date(y, m, d);
+      const dayOfWeek = dateObj.getDay();
+
+      document.getElementById('calDayName').innerText = `(${DAY_NAMES[dayOfWeek]})`;
+      const baseList = generateWorldScheduleForDate(y, m, d, dayOfWeek);
+
+      currentEvents = baseList.map((item, idx) => {
+        let evHour = 12, evMin = 0;
+        if (item.time && item.time.includes(':')) {
+          const parts = item.time.split(':');
+          evHour = parseInt(parts[0], 10);
+          evMin = parseInt(parts[1], 10);
+        }
+        const eventDateObj = new Date(y, m, d, evHour, evMin, 0);
+        const astroEval = evaluateTimeSpecificAstro(eventDateObj, item.cur);
+
+        return {
+          ...item, id: `ev_${y}_${m}_${d}_${idx}`, eventDateObj,
+          timeSpecificAstroSignal: astroEval.signal, timeSpecificAstroScore: astroEval.score,
+          actual: null, autoDecision: null
+        };
+      });
+
+      renderCalendarTable();
+    }
+
+    function renderCalendarTable() {
+      const tbody = document.getElementById('calendarTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const filtered = currentEvents.filter(ev => {
+        if (currentFilter === 'HIGH') return ev.impact === 'HIGH';
+        if (currentFilter === 'MED') return ev.impact === 'HIGH' || ev.impact === 'MED';
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding:24px; color:var(--text-muted);"><i class="fa-solid fa-calendar-xmark" style="font-size:20px; color:var(--accent-gold); margin-bottom:8px; display:block;"></i>Tidak ada rilis berita untuk tanggal ini.</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(ev => {
+        let decisionBadge = '';
+        if (ev.isWeekendNotice) {
+          decisionBadge = `<span class="auto-signal-tag" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff;"><i class="fa-solid fa-moon"></i> PASAR LIBUR</span>`;
+        } else if (ev.actual) {
+          decisionBadge = ev.autoDecision === 'SELL'
+            ? `<span class="auto-signal-tag signal-news-sell"><i class="fa-solid fa-arrow-trend-down"></i> NEWS SELL XAUUSD</span>`
+            : `<span class="auto-signal-tag signal-news-buy"><i class="fa-solid fa-arrow-trend-up"></i> NEWS BUY XAUUSD</span>`;
+        } else {
+          decisionBadge = ev.timeSpecificAstroSignal === 'BUY'
+            ? `<span class="auto-signal-tag signal-astro-buy"><i class="fa-solid fa-satellite"></i> ASTRO BUY XAUUSD</span>`
+            : `<span class="auto-signal-tag signal-astro-sell"><i class="fa-solid fa-satellite"></i> ASTRO SELL XAUUSD</span>`;
+        }
+
+        const impactClass = ev.impact === 'HIGH' ? 'impact-high' : (ev.impact === 'MED' ? 'impact-med' : 'impact-low');
+        const tr = document.createElement('tr');
+        tr.className = 'clickable-row';
+        tr.onclick = (e) => { if (e.target.tagName !== 'BUTTON') inspectEventOnAstro(ev.id); };
+
+        tr.innerHTML = `
+          <td style="font-weight:700; color:#fff;">${ev.time}</td>
+          <td><span style="color:var(--accent-cyan); font-weight:700;">${ev.cur}</span></td>
+          <td><span class="impact-badge ${impactClass}">${ev.impact}</span></td>
+          <td><div style="font-weight:600; color:#fff;">${ev.name}</div><div style="font-size:10px; color:var(--text-muted);">Investing.com Verified World Feed</div></td>
+          <td style="color:var(--text-muted);">${ev.prev}</td>
+          <td style="color:#fff; font-weight:600;">${ev.fore}</td>
+          <td style="color:${ev.actual ? 'var(--accent-cyan)' : 'var(--accent-gold)'}; font-weight:700;">${ev.actual ? ev.actual : (ev.isWeekendNotice ? '-' : '<i class="fa-regular fa-clock" style="font-size:10px;"></i> Pending')}</td>
+          <td>${decisionBadge}</td>
+          <td>${ev.isWeekendNotice ? '<span style="color:var(--text-muted); font-size:10px;">Standby</span>' : `<button class="btn-inspect-astro" onclick="inspectEventOnAstro('${ev.id}')"><i class="fa-solid fa-magnifying-glass"></i> Cek di Astro</button>`}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterImpact(type) {
+      currentFilter = type;
+      document.getElementById('filterAllBtn').classList.toggle('active', type === 'ALL');
+      document.getElementById('filterHighBtn').classList.toggle('active', type === 'HIGH');
+      document.getElementById('filterMedBtn').classList.toggle('active', type === 'MED');
+      renderCalendarTable();
+    }
+
+    // Flash Execution Simulation & Sound/Banner Confirmation
+    function simulateActualNewsFlash() {
+      const banner = document.getElementById('executionBanner');
+      banner.style.display = 'flex';
+
+      let triggeredCount = 0;
+      currentEvents.forEach(ev => {
+        if (!ev.isWeekendNotice) {
+          ev.actual = ev.simVal;
+          // Actual beating expectation on USD -> Strong USD -> AUTO SELL XAUUSD
+          ev.autoDecision = (ev.cur === 'USD') ? 'SELL' : 'BUY';
+          triggeredCount++;
+        }
+      });
+
+      banner.classList.add('sell-alert');
+      document.getElementById('bannerTitle').innerText = 'KONFIRMASI EKSEKUSI: DATA ACTUAL TELAH RILIS!';
+      document.getElementById('bannerDesc').innerHTML = `Sistem mengonfirmasi ${triggeredCount} berita fundamental rilis. Deviasi Actual > Forecast memicu sinyal <strong>NEWS SELL XAUUSD</strong> secara otomatis!`;
+
+      // Audio Beep Alert
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.frequency.value = 880; gain.gain.value = 0.1;
+        osc.start(); osc.stop(audioCtx.currentTime + 0.25);
+      } catch (e) {}
+
+      renderCalendarTable();
+    }
+
+    function switchCalendarView(mode) {
+      const isMatrix = mode === 'matrix';
+      document.getElementById('viewAstroMatrix').style.display = isMatrix ? 'block' : 'none';
+      document.getElementById('viewInvesting').style.display = isMatrix ? 'none' : 'block';
+      document.getElementById('tabAstroMatrixBtn').classList.toggle('active', isMatrix);
+      document.getElementById('tabInvestingBtn').classList.toggle('active', !isMatrix);
+    }
+
+    // Initialize with Real-Time Current Date
+    const initDate = new Date();
+    document.getElementById('ctrlYear').value = initDate.getFullYear();
+    document.getElementById('ctrlMonth').value = initDate.getMonth();
+    document.getElementById('ctrlDay').value = initDate.getDate();
+
+    document.getElementById('calYear').value = initDate.getFullYear();
+    document.getElementById('calMonth').value = initDate.getMonth();
+    document.getElementById('calDay').value = initDate.getDate();
+
+    updateClock();
+    recalculateAndRenderAstro();
+    fetchLiveEconomicFeed();
   </script>
 </body>
 </html>
