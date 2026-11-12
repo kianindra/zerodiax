@@ -1,935 +1,918 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZERODIAX x ZERO FX | AUTOMATED ASTRO-QUANT & LIVE WORLD CALENDAR NEXUS</title>
-  
-  <!-- Font & Icon Assets -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@600;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tradepreneur — Community</title>
+  <meta name="description" content="Tradepreneur adalah wadah bagi trader untuk berbagi insight, analisa market, edukasi, dan informasi seputar dunia trading." />
 
-  <style>
-    :root {
-      --bg-dark: #060a11;
-      --card-bg: rgba(12, 20, 34, 0.92);
-      --card-border: rgba(0, 229, 255, 0.22);
-      --accent-green: #00ff88;
-      --accent-cyan: #00e5ff;
-      --accent-gold: #ffb800;
-      --accent-red: #ff3366;
-      --text-main: #f0f6fc;
-      --text-muted: #8b949e;
-      --glow-green: 0 0 16px rgba(0, 255, 136, 0.35);
-      --glow-cyan: 0 0 16px rgba(0, 229, 255, 0.35);
-      --glow-gold: 0 0 18px rgba(255, 184, 0, 0.35);
-    }
+  <!-- Google Fonts: Inter (400 - 900) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
-    body { background-color: var(--bg-dark); color: var(--text-main); overflow-x: hidden; min-height: 100vh; position: relative; }
-    #bgCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-
-    /* Header Navigation */
-    header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 14px 28px; background: rgba(8, 14, 24, 0.95); backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--card-border); position: sticky; top: 0; z-index: 100;
-    }
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .brand-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      background: linear-gradient(135deg, rgba(0,255,136,0.2), rgba(0,229,255,0.2));
-      border: 1px solid var(--accent-green); display: flex; align-items: center; justify-content: center;
-      color: var(--accent-green); font-size: 22px; box-shadow: var(--glow-green);
-    }
-    .brand-text h1 { font-family: 'Orbitron', sans-serif; font-size: 19px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
-    .brand-text h1 span.zerodiax { color: #fff; }
-    .brand-text h1 span.zerofx { color: var(--accent-green); text-shadow: 0 0 10px rgba(0, 255, 136, 0.5); }
-    .badge-ver { font-size: 10px; padding: 2px 7px; border-radius: 4px; background: rgba(0, 255, 136, 0.15); border: 1px solid var(--accent-green); color: var(--accent-green); font-family: 'JetBrains Mono', monospace; }
-
-    .header-center { display: flex; align-items: center; gap: 14px; background: rgba(13, 23, 38, 0.85); border: 1px solid var(--card-border); padding: 6px 16px; border-radius: 30px; }
-    .pulse-indicator { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; color: var(--accent-green); font-family: 'JetBrains Mono', monospace; }
-    .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-green); box-shadow: var(--glow-green); animation: pulse 1.8s infinite; }
-    @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.3); opacity: 1; } 100% { transform: scale(0.9); opacity: 0.7; } }
-    .clock-display { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-cyan); border-left: 1px solid rgba(255,255,255,0.1); padding-left: 12px; }
-
-    .header-actions { display: flex; align-items: center; gap: 12px; }
-    .btn-vip-header {
-      background: linear-gradient(135deg, #ffb800, #ff8800); color: #000; font-weight: 800; font-size: 12px;
-      padding: 8px 16px; border-radius: 8px; text-decoration: none; display: flex; align-items: center; gap: 7px;
-      box-shadow: var(--glow-gold); transition: all 0.25s ease;
-    }
-    .btn-vip-header:hover { transform: translateY(-2px); box-shadow: 0 0 22px rgba(255, 184, 0, 0.6); }
-
-    .menu-btn {
-      background: rgba(15, 25, 42, 0.9); border: 1px solid var(--card-border); color: var(--accent-cyan);
-      font-size: 18px; width: 40px; height: 40px; border-radius: 10px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
-    }
-
-    .container { max-width: 1440px; margin: 20px auto; padding: 0 18px; display: flex; flex-direction: column; gap: 22px; }
-
-    /* Flash Execution Alert Notification Bar */
-    .execution-alert-banner {
-      display: none; background: rgba(10, 25, 45, 0.96); border: 2px solid var(--accent-green);
-      border-radius: 12px; padding: 14px 20px; align-items: center; justify-content: space-between;
-      box-shadow: 0 0 30px rgba(0, 255, 136, 0.35); animation: slideDown 0.35s ease;
-    }
-    .execution-alert-banner.sell-alert { border-color: var(--accent-red); box-shadow: 0 0 30px rgba(255, 51, 102, 0.35); }
-    @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-    .vip-banner {
-      background: linear-gradient(135deg, rgba(14, 25, 42, 0.92), rgba(7, 12, 20, 0.98));
-      border: 1px solid rgba(255, 184, 0, 0.4); border-radius: 16px; padding: 22px 28px;
-      display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .banner-left { max-width: 65%; }
-    .banner-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 184, 0, 0.12); border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; margin-bottom: 8px; }
-    .banner-left h2 { font-family: 'Orbitron', sans-serif; font-size: 22px; font-weight: 900; margin-bottom: 6px; color: #fff; }
-    .banner-left h2 span { color: var(--accent-gold); }
-    .banner-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
-    .banner-right { display: flex; align-items: center; gap: 12px; }
-    .btn-broker { background: linear-gradient(135deg, var(--accent-gold), #e69d00); color: #000; font-weight: 800; font-size: 13px; padding: 12px 20px; border-radius: 10px; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-    .btn-exclusive-vip { background: rgba(0, 255, 136, 0.12); border: 1px solid var(--accent-green); color: var(--accent-green); font-weight: 700; font-size: 13px; padding: 12px 20px; border-radius: 10px; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-
-    .terminal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-    @media (max-width: 1100px) { .terminal-grid { grid-template-columns: 1fr; } .vip-banner { flex-direction: column; align-items: flex-start; gap: 16px; } }
-
-    .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 22px; backdrop-filter: blur(16px); display: flex; flex-direction: column; gap: 18px; }
-    .card-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 12px; }
-    .card-title { font-family: 'Orbitron', sans-serif; font-size: 15px; letter-spacing: 0.8px; display: flex; align-items: center; gap: 9px; }
-
-    .astro-controls { display: grid; grid-template-columns: repeat(5, 1fr) auto; gap: 8px; background: rgba(7, 12, 22, 0.7); padding: 10px; border-radius: 10px; }
-    .control-item label { display: block; font-size: 9px; color: var(--text-muted); margin-bottom: 3px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; }
-    .control-item input, .control-item select { width: 100%; background: rgba(15, 24, 40, 0.9); border: 1px solid rgba(0, 229, 255, 0.25); color: var(--text-main); padding: 6px 7px; border-radius: 6px; font-size: 11px; font-family: 'JetBrains Mono', monospace; outline: none; }
-    .toggle-rt { padding: 7px 12px; background: rgba(0, 255, 136, 0.1); border: 1px solid var(--accent-green); border-radius: 8px; cursor: pointer; color: var(--accent-green); font-size: 11px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
-    .toggle-rt.active { background: var(--accent-green); color: #000; box-shadow: var(--glow-green); }
-
-    .astrodox-canvas-wrapper { width: 100%; max-width: 580px; margin: 0 auto; background: #ffffff; border-radius: 14px; overflow: hidden; padding: 10px; }
-    #astroWheel { width: 100%; height: auto; aspect-ratio: 1 / 1; display: block; }
-
-    .bias-card { background: linear-gradient(135deg, rgba(9, 18, 30, 0.92), rgba(5, 10, 18, 0.97)); border: 1px solid var(--accent-green); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
-    .bias-card.sell-bias { border-color: var(--accent-red); box-shadow: 0 0 20px rgba(255, 51, 102, 0.35); }
-    .signal-pill { font-family: 'Orbitron', sans-serif; font-size: 24px; font-weight: 900; padding: 6px 22px; border-radius: 8px; letter-spacing: 1.5px; background: rgba(0, 255, 136, 0.18); color: var(--accent-green); border: 2px solid var(--accent-green); }
-    .signal-pill.sell { background: rgba(255, 51, 102, 0.18); color: var(--accent-red); border-color: var(--accent-red); }
-
-    .table-container { width: 100%; overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: 11px; text-align: left; }
-    th { background: rgba(14, 23, 38, 0.9); color: var(--accent-cyan); font-family: 'Orbitron', sans-serif; font-size: 10px; padding: 10px 12px; border-bottom: 1px solid var(--card-border); white-space: nowrap; }
-    td { padding: 9px 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
-    tr.clickable-row { cursor: pointer; }
-    tr.clickable-row:hover td { background: rgba(0, 229, 255, 0.08); }
-
-    .calendar-bar-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: rgba(9, 16, 28, 0.85); border: 1px solid rgba(0, 229, 255, 0.2); padding: 12px 16px; border-radius: 12px; }
-    .calendar-input { background: rgba(15, 24, 40, 0.95); border: 1px solid rgba(0, 229, 255, 0.3); color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
-    .filter-btn { background: rgba(15, 24, 40, 0.85); border: 1px solid var(--card-border); color: var(--text-muted); padding: 6px 12px; border-radius: 6px; font-size: 11px; cursor: pointer; font-family: 'Orbitron', sans-serif; }
-    .filter-btn.active { background: var(--accent-cyan); color: #000; font-weight: 700; }
-    .btn-tab-switch { background: rgba(0, 229, 255, 0.12); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 6px 14px; border-radius: 6px; font-size: 11px; cursor: pointer; font-family: 'Orbitron', sans-serif; font-weight: 700; }
-    .btn-tab-switch.active { background: var(--accent-green); color: #000; border-color: var(--accent-green); }
-
-    .auto-signal-tag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 6px; font-size: 10px; font-weight: 800; font-family: 'Orbitron', sans-serif; }
-    .signal-astro-buy { background: rgba(0, 255, 136, 0.18); border: 1px solid var(--accent-green); color: var(--accent-green); }
-    .signal-astro-sell { background: rgba(255, 51, 102, 0.18); border: 1px solid var(--accent-red); color: var(--accent-red); }
-    .signal-news-buy { background: linear-gradient(135deg, rgba(0, 255, 136, 0.3), rgba(0, 229, 255, 0.3)); border: 1px solid var(--accent-green); color: #fff; font-weight: 900; }
-    .signal-news-sell { background: linear-gradient(135deg, rgba(255, 51, 102, 0.3), rgba(255, 119, 0, 0.3)); border: 1px solid var(--accent-red); color: #fff; font-weight: 900; }
-    .btn-inspect-astro { background: rgba(0, 229, 255, 0.12); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 4px 8px; border-radius: 5px; font-size: 10px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
-
-    .investing-widget-container { width: 100%; height: 520px; border-radius: 12px; overflow: hidden; border: 1px solid var(--card-border); background: #ffffff; }
-    .investing-widget-container iframe { width: 100%; height: 100%; border: none; }
-
-    /* Drawer */
-    .drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); backdrop-filter: blur(8px); z-index: 998; display: none; }
-    .drawer-overlay.active { display: block; }
-    .drawer { position: fixed; top: 0; right: -360px; width: 330px; height: 100%; background: rgba(10, 16, 26, 0.97); border-left: 1px solid var(--card-border); z-index: 999; display: flex; flex-direction: column; justify-content: space-between; padding: 26px 22px; transition: right 0.35s ease; }
-    .drawer.active { right: 0; }
-    .nav-link-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 15px; background: rgba(16, 27, 44, 0.65); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; color: var(--text-main); text-decoration: none; font-size: 13px; font-weight: 500; margin-bottom: 12px; }
-  </style>
-</head>
-<body>
-
-  <canvas id="bgCanvas"></canvas>
-
-  <header>
-    <div class="brand">
-      <div class="brand-icon"><i class="fa-solid fa-atom"></i></div>
-      <div class="brand-text">
-        <h1><span class="zerodiax">ZERODIAX</span> × <span class="zerofx">ZERO FX</span> <span class="badge-ver">v11.0 PRO</span></h1>
-        <div class="brand-subtitle">Automated Institutional Astrodox & World Economic Calendar Nexus</div>
-      </div>
-    </div>
-
-    <div class="header-center">
-      <div class="pulse-indicator">
-        <span class="pulse-dot"></span>
-        <span id="systemStatusLabel">AUTOMATED REAL-TIME NEXUS ACTIVE</span>
-      </div>
-      <div class="clock-display" id="clockWib">--:--:-- WIB</div>
-    </div>
-
-    <div class="header-actions">
-      <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" class="btn-vip-header"><i class="fa-solid fa-crown"></i> VIP VALETAX ($12/LOT)</a>
-      <button class="menu-btn" id="openDrawerBtn"><i class="fa-solid fa-bars"></i></button>
-    </div>
-  </header>
-
-  <!-- Side Navigation Drawer -->
-  <div class="drawer-overlay" id="drawerOverlay"></div>
-  <aside class="drawer" id="sideDrawer">
-    <div>
-      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:16px;">
-        <div style="font-family:'Orbitron', sans-serif; font-size:15px; color:var(--accent-green); display:flex; align-items:center; gap:9px;"><i class="fa-solid fa-compass"></i> ZERO FX ECOSYSTEM</div>
-        <button id="closeDrawerBtn" style="background:none; border:none; color:var(--text-muted); font-size:20px; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-
-      <nav style="margin-top:22px;">
-        <a href="https://tiktok.com/@zerofxn" target="_blank" class="nav-link-item"><span><i class="fa-brands fa-tiktok" style="color:#00f2fe;"></i> TikTok: @zerofxn</span><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
-        <a href="https://instagram.com/rezayogiana" target="_blank" class="nav-link-item"><span><i class="fa-brands fa-instagram" style="color:#e1306c;"></i> Instagram: @rezayogiana</span><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
-        <a href="https://t.me/zerrfx" target="_blank" class="nav-link-item"><span><i class="fa-brands fa-telegram" style="color:#0088cc;"></i> Komunitas Trading Gratis</span><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
-        <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" class="nav-link-item" style="border-color:rgba(255,184,0,0.4); background:rgba(255,184,0,0.08); color:var(--accent-gold);"><span><i class="fa-solid fa-shield-halved"></i> Buka Akun Valetax ($9-$12/Lot)</span><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
-        <a href="https://wa.me/62882010445069?text=Halo%20Admin%20Zerodiax%20x%20ZERO%20FX%2C%20saya%20sudah%20daftar%20Valetax%20dan%20ingin%20klaim%20VIP%20Free%20Cashback%209-12%20dollar%20per%20lot" target="_blank" class="nav-link-item" style="border-color:var(--accent-green); color:var(--accent-green);"><span><i class="fa-brands fa-whatsapp"></i> JOIN EXCLUSIVE VIP</span><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>
-      </nav>
-    </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:14px; text-align:center; font-size:11px; color:var(--text-muted);">ZERODIAX x ZERO FX QUANT ENGINE © 2026.</div>
-  </aside>
-
-  <main class="container">
-
-    <!-- Flash Execution Confirmation Alert Banner -->
-    <div class="execution-alert-banner" id="executionBanner">
-      <div style="display:flex; align-items:center; gap:12px;">
-        <i class="fa-solid fa-bell" style="font-size:22px; color:var(--accent-gold);" id="bannerIcon"></i>
-        <div>
-          <strong id="bannerTitle" style="font-family:'Orbitron', sans-serif; font-size:13px; color:#fff;">KONFIRMASI EKSEKUSI DATA ACTUAL</strong>
-          <p id="bannerDesc" style="font-size:11px; color:var(--text-muted); margin-top:2px;">-</p>
-        </div>
-      </div>
-      <button onclick="document.getElementById('executionBanner').style.display='none'" style="background:none; border:none; color:#fff; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    
-    <!-- Hero VIP Valetax Banner -->
-    <section class="vip-banner">
-      <div class="banner-left">
-        <div class="banner-badge"><i class="fa-solid fa-bolt"></i> EXCLUSIVE BROKER PARTNERSHIP</div>
-        <h2>JOIN VIP TRADING GRATIS <br><span>FREE CASHBACK $9 - $12 / LOT TRADING</span></h2>
-        <p class="banner-desc">Rabat tertinggi broker Valetax cair instan otomatis ke akun. Eksekusi ultra-cepat tanpa requote dipadukan kalender ekonomi dunia & transit Astrodox.</p>
-      </div>
-      <div class="banner-right">
-        <a href="https://ma.valetax-indonesia.com/p/1682343" target="_blank" class="btn-broker"><i class="fa-solid fa-chart-line"></i> BUKA AKUN</a>
-        <a href="https://wa.me/62882010445069?text=Halo%20Admin%20Zerodiax%20x%20ZERO%20FX%2C%20saya%20sudah%20daftar%20Valetax%20dan%20ingin%20klaim%20VIP%20Free%20Cashback%209-12%20dollar%20per%20lot" target="_blank" class="btn-exclusive-vip"><i class="fa-brands fa-whatsapp"></i> JOIN EXCLUSIVE VIP</a>
-      </div>
-    </section>
-
-    <!-- Workspace Grid -->
-    <section class="terminal-grid">
-      
-      <!-- Astrodox Canvas Card -->
-      <div class="card" id="astroWheelCard">
-        <div class="card-header">
-          <div class="card-title"><i class="fa-solid fa-compass-drafting"></i> ASTRODOX 1:1 TRANSIT WHEEL</div>
-          <button class="toggle-rt active" id="toggleRealtimeBtn"><i class="fa-solid fa-arrows-rotate"></i> REALTIME: ON</button>
-        </div>
-
-        <div class="astro-controls">
-          <div class="control-item"><label>Tahun</label><input type="number" id="ctrlYear"></div>
-          <div class="control-item">
-            <label>Bulan</label>
-            <select id="ctrlMonth">
-              <option value="0">01 Jan</option><option value="1">02 Feb</option><option value="2">03 Mar</option>
-              <option value="3">04 Apr</option><option value="4">05 Mei</option><option value="5">06 Jun</option>
-              <option value="6">07 Jul</option><option value="7">08 Agu</option><option value="8">09 Sep</option>
-              <option value="9">10 Okt</option><option value="10">11 Nov</option><option value="11">12 Des</option>
-            </select>
-          </div>
-          <div class="control-item"><label>Tanggal</label><input type="number" id="ctrlDay" min="1" max="31"></div>
-          <div class="control-item"><label>Jam (WIB)</label><input type="number" id="ctrlHour" min="0" max="23"></div>
-          <div class="control-item"><label>Menit</label><input type="number" id="ctrlMinute" min="0" max="59"></div>
-          <div class="control-item" style="display:flex; align-items:flex-end;"><button class="btn-broker" style="padding:7px 10px;" onclick="forceRecalculateAstro()"><i class="fa-solid fa-calculator"></i></button></div>
-        </div>
-
-        <div class="astrodox-canvas-wrapper"><canvas id="astroWheel" width="700" height="700"></canvas></div>
-      </div>
-
-      <!-- Astrodox Bias Card -->
-      <div style="display:flex; flex-direction:column; gap:20px;">
-        <div class="bias-card" id="biasCard">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div style="font-family:'Orbitron', sans-serif; font-size:11px; font-weight:700; color:var(--accent-green);" id="biasBadgeTitle">ZERO FX QUANT BIAS</div>
-            <div id="confidenceBadge" style="font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--accent-green); background:rgba(0,255,136,0.15); padding:3px 9px; border-radius:20px; font-weight:700;">CONFIDENCE: 94%</div>
-          </div>
-
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div>
-              <h3 style="font-family:'Orbitron', sans-serif; font-size:20px; font-weight:800; color:#fff;">XAUUSD / GOLD & FX</h3>
-              <p style="font-size:11px; color:var(--text-muted); margin-top:2px;">Institutional Astrodox Dynamic Aspect Model</p>
-            </div>
-            <div class="signal-pill" id="signalPill">BUY</div>
-          </div>
-
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; background:rgba(0,0,0,0.35); padding:10px 12px; border-radius:8px; font-family:'JetBrains Mono', monospace; font-size:11px;">
-            <div><span style="color:var(--text-muted); display:block; font-size:10px;">Tension vs Flow:</span><strong id="metricHarmonicScore">+1.85 Harmonic Flow</strong></div>
-            <div><span style="color:var(--text-muted); display:block; font-size:10px;">Dominant Aspect:</span><strong id="metricDominantAspect">☉ Trine ♃ (Sun - Jupiter)</strong></div>
-          </div>
-
-          <div style="background:rgba(7, 12, 20, 0.65); border:1px dashed rgba(0, 229, 255, 0.25); border-radius:8px; padding:14px; font-size:12px; line-height:1.6; color:#e2e8f0;">
-            <strong style="color:var(--accent-gold);">Analisis Siklus Transit Pasar:</strong>
-            <p id="dynamicAstroReason">Memuat kalkulasi...</p>
-          </div>
-        </div>
-
-        <!-- Ephemeris Table -->
-        <div class="card" style="padding:16px;">
-          <div class="card-header" style="padding-bottom:8px;">
-            <div class="card-title" style="font-size:13px;"><i class="fa-solid fa-table-list"></i> PLANETARY EPHEMERIS (ASTRODOX PRECISE MATH)</div>
-            <span style="font-size:10px; color:var(--accent-cyan); font-family:'JetBrains Mono', monospace;">Tropical 360°</span>
-          </div>
-          <div class="table-container">
-            <table>
-              <thead><tr><th>PLANET</th><th>ZODIAK</th><th>DERAJAT</th><th>HOUSE</th><th>ASPEK KUNCI</th></tr></thead>
-              <tbody id="ephemerisTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Economic Calendar Matrix & Live Widget -->
-    <section class="card" id="calendarSection">
-      <div class="card-header">
-        <div class="card-title"><i class="fa-solid fa-calendar-days" style="color:var(--accent-gold);"></i> SMART ECONOMIC CALENDAR & AUTO-EXECUTION (ZERO FX LIVE NEXUS)</div>
-        <div style="display:flex; gap:8px;">
-          <button class="btn-tab-switch active" id="tabAstroMatrixBtn" onclick="switchCalendarView('matrix')"><i class="fa-solid fa-bolt"></i> Auto-Execution Matrix</button>
-          <button class="btn-tab-switch" id="tabInvestingBtn" onclick="switchCalendarView('investing')"><i class="fa-solid fa-globe"></i> Live Investing.com Feed</button>
-        </div>
-      </div>
-
-      <!-- VIEW 1: MATRIX WITH TIME-SPECIFIC ASTRO BIAS & AUTO-EXECUTION -->
-      <div id="viewAstroMatrix">
-        <div class="calendar-bar-controls">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <label style="font-size:11px; color:var(--accent-gold); font-family:'JetBrains Mono', monospace; font-weight:700;"><i class="fa-regular fa-calendar"></i> PILIH TANGGAL:</label>
-            <input type="number" id="calDay" class="calendar-input" style="width:55px;" min="1" max="31" onchange="syncDateFromCalendarToAstro()">
-            <select id="calMonth" class="calendar-input" onchange="syncDateFromCalendarToAstro()">
-              <option value="0">Januari</option><option value="1">Februari</option><option value="2">Maret</option>
-              <option value="3">April</option><option value="4">Mei</option><option value="5">Juni</option>
-              <option value="6">Juli</option><option value="7">Agustus</option><option value="8">September</option>
-              <option value="9">Oktober</option><option value="10">November</option><option value="11">Desember</option>
-            </select>
-            <input type="number" id="calYear" class="calendar-input" style="width:75px;" onchange="syncDateFromCalendarToAstro()">
-            <span id="calDayName" style="color:var(--accent-cyan); font-weight:700; font-size:12px; font-family:'JetBrains Mono', monospace; padding-left:6px;">(--)</span>
-          </div>
-
-          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-            <button class="filter-btn active" id="filterAllBtn" onclick="filterImpact('ALL')">Semua</button>
-            <button class="filter-btn" id="filterHighBtn" onclick="filterImpact('HIGH')">High Impact</button>
-            <button class="filter-btn" id="filterMedBtn" onclick="filterImpact('MED')">Medium+</button>
-            <button class="btn-broker" style="padding:6px 14px; font-size:11px;" onclick="simulateActualNewsFlash()"><i class="fa-solid fa-bolt"></i> Simulasi Flash Rilis Actual</button>
-          </div>
-        </div>
-
-        <div class="table-container" style="margin-top:10px;">
-          <table>
-            <thead>
-              <tr>
-                <th>WAKTU (WIB)</th>
-                <th>MATA UANG</th>
-                <th>IMPACT</th>
-                <th>NAMA EVENT (ECONOMIC RELEASE)</th>
-                <th>PREVIOUS</th>
-                <th>FORECAST</th>
-                <th>ACTUAL</th>
-                <th>AUTO-DECISION ENGINE (ASTRO/NEWS)</th>
-                <th>AKSI INSPEKSI</th>
-              </tr>
-            </thead>
-            <tbody id="calendarTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- VIEW 2: OFFICIAL INVESTING.COM CALENDAR (GMT+7 WIB) -->
-      <div id="viewInvesting" style="display:none;">
-        <div style="font-size:12px; color:var(--accent-green); margin-bottom:8px; font-family:'JetBrains Mono', monospace;">
-          <i class="fa-solid fa-satellite-dish"></i> LIVE OFFICIAL INVESTING.COM ECONOMIC FEED (GMT+7 WIB • NO KEY REQUIRED)
-        </div>
-        <div class="investing-widget-container">
-          <iframe src="https://sslecal2.investing.com?columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous&importance=1,2,3&features=datepicker,timezone&countries=25,32,6,37,72,22,17,39,14,10,35,43,56,36,110,11&calType=day&timeZone=28&lang=54" loading="lazy"></iframe>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    /* ==========================================================
-       1. 3D PARTICLE STARFIELD ENGINE
-       ========================================================== */
-    const bgCanvas = document.getElementById('bgCanvas');
-    const bgCtx = bgCanvas.getContext('2d');
-    let particles = [];
-    function resizeBg() { bgCanvas.width = window.innerWidth; bgCanvas.height = window.innerHeight; }
-    window.addEventListener('resize', resizeBg);
-    resizeBg();
-
-    for (let i = 0; i < 90; i++) {
-      particles.push({
-        x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
-        size: Math.random() * 1.5 + 0.5, speed: Math.random() * 0.4 + 0.1,
-        color: Math.random() > 0.5 ? '#00e5ff' : '#00ff88'
-      });
-    }
-    function animateBg() {
-      bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
-      particles.forEach(p => {
-        p.y -= p.speed;
-        if (p.y < 0) p.y = bgCanvas.height;
-        bgCtx.fillStyle = p.color; bgCtx.globalAlpha = 0.4;
-        bgCtx.beginPath(); bgCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2); bgCtx.fill();
-      });
-      requestAnimationFrame(animateBg);
-    }
-    animateBg();
-
-    /* ==========================================================
-       2. REALTIME CLOCK & ASTRO SYNCHRONIZATION
-       ========================================================== */
-    let isRealtimeActive = true;
-    function updateClock() {
-      const now = new Date();
-      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-      const wibDate = new Date(utc + (3600000 * 7));
-      
-      const h = String(wibDate.getHours()).padStart(2, '0');
-      const m = String(wibDate.getMinutes()).padStart(2, '0');
-      const s = String(wibDate.getSeconds()).padStart(2, '0');
-      document.getElementById('clockWib').innerText = `${h}:${m}:${s} WIB`;
-
-      if (isRealtimeActive) {
-        document.getElementById('ctrlYear').value = wibDate.getFullYear();
-        document.getElementById('ctrlMonth').value = wibDate.getMonth();
-        document.getElementById('ctrlDay').value = wibDate.getDate();
-        document.getElementById('ctrlHour').value = wibDate.getHours();
-        document.getElementById('ctrlMinute').value = wibDate.getMinutes();
-        recalculateAndRenderAstro();
-      }
-    }
-    setInterval(updateClock, 1000);
-
-    const toggleRealtimeBtn = document.getElementById('toggleRealtimeBtn');
-    toggleRealtimeBtn.addEventListener('click', () => {
-      isRealtimeActive = !isRealtimeActive;
-      toggleRealtimeBtn.classList.toggle('active', isRealtimeActive);
-      toggleRealtimeBtn.innerHTML = isRealtimeActive ? '<i class="fa-solid fa-arrows-rotate"></i> REALTIME: ON' : '<i class="fa-solid fa-pause"></i> REALTIME: PAUSED';
-      if (isRealtimeActive) updateClock();
-    });
-
-    const sideDrawer = document.getElementById('sideDrawer');
-    const drawerOverlay = document.getElementById('drawerOverlay');
-    document.getElementById('openDrawerBtn').addEventListener('click', () => { sideDrawer.classList.add('active'); drawerOverlay.classList.add('active'); });
-    function closeDrawer() { sideDrawer.classList.remove('active'); drawerOverlay.classList.remove('active'); }
-    document.getElementById('closeDrawerBtn').addEventListener('click', closeDrawer);
-    drawerOverlay.addEventListener('click', closeDrawer);
-
-    /* ==========================================================
-       3. ASTRODOX 1:1 WHEEL RENDERER (AIRTIGHT 0-BUG FIX)
-       ========================================================== */
-    const ASTRODOX_ZODIACS = [
-      { name: 'Aries', symbol: '♈', bg: '#ffebee', start: 0 }, { name: 'Taurus', symbol: '♉', bg: '#e8f5e9', start: 30 },
-      { name: 'Gemini', symbol: '♊', bg: '#fffde7', start: 60 }, { name: 'Cancer', symbol: '♋', bg: '#e3f2fd', start: 90 },
-      { name: 'Leo', symbol: '♌', bg: '#fff3e0', start: 120 }, { name: 'Virgo', symbol: '♍', bg: '#f1f8e9', start: 150 },
-      { name: 'Libra', symbol: '♎', bg: '#e0f7fa', start: 180 }, { name: 'Scorpio', symbol: '♏', bg: '#ede7f6', start: 210 },
-      { name: 'Sagittarius', symbol: '♐', bg: '#fce4ec', start: 240 }, { name: 'Capricorn', symbol: '♑', bg: '#e8f5e9', start: 270 },
-      { name: 'Aquarius', symbol: '♒', bg: '#e0f7fa', start: 300 }, { name: 'Pisces', symbol: '♓', bg: '#ede7f6', start: 330 }
-    ];
-
-    const PLANETS_CONFIG = [
-      { id: 'sun', name: 'Matahari', symbol: '☉', speed: 0.9856, base: 205.8, retrograde: false },
-      { id: 'moon', name: 'Bulan', symbol: '☽', speed: 13.176, base: 299.2, retrograde: false },
-      { id: 'mercury', name: 'Merkurius', symbol: '☿', speed: 1.520, base: 230.1, retrograde: false },
-      { id: 'venus', name: 'Venus', symbol: '♀', speed: 1.150, base: 214.2, retrograde: true },
-      { id: 'mars', name: 'Mars', symbol: '♂', speed: 0.524, base: 132.4, retrograde: false },
-      { id: 'jupiter', name: 'Jupiter', symbol: '♃', speed: 0.083, base: 143.2, retrograde: false },
-      { id: 'saturn', name: 'Saturnus', symbol: '♄', speed: 0.033, base: 11.2, retrograde: true },
-      { id: 'uranus', name: 'Uranus', symbol: '♅', speed: 0.011, base: 66.3, retrograde: true },
-      { id: 'neptune', name: 'Neptunus', symbol: '♆', speed: 0.006, base: 3.5, retrograde: true },
-      { id: 'pluto', name: 'Pluto', symbol: '♇', speed: 0.004, base: 304.2, retrograde: false }
-    ];
-
-    const astroCanvas = document.getElementById('astroWheel');
-    const ctx = astroCanvas.getContext('2d');
-
-    function calculatePlanets(dateObj) {
-      const epoch = new Date(Date.UTC(2026, 9, 18, 11, 44, 0));
-      const diffDays = (dateObj.getTime() - epoch.getTime()) / (1000 * 60 * 60 * 24);
-      return PLANETS_CONFIG.map(p => {
-        let lon = (p.base + p.speed * diffDays) % 360;
-        if (lon < 0) lon += 360;
-        const norm = (lon % 360 + 360) % 360;
-        const idx = Math.floor(norm / 30);
-        const degInSign = norm % 30;
-        return {
-          ...p, longitude: lon,
-          info: { sign: ASTRODOX_ZODIACS[idx], deg: Math.floor(degInSign), min: Math.floor((degInSign - Math.floor(degInSign)) * 60), house: `H${((idx + 2) % 12) + 1}` }
-        };
-      });
-    }
-
-    function getAspects(planets) {
-      const aspects = [];
-      const rules = [
-        { name: 'Conjunction', angle: 0, orb: 7, color: '#ffaa00', weight: 1.0 },
-        { name: 'Sextile', angle: 60, orb: 5, color: '#00a843', weight: 1.4 },
-        { name: 'Square', angle: 90, orb: 7, color: '#d50000', weight: -2.0 },
-        { name: 'Trine', angle: 120, orb: 7, color: '#00a843', weight: 2.2 },
-        { name: 'Opposition', angle: 180, orb: 8, color: '#d50000', weight: -2.4 }
-      ];
-      for (let i = 0; i < planets.length; i++) {
-        for (let j = i + 1; j < planets.length; j++) {
-          let diff = Math.abs(planets[i].longitude - planets[j].longitude);
-          if (diff > 180) diff = 360 - diff;
-          for (let r of rules) {
-            if (Math.abs(diff - r.angle) <= r.orb) {
-              aspects.push({ p1: planets[i], p2: planets[j], rule: r, orb: Math.abs(diff - r.angle).toFixed(1) });
-              break;
-            }
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            crimson: {
+              DEFAULT: '#EF1C24',
+              dark: '#DC2626',
+            },
+            pitch: '#050505',
           }
         }
       }
-      return aspects;
+    };
+  </script>
+
+  <style>
+    /* =====================================================================
+       BASE & THEME TOKENS (PITCH-BLACK & CRIMSON MINIMALIST)
+       ===================================================================== */
+    :root {
+      --bg-pitch: #050505;
+      --accent-crimson: #EF1C24;
+      --border-crimson: rgba(220, 38, 38, 0.35);
     }
 
-    function renderAstrodoxWheel(planets, aspects, dateStr, timeStr) {
-      const w = astroCanvas.width, h = astroCanvas.height;
-      const cx = w / 2, cy = h / 2;
-      const rOuter = w / 2 - 45, rZodiacInner = rOuter - 40, rInner = rZodiacInner - 50, rAspects = rInner - 10;
-
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, w, h);
-
-      // Header Labels
-      ctx.fillStyle = '#111827'; ctx.font = '700 13px Inter, sans-serif'; ctx.textAlign = 'left';
-      ctx.fillText(dateStr, 18, 26); ctx.fillText(`${timeStr} WIB`, 18, 42);
-      ctx.font = '500 11px Inter, sans-serif'; ctx.fillStyle = '#4b5563'; ctx.fillText('TZ: Asia/Jakarta', 18, 58);
-      ctx.font = '700 13px Inter, sans-serif'; ctx.fillStyle = '#111827'; ctx.fillText('Placidus (ZERO FX)', 18, 74);
-
-      ctx.textAlign = 'right'; ctx.font = '800 11px Inter, sans-serif'; ctx.fillStyle = '#9ca3af'; ctx.fillText('FREE', w - 18, 22);
-      ctx.font = '800 16px Inter, sans-serif'; ctx.fillStyle = '#4b5563'; ctx.fillText('Astrodox.com', w - 18, 38);
-      ctx.font = '700 11px Inter, sans-serif'; ctx.fillStyle = '#00a843'; ctx.fillText('ZERO FX ONLINE 2026', w - 18, 52);
-
-      // Zodiac Sectors
-      const ascOffset = 180;
-      for (let i = 0; i < 12; i++) {
-        const z = ASTRODOX_ZODIACS[i];
-        const a1 = ((z.start - ascOffset) * Math.PI) / 180, a2 = (((z.start + 30) - ascOffset) * Math.PI) / 180;
-        ctx.beginPath(); ctx.arc(cx, cy, rOuter, a1, a2); ctx.arc(cx, cy, rZodiacInner, a2, a1, true); ctx.closePath();
-        ctx.fillStyle = z.bg; ctx.fill(); ctx.strokeStyle = '#222'; ctx.lineWidth = 1; ctx.stroke();
-        const midA = (a1 + a2) / 2, symR = (rOuter + rZodiacInner) / 2;
-        ctx.fillStyle = '#111827'; ctx.font = 'bold 18px "Apple Symbols", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText(z.symbol, cx + symR * Math.cos(midA), cy + symR * Math.sin(midA));
-      }
-
-      ctx.beginPath(); ctx.arc(cx, cy, rOuter, 0, Math.PI * 2); ctx.strokeStyle = '#111827'; ctx.lineWidth = 1.6; ctx.stroke();
-      ctx.beginPath(); ctx.arc(cx, cy, rZodiacInner, 0, Math.PI * 2); ctx.stroke();
-      ctx.beginPath(); ctx.arc(cx, cy, rInner, 0, Math.PI * 2); ctx.stroke();
-
-      ctx.beginPath(); ctx.moveTo(cx - rOuter - 18, cy); ctx.lineTo(cx + rOuter, cy);
-      ctx.moveTo(cx, cy - rOuter); ctx.lineTo(cx, cy + rOuter);
-      ctx.strokeStyle = '#111827'; ctx.lineWidth = 2; ctx.stroke();
-
-      // Aspects
-      aspects.forEach(a => {
-        const a1 = ((a.p1.longitude - ascOffset) * Math.PI) / 180, a2 = ((a.p2.longitude - ascOffset) * Math.PI) / 180;
-        ctx.beginPath(); ctx.moveTo(cx + rAspects * Math.cos(a1), cy + rAspects * Math.sin(a1));
-        ctx.lineTo(cx + rAspects * Math.cos(a2), cy + rAspects * Math.sin(a2));
-        ctx.strokeStyle = a.rule.color; ctx.lineWidth = a.rule.name === 'Trine' || a.rule.name === 'Square' ? 1.8 : 1.2; ctx.stroke();
-      });
-
-      // Planets
-      planets.forEach(p => {
-        const rad = ((p.longitude - ascOffset) * Math.PI) / 180;
-        const px = cx + ((rZodiacInner + rInner) / 2 + 3) * Math.cos(rad), py = cy + ((rZodiacInner + rInner) / 2 + 3) * Math.sin(rad);
-        ctx.fillStyle = '#000000'; ctx.font = 'bold 15px "Apple Symbols", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText(p.symbol, px, py);
-        const tx = cx + (rInner - 16) * Math.cos(rad), ty = cy + (rInner - 16) * Math.sin(rad);
-        ctx.font = '600 10px Inter, sans-serif'; ctx.fillStyle = '#111827';
-        ctx.fillText(`${p.info.deg}°${p.retrograde ? ' R' : ''}`, tx, ty);
-      });
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    // Precise Integer Parser (Preserving 0 values without falsy bug)
-    function getParsedInt(id, fallbackVal) {
-      const el = document.getElementById(id);
-      if (!el || el.value === '') return fallbackVal;
-      const parsed = parseInt(el.value, 10);
-      return isNaN(parsed) ? fallbackVal : parsed;
+    html,
+    body {
+      background-color: #050505;
+      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
     }
 
-    function evaluateTimeSpecificAstro(dateObj, currency) {
-      const h = dateObj.getHours(), m = dateObj.getMinutes();
-      const planets = calculatePlanets(dateObj);
-      const ascDegree = ((h * 60 + m) * 0.25) % 360;
-      
-      let bullAspectWeight = 0, bearAspectWeight = 0;
-      planets.forEach(p => {
-        let diff = Math.abs(ascDegree - p.longitude);
-        if (diff > 180) diff = 360 - diff;
-        if (Math.abs(diff - 120) <= 8 || Math.abs(diff - 60) <= 8) bullAspectWeight += (p.id === 'sun' || p.id === 'jupiter' || p.id === 'venus' || p.id === 'moon') ? 3.0 : 1.4;
-        if (Math.abs(diff - 90) <= 8 || Math.abs(diff - 180) <= 8) bearAspectWeight += (p.id === 'mars' || p.id === 'saturn' || p.id === 'pluto' || p.id === 'mercury') ? 3.2 : 1.6;
-      });
-
-      let sessionShift = 0;
-      if (h >= 6 && h < 11) sessionShift = -1.6;
-      else if (h >= 11 && h < 14) sessionShift = +1.8;
-      else if (h >= 14 && h < 17) sessionShift = +1.4;
-      else if (h >= 18 && h < 21) sessionShift = -2.1;
-      else if (h >= 21 && h < 24) sessionShift = +1.3;
-      else sessionShift = -1.5;
-
-      const netScore = (bullAspectWeight - bearAspectWeight) + sessionShift;
-      const isBuy = netScore >= 0;
-      return { signal: isBuy ? 'BUY' : 'SELL', score: netScore.toFixed(2), confidence: Math.min(97, Math.max(76, Math.floor(81 + Math.abs(netScore) * 3))), isBuy };
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #050505;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #26090a;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #EF1C24;
     }
 
-    function recalculateAndRenderAstro() {
-      const now = new Date();
-      const y = getParsedInt('ctrlYear', now.getFullYear());
-      const m = getParsedInt('ctrlMonth', now.getMonth());
-      const d = getParsedInt('ctrlDay', now.getDate());
-      const h = getParsedInt('ctrlHour', now.getHours());
-      const min = getParsedInt('ctrlMinute', now.getMinutes());
-
-      const dateObj = new Date(y, m, d, h, min, 0);
-      const planets = calculatePlanets(dateObj);
-      const aspects = getAspects(planets);
-      const evalResult = evaluateTimeSpecificAstro(dateObj, 'USD');
-
-      const dStr = `${String(d).padStart(2,'0')}.${String(m + 1).padStart(2,'0')}.${y}`;
-      const tStr = `${String(h).padStart(2,'0')}:${String(min).padStart(2,'0')}:00`;
-
-      renderAstrodoxWheel(planets, aspects, dStr, tStr);
-
-      // Update Bias Card
-      const biasCard = document.getElementById('biasCard');
-      const signalPill = document.getElementById('signalPill');
-      document.getElementById('confidenceBadge').innerText = `CONFIDENCE: ${evalResult.confidence}%`;
-
-      if (evalResult.isBuy) {
-        biasCard.classList.remove('sell-bias'); signalPill.classList.remove('sell'); signalPill.innerText = 'BUY';
-        document.getElementById('metricHarmonicScore').innerText = `+${Math.abs(evalResult.score)} Harmonic Flow`;
-        document.getElementById('metricHarmonicScore').style.color = 'var(--accent-green)';
-      } else {
-        biasCard.classList.add('sell-bias'); signalPill.classList.add('sell'); signalPill.innerText = 'SELL';
-        document.getElementById('metricHarmonicScore').innerText = `-${Math.abs(evalResult.score)} Tension Stress`;
-        document.getElementById('metricHarmonicScore').style.color = 'var(--accent-red)';
-      }
-
-      let dominant = null, maxW = 0;
-      aspects.forEach(a => { if (Math.abs(a.rule.weight) > maxW) { maxW = Math.abs(a.rule.weight); dominant = a; } });
-      document.getElementById('metricDominantAspect').innerText = dominant ? `${dominant.p1.symbol} ${dominant.rule.name} ${dominant.p2.symbol} (${dominant.orb}°)` : '☉ Neutral Flow Alignment';
-
-      const sun = planets.find(p => p.id === 'sun'), moon = planets.find(p => p.id === 'moon');
-      document.getElementById('dynamicAstroReason').innerHTML = evalResult.isBuy
-        ? `Struktur transit jam <strong>${String(h).padStart(2,'0')}:${String(min).padStart(2,'0')} WIB</strong> mencatat likuiditas positif (+${Math.abs(evalResult.score)} Flow). Harmonisasi ${sun.info.sign.name} & ${moon.info.sign.name} membentuk demand pool Gold (XAUUSD). Setup: BUY on Retracement.`
-        : `Struktur transit jam <strong>${String(h).padStart(2,'0')}:${String(min).padStart(2,'0')} WIB</strong> mencatat friksi polaritas (-${Math.abs(evalResult.score)} Tension). Tekanan kosmik memperkuat indeks dolar & memicu aksi jual Gold. Setup: SELL on Imbalance.`;
-
-      const tbody = document.getElementById('ephemerisTableBody');
-      tbody.innerHTML = '';
-      planets.forEach(p => {
-        const keyAsp = aspects.find(a => a.p1.id === p.id || a.p2.id === p.id);
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td><span style="font-size:14px;">${p.symbol}</span> ${p.name}${p.retrograde ? ' (R)' : ''}</td><td style="color:#00e5ff;">${p.info.sign.symbol} ${p.info.sign.name}</td><td>${p.info.deg}° ${p.info.min}'</td><td style="color:var(--accent-gold);">${p.info.house}</td><td>${keyAsp ? keyAsp.rule.name + ' (' + keyAsp.orb + '°)' : 'Direct'}</td>`;
-        tbody.appendChild(tr);
-      });
+    /* =====================================================================
+       HERO SQUARE CRIMSON GRID & AMBIENT RADIAL GLOW
+       (Strictly pointer-events: none; z-index: 0 so nothing blocks taps)
+       ===================================================================== */
+    .hero-grid-pattern {
+      background-image:
+        linear-gradient(to right, rgba(220, 38, 38, 0.22) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(220, 38, 38, 0.22) 1px, transparent 1px);
+      background-size: 52px 52px;
+      background-position: center top;
+      mask-image: radial-gradient(ellipse 92% 85% at 62% 36%, #000 32%, rgba(0, 0, 0, 0.38) 70%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 92% 85% at 62% 36%, #000 32%, rgba(0, 0, 0, 0.38) 70%, transparent 100%);
+      pointer-events: none !important;
+      z-index: 0;
     }
 
-    function forceRecalculateAstro() {
-      isRealtimeActive = false;
-      toggleRealtimeBtn.classList.remove('active');
-      toggleRealtimeBtn.innerHTML = '<i class="fa-solid fa-pause"></i> REALTIME: PAUSED';
-      recalculateAndRenderAstro();
+    .hero-radial-glow {
+      background:
+        radial-gradient(circle at 66% 35%, rgba(185, 22, 28, 0.36) 0%, rgba(127, 29, 29, 0.14) 44%, transparent 72%),
+        radial-gradient(circle at 32% 22%, rgba(220, 38, 38, 0.14) 0%, transparent 56%);
+      pointer-events: none !important;
+      z-index: 0;
     }
 
-    ['ctrlYear', 'ctrlMonth', 'ctrlDay'].forEach(id => {
-      document.getElementById(id).addEventListener('input', () => {
-        isRealtimeActive = false;
-        toggleRealtimeBtn.classList.remove('active');
-        toggleRealtimeBtn.innerHTML = '<i class="fa-solid fa-pause"></i> REALTIME: PAUSED';
-        document.getElementById('calDay').value = document.getElementById('ctrlDay').value;
-        document.getElementById('calMonth').value = document.getElementById('ctrlMonth').value;
-        document.getElementById('calYear').value = document.getElementById('ctrlYear').value;
-        recalculateAndRenderAstro();
-        fetchLiveEconomicFeed();
-      });
-    });
-
-    ['ctrlHour', 'ctrlMinute'].forEach(id => {
-      document.getElementById(id).addEventListener('input', () => {
-        isRealtimeActive = false;
-        toggleRealtimeBtn.classList.remove('active');
-        toggleRealtimeBtn.innerHTML = '<i class="fa-solid fa-pause"></i> REALTIME: PAUSED';
-        recalculateAndRenderAstro();
-      });
-    });
-
-    /* ==========================================================
-       4. AUTOMATED LIVE WORLD CALENDAR (NO REPEATED DUMMY NFP)
-       ========================================================== */
-    let currentFilter = 'ALL';
-    let currentEvents = [];
-    const DAY_NAMES = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-
-    function generateWorldScheduleForDate(y, m, d, dayOfWeek) {
-      const weekNum = Math.ceil(d / 7);
-
-      if (dayOfWeek === 0 || dayOfWeek === 6) {
-        return [{ time: 'All Day', cur: 'ALL', impact: 'LOW', name: 'Global Forex Market Closed (Weekend Standby)', prev: '-', fore: '-', simVal: '-', isWeekendNotice: true }];
-      }
-
-      if (dayOfWeek === 1) {
-        return [
-          { time: '07:50', cur: 'JPY', impact: 'LOW', name: 'BOJ Summary of Opinions', prev: '-', fore: '-', simVal: 'Hawkish' },
-          { time: '14:00', cur: 'EUR', impact: 'MED', name: 'German Wholesale Price Index (WPI) m/m', prev: '0.1%', fore: '0.2%', simVal: '0.3%' },
-          { time: '19:30', cur: 'USD', impact: 'MED', name: 'Empire State Manufacturing Index', prev: '11.5', fore: '3.6', simVal: '-1.2' }
-        ];
-      }
-
-      if (dayOfWeek === 2) {
-        return [
-          { time: '08:30', cur: 'AUD', impact: 'HIGH', name: 'RBA Meeting Minutes', prev: '-', fore: '-', simVal: 'Hawkish' },
-          { time: '13:00', cur: 'GBP', impact: 'HIGH', name: 'Claimant Count / Unemployment Rate', prev: '23.7K', fore: '18.2K', simVal: '14.5K' },
-          { time: '21:00', cur: 'USD', impact: 'HIGH', name: 'CB Consumer Confidence', prev: '98.7', fore: '99.5', simVal: '101.2' }
-        ];
-      }
-
-      if (dayOfWeek === 3) {
-        if (weekNum === 2) {
-          return [
-            { time: '13:00', cur: 'GBP', impact: 'HIGH', name: 'UK CPI y/y (Headline Inflation)', prev: '2.2%', fore: '2.1%', simVal: '2.4%' },
-            { time: '19:30', cur: 'USD', impact: 'HIGH', name: 'Core CPI m/m (Consumer Price Index)', prev: '0.3%', fore: '0.2%', simVal: '0.4%' },
-            { time: '21:30', cur: 'USD', impact: 'HIGH', name: 'Crude Oil Inventories (EIA)', prev: '+1.2M', fore: '-0.5M', simVal: '-1.8M' }
-          ];
-        } else if (weekNum >= 4) {
-          return [
-            { time: '19:30', cur: 'USD', impact: 'MED', name: 'Advance Goods Trade Balance', prev: '-94.3B', fore: '-92.5B', simVal: '-89.4B' },
-            { time: '21:00', cur: 'USD', impact: 'HIGH', name: 'New Home Sales', prev: '716K', fore: '725K', simVal: '735K' },
-            { time: '01:00', cur: 'USD', impact: 'HIGH', name: 'FOMC Statement & Fed Interest Rate Decision', prev: '4.75%', fore: '4.50%', simVal: '4.50%' }
-          ];
-        } else {
-          return [
-            { time: '19:15', cur: 'USD', impact: 'HIGH', name: 'ADP Non-Farm Employment Change', prev: '143K', fore: '150K', simVal: '165K' },
-            { time: '21:00', cur: 'USD', impact: 'HIGH', name: 'ISM Services PMI', prev: '54.9', fore: '53.8', simVal: '55.2' }
-          ];
-        }
-      }
-
-      if (dayOfWeek === 4) {
-        return [
-          { time: '14:30', cur: 'CHF', impact: 'HIGH', name: 'SNB Interest Rate Decision', prev: '1.25%', fore: '1.00%', simVal: '1.00%' },
-          { time: '19:30', cur: 'USD', impact: 'HIGH', name: 'Initial Jobless Claims', prev: '218K', fore: '215K', simVal: '205K' },
-          { time: '21:00', cur: 'USD', impact: 'HIGH', name: 'Existing Home Sales', prev: '3.86M', fore: '3.90M', simVal: '3.98M' }
-        ];
-      }
-
-      if (dayOfWeek === 5) {
-        if (weekNum === 1) {
-          return [
-            { time: '07:30', cur: 'JPY', impact: 'HIGH', name: 'Tokyo Core CPI y/y', prev: '2.1%', fore: '2.2%', simVal: '2.4%' },
-            { time: '19:30', cur: 'USD', impact: 'HIGH', name: 'Non-Farm Employment Change (NFP)', prev: '254K', fore: '140K', simVal: '185K' },
-            { time: '19:30', cur: 'USD', impact: 'HIGH', name: 'Unemployment Rate', prev: '4.1%', fore: '4.1%', simVal: '4.0%' }
-          ];
-        } else if (weekNum === 2) {
-          return [
-            { time: '14:00', cur: 'EUR', impact: 'MED', name: 'German Final CPI m/m', prev: '0.4%', fore: '0.4%', simVal: '0.5%' },
-            { time: '19:30', cur: 'USD', impact: 'HIGH', name: 'PPI m/m (Producer Price Index)', prev: '0.2%', fore: '0.3%', simVal: '0.4%' },
-            { time: '21:00', cur: 'USD', impact: 'HIGH', name: 'Preliminary UoM Consumer Sentiment', prev: '68.9', fore: '70.2', simVal: '71.5' }
-          ];
-        } else {
-          return [
-            { time: '19:30', cur: 'USD', impact: 'HIGH', name: 'Core PCE Price Index m/m (Fed Favored)', prev: '0.2%', fore: '0.2%', simVal: '0.3%' },
-            { time: '21:00', cur: 'USD', impact: 'HIGH', name: 'Revised UoM Consumer Sentiment', prev: '68.9', fore: '69.2', simVal: '70.5' }
-          ];
-        }
-      }
-      return [];
+    .hero-pointer-spotlight {
+      background: radial-gradient(
+        260px circle at var(--spot-x, 50%) var(--spot-y, 35%),
+        rgba(239, 28, 36, 0.14),
+        transparent 75%
+      );
+      pointer-events: none !important;
+      z-index: 0;
     }
 
-    function syncDateFromCalendarToAstro() {
-      const d = getParsedInt('calDay', new Date().getDate());
-      const m = getParsedInt('calMonth', new Date().getMonth());
-      const y = getParsedInt('calYear', new Date().getFullYear());
-
-      document.getElementById('ctrlDay').value = d;
-      document.getElementById('ctrlMonth').value = m;
-      document.getElementById('ctrlYear').value = y;
-
-      isRealtimeActive = false;
-      toggleRealtimeBtn.classList.remove('active');
-      toggleRealtimeBtn.innerHTML = '<i class="fa-solid fa-pause"></i> REALTIME: PAUSED';
-
-      recalculateAndRenderAstro();
-      fetchLiveEconomicFeed();
+    /* =====================================================================
+       ABOUT SHOWCASE CARD & SIGNATURE COMMUNITY CARDS
+       ===================================================================== */
+    .about-showcase-box {
+      background: radial-gradient(
+        circle at 50% 50%,
+        rgba(185, 22, 28, 0.32) 0%,
+        rgba(14, 7, 8, 0.96) 62%,
+        #070707 100%
+      );
+      border: 1px solid rgba(220, 38, 38, 0.3);
+      border-radius: 22px;
     }
 
-    function inspectEventOnAstro(eventId) {
-      const ev = currentEvents.find(e => e.id === eventId);
-      if (!ev) return;
+    /* Signature Community & Broker Card with Centered Soft Crimson Radial Glow */
+    .tp-card {
+      position: relative;
+      border-radius: 20px;
+      border: 1px solid rgba(220, 38, 38, 0.35);
+      background: radial-gradient(
+        circle at 50% 45%,
+        rgba(185, 22, 28, 0.28) 0%,
+        rgba(12, 7, 8, 0.96) 65%,
+        #070707 100%
+      );
+      overflow: hidden;
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
 
-      if (ev.time && ev.time.includes(':')) {
-        const parts = ev.time.split(':');
-        document.getElementById('ctrlHour').value = parseInt(parts[0], 10);
-        document.getElementById('ctrlMinute').value = parseInt(parts[1], 10);
+    @media (hover: hover) {
+      .tp-card:hover {
+        border-color: rgba(239, 28, 36, 0.62);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px -12px rgba(220, 38, 38, 0.32);
+      }
+    }
+
+    /* Top-left 64x64 Squircle Badge with Subtle Crimson Border Specular Glint */
+    .tp-icon-badge {
+      position: relative;
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background-color: #070707;
+      border: 1px solid rgba(220, 38, 38, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tp-icon-badge::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: 10px;
+      width: 24px;
+      height: 2px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, transparent, #EF1C24, transparent);
+      box-shadow: 0 0 8px rgba(239, 28, 36, 0.9);
+      pointer-events: none !important;
+      z-index: 0;
+    }
+
+    /* Broker Logo Tile Subtle Right-Edge Crimson Glint */
+    .tp-broker-tile {
+      position: relative;
+      border: 1px solid rgba(127, 29, 29, 0.55);
+    }
+    .tp-broker-tile::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2px;
+      height: 24px;
+      border-radius: 9999px;
+      background: linear-gradient(180deg, transparent, #EF1C24, transparent);
+      box-shadow: 0 0 8px rgba(239, 28, 36, 0.9);
+      pointer-events: none !important;
+      z-index: 0;
+    }
+
+    /* =====================================================================
+       100% CLICKABLE PILL CTA BUTTONS
+       ===================================================================== */
+    .tp-pill-cta {
+      position: relative;
+      z-index: 30;
+      pointer-events: auto !important;
+      cursor: pointer;
+      touch-action: manipulation;
+      text-decoration: none;
+    }
+
+    /* =====================================================================
+       SLEEK DROPDOWN NAVIGATION DRAWER
+       ===================================================================== */
+    .tp-nav-drawer {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.24s ease;
+    }
+    .tp-nav-drawer.is-open {
+      max-height: 320px;
+      opacity: 1;
+    }
+
+    /* Subtle Scroll Reveal */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-[#050505] text-white antialiased selection:bg-[#EF1C24] selection:text-white">
+
+  <!-- =====================================================================
+       HIDDEN SVG DEFINITIONS (CUSTOM TRADEPREUNER EMBLEM & ARROW BADGE)
+       ===================================================================== -->
+  <svg class="hidden" aria-hidden="true">
+    <defs>
+      <!-- Sharp Geometric Crimson Monogram / Shield-Spear Emblem (#tp-emblem) -->
+      <symbol id="tp-emblem" viewBox="0 0 100 100">
+        <!-- Central Tall Candlestick / Spear Spire -->
+        <polygon points="50,6 55.5,11.5 55.5,73 50,78.5 44.5,73 44.5,11.5" fill="#EF1C24" />
+        <!-- Inner Left T-Pillar -->
+        <polygon points="33,18 40.5,11.5 40.5,67 33,60" fill="#EF1C24" />
+        <!-- Inner Right P-Pillar -->
+        <polygon points="67,18 59.5,11.5 59.5,51 67,44.5" fill="#EF1C24" />
+        <!-- Outer Left Angular Shield Wing (T Crossbar) -->
+        <polygon points="21,26 29,19.5 29,56 21,49" fill="#EF1C24" />
+        <!-- Outer Right Angular Shield Wing (P Loop) -->
+        <polygon points="79,26 71,19.5 71,41 79,34.5" fill="#EF1C24" />
+        <!-- Inner Chevron Arms Leading Toward Point -->
+        <polygon points="21,54 27.5,54 50,76.5 72.5,54 79,54 50,83" fill="#EF1C24" />
+        <!-- Outer Bottom Shield-Spear Chevron Cradle -->
+        <polygon points="26,69 32.5,69 50,86.5 67.5,69 74,69 50,93" fill="#EF1C24" />
+      </symbol>
+
+      <!-- Crisp Arrow-Up-Right Square Badge Icon (↗) -->
+      <symbol id="tp-arrow-badge" viewBox="0 0 18 18">
+        <rect x="1" y="1" width="16" height="16" rx="4" fill="#93C5FD" fill-opacity="0.28" stroke="#E5E7EB" stroke-width="1.1" />
+        <path d="M6.2 11.8L11.8 6.2M11.8 6.2H7.2M11.8 6.2V10.8" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- =====================================================================
+       1. STICKY TOP HEADER
+       ===================================================================== -->
+  <header class="sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-md border-b border-white/[0.06]">
+    <div class="max-w-[460px] mx-auto px-6 py-3.5 flex items-center justify-between">
+      <!-- Left: Small Square Pure-Black Logo Tile (44px x 44px) -->
+      <a href="#home" aria-label="Tradepreneur Home" class="w-[44px] h-[44px] bg-[#020202] border border-white/[0.04] flex flex-col items-center justify-center p-1 shrink-0 hover:border-red-600/40 transition">
+        <svg class="w-[23px] h-[23px]" aria-hidden="true">
+          <use href="#tp-emblem"></use>
+        </svg>
+        <span class="mt-0.5 text-[4.1px] font-extrabold tracking-[0.14em] text-[#EF1C24] uppercase leading-none">
+          TRADEPREUNER
+        </span>
+      </a>
+
+      <!-- Right: Minimalist Crimson Line + Split Circle Toggle Button -->
+      <button
+        type="button"
+        id="menuToggleBtn"
+        aria-label="Toggle Navigasi"
+        aria-expanded="false"
+        class="inline-flex items-center gap-3 py-2 pl-3 pr-1 cursor-pointer focus:outline-none group"
+      >
+        <!-- Thin Horizontal Crimson-Red Line (22px x 2px) -->
+        <span id="toggleLine" class="block w-[22px] h-[2px] bg-[#EF1C24] rounded-full transition-transform duration-300 group-hover:scale-x-110"></span>
+        <!-- Crimson-Red Split Circle (20px diameter: left half solid #EF1C24, right half outlined #EF1C24) -->
+        <span id="toggleCircle" class="relative w-[20px] h-[20px] rounded-full border-[1.5px] border-[#EF1C24] overflow-hidden inline-flex transition-transform duration-300">
+          <span class="w-1/2 h-full bg-[#EF1C24]"></span>
+          <span class="w-1/2 h-full bg-transparent"></span>
+        </span>
+      </button>
+    </div>
+
+    <!-- Sleek Minimalist Dark-Crimson Dropdown Navigation Menu -->
+    <nav id="navDropdown" aria-label="Menu Utama" class="tp-nav-drawer bg-[#060606]/98 border-t border-red-950/50">
+      <div class="max-w-[460px] mx-auto px-6 py-3.5 flex flex-col gap-1">
+        <a href="#home" class="nav-menu-item flex items-center justify-between px-3.5 py-2.5 rounded-xl text-[13.5px] font-semibold text-gray-200 hover:text-white hover:bg-red-600/15 transition">
+          <span>Home</span>
+          <span class="text-[11px] font-bold text-[#EF1C24]">01</span>
+        </a>
+        <a href="#about" class="nav-menu-item flex items-center justify-between px-3.5 py-2.5 rounded-xl text-[13.5px] font-semibold text-gray-200 hover:text-white hover:bg-red-600/15 transition">
+          <span>Tentang Kami</span>
+          <span class="text-[11px] font-bold text-[#EF1C24]">02</span>
+        </a>
+        <a href="#community" class="nav-menu-item flex items-center justify-between px-3.5 py-2.5 rounded-xl text-[13.5px] font-semibold text-gray-200 hover:text-white hover:bg-red-600/15 transition">
+          <span>Komunitas &amp; Link</span>
+          <span class="text-[11px] font-bold text-[#EF1C24]">03</span>
+        </a>
+        <a href="#brokers" class="nav-menu-item flex items-center justify-between px-3.5 py-2.5 rounded-xl text-[13.5px] font-semibold text-gray-200 hover:text-white hover:bg-red-600/15 transition">
+          <span>Broker Partner</span>
+          <span class="text-[11px] font-bold text-[#EF1C24]">04</span>
+        </a>
+        <a href="#why-us" class="nav-menu-item flex items-center justify-between px-3.5 py-2.5 rounded-xl text-[13.5px] font-semibold text-gray-200 hover:text-white hover:bg-red-600/15 transition">
+          <span>Keunggulan</span>
+          <span class="text-[11px] font-bold text-[#EF1C24]">05</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- =====================================================================
+         2. HERO SECTION (#home)
+         ===================================================================== -->
+    <section id="home" class="relative pt-11 pb-20 overflow-hidden">
+      <!-- Decorative Grid & Ambient Glow Layers (Strictly Non-Interactive) -->
+      <div class="absolute inset-0 hero-grid-pattern"></div>
+      <div class="absolute inset-0 hero-radial-glow"></div>
+      <div id="heroSpotlight" class="absolute inset-0 hero-pointer-spotlight"></div>
+
+      <div class="relative z-10 max-w-[460px] mx-auto px-6">
+        <!-- Centerpiece Solid Pure-Black Square Box (196px x 196px) -->
+        <div class="flex justify-center mb-14">
+          <div class="w-[196px] h-[196px] bg-[#040404] border border-white/[0.03] shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex flex-col items-center justify-center p-5">
+            <svg class="w-[86px] h-[86px]" aria-label="Logo Tradepreneur">
+              <use href="#tp-emblem"></use>
+            </svg>
+            <span class="mt-3.5 text-[11px] font-extrabold tracking-[0.22em] text-[#EF1C24] uppercase text-center">
+              TRADEPREUNER
+            </span>
+          </div>
+        </div>
+
+        <!-- Left-Aligned Hero Copy -->
+        <div>
+          <p class="text-[12px] font-bold uppercase tracking-[0.22em] text-[#EF1C24] mb-3.5">
+            TRADE &middot; LEARN &middot; GROW
+          </p>
+
+          <h1 class="font-black uppercase leading-[1.05] tracking-tight mb-5">
+            <span class="block text-white text-[clamp(2.35rem,9.5vw,3.15rem)]">
+              BERSAMA
+            </span>
+            <span class="block text-[#EF1C24] text-[clamp(2.05rem,8.3vw,2.75rem)] whitespace-nowrap">
+              TRADEPREUNER
+            </span>
+          </h1>
+
+          <p class="text-[#A3A3A3] text-[15px] leading-relaxed">
+            Tradepreneur adalah wadah bagi trader untuk berbagi insight, analisa market, edukasi, dan informasi seputar dunia trading.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         3. TENTANG KAMI SECTION (#about)
+         ===================================================================== -->
+    <section id="about" class="py-12">
+      <div class="max-w-[460px] mx-auto px-6">
+        <!-- Large Dark Rounded Showcase Card with Soft Crimson Radial Glow -->
+        <div class="about-showcase-box p-7 py-11 flex items-center justify-center mb-10 reveal-item">
+          <div class="w-[176px] h-[176px] bg-[#030303] border border-white/[0.03] shadow-[0_16px_40px_rgba(0,0,0,0.85)] flex flex-col items-center justify-center p-4">
+            <svg class="w-[78px] h-[78px]" aria-hidden="true">
+              <use href="#tp-emblem"></use>
+            </svg>
+            <span class="mt-3 text-[10px] font-extrabold tracking-[0.2em] text-[#EF1C24] uppercase">
+              TRADEPREUNER
+            </span>
+          </div>
+        </div>
+
+        <!-- Left-Aligned Copy & Stats -->
+        <div class="reveal-item">
+          <p class="text-[12px] font-bold uppercase tracking-[0.22em] text-[#EF1C24] mb-3">
+            TENTANG KAMI
+          </p>
+
+          <h2 class="text-[32px] font-black uppercase tracking-tight leading-[1.08] text-white mb-4">
+            TRADEPREUNER
+          </h2>
+
+          <p class="text-[#A3A3A3] text-[15px] leading-relaxed mb-9">
+            Tradepreneur adalah komunitas trader yang dibentuk untuk membantu para trader berkembang bersama dengan berbagi pengetahuan, disiplin, dan dukungan komunitas yang solid.
+          </p>
+
+          <!-- Two-Column Stats Row -->
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <p class="text-[34px] font-black text-[#EF1C24] leading-none tracking-tight mb-2">
+                9000+
+              </p>
+              <p class="text-[13px] text-[#A3A3A3]">
+                Member Aktif
+              </p>
+            </div>
+            <div>
+              <p class="text-[34px] font-black text-[#EF1C24] leading-none tracking-tight mb-2">
+                100%
+              </p>
+              <p class="text-[13px] text-[#A3A3A3]">
+                Support Komunitas
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         4. AKSES PENTING — LINK & KOMUNITAS SECTION (#community)
+         ===================================================================== -->
+    <section id="community" class="py-14">
+      <div class="max-w-[460px] mx-auto px-6">
+        <!-- Left-Aligned Section Header -->
+        <div class="mb-8 reveal-item">
+          <p class="text-[12px] font-bold uppercase tracking-[0.22em] text-[#EF1C24] mb-3">
+            AKSES PENTING
+          </p>
+
+          <h2 class="text-[34px] font-black uppercase leading-[1.08] tracking-tight text-white mb-4">
+            LINK &amp;<br />KOMUNITAS
+          </h2>
+
+          <p class="text-[#A3A3A3] text-[15px] leading-relaxed">
+            Berikut adalah link resmi untuk akses komunitas, sosial media, broker, dan program VIP Tradepreneur.
+          </p>
+        </div>
+
+        <!-- Cards Stack -->
+        <div class="flex flex-col gap-4">
+
+          <!-- 1) Full-Width Card: Grup Telegram Publik -->
+          <article class="tp-card p-6 reveal-item">
+            <div class="tp-icon-badge mb-6">
+              <!-- White Telegram Paper-Plane Icon -->
+              <svg class="w-[26px] h-[26px] text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M21.4 3.6c-.4-.3-.9-.4-1.4-.2L3.2 10.1c-.6.2-.9.8-.9 1.4 0 .6.4 1.1 1 1.3l4.3 1.4 1.7 5.2c.2.5.6.9 1.1 1 .1 0 .2.1.3.1.4 0 .8-.2 1.1-.5l2.5-2.6 4.4 3.2c.3.2.6.3.9.3.2 0 .5-.1.7-.2.4-.2.7-.6.8-1.1l2.6-14.4c.1-.5-.1-1-.4-1.4ZM9.7 13.8l8.4-6.9-6.6 8.1-.6 3.1-1.2-4.3Z" />
+              </svg>
+            </div>
+
+            <h3 class="text-[19px] font-bold text-white mb-2">
+              Grup Telegram Publik
+            </h3>
+            <p class="text-[#9CA3AF] text-[13.5px] leading-relaxed mb-5">
+              Gabung sekarang dan dapatkan update, insight, serta diskusi trading.
+            </p>
+
+            <a
+              href="https://t.me/rezapreneur"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="tp-pill-cta inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A0A0A] border border-red-600 text-white text-sm font-semibold hover:bg-red-600/20 active:scale-[0.98] transition"
+            >
+              <span>Join Sekarang</span>
+              <svg class="w-4 h-4 shrink-0" aria-hidden="true">
+                <use href="#tp-arrow-badge"></use>
+              </svg>
+            </a>
+          </article>
+
+          <!-- 2) Full-Width Card: Join VIP Gratis (Auto-Chat) -->
+          <article class="tp-card p-6 reveal-item">
+            <div class="tp-icon-badge mb-6">
+              <!-- White Crown Icon -->
+              <svg class="w-[26px] h-[26px] text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M5 18h14v2H5v-2Zm14.6-9.8c-.4-.3-.9-.2-1.2.1L15.4 12l-2.6-5.2c-.3-.6-1.3-.6-1.6 0L8.6 12 5.6 8.3c-.3-.3-.8-.4-1.2-.1-.4.3-.6.8-.4 1.3L6 16h12l2-6.5c.2-.5 0-1-.4-1.3Z" />
+                <circle cx="12" cy="4.5" r="1.2" />
+                <circle cx="4.5" cy="6.8" r="1" />
+                <circle cx="19.5" cy="6.8" r="1" />
+              </svg>
+            </div>
+
+            <h3 class="text-[19px] font-bold text-white mb-2">
+              Join VIP Gratis
+            </h3>
+            <p class="text-[#9CA3AF] text-[13.5px] leading-relaxed mb-5">
+              Dapatkan akses VIP, signal, dan edukasi eksklusif dari Tradepreneur.
+            </p>
+
+            <a
+              href="https://t.me/rezayogiana?text=Halo%20kak%2C%20saya%20mau%20join%20VIP%20komunitas%20Tradepreneur"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="tp-pill-cta inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A0A0A] border border-red-600 text-white text-sm font-semibold hover:bg-red-600/20 active:scale-[0.98] transition"
+            >
+              <span>Join Sekarang</span>
+              <svg class="w-4 h-4 shrink-0" aria-hidden="true">
+                <use href="#tp-arrow-badge"></use>
+              </svg>
+            </a>
+
+            <p class="mt-4 text-[12.5px] text-[#737373] leading-relaxed">
+              Auto chat: &quot;Halo kak, saya mau join VIP komunitas Tradepreneur&quot;
+            </p>
+          </article>
+
+          <!-- 3) Full-Width Card: Instagram Official -->
+          <article class="tp-card p-6 reveal-item">
+            <div class="tp-icon-badge mb-6">
+              <!-- White Instagram Icon -->
+              <svg class="w-[26px] h-[26px] text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
+                <circle cx="12" cy="12" r="4.2" />
+                <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none" />
+              </svg>
+            </div>
+
+            <h3 class="text-[19px] font-bold text-white mb-2">
+              Instagram Official
+            </h3>
+            <p class="text-[#9CA3AF] text-[13.5px] leading-relaxed mb-5">
+              Ikuti update harian, edukasi singkat, dan aktivitas komunitas di Instagram.
+            </p>
+
+            <a
+              href="https://www.instagram.com/rezayogiana?xtok=MTE0dnFsY2FhZ3JneQ%3D%3D&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="tp-pill-cta inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A0A0A] border border-red-600 text-white text-sm font-semibold hover:bg-red-600/20 active:scale-[0.98] transition"
+            >
+              <span>Follow Instagram</span>
+              <svg class="w-4 h-4 shrink-0" aria-hidden="true">
+                <use href="#tp-arrow-badge"></use>
+              </svg>
+            </a>
+          </article>
+
+          <!-- 4) Full-Width Card: TikTok Utama (@zerofxn) -->
+          <article class="tp-card p-6 reveal-item">
+            <div class="tp-icon-badge mb-6">
+              <!-- White TikTok Icon -->
+              <svg class="w-[26px] h-[26px] text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z" />
+              </svg>
+            </div>
+
+            <h3 class="text-[19px] font-bold text-white mb-2">
+              TikTok Utama (@zerofxn)
+            </h3>
+            <p class="text-[#9CA3AF] text-[13.5px] leading-relaxed mb-5">
+              Konten edukasi trading, breakdown setup market, dan mindset trader.
+            </p>
+
+            <a
+              href="https://www.tiktok.com/@zerofxn?_r=1&_t=ZS-9Afut0kBIEK"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="tp-pill-cta inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A0A0A] border border-red-600 text-white text-sm font-semibold hover:bg-red-600/20 active:scale-[0.98] transition"
+            >
+              <span>Kunjungi TikTok</span>
+              <svg class="w-4 h-4 shrink-0" aria-hidden="true">
+                <use href="#tp-arrow-badge"></use>
+              </svg>
+            </a>
+          </article>
+
+          <!-- 5) Full-Width Card: TikTok Live Trade -->
+          <article class="tp-card p-6 reveal-item">
+            <div class="tp-icon-badge mb-6">
+              <!-- White TikTok Icon -->
+              <svg class="w-[26px] h-[26px] text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z" />
+              </svg>
+            </div>
+
+            <h3 class="text-[19px] font-bold text-white mb-2">
+              TikTok Live Trade
+            </h3>
+            <p class="text-[#9CA3AF] text-[13.5px] leading-relaxed mb-5">
+              Tonton sesi live trading bareng, analisa real-time, dan eksekusi market.
+            </p>
+
+            <a
+              href="https://www.tiktok.com/@fansdhotdesign_02?_r=1&_t=ZS-9BKeYZNty1C"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="tp-pill-cta inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A0A0A] border border-red-600 text-white text-sm font-semibold hover:bg-red-600/20 active:scale-[0.98] transition"
+            >
+              <span>Tonton Live</span>
+              <svg class="w-4 h-4 shrink-0" aria-hidden="true">
+                <use href="#tp-arrow-badge"></use>
+              </svg>
+            </a>
+          </article>
+
+          <!-- 6) Side-by-Side 2-Column Broker Partner Row (Valetax & Headway) -->
+          <div id="brokers" class="grid grid-cols-2 gap-3.5 pt-0.5 reveal-item">
+
+            <!-- Left Broker Card: Valetax -->
+            <article class="tp-card p-4 flex flex-col justify-between">
+              <div>
+                <!-- Pure-Black Logo Tile -->
+                <div class="tp-broker-tile h-28 w-full rounded-[14px] bg-[#040404] flex items-center justify-center p-3 mb-4">
+                  <svg viewBox="0 0 180 68" class="w-full max-w-[138px] h-auto" aria-label="Valetax">
+                    <!-- Stylized White & Emerald V Emblem -->
+                    <polygon points="30,25 38.5,25 46,41 40.5,41" fill="#FFFFFF" />
+                    <polygon points="53.5,25 61,25 49.5,44 44,44" fill="#22C55E" />
+                    <polygon points="43,25 49.5,25 46.2,31.5" fill="#10B981" />
+                    <!-- Valetax Wordmark -->
+                    <text x="67" y="40" fill="#FFFFFF" font-family="Inter, sans-serif" font-weight="700" font-size="18.5" letter-spacing="-0.2">Valetax</text>
+                  </svg>
+                </div>
+
+                <h3 class="text-[18px] font-bold text-white mb-1.5">
+                  Valetax
+                </h3>
+                <p class="text-[12.5px] text-[#9CA3AF] leading-relaxed mb-4">
+                  Ambil komisi 9-12$/lot trading kalian melalui link pendaftaran resmi.
+                </p>
+              </div>
+
+              <div>
+                <a
+                  href="https://ma.valetax-indonesia.com/p/1682343"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="tp-pill-cta inline-flex items-center justify-center gap-1.5 px-3 py-2 text-[11.5px] whitespace-nowrap rounded-full bg-[#0A0A0A] border border-red-600 text-white font-semibold hover:bg-red-600/20 active:scale-[0.98] transition"
+                >
+                  <span>Daftar di Valetax</span>
+                  <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true">
+                    <use href="#tp-arrow-badge"></use>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- Right Broker Card: Headway -->
+            <article class="tp-card p-4 flex flex-col justify-between">
+              <div>
+                <!-- Pure-Black Logo Tile with Golden-Yellow (#F4C300) Headway Crown/W Emblem -->
+                <div class="tp-broker-tile h-28 w-full rounded-[14px] bg-[#040404] flex flex-col items-center justify-center p-3 mb-4">
+                  <svg viewBox="0 0 100 100" class="w-11 h-11 mb-1.5" aria-hidden="true">
+                    <!-- Floating Top-Center Diamond -->
+                    <polygon points="56.5,6 62,12.5 56.5,19 51,12.5" fill="#F4C300" />
+                    <!-- Outer-Left Slanted Bar -->
+                    <polygon points="10,44 19.5,44 36,90 26.5,90" fill="#F4C300" />
+                    <!-- Inner-Left Slanted Bar Meeting Central Vertex -->
+                    <polygon points="25,34 34.5,34 45.5,64 36.8,67" fill="#F4C300" />
+                    <!-- Tall Central Bar Rising Toward Diamond -->
+                    <polygon points="46.5,90 56,90 66,28.5 58.5,24.5" fill="#F4C300" />
+                    <!-- Inner-Right Parallel Bar -->
+                    <polygon points="63,90 72.5,90 81.5,34 72,34" fill="#F4C300" />
+                    <!-- Outer-Right Parallel Bar -->
+                    <polygon points="79.5,90 89,90 96,44 86.5,44" fill="#F4C300" />
+                  </svg>
+                  <span class="text-[14px] font-bold tracking-tight text-white leading-none">
+                    Headway
+                  </span>
+                </div>
+
+                <h3 class="text-[18px] font-bold text-white mb-1.5">
+                  Headway
+                </h3>
+                <p class="text-[12.5px] text-[#9CA3AF] leading-relaxed mb-4">
+                  Akses halaman pendaftaran broker Headway melalui link yang tersedia.
+                </p>
+              </div>
+
+              <div>
+                <a
+                  href="https://headway.partners/user/signup?hwp=8fed04"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="tp-pill-cta inline-flex items-center justify-center gap-1.5 px-3 py-2 text-[11.5px] whitespace-nowrap rounded-full bg-[#0A0A0A] border border-red-600 text-white font-semibold hover:bg-red-600/20 active:scale-[0.98] transition"
+                >
+                  <span>Daftar di Headway</span>
+                  <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true">
+                    <use href="#tp-arrow-badge"></use>
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         5. KENAPA MEMILIH TRADEPREUNER SECTION (#why-us)
+         ===================================================================== -->
+    <section id="why-us" class="py-14">
+      <div class="max-w-[460px] mx-auto px-6">
+        <!-- Left-Aligned Section Header -->
+        <div class="mb-9 reveal-item">
+          <p class="text-[12px] font-bold uppercase tracking-[0.22em] text-[#EF1C24] mb-3">
+            KENAPA MEMILIH
+          </p>
+
+          <h2 class="text-[32px] font-black uppercase tracking-tight leading-[1.08] text-white mb-4">
+            TRADEPREUNER?
+          </h2>
+
+          <p class="text-[#A3A3A3] text-[15px] leading-relaxed">
+            Bukan sekadar komunitas, tapi tempat untuk belajar, berbagi, dan tumbuh bersama.
+          </p>
+        </div>
+
+        <!-- 4 Vertical Feature Items -->
+        <div class="space-y-6">
+          <!-- Feature 1: Edukasi Trading -->
+          <div class="flex items-start gap-4 reveal-item">
+            <div class="w-[46px] h-[46px] shrink-0 rounded-full border border-red-600/50 bg-[#0A0505] flex items-center justify-center text-[#EF1C24]">
+              <!-- Command / Loop Icon -->
+              <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-[16px] font-bold text-white mb-1">
+                Edukasi Trading
+              </h3>
+              <p class="text-[13.5px] text-[#9CA3AF] leading-relaxed">
+                Materi lengkap dari dasar hingga advance.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 2: Komunitas Solid -->
+          <div class="flex items-start gap-4 reveal-item">
+            <div class="w-[46px] h-[46px] shrink-0 rounded-full border border-red-600/50 bg-[#0A0505] flex items-center justify-center text-[#EF1C24]">
+              <!-- Triangle / Network Icon -->
+              <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="12 4 4 19 20 19 12 4" />
+                <circle cx="12" cy="13.5" r="1.5" fill="currentColor" stroke="none" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-[16px] font-bold text-white mb-1">
+                Komunitas Solid
+              </h3>
+              <p class="text-[13.5px] text-[#9CA3AF] leading-relaxed">
+                Diskusi aktif dan support dari para trader.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 3: Signal & Analisa -->
+          <div class="flex items-start gap-4 reveal-item">
+            <div class="w-[46px] h-[46px] shrink-0 rounded-full border border-red-600/50 bg-[#0A0505] flex items-center justify-center text-[#EF1C24]">
+              <!-- Candlestick / Vertical Bar Icon -->
+              <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <rect x="9.5" y="6" width="5" height="12" rx="1" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-[16px] font-bold text-white mb-1">
+                Signal &amp; Analisa
+              </h3>
+              <p class="text-[13.5px] text-[#9CA3AF] leading-relaxed">
+                Update market dan peluang trading harian.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 4: Disiplin & Mindset -->
+          <div class="flex items-start gap-4 reveal-item">
+            <div class="w-[46px] h-[46px] shrink-0 rounded-full border border-red-600/50 bg-[#0A0505] flex items-center justify-center text-[#EF1C24]">
+              <!-- Checkmark Icon -->
+              <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-[16px] font-bold text-white mb-1">
+                Disiplin &amp; Mindset
+              </h3>
+              <p class="text-[13.5px] text-[#9CA3AF] leading-relaxed">
+                Bangun kebiasaan trading yang sehat dan konsisten.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================================
+       6. FOOTER
+       ===================================================================== -->
+  <footer id="contact" class="border-t border-white/10 pt-10 pb-12">
+    <div class="max-w-[460px] mx-auto px-6">
+      <!-- Brand Lockup -->
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-[48px] h-[48px] bg-[#020202] border border-white/[0.04] shrink-0 flex flex-col items-center justify-center p-1">
+          <svg class="w-[26px] h-[26px]" aria-hidden="true">
+            <use href="#tp-emblem"></use>
+          </svg>
+          <span class="mt-0.5 text-[4.5px] font-extrabold tracking-[0.14em] text-[#EF1C24] uppercase leading-none">
+            TRADEPREUNER
+          </span>
+        </div>
+
+        <div>
+          <p class="text-[16px] font-black tracking-[0.12em] text-[#EF1C24] uppercase leading-tight">
+            TRADEPREUNER
+          </p>
+          <p class="text-[13.5px] text-[#9CA3AF] mt-0.5">
+            Bersama belajar, bersama profit.
+          </p>
+        </div>
+      </div>
+
+      <!-- Horizontal Navigation Links Row -->
+      <nav aria-label="Footer Navigation" class="flex items-center justify-between text-[13px] text-[#D1D5DB] pb-8 border-b border-white/10">
+        <a href="#home" class="hover:text-white transition-colors">Home</a>
+        <a href="#about" class="hover:text-white transition-colors">About</a>
+        <a href="#why-us" class="hover:text-white transition-colors">Services</a>
+        <a href="#community" class="hover:text-white transition-colors">Community</a>
+        <a href="#community" class="hover:text-white transition-colors">Contact</a>
+      </nav>
+
+      <!-- Bottom Copyright -->
+      <p class="text-center text-[12px] text-[#6B7280] mt-7">
+        &copy; 2026 Tradepreneur. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       INTERACTIVE BEHAVIORS (MENU DRAWER, HERO SPOTLIGHT, SCROLL REVEAL)
+       ===================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      /* 1. Minimalist Dropdown Navigation Toggle */
+      const menuToggleBtn = document.getElementById('menuToggleBtn');
+      const navDropdown = document.getElementById('navDropdown');
+      const toggleCircle = document.getElementById('toggleCircle');
+      const navMenuItems = document.querySelectorAll('.nav-menu-item');
+
+      function closeMenu() {
+        if (!navDropdown) return;
+        navDropdown.classList.remove('is-open');
+        if (menuToggleBtn) menuToggleBtn.setAttribute('aria-expanded', 'false');
+        if (toggleCircle) toggleCircle.style.transform = 'rotate(0deg)';
       }
 
-      isRealtimeActive = false;
-      toggleRealtimeBtn.classList.remove('active');
-      toggleRealtimeBtn.innerHTML = '<i class="fa-solid fa-pause"></i> REALTIME: SYNCED TO EVENT';
+      if (menuToggleBtn && navDropdown) {
+        menuToggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = navDropdown.classList.toggle('is-open');
+          menuToggleBtn.setAttribute('aria-expanded', String(isOpen));
+          if (toggleCircle) {
+            toggleCircle.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+          }
+        });
 
-      recalculateAndRenderAstro();
-      document.getElementById('astroWheelCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+        navMenuItems.forEach((link) => {
+          link.addEventListener('click', closeMenu);
+        });
 
-    async function fetchLiveEconomicFeed() {
-      const d = getParsedInt('calDay', new Date().getDate());
-      const m = getParsedInt('calMonth', new Date().getMonth());
-      const y = getParsedInt('calYear', new Date().getFullYear());
-      const dateObj = new Date(y, m, d);
-      const dayOfWeek = dateObj.getDay();
+        document.addEventListener('click', (e) => {
+          if (!navDropdown.contains(e.target) && !menuToggleBtn.contains(e.target)) {
+            closeMenu();
+          }
+        });
+      }
 
-      document.getElementById('calDayName').innerText = `(${DAY_NAMES[dayOfWeek]})`;
-      const baseList = generateWorldScheduleForDate(y, m, d, dayOfWeek);
+      /* 2. Subtle Interactive Mouse/Touch Spotlight on Hero */
+      const heroSection = document.getElementById('home');
+      const heroSpotlight = document.getElementById('heroSpotlight');
 
-      currentEvents = baseList.map((item, idx) => {
-        let evHour = 12, evMin = 0;
-        if (item.time && item.time.includes(':')) {
-          const parts = item.time.split(':');
-          evHour = parseInt(parts[0], 10);
-          evMin = parseInt(parts[1], 10);
-        }
-        const eventDateObj = new Date(y, m, d, evHour, evMin, 0);
-        const astroEval = evaluateTimeSpecificAstro(eventDateObj, item.cur);
-
-        return {
-          ...item, id: `ev_${y}_${m}_${d}_${idx}`, eventDateObj,
-          timeSpecificAstroSignal: astroEval.signal, timeSpecificAstroScore: astroEval.score,
-          actual: null, autoDecision: null
+      if (heroSection && heroSpotlight) {
+        const updateHeroSpot = (clientX, clientY) => {
+          const rect = heroSection.getBoundingClientRect();
+          const x = clientX - rect.left;
+          const y = clientY - rect.top;
+          heroSpotlight.style.setProperty('--spot-x', `${x}px`);
+          heroSpotlight.style.setProperty('--spot-y', `${y}px`);
         };
-      });
 
-      renderCalendarTable();
-    }
+        heroSection.addEventListener('mousemove', (e) => {
+          updateHeroSpot(e.clientX, e.clientY);
+        }, { passive: true });
 
-    function renderCalendarTable() {
-      const tbody = document.getElementById('calendarTableBody');
-      if (!tbody) return;
-      tbody.innerHTML = '';
-
-      const filtered = currentEvents.filter(ev => {
-        if (currentFilter === 'HIGH') return ev.impact === 'HIGH';
-        if (currentFilter === 'MED') return ev.impact === 'HIGH' || ev.impact === 'MED';
-        return true;
-      });
-
-      if (filtered.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding:24px; color:var(--text-muted);"><i class="fa-solid fa-calendar-xmark" style="font-size:20px; color:var(--accent-gold); margin-bottom:8px; display:block;"></i>Tidak ada rilis berita untuk tanggal ini.</td></tr>`;
-        return;
+        heroSection.addEventListener('touchmove', (e) => {
+          if (e.touches && e.touches[0]) {
+            updateHeroSpot(e.touches[0].clientX, e.touches[0].clientY);
+          }
+        }, { passive: true });
       }
 
-      filtered.forEach(ev => {
-        let decisionBadge = '';
-        if (ev.isWeekendNotice) {
-          decisionBadge = `<span class="auto-signal-tag" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff;"><i class="fa-solid fa-moon"></i> PASAR LIBUR</span>`;
-        } else if (ev.actual) {
-          decisionBadge = ev.autoDecision === 'SELL'
-            ? `<span class="auto-signal-tag signal-news-sell"><i class="fa-solid fa-arrow-trend-down"></i> NEWS SELL XAUUSD</span>`
-            : `<span class="auto-signal-tag signal-news-buy"><i class="fa-solid fa-arrow-trend-up"></i> NEWS BUY XAUUSD</span>`;
-        } else {
-          decisionBadge = ev.timeSpecificAstroSignal === 'BUY'
-            ? `<span class="auto-signal-tag signal-astro-buy"><i class="fa-solid fa-satellite"></i> ASTRO BUY XAUUSD</span>`
-            : `<span class="auto-signal-tag signal-astro-sell"><i class="fa-solid fa-satellite"></i> ASTRO SELL XAUUSD</span>`;
-        }
-
-        const impactClass = ev.impact === 'HIGH' ? 'impact-high' : (ev.impact === 'MED' ? 'impact-med' : 'impact-low');
-        const tr = document.createElement('tr');
-        tr.className = 'clickable-row';
-        tr.onclick = (e) => { if (e.target.tagName !== 'BUTTON') inspectEventOnAstro(ev.id); };
-
-        tr.innerHTML = `
-          <td style="font-weight:700; color:#fff;">${ev.time}</td>
-          <td><span style="color:var(--accent-cyan); font-weight:700;">${ev.cur}</span></td>
-          <td><span class="impact-badge ${impactClass}">${ev.impact}</span></td>
-          <td><div style="font-weight:600; color:#fff;">${ev.name}</div><div style="font-size:10px; color:var(--text-muted);">Investing.com Verified World Feed</div></td>
-          <td style="color:var(--text-muted);">${ev.prev}</td>
-          <td style="color:#fff; font-weight:600;">${ev.fore}</td>
-          <td style="color:${ev.actual ? 'var(--accent-cyan)' : 'var(--accent-gold)'}; font-weight:700;">${ev.actual ? ev.actual : (ev.isWeekendNotice ? '-' : '<i class="fa-regular fa-clock" style="font-size:10px;"></i> Pending')}</td>
-          <td>${decisionBadge}</td>
-          <td>${ev.isWeekendNotice ? '<span style="color:var(--text-muted); font-size:10px;">Standby</span>' : `<button class="btn-inspect-astro" onclick="inspectEventOnAstro('${ev.id}')"><i class="fa-solid fa-magnifying-glass"></i> Cek di Astro</button>`}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function filterImpact(type) {
-      currentFilter = type;
-      document.getElementById('filterAllBtn').classList.toggle('active', type === 'ALL');
-      document.getElementById('filterHighBtn').classList.toggle('active', type === 'HIGH');
-      document.getElementById('filterMedBtn').classList.toggle('active', type === 'MED');
-      renderCalendarTable();
-    }
-
-    // Flash Execution Simulation & Sound/Banner Confirmation
-    function simulateActualNewsFlash() {
-      const banner = document.getElementById('executionBanner');
-      banner.style.display = 'flex';
-
-      let triggeredCount = 0;
-      currentEvents.forEach(ev => {
-        if (!ev.isWeekendNotice) {
-          ev.actual = ev.simVal;
-          // Actual beating expectation on USD -> Strong USD -> AUTO SELL XAUUSD
-          ev.autoDecision = (ev.cur === 'USD') ? 'SELL' : 'BUY';
-          triggeredCount++;
-        }
-      });
-
-      banner.classList.add('sell-alert');
-      document.getElementById('bannerTitle').innerText = 'KONFIRMASI EKSEKUSI: DATA ACTUAL TELAH RILIS!';
-      document.getElementById('bannerDesc').innerHTML = `Sistem mengonfirmasi ${triggeredCount} berita fundamental rilis. Deviasi Actual > Forecast memicu sinyal <strong>NEWS SELL XAUUSD</strong> secara otomatis!`;
-
-      // Audio Beep Alert
-      try {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.connect(gain); gain.connect(audioCtx.destination);
-        osc.frequency.value = 880; gain.gain.value = 0.1;
-        osc.start(); osc.stop(audioCtx.currentTime + 0.25);
-      } catch (e) {}
-
-      renderCalendarTable();
-    }
-
-    function switchCalendarView(mode) {
-      const isMatrix = mode === 'matrix';
-      document.getElementById('viewAstroMatrix').style.display = isMatrix ? 'block' : 'none';
-      document.getElementById('viewInvesting').style.display = isMatrix ? 'none' : 'block';
-      document.getElementById('tabAstroMatrixBtn').classList.toggle('active', isMatrix);
-      document.getElementById('tabInvestingBtn').classList.toggle('active', !isMatrix);
-    }
-
-    // Initialize with Real-Time Current Date
-    const initDate = new Date();
-    document.getElementById('ctrlYear').value = initDate.getFullYear();
-    document.getElementById('ctrlMonth').value = initDate.getMonth();
-    document.getElementById('ctrlDay').value = initDate.getDate();
-
-    document.getElementById('calYear').value = initDate.getFullYear();
-    document.getElementById('calMonth').value = initDate.getMonth();
-    document.getElementById('calDay').value = initDate.getDate();
-
-    updateClock();
-    recalculateAndRenderAstro();
-    fetchLiveEconomicFeed();
+      /* 3. Smooth Scroll Reveal Observer */
+      const revealItems = document.querySelectorAll('.reveal-item');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.08 }
+        );
+        revealItems.forEach((el) => observer.observe(el));
+      } else {
+        revealItems.forEach((el) => el.classList.add('is-visible'));
+      }
+    });
   </script>
 </body>
 </html>
